@@ -14,12 +14,21 @@
 
 <header class="hero">
   <p class="name">松村貴士 ／ ZAZOU株式会社 代表</p>
+  <p class="title"><span>AIエージェント・業務自動化エンジニア</span> ／ <span>ex-Panasonic Mechanical Design Engineer</span></p>
   <!-- キャッチコピーは松村さんの確認待ち（ルール61） -->
   <h1>設計15年の確認の細かさで、<br>資料・リサーチ・業務改善を正確に仕上げます。</h1>
-  <p>元パナソニックの機構設計者。2020年からEC事業の会社を経営しています。</p>
+  <p>パナソニックで15年、家電の設計に従事。2020年からEC事業の会社を経営しています。</p>
 </header>
 
-<section id="skills">
+<nav class="tabs" aria-label="ページ内の切り替え">
+  <a href="#about" data-tab="about">プロフィール</a>
+  <a href="#samples" data-tab="samples">見本</a>
+  <a href="#system" data-tab="system">仕組み</a>
+  <a href="#paper" data-tab="paper">論文</a>
+</nav>
+
+<section id="about" data-panel="about">
+<div class="sub-sec" id="skills">
   <h2>できること</h2>
   <div class="grid two">
     <div class="card"><h3>資料作成・リサーチ</h3><p>一次情報（公式サイト・公募要領など）で確かめ、出典を添えてまとめます。PowerPoint・Googleスライド・PDF。</p></div>
@@ -27,9 +36,34 @@
     <div class="card"><h3>EC・商品企画</h3><p>Amazon・Yahoo!ショッピング・BASEでの販売。Makuakeでは企画から撮影・文章・広告・発送まで一人で担当。</p></div>
     <div class="card"><h3>AIの業務活用（誤りを防ぐ仕組みつき）</h3><p>AIには事実をまとめた表だけを使わせ、別のAIによる二重チェックと人の最終確認を通してから外に出します。</p></div>
   </div>
+</div>
+
+<div class="sub-sec" id="works">
+  <h2>実績</h2>
+  <div class="grid">
+    <div class="card"><h3>Makuake：全身シャンプーバー</h3><p>ポーランドのブランドの日本初展開。応援購入総額424,930円（達成率141%）。企画・撮影・動画編集・文章・広告運用・発送を一人で。</p><a class="btn ghost" href="https://www.makuake.com/project/4szpaki/">プロジェクトページ</a></div>
+    <div class="card"><h3>note：調査記事24本</h3><p>AI・時事、マーケティング・EC、社会・メディアなどを調べて書いた記事。</p><a class="btn ghost" href="https://note.com/takashimatsumura">noteを見る</a></div>
+    <div class="card"><h3>ヤマトB2 送り状変換ツール</h3><p>注文データをヤマト運輸「B2クラウド」の取り込み形式に変換するツール。自社の出荷で使用中。</p><a class="btn ghost" href="https://takmat21.github.io/yamato-b2-/">ツールを開く</a></div>
+    <div class="card"><h3>ランプの企画・設計・試作</h3><p>個人で企画し、3D CADで設計・試作した過程の動画。</p><a class="btn ghost" href="https://www.youtube.com/watch?v=cPVDlqot2IQ">動画を見る</a></div>
+    <!-- 親子関係支援ラボ：載せ方は松村さんの確認待ち（案1：Web制作の実績として） -->
+    <div class="card"><h3>団体サイトの制作</h3><p>団体のWebサイトを企画から制作・公開まで一人で担当（HTML・GitHub Pages、スマホ対応、検索向けの説明文の設定）。</p><a class="btn ghost" href="https://takmat21.github.io/oyako-lab/">サイトを見る</a></div>
+  </div>
+</div>
+
+<div class="sub-sec" id="career">
+  <h2>経歴</h2>
+  <dl class="career">
+    <dt>2020年〜</dt><dd>ZAZOU株式会社 設立・代表取締役（家電・日用品・ペットフードの販売と輸出入）</dd>
+    <dt>2014〜2020年</dt><dd>パナソニック：ロボット掃除機の開発（駆動部）</dd>
+    <dt>2011〜2013年</dt><dd>パナソニック：台湾拠点で縦型洗濯機の機種開発リーダー、衣類用新規商品の開発</dd>
+    <dt>2005〜2011年</dt><dd>パナソニックエレクトロニックデバイス：チューナの機構設計</dd>
+    <dt>2000〜2005年</dt><dd>家業の建設業（施工・資材手配）</dd>
+  </dl>
+  <p class="note" style="margin-top:16px">使えるツール：Word、Excel、PowerPoint、Googleドキュメント・スプレッドシート（GAS）、freee、Canva、Zoom、ChatGPT・Claude／3D CAD：CATIA、NX、SolidWorks（CATIA V5 スペシャリスト資格）</p>
+</div>
 </section>
 
-<section id="samples">
+<section id="samples" data-panel="samples">
   <h2>見本（架空データ）</h2>
   <p class="note" style="margin:-8px 0 16px">ログインなしで開けます。会社名・人名・数字は例です。</p>
   <div class="grid">
@@ -43,7 +77,7 @@
   </div>
 </section>
 
-<section id="system">
+<section id="system" data-panel="system">
   <h2>自社で運用している仕組み</h2>
   <p>統括役のAIが担当ごとのAIに指示・確認し、結果をフィードバックして改善する「階層型のAIエージェント体制」を、自社の業務で毎日動かしています。送信など元に戻せない操作は人が行います。</p>
   <a class="btn" href="samples/system/">構成と運用の資料（15ページ）</a>
@@ -55,28 +89,16 @@
   <p class="note">画面の一部は説明用の架空データです。</p>
 </section>
 
-<section id="works">
-  <h2>実績</h2>
-  <div class="grid">
-    <div class="card"><h3>Makuake：全身シャンプーバー</h3><p>ポーランドのブランドの日本初展開。応援購入総額424,930円（達成率141%）。企画・撮影・動画編集・文章・広告運用・発送を一人で。</p><a class="btn ghost" href="https://www.makuake.com/project/4szpaki/">プロジェクトページ</a></div>
-    <div class="card"><h3>note：調査記事24本</h3><p>AI・時事、マーケティング・EC、社会・メディアなどを調べて書いた記事。</p><a class="btn ghost" href="https://note.com/takashimatsumura">noteを見る</a></div>
-    <div class="card"><h3>ヤマトB2 送り状変換ツール</h3><p>注文データをヤマト運輸「B2クラウド」の取り込み形式に変換するツール。自社の出荷で使用中。</p><a class="btn ghost" href="https://takmat21.github.io/yamato-b2-/">ツールを開く</a></div>
-    <div class="card"><h3>ランプの企画・設計・試作</h3><p>個人で企画し、3D CADで設計・試作した過程の動画。</p><a class="btn ghost" href="https://www.youtube.com/watch?v=cPVDlqot2IQ">動画を見る</a></div>
-    <!-- 親子関係支援ラボ：載せ方は松村さんの確認待ち（案1：Web制作の実績として） -->
-    <div class="card"><h3>団体サイトの制作</h3><p>団体のWebサイトを企画から制作・公開まで一人で担当（HTML・GitHub Pages、スマホ対応、検索向けの説明文の設定）。</p><a class="btn ghost" href="https://takmat21.github.io/oyako-lab/">サイトを見る</a></div>
+<section id="paper" data-panel="paper">
+  <h2>論文（執筆中・中間発表）</h2>
+  <div class="card">
+    <span class="tag">事例研究</span>
+    <h3>非エンジニアが運用する階層型マルチエージェントにおける記憶の欠落とハルシネーションへの対処</h3>
+    <p>スプレッドシートを外部記憶とする「記録の三層」（書く・照合する・根拠を示す）と記録係エージェントの事例研究。実際に起きた失敗6件と、それぞれから生まれたルール、引き継ぎ試験の結果（10問中10問を根拠付きで正答）、限界と今後をまとめています。</p>
+    <div class="meta">約11,000字・8章＋中間発表時点の追記（2026年11月1日）</div>
+    <a class="btn" href="paper/">論文を読む</a>
   </div>
-</section>
-
-<section id="career">
-  <h2>経歴</h2>
-  <dl class="career">
-    <dt>2020年〜</dt><dd>ZAZOU株式会社 設立・代表取締役（家電・日用品・ペットフードの販売と輸出入）</dd>
-    <dt>2014〜2020年</dt><dd>パナソニック：ロボット掃除機の開発（駆動部）</dd>
-    <dt>2011〜2013年</dt><dd>パナソニック：台湾拠点で縦型洗濯機の機種開発リーダー、衣類用新規商品の開発</dd>
-    <dt>2005〜2011年</dt><dd>パナソニックエレクトロニックデバイス：チューナの機構設計</dd>
-    <dt>2000〜2005年</dt><dd>家業の建設業（施工・資材手配）</dd>
-  </dl>
-  <p class="note" style="margin-top:16px">使えるツール：Word、Excel、PowerPoint、Googleドキュメント・スプレッドシート（GAS）、freee、Canva、Zoom、ChatGPT・Claude／3D CAD：CATIA、NX、SolidWorks（CATIA V5 スペシャリスト資格）</p>
+  <p class="note" style="margin-top:12px">「ハルシネーションをなくした」とは主張していません。根拠のない記述を見つけて取り除く仕組みを、非エンジニアの運用の中で作った記録です。</p>
 </section>
 
 <footer>
@@ -86,5 +108,18 @@
 </footer>
 
 </div>
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.tabs a')), panels=[].slice.call(document.querySelectorAll('[data-panel]'));
+  function show(id){
+    if(!panels.some(function(p){return p.dataset.panel===id;})) id='about';
+    panels.forEach(function(p){p.hidden=p.dataset.panel!==id;});
+    tabs.forEach(function(a){var on=a.dataset.tab===id; a.classList.toggle('on',on); if(on)a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');});
+  }
+  tabs.forEach(function(a){a.addEventListener('click',function(e){e.preventDefault(); history.replaceState(null,'','#'+a.dataset.tab); show(a.dataset.tab); window.scrollTo({top:document.querySelector('.tabs').offsetTop-8});});});
+  window.addEventListener('hashchange',function(){show(location.hash.slice(1));});
+  show(location.hash.slice(1));
+})();
+</script>
 </body>
 </html>

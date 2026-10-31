@@ -32,3 +32,11 @@ footer{padding:32px 0 48px;font-size:13px;color:var(--sub)}
 @media (max-width:480px){.career{grid-template-columns:1fr}.career dt{margin-top:8px}}
 .grid.two{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
 @media (min-width:700px){.grid.two{grid-template-columns:1fr 1fr}}
+.tabs{position:sticky;top:0;z-index:5;display:flex;gap:4px;overflow-x:auto;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 0 0;margin-bottom:8px}
+.tabs a{flex:0 0 auto;padding:10px 16px;font-size:15px;color:var(--sub);text-decoration:none;border-bottom:3px solid transparent;white-space:nowrap}
+.tabs a.on{color:var(--accent);border-bottom-color:var(--accent);font-weight:700}
+section[data-panel]{border-bottom:0;padding-top:24px}
+.sub-sec{padding:0 0 36px}
+.sub-sec+.sub-sec{border-top:1px solid var(--line);padding-top:32px}
+.hero .title{font-size:14px;font-weight:700;color:var(--accent);margin:0 0 14px;letter-spacing:.02em}
+.hero .title span{white-space:nowrap}

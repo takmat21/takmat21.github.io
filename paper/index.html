@@ -1,0 +1,578 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>記憶の欠落への対処（執筆中）｜松村貴士</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="非エンジニアが運用する階層型マルチエージェントにおける記憶の欠落とハルシネーションへの対処（事例研究・執筆中の中間発表）">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbfaf7;--fg:#1f1f1c;--muted:#5d5b55;--line:#dedad1;--card:#f2efe8;--accent:#8a4b1f;--code:#f0ece3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161614;--fg:#e8e6e1;--muted:#a6a39b;--line:#3a3833;--card:#211f1c;--accent:#e0a473;--code:#24221e}}
+:root[data-theme="dark"]{--bg:#161614;--fg:#e8e6e1;--muted:#a6a39b;--line:#3a3833;--card:#211f1c;--accent:#e0a473;--code:#24221e}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Noto Serif JP","Hiragino Mincho ProN",serif;font-size:16.5px;line-height:1.95;letter-spacing:.02em}
+main{max-width:46rem;margin:0 auto;padding:48px 16px 96px}
+h1,h2,h3{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;line-height:1.45;letter-spacing:0}
+h1{font-size:1.6rem;margin:0 0 .4em}
+main>h2:first-of-type{font-size:1.05rem;font-weight:500;color:var(--muted);margin-top:0;border:0;padding:0}
+h2{font-size:1.3rem;margin:2.6em 0 .8em;padding-top:.6em;border-top:1px solid var(--line)}
+h3{font-size:1.08rem;margin:2em 0 .6em;color:var(--accent)}
+p{margin:0 0 1.1em}
+hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+a{color:var(--accent);word-break:break-all}
+strong{font-weight:700}
+ul,ol{padding-left:1.4em}li{margin:.3em 0}
+.tw{overflow-x:auto;margin:1.2em 0 1.6em;border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-family:"Noto Sans JP",sans-serif;font-size:14px;line-height:1.7}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;min-width:6em}
+th{background:var(--card);font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+pre{background:var(--code);border:1px solid var(--line);border-radius:6px;padding:14px;overflow-x:auto;font-size:13px;line-height:1.6}
+code{font-family:"Noto Sans Mono","SFMono-Regular",Menlo,monospace;font-size:.92em}
+pre code{font-size:inherit}
+.wip{font-family:"Noto Sans JP",sans-serif;font-size:14px;line-height:1.8;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:12px 16px;margin:0 0 1.6em}
+pre,.tw{max-width:100%}
+html,body{overflow-x:clip}
+.back{font-family:"Noto Sans JP",sans-serif;font-size:14px;margin:0 0 1.2em}
+main>p:nth-of-type(1){color:var(--muted);font-family:"Noto Sans JP",sans-serif;font-size:14px}
+@media print{body{background:#fff;color:#000}}
+</style></head><body><main>
+<p class="back"><a href="../">← 松村貴士 ポートフォリオ</a></p>
+<div class="wip"><strong>執筆中の論文（中間発表）</strong>　2026年11月1日時点の版です。対象期間・評価はまだ小規模で、今後、試験の拡大とあわせて改訂します。11月1日に分かったことは末尾の「中間発表時点の追記」にまとめています。</div>
+<h1>非エンジニアが運用する階層型マルチエージェントにおける記憶の欠落とハルシネーションへの対処</h1>
+<h2>スプレッドシートを外部記憶とする「記録の三層」と記録係エージェントの事例研究</h2>
+<p>ZAZOU株式会社　実務事例研究　｜　対象期間：2026年10月31日〜11月1日　｜　依頼・運用：松村貴士（代表）</p>
+<hr />
+<h2>要旨</h2>
+<p>本稿は、プログラミングを本業としない経営者が1人で運用する階層型マルチエージェント（統括AI 1体、担当AI 7体、記録係AI 1体）で起きた「記憶の欠落」と「根拠のない記述」の問題と、その対処を報告する事例研究である。統括AIの会話は約51万トークンに達し、自動圧縮による古い決定の忘却（社内呼称「圧縮忘れ」、一般には context rot／compaction loss）が懸念されていた。並行して、通知メールの見落とし、送信済みリンクの削除、記録の上書き、新旧ルールの併存など、6件の具体的な失敗が起きた。</p>
+<p>対策の中心は、会話ではなく Google スプレッドシートを記憶の正とする運用への切り替えである。これを「記録の三層」（書く・照合する・根拠を示す）として規則化し、統括AIの会話を外から読んで決定と成果物を書き出す記録係エージェント、表全体を読まずに必要な行だけを返す検索窓口（Google Apps Script）、起動時に必要な情報を一括で返す boot 窓口、事実と決定の有効期間、成果物台帳を順に加えた。</p>
+<p>評価として、会話の記憶を持たない新しいAIに引き継ぎ文書と検索窓口だけを与えて10問の業務質問に答えさせたところ、10問すべてに正答し、すべてに根拠（シート名と行番号）が付いた。ただし試験は10問・1回の小規模なもので、統計的な主張はできない。本稿は「ハルシネーションをなくした」とは主張しない。主張するのは、根拠のない記述を検出し、削除するための仕組みを、非エンジニアの運用の中で作ったという点である。</p>
+<hr />
+<h2>1. 背景と問題設定</h2>
+<h3>1.1 運用の概要</h3>
+<p>ZAZOU株式会社では、代表が業務の方針を決め、実作業の多くをAIに任せている。対象業務は、営業活動（情報収集と提案書・見本資料の作成）、各サイトのプロフィール管理、本業（物販）の補助などである。人がAIに触れる主な手段は、Webのオペレーションボード上のボタンであり、外部への送信・ログインは必ず人が行う。</p>
+<h3>1.2 問題</h3>
+<p>本稿で扱う問題は次の2つである。</p>
+<ol>
+<li><strong>記憶の欠落</strong>：統括AIの会話が長くなると、上限（約100万トークン）に近づく前の約90万トークンで自動圧縮が走り、古い決定やIDが要約から落ちる可能性がある。10月31日の時点で会話は約51万トークンであり、圧縮そのものはまだ起きていなかった。問題は、会話の中にしかない決定が、圧縮のたびに失われ得る運用だったことである。</li>
+<li><strong>根拠のない記述（ハルシネーション）</strong>：外に出す文面（提案書、追いメッセージ、プロフィール）に、記録で裏付けられない内容が入る危険。加えて、記録そのものが古い、または現実とずれている場合、AIは誤った記録を根拠に正しそうな文を書いてしまう。</li>
+</ol>
+<p>この2つは別の問題に見えるが、本事例では同じ根に行き着いた。すなわち「何が今の正しい情報か」が、会話の中か、複数の表のどこかに散らばっていたことである。</p>
+<h3>1.3 研究上の問い</h3>
+<ul>
+<li>問1：非エンジニアが扱える道具（スプレッドシートと簡単なスクリプト）で、会話に依存しない記憶を作れるか。</li>
+<li>問2：その記憶だけを与えた新しいAIが、業務の質問に根拠付きで答えられるか。</li>
+</ul>
+<hr />
+<h2>2. 関連する実践</h2>
+<p>対策の設計にあたり、公開されている一流の実践を調べた（社内の設計書による）。以下は本文を確認できた資料に限る。</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>実践</th>
+<th>要点</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文脈は有限の資源</td>
+<td>トークンが増えると想起の精度が落ちる（context rot）。「the smallest set of high-signal tokens」を渡す。識別子だけ持ち、必要時に読む（just-in-time retrieval）</td>
+<td>Anthropic [1]</td>
+</tr>
+<tr>
+<td>起動時に記憶を読む</td>
+<td>memory tool を有効にすると「ALWAYS VIEW YOUR MEMORY DIRECTORY BEFORE DOING ANYTHING ELSE」「ASSUME INTERRUPTION」が加わる。要約で消えては困る情報は memory に置く</td>
+<td>Anthropic [2]</td>
+</tr>
+<tr>
+<td>開始手順の固定</td>
+<td>長時間エージェントは毎回「進捗を読む→最優先を1つ選ぶ→動作確認」から始める。状態だけを書き換えさせる</td>
+<td>Anthropic [3]</td>
+</tr>
+<tr>
+<td>成果物は参照で返す</td>
+<td>指揮役は計画を外部に保存し、サブエージェントは成果物を外に置いて軽い参照だけ返す。最後に出典を特定する役を置く</td>
+<td>Anthropic [4]</td>
+</tr>
+<tr>
+<td>常駐記憶は短い索引に</td>
+<td>CLAUDE.md は200行未満が目安。矛盾する指示は片方が勝手に選ばれる。圧縮後は CLAUDE.md と自動メモがディスクから読み直され、会話だけで伝えた指示は消える</td>
+<td>Claude Code [5][6]</td>
+</tr>
+<tr>
+<td>出典付き回答</td>
+<td>文書をブロックに分けて渡すと、各主張に実在する引用位置が付く</td>
+<td>Anthropic [7]</td>
+</tr>
+<tr>
+<td>ハルシネーション削減</td>
+<td>「わからない」を許す。原文を逐語で抜き出してから答える。主張ごとに支える引用を探し、なければ削除する</td>
+<td>Anthropic [8]</td>
+</tr>
+<tr>
+<td>記憶の分類と統合</td>
+<td>事実・経験・手順の3分類。新旧を突き合わせて削除・無効化・統合する。会話の後に振り返って書く方式（background）がある</td>
+<td>LangMem [9]</td>
+</tr>
+<tr>
+<td>記憶の階層</td>
+<td>常に文脈内にある小さな core memory と、検索しないと見えない archival memory。記憶の整理では「today」「recently」と書かず具体的な日時を書く</td>
+<td>Letta [10]</td>
+</tr>
+<tr>
+<td>時間付き知識</td>
+<td>事実に成立日・失効日・無効化日時・出典を持たせ、古い事実は削除せず無効化する</td>
+<td>Graphiti [11]</td>
+</tr>
+<tr>
+<td>段階的な開示</td>
+<td>起動時は小さな要約だけ渡し、索引を検索し、詳細は必要時に開く</td>
+<td>OpenAI Agents SDK [12]</td>
+</tr>
+<tr>
+<td>検索の規模判断</td>
+<td>知識ベースが約20万トークン未満なら全部渡す選択肢もある。埋め込み検索は固有の文字列を取りこぼすので BM25 で補う</td>
+<td>Anthropic [13]</td>
+</tr>
+</tbody>
+</table></div>
+<p>なお、MemGPT と Zep の論文本文、Generative Agents・SelfCheckGPT・Self-RAG の論文本文、Chain-of-Verification は、調査環境の接続制限により未確認である。これらは公式リポジトリで確認できた範囲だけを設計の参考にし、本稿では出典として挙げない。</p>
+<hr />
+<h2>3. システム構成</h2>
+<h3>3.1 体制</h3>
+<pre><code>            人（代表）
+              │  方針・承認・外部送信・ログイン
+              │  （Webのオペレーションボードのボタン）
+              ▼
+   統括AI「先輩」（Claude Opus／Claude Code クラウドセッション）
+      │                     │                      │
+      ▼                     ▼                      ▼
+ 担当AI ×7             記録係「シオリ」         二重チェック
+ Opus×5               （Claude Haiku）        「ノーム」（ChatGPT）
+ Sonnet×2             会話を外から読み、       文面の事実・誤字・
+ （提案書・見本／     決定と成果物の場所を     答え漏れを点検
+   プロフィール管理）    表に書き出す
+      │                     │                      │
+      └──────────┬──────────┴──────────────────────┘
+                 ▼
+      Google スプレッドシート（外部記憶）
+      ＋ Google Apps Script の検索窓口（index / find / row / boot）
+</code></pre>
+<h3>3.2 外部記憶の内訳（2026年10月31日時点）</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>シート</th>
+<th>規模・役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ルール</td>
+<td>86行。手順の記憶（procedural）。各行に日付、v7で「常駐」「状態」列を追加</td>
+</tr>
+<tr>
+<td>事実シート</td>
+<td>43行。代表の経歴・実績など、外向け文面の根拠になる事実</td>
+</tr>
+<tr>
+<td>決定ログ</td>
+<td>決定とその状態（有効／廃止→後継行）</td>
+</tr>
+<tr>
+<td>先輩の引き継ぎ</td>
+<td>統括AIの進行中の件・ID・返事待ち</td>
+</tr>
+<tr>
+<td>照合結果</td>
+<td>記録と現実のずれ（未対応／対応済）</td>
+</tr>
+<tr>
+<td>案件台帳</td>
+<td>124行。案件ごとの状態と文面、M列に根拠</td>
+</tr>
+<tr>
+<td>プロフィール台帳</td>
+<td>サイト×共通項目キーで1行</td>
+</tr>
+<tr>
+<td>成果物台帳</td>
+<td>資料・見本の最新版IDの唯一の正（11月1日新設）</td>
+</tr>
+<tr>
+<td>同義語、検索ミス</td>
+<td>検索の補助（v7）</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2>4. 実際に起きた失敗と、それぞれから生まれたルール</h2>
+<p>10月31日に確認された失敗を、原因とその日に追加されたルールとともに示す。ルール番号はルールシートの行番号である。</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>起きたこと</th>
+<th>原因</th>
+<th>生まれたルール・仕組み</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a</td>
+<td>不採用通知2件（10月29日、A社・B社）を見落とし、すでに結果の出ていた案件に見本資料を作った</td>
+<td>Gmail が同じ件名の通知を1スレッドにまとめ、検索のプレビューには古いメールしか出なかった</td>
+<td>ルール80「メール確認はスレッドの中まで読む」（2通以上のスレッドは全文を読む）、ルール79「見本を作る前に選考状況を確かめる」、三層の②照合「台帳の状態⇔Gmail」</td>
+</tr>
+<tr>
+<td>b</td>
+<td>新しい版を作った際、旧PDFをゴミ箱へ移したが、そのリンクは既に先方へ送信済みだった</td>
+<td>「送ったかもしれない」という状態が記録されていなかった</td>
+<td>ルール74「送った可能性のあるDriveファイルは消さない」、三層の②照合「Driveリンクが開けるか」、のちの成果物台帳（ルール86）</td>
+</tr>
+<tr>
+<td>c</td>
+<td>担当AIが台帳のカード行を上書きし、別のカードを消した（直後に復元）</td>
+<td>書き込みの範囲が限定されていなかった</td>
+<td>当日は担当AIへの口頭の指示で対処し、ルールへの反映は翌日（ルール87「カードは必ず末尾に追加（上書き禁止）」）になった。設計書では、記録係を「候補行の追加だけ」に権限を絞る案も扱っている（未実装）</td>
+</tr>
+<tr>
+<td>d</td>
+<td>古いルール（改行多め、ルール52）と新しいルール（空行少なく、ルール71）が併存した</td>
+<td>ルールを追記するだけで、古い行を無効にする手段がなかった</td>
+<td>ルール82①「古くなった決定は消さず『廃止（→新しい行）』にする」。ルール52は「廃止→71」と記録。v7の find は廃止・無効の行を既定で返さない</td>
+</tr>
+<tr>
+<td>e</td>
+<td>引き継ぎ文に合言葉を含め、公開設定で保存しかけ、安全分類器に止められた</td>
+<td>引き継ぎ文に何を書いてよいかの規則がなかった</td>
+<td>ルール77②「引き継ぎは非公開のGoogleドキュメントで、GASのURLや合言葉は書かない」</td>
+</tr>
+<tr>
+<td>f</td>
+<td>記録係の初回試行で、追加直後のルールを「見当たらない」と報告した</td>
+<td>本稿の材料からは原因を特定できない（推測：読み込んだ時点の写しが古かった、または読み込む範囲が足りなかった可能性）</td>
+<td>ルール85①「始めるときの固定手順」、③「記録にないことは『記録なし』と答え、推測で埋めない」。v7の find はヒットなしの検索語を「検索ミス」に記録する</td>
+</tr>
+</tbody>
+</table></div>
+<p>表から読み取れるのは、6件のうち5件（a・b・c・d・f）が「AIの能力不足」ではなく「記録と現実のずれ」または「記録の状態管理の欠如」に起因していた点である。eは記録の中身ではなく、記録の扱い方の問題であった。</p>
+<hr />
+<h2>5. 対策の設計</h2>
+<h3>5.1 記録の三層（ルール82）</h3>
+<p>10月31日にルール82として次のように規則化した。原文の要旨は「ハルシネーションと記憶の欠落を防ぐ鍵は記録」である。</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>層</th>
+<th>内容</th>
+<th>具体例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 書く</td>
+<td>決めたこと・事実・作ったものは、その場でシートへ。古い決定は消さず「廃止（→新しい行）」にする</td>
+<td>決定ログ、先輩の引き継ぎ、プロフィール台帳</td>
+</tr>
+<tr>
+<td>② 照合する</td>
+<td>毎日、記録と現実のずれを探し、照合結果シートに書く</td>
+<td>台帳の状態⇔Gmailの通知、カードのDriveリンク⇔開けるか、事実シート⇔各サイトの掲載内容、決定ログ⇔ルール、事実の鮮度</td>
+</tr>
+<tr>
+<td>③ 根拠を示す</td>
+<td>外に出す文面には、案件台帳のM列に「根拠：事実シート○行、ルール○、決定ログ○行」を書く。根拠のない主張は書かないか「推定：」と明記する</td>
+<td>提案書、追いメッセージ、プロフィール</td>
+</tr>
+</tbody>
+</table></div>
+<p>①は関連実践の「外部に保存する」[2][4]、②は「新旧を突き合わせる」[9]、③は「主張ごとに支える引用を探す」[8] にそれぞれ対応する。②を独立した層にしたのは、失敗a・bがいずれも「記録はあったが現実と食い違っていた」ことによる。</p>
+<h3>5.2 記録係エージェント「シオリ」</h3>
+<ul>
+<li>モデル：Claude Haiku（定型の抽出作業のため軽いモデル）。</li>
+<li>動作：1日4回（12時・16時・20時・23時）、統括AIの会話を外部APIで読み、決定ログと先輩の引き継ぎを更新する。ルールに入っていない方針は「未反映」として統括AIに知らせる。</li>
+<li>毎晩23時台に、引き継ぎプロンプト（非公開のGoogleドキュメント1つ）を作成し、照合を行う。</li>
+</ul>
+<p>引き継ぎの作成時期は、当初「会話量で判断する」としていたが、記録係が会話量を確実に判定できるかが不確かだったため、「毎晩固定＋会話量が上限の70%を超えたら臨時」に変えた。判定の不確かな条件を、確実に満たせる時刻の条件に置き換えた例である。</p>
+<p>この方式は、会話中に書くのではなく会話の後に外から振り返って書く点で、LangMem の background 方式 [9] に相当する。</p>
+<h3>5.3 バックヤード検索（GAS v6）</h3>
+<p>AIが管理表全体を読み込むと、文脈を大きく消費し、関係のない行に引きずられる。そこで Google Apps Script に3つの窓口を作った。</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>窓口</th>
+<th>働き</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>index</td>
+<td>シートごとの行数・列数・見出し（目次）</td>
+</tr>
+<tr>
+<td>find</td>
+<td>キーワード（スペース区切りはすべて含む）で行を探し、指定した列だけを、1セルあたり指定字数（既定160字）で返す</td>
+</tr>
+<tr>
+<td>row</td>
+<td>シート名と行番号（またはA列のID）で1行の全文を返す</td>
+</tr>
+</tbody>
+</table></div>
+<p>これは「識別子だけ持ち、必要時に読む」[1] を、行番号をIDとして実装したものである。ルール84で、統括AI・担当AI・巡回役のすべてに「管理表を丸ごと読まない」ことを義務づけた。</p>
+<p>あわせてプロフィール台帳を「サイト×共通項目キー」で1行ずつに改めた（ルール83）。項目キーは全サイト共通で、intro、catch、portfolio[n].title などとする。同じサイト×項目キーは1行だけを上書きする。これは LangMem の profile 型（最新状態を1件で上書き）[9] と同じ考え方である。</p>
+<h3>5.4 boot 窓口（v7、11月1日朝にデプロイ予定）</h3>
+<p>起動時、および文脈が圧縮されたと気づいたときに1回呼ぶだけで、次の内容を8,000字以内で返す。</p>
+<pre><code>boot の返却内容（上から優先度が高い）
+ ① 常駐ルール   … ルールの「常駐」列が○、かつ廃止・無効でない行（23件）
+ ② 有効な決定   … 決定ログの状態が廃止・無効でない行の1行要約
+ ③ 引き継ぎ     … 先輩の引き継ぎ（区分｜項目：中身）
+ ④ 未対応の照合 … 照合結果の状態が「未」で始まる行
+ ⑤ 鮮度切れ     … 事実シートの最終確認日が90日超、または空の行のID
+ ※ 上限を超えたら ⑤→④→②→③→① の順に末尾から削り、truncated を立てる
+ ※ 返却に「ここに無い決定は存在しないものとして扱う」と明記
+</code></pre>
+<p>memory tool の「ALWAYS VIEW」[2] や、圧縮後にディスクから読み直す Claude Code の仕組み [6] を、スプレッドシートで再現する試みである。なお、本稿執筆時点（10月31日）では v7 は未デプロイであり、boot の効果は第6節の評価に含まれていない。</p>
+<h3>5.5 find の改良（v7）</h3>
+<ul>
+<li>全角・半角、大文字・小文字の統一（Unicode の NFKC 正規化と小文字化）</li>
+<li>同義語シートによる検索語の展開（例：正規語と別名をすべて同じ語として扱う）</li>
+<li>見出しに「状態」を含む列が「廃止」「無効」で始まる行を既定で除外（<code>all=1</code> で表示）</li>
+<li>ヒットがなかった検索語を検索ミスシートに記録</li>
+</ul>
+<p>最後の項目は、ベクトル検索を導入するかどうかを判断するための計測である。設計書は「行数が数百行規模で、固有名詞や案件IDの完全一致が多いため、ベクトル検索は当面不要」と判断し、取りこぼしが月10件以上になれば検討するとしている。ただし、データ量（案件台帳の全文が何トークンか）は未計測であり、この判断はまだ裏付けを欠く。</p>
+<h3>5.6 事実と決定の有効期間</h3>
+<p>Graphiti [11] は、事実に成立日（valid_at）、失効日（invalid_at）、無効化日時（expired_at）、出典（episodes）を持たせ、古い事実を削除せずに無効化する。本事例ではこれを表の列に簡略化した。</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Graphiti</th>
+<th>本事例の列</th>
+<th>運用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>valid_at</td>
+<td>成立日</td>
+<td>「今日」「最近」ではなく絶対日付で書く</td>
+</tr>
+<tr>
+<td>invalid_at</td>
+<td>失効日</td>
+<td>正しくなくなった日</td>
+</tr>
+<tr>
+<td>新しい事実による無効化</td>
+<td>後継</td>
+<td>置き換えた行の番号。行は削除しない</td>
+</tr>
+</tbody>
+</table></div>
+<p>これにより、失敗dのような新旧ルールの併存は「廃止→71」のように記録の上で解消され、古い行を根拠に使う危険が下がる。知識グラフそのものは実装していない。</p>
+<h3>5.7 成果物台帳（ルール86）</h3>
+<p>資料・見本・画像の最新版のDrive ID、ページ数、旧版は、成果物台帳だけを正とする。新しい版を作ったら台帳の最新版IDを書き換え、古いIDは「旧版」列へ移す。第6節の試験で「同じ情報が複数のシートにあり、どれが正か分かりにくい」と指摘されたことを受けて新設した。失敗bの再発防止にもつながる。</p>
+<hr />
+<h2>6. 評価：引き継ぎ試験</h2>
+<h3>6.1 方法</h3>
+<p>10月31日夜に実施した。</p>
+<ul>
+<li>被験者：会話の記憶を持たない新しいAI（Claude Sonnet）</li>
+<li>与えたもの：引き継ぎプロンプト（Googleドキュメント1つ）と検索窓口（v6の index・find・row）だけ。管理表全体は読ませていない。</li>
+<li>課題：実際の業務に即した質問10問</li>
+</ul>
+<h3>6.2 結果</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>指標</th>
+<th>結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>正答</td>
+<td>10問中10問</td>
+</tr>
+<tr>
+<td>根拠（シート名と行番号）の提示</td>
+<td>10問中10問</td>
+</tr>
+<tr>
+<td>検索回数</td>
+<td>合計10回（index 1回、find 7回、row 2回）</td>
+</tr>
+<tr>
+<td>管理表全体の読み込み</td>
+<td>なし</td>
+</tr>
+</tbody>
+</table></div>
+<p>1問あたり平均1回の検索で答えられたことになる。会話を引き継がなくても、外部記憶と検索窓口だけで、少なくとも今回の10問の範囲では業務の質問に根拠付きで答えられた。</p>
+<h3>6.3 被験AIから指摘された改善点</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>指摘</th>
+<th>対応</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① ツールの読み込み手順を引き継ぎに書くべき</td>
+<td>開始手順の固定（ルール85）と boot 窓口（v7）に反映</td>
+</tr>
+<tr>
+<td>② 検索結果が約100〜160字で切れ、全文には row の追加呼び出しが必要</td>
+<td>現状は仕様（文脈を節約するため）。字数は chars で指定できる</td>
+</tr>
+<tr>
+<td>③ 同じ情報が複数シートにあり、どれが正か分かりにくい</td>
+<td>成果物台帳を新設（ルール86）</td>
+</tr>
+</tbody>
+</table></div>
+<h3>6.4 限界</h3>
+<ul>
+<li>10問・1回だけの試験であり、正答率に統計的な意味はない。</li>
+<li>質問は運用者側が作成しており、難易度や網羅性は検証していない。</li>
+<li>圧縮が実際に起きた後の統括AIを対象にした試験ではない。</li>
+<li>boot（v7）は試験に含まれていない。</li>
+</ul>
+<hr />
+<h2>7. 考察</h2>
+<h3>7.1 一流の実践との対応</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>一流の実践</th>
+<th>本事例での実装</th>
+<th>状況</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>外部に記憶を置く [2][4]</td>
+<td>スプレッドシートを正とする（三層の①）</td>
+<td>実装済み</td>
+</tr>
+<tr>
+<td>必要時に読む [1]</td>
+<td>find／row（行番号をIDに）</td>
+<td>実装済み</td>
+</tr>
+<tr>
+<td>起動時に必ず読む [2][3][6]</td>
+<td>固定手順（ルール85）、boot</td>
+<td>boot は未デプロイ</td>
+</tr>
+<tr>
+<td>常駐記憶は短く [5]</td>
+<td>常駐ルールを23件に絞る</td>
+<td>v7で実装</td>
+</tr>
+<tr>
+<td>古い情報は削除せず無効化 [11]</td>
+<td>状態列「廃止→後継行」、成立日・失効日</td>
+<td>実装済み（簡易版）</td>
+</tr>
+<tr>
+<td>背景で記憶を作る [9]</td>
+<td>記録係シオリ</td>
+<td>実装済み</td>
+</tr>
+<tr>
+<td>出典付き回答 [7][8]</td>
+<td>M列の根拠、「記録なし」の許可</td>
+<td>実装済み。根拠が本当に文を支えているかの自動点検はない</td>
+</tr>
+<tr>
+<td>書く役と点検する役の分離 [4][12]</td>
+<td>記録係1体が両方を担う</td>
+<td>未実装</td>
+</tr>
+</tbody>
+</table></div>
+<h3>7.2 非エンジニアでも作れた理由（考察）</h3>
+<p>以下は運用の経過から考えた推測であり、比較実験で確かめたものではない。</p>
+<ol>
+<li><strong>記憶が人にも読める形だった</strong>：スプレッドシートは、代表が自分の目で中身を確かめ、直せる。ベクトルデータベースや知識グラフでは、この確認ができなかったと思われる。</li>
+<li><strong>ルールが自然言語だった</strong>：ルールはプログラムではなく文章で書かれ、AIはそれを読んで従う。代表は文章で方針を書けば、仕組みを変えられた。</li>
+<li><strong>コードはAIが書き、範囲が小さかった</strong>：GASの窓口は1ファイル約250行で、サーバーを持たない。代表がコードを読む必要はなかった。</li>
+<li><strong>失敗をその日のうちにルールにした</strong>：第4節の6件のうち5件は発生当日（10月31日）に、残る1件（c）は翌日にルールへ反映された。口頭の指示だけで済ませた件はルール化が遅れた点は反省材料である。</li>
+</ol>
+<h3>7.3 人の役割</h3>
+<p>本事例で人が担ったのは、次の2つであったと整理できる。</p>
+<ul>
+<li><strong>方針を言語化する</strong>：「圧縮忘れ」という名前を付けたこと自体が、問題を扱えるものにした。名前が付いたことで、ルール77として仕組みに落とすことができた。</li>
+<li><strong>ルールに落とす</strong>：起きた失敗を「次から何をするか」の文に直し、ルールシートの1行にする判断。どの失敗をルールにするか、外部送信のような元に戻せない操作を誰が押すかは、人が決めている。</li>
+</ul>
+<p>AIは記録を書き、照合し、根拠を付ける。しかし、何を正とするか、何をしてはいけないかを決めるのは人である。三層の仕組みは、この分担を表の上に固定したものと言える。</p>
+<hr />
+<h2>8. 限界と今後</h2>
+<h3>8.1 本事例の限界</h3>
+<ul>
+<li>期間が2日と短く、長期の運用で効果が続くかは分からない。</li>
+<li>評価は小規模な試験1回のみ。根拠付き回答が実際の文面の誤りをどれだけ減らしたかは測っていない。</li>
+<li>他社への導入実績はない。</li>
+<li>知識グラフ、ベクトル検索は実装していない。検索はキーワードの部分一致である。</li>
+<li>ルールシートには、行によって列の並びが異なる箇所がある（日付が先頭の行と、見出しが先頭の行）。boot はこれを判定して読み分けているが、表の整理が必要である。</li>
+</ul>
+<h3>8.2 今後（設計書の優先順位による）</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>checkGrounding</td>
+<td>文面を文ごとに分け、根拠IDの行を取得し、別のモデル（Haiku）に「この行はこの文を支えているか」を判定させる。不支持の文と根拠のない文を照合結果に出す。三層の③を、形式の確認から内容の確認へ進める</td>
+</tr>
+<tr>
+<td>記録係の分割</td>
+<td>書記（候補行の追加だけ）と監査（照合・矛盾検出、照合結果だけに書く）に分け、書いた本人が自分を点検しない構造にする。人は候補を「有効」に上げる承認を担う</td>
+</tr>
+<tr>
+<td>統合の自動化</td>
+<td>週1回、同じテーマの決定の統合案、矛盾するペア、期限切れ・長期未参照の決定を提案する。実行は人の承認後</td>
+</tr>
+<tr>
+<td>試験の拡大</td>
+<td>質問数と回数を増やし、圧縮後の統括AIも対象にする。checkGrounding の「要修正」になった文の割合など、自社で測った数値を期間とともに記録する</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2>中間発表時点の追記（2026年11月1日）</h2>
+<ul>
+<li><strong>boot 窓口（v7）を稼働</strong>：11月1日朝にデプロイし、動作を確認した。常駐ルールは26件（本文の23件から増加）。</li>
+<li><strong>統括AIの交代を実施</strong>：会話が長くなった統括AIを、新しい会話の統括AIに交代した。新しい統括AIは、引き継ぎ文書と boot だけを読み、確認の3問（提出物の数と中身、資料の最新版のページ数、記録係の名前とモデル）にすべて根拠（シート名と行番号）付きで正答した。正誤は代表が確認した。</li>
+<li><strong>担当AIの確認行動</strong>：上司の交代を連絡したところ、担当AI 2体は「管理表にまだ載っていない」ことを理由に報告先をすぐには変えず、旧統括AIに真偽を確かめた。記録と照合の仕組みが、AI同士のやり取りでも働いた例である。教訓として、体制の変更は連絡より先に記録（引き継ぎ・担当の表）へ書くことにした。</li>
+<li><strong>表の整理</strong>：8.1で挙げたルールシートの列の並びの不ぞろいは、11月1日にそろえた。整理の前後で boot が返す常駐ルールの件数が変わらないことを確かめた。</li>
+</ul>
+<p>いずれも1回の観察であり、効果を一般化するものではない。</p>
+<hr />
+<h2>参考文献</h2>
+<p>参照日はいずれも2026年10月31日。本文を開いて確認したもの、または公式GitHubリポジトリで確認したものに限る。</p>
+<ol>
+<li>Anthropic, "Effective context engineering for AI agents." <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents</a></li>
+<li>Anthropic, "Memory tool" (Claude Docs). <a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool">https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool</a></li>
+<li>Anthropic, "Effective harnesses for long-running agents." <a href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents">https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents</a></li>
+<li>Anthropic, "How we built our multi-agent research system." <a href="https://www.anthropic.com/engineering/multi-agent-research-system">https://www.anthropic.com/engineering/multi-agent-research-system</a></li>
+<li>Claude Code Docs, "Memory." <a href="https://code.claude.com/docs/en/memory">https://code.claude.com/docs/en/memory</a></li>
+<li>Claude Code Docs, "Context window." <a href="https://code.claude.com/docs/en/context-window">https://code.claude.com/docs/en/context-window</a></li>
+<li>Anthropic, "Citations" (Claude Docs). <a href="https://platform.claude.com/docs/en/build-with-claude/citations">https://platform.claude.com/docs/en/build-with-claude/citations</a></li>
+<li>Anthropic, "Reduce hallucinations" (Claude Docs). <a href="https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations">https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations</a></li>
+<li>LangChain, LangMem（docs/docs/concepts/conceptual_guide.md）. <a href="https://github.com/langchain-ai/langmem">https://github.com/langchain-ai/langmem</a></li>
+<li>Letta（archive ブランチ、letta/prompts/system_prompts/memgpt_chat.py、sleeptime_v2.py）. <a href="https://github.com/letta-ai/letta/tree/archive">https://github.com/letta-ai/letta/tree/archive</a></li>
+<li>Zep, Graphiti（graphiti_core/edges.py、prompts/dedupe_edges.py）. <a href="https://github.com/getzep/graphiti">https://github.com/getzep/graphiti</a></li>
+<li>OpenAI, Agents SDK（docs/sessions/index.md、docs/sandbox/memory.md）. <a href="https://github.com/openai/openai-agents-python">https://github.com/openai/openai-agents-python</a></li>
+<li>Anthropic, "Introducing Contextual Retrieval." <a href="https://www.anthropic.com/engineering/contextual-retrieval">https://www.anthropic.com/engineering/contextual-retrieval</a></li>
+</ol>
+<p>※ 上記の資料は設計の参考にしたものであり、各社との提携・認定を意味しない。</p>
+</main></body></html>
