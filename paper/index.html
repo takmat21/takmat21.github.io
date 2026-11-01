@@ -4,13 +4,13 @@
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="記憶の欠落への対処（執筆中）｜松村貴士">
-<meta property="og:description" content="非エンジニアが運用する階層型マルチエージェントにおける記憶の欠落とハルシネーションへの対処（事例研究・執筆中の中間発表）">
+<meta property="og:description" content="小規模事業者が自ら運用する階層型マルチエージェントにおける記憶の欠落とハルシネーションへの対処（事例研究・執筆中の中間発表）">
 <meta property="og:url" content="https://takmat21.github.io/paper/">
 <meta property="og:image" content="https://takmat21.github.io/assets/ogp.png">
 <meta name="twitter:card" content="summary_large_image">
 
 <meta name="robots" content="noindex">
-<meta name="description" content="非エンジニアが運用する階層型マルチエージェントにおける記憶の欠落とハルシネーションへの対処（事例研究・執筆中の中間発表）">
+<meta name="description" content="小規模事業者が自ら運用する階層型マルチエージェントにおける記憶の欠落とハルシネーションへの対処（事例研究・執筆中の中間発表）">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -51,14 +51,14 @@ main>p:nth-of-type(1){color:var(--muted);font-family:"Noto Sans JP",sans-serif;f
 </style></head><body><main>
 <nav class="tabs" aria-label="ページの切り替え"><a href="../#about">プロフィール</a><a href="../#samples">仕事一覧</a><a href="../samples/x-article/">記事</a><a href="../#system">仕組み</a><a href="../paper/" class="on" aria-current="page">論文</a></nav>
 <div class="wip"><strong>執筆中の論文（中間発表）</strong>　2026年11月1日時点の版です。対象期間・評価はまだ小規模で、今後、試験の拡大とあわせて改訂します。11月1日の記憶の変化点は、末尾の「記憶の変化点」にまとめています。</div>
-<h1>非エンジニアが運用する階層型マルチエージェントにおける記憶の欠落とハルシネーションへの対処</h1>
+<h1>小規模事業者が自ら運用する階層型マルチエージェントにおける記憶の欠落とハルシネーションへの対処</h1>
 <h2>スプレッドシートを外部記憶とする「記録の三層」と記録係エージェントの事例研究</h2>
 <p>ZAZOU株式会社　実務事例研究　｜　対象期間：2026年10月31日〜11月1日　｜　依頼・運用：松村貴士（代表）</p>
 <hr />
 <h2>要旨</h2>
 <p>本稿は、プログラミングを本業としない経営者が1人で運用する階層型マルチエージェント（統括AI 1体、担当AI 7体、記録係AI 1体）で起きた「記憶の欠落」と「根拠のない記述」の問題と、その対処を報告する事例研究である。統括AIの会話は約51万トークンに達し、自動圧縮による古い決定の忘却（社内呼称「圧縮忘れ」、一般には context rot／compaction loss）が懸念されていた。並行して、通知メールの見落とし、送信済みリンクの削除、記録の上書き、新旧ルールの併存など、6件の具体的な失敗が起きた。</p>
 <p>対策の中心は、会話ではなく Google スプレッドシートを記憶の正とする運用への切り替えである。これを「記録の三層」（書く・照合する・根拠を示す）として規則化し、統括AIの会話を外から読んで決定と成果物を書き出す記録係エージェント、表全体を読まずに必要な行だけを返す検索窓口（Google Apps Script）、起動時に必要な情報を一括で返す boot 窓口、事実と決定の有効期間、成果物台帳を順に加えた。</p>
-<p>評価として、会話の記憶を持たない新しいAIに引き継ぎ文書と検索窓口だけを与えて10問の業務質問に答えさせたところ、10問すべてに正答し、すべてに根拠（シート名と行番号）が付いた。ただし試験は10問・1回の小規模なもので、統計的な主張はできない。本稿は「ハルシネーションをなくした」とは主張しない。主張するのは、根拠のない記述を検出し、削除するための仕組みを、非エンジニアの運用の中で作ったという点である。</p>
+<p>評価として、会話の記憶を持たない新しいAIに引き継ぎ文書と検索窓口だけを与えて10問の業務質問に答えさせたところ、10問すべてに正答し、すべてに根拠（シート名と行番号）が付いた。ただし試験は10問・1回の小規模なもので、統計的な主張はできない。本稿は「ハルシネーションをなくした」とは主張しない。主張するのは、根拠のない記述を検出し、削除するための仕組みを、小規模事業者の日々の運用の中で作ったという点である。</p>
 <hr />
 <h2>1. 背景と問題設定</h2>
 <h3>1.1 運用の概要</h3>
@@ -72,7 +72,7 @@ main>p:nth-of-type(1){color:var(--muted);font-family:"Noto Sans JP",sans-serif;f
 <p>この2つは別の問題に見えるが、本事例では同じ根に行き着いた。すなわち「何が今の正しい情報か」が、会話の中か、複数の表のどこかに散らばっていたことである。</p>
 <h3>1.3 研究上の問い</h3>
 <ul>
-<li>問1：非エンジニアが扱える道具（スプレッドシートと簡単なスクリプト）で、会話に依存しない記憶を作れるか。</li>
+<li>問1：専門の開発者がいなくても扱える道具（スプレッドシートと簡単なスクリプト）で、会話に依存しない記憶を作れるか。</li>
 <li>問2：その記憶だけを与えた新しいAIが、業務の質問に根拠付きで答えられるか。</li>
 </ul>
 <hr />
@@ -507,7 +507,7 @@ main>p:nth-of-type(1){color:var(--muted);font-family:"Noto Sans JP",sans-serif;f
 </tr>
 </tbody>
 </table></div>
-<h3>7.2 非エンジニアでも作れた理由（考察）</h3>
+<h3>7.2 専門の開発者がいなくても作れた理由（考察）</h3>
 <p>以下は運用の経過から考えた推測であり、比較実験で確かめたものではない。</p>
 <ol>
 <li><strong>記憶が人にも読める形だった</strong>：スプレッドシートは、代表が自分の目で中身を確かめ、直せる。ベクトルデータベースや知識グラフでは、この確認ができなかったと思われる。</li>
