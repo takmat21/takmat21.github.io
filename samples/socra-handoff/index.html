@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>AI開発の引き継ぎ文書（SOCRA）｜松村貴士</title>
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI開発の引き継ぎ文書（SOCRA）｜松村貴士">
+<meta property="og:description" content="教養ラジオ動画の自動生成システムを、AIとの会話をまたいで開発し続けるための引き継ぎ文書。構成と書き方の工夫を紹介します。">
+<meta property="og:url" content="https://takmat21.github.io/samples/socra-handoff/">
+<meta property="og:image" content="https://takmat21.github.io/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css?v=20261101g">
+<style>
+.flow{list-style:none;margin:18px 0;padding:0;display:grid;gap:8px}
+.flow li{border:1px solid var(--line);border-radius:6px;padding:10px 14px;font-size:15px}
+.flow li b{display:inline-block;min-width:7em}
+.flow li span{color:var(--sub);font-size:14px}
+.doc h3{font-size:16px;margin:28px 0 10px}
+.doc ol,.doc ul{padding-left:1.3em;margin:0 0 12px}
+.doc li{margin:6px 0}
+.outline{font-family:var(--mono);font-size:13px;background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:14px 16px;line-height:1.9;overflow-x:auto}
+</style></head>
+<body><div class="wrap">
+<nav class="tabs" aria-label="ページの切り替え"><a href="../../#about">プロフィール</a><a href="../../#samples" class="on" aria-current="page">仕事一覧</a><a href="../../samples/x-article/">記事</a><a href="../../#system">仕組み</a><a href="../../paper/">論文</a></nav>
+<header class="hero"><p class="name"><a href="../../">松村貴士 ポートフォリオ</a></p>
+<span class="tag">AI開発・引き継ぎ文書</span>
+<h1>AI開発の引き継ぎ文書（SOCRA）</h1>
+<p>文学・哲学を落ち着いた語りで届ける教養ラジオチャンネル「SOCRA」の動画を、台本から投稿まで自動で作るシステムを開発しました（2026年5月）。AIとの会話は長くなると古い内容を忘れるため、新しい会話でもすぐ続きから作業できるよう、引き継ぎ文書を書いて開発をつないでいます。このページでは、その文書の構成と書き方の工夫を紹介します。</p>
+<p class="note" style="margin-top:12px">APIキー、音声のID、認証ファイル、今後の事業計画は伏せています。</p>
+</header>
+
+<section class="doc">
+<h2>System <span class="ja">／ 作ったもの</span></h2>
+<ol class="flow">
+<li><b>1. 台本</b><span>Claude API で台本・読み仮名・動画の説明文を作る</span></li>
+<li><b>2. 音声</b><span>ElevenLabs の音声合成で読み上げる</span></li>
+<li><b>3. 字幕</b><span>読み上げにあわせて字幕（SRT）を自動で作る</span></li>
+<li><b>4. サムネイル</b><span>Python（Pillow）で自動で作る</span></li>
+<li><b>5. 動画</b><span>moviepy・ffmpeg で音声・字幕・画像を合わせる</span></li>
+<li><b>6. 投稿</b><span>YouTube Data API で投稿する</span></li>
+</ol>
+<p class="note">実行環境：Mac と Google Colab（Python）。最初のテストは、芥川龍之介『羅生門』の約4分の朗読・解説。</p>
+
+<h2 style="margin-top:40px">Document <span class="ja">／ 引き継ぎ文書の構成</span></h2>
+<p>文書は2つです。本体は全体像と現在地、追記はテストで分かったノウハウをまとめています。</p>
+<div class="outline">本体（約2,000字）<br>
+├ プロジェクト概要（名前の由来・コンセプト）<br>
+├ 現在の完成度（完成済み／未完成・課題）<br>
+├ ファイル構成・API とサービスの一覧<br>
+├ 実行コマンド（本番用と確認用）・Colab での実行<br>
+├ コンテンツ候補<br>
+├ 次のステップ（優先順）<br>
+└ 技術スタック・チャンネルのコンセプト<br><br>
+追記：台本と音声合成編（約2,800字）<br>
+├ 記録メモ（日付・対象・本体との関係）<br>
+├ このセッションで確定したこと<br>
+├ 台本作成のルール<br>
+├ 音声合成の注意点<br>
+└ 確定版のテスト台本</div>
+
+<h3>書き方の工夫</h3>
+<ol>
+<li><strong>冒頭で全体像をつかめるようにする。</strong>名前の由来、司会者、目指す番組の雰囲気を最初に書き、初めて読むAIでも文脈がわかるようにしました。</li>
+<li><strong>「完成済み」と「未完成・課題」を分ける。</strong>次のステップには優先順位を付け、再開したときにどこから手を付けるかがすぐ決まるようにしました。</li>
+<li><strong>そのまま再実行できる情報を書く。</strong>ファイルの置き場所、実行コマンド、使う音声の設定まで書いてあるので、新しい会話でも同じ結果を再現できます。</li>
+<li><strong>ノウハウは「なぜ」と一緒に残す。</strong>たとえば、三点リーダー「……」は「てんてんてん」と読み上げられてしまうので、読点に置き換える。間を作る言葉は1本に7〜8か所までにする。固有名詞は漢字のままでも正しく読めるので、ひらがなに直さない。テストで確かめたものだけを「確定」と書いています。</li>
+<li><strong>方針の変更は理由と一緒に記録する。</strong>人物映像のサービスの乗り換えや、2人の掛け合いをやめてまず1人の語りで試す判断などを、理由と一緒に残しています。</li>
+</ol>
+
+<h3>今の仕組みとのつながり</h3>
+<p>「会話は忘れるので、正となる記録を外に置き、次の会話はそこから始める」という考え方は、いま自社で毎日運用している<a href="../../#system">階層型AIエージェント体制</a>の記録の取り方や、<a href="../../paper2/">論文「外部脳としての記録の運用」</a>で整理した内容と同じです。</p>
+</section>
+<footer>© 松村貴士 / ZAZOU株式会社</footer>
+</div></body></html>
