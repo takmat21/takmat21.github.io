@@ -1,0 +1,3 @@
+/* Hero art panel. The canvas paints its own paper; the panel keeps the shape. */
+.hero-art{position:relative;width:100%;aspect-ratio:1/1;border-radius:6px;overflow:hidden;background:#f2ece0}
+.hero-art canvas{display:block;width:100%;height:100%}

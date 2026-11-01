@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Top layout — preview</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/hero-art/hero-art.css">
+<style>
+  .hero-split{max-width:1120px;margin:0 auto;padding:72px 24px 56px;display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+  .hero-split h1{font-size:clamp(30px,4.2vw,52px);line-height:1.35;letter-spacing:.01em;margin:0 0 20px;font-weight:700}
+  .hero-split .lead{color:var(--sub);margin:0}
+  @media (max-width:760px){.hero-split{grid-template-columns:1fr;gap:28px;padding:40px 16px}}
+</style>
+</head>
+<body>
+<section class="hero-split">
+  <div>
+    <h1>調べて、確かめて、<br>仕組みにする。</h1>
+    <p class="lead">（見出しと説明文はサンプルです）</p>
+  </div>
+  <div class="hero-art" data-hero-art></div>
+</section>
+<script src="../../assets/hero-art/hero-art.js"></script>
+</body>
+</html>
