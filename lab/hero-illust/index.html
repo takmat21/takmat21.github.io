@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Hero illustration — preview</title>
+<link rel="stylesheet" href="../../assets/hero-illust/hero-illust.css">
+<style>
+  html,body{margin:0;background:#F5F2EA;color:#252A27;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif}
+  .hero{max-width:1240px;margin:0 auto;padding:64px clamp(16px,4vw,48px);display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  .hero h1{font-size:clamp(28px,3.6vw,46px);line-height:1.4;margin:0 0 18px}
+  .hero p{color:#5d615e;margin:0}
+  @media (max-width:760px){.hero{grid-template-columns:1fr;gap:20px;padding:36px 16px}}
+</style>
+</head>
+<body>
+<section class="hero">
+  <div>
+    <h1>（見出しの位置）</h1>
+    <p>左に大きな見出し、右にこの挿絵を置く想定のプレビューです。</p>
+  </div>
+  <div class="hero-illust" data-hero-illust></div>
+</section>
+<noscript><img src="../../assets/hero-illust/hero-illust.svg" alt=""></noscript>
+<script src="../../assets/hero-illust/hero-illust.js"></script>
+</body>
+</html>
