@@ -17,16 +17,20 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/hero-art/hero-art.css">
 </head>
 <body>
 <div class="wrap">
 
-<header class="hero">
+<header class="hero split">
+<div class="hero-text">
   <p class="name">松村貴士 ／ ZAZOU株式会社 代表</p>
   <p class="title"><span>AIエージェント・業務自動化エンジニア</span> ／ <span>ex-Panasonic Mechanical Design Engineer</span></p>
   <!-- キャッチコピーは松村さんの確認待ち（ルール61） -->
   <h1>設計15年の確認の細かさで、<br>資料・リサーチ・業務改善を正確に仕上げます。</h1>
   <p>パナソニックで15年、家電の設計に従事。2020年からEC事業の会社を経営しています。</p>
+</div>
+  <div class="hero-art" data-hero-art role="img" aria-label="散らばった墨の断片が細い線でつながり、ひとつの形にまとまっていくアニメーション"></div>
 </header>
 
 <nav class="tabs" aria-label="ページ内の切り替え">
@@ -149,5 +153,6 @@
   if(location.hash) setTimeout(function(){window.scrollTo(0,0);},0);
 })();
 </script>
+<script src="assets/hero-art/hero-art.js"></script>
 </body>
 </html>
