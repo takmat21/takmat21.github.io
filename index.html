@@ -189,7 +189,7 @@
   var tabs=[].slice.call(document.querySelectorAll('.tabs a[data-tab]')), panels=[].slice.call(document.querySelectorAll('[data-panel]'));
   function show(id){
     if(!panels.some(function(p){return p.dataset.panel===id;})) id='about';
-    panels.forEach(function(p){p.hidden=p.dataset.panel!==id;}); document.body.classList.toggle('no-hero', id==='samples'||id==='system');
+    panels.forEach(function(p){p.hidden=p.dataset.panel!==id;}); document.body.classList.toggle('no-hero', id==='samples'||id==='system'||id==='paper');
     tabs.forEach(function(a){var on=a.dataset.tab===id; a.classList.toggle('on',on); if(on)a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');});
   }
   tabs.forEach(function(a){a.addEventListener('click',function(e){e.preventDefault(); history.replaceState(null,'','#'+a.dataset.tab); show(a.dataset.tab); toTabs();});});
