@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Hero flower — preview</title>
+<style>
+/* Hero flower panel: the canvas paints the whole room */
+.hero-flower{position:relative;width:100%;aspect-ratio:3/1;border-radius:8px;overflow:hidden;background:#161411;touch-action:manipulation}
+.hero-flower canvas{display:block;width:100%;height:100%}
+@media (max-width:640px){.hero-flower{aspect-ratio:4/5}}
+</style>
+<style>
+  html,body{margin:0;background:#fff;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif;color:#1a1a1a}
+  .wrap{max-width:1240px;margin:0 auto;padding:32px clamp(16px,4vw,48px)}
+  h2{font-size:13px;font-weight:600;color:#666;margin:28px 0 10px}
+  .portrait{max-width:420px}
+  .portrait .hero-flower{aspect-ratio:4/5}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h2>横長の帯（トップと同じ3:1）</h2>
+  <div class="hero-flower" data-hero-flower role="img" aria-label="暗い部屋で、弧を描く花茎のつぼみが順に開いていく蘭の絵"></div>
+  <h2>縦長（スマホ・参考の作品と同じ向き）</h2>
+  <div class="portrait"><div class="hero-flower" data-hero-flower role="img" aria-label="暗い部屋で、弧を描く花茎のつぼみが順に開いていく蘭の絵"></div></div>
+</div>
+<script>
+/*
+ * Hero flower: a single arching orchid spike in a warm, dark room.
+ * On load the buds open one after another, from the base toward the tip, like
+ * a time-lapse; afterwards the spike sways slowly. A soft light rests on the
+ * flowers; it drifts toward the pointer (or the last tap on touch screens), and
+ * the flowers it reaches open a little further and brighten.
+ * Drawn entirely with Canvas 2D paths: no images.
+ *
+ * Usage: <div class="hero-flower" data-hero-flower></div> + this script.
+ */
+(function () {
+  'use strict';
+
+  var TAU = Math.PI * 2;
+  var COL = {
+    room: [22, 20, 17],
+    petal: [246, 240, 226],
+    blush: [232, 196, 178],
+    lip: [196, 109, 81],
+    lipDeep: [150, 70, 52],
+    stem: [92, 112, 84],
+    stemDark: [58, 72, 54],
+    leaf: [62, 80, 60],
+    bud: [176, 182, 120]
+  };
+
+  function clamp(x, a, b) { return x < a ? a : x > b ? b : x; }
+  function smooth(e0, e1, x) { var t = clamp((x - e0) / (e1 - e0), 0, 1); return t * t * (3 - 2 * t); }
+  function easeOut(t) { return 1 - Math.pow(1 - clamp(t, 0, 1), 3); }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function rgba(c, a, k) { k = k == null ? 1 : k; return 'rgba(' + Math.round(clamp(c[0] * k, 0, 255)) + ',' + Math.round(clamp(c[1] * k, 0, 255)) + ',' + Math.round(clamp(c[2] * k, 0, 255)) + ',' + a + ')'; }
+  function cubic(p, t) {
+    var u = 1 - t;
+    return [u * u * u * p[0][0] + 3 * u * u * t * p[1][0] + 3 * u * t * t * p[2][0] + t * t * t * p[3][0],
+            u * u * u * p[0][1] + 3 * u * u * t * p[1][1] + 3 * u * t * t * p[2][1] + t * t * t * p[3][1]];
+  }
+
+  // ---------- one petal: base at the origin, tip along +x ----------
+  function petalPath(ctx, len, wid, bulge) {
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.bezierCurveTo(len * 0.25, -wid * (0.9 + bulge), len * 0.85, -wid * 1.05, len, 0);
+    ctx.bezierCurveTo(len * 0.85, wid * 1.05, len * 0.25, wid * (0.9 + bulge), 0, 0);
+    ctx.closePath();
+  }
+  function drawPetal(ctx, ang, len, wid, bulge, light, alpha) {
+    ctx.save();
+    ctx.rotate(ang);
+    petalPath(ctx, len, wid, bulge);
+    var g = ctx.createLinearGradient(0, 0, len, 0);
+    g.addColorStop(0, rgba(COL.blush, alpha, light));
+    g.addColorStop(0.35, rgba(COL.petal, alpha, light));
+    g.addColorStop(1, rgba(COL.petal, alpha, light * 0.96));
+    ctx.fillStyle = g;
+    ctx.fill();
+    ctx.strokeStyle = rgba(COL.blush, 0.55 * alpha, light * 0.85);
+    ctx.lineWidth = Math.max(0.5, len * 0.014);
+    ctx.stroke();
+    // fine veins
+    ctx.strokeStyle = rgba(COL.blush, 0.35 * alpha, light * 0.95);
+    ctx.lineWidth = Math.max(0.5, len * 0.012);
+    for (var v = -1; v <= 1; v++) {
+      ctx.beginPath();
+      ctx.moveTo(len * 0.08, 0);
+      ctx.quadraticCurveTo(len * 0.5, v * wid * 0.5, len * 0.88, v * wid * 0.25);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  // ---------- a flower or a bud, open = 0..1 ----------
+  function drawFlower(ctx, x, y, R, open, tilt, light, facing) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(tilt);
+    ctx.scale(facing, 1);
+    var budA = 1 - smooth(0.18, 0.42, open);
+    var flA = smooth(0.12, 0.36, open);
+    if (budA > 0.01) {
+      // a closed bud: a plump teardrop
+      var bs = R * (0.22 + 0.2 * smooth(0, 0.3, open));
+      ctx.save();
+      ctx.rotate(0.5);
+      ctx.beginPath();
+      ctx.ellipse(0, 0, bs * 0.78, bs, 0, 0, TAU);
+      var gb = ctx.createRadialGradient(-bs * 0.3, -bs * 0.4, bs * 0.1, 0, 0, bs);
+      gb.addColorStop(0, rgba(lerpCol(COL.bud, COL.petal, smooth(0.1, 0.4, open)), budA, light * 1.08));
+      gb.addColorStop(1, rgba(COL.stemDark, budA, light));
+      ctx.fillStyle = gb;
+      ctx.fill();
+      ctx.restore();
+    }
+    if (flA > 0.01) {
+      var o = easeOut(open);
+      var s = 0.35 + 0.65 * o;          // petals grow as they open
+      var spread = 0.45 + 0.55 * o;     // and swing out from the centre
+      // sepals: one up, two down-sideways
+      drawPetal(ctx, -Math.PI / 2 * spread - (1 - spread) * 0.2, R * 0.95 * s, R * 0.26 * s, 0.1, light * 0.97, flA);
+      drawPetal(ctx, Math.PI / 2 + 0.62 * spread, R * 0.92 * s, R * 0.24 * s, 0.1, light * 0.95, flA);
+      drawPetal(ctx, Math.PI / 2 - 0.62 * spread, R * 0.92 * s, R * 0.24 * s, 0.1, light * 0.95, flA);
+      // petals: broad and rounded, out to the sides
+      drawPetal(ctx, -0.12 * spread + (1 - spread) * 0.9, R * 0.92 * s, R * 0.46 * s, 0.35, light, flA);
+      drawPetal(ctx, Math.PI + 0.12 * spread - (1 - spread) * 0.9, R * 0.92 * s, R * 0.46 * s, 0.35, light, flA);
+      // lip: terracotta, with two small side lobes
+      ctx.save();
+      ctx.translate(0, R * 0.08 * s);
+      var lg = ctx.createRadialGradient(0, R * 0.12 * s, 0, 0, R * 0.12 * s, R * 0.34 * s);
+      lg.addColorStop(0, rgba(COL.lip, flA, light));
+      lg.addColorStop(1, rgba(COL.lipDeep, flA, light));
+      ctx.fillStyle = lg;
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.bezierCurveTo(R * 0.24 * s, R * 0.02 * s, R * 0.2 * s, R * 0.34 * s, 0, R * 0.4 * s);
+      ctx.bezierCurveTo(-R * 0.2 * s, R * 0.34 * s, -R * 0.24 * s, R * 0.02 * s, 0, 0);
+      ctx.fill();
+      ctx.beginPath(); ctx.ellipse(R * 0.17 * s, -R * 0.02 * s, R * 0.09 * s, R * 0.06 * s, -0.5, 0, TAU); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(-R * 0.17 * s, -R * 0.02 * s, R * 0.09 * s, R * 0.06 * s, 0.5, 0, TAU); ctx.fill();
+      ctx.restore();
+      // column
+      ctx.fillStyle = rgba(COL.petal, flA, light * 1.02);
+      ctx.beginPath(); ctx.ellipse(0, -R * 0.02 * s, R * 0.06 * s, R * 0.09 * s, 0, 0, TAU); ctx.fill();
+    }
+    ctx.restore();
+  }
+  function lerpCol(a, b, t) { return [lerp(a[0], b[0], t), lerp(a[1], b[1], t), lerp(a[2], b[2], t)]; }
+
+  // ---------- instance ----------
+  function mount(el, opts) {
+    opts = opts || {};
+    var canvas = document.createElement('canvas');
+    canvas.setAttribute('aria-hidden', 'true');
+    el.appendChild(canvas);
+    var ctx = canvas.getContext('2d');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var W = 1, H = 1, dpr = 1, grain = null;
+    var t0 = performance.now(), raf = 0, visible = true;
+    var fixedTime = opts.time;
+    var light = { x: 0, y: 0, tx: 0, ty: 0, boost: 0, tboost: 0, home: true };
+
+    function layout() {
+      // the spike rises from the lower left, arches over and leans down to the right;
+      // in a wide frame it reaches further sideways, in a tall one it stands higher
+      var wide = W / H;
+      var u = wide > 1.6 ? Math.min(W / 1.9, H) : Math.min(W / 1.3, H * 0.8);
+      var bx = W * 0.5 - u * (wide > 1.6 ? 0.62 : 0.18), by = H * (wide > 1.6 ? 0.92 : 0.9);
+      return {
+        u: u,
+        stem: [[bx, by], [bx + u * 0.04, by - u * 0.66], [bx + u * 0.48, by - u * 0.9], [bx + u * (wide > 1.6 ? 1.3 : 0.68), by - u * (wide > 1.6 ? 0.52 : 0.42)]],
+        base: [bx, by]
+      };
+    }
+
+    function resize() {
+      var r = el.getBoundingClientRect();
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = Math.max(1, Math.round(r.width * dpr)); H = Math.max(1, Math.round(r.height * dpr));
+      canvas.width = W; canvas.height = H;
+      canvas.style.width = r.width + 'px'; canvas.style.height = r.height + 'px';
+      grain = makeGrain(W, H);
+      var L = layout(), c = cubic(L.stem, 0.72);
+      light.x = light.tx = c[0]; light.y = light.ty = c[1] - L.u * 0.05;
+      if (reduce.matches || fixedTime != null) draw(fixedTime != null ? fixedTime : 30);
+    }
+
+    function makeGrain(w, h) {
+      var c = document.createElement('canvas'); c.width = w; c.height = h;
+      var g = c.getContext('2d'), img = g.createImageData(w, h), d = img.data;
+      for (var i = 0; i < w * h; i++) {
+        var n = Math.random() * 16;
+        d[i * 4] = d[i * 4 + 1] = d[i * 4 + 2] = 255; d[i * 4 + 3] = n;
+      }
+      g.putImageData(img, 0, 0);
+      return c;
+    }
+
+    // flowers along the spike: which point, size, and when each opens (seconds)
+    var FL = [
+      { t: 0.44, r: 0.125, at: 0.6, tilt: -0.25, face: 1 },
+      { t: 0.56, r: 0.13, at: 1.5, tilt: 0.05, face: -1 },
+      { t: 0.68, r: 0.127, at: 2.4, tilt: 0.25, face: 1 },
+      { t: 0.79, r: 0.118, at: 3.3, tilt: 0.42, face: -1 },
+      { t: 0.88, r: 0.105, at: 4.3, tilt: 0.58, face: 1 },
+      { t: 0.93, r: 0.085, at: 99, tilt: 0.7, face: -1, budMax: 0.16 },
+      { t: 0.975, r: 0.07, at: 99, tilt: 0.8, face: 1, budMax: 0.1 }
+    ];
+
+    function draw(time) {
+      var L = layout(), u = L.u;
+      // sway: a slow lean of the upper spike
+      var sway = Math.sin(time * 0.45) * 0.012 + Math.sin(time * 0.17 + 1) * 0.008;
+      var S = L.stem.map(function (p, k) {
+        var w = k / 3;
+        return [p[0] + sway * u * w * w * 1.2, p[1] + Math.abs(sway) * u * w * 0.3];
+      });
+      light.x += (light.tx - light.x) * 0.05; light.y += (light.ty - light.y) * 0.05;
+      light.boost += (light.tboost - light.boost) * 0.05;
+
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.fillStyle = rgba(COL.room, 1);
+      ctx.fillRect(0, 0, W, H);
+      // the room light: a wide warm pool, and a closer one where the light rests
+      var pool = ctx.createRadialGradient(light.x, light.y, 0, light.x, light.y, u * (0.95 + 0.1 * light.boost));
+      pool.addColorStop(0, 'rgba(120,96,64,' + (0.32 + 0.1 * light.boost) + ')');
+      pool.addColorStop(0.45, 'rgba(70,58,42,0.18)');
+      pool.addColorStop(1, 'rgba(22,20,17,0)');
+      ctx.fillStyle = pool; ctx.fillRect(0, 0, W, H);
+
+      // leaves at the base
+      drawLeaf(ctx, L.base[0], L.base[1] + u * 0.02, u * 0.42, u * 0.11, -0.18 + sway * 0.5);
+      drawLeaf(ctx, L.base[0] - u * 0.02, L.base[1] + u * 0.03, u * 0.36, u * 0.1, Math.PI + 0.32);
+
+      // the spike: thicker at the base
+      var n = 60;
+      for (var i = 0; i < n; i++) {
+        var a = cubic(S, i / n), b = cubic(S, (i + 1) / n);
+        ctx.strokeStyle = rgba(lerpCol(COL.stemDark, COL.stem, Math.min(1, i / n * 1.6)), 1, lightAt(a));
+        ctx.lineWidth = u * (0.016 - 0.01 * i / n);
+        ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke();
+      }
+      // small bracts along the spike
+      [0.22, 0.34, 0.44].forEach(function (t) {
+        var p = cubic(S, t);
+        ctx.fillStyle = rgba(COL.stemDark, 1, lightAt(p));
+        ctx.beginPath(); ctx.ellipse(p[0] + u * 0.006, p[1], u * 0.006, u * 0.012, 0.6, 0, TAU); ctx.fill();
+      });
+
+      // flowers, drawn from the tip back so the lower ones sit in front
+      for (i = FL.length - 1; i >= 0; i--) {
+        var f = FL[i], p = cubic(S, f.t), q = cubic(S, Math.min(1, f.t + 0.01));
+        var R = f.r * u;
+        var open = f.budMax != null ? f.budMax * smooth(0, 3, time) : easeOut((time - f.at) / 2.4);
+        // a short stalk drops the flower below the spike
+        var fx = p[0] + (q[1] - p[1]) * 2 * f.face * 0.4, fy = p[1] + R * 0.55 * (f.budMax != null ? 0.4 : 1);
+        ctx.strokeStyle = rgba(COL.stem, 1, lightAt(p));
+        ctx.lineWidth = u * 0.005;
+        ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.quadraticCurveTo(p[0] + R * 0.1 * f.face, p[1] + R * 0.3, fx, fy); ctx.stroke();
+        var lk = lightAt([fx, fy]);
+        var near = Math.exp(-sq(fx - light.x, fy - light.y) / (2 * sq(u * 0.22, 0))) * light.boost;
+        drawFlower(ctx, fx, fy, R * (1 + 0.04 * near), Math.min(1, open * (1 + 0.06 * near)), f.tilt * 0.5 + sway * 2, lk * (1 + 0.12 * near), f.face);
+      }
+
+      // grain over everything
+      ctx.globalAlpha = 0.5;
+      ctx.drawImage(grain, 0, 0);
+      ctx.globalAlpha = 1;
+      // a soft vignette keeps the edges quiet
+      var v = ctx.createRadialGradient(W / 2, H / 2, Math.min(W, H) * 0.35, W / 2, H / 2, Math.max(W, H) * 0.75);
+      v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,0.45)');
+      ctx.fillStyle = v; ctx.fillRect(0, 0, W, H);
+
+      function lightAt(pt) {
+        var d2 = sq(pt[0] - light.x, pt[1] - light.y);
+        return 0.55 + 0.55 * Math.exp(-d2 / (2 * sq(u * (0.42 + 0.06 * light.boost), 0)));
+      }
+    }
+    function sq(a, b) { return a * a + b * b; }
+
+    function drawLeaf(ctx, x, y, len, wid, ang) {
+      ctx.save();
+      ctx.translate(x, y); ctx.rotate(ang);
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.bezierCurveTo(len * 0.3, -wid, len * 0.85, -wid * 0.9, len, -wid * 0.1);
+      ctx.bezierCurveTo(len * 0.8, wid * 0.4, len * 0.3, wid * 0.5, 0, 0);
+      var g = ctx.createLinearGradient(0, -wid, 0, wid);
+      g.addColorStop(0, rgba(COL.leaf, 1, 1.1)); g.addColorStop(1, rgba(COL.leaf, 1, 0.6));
+      ctx.fillStyle = g; ctx.fill();
+      ctx.strokeStyle = 'rgba(0,0,0,0.25)'; ctx.lineWidth = Math.max(0.6, len * 0.004);
+      ctx.beginPath(); ctx.moveTo(len * 0.05, 0); ctx.quadraticCurveTo(len * 0.5, -wid * 0.35, len * 0.95, -wid * 0.12); ctx.stroke();
+      ctx.restore();
+    }
+
+    function frame(now) {
+      raf = 0;
+      if (!visible || reduce.matches || fixedTime != null) return;
+      draw((now - t0) / 1000);
+      raf = requestAnimationFrame(frame);
+    }
+    function start() { if (!raf && !reduce.matches && fixedTime == null) raf = requestAnimationFrame(frame); }
+
+    function toCanvas(ev) {
+      var r = el.getBoundingClientRect();
+      return [(ev.clientX - r.left) * dpr, (ev.clientY - r.top) * dpr];
+    }
+    el.addEventListener('pointermove', function (ev) {
+      if (ev.pointerType !== 'mouse') return;
+      var p = toCanvas(ev); light.tx = p[0]; light.ty = p[1]; light.tboost = 1;
+    });
+    el.addEventListener('pointerleave', function (ev) {
+      if (ev.pointerType !== 'mouse') return;
+      var L = layout(), c = cubic(L.stem, 0.72); light.tx = c[0]; light.ty = c[1] - L.u * 0.05; light.tboost = 0;
+    });
+    el.addEventListener('pointerdown', function (ev) {
+      if (ev.pointerType === 'mouse') return;
+      var p = toCanvas(ev); light.tx = p[0]; light.ty = p[1]; light.tboost = 1;
+    });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) { visible = en[0].isIntersecting; if (visible) start(); }).observe(el);
+    }
+    document.addEventListener('visibilitychange', function () { visible = !document.hidden; if (visible) start(); });
+    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(el); else window.addEventListener('resize', resize);
+    resize();
+    start();
+    return { draw: draw, setTime: function (t) { fixedTime = t; draw(t); }, light: light };
+  }
+
+  window.HeroFlower = { mount: mount };
+  function auto() {
+    Array.prototype.forEach.call(document.querySelectorAll('[data-hero-flower]'), function (el) {
+      if (!el.__heroFlower) el.__heroFlower = mount(el);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', auto); else auto();
+})();
+</script>
+</body>
+</html>
