@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Hero art (complex) — preview</title>
+<link rel="stylesheet" href="../../assets/hero-art/hero-art.css">
+<style>
+  html,body{margin:0;background:#fff}
+  body{min-height:100vh;display:grid;place-items:center}
+  .stage{width:min(92vw,1144px)}
+  .stage .hero-art{aspect-ratio:3/1}
+  @media (max-width:640px){.stage .hero-art{aspect-ratio:16/9}}
+</style>
+</head>
+<body>
+<div class="stage"><div class="hero-art" data-hero-art-complex></div></div>
+<script src="../../assets/hero-art/hero-art-complex.js"></script>
+</body>
+</html>
