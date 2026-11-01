@@ -186,10 +186,11 @@
     panels.forEach(function(p){p.hidden=p.dataset.panel!==id;});
     tabs.forEach(function(a){var on=a.dataset.tab===id; a.classList.toggle('on',on); if(on)a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');});
   }
-  tabs.forEach(function(a){a.addEventListener('click',function(e){e.preventDefault(); history.replaceState(null,'','#'+a.dataset.tab); show(a.dataset.tab); window.scrollTo({top:document.querySelector('.tabs').offsetTop-8});});});
+  tabs.forEach(function(a){a.addEventListener('click',function(e){e.preventDefault(); history.replaceState(null,'','#'+a.dataset.tab); show(a.dataset.tab); toTabs();});});
   window.addEventListener('hashchange',function(){show(location.hash.slice(1));});
   show(location.hash.slice(1));
-  if(location.hash) setTimeout(function(){window.scrollTo(0,0);},0);
+  function toTabs(){var h=document.querySelector('header.hero');var y=h?h.getBoundingClientRect().bottom+window.scrollY:0;window.scrollTo(0,Math.max(0,y-4));}
+  if(location.hash && location.hash!=='#about') setTimeout(toTabs,0); else if(location.hash) setTimeout(function(){window.scrollTo(0,0);},0);
 })();
 </script>
 <script src="assets/hero-art/hero-art.js"></script>
