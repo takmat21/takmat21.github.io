@@ -158,3 +158,6 @@ html,body{overflow-x:clip}
 .sys .more{margin-top:28px;font-size:14px}
 @media (max-width:640px){.stats{grid-template-columns:1fr}.org-side{grid-template-columns:1fr}}
 .sys figure.hero-shot{margin:20px 0 8px}
+/* 仕事一覧・仕組みのタブではトップ画と見出しを出さない（記事ページと同じ） */
+.no-hero .hero-top,.no-hero header.hero{display:none}
+.no-hero .tabs{margin-top:8px}

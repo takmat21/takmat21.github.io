@@ -16,7 +16,7 @@
 <meta name="description" content="ZAZOU Inc.（代表 松村貴士）のポートフォリオ。階層型のAIエージェント体制を自社で運用し、事実の表・二重チェック・人の最終確認で誤りを防ぎながら、資料作成・リサーチ・業務改善を仕組みにします。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=20261101f">
+<link rel="stylesheet" href="assets/style.css?v=20261101g">
 <link rel="stylesheet" href="assets/hero-art/hero-art.css">
 </head>
 <body class="home">
@@ -183,14 +183,14 @@
   var tabs=[].slice.call(document.querySelectorAll('.tabs a[data-tab]')), panels=[].slice.call(document.querySelectorAll('[data-panel]'));
   function show(id){
     if(!panels.some(function(p){return p.dataset.panel===id;})) id='about';
-    panels.forEach(function(p){p.hidden=p.dataset.panel!==id;});
+    panels.forEach(function(p){p.hidden=p.dataset.panel!==id;}); document.body.classList.toggle('no-hero', id==='samples'||id==='system');
     tabs.forEach(function(a){var on=a.dataset.tab===id; a.classList.toggle('on',on); if(on)a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');});
   }
   tabs.forEach(function(a){a.addEventListener('click',function(e){e.preventDefault(); history.replaceState(null,'','#'+a.dataset.tab); show(a.dataset.tab); toTabs();});});
   window.addEventListener('hashchange',function(){show(location.hash.slice(1));});
   show(location.hash.slice(1));
-  function toTabs(){var s=document.querySelector('[data-panel]:not([hidden])'),n=document.querySelector('.tabs');if(!s)return;var y=s.getBoundingClientRect().top+window.scrollY-(n?n.offsetHeight:0)-8;window.scrollTo(0,Math.max(0,y));}
-  if(location.hash && location.hash!=='#about') setTimeout(toTabs,0); else if(location.hash) setTimeout(function(){window.scrollTo(0,0);},0);
+  function toTabs(){if(document.body.classList.contains('no-hero')||!document.querySelector('[data-panel="about"][hidden]')){window.scrollTo(0,0);return;}var s=document.querySelector('[data-panel]:not([hidden])'),n=document.querySelector('.tabs');if(!s)return;var y=s.getBoundingClientRect().top+window.scrollY-(n?n.offsetHeight:0)-8;window.scrollTo(0,Math.max(0,y));}
+  if(location.hash && location.hash!=='#about'){setTimeout(toTabs,0);window.addEventListener('load',function(){setTimeout(toTabs,30);setTimeout(toTabs,150);});} else if(location.hash) setTimeout(function(){window.scrollTo(0,0);},0);
 })();
 </script>
 <script src="assets/hero-art/hero-art.js"></script>
