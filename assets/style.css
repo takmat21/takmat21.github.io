@@ -157,3 +157,4 @@ html,body{overflow-x:clip}
 .sys figcaption{font-size:13px;color:var(--sub);margin-top:8px}
 .sys .more{margin-top:28px;font-size:14px}
 @media (max-width:640px){.stats{grid-template-columns:1fr}.org-side{grid-template-columns:1fr}}
+.sys figure.hero-shot{margin:20px 0 8px}
