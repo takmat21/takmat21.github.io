@@ -23,6 +23,7 @@
 <div class="wrap">
 
 <div class="hero-art hero-top" data-hero-art role="img" aria-label="散らばった墨の断片が細い線でつながり、ひとつの形にまとまっていくアニメーション"></div>
+<div class="hero-art hero-top hero-alt" data-hero-art-complex role="img" aria-label="散らばった墨の断片が糸でつながり、一部のつながりを手放して、内側に線を持つひとつの形にまとまっていくアニメーション"></div>
 <header class="hero">
 <div class="hero-text">
   <p class="name">ZAZOU Inc.</p>
@@ -185,16 +186,17 @@
   var tabs=[].slice.call(document.querySelectorAll('.tabs a[data-tab]')), panels=[].slice.call(document.querySelectorAll('[data-panel]'));
   function show(id){
     if(!panels.some(function(p){return p.dataset.panel===id;})) id='about';
-    panels.forEach(function(p){p.hidden=p.dataset.panel!==id;}); document.body.classList.toggle('no-hero', id==='samples'||id==='system');
+    panels.forEach(function(p){p.hidden=p.dataset.panel!==id;}); document.body.classList.toggle('no-hero', id==='samples'||id==='system'); document.body.classList.toggle('tab-paper', id==='paper');
     tabs.forEach(function(a){var on=a.dataset.tab===id; a.classList.toggle('on',on); if(on)a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');});
   }
   tabs.forEach(function(a){a.addEventListener('click',function(e){e.preventDefault(); history.replaceState(null,'','#'+a.dataset.tab); show(a.dataset.tab); toTabs();});});
   window.addEventListener('hashchange',function(){show(location.hash.slice(1));});
   show(location.hash.slice(1));
-  function toTabs(){if(document.body.classList.contains('no-hero')||!document.querySelector('[data-panel="about"][hidden]')){window.scrollTo(0,0);return;}var s=document.querySelector('[data-panel]:not([hidden])'),n=document.querySelector('.tabs');if(!s)return;var y=s.getBoundingClientRect().top+window.scrollY-(n?n.offsetHeight:0)-8;window.scrollTo(0,Math.max(0,y));}
+  function toTabs(){if(document.body.classList.contains('no-hero')||document.body.classList.contains('tab-paper')||!document.querySelector('[data-panel="about"][hidden]')){window.scrollTo(0,0);return;}var s=document.querySelector('[data-panel]:not([hidden])'),n=document.querySelector('.tabs');if(!s)return;var y=s.getBoundingClientRect().top+window.scrollY-(n?n.offsetHeight:0)-8;window.scrollTo(0,Math.max(0,y));}
   if(location.hash && location.hash!=='#about'){setTimeout(toTabs,0);window.addEventListener('load',function(){setTimeout(toTabs,30);setTimeout(toTabs,150);});} else if(location.hash) setTimeout(function(){window.scrollTo(0,0);},0);
 })();
 </script>
 <script src="assets/hero-art/hero-art.js"></script>
+<script src="assets/hero-art/hero-art-complex.js"></script>
 </body>
 </html>
