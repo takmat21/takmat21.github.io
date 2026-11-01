@@ -126,3 +126,7 @@ html,body{overflow-x:clip}
 .home .hero h1{font-size:clamp(28px,4.2vw,46px);line-height:1.3;margin:0}
 .home .hero .title{margin:16px 0 0}
 .home .hero .desc{max-width:44em;margin:22px 0 0;font-size:15.5px}
+/* 仕組みの画像を大きく：1枚目は全幅、残りは2列 */
+.shots{grid-template-columns:1fr 1fr !important;gap:16px}
+.shots img:first-child{grid-column:1 / -1}
+@media (max-width:640px){.shots{grid-template-columns:1fr !important}}
