@@ -40,3 +40,4 @@ section[data-panel]{border-bottom:0;padding-top:24px}
 .sub-sec+.sub-sec{border-top:1px solid var(--line);padding-top:32px}
 .hero .title{font-size:14px;font-weight:700;color:var(--accent);margin:0 0 14px;letter-spacing:.02em}
 .hero .title span{white-space:nowrap}
+@media (max-width:480px){.tabs a{padding:10px 9px;font-size:14px}.tabs{gap:0}}

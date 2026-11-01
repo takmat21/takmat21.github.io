@@ -23,6 +23,7 @@
 <nav class="tabs" aria-label="ページ内の切り替え">
   <a href="#about" data-tab="about">プロフィール</a>
   <a href="#samples" data-tab="samples">見本</a>
+  <a href="samples/x-article/" class="ext">記事</a>
   <a href="#system" data-tab="system">仕組み</a>
   <a href="#paper" data-tab="paper">論文</a>
 </nav>
@@ -68,6 +69,12 @@
   <p class="note" style="margin:-8px 0 16px">ログインなしで開けます。会社名・人名・数字は例です。</p>
   <div class="grid">
     <div class="card"><span class="tag">リサーチ・資料</span><h3>補助金の比較リサーチ</h3><p>公的機関の一次情報だけで2制度3枠を比較。出典URLつき。</p><div class="meta">PDF・6ページ</div><a class="btn ghost" href="samples/research-subsidy/">見る</a></div>
+    <div class="card"><span class="tag">資料作成</span><h3>企画提案書：Webマーケティング支援</h3><p>自社ECの新規流入を増やすための企画提案書。</p><div class="meta">PDF・8ページ</div><a class="btn ghost" href="samples/planning-proposal/">見る</a></div>
+    <div class="card"><span class="tag">資料作成</span><h3>経営会議資料：月次の予実・KPI</h3><p>KPIの推移、予算と実績、論点と次の打ち手。</p><div class="meta">PDF・8ページ</div><a class="btn ghost" href="samples/management-meeting/">見る</a></div>
+    <div class="card"><span class="tag">資料作成</span><h3>商談資料ブラッシュアップの例</h3><p>内容はそのままに、構成・図解・デザインを整えた改善前後。</p><div class="meta">PDF・8ページ</div><a class="btn ghost" href="samples/sales-deck/">見る</a></div>
+    <div class="card"><span class="tag">マニュアル・経理</span><h3>経理業務マニュアル：月次締め（freee）</h3><p>月次締めの手順を、誰でも同じようにできる形に。</p><div class="meta">PDF・8ページ</div><a class="btn ghost" href="samples/accounting-manual/">見る</a></div>
+    <div class="card"><span class="tag">AI活用・業務改善</span><h3>Claude導入の提案＆初月レポート</h3><p>業務の棚卸しから導入提案、初月の結果報告まで。</p><div class="meta">PDF・8ページ</div><a class="btn ghost" href="samples/claude-improvement/">見る</a></div>
+    <div class="card"><span class="tag">AI活用・業務改善</span><h3>生成AI導入 現状診断レポート（製造業）</h3><p>設計・品質部門を対象にした導入前の現状診断。</p><div class="meta">PDF・8ページ</div><a class="btn ghost" href="samples/manufacturing-ai/">見る</a></div>
     <div class="card"><span class="tag">業務改善</span><h3>進捗管理 × スプレッドシート・GAS</h3><p>期限の通知・週次レポート・入力チェックを仕組みにする設計。</p><div class="meta">PDF・10ページ</div><a class="btn ghost" href="samples/gas-progress/">見る</a></div>
     <div class="card"><span class="tag">業務改善</span><h3>バックオフィス 初月レポート</h3><p>業務の棚卸しから改善の結果までを1か月でまとめた報告書。</p><div class="meta">PDF・10ページ</div><a class="btn ghost" href="samples/backoffice-report/">見る</a></div>
     <div class="card"><span class="tag">業務改善</span><h3>フォーム → 集計 → Gmail送信（GAS）</h3><p>送信前に下書きで確認する、誤送信しない作り。個人情報を扱わない設計と自動テストつき。</p><div class="meta">PDF・10ページ</div><a class="btn ghost" href="samples/gas-form-gmail/">見る</a></div>
@@ -110,7 +117,7 @@
 </div>
 <script>
 (function(){
-  var tabs=[].slice.call(document.querySelectorAll('.tabs a')), panels=[].slice.call(document.querySelectorAll('[data-panel]'));
+  var tabs=[].slice.call(document.querySelectorAll('.tabs a[data-tab]')), panels=[].slice.call(document.querySelectorAll('[data-panel]'));
   function show(id){
     if(!panels.some(function(p){return p.dataset.panel===id;})) id='about';
     panels.forEach(function(p){p.hidden=p.dataset.panel!==id;});
