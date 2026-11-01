@@ -38,6 +38,7 @@
   <a href="samples/x-article/" class="ext">記事</a>
   <a href="#system" data-tab="system">仕組み</a>
   <a href="#paper" data-tab="paper">論文</a>
+  <a href="#art" data-tab="art">作品</a>
 </nav>
 
 <section id="about" data-panel="about">
@@ -173,6 +174,12 @@
   <p class="note" style="margin-top:16px">「ハルシネーションをなくした」とは主張していません。根拠のない記述を見つけて取り除く仕組みを、小規模事業者の日々の運用の中で作った記録です。</p>
 </section>
 
+<section id="art" data-panel="art" class="cols">
+  <h2>Art <span class="ja">／ 作品</span></h2>
+  <div class="hero-art art-wide" data-hero-art-complex role="img" aria-label="散らばった墨の断片が糸でつながり、一部のつながりを手放して、内側に線を持つひとつの形にまとまっていくアニメーション"></div>
+  <p class="note" style="margin-top:16px">「調べて、確かめて、仕組みにする」をテーマにしたアニメーション（20秒）。散らばった断片が糸でつながり、一部のつながりを手放し、内側に構造を持つ形にまとまります。トップの作品と同じく、Canvasで一から描いています。</p>
+</section>
+
 <footer>
   ご依頼・ご相談は、各サービスのメッセージからお願いします。<br>
   <a href="https://crowdworks.jp/public/employees/3288043">クラウドワークスのプロフィール</a><br><br>
@@ -185,7 +192,7 @@
   var tabs=[].slice.call(document.querySelectorAll('.tabs a[data-tab]')), panels=[].slice.call(document.querySelectorAll('[data-panel]'));
   function show(id){
     if(!panels.some(function(p){return p.dataset.panel===id;})) id='about';
-    panels.forEach(function(p){p.hidden=p.dataset.panel!==id;}); document.body.classList.toggle('no-hero', id==='samples'||id==='system');
+    panels.forEach(function(p){p.hidden=p.dataset.panel!==id;}); document.body.classList.toggle('no-hero', id==='samples'||id==='system'||id==='art');
     tabs.forEach(function(a){var on=a.dataset.tab===id; a.classList.toggle('on',on); if(on)a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');});
   }
   tabs.forEach(function(a){a.addEventListener('click',function(e){e.preventDefault(); history.replaceState(null,'','#'+a.dataset.tab); show(a.dataset.tab); toTabs();});});
@@ -196,5 +203,6 @@
 })();
 </script>
 <script src="assets/hero-art/hero-art.js"></script>
+<script src="assets/hero-art/hero-art-complex.js"></script>
 </body>
 </html>
