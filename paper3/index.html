@@ -1,0 +1,278 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>置き場所と引き方の改訂（執筆中）｜松村貴士</title>
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="置き場所と引き方の改訂（執筆中）｜松村貴士">
+<meta property="og:description" content="外部記憶の「置き場所」と「引き方」は運用の中で作り変えられる：小規模事業者の階層型AIエージェントにおける格納と検索の改訂記録（事例研究・執筆中の中間発表）">
+<meta property="og:url" content="https://takmat21.github.io/paper3/">
+<meta property="og:image" content="https://takmat21.github.io/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="robots" content="noindex">
+<meta name="description" content="外部記憶の「置き場所」と「引き方」は運用の中で作り変えられる：小規模事業者の階層型AIエージェントにおける格納と検索の改訂記録（事例研究・執筆中の中間発表）">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbfaf7;--fg:#1f1f1c;--muted:#5d5b55;--line:#dedad1;--card:#f2efe8;--accent:#8a4b1f;--code:#f0ece3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161614;--fg:#e8e6e1;--muted:#a6a39b;--line:#3a3833;--card:#211f1c;--accent:#e0a473;--code:#24221e}}
+:root[data-theme="dark"]{--bg:#161614;--fg:#e8e6e1;--muted:#a6a39b;--line:#3a3833;--card:#211f1c;--accent:#e0a473;--code:#24221e}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Noto Serif JP","Hiragino Mincho ProN",serif;font-size:16.5px;line-height:1.95;letter-spacing:.02em}
+main{max-width:46rem;margin:0 auto;padding:48px 16px 96px}
+h1,h2,h3{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;line-height:1.45;letter-spacing:0}
+h1{font-size:1.6rem;margin:0 0 .4em}
+main>h2:first-of-type{font-size:1.05rem;font-weight:500;color:var(--muted);margin-top:0;border:0;padding:0}
+h2{font-size:1.3rem;margin:2.6em 0 .8em;padding-top:.6em;border-top:1px solid var(--line)}
+h3{font-size:1.08rem;margin:2em 0 .6em;color:var(--accent)}
+p{margin:0 0 1.1em}
+hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+a{color:var(--accent);word-break:break-all}
+strong{font-weight:700}
+ul,ol{padding-left:1.4em}li{margin:.3em 0}
+.tw{overflow-x:auto;margin:1.2em 0 1.6em;border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-family:"Noto Sans JP",sans-serif;font-size:14px;line-height:1.7}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;min-width:6em}
+th{background:var(--card);font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+pre{background:var(--code);border:1px solid var(--line);border-radius:6px;padding:14px;overflow-x:auto;font-size:13px;line-height:1.6}
+code{font-family:"Noto Sans Mono","SFMono-Regular",Menlo,monospace;font-size:.92em}
+pre code{font-size:inherit}
+.wip{font-family:"Noto Sans JP",sans-serif;font-size:14px;line-height:1.8;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:12px 16px;margin:0 0 1.6em}
+pre,.tw{max-width:100%}
+html,body{overflow-x:clip}
+.back{font-family:"Noto Sans JP",sans-serif;font-size:14px;margin:0 0 1.2em}
+main>p:nth-of-type(1){color:var(--muted);font-family:"Noto Sans JP",sans-serif;font-size:14px}
+@media print{body{background:#fff;color:#000}}
+.tabs{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--line);margin:0 0 1.4em;font-family:"Noto Sans JP",sans-serif}
+.tabs a{flex:0 0 auto;padding:10px 9px;font-size:14px;color:var(--muted);text-decoration:none;border-bottom:3px solid transparent;white-space:nowrap;word-break:normal}
+h4{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;font-size:1rem;margin:1.6em 0 .5em}
+.tabs a.on{color:var(--accent);border-bottom-color:var(--accent);font-weight:700}
+</style></head><body><main>
+
+<nav class="tabs" aria-label="ページの切り替え"><a href="../#about">プロフィール</a><a href="../#samples">仕事一覧</a><a href="../samples/x-article/">記事</a><a href="../#system">仕組み</a><a href="../#paper" class="on" aria-current="page">論文</a></nav>
+<div class="wip"><strong>執筆中の論文（中間発表）</strong>　2026年11月2日時点の版です。対象は5日間の記録で、観察の拡大とあわせて改訂します。</div>
+<h1>外部記憶の「置き場所」と「引き方」は運用の中で作り変えられる</h1>
+<h2>小規模事業者の階層型AIエージェントにおける格納と検索の改訂記録（2026年10月28日〜11月1日）</h2>
+<p>ZAZOU株式会社　実務事例研究　｜　対象期間：2026年10月28日〜11月1日　｜　執筆：統括AI（事例の当事者）　｜　依頼・運用：松村貴士（代表）</p>
+<hr />
+
+<h2>要旨</h2>
+<p>AIエージェントの外部記憶の研究は、記憶の「内容」が時間とともに増え、更新されることを扱ってきた。一方で、記憶を<strong>どこに置くか</strong>（格納の構造）と<strong>どう引き出すか</strong>（検索の方式）は、多くの場合、設計時に決めて固定するものとして扱われている。本稿は、従業員1名の事業者が運用する階層型AIエージェント（統括AI 1体と担当AI数体、記録係AI 1体）において、この二つが運用の中でどのように作り変えられたかを、5日間の記録から報告する。</p>
+<p>運用の記録（判断の記録表、規則表、案件台帳、検索窓口の版の記録）から、外部記憶の仕組みに対する改訂を26件取り出し、格納・検索・両方のどれを変えたか、何がきっかけだったかで分類した。格納だけの改訂が16件、検索だけが3件、両方を同時に変えたものが7件だった。きっかけは、失敗7件、読み込みの負荷5件、新しい必要6件、代表の指示3件、試験での指摘2件、記録なし3件である。</p>
+<p>分析から次の三点が分かった。第一に、置き場所を増やすほど「どこにあるか」を探す費用が上がり、それが検索方式の改訂を呼んだ。第二に、検索方式を変えるには、格納側に新しい列や時刻の記録が必要になった。第三に、片方だけを変えると、もう片方が壊れる事故が起きた（格納形式の違いで検索結果からルールの本文が抜け落ちた、など）。起動時に読む量は、約20,700字から、要点だけなら約2,600字、前回から変化がなければ約400字まで減った。格納と検索は別々の設計対象ではなく、片方を変えればもう片方も変わる、対になった設計対象として扱うべきだというのが本稿の結論である。</p>
+<hr />
+
+<h2>1. 問題と問い</h2>
+<p>大規模言語モデル（LLM）を使うエージェントは、一度に読める量（コンテキスト）に上限がある。長い仕事を続けるには、会話の外に記録を置き、必要なときに読み戻す「外部記憶」が要る。外部記憶の設計には二つの問いがある。何を、どこに、どの形で置くか（格納）。そして、いつ、どれだけ、どの順で読み戻すか（検索）である。</p>
+<p>本稿の事例では、スプレッドシートを外部記憶とし、Google Apps Script で作った検索窓口（以下「検索窓口」）を通じて読み書きしている。運用を始めた当初、この二つは「規則の表を最初に全部読む」という単純な形だった。ところが5日間で、置き場所は15枚の表に分かれ、検索は「目次→検索→全文」の段階的な方式へと変わった。代表（松村）は、この経過について「どこに格納するか、どう検索するかが鍵で、その2点の仕組みは固定ではなく、必要に応じて更新されうる」と述べた（付録A #35）。</p>
+<p>本稿の問いは次の三つである。</p>
+<ol>
+<li><strong>問い1</strong>：運用の中で、格納と検索の仕組みはどれくらいの頻度で、どちらが改訂されたか。</li>
+<li><strong>問い2</strong>：改訂は何をきっかけに起きたか。</li>
+<li><strong>問い3</strong>：格納の改訂と検索の改訂は、互いにどう結びついていたか。</li>
+</ol>
+
+<h2>2. 先行研究の整理</h2>
+<h3>2.1 格納と検索は、分けて論じられ、結びつきも指摘されてきた</h3>
+<p>組織の記憶を情報システムとして扱う研究は、記憶の働きを獲得・保持・維持・探索・検索の五つに分けた[2]。集団の記憶を論じた Wegner は、外に置いた情報を後で取り出すには、項目そのものに加えて、手がかりとなる「ラベル」と項目の「所在」をあらかじめ決めておく必要があると述べた[1]。どこにあり、何と呼ぶかが決まっていなければ、置いたものは引き出せない。</p>
+<p>格納と検索の結びつきも古くから指摘されている。記憶心理学の符号化特定性の研究は、検索の手がかりがどれだけ効くかは、覚えたときにどの形で符号化したかで決まることを示し、符号化と検索を一体の過程として扱った[3]。社会学者 Luhmann は、カード式の記録で、置き場所は内容による分類をやめて固定番号にし、探す入口は「常に更新する索引」に任せるという分業を示した[4]。</p>
+
+<h3>2.2 LLMエージェントの記憶は、この分業を仕組みとして作り込んだ</h3>
+<p>MemGPT は、計算機のメモリ階層にならい、プロンプトの中（主文脈）と外（外部文脈）を分け、外のデータは明示的に主文脈へ移さなければ参照できないとした[5]。Generative Agents は、経験を記録し続ける「記憶の流れ」を、新しさ・重要さ・関連の三つの得点で引き出し、要約（内省）を新しい記憶として格納した[6]。LongMemEval は、長期記憶の設計を索引づけ・検索・読解の三段階に分けて評価する枠組みを示した[15]。</p>
+<p>読み込む量についても知見がある。Anthropic は、望む結果を得る見込みを最大にする「最小で、信号の強い」情報の組を探すことを勧め、全データを先に読まず、識別子だけを持って必要なときに読む方式を挙げた[16]。Chroma の報告は、同じ問いに対して、関連部分だけの約300トークンの入力が、約11万3千トークンの全文入力より、すべてのモデルで大幅に良い成績だったと述べる[17]。長い入力の中ほどにある情報が使われにくいことも示されている[18]。会話の全履歴を処理する方式と比べ、要点を抜き出して記憶する方式で応答時間を91%、トークン費用を90%以上減らしたという報告もある[9]。</p>
+
+<h3>2.3 時間とともに変わるのは、主に「内容」である</h3>
+<p>記憶が時間とともに変わることを扱う研究もある。A-MEM は、新しい記憶を加えるたびに、近い既存の記憶の文脈やタグを更新する[7]。Zep は、事実ごとに有効になった時刻と無効になった時刻を持たせ、古い事実を消さずに閉じる[8]。MemOS は、記憶の単位に来歴や版の情報を持たせ、記憶の一生を管理する[10]。ただし、これらで変わるのは主に記憶の内容であり、記憶をどの構造に置き、どの方式で引くかは設計時に決まっている。</p>
+<p>総説はこの点を明言している。既存の仕組みの多くは「何を格納し、いつ使い、どう更新・検索するか」を手で設計した方略に頼っており、解釈しやすい反面、柔軟さに欠けるという[12]。構造そのものを変える研究として、記憶の仕組みの設計を経験とともに自動で進化させる MemEvolve がある[14]。ただし、これは自動探索であり、評価は性能試験（ベンチマーク）の上で行われる。その性能試験による評価の基盤が脆いことも指摘されている[13]。</p>
+<p>データベースの分野では、格納の構造（スキーマ）を変えると、データの移行に加えて、問い合わせ（検索）の書き換えが必要になり、その保守に費用がかかることが知られている[19]。格納を変えれば検索も変わるという結びつきは、ここで明確に扱われている。ただし研究の目的は、その書き換えの自動化である。</p>
+
+<h3>2.4 本稿の位置</h3>
+<p>以上から、格納と検索の結びつきは古くから指摘され、LLMエージェントの研究では両者が仕組みとして作り込まれ、記憶の内容の更新もよく研究されている。しかし、<strong>格納の構造と検索の方式の両方を、実際の運用の中で人とAIが繰り返し作り変え、その結びつきを記録した報告</strong>は、筆者が読んだ範囲の文献には見当たらなかった。本稿はこの点を、1社の5日間の記録で補う。なお、文献の調査範囲は付録Bのとおりで、網羅的ではない。</p>
+
+<h2>3. 事例と方法</h2>
+<h3>3.1 事例</h3>
+<p>対象は、従業員が代表1名の事業者（ZAZOU株式会社）である。代表が方針を決め、統括AIが担当AIに仕事を振り、記録係AIが統括AIの会話を外から読んで決定を書き出す。メールの送信や公開などの外に出る操作は代表が行う。外部記憶は1つのスプレッドシートで、案件台帳、規則の表、事実の表、判断の記録表などの表から成る。統括AIは検索窓口を通じてこれを読む。体制と失敗の詳細は先行稿[20]にある。</p>
+<h3>3.2 データ</h3>
+<p>次の記録から、2026年10月28日〜11月1日の出来事を時系列に並べた（付録A）。判断の記録表（17行）、規則の表（92件）、案件台帳のうち検索窓口の版ごとのカード、統括AIの引き継ぎ表、検索に失敗した語の記録、先行稿2本[20][21]である。記録の読み取りは担当AIが行い、筆者が照合した。</p>
+<h3>3.3 分類の方法</h3>
+<p>時系列の36件のうち、外部記憶の仕組みそのものを変えたもの26件を「改訂」とし、試験・事故・負荷の判明など、改訂のきっかけになった出来事10件と区別した。改訂ごとに次の二つを付けた。</p>
+<ul>
+<li><strong>種類</strong>：格納（置き場所・列・書き方・書く手順を変えた）、検索（読む経路・読む量・読む順を変えた）、両方（同じ改訂の中で両方を変えた）。</li>
+<li><strong>きっかけ</strong>：失敗、読み込みの負荷、新しい必要、代表の指示、試験での指摘、記録なし。複数ある場合は、記録に最初に書かれた主なものを一つ選んだ。</li>
+</ul>
+<p>分類は筆者が一人で行った。筆者は事例の統括AI自身であり、当事者による分類である（7章の限界を参照）。</p>
+
+<h2>4. 結果</h2>
+<h3>4.1 改訂の数と種類（問い1）</h3>
+<div class="tw"><table><thead><tr><th>期間</th><th>格納</th><th>検索</th><th>両方</th><th>計</th></tr></thead><tbody>
+<tr><td>10月28日〜30日</td><td>7</td><td>1</td><td>0</td><td>8</td></tr>
+<tr><td>10月31日</td><td>6</td><td>1</td><td>4</td><td>11</td></tr>
+<tr><td>10月31日夜〜11月1日</td><td>3</td><td>1</td><td>3</td><td>7</td></tr>
+<tr><td>計</td><td>16</td><td>3</td><td>7</td><td>26</td></tr>
+</tbody></table></div>
+<p>5日間で26件、1日あたり約5件の改訂があった。格納だけの改訂が最も多く（16件）、検索だけの改訂は3件と少なかった。ただし検索方式の大きな変化は、どれも格納の変更を伴う「両方」の改訂として起きている（4.3）。</p>
+<p>経過は三つの段階に分けられる。</p>
+<ul>
+<li><strong>置き場所を増やす段階（10月28日〜30日）</strong>：規則の表、AI同士の連絡の表、事実の表、担当AIの表などを順に足した。事実の表は「代表についての事実はここだけを正とする」と決め、案件・方針・事実の置き場所を分けた（#4）。読み方は「規則の表を全部読む」のままだった。</li>
+<li><strong>失敗から分け、照合する段階（10月31日）</strong>：失敗が続いた日で、改訂が最も多い（11件）。「書く・照合する・根拠を示す」の三層を定め、古い決定は消さずに「廃止」として閉じることにし、ずれを書く照合の表、資料の最新版だけを正とする台帳を足した（#12・#13・#19）。同じ日に、表を丸ごと読まずに、目次・語句検索・行の取り出しで必要な行だけを読む検索窓口を入れた（#15）。</li>
+<li><strong>読む量を設計する段階（10月31日夜〜11月1日）</strong>：起動時に必要な情報をまとめて返す窓口（#21）、前回から変わった行だけを返す差分の読み込み（#31）、「目次→検索→全文」の順で読み、外に出すものだけ全文まで確かめる方針（#28）を定めた。</li>
+</ul>
+
+<h3>4.2 改訂のきっかけ（問い2）</h3>
+<div class="tw"><table><thead><tr><th>きっかけ</th><th>件数</th><th>例</th></tr></thead><tbody>
+<tr><td>失敗</td><td>7</td><td>通知の見落とし・送信済み資料の削除・新旧規則の併存から三層と照合の表（#12・#13）、台帳の行の上書きから「末尾に追加」の規則（#20）</td></tr>
+<tr><td>新しい必要</td><td>6</td><td>AI同士の連絡の表と、検索窓口による読み書き（#2・#6）、外部の研究を追う表（#33）</td></tr>
+<tr><td>読み込みの負荷</td><td>5</td><td>表全体を読むと会話の容量を大きく使う→行単位の検索（#15）、交代の数時間後に容量の約50%に達した→差分の読み込み（#31）</td></tr>
+<tr><td>代表の指示</td><td>3</td><td>事実の表を唯一の正にする（#4）、引き継ぎ文書を毎日決まった時刻に作る（#16）、読み方の方針（#28）</td></tr>
+<tr><td>試験での指摘</td><td>2</td><td>記憶を持たない別のAIによる引き継ぎ試験の指摘から、資料の台帳（#19）と起動時の窓口（#21）</td></tr>
+<tr><td>記録なし</td><td>3</td><td>最初の規則の表など（#1・#3・#14）</td></tr>
+</tbody></table></div>
+<p>失敗と負荷を合わせると12件で、改訂の約半分は「困ったこと」から起きている。格納だけの改訂16件では失敗と新しい必要が5件ずつで多く、検索に関わる改訂（検索だけ・両方の10件）では負荷が4件で最も多かった。件数は少ないが、格納は主に「正しさ」の問題に、検索は主に「量」の問題に応じて変わったと見られる。</p>
+
+<h3>4.3 格納と検索の結びつき（問い3）</h3>
+<p>改訂の前後関係を見ると、格納と検索は三つの形で結びついていた。</p>
+<p><strong>(1) 置き場所を増やすと、探す費用が上がり、検索の改訂を呼ぶ。</strong>正しさを守るために置き場所を分けるほど（事実・決定・資料・照合を別の表に）、「どの表にあるか」を知る費用が上がった。表を全部読む方式では、表が増えるたびに読む量が増える。10月31日、表全体を読むと会話の容量を大きく使い、関係のない行に引きずられることが問題になり、目次・語句検索・行の取り出しによる検索窓口が入った（#15）。Wegner の言う「所在」[1]を、人ではなく目次に持たせる改訂である。この窓口だけを使った引き継ぎ試験では、記憶を持たないAIが10問中10問に根拠付きで答え、検索は10回（目次1・語句検索7・行の取り出し2）で済んだ[20]。</p>
+<p><strong>(2) 検索を変えるには、格納側に新しい情報が要る。</strong>検索の方式を変えた改訂の多くは、格納側に列や記録を足すことを前提にしていた。</p>
+<ul>
+<li>起動時に「常に読む規則」だけを返すために、規則の表に「常駐」と「状態」の列を足した（#21）。</li>
+<li>古い決定を検索結果から除くために、決定を消さずに「廃止」と書く運用が先に要った（#13）。</li>
+<li>前回から変わった行だけを返すために、各行の更新日と「前回いつ読んだか」の時刻を格納する必要があった（#31）。</li>
+<li>古い事実に警告を出すために、事実の表に「最終確認日」の列を足した（#17）。ただし、この列が埋まっているのは44件中2件にとどまり、検索側の仕組みに格納側の運用が追いついていない。</li>
+</ul>
+<p>これは、データベースでスキーマを変えると問い合わせの書き換えが要るという関係[19]の逆向きで、問い合わせ（検索）を変えるためにスキーマ（格納）を変えた例である。</p>
+<p><strong>(3) 片方だけを変えると、もう片方が壊れる。</strong>格納の形式と検索の前提がずれると、事故が起きた。</p>
+<ul>
+<li>規則の表で、日付が先頭の行と見出しが先頭の行が混ざっていたため、起動時の窓口が列を読み分ける必要があり、表の列をそろえ直した（#24）。</li>
+<li>規則の表の日付の列が日付型の行では、起動時の窓口が規則の本文の代わりに「日付：区分」だけを返していた。統括AIの交代時、新しい統括AIは規則の本文を受け取れていなかった（付録A #30）。格納時の形式が検索結果を左右した例で、符号化特定性[3]と同じ構造をしている。</li>
+<li>検索に失敗した語の記録13件のうち7件は、「R39」のような規則番号の書き方だった。この書き方は起動時の窓口が返す表記で、表の本文にはこの文字列がない。窓口の出力の書き方と格納された本文の書き方が違うために起きた可能性がある（原因は未確認）。</li>
+<li>案件台帳では行番号をそのままカード番号として使っている。担当AIによる上書き（#20）に加え、執筆中の11月1日深夜にも、筆者が台帳の末尾に1行足した際、表の途中の空行が末尾と判定されて行が挿入され、23件のカード番号が1つずつずれた（直後に戻した）。置き場所の番号を検索の鍵として使う設計は、格納の操作ひとつで検索を壊しうる。Luhmann が固定番号を「変えない」ことを前提にしていた[4]のと対照的である。</li>
+</ul>
+<p>さらに、仕組みを説明する記録そのものも格納物であり、更新が遅れた。行の取り出しの規則は検索窓口の古い版の説明のままで、起動手順の規則は日付を変えずに本文だけが新しい版に書き換えられていた（付録A 注4）。仕組みと、その説明の食い違いは、次の統括AIの誤解の原因になりうる。</p>
+
+<h3>4.4 読み込み量の変化</h3>
+<div class="tw"><table><thead><tr><th>検索窓口の版と読み方</th><th>起動時に読む字数</th><th>条件</th></tr></thead><tbody>
+<tr><td>起動時の窓口の初版（上限16,000字の指定）</td><td>約20,700字</td><td>規則の本文が抜け落ちる不具合あり。指定より多い理由は未確認</td></tr>
+<tr><td>改訂版・指定なし</td><td>13,091字</td><td>常駐の規則28件の本文つき</td></tr>
+<tr><td>改訂版・前回からの差分</td><td>6,551字</td><td>11月1日午後、前回を正午とした例</td></tr>
+<tr><td>改訂版・要点だけ</td><td>2,577字</td><td>すべて目次の形で返す</td></tr>
+<tr><td>改訂版・変化なし</td><td>約400字</td><td>区画ごとの要約値が前回と一致した場合</td></tr>
+</tbody></table></div>
+<p>いずれも11月1日の1回ずつの計測で、繰り返しの計測はしていない。この改訂のきっかけは、交代の数時間後に統括AIの会話が容量の約50%に達したことだった（付録A #25）。改訂後に会話の消費がどれだけ緩やかになったかは、まだ記録がない。</p>
+
+<h2>5. 考察</h2>
+<h3>5.1 格納と検索は、対で設計し、対で記録する</h3>
+<p>4.3 の三つの結びつきは、格納と検索を別々に改訂すると、もう片方の前提を壊すか、もう片方の改訂を後から呼び込むことを示している。総説が指摘するとおり、多くの仕組みでは格納と検索の方略は設計時に人が決める[12]。本事例では、その「人が決める方略」が5日で26回変わった。方略は一度決めるものではなく、運用とともに書き換えるものだと見たほうが実態に近い。</p>
+<p>そうであれば、改訂のたびに「格納側で何を変え、検索側で何を変えたか」を対で記録するのが筋である。本事例の判断の記録表には、改訂の内容は書かれていても、それが格納・検索のどちらで、もう片方に何を求めたかは書かれていなかった。本稿の分類は、それを後から復元する作業だった。</p>
+<h3>5.2 改訂のあとに、もう片方を試す</h3>
+<p>4.3(3) の事故は、どれも改訂の直後には見つからず、別の作業の途中で見つかった。格納を変えたら代表的な検索を数件流し、検索を変えたら起動時の出力に規則の本文が入っているかを確かめる、といった小さな回帰試験を、改訂の手順に含めるべきである。データベースの分野で、スキーマ変更の影響を評価し、旧い問い合わせを書き換える道具が作られてきた[19]のと同じ発想を、表計算の外部記憶にも小さく持ち込める。</p>
+<h3>5.3 置き場所の番号を、検索の鍵にしない</h3>
+<p>行番号をカード番号として使う設計は、人にとっては分かりやすいが、行の挿入や並べ替えで番号がずれる。Luhmann の固定番号は、置いたら動かさないことで鍵として働いた[4]。表計算では行は動くので、行とは別に、変わらない通し番号を持たせ、検索はその番号で行うのが安全である。</p>
+<h3>5.4 自動化ではなく、人の判断で変わるという点</h3>
+<p>構造を自動で進化させる研究[14]と違い、本事例の改訂はすべて、代表の判断か、代表が承認したAIの提案として行われた。きっかけの約半分は失敗と負荷であり、改訂は「性能を上げるため」より「困ったことを繰り返さないため」に起きた。小規模な事業では、改訂の正しさを測る性能試験はなく、代わりに失敗の記録と、読む字数・検索の失敗の数といった運用の数字が判断材料になる。性能試験による評価の脆さが指摘されている[13]現在、運用の中での改訂の記録は、別の種類の証拠として意味を持つと考える。</p>
+
+<h2>6. 限界</h2>
+<ul>
+<li><strong>期間と規模</strong>：1社・5日間の記録である。改訂が1日約5件という頻度は、仕組みを作り始めた時期のもので、運用が落ち着けば減ると考えられる。一般化はしない。</li>
+<li><strong>当事者による分析</strong>：筆者は事例の統括AIであり、データの抽出は担当AI、分類は筆者一人が行った。第三者による分類との一致は確かめていない。</li>
+<li><strong>記録の欠け</strong>：各表の作成日時、初期の検索窓口の版の中身、10月28日〜30日の読み込み量、検索回数、根拠の誤りの件数は記録がない。判断の記録表の初期の行は、時刻が日本時間でなく協定世界時で書かれている可能性がある。</li>
+<li><strong>効果の測定</strong>：読み込み量はそれぞれ1回の計測で、改訂後の会話の消費の変化はまだ測っていない。比較のための対照もない。</li>
+<li><strong>文献</strong>：読んだ範囲は付録Bのとおりで、要旨のみのものを含む。組織記憶の代表的な文献のうち、開けなかったものは引用していない。</li>
+</ul>
+
+<h2>7. 結論</h2>
+<p>5日間で、外部記憶の格納の構造と検索の方式は26回改訂された。格納は正しさを守るために分かれ、分かれるほど探す費用が上がって検索が変わり、検索を変えるために格納に新しい列が足された。片方だけを変えたときには、もう片方が壊れた。外部記憶の「置き場所」と「引き方」は、設計時に決めて終わるものではなく、運用の中で対になって作り変えられていく。この性質を前提に、改訂を対で記録し、改訂のたびにもう片方を試し、置き場所の番号を検索の鍵にしないことが、小規模な運用での実践的な指針になる。今後は、記録の対象を数か月に広げ、改訂の頻度が落ち着くか、どの種類の改訂が残るかを確かめる。</p>
+<hr />
+
+<h2>参考文献</h2>
+<p>参照日はいずれも2026年11月1日。読んだ範囲は付録Bに示す。</p>
+<ol>
+<li>Wegner, D. M. (1987). Transactive memory: A contemporary analysis of the group mind. In B. Mullen &amp; G. R. Goethals (Eds.), <em>Theories of Group Behavior</em> (pp. 185–208). Springer. <a href="https://doi.org/10.1007/978-1-4612-4634-3_9">https://doi.org/10.1007/978-1-4612-4634-3_9</a></li>
+<li>Stein, E. W., &amp; Zwass, V. (1995). Actualizing organizational memory with information systems. <em>Information Systems Research</em>, 6(2), 85–117. <a href="https://doi.org/10.1287/isre.6.2.85">https://doi.org/10.1287/isre.6.2.85</a></li>
+<li>Thomson, D. M. (1984). Citation Classic commentary on Thomson &amp; Tulving (1970), "Associative encoding and retrieval: Weak and strong cues." <em>Current Contents</em>. <a href="https://garfield.library.upenn.edu/classics1984/A1984TB51800001.pdf">https://garfield.library.upenn.edu/classics1984/A1984TB51800001.pdf</a></li>
+<li>Luhmann, N. (1981). Kommunikation mit Zettelkästen: Ein Erfahrungsbericht. 英訳：M. Kuehn 訳 "Communicating with Slip Boxes." <a href="https://luhmann.surge.sh/communicating-with-slip-boxes">https://luhmann.surge.sh/communicating-with-slip-boxes</a></li>
+<li>Packer, C., et al. (2023). MemGPT: Towards LLMs as operating systems. arXiv:2310.08560. <a href="https://arxiv.org/abs/2310.08560">https://arxiv.org/abs/2310.08560</a></li>
+<li>Park, J. S., et al. (2023). Generative agents: Interactive simulacra of human behavior. <em>Proc. UIST '23</em>. arXiv:2304.03442. <a href="https://arxiv.org/abs/2304.03442">https://arxiv.org/abs/2304.03442</a></li>
+<li>Xu, W., et al. (2025). A-MEM: Agentic memory for LLM agents. NeurIPS 2025. arXiv:2502.12110. <a href="https://arxiv.org/abs/2502.12110">https://arxiv.org/abs/2502.12110</a></li>
+<li>Rasmussen, P., et al. (2025). Zep: A temporal knowledge graph architecture for agent memory. arXiv:2501.13956. <a href="https://arxiv.org/abs/2501.13956">https://arxiv.org/abs/2501.13956</a></li>
+<li>Chhikara, P., et al. (2025). Mem0: Building production-ready AI agents with scalable long-term memory. arXiv:2504.19413. <a href="https://arxiv.org/abs/2504.19413">https://arxiv.org/abs/2504.19413</a></li>
+<li>Li, Z., et al. (2025). MemOS: A memory OS for AI system. arXiv:2507.03724. <a href="https://arxiv.org/abs/2507.03724">https://arxiv.org/abs/2507.03724</a></li>
+<li>Zhang, Z., et al. (2024). A survey on the memory mechanism of large language model based agents. arXiv:2404.13501. <a href="https://arxiv.org/abs/2404.13501">https://arxiv.org/abs/2404.13501</a></li>
+<li>Hu, Y., et al. (2025). Memory in the age of AI agents. arXiv:2512.13564. <a href="https://arxiv.org/abs/2512.13564">https://arxiv.org/abs/2512.13564</a></li>
+<li>Jiang, D., et al. (2026). Anatomy of agentic memory: Taxonomy and empirical analysis of evaluation and system limitations. arXiv:2602.19320. <a href="https://arxiv.org/abs/2602.19320">https://arxiv.org/abs/2602.19320</a></li>
+<li>Zhang, G., et al. (2025). MemEvolve: Meta-evolution of agent memory systems. arXiv:2512.18746. <a href="https://arxiv.org/abs/2512.18746">https://arxiv.org/abs/2512.18746</a></li>
+<li>Wu, D., et al. (2025). LongMemEval: Benchmarking chat assistants on long-term interactive memory. ICLR 2025. arXiv:2410.10813. <a href="https://arxiv.org/abs/2410.10813">https://arxiv.org/abs/2410.10813</a></li>
+<li>Rajasekaran, P., Dixon, E., Ryan, C., &amp; Hadfield, J. (2025). Effective context engineering for AI agents. Anthropic Engineering. <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents</a></li>
+<li>Hong, K., Troynikov, A., &amp; Huber, J. (2025). Context rot: How increasing input tokens impacts LLM performance. Chroma. <a href="https://research.trychroma.com/context-rot">https://research.trychroma.com/context-rot</a></li>
+<li>Liu, N. F., et al. (2024). Lost in the middle: How language models use long contexts. <em>TACL</em>, 12, 157–173. <a href="https://doi.org/10.1162/tacl_a_00638">https://doi.org/10.1162/tacl_a_00638</a></li>
+<li>Curino, C. A., Moon, H. J., &amp; Zaniolo, C. (2008). Graceful database schema evolution: The PRISM workbench. <em>PVLDB</em>, 1(1), 761–772. <a href="https://doi.org/10.14778/1453856.1453939">https://doi.org/10.14778/1453856.1453939</a></li>
+<li>松村貴士・ZAZOU株式会社 (2026). 小規模事業者が自ら運用する階層型マルチエージェントにおける記憶の欠落とハルシネーションへの対処（中間発表）. <a href="../paper/">https://takmat21.github.io/paper/</a></li>
+<li>松村貴士・ZAZOU株式会社 (2026). 外部脳としての記録の運用（中間発表）. <a href="../paper2/">https://takmat21.github.io/paper2/</a></li>
+</ol>
+
+<h2>付録A　改訂と出来事の時系列（抜粋）</h2>
+<p>種類：格納／検索／両方／出来事（改訂ではないもの）。根拠は社内の記録の場所。「規則N」は規則の表のN行目、「決定N」は判断の記録表のN行目、「カードN」は案件台帳のN行目、「引継N」は統括AIの引き継ぎ表のN行目を表す。検索窓口のURLと合言葉は記載しない。</p>
+<div class="tw"><table><thead><tr><th>#</th><th>日付</th><th>種類</th><th>内容</th><th>きっかけ</th><th>根拠</th></tr></thead><tbody>
+<tr><td>1</td><td>10/28</td><td>格納</td><td>規則の表を使い始める（読み方は全部読む）</td><td>記録なし</td><td>規則1〜23</td></tr>
+<tr><td>2</td><td>10/28</td><td>格納</td><td>AI同士の連絡の表</td><td>新しい必要</td><td>規則16</td></tr>
+<tr><td>3</td><td>10/28</td><td>格納</td><td>経歴の事実を規則の表の中に書く</td><td>記録なし</td><td>規則19</td></tr>
+<tr><td>4</td><td>10/29</td><td>格納</td><td>事実の表を唯一の正に。案件・方針・事実の置き場所を分ける</td><td>代表の指示</td><td>規則39</td></tr>
+<tr><td>5</td><td>10/29</td><td>格納</td><td>担当AI・外部候補・会議の表</td><td>新しい必要</td><td>規則40・31・43</td></tr>
+<tr><td>6</td><td>10/29</td><td>検索</td><td>検索窓口による読み書きを始める</td><td>新しい必要</td><td>会議の表2行</td></tr>
+<tr><td>7</td><td>10/30</td><td>格納</td><td>検索窓口から台帳・連絡の表へ書き込む</td><td>新しい必要</td><td>会議の表3行</td></tr>
+<tr><td>8</td><td>10/30</td><td>格納</td><td>プロフィールの表（入力の制限を残す）</td><td>失敗</td><td>規則55</td></tr>
+<tr><td>9</td><td>10/31</td><td>格納</td><td>共有リンクつきでファイルを置く機能</td><td>新しい必要</td><td>規則69</td></tr>
+<tr><td>10</td><td>10/31</td><td>格納</td><td>統括AIの引き継ぎ表</td><td>負荷</td><td>規則76</td></tr>
+<tr><td>11</td><td>10/31</td><td>両方</td><td>記録係AIの導入、判断の記録表</td><td>負荷</td><td>規則77</td></tr>
+<tr><td>12</td><td>10/31</td><td>格納</td><td>書く・照合する・根拠を示すの三層、照合の表</td><td>失敗</td><td>規則82</td></tr>
+<tr><td>13</td><td>10/31</td><td>両方</td><td>古い規則を消さず「廃止→後継」で閉じる</td><td>失敗</td><td>規則20・52</td></tr>
+<tr><td>14</td><td>10/31</td><td>両方</td><td>プロフィールの表を「サイト×項目」1行ずつに、引き出しは語句検索</td><td>記録なし</td><td>規則83</td></tr>
+<tr><td>15</td><td>10/31</td><td>検索</td><td>目次・語句検索・行の取り出し</td><td>負荷</td><td>規則84、決定4、カード123</td></tr>
+<tr><td>16</td><td>10/31</td><td>格納</td><td>引き継ぎ文書を毎日決まった時刻に作る</td><td>代表の指示</td><td>決定2</td></tr>
+<tr><td>17</td><td>10/31</td><td>両方</td><td>起動時の固定手順、事実の表に最終確認日の列</td><td>失敗</td><td>決定5、規則85</td></tr>
+<tr><td>18</td><td>10/31夜</td><td>出来事</td><td>引き継ぎ試験（10問中10問、根拠付き、検索10回）</td><td>—</td><td>[20] 6章</td></tr>
+<tr><td>19</td><td>10/31</td><td>格納</td><td>資料の最新版の台帳</td><td>試験の指摘</td><td>決定6、規則86</td></tr>
+<tr><td>20</td><td>10/31</td><td>格納</td><td>台帳は末尾に追加、更新前に案件IDを確認</td><td>失敗</td><td>決定7、規則87</td></tr>
+<tr><td>21</td><td>10/31〜11/1</td><td>両方</td><td>起動時の窓口、常駐・状態の列、同義語・検索失敗の表</td><td>試験の指摘</td><td>カード124</td></tr>
+<tr><td>22</td><td>11/1朝</td><td>出来事</td><td>統括AIの交代（約10分）</td><td>—</td><td>引継26、決定8</td></tr>
+<tr><td>23</td><td>11/1</td><td>格納</td><td>体制の変更は連絡より先に記録へ書く</td><td>失敗</td><td>引継25</td></tr>
+<tr><td>24</td><td>11/1</td><td>格納</td><td>規則の表の列のずれを直す</td><td>失敗</td><td>[20] 追記（判断の記録表に該当行なし）</td></tr>
+<tr><td>25</td><td>11/1</td><td>出来事</td><td>交代の数時間後に会話が容量の約50%</td><td>—</td><td>引継27</td></tr>
+<tr><td>26</td><td>11/1</td><td>出来事</td><td>検索に失敗した語の記録が始まる（13件）</td><td>—</td><td>検索失敗の表</td></tr>
+<tr><td>27</td><td>11/1</td><td>両方</td><td>記録係の頻度を1日4回から2回に</td><td>負荷</td><td>決定11</td></tr>
+<tr><td>28</td><td>11/1</td><td>検索</td><td>目次→検索→全文の方針、外に出すものは全文まで</td><td>代表の指示</td><td>規則90</td></tr>
+<tr><td>29</td><td>11/1</td><td>出来事</td><td>引き継ぎ表の行が別の書き手に上書きされる</td><td>—</td><td>引継25</td></tr>
+<tr><td>30</td><td>11/1</td><td>出来事</td><td>起動時の窓口が規則の本文を返さない不具合が分かる</td><td>—</td><td>引継29、カード134</td></tr>
+<tr><td>31</td><td>11/1</td><td>両方</td><td>差分・要点・変化なしの読み込み、引き継ぎ表の自動要約</td><td>負荷</td><td>カード134、決定13</td></tr>
+<tr><td>32</td><td>11/1</td><td>出来事</td><td>統括AIの交代ごとに論文を書く規則など</td><td>—</td><td>規則91・93</td></tr>
+<tr><td>33</td><td>11/1</td><td>格納</td><td>外部の研究を追う表</td><td>新しい必要</td><td>研究の表</td></tr>
+<tr><td>34〜36</td><td>11/1</td><td>出来事</td><td>論文2の公開と改善提案、代表の論文用メモ、引き継ぎ文書の作成</td><td>—</td><td>決定14・17、引継17</td></tr>
+</tbody></table></div>
+<p>注1：#13・#14・#17・#21 は、データの抽出時には格納または検索の一方に分けていたが、同じ改訂の中で両方を変えているため、筆者が「両方」に分類し直した。注2：判断の記録表の2〜8行の時刻は協定世界時の可能性がある。注3：#24 と #29 について、先行稿は対応する記録や規則を挙げているが、本稿の確認では見つからなかった。次の改訂で先行稿を直す。注4：規則の本文は日付を変えずに書き換えられることがある（例：起動手順の規則は10月31日付けだが、本文は11月1日の版に更新されている）。</p>
+
+<h2>付録B　文献ごとに読んだ範囲</h2>
+<div class="tw"><table><thead><tr><th>番号</th><th>読んだ範囲</th><th>本文での使い方</th></tr></thead><tbody>
+<tr><td>[1]</td><td>全文PDFのうち、冒頭・一般原理・専門家の分担の節</td><td>外部記憶の検索には「ラベル」と「所在」が要る</td></tr>
+<tr><td>[2]</td><td>出版社の要旨のみ</td><td>記憶の五つの働き</td></tr>
+<tr><td>[3]</td><td>全文（1頁）。原論文（1970）と Tulving &amp; Thomson（1973）は未読</td><td>符号化と検索を一体として扱う</td></tr>
+<tr><td>[4]</td><td>英訳の全文（ドイツ語原文は未読）</td><td>固定番号と、常に更新する索引</td></tr>
+<tr><td>[5]</td><td>要旨と2章</td><td>主文脈と外部文脈</td></tr>
+<tr><td>[6]</td><td>要旨と構成の章（記憶の流れ・検索・内省）</td><td>三つの得点による検索、要約の格納</td></tr>
+<tr><td>[7]</td><td>要旨、3.3節、限界</td><td>内容の進化</td></tr>
+<tr><td>[8]</td><td>要旨と構成の節</td><td>有効・無効の時刻</td></tr>
+<tr><td>[9]</td><td>要旨のみ</td><td>全履歴方式との比較（著者の報告）</td></tr>
+<tr><td>[10]</td><td>要旨のみ</td><td>来歴と版を持つ記憶の単位</td></tr>
+<tr><td>[11]</td><td>要旨のみ</td><td>背景（本文では直接引用していない）</td></tr>
+<tr><td>[12]</td><td>要旨、5章、7.2節</td><td>方略は手で設計される</td></tr>
+<tr><td>[13]</td><td>要旨、1章の貢献、3章、5章</td><td>性能試験による評価の脆さ</td></tr>
+<tr><td>[14]</td><td>要旨のみ</td><td>構造の自動進化</td></tr>
+<tr><td>[15]</td><td>要旨と統一枠組みの部分</td><td>索引づけ・検索・読解の三段階</td></tr>
+<tr><td>[16]</td><td>全文</td><td>最小で信号の強い情報、必要なときに読む方式</td></tr>
+<tr><td>[17]</td><td>全文（序論・LongMemEval の実験・結論）</td><td>関連部分だけの入力が全文入力より良い</td></tr>
+<tr><td>[18]</td><td>要旨のみ</td><td>長い入力の中ほどが使われにくい</td></tr>
+<tr><td>[19]</td><td>要旨、1章、評価の一部</td><td>スキーマ変更と問い合わせの書き換え</td></tr>
+<tr><td>[20][21]</td><td>全文（自社の先行稿）</td><td>事例の体制、試験、読み込み量</td></tr>
+</tbody></table></div>
+<p>開けなかったため引用していない文献：Walsh &amp; Ungson (1991) "Organizational Memory"、Pirolli &amp; Card (1999) "Information Foraging"。</p>
+</main></body></html>
