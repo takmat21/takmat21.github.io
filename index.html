@@ -16,7 +16,7 @@
 <meta name="description" content="ZAZOU Inc.（代表 松村貴士）のポートフォリオ。階層型のAIエージェント体制を自社で運用し、事実の表・二重チェック・人の最終確認で誤りを防ぎながら、資料作成・リサーチ・業務改善を仕組みにします。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=20261101d">
+<link rel="stylesheet" href="assets/style.css?v=20261101e">
 <link rel="stylesheet" href="assets/hero-art/hero-art.css">
 </head>
 <body class="home">
@@ -117,12 +117,48 @@
 
 <section id="system" data-panel="system" class="cols">
   <h2>System <span class="ja">／ 自社で運用している仕組み</span></h2>
+  <div class="sys">
   <p class="lead">統括役のAIが担当ごとのAIに指示・確認し、結果をフィードバックして改善する「階層型のAIエージェント体制」を、自社の業務で毎日動かしています。送信など元に戻せない操作は人が行います。</p>
-  <a class="btn" href="samples/system/">構成と運用の資料（15ページ）</a>
-  <div class="shots" style="margin-top:20px">
-    <img src="assets/img/office.png" alt="担当AIの状態とチームチャットを表示するオフィス画面" loading="lazy">
-    <img src="assets/img/board.png" alt="人が押すボタンだけを並べたオペレーションボード" loading="lazy">
-    <img src="assets/img/desks.png" alt="担当ごとの机の違い" loading="lazy">
+
+  <div class="stats">
+    <div><b>8<small>体</small></b><span>担当AI（＋記録係1体）</span></div>
+    <div><b>88<small>項目</small></b><span>運用ルール（失敗から追加）</span></div>
+    <div><b>10/10</b><span>引き継ぎ試験の正答（根拠付き）</span></div>
+  </div>
+
+  <h3>体制</h3>
+  <div class="org">
+    <div class="org-row"><div class="node human">人（代表）<small>方針・承認・送信</small></div></div>
+    <div class="org-arrow">指示 ↓　↑ 報告・確認待ち</div>
+    <div class="org-row"><div class="node lead-ai">統括AI<small>仕事の割り振り・結果の確認</small></div></div>
+    <div class="org-arrow">↓ 指示　↑ 報告</div>
+    <div class="org-row wrap">
+      <div class="node">提案書・見本</div><div class="node">プロフィール管理</div><div class="node">在庫・出荷</div><div class="node">給与計算・デザイン</div><div class="node">補助金</div><div class="node">調べ物</div>
+    </div>
+    <div class="org-side">
+      <div class="node sub">記録係<small>会話を外から読み、決定を表に書く</small></div>
+      <div class="node sub">二重チェック役<small>別のAIが文面を点検</small></div>
+      <div class="node sub">外部記憶<small>スプレッドシート（事実・ルール・台帳）</small></div>
+    </div>
+  </div>
+
+  <h3>誤りを防ぐ4つの関門</h3>
+  <ol class="gates">
+    <li><b>事実の表だけを使う</b>経歴や実績は「事実シート」にあることだけを書く。ないことは書かないか「推定」と明記。</li>
+    <li><b>一次情報で確かめる</b>求人・制度・会社のことは、その場で開いた公式ページで確認。開けなければ「未確認」。</li>
+    <li><b>別のAIで二重チェック</b>外に出す文面は、作ったAIとは別のAIが事実・誤字・答え漏れを点検。</li>
+    <li><b>元に戻せない操作は人が押す</b>送信・応募・公開・削除は人がボタンで行う。AIは下書きと記録まで。</li>
+  </ol>
+
+  <h3>記憶を失わない仕組み（記録の三層）</h3>
+  <p>AIは会話が長くなると古い決定を忘れます。そこで会話ではなく表を「正」にしました。<b>書く</b>（決めたことはその場で表へ）、<b>照合する</b>（毎日、記録と現実のずれを探す）、<b>根拠を示す</b>（外に出す文面には表の行番号を添える）。会話の記憶を持たない新しいAIに表だけを渡す試験で、10問すべてに根拠付きで正答しました。</p>
+
+  <h3>実際の画面</h3>
+  <figure><img src="assets/img/board.png" alt="人が押すボタンだけを並べたオペレーションボード" loading="lazy"><figcaption>オペレーションボード：人がやることは「文面をコピー」「送った」などのボタンを押すだけ。押すと記録され、AIが次の作業へ進みます。</figcaption></figure>
+  <figure><img src="assets/img/office.png" alt="担当AIの状態とチームチャットを表示するオフィス画面" loading="lazy"><figcaption>オフィス画面：誰が何をしているか、どこで人の確認待ちになっているかを一目で見られます。</figcaption></figure>
+  <figure><img src="assets/img/desks.png" alt="担当ごとの机の違い" loading="lazy"><figcaption>担当ごとの机：重い判断は上位のモデル、定型作業は軽いモデルに振り分けて費用を抑えています。</figcaption></figure>
+
+  <p class="more"><a href="samples/system/">構成と運用の資料（PDF・15ページ）</a>　／　<a href="paper/">論文：記憶の欠落とハルシネーションへの対処</a></p>
   </div>
 </section>
 
