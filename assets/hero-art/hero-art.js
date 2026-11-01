@@ -173,16 +173,18 @@
   function gapAmount(g, p) {
     return smooth(g.fillStart, g.fillStart + 0.06, p) * (1 - smooth(g.retract, g.retract + 0.04, p));
   }
-  function fragmentPose(sc, f, p, mx, my) {
+  function fragmentPose(sc, f, p, mx, my, ax) {
     var d = dockAmount(f, p);
+    // on a wide canvas the loose fragments spread sideways; the gathered form keeps its shape
+    var sx = f.sx * ax, sy = f.sy;
     var gathering = p < f.undockStart;
     var bend = gathering ? f.bendIn : f.bendOut;
     // curved travel: quadratic path from scattered spot to home
-    var ex = f.hx - f.sx, ey = f.hy - f.sy;
-    var cxp = (f.sx + f.hx) / 2 - ey * bend, cyp = (f.sy + f.hy) / 2 + ex * bend;
+    var ex = f.hx - sx, ey = f.hy - sy;
+    var cxp = (sx + f.hx) / 2 - ey * bend, cyp = (sy + f.hy) / 2 + ex * bend;
     var u = 1 - d;
-    var x = u * u * f.sx + 2 * u * d * cxp + d * d * f.hx;
-    var y = u * u * f.sy + 2 * u * d * cyp + d * d * f.hy;
+    var x = u * u * sx + 2 * u * d * cxp + d * d * f.hx;
+    var y = u * u * sy + 2 * u * d * cyp + d * d * f.hy;
     // breathing while loose (integer frequencies keep the loop seamless)
     var loose = 1 - d;
     x += 0.007 * Math.sin(TAU * p * 2 + f.phase) * loose;
@@ -345,7 +347,7 @@
     var ctx = canvas.getContext('2d');
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
     var finePointer = window.matchMedia('(pointer: fine)').matches;
-    var W = 0, H = 0, dpr = 1, S = 1, CX = 0, CY = 0, paper = null, wash = null;
+    var W = 0, H = 0, dpr = 1, S = 1, CX = 0, CY = 0, AX = 1, paper = null, wash = null;
     var mouse = { x: 0, y: 0, tx: 0, ty: 0 };
     var visible = true, raf = 0, t0 = performance.now();
     var fixedPhase = opts.phase;
@@ -356,7 +358,8 @@
       W = Math.max(1, Math.round(r.width * dpr)); H = Math.max(1, Math.round(r.height * dpr));
       canvas.width = W; canvas.height = H;
       canvas.style.width = r.width + 'px'; canvas.style.height = r.height + 'px';
-      S = Math.min(W, H) * 0.46; CX = W / 2; CY = H / 2;
+      S = Math.min(W, H) * 0.44; CX = W / 2; CY = H / 2;
+      AX = clamp((W / H) * 0.92, 1, 3);
       paper = makePaper(W, H, dpr, seed);
       wash = makeWash(sc, W, H, S, CX, CY, seed);
       if (reduce.matches || fixedPhase != null) draw(fixedPhase != null ? fixedPhase : STILL_PHASE);
@@ -373,7 +376,7 @@
       // specks
       sc.specks.forEach(function (s) {
         ctx.fillStyle = 'rgba(' + COLORS.ink + ',' + s.a + ')';
-        ctx.beginPath(); ctx.arc(CX + s.x * S, CY + s.y * S, s.r * S, 0, TAU); ctx.fill();
+        ctx.beginPath(); ctx.arc(CX + s.x * AX * S, CY + s.y * S, s.r * S, 0, TAU); ctx.fill();
       });
 
       // sage wash
@@ -384,7 +387,7 @@
         ctx.globalAlpha = 1;
       }
 
-      var poses = sc.frags.map(function (f) { return fragmentPose(sc, f, p, mx, my); });
+      var poses = sc.frags.map(function (f) { return fragmentPose(sc, f, p, mx, my, AX); });
       function fragCenter(i) { return tp(poses[i].x, poses[i].y); }
 
       // threads
