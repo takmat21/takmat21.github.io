@@ -112,3 +112,8 @@ html,body{overflow-x:clip}
   .home ul.rows{display:grid;grid-template-columns:1fr 1fr;column-gap:40px}
   .home #paper ul.rows{grid-template-columns:1fr}
 }
+.hero .name{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--fg);letter-spacing:.06em}
+.hero .title{margin:14px 0 0}
+.hero .title .who{color:var(--fg);font-family:var(--sans);font-weight:700;font-size:15px}
+.hero .desc{font-size:15px;line-height:1.9}
+@media (max-width:860px){.hero .desc{margin-top:18px}}
