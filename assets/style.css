@@ -117,3 +117,12 @@ html,body{overflow-x:clip}
 .hero .title .who{color:var(--fg);font-family:var(--sans);font-weight:700;font-size:15px}
 .hero .desc{font-size:15px;line-height:1.9}
 @media (max-width:860px){.hero .desc{margin-top:18px}}
+/* トップの見出し：1列にまとめて、余白の偏りをなくす */
+@media (min-width:0px){
+  .home header.hero .hero-text{display:block}
+  .home header.hero .hero-text>p:last-child{margin-bottom:0}
+}
+.home .hero .name{margin:0 0 14px}
+.home .hero h1{font-size:clamp(28px,4.2vw,46px);line-height:1.3;margin:0}
+.home .hero .title{margin:16px 0 0}
+.home .hero .desc{max-width:44em;margin:22px 0 0;font-size:15.5px}
