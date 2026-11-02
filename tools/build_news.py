@@ -92,8 +92,35 @@ def body(d):
         out.append('\n'.join(parts))
     return '\n'.join(out)
 
-NOTE = '<p class="note" style="margin-top:28px">毎週月曜に更新します。要約は出典の記事を読んだうえで当方が書いたもので、内容の正確さは各出典をご確認ください。記事の権利は各出典に帰属します。</p>'
+NOTE = '<p class="note" style="margin-top:28px">毎日1本の記事と、毎週月曜にその週のまとめを更新します。要約は出典の記事を読んだうえで当方が書いたもので、内容の正確さは各出典をご確認ください。記事の権利は各出典に帰属します。</p>'
 FOOT = '<footer>© 松村貴士 / ZAZOU株式会社</footer>\n</div></body></html>\n'
+
+
+def build_daily():
+    """毎日の記事：news/daily/YYYY-MM-DD.json → news/d/YYYY-MM-DD/index.html。新しい順の一覧を返す。"""
+    arts = []
+    for f in sorted(glob.glob(os.path.join(NEWS, 'daily', '*.json')), reverse=True):
+        a = json.load(open(f, encoding='utf-8'))
+        a['slug'] = os.path.splitext(os.path.basename(f))[0]
+        changed = False
+        for l in a.get('links', []):
+            if 'image' not in l:
+                l['image'] = og_image(l['url']); changed = True
+        if changed:
+            json.dump({k: v for k, v in a.items() if k != 'slug'}, open(f, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+        arts.append(a)
+        p = os.path.join(NEWS, 'd', a['slug']); os.makedirs(p, exist_ok=True)
+        s = head(a['title'], a['lead'][:110], f'news/d/{a["slug"]}/', 3)
+        s += f'<header class="hero"><p class="name"><a href="../../">週間AI業界の最新動向</a></p><span class="tag">{E(a.get("category","今日の話題"))}</span><h1>{E(a["title"])}</h1><p class="news-meta">{E(a["slug"])}　発行：ZAZOU Inc.</p></header>\n<section class="news-item"><p class="lead">{E(a["lead"])}</p>'
+        for sec in a.get('sections', []):
+            s += f'<h3>{E(sec["heading"])}</h3>' + ''.join(f'<p>{E(x)}</p>' for x in sec['paragraphs'])
+        s += '<h3>関連記事</h3><div class="links">'
+        for l in a.get('links', []):
+            img = f'<img src="{E(l["image"])}" alt="" loading="lazy" referrerpolicy="no-referrer">' if l.get('image') else f'<div class="ph">{E(l["source"])}</div>'
+            s += f'<a class="lk" href="{E(l["url"])}" target="_blank" rel="noopener">{img}<span>{E(l["source"])}<small>{E(l.get("note",""))}</small></span></a>'
+        s += f'</div>{NOTE}</section>\n' + FOOT
+        open(os.path.join(p, 'index.html'), 'w', encoding='utf-8').write(s)
+    return arts
 
 def main():
     weeks = []
@@ -109,9 +136,12 @@ def main():
         s = head(t, d['lead'][:110], f'news/{d["slug"]}/', 2)
         s += f'<header class="hero"><p class="name"><a href="../">週間AI業界の最新動向</a></p><h1>{E(d["week"])}の動向</h1><p class="news-meta">更新：{E(d["updated"])}　発行：ZAZOU Inc.</p></header>\n<section>{body(d)}{NOTE}</section>\n' + FOOT
         open(os.path.join(p, 'index.html'), 'w', encoding='utf-8').write(s)
+    arts = build_daily()
     latest = weeks[0]
     s = head('週間AI業界の最新動向', 'AI業界でその週に話題になったトピックを、公式の発表・発言とその反応に分けて出典つきでまとめ、小規模事業者にとっての意味を添えて毎週更新します。', 'news/', 1)
     s += f'<header class="hero"><h1>週間AI業界の最新動向</h1><p>AI業界でその週に話題になったトピックを、公式の発表・発言とその反応に分けて出典つきでまとめ、小規模事業者にとっての意味を添えて毎週更新します。</p></header>\n'
+    if arts:
+        s += '<section><h2>Daily <span class="ja">／ 今日の記事</span></h2><ul class="week-list">' + ''.join(f'<li><span class="news-meta">{a["slug"]}</span>　<a href="d/{a["slug"]}/">{E(a["title"])}</a></li>' for a in arts[:14]) + '</ul></section>\n'
     s += f'<section><h2>Latest <span class="ja">／ {E(latest["week"])}</span></h2><p class="news-meta">更新：{E(latest["updated"])}　発行：ZAZOU Inc.</p>{body(latest)}</section>\n'
     if len(weeks) > 1:
         s += '<section><h2>Archive <span class="ja">／ 過去の週</span></h2><ul class="week-list">' + ''.join(f'<li><a href="{w["slug"]}/">{E(w["week"])}</a></li>' for w in weeks[1:]) + '</ul></section>\n'
