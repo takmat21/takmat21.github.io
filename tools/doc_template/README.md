@@ -2,6 +2,7 @@
 
 どの部下も、資料を作る前にこの手引きと規則表（92・94〜100行目）、事実シートを読むこと。
 
+0. 文字の大きさ（全資料で統一、この幅の中で調整）：ページの見出し24〜26pt／見出し下の説明15〜16pt／カードの見出し17〜20pt／本文・箇条書き15〜17pt／表14〜16pt／注記・画像の説明12〜13pt（これより小さくしない）／フッター8〜9pt。ページごとにばらつかせない。
 1. 見た目：template.html を複製して中身を書き換える。A4横、見出しは左に青い縦線＋約24pt太字、その下に1行の説明、本文14pt以上（表・注記12pt以上）、カードは1ページ3〜4枚まで、フッター「資料名（松村貴士）　n / N」。入らなければページを増やす（文字を小さくしない）。
 2. フォント：Webフォント（fonts.googleapis.com の link）は使わない。/root/.fonts に Noto Sans JP の Regular・Bold の TTF を入れて `fc-cache -f`。TTFのURLは `curl -s -A "Mozilla/4.0" "https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700"` の結果に出る。
 3. 書き出し：`node render.js 入力.html 出力.pdf`。全ページのPNGを見て、はみ出し・文字切れがないか確かめる。`pdffonts 出力.pdf` が「CID TrueType」で、大きさが数百KB以下であること。
