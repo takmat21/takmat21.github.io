@@ -1,0 +1,175 @@
+{
+ "week": "2026-10-26〜2026-11-01",
+ "updated": "2026-11-02",
+ "lead": "今週はAnthropicの上場申請書（S-1）の公開が大きな話題となり、売上の伸びと巨額の会計上の損失の両面が報じられました。モデルではOpenAI、Google、Mistralが相次いで新モデルを出し、いずれも「コンピューター操作」や「サイバー防御」を前面に出しています。GitHubの年次報告では、プルリクエストの4割超がエージェントの下書きから始まっていることが示されました。",
+ "items": [
+  {
+   "category": "公式発表",
+   "title": "Anthropicが上場申請書（S-1）を公開、ナスダック上場を計画",
+   "date": "2026-10-26",
+   "source": "Anthropic",
+   "url": "https://www.anthropic.com/news/s1-sec",
+   "announcement": "AnthropicがSECにS-1を提出し、ナスダックに「ANT」の銘柄コードで上場する計画を公表しました。株数や価格帯は未定です。",
+   "reaction": "報道では上半期の売上163億ドルと、主に転換社債の評価替えによる純損失807億ドルが注目されました。損失の大半は非現金の会計処理だとする解説がある一方、計算資源への巨額の支払い約束や顧客の集中をリスクとして挙げる論評も出ています。",
+   "reaction_sources": [
+    {
+     "source": "HackerNoon",
+     "url": "https://hackernoon.com/anthropics-s-1-shows-$163b-in-half-year-revenue-a-900percent-nrr-and-an-$807b-loss-that-mostly-isnt",
+     "note": "損失の中身を読み解く解説",
+     "image": "https://hackernoon.imgix.net/images/N0ENUd29UdNJCFcl7GnmZHdk2fA2-q583af1.png"
+    },
+    {
+     "source": "StartupHub.ai",
+     "url": "https://www.startuphub.ai/ai-news/public-companies/2026/anthropic-files-for-ipo-but-leaves-price-blank",
+     "note": "投資家・識者の反応まとめ",
+     "image": "https://www.startuphub.ai/api/og/article/anthropic-files-for-ipo-but-leaves-price-blank/still"
+    },
+    {
+     "source": "AI Weekly",
+     "url": "https://aiweekly.co/alerts/anthropic-s-1-shows-163b-h1-revenue-25-from-two-customers-and-807b-non-cash",
+     "note": "申請前の報道・SNSの反応",
+     "image": ""
+    }
+   ],
+   "implication": "当面の利用には直接の変化はありませんが、主要なAI提供企業の財務状況が公開資料で確認できるようになるため、取引先を選ぶ際の判断材料が増えます。",
+   "read_scope": "本文全文",
+   "image": "https://www-cdn.anthropic.com/images/4zrzovbb/website/6d4a0d28992ade92d6fa63646fd9c9d318245c6c-2400x1260.jpg"
+  },
+  {
+   "category": "製品・サービス",
+   "title": "OpenAIが「GPT-6.1 Terra」を公開、PC操作向けで価格は半額",
+   "date": "2026-10-26",
+   "source": "BleepingComputer（OpenAI発表の報道）",
+   "url": "https://www.bleepingcomputer.com/news/artificial-intelligence/openai-launches-gpt-61-terra-with-3x-faster-ai-agents-50-percent-lower-pricing/",
+   "announcement": "OpenAIが、コンピューター操作や画像の読み取りを得意とする中位モデル「GPT-6.1 Terra」を、ChatGPT WorkとCodex、APIで提供開始しました。API料金は従来モデルより50%安いとしています。",
+   "reaction": "各メディアは性能値がOpenAI自身の測定である点を明記して報じました。ドイツのメディアは、通常のチャット画面のモデル選択には表示されないことに戸惑う利用者向けに、提供範囲を整理しています。",
+   "reaction_sources": [
+    {
+     "source": "BRIDGE",
+     "url": "https://thebridge.jp/2026/10/openai-gpt-6-1-terra-computer-use-model",
+     "note": "日本語での解説",
+     "image": "https://i0.wp.com/thebridge.jp/wp-content/uploads/2026/10/screenshot_580173-1.png?resize=1200%2C675&ssl=1"
+    },
+    {
+     "source": "MIXED",
+     "url": "https://mixed-news.com/en/?p=38341",
+     "note": "表示されない理由の整理",
+     "image": ""
+    }
+   ],
+   "implication": "書類作成や定型的な画面操作を安く試せる選択肢が増えますが、性能は自社の実際の作業で確かめてから使い始めるのが安全です。",
+   "read_scope": "本文全文",
+   "image": ""
+  },
+  {
+   "category": "製品・サービス",
+   "title": "Googleが「Gemini 4 Carbon」を発表、まずサイバー防御担当者に限定提供",
+   "date": "2026-10-28",
+   "source": "Google",
+   "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+   "announcement": "Googleが、サイバーセキュリティと長時間の作業に強いとする新モデル「Gemini 4 Carbon」を発表しました。当初は一部のサイバー防御担当者に限って提供し、一般向けの時期は未定です。",
+   "reaction": "業界アナリストからは、多くの企業が試せない限定提供への疑問と、脆弱性修正機能への期待の両方が示されました。数値の多くが自社測定である点や、一部指標で誤答率が上がった点を指摘する報道もあります。",
+   "reaction_sources": [
+    {
+     "source": "AI Business",
+     "url": "https://aibusiness.com/cybersecurity/gemini-carbon-aims-boost-ai-cyber-defense-but-limited-to-a-few",
+     "note": "アナリストの評価",
+     "image": "https://eu-images.contentstack.com/v3/assets/blt6b0f74e5591baa03/blt21ba33cb045a29d2/6ae4c305ce477d65797b9bf9/Google.jpg?disable=upscale&width=1200&height=630&fit=crop"
+    },
+    {
+     "source": "INSIDE（台湾）",
+     "url": "https://www.inside.com.tw/article/42758-google-gemini-4-carbon-cybersecurity-long-horizon-fairwind",
+     "note": "弱点と誤答率の指摘",
+     "image": "https://bucket-image.inkmaginecms.com/version/social/1/image/2025/05/b795f47f-10ce-4351-8b03-f188e2e11491.jpg"
+    },
+    {
+     "source": "ギズモード・ジャパン",
+     "url": "https://www.gizmodo.jp/article/2610-gemini-4-carbon/",
+     "note": "日本語での率直な評価",
+     "image": "https://media.loom-app.com/loom/2026/10/29/df1e3543-ddef-44c9-a330-992fa5a7b9f1/original.png?w=1200&h=630"
+    },
+    {
+     "source": "Impress Watch",
+     "url": "https://www.watch.impress.co.jp/docs/news/2152097.html",
+     "note": "日本語での概要",
+     "image": "https://www.watch.impress.co.jp/img/ipw/list/2152/097/g01.jpg"
+    }
+   ],
+   "implication": "現時点では一般の事業者は使えないため、すぐに対応する必要はありません。公開後に評価が出そろってから検討すれば十分です。",
+   "read_scope": "本文全文",
+   "image": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini_carbon_102726_social_share.width-1300.png"
+  },
+  {
+   "category": "製品・サービス",
+   "title": "Mistralが約1兆パラメータの「Mistral Large 4」の重みを公開",
+   "date": "2026-10-29",
+   "source": "Mistral AI",
+   "url": "https://mistral.ai/news/mistral-large-4-oss/",
+   "announcement": "フランスのMistral AIが、コーディングと防御的サイバーセキュリティに重点を置いた大規模モデル「Mistral Large 4」の重みを、商用利用可能なライセンスで公開しました。",
+   "reaction": "欧米発の公開モデルとして高い水準だとする評価が報じられる一方、総合指標では中国の上位モデルに及ばない点や、ベンチマークが自社測定である点も伝えられています。Mistral自身も、攻撃への悪用を防ぐ仕組みに課題が残ると認めています。",
+   "reaction_sources": [
+    {
+     "source": "Let's Data Science",
+     "url": "https://letsdatascience.com/news/mistral-releases-open-weights-for-1-trillion-parameter-mistr-d712eb0e",
+     "note": "企業・識者のコメント",
+     "image": ""
+    },
+    {
+     "source": "BRIDGE",
+     "url": "https://thebridge.jp/2026/10/mistral-large-4-le-chonk-open-weights",
+     "note": "日本語での解説",
+     "image": "https://i0.wp.com/thebridge.jp/wp-content/uploads/2026/10/screenshot_580374.png?resize=1200%2C675&ssl=1"
+    }
+   ],
+   "implication": "自社管理の環境でAIを動かしたい場合の選択肢になりますが、規模が大きく運用の負担も大きいため、多くの小規模事業者にはAPI経由での利用が現実的です。",
+   "read_scope": "本文全文",
+   "image": "https://mistral.ai/cms-media/api/media/file/cover-mistral-sovereign%20copie.webp"
+  },
+  {
+   "category": "研究",
+   "title": "GitHub年次報告、プルリクエストの4割超がAIエージェントの下書きから",
+   "date": "2026-10-28",
+   "source": "GitHub",
+   "url": "https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/",
+   "announcement": "GitHubの年次報告「Octoverse 2026」によると、2026年9月にはプルリクエストの40%超がエージェントの最初の下書きから始まり、3月の17%から増えました。日本の開発者数は715万人で世界5位とされています。",
+   "reaction": "フランスのテック系メディアは、検出できたエージェントだけを数えた下限値であることや、昨年と集計方法が異なるため単純比較できないことなど、読み方の注意点を整理して報じました。",
+   "reaction_sources": [
+    {
+     "source": "Blog du Modérateur",
+     "url": "https://www.blogdumoderateur.com/github-plus-40-pourcent-pull-requests-demarrent-avec-agent-ia/",
+     "note": "数値の読み方の注意点",
+     "image": "https://f.hellowork.com/blogdumoderateur/2026/10/Octoverse2026_BlogVisual_1-copie-1200x628.jpg"
+    }
+   ],
+   "implication": "外注先や社内のソフト開発でもAIが書いたコードが増えていると考えられるため、納品物のレビューやテストの体制を確認しておくと安心です。",
+   "read_scope": "本文全文",
+   "image": "https://github.blog/wp-content/uploads/2026/10/Octoverse2026_BlogHeader_2.jpg"
+  },
+  {
+   "category": "規制・政策",
+   "title": "Anthropicと米政府調達庁（GSA）、行政向けにClaudeを40%割引",
+   "date": "2026-10-27",
+   "source": "Anthropic",
+   "url": "https://www.anthropic.com/news/expanding-partnership-gsa",
+   "announcement": "AnthropicとGSAが新たな契約を結び、連邦に加えて州・地方などの行政機関もClaudeを40%割引、最低利用額なしの従量制で使えるようになりました。",
+   "reaction": "報道では、従来の「1ドル」提供から従量課金への転換である点や、OpenAIが同様の枠組みで50%割引を提示している点が比較されました。GSAも同日に契約内容を公表しています。",
+   "reaction_sources": [
+    {
+     "source": "GSA（米政府調達庁）",
+     "url": "https://www.gsa.gov/about-gsa/newsroom/news-releases/gsa-anthropic-reach-onegov-agreement-on-discounted-consumptionbased-pricing-10272026",
+     "note": "政府側の公式発表",
+     "image": "https://www.gsa.gov/sites/gsa.gov/themes/custom/gsa/custom_assets/images/open_graph_image.jpeg"
+    },
+    {
+     "source": "The Next Web",
+     "url": "https://thenextweb.com/news/anthropic-gsa-onegov-40-percent-claude-discount",
+     "note": "OpenAIとの比較",
+     "image": "https://media.thenextweb.com/2026/10/dario-amodei-anthropic-logo-phone-screen.jpg"
+    }
+   ],
+   "implication": "米国の話ですが、行政がAIを従量制で調達する例として、自治体と取引のある事業者は国内の動きにも注目しておくとよいでしょう。",
+   "read_scope": "本文全文",
+   "image": "https://www-cdn.anthropic.com/images/4zrzovbb/website/4e3bfa972a8ec391977288fa36de3da1ecd78232-1920x1080.webp"
+  }
+ ]
+}

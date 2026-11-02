@@ -107,12 +107,12 @@ def main():
         p = os.path.join(NEWS, d['slug']); os.makedirs(p, exist_ok=True)
         t = f'週間AI業界の最新動向（{d["week"]}）'
         s = head(t, d['lead'][:110], f'news/{d["slug"]}/', 2)
-        s += f'<header class="hero"><p class="name"><a href="../">週間AI業界の最新動向</a></p><h1>{E(d["week"])}の動向</h1><p class="news-meta">更新：{E(d["updated"])}</p></header>\n<section>{body(d)}{NOTE}</section>\n' + FOOT
+        s += f'<header class="hero"><p class="name"><a href="../">週間AI業界の最新動向</a></p><h1>{E(d["week"])}の動向</h1><p class="news-meta">更新：{E(d["updated"])}　発行：ZAZOU Inc.</p></header>\n<section>{body(d)}{NOTE}</section>\n' + FOOT
         open(os.path.join(p, 'index.html'), 'w', encoding='utf-8').write(s)
     latest = weeks[0]
     s = head('週間AI業界の最新動向', 'AI業界でその週に話題になったトピックを、公式の発表・発言とその反応に分けて出典つきでまとめ、小規模事業者にとっての意味を添えて毎週更新します。', 'news/', 1)
     s += f'<header class="hero"><h1>週間AI業界の最新動向</h1><p>AI業界でその週に話題になったトピックを、公式の発表・発言とその反応に分けて出典つきでまとめ、小規模事業者にとっての意味を添えて毎週更新します。</p></header>\n'
-    s += f'<section><h2>Latest <span class="ja">／ {E(latest["week"])}</span></h2><p class="news-meta">更新：{E(latest["updated"])}</p>{body(latest)}</section>\n'
+    s += f'<section><h2>Latest <span class="ja">／ {E(latest["week"])}</span></h2><p class="news-meta">更新：{E(latest["updated"])}　発行：ZAZOU Inc.</p>{body(latest)}</section>\n'
     if len(weeks) > 1:
         s += '<section><h2>Archive <span class="ja">／ 過去の週</span></h2><ul class="week-list">' + ''.join(f'<li><a href="{w["slug"]}/">{E(w["week"])}</a></li>' for w in weeks[1:]) + '</ul></section>\n'
     s += f'<section>{NOTE}</section>\n' + FOOT
