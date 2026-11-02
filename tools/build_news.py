@@ -51,7 +51,7 @@ def body(d):
         src = f'出典：<a href="{E(it["url"])}" rel="noopener">{E(it["source"])}</a>'
         rs = it.get('reaction_sources') or []
         if rs:
-            src += '　反応：' + '、'.join(f'<a href="{E(r["url"])}" rel="noopener">{E(r["source"])}</a>' for r in rs)
+            src += '<br>関連記事：' + '／'.join(f'<a href="{E(r["url"])}" rel="noopener">{E(r["source"])}</a>' + (f'（{E(r["note"])}）' if r.get('note') else '') for r in rs)
         parts.append(f'<div class="news-meta">{E(it["date"])}　{src}</div></article>')
         out.append('\n'.join(parts))
     return '\n'.join(out)
