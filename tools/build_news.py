@@ -1,11 +1,38 @@
 #!/usr/bin/env python3
 """週間AI業界の最新動向ページを作る。news/data/*.json（1週1ファイル）から
 news/index.html（最新週＋過去の週の一覧）と news/<週の開始日>/index.html を生成する。"""
-import json, glob, os, html
+import json, glob, os, html, re, urllib.request
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NEWS = os.path.join(ROOT, 'news')
 CSS_V = '20261101g'
 E = html.escape
+
+def og_image(url):
+    """記事ページの og:image（SNSで共有したときに出るサムネイル）のURLを取る。取れなければ空。"""
+    try:
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        t = urllib.request.urlopen(req, timeout=15).read(400000).decode('utf-8', 'ignore')
+    except Exception:
+        return ''
+    for pat in (r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)', r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:image', r'<meta[^>]+name=["\']twitter:image["\'][^>]+content=["\']([^"\']+)'):
+        m = re.search(pat, t, re.I)
+        if m:
+            u = html.unescape(m.group(1))
+            if u.startswith('//'): u = 'https:' + u
+            return u if u.startswith('http') else ''
+    return ''
+
+def fill_images(d, path):
+    """サムネイルのURLが未取得の記事だけ取りに行き、JSONに保存する（次回からは取りに行かない）。"""
+    changed = False
+    for it in d['items']:
+        if 'image' not in it:
+            it['image'] = og_image(it['url']); changed = True
+        for r in it.get('reaction_sources') or []:
+            if 'image' not in r:
+                r['image'] = og_image(r['url']); changed = True
+    if changed:
+        json.dump({k: v for k, v in d.items() if k != 'slug'}, open(path, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 
 def head(title, desc, url, depth):
     up = '../' * depth
@@ -30,6 +57,13 @@ def head(title, desc, url, depth):
 .news-item .imp{{color:var(--sub);font-size:14px;border-left:3px solid var(--accent);padding-left:10px}}
 .news-meta{{font-family:var(--mono);font-size:12px;color:var(--faint)}}
 .news-meta a{{color:var(--faint)}}
+.links{{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:12px 0 4px}}
+.lk{{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:6px;overflow:hidden;text-decoration:none;color:inherit;background:var(--bg)}}
+.lk:hover{{border-color:var(--accent)}}
+.lk img{{width:100%;aspect-ratio:1.91/1;object-fit:cover;display:block;background:var(--soft)}}
+.lk .ph{{width:100%;aspect-ratio:1.91/1;background:var(--soft);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;color:var(--faint)}}
+.lk span{{padding:8px 10px;font-size:13px;line-height:1.5}}
+.lk small{{display:block;color:var(--faint);font-size:12px}}
 .week-list{{list-style:none;padding:0;margin:0;border-top:1px solid var(--line)}}
 .week-list li{{border-bottom:1px solid var(--line);padding:10px 0}}
 </style></head>
@@ -48,11 +82,13 @@ def body(d):
         if it.get('summary'):
             parts.append(f'<p>{E(it["summary"])}</p>')
         parts.append(f'<p class="imp">小規模事業者にとって：{E(it["implication"])}</p>')
-        src = f'出典：<a href="{E(it["url"])}" rel="noopener">{E(it["source"])}</a>'
-        rs = it.get('reaction_sources') or []
-        if rs:
-            src += '<br>関連記事：' + '／'.join(f'<a href="{E(r["url"])}" rel="noopener">{E(r["source"])}</a>' + (f'（{E(r["note"])}）' if r.get('note') else '') for r in rs)
-        parts.append(f'<div class="news-meta">{E(it["date"])}　{src}</div></article>')
+        links = [{'source': it['source'], 'url': it['url'], 'image': it.get('image', ''), 'note': '公式・一次情報'}] + list(it.get('reaction_sources') or [])
+        cards = []
+        for r in links:
+            img = f'<img src="{E(r["image"])}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.outerHTML=\'<div class=ph>{E(r["source"])}</div>\'">' if r.get('image') else f'<div class="ph">{E(r["source"])}</div>'
+            cards.append(f'<a class="lk" href="{E(r["url"])}" target="_blank" rel="noopener">{img}<span>{E(r["source"])}<small>{E(r.get("note",""))}</small></span></a>')
+        parts.append('<div class="links">' + ''.join(cards) + '</div>')
+        parts.append(f'<div class="news-meta">{E(it["date"])}</div></article>')
         out.append('\n'.join(parts))
     return '\n'.join(out)
 
@@ -64,6 +100,7 @@ def main():
     for f in sorted(glob.glob(os.path.join(NEWS, 'data', '*.json'))):
         d = json.load(open(f, encoding='utf-8'))
         d['slug'] = os.path.splitext(os.path.basename(f))[0]
+        fill_images(d, f)
         weeks.append(d)
     weeks.sort(key=lambda d: d['slug'], reverse=True)
     for d in weeks:
