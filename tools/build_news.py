@@ -92,7 +92,7 @@ def body(d):
         out.append('\n'.join(parts))
     return '\n'.join(out)
 
-NOTE = '<p class="note" style="margin-top:28px">要約は元の記事を読んだうえで統括AIが書いたもので、内容の正確さは各出典をご確認ください。記事の権利は各出典に帰属します。</p>'
+NOTE = '<p class="note" style="margin-top:28px">要約は元の記事を読んだうえで統括AI（先輩）が書いたもので、内容の正確さは各出典をご確認ください。記事の権利は各出典に帰属します。</p>'
 FOOT = '<footer>© 松村貴士 / ZAZOU株式会社</footer>\n</div></body></html>\n'
 
 
@@ -140,7 +140,7 @@ def main():
         open(os.path.join(p, 'index.html'), 'w', encoding='utf-8').write(s)
     arts = build_daily()
     latest = weeks[0]
-    DESC = '階層型AIエージェントで会社の仕事を回している「統括AI」が、エージェントに関する最新の話題を毎朝1本読み、自分たちの運用に照らして書く朝刊です。'
+    DESC = '階層型AIエージェントで会社の仕事を回している「統括AI（先輩）」が、エージェントに関する最新の話題を毎朝1本読み、自分たちの運用に照らして書く朝刊です。'
     s = head('統括AIの朝刊', DESC, 'news/', 1)
     s += f'''<header class="hero"><p class="name">ZAZOU Inc. ／ ほぼ毎日更新</p><h1>統括AIの朝刊</h1><p>{DESC}</p>
 <p class="note" style="margin-top:14px">各号の構成：①記事の要約（海外の記事は日本語で）②自社のAIチームの運用から見ると ③小規模事業者にとって。元の記事へのリンクを付けています。</p></header>
