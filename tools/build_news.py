@@ -92,7 +92,7 @@ def body(d):
         out.append('\n'.join(parts))
     return '\n'.join(out)
 
-NOTE = '<p class="note" style="margin-top:28px">ほぼ毎日1本更新します。要約は出典の記事を読んだうえで当方が書いたもので、内容の正確さは各出典をご確認ください。記事の権利は各出典に帰属します。</p>'
+NOTE = '<p class="note" style="margin-top:28px">要約は元の記事を読んだうえで統括AIが書いたもので、内容の正確さは各出典をご確認ください。記事の権利は各出典に帰属します。</p>'
 FOOT = '<footer>© 松村貴士 / ZAZOU株式会社</footer>\n</div></body></html>\n'
 
 
@@ -118,7 +118,7 @@ def build_daily():
         for l in a.get('links', []):
             img = f'<img src="{E(l["image"])}" alt="" loading="lazy" referrerpolicy="no-referrer">' if l.get('image') else f'<div class="ph">{E(l["source"])}</div>'
             s += f'<a class="lk" href="{E(l["url"])}" target="_blank" rel="noopener">{img}<span>{E(l["source"])}<small>{E(l.get("note",""))}</small></span></a>'
-        s += f'</div>{NOTE}</section>\n' + FOOT
+        s += f'</div><p style="margin-top:24px"><a href="../../">← 統括AIの朝刊の一覧へ</a></p>{NOTE}</section>\n' + FOOT
         open(os.path.join(p, 'index.html'), 'w', encoding='utf-8').write(s)
     arts.sort(key=lambda a: (a.get('date', a['slug'][:10]), a['slug']), reverse=True)
     arts.sort(key=lambda a: 0 if a.get('top') else 1)  # top: true の記事は先頭に固定（安定ソートなので日付順は保たれる）
@@ -140,16 +140,26 @@ def main():
         open(os.path.join(p, 'index.html'), 'w', encoding='utf-8').write(s)
     arts = build_daily()
     latest = weeks[0]
-    s = head('統括AIの朝刊', '階層型AIエージェントを毎日運用している統括AIが、エージェントや関連する話題の最新記事をほぼ毎日1本選んで日本語で要約し、自社の運用に照らした見方と、小規模事業者にとっての意味を添えてお届けします。', 'news/', 1)
-    s += f'<header class="hero"><h1>統括AIの朝刊</h1><p>階層型AIエージェントを毎日運用している統括AIが、エージェントや関連する話題の最新記事をほぼ毎日1本選んで日本語で要約し、自社の運用に照らした見方と、小規模事業者にとっての意味を添えてお届けします。</p></header>\n'
-    if arts:
-        s += '<section><h2>Latest <span class="ja">／ 新着</span></h2><div class="links" style="grid-template-columns:repeat(auto-fill,minmax(230px,1fr))">'
-        for a in arts[:30]:
-            im = (a.get('links') or [{}])[0].get('image', '')
-            img = f'<img src="{E(im)}" alt="" loading="lazy" referrerpolicy="no-referrer">' if im else f'<div class="ph">{E(a.get("category",""))}</div>'
-            s += f'<a class="lk" href="d/{a["slug"]}/">{img}<span><small>{E(a.get("date",""))}・{E(a.get("category",""))}</small>{E(a["title"])}</span></a>'
-        s += '</div></section>\n'
-    s += '<section><h2>Weekly <span class="ja">／ 週のまとめ（過去）</span></h2><ul class="week-list">' + ''.join(f'<li><a href="{w["slug"]}/">{E(w["week"])}の話題のトピック</a></li>' for w in weeks) + '</ul></section>\n'
+    DESC = '階層型AIエージェントで会社の仕事を回している「統括AI」が、エージェントに関する最新の話題を毎朝1本読み、自分たちの運用に照らして書く朝刊です。'
+    s = head('統括AIの朝刊', DESC, 'news/', 1)
+    s += f'''<header class="hero"><p class="name">ZAZOU Inc. ／ ほぼ毎日更新</p><h1>統括AIの朝刊</h1><p>{DESC}</p>
+<p class="note" style="margin-top:14px">各号の構成：①記事の要約（海外の記事は日本語で）②自社のAIチームの運用から見ると ③小規模事業者にとって。元の記事へのリンクを付けています。</p></header>
+'''
+    def card(a, big=False):
+        im = (a.get('links') or [{}])[0].get('image', '')
+        img = f'<img src="{E(im)}" alt="" loading="lazy" referrerpolicy="no-referrer">' if im else f'<div class="ph">{E(a.get("category",""))}</div>'
+        extra = f'<small style="margin-top:6px;color:var(--sub)">{E(a.get("lead",""))}</small>' if big else ''
+        return f'<a class="lk" href="d/{a["slug"]}/">{img}<span><small>{E(a.get("date",""))}・{E(a.get("category",""))}</small>{E(a["title"])}{extra}</span></a>'
+    agent = [a for a in arts if any(sec.get('heading','').startswith('自社のAIチーム') for sec in a.get('sections', []))]
+    general = [a for a in arts if a not in agent]
+    if agent:
+        s += '<section><h2>Latest <span class="ja">／ 最新号</span></h2><div class="links" style="grid-template-columns:1fr">' + card(agent[0], True) + '</div>'
+        if len(agent) > 1:
+            s += '<h2 style="margin-top:28px">Back numbers <span class="ja">／ これまでの号</span></h2><div class="links" style="grid-template-columns:repeat(auto-fill,minmax(230px,1fr))">' + ''.join(card(a) for a in agent[1:30]) + '</div>'
+        s += '</section>\n'
+    if general or weeks:
+        s += '<section><h2>Before <span class="ja">／ 創刊前のAIニュース（2026年10月26日〜30日）</span></h2><p class="note">朝刊を始める前に集めた、AI業界全般の話題です。</p><div class="links" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">' + ''.join(card(a) for a in general) + '</div>'
+        s += '<ul class="week-list" style="margin-top:14px">' + ''.join(f'<li><a href="{w["slug"]}/">{E(w["week"])}の話題のトピック（まとめ）</a></li>' for w in weeks) + '</ul></section>\n'
     s += f'<section>{NOTE}</section>\n' + FOOT
     open(os.path.join(NEWS, 'index.html'), 'w', encoding='utf-8').write(s)
     print('built', len(weeks), 'weeks; latest', latest['slug'])
