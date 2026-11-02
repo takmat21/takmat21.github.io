@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""統括AIの朝刊ページを作る。news/data/*.json（1週1ファイル）から
+"""統括AI（先輩）の朝刊ページを作る。news/data/*.json（1週1ファイル）から
 news/index.html（最新週＋過去の週の一覧）と news/<週の開始日>/index.html を生成する。"""
 import json, glob, os, html, re, urllib.request
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -115,14 +115,14 @@ def build_daily():
         arts.append(a)
         p = os.path.join(NEWS, 'd', a['slug']); os.makedirs(p, exist_ok=True)
         s = head(a['title'], a['lead'][:110], f'news/d/{a["slug"]}/', 3)
-        s += f'<header class="hero"><p class="name"><a href="../../">統括AIの朝刊</a></p><span class="tag">{E(a.get("category","今日の話題"))}</span><h1>{E(a["title"])}</h1><p class="news-meta">{E(a.get("date",a["slug"][:10]))}　発行：ZAZOU Inc.</p></header>\n<section class="news-item"><p class="lead">{E(a["lead"])}</p>'
+        s += f'<header class="hero"><p class="name"><a href="../../">統括AI（先輩）の朝刊</a></p><span class="tag">{E(a.get("category","今日の話題"))}</span><h1>{E(a["title"])}</h1><p class="news-meta">{E(a.get("date",a["slug"][:10]))}　発行：ZAZOU Inc.</p></header>\n<section class="news-item"><p class="lead">{E(a["lead"])}</p>'
         for sec in a.get('sections', []):
             s += f'<h3>{E(sec["heading"])}</h3>' + ''.join(f'<p>{E(x)}</p>' for x in sec['paragraphs'])
         s += '<h3>関連記事</h3><div class="links">'
         for l in a.get('links', []):
             img = f'<img src="{E(l["image"])}" alt="" loading="lazy" referrerpolicy="no-referrer">' if l.get('image') else f'<div class="ph">{E(l["source"])}</div>'
             s += f'<a class="lk" href="{E(l["url"])}" target="_blank" rel="noopener">{img}<span>{E(l["source"])}<small>{E(l.get("note",""))}</small></span></a>'
-        s += f'</div><p style="margin-top:24px"><a href="../../">← 統括AIの朝刊の一覧へ</a></p>{NOTE}</section>\n' + FOOT
+        s += f'</div><p style="margin-top:24px"><a href="../../">← 統括AI（先輩）の朝刊の一覧へ</a></p>{NOTE}</section>\n' + FOOT
         open(os.path.join(p, 'index.html'), 'w', encoding='utf-8').write(s)
     arts.sort(key=lambda a: (a.get('date', a['slug'][:10]), a['slug']), reverse=True)
     arts.sort(key=lambda a: 0 if a.get('top') else 1)  # top: true の記事は先頭に固定（安定ソートなので日付順は保たれる）
@@ -138,18 +138,18 @@ def main():
     weeks.sort(key=lambda d: d['slug'], reverse=True)
     for d in weeks:
         p = os.path.join(NEWS, d['slug']); os.makedirs(p, exist_ok=True)
-        t = f'統括AIの朝刊（{d["week"]}）'
+        t = f'統括AI（先輩）の朝刊（{d["week"]}）'
         s = head(t, d['lead'][:110], f'news/{d["slug"]}/', 2)
-        s += f'<header class="hero"><p class="name"><a href="../">統括AIの朝刊</a></p><h1>{E(d["week"])}の動向</h1><p class="news-meta">更新：{E(d["updated"])}　発行：ZAZOU Inc.</p></header>\n<section>{body(d)}{NOTE}</section>\n' + FOOT
+        s += f'<header class="hero"><p class="name"><a href="../">統括AI（先輩）の朝刊</a></p><h1>{E(d["week"])}の動向</h1><p class="news-meta">更新：{E(d["updated"])}　発行：ZAZOU Inc.</p></header>\n<section>{body(d)}{NOTE}</section>\n' + FOOT
         open(os.path.join(p, 'index.html'), 'w', encoding='utf-8').write(s)
     arts = build_daily()
     latest = weeks[0]
     DESC = '階層型AIエージェントで会社の仕事を回している「統括AI（先輩）」が、エージェントに関する最新の話題を毎朝1本読み、自分たちの運用に照らして書く朝刊です。'
-    s = head('統括AIの朝刊', DESC, 'news/', 1)
+    s = head('統括AI（先輩）の朝刊', DESC, 'news/', 1)
     # トップ画（tools/news_hero.py が作るSVG。PCは3:1、スマホは16:9）
     s += '<picture class="news-hero"><source media="(max-width:640px)" srcset="../assets/news-hero-narrow.svg">'
     s += '<img src="../assets/news-hero-wide.svg" alt="" width="1200" height="400"></picture>\n'
-    s += f'''<header class="hero"><p class="name">ZAZOU Inc. ／ ほぼ毎日更新</p><h1>統括AIの朝刊</h1><p>{DESC}</p>
+    s += f'''<header class="hero"><p class="name">ZAZOU Inc. ／ ほぼ毎日更新</p><h1>統括AI（先輩）の朝刊</h1><p>{DESC}</p>
 <p class="note" style="margin-top:14px">各号の構成：①記事の要約（海外の記事は日本語で）②自社のAIチームの運用から見ると ③小規模事業者にとって。元の記事へのリンクを付けています。</p></header>
 '''
     def card(a, big=False):
