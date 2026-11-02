@@ -1,0 +1,31 @@
+{
+ "date": "2026-10-30",
+ "title": "音声AIのDeepgram、オープンソース「Pipecat」開発元のDaily買収を発表",
+ "category": "企業の動き",
+ "lead": "音声認識のDeepgramが、音声エージェント用のオープンソース枠組み「Pipecat」を手がけるDailyを買収すると発表しました。Pipecatは今後もオープンソースのままとしています。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "発表は、サンフランシスコで開かれたDeepgramの初のイベント「Deepgram Speak」で行われました。音声モデル、リアルタイム通信基盤、音声エージェントの制御部分を一社にまとめ、会話型音声AI向けの「本番利用できる完全なオープンスタック」にすることが狙いだと説明されています。",
+    "Pipecatは無償・オープンソース・特定企業に偏らない形を保ち、ライセンスもBSD 2-Clauseのままです。競合企業も含めた運営委員会を持つ独立の「Pipecat Foundation」も設立されます。Daily共同創業者のKwindla Hultman Kramer氏は、DeepgramのHead of Open Sourceに就任します。",
+    "Dailyの既存のWebRTC基盤や電話連携なども、Deepgramが引き続き提供・開発するとしています。Dailyのネットワークは世界75拠点にあります。",
+    "同イベントでは、音声の話し方まで伝える仕様案「Real-Time Context Standard」のアルファ版や、音声エージェント用の新しい仕組みなども紹介されました。買収額などの条件は公表されておらず、取引が完了したかどうかも記事からは確認できません。"
+   ]
+  },
+  {
+   "heading": "小規模事業者にとって",
+   "paragraphs": [
+    "電話やチャットでの音声応対を検討している場合、使える部品が増える動きといえます。ただ、新サービスの多くはこれから提供される段階なので、公開内容を見て判断するのがよいでしょう。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "audioXpress",
+   "url": "https://audioxpress.com/news/deepgram-acquires-daily-to-build-open-conversational-voice-ai-platform-around-pipecat",
+   "note": "元記事",
+   "image": "https://cdn.xingosoftware.com/audioxpress/images/fetch/dpr_1/https%3A%2F%2Faudioxpress.com%2Fassets%2Fupload%2Fimages%2F1%2F20261030171019_Deepgram-Daily-acquisition-FrontWeb.jpg"
+  }
+ ]
+}

@@ -1,0 +1,32 @@
+{
+ "date": "2026-10-28",
+ "title": "Anthropic、研究支援プログラム「AI for Science」を財団や研究機関へ拡大",
+ "category": "公式発表",
+ "lead": "Anthropicは、研究者にClaudeの無償クレジットを提供する「AI for Science」を、20の財団・研究機関・研究プロジェクトへ広げると発表しました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "このプログラムは2025年5月に始まり、影響の大きい科学プロジェクトにClaudeのクレジットを無償で提供するものです。Anthropicは、生物学、医学、物理学、化学、気候科学、数学の分野で数百件のプロジェクトを支援してきたとしています。",
+    "今回加わるのは20のパートナーで、内訳は科学系の助成団体・学会が6、研究機関が6、研究プロジェクトが6です。助成団体にはSloan財団、Simons財団、Schmidt Sciences、米国科学財団(NSF)などが含まれ、所属研究者にクレジットが配られます。研究機関ではWellcome Sanger InstituteやFrancis Crick Instituteなどが、組織内で利用します。",
+    "研究プロジェクトとしては、ショウジョウバエの脳の配線を扱うFlyWire、ゲノム変異データベースのgnomAD(80万人超のDNAデータを集約)などが挙げられています。",
+    "このほか、HHMIジャネリア研究所とは、AIエージェントが実験機器を安全に操作するための共通仕様「Model Hardware Standard」を共同開発しており、これは研究プレビューの段階です。Allen Instituteとは、大規模な公開データを分析するAIエージェントのチームを構築中です。",
+    "Anthropicは、多くの協業が初期段階であるとしたうえで、今後も世界でパートナーを増やしたい考えを示しています。"
+   ]
+  },
+  {
+   "heading": "小規模事業者にとって",
+   "paragraphs": [
+    "研究者向けの取り組みで、直接の対象ではありません。ただ、AIによる科学研究の成果が公開データやソフトウェアとして共有される予定とのことなので、今後の動きを見守る程度でよいでしょう。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "Anthropic",
+   "url": "https://www.anthropic.com/news/ai-for-science-expands-foundations-research-institutions",
+   "note": "元記事",
+   "image": "https://www-cdn.anthropic.com/images/4zrzovbb/website/2c317246f4ac7eaf0667d90a76ac05a7a7b601fc-1200x630.jpg"
+  }
+ ]
+}
