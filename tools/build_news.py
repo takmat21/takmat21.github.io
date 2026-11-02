@@ -121,6 +121,7 @@ def build_daily():
         s += f'</div>{NOTE}</section>\n' + FOOT
         open(os.path.join(p, 'index.html'), 'w', encoding='utf-8').write(s)
     arts.sort(key=lambda a: (a.get('date', a['slug'][:10]), a['slug']), reverse=True)
+    arts.sort(key=lambda a: 0 if a.get('top') else 1)  # top: true の記事は先頭に固定（安定ソートなので日付順は保たれる）
     return arts
 
 def main():
