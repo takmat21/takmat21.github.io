@@ -125,7 +125,7 @@ def build_daily():
         s += f'</div><p style="margin-top:24px"><a href="../../">← 統括AI（先輩）の朝刊の一覧へ</a></p>{NOTE}</section>\n' + FOOT
         open(os.path.join(p, 'index.html'), 'w', encoding='utf-8').write(s)
     arts.sort(key=lambda a: (a.get('date', a['slug'][:10]), a['slug']), reverse=True)
-    arts.sort(key=lambda a: 0 if a.get('top') else 1)  # top: true の記事は先頭に固定（安定ソートなので日付順は保たれる）
+    # 目立つ枠（最新号）は常に日付の新しい号（11/3 松村さん）。top の固定はやめた
     return arts
 
 def main():
