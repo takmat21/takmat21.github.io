@@ -100,6 +100,18 @@ NOTE = '<p class="note" style="margin-top:28px">要約は元の記事を読ん�
 FOOT = '<footer>© 松村貴士 / ZAZOU株式会社</footer>\n</div></body></html>\n'
 
 
+def make_thumb(a, p):
+    """写真のない号の見出し画像 thumb.png を作る（題名・カテゴリ・日付が変わったときだけ作り直す）。"""
+    import hashlib, subprocess
+    key = hashlib.sha1('|'.join([a.get('category', ''), a['title'], a.get('date', a['slug'][:10])]).encode()).hexdigest()
+    png, stamp = os.path.join(p, 'thumb.png'), os.path.join(p, 'thumb.key')
+    if not (os.path.exists(png) and os.path.exists(stamp) and open(stamp).read() == key):
+        js = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'news_thumb.js')
+        subprocess.run(['node', js, png, a.get('category', '今日の話題'), a['title'], a.get('date', a['slug'][:10])], check=True)
+        open(stamp, 'w').write(key)
+    a['thumb'] = True
+
+
 def build_daily():
     """毎日の記事：news/daily/YYYY-MM-DD.json → news/d/YYYY-MM-DD/index.html。新しい順の一覧を返す。"""
     arts = []
@@ -114,13 +126,16 @@ def build_daily():
             json.dump({k: v for k, v in a.items() if k != 'slug'}, open(f, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
         arts.append(a)
         p = os.path.join(NEWS, 'd', a['slug']); os.makedirs(p, exist_ok=True)
+        if not (a.get('links') or [{}])[0].get('image'):
+            make_thumb(a, p)  # 写真のない号は見出し画像を作る（11/3 松村さん）
         s = head(a['title'], a['lead'][:110], f'news/d/{a["slug"]}/', 3)
         s += f'<header class="hero"><p class="name"><a href="../../">統括AI（先輩）の朝刊</a></p><span class="tag">{E(a.get("category","今日の話題"))}</span><h1>{E(a["title"])}</h1><p class="news-meta">{E(a.get("date",a["slug"][:10]))}　発行：ZAZOU Inc.</p></header>\n<section class="news-item"><p class="lead">{E(a["lead"])}</p>'
         for sec in a.get('sections', []):
             s += f'<h3>{E(sec["heading"])}</h3>' + ''.join(f'<p>{E(x)}</p>' for x in sec['paragraphs'])
         s += '<h3>関連記事</h3><div class="links">'
         for l in a.get('links', []):
-            img = f'<img src="{E(l["image"])}" alt="" loading="lazy" referrerpolicy="no-referrer">' if l.get('image') else f'<div class="ph">{E(l["source"])}</div>'
+            src = l.get('image') or ('thumb.png' if a.get('thumb') and l is a['links'][0] else '')
+            img = f'<img src="{E(src)}" alt="" loading="lazy" referrerpolicy="no-referrer">' if src else f'<div class="ph">{E(l["source"])}</div>'
             s += f'<a class="lk" href="{E(l["url"])}" target="_blank" rel="noopener">{img}<span>{E(l["source"])}<small>{E(l.get("note",""))}</small></span></a>'
         s += f'</div><p style="margin-top:24px"><a href="../../">← 統括AI（先輩）の朝刊の一覧へ</a></p>{NOTE}</section>\n' + FOOT
         open(os.path.join(p, 'index.html'), 'w', encoding='utf-8').write(s)
@@ -153,7 +168,7 @@ def main():
 <p class="note" style="margin-top:14px">各号の構成：①記事の要約（海外の記事は日本語で）②自社のAIチームの運用から見ると ③小規模事業者にとって。元の記事へのリンクを付けています。</p></header>
 '''
     def card(a, big=False):
-        im = (a.get('links') or [{}])[0].get('image', '')
+        im = (a.get('links') or [{}])[0].get('image', '') or (f'd/{a["slug"]}/thumb.png' if a.get('thumb') else '')
         img = f'<img src="{E(im)}" alt="" loading="lazy" referrerpolicy="no-referrer">' if im else f'<div class="ph">{E(a.get("category",""))}</div>'
         extra = f'<small style="margin-top:6px;color:var(--sub)">{E(a.get("lead",""))}</small>' if big else ''
         return f'<a class="lk" href="d/{a["slug"]}/">{img}<span><small>{E(a.get("date",""))}・{E(a.get("category",""))}</small>{E(a["title"])}{extra}</span></a>'
