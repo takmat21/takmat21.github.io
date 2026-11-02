@@ -40,11 +40,20 @@ def head(title, desc, url, depth):
 def body(d):
     out = [f'<p class="lead">{E(d["lead"])}</p>']
     for it in d['items']:
-        out.append(f'''<article class="news-item"><span class="tag">{E(it["category"])}</span>
-<h3>{E(it["title"])}</h3>
-<p>{E(it["summary"])}</p>
-<p class="imp">小規模事業者にとって：{E(it["implication"])}</p>
-<div class="news-meta">{E(it["date"])}　出典：<a href="{E(it["url"])}" rel="noopener">{E(it["source"])}</a></div></article>''')
+        parts = [f'<article class="news-item"><span class="tag">{E(it["category"])}</span>', f'<h3>{E(it["title"])}</h3>']
+        if it.get('announcement'):
+            parts.append(f'<p><strong>発表・発言：</strong>{E(it["announcement"])}</p>')
+        if it.get('reaction'):
+            parts.append(f'<p><strong>反応：</strong>{E(it["reaction"])}</p>')
+        if it.get('summary'):
+            parts.append(f'<p>{E(it["summary"])}</p>')
+        parts.append(f'<p class="imp">小規模事業者にとって：{E(it["implication"])}</p>')
+        src = f'出典：<a href="{E(it["url"])}" rel="noopener">{E(it["source"])}</a>'
+        rs = it.get('reaction_sources') or []
+        if rs:
+            src += '　反応：' + '、'.join(f'<a href="{E(r["url"])}" rel="noopener">{E(r["source"])}</a>' for r in rs)
+        parts.append(f'<div class="news-meta">{E(it["date"])}　{src}</div></article>')
+        out.append('\n'.join(parts))
     return '\n'.join(out)
 
 NOTE = '<p class="note" style="margin-top:28px">毎週月曜に更新します。要約は出典の記事を読んだうえで当方が書いたもので、内容の正確さは各出典をご確認ください。記事の権利は各出典に帰属します。</p>'
@@ -64,8 +73,8 @@ def main():
         s += f'<header class="hero"><p class="name"><a href="../">週間AI業界の最新動向</a></p><h1>{E(d["week"])}の動向</h1><p class="news-meta">更新：{E(d["updated"])}</p></header>\n<section>{body(d)}{NOTE}</section>\n' + FOOT
         open(os.path.join(p, 'index.html'), 'w', encoding='utf-8').write(s)
     latest = weeks[0]
-    s = head('週間AI業界の最新動向', 'AI業界の1週間の主な動きを、出典つきで要約し、小規模事業者にとっての意味を添えて毎週更新します。', 'news/', 1)
-    s += f'<header class="hero"><h1>週間AI業界の最新動向</h1><p>AI業界の1週間の主な動きを、出典つきで要約し、小規模事業者にとっての意味を添えて毎週更新します。</p></header>\n'
+    s = head('週間AI業界の最新動向', 'AI業界でその週に話題になったトピックを、公式の発表・発言とその反応に分けて出典つきでまとめ、小規模事業者にとっての意味を添えて毎週更新します。', 'news/', 1)
+    s += f'<header class="hero"><h1>週間AI業界の最新動向</h1><p>AI業界でその週に話題になったトピックを、公式の発表・発言とその反応に分けて出典つきでまとめ、小規模事業者にとっての意味を添えて毎週更新します。</p></header>\n'
     s += f'<section><h2>Latest <span class="ja">／ {E(latest["week"])}</span></h2><p class="news-meta">更新：{E(latest["updated"])}</p>{body(latest)}</section>\n'
     if len(weeks) > 1:
         s += '<section><h2>Archive <span class="ja">／ 過去の週</span></h2><ul class="week-list">' + ''.join(f'<li><a href="{w["slug"]}/">{E(w["week"])}</a></li>' for w in weeks[1:]) + '</ul></section>\n'
