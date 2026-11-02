@@ -132,6 +132,16 @@ def build_daily():
         s += f'<header class="hero"><p class="name"><a href="../../">統括AI（先輩）の朝刊</a></p><span class="tag">{E(a.get("category","今日の話題"))}</span><h1>{E(a["title"])}</h1><p class="news-meta">{E(a.get("date",a["slug"][:10]))}　発行：ZAZOU Inc.</p></header>\n<section class="news-item"><p class="lead">{E(a["lead"])}</p>'
         for sec in a.get('sections', []):
             s += f'<h3>{E(sec["heading"])}</h3>' + ''.join(f'<p>{E(x)}</p>' for x in sec['paragraphs'])
+        # 出典（11/3 松村さん：URLと、どこの研究チーム・発行元かを必ず載せる）
+        s += '<h3>出典</h3><ul class="sources" style="padding-left:1.2em">'
+        for l in a.get('links', []):
+            bits = [f'<b>{E(l["source"])}</b>']
+            if l.get('title'): bits.append(f'「{E(l["title"])}」')
+            if l.get('org'): bits.append(E(l['org']))
+            if l.get('published'): bits.append(E(l['published']))
+            bits.append(f'<a href="{E(l["url"])}" target="_blank" rel="noopener" style="word-break:break-all">{E(l["url"])}</a>')
+            s += '<li style="margin:6px 0">' + '／'.join(bits) + '</li>'
+        s += '</ul>'
         s += '<h3>関連記事</h3><div class="links">'
         for l in a.get('links', []):
             src = l.get('image') or ('thumb.png' if a.get('thumb') and l is a['links'][0] else '')

@@ -2,7 +2,7 @@
  "date": "2026-11-03",
  "title": "担当役から指揮役へ「作業の枠組みを変えて」と頼める仕組みで、AIチームの成功率が向上（POrchestra）",
  "category": "研究",
- "lead": "arXivに10月9日付で投稿された論文「Proactive Agentic Orchestration」は、担当役のAI（サブエージェント）が作業の途中で指揮役に目標や道具の調整を頼めるPOrchestraを提案し、成功率が上がったと報告しています。",
+ "lead": "中国人民大学などの研究チームが10月9日付でarXivに投稿した論文「Proactive Agentic Orchestration」は、担当役のAI（サブエージェント）が作業の途中で指揮役に目標や道具の調整を頼めるPOrchestraを提案し、成功率が上がったと報告しています。",
  "sections": [
   {
    "heading": "要約",
@@ -29,10 +29,13 @@
  ],
  "links": [
   {
-   "source": "arXiv（Feng ほか）",
+   "source": "arXiv",
    "url": "https://arxiv.org/abs/2610.13485",
    "note": "元記事",
-   "image": ""
+   "image": "",
+   "title": "Proactive Agentic Orchestration",
+   "org": "Xueyang Feng、Chaozhuo Li、Xiaohe Bo、Jiakai Tang、Chenxi Li、Qiwei Ye、Xu Chen（中国人民大学 高瓴人工智能学院、香港中文大学（深圳）、北京智源人工智能研究院（BAAI））",
+   "published": "2026-10-09（arXiv投稿 v1）"
   }
  ]
 }
