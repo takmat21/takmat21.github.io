@@ -72,7 +72,7 @@ def head(title, desc, url, depth):
 @media (max-width:640px){{.news-hero{{margin-top:16px}}}}
 </style></head>
 <body><div class="wrap">
-<nav class="tabs" aria-label="ページの切り替え"><a href="{up}#about">プロフィール</a><a href="{up}#samples">仕事一覧</a><a href="{up}samples/x-article/">記事</a><a href="{up}#system">仕組み</a><a href="{up}#paper">論文</a><a href="{up}news/" class="on" aria-current="page">朝刊</a></nav>
+<nav class="tabs" aria-label="ページの切り替え"><a href="{up}#about">プロフィール</a><a href="{up}#samples">仕事一覧</a><a href="{up}#system">仕組み</a><a href="{up}#paper">論文</a><a href="{up}news/" class="on" aria-current="page">朝刊</a></nav>
 '''
 
 def body(d):
