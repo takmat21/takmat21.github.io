@@ -1,0 +1,35 @@
+{
+ "date": "2026-10-28",
+ "title": "GitHub年次報告、プルリクエストの4割超がAIエージェントの下書きから",
+ "category": "研究",
+ "lead": "GitHubの年次報告「Octoverse 2026」によると、2026年9月にはプルリクエストの40%超がエージェントの最初の下書きから始まり、3月の17%から増えました。日本の開発者数は715万人で世界5位とされています。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "GitHubの年次報告「Octoverse 2026」によると、2026年9月にはプルリクエストの40%超がエージェントの最初の下書きから始まり、3月の17%から増えました。日本の開発者数は715万人で世界5位とされています。",
+    "フランスのテック系メディアは、検出できたエージェントだけを数えた下限値であることや、昨年と集計方法が異なるため単純比較できないことなど、読み方の注意点を整理して報じました。"
+   ]
+  },
+  {
+   "heading": "小規模事業者にとって",
+   "paragraphs": [
+    "外注先や社内のソフト開発でもAIが書いたコードが増えていると考えられるため、納品物のレビューやテストの体制を確認しておくと安心です。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "GitHub",
+   "url": "https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/",
+   "note": "元記事",
+   "image": "https://github.blog/wp-content/uploads/2026/10/Octoverse2026_BlogHeader_2.jpg"
+  },
+  {
+   "source": "Blog du Modérateur",
+   "url": "https://www.blogdumoderateur.com/github-plus-40-pourcent-pull-requests-demarrent-avec-agent-ia/",
+   "note": "数値の読み方の注意点",
+   "image": "https://f.hellowork.com/blogdumoderateur/2026/10/Octoverse2026_BlogVisual_1-copie-1200x628.jpg"
+  }
+ ]
+}

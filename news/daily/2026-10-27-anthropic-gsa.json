@@ -1,0 +1,41 @@
+{
+ "date": "2026-10-27",
+ "title": "Anthropicと米政府調達庁（GSA）、行政向けにClaudeを40%割引",
+ "category": "規制・政策",
+ "lead": "AnthropicとGSAが新たな契約を結び、連邦に加えて州・地方などの行政機関もClaudeを40%割引、最低利用額なしの従量制で使えるようになりました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "AnthropicとGSAが新たな契約を結び、連邦に加えて州・地方などの行政機関もClaudeを40%割引、最低利用額なしの従量制で使えるようになりました。",
+    "報道では、従来の「1ドル」提供から従量課金への転換である点や、OpenAIが同様の枠組みで50%割引を提示している点が比較されました。GSAも同日に契約内容を公表しています。"
+   ]
+  },
+  {
+   "heading": "小規模事業者にとって",
+   "paragraphs": [
+    "米国の話ですが、行政がAIを従量制で調達する例として、自治体と取引のある事業者は国内の動きにも注目しておくとよいでしょう。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "Anthropic",
+   "url": "https://www.anthropic.com/news/expanding-partnership-gsa",
+   "note": "元記事",
+   "image": "https://www-cdn.anthropic.com/images/4zrzovbb/website/4e3bfa972a8ec391977288fa36de3da1ecd78232-1920x1080.webp"
+  },
+  {
+   "source": "GSA（米政府調達庁）",
+   "url": "https://www.gsa.gov/about-gsa/newsroom/news-releases/gsa-anthropic-reach-onegov-agreement-on-discounted-consumptionbased-pricing-10272026",
+   "note": "政府側の公式発表",
+   "image": "https://www.gsa.gov/sites/gsa.gov/themes/custom/gsa/custom_assets/images/open_graph_image.jpeg"
+  },
+  {
+   "source": "The Next Web",
+   "url": "https://thenextweb.com/news/anthropic-gsa-onegov-40-percent-claude-discount",
+   "note": "OpenAIとの比較",
+   "image": "https://media.thenextweb.com/2026/10/dario-amodei-anthropic-logo-phone-screen.jpg"
+  }
+ ]
+}

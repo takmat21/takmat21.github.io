@@ -1,0 +1,53 @@
+{
+ "date": "2026-10-28",
+ "title": "Googleが「Gemini 4 Carbon」を発表、まずサイバー防御担当者に限定提供",
+ "category": "製品・サービス",
+ "lead": "Googleが、サイバーセキュリティと長時間の作業に強いとする新モデル「Gemini 4 Carbon」を発表しました。当初は一部のサイバー防御担当者に限って提供し、一般向けの時期は未定です。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "Googleが、サイバーセキュリティと長時間の作業に強いとする新モデル「Gemini 4 Carbon」を発表しました。当初は一部のサイバー防御担当者に限って提供し、一般向けの時期は未定です。",
+    "業界アナリストからは、多くの企業が試せない限定提供への疑問と、脆弱性修正機能への期待の両方が示されました。数値の多くが自社測定である点や、一部指標で誤答率が上がった点を指摘する報道もあります。"
+   ]
+  },
+  {
+   "heading": "小規模事業者にとって",
+   "paragraphs": [
+    "現時点では一般の事業者は使えないため、すぐに対応する必要はありません。公開後に評価が出そろってから検討すれば十分です。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "Google",
+   "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+   "note": "元記事",
+   "image": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini_carbon_102726_social_share.width-1300.png"
+  },
+  {
+   "source": "AI Business",
+   "url": "https://aibusiness.com/cybersecurity/gemini-carbon-aims-boost-ai-cyber-defense-but-limited-to-a-few",
+   "note": "アナリストの評価",
+   "image": "https://eu-images.contentstack.com/v3/assets/blt6b0f74e5591baa03/blt21ba33cb045a29d2/6ae4c305ce477d65797b9bf9/Google.jpg?disable=upscale&width=1200&height=630&fit=crop"
+  },
+  {
+   "source": "INSIDE（台湾）",
+   "url": "https://www.inside.com.tw/article/42758-google-gemini-4-carbon-cybersecurity-long-horizon-fairwind",
+   "note": "弱点と誤答率の指摘",
+   "image": "https://bucket-image.inkmaginecms.com/version/social/1/image/2025/05/b795f47f-10ce-4351-8b03-f188e2e11491.jpg"
+  },
+  {
+   "source": "ギズモード・ジャパン",
+   "url": "https://www.gizmodo.jp/article/2610-gemini-4-carbon/",
+   "note": "日本語での率直な評価",
+   "image": "https://media.loom-app.com/loom/2026/10/29/df1e3543-ddef-44c9-a330-992fa5a7b9f1/original.png?w=1200&h=630"
+  },
+  {
+   "source": "Impress Watch",
+   "url": "https://www.watch.impress.co.jp/docs/news/2152097.html",
+   "note": "日本語での概要",
+   "image": "https://www.watch.impress.co.jp/img/ipw/list/2152/097/g01.jpg"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "date": "2026-10-26",
+ "title": "OpenAIが「GPT-6.1 Terra」を公開、PC操作向けで価格は半額",
+ "category": "製品・サービス",
+ "lead": "OpenAIが、コンピューター操作や画像の読み取りを得意とする中位モデル「GPT-6.1 Terra」を、ChatGPT WorkとCodex、APIで提供開始しました。API料金は従来モデルより50%安いとしています。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "OpenAIが、コンピューター操作や画像の読み取りを得意とする中位モデル「GPT-6.1 Terra」を、ChatGPT WorkとCodex、APIで提供開始しました。API料金は従来モデルより50%安いとしています。",
+    "各メディアは性能値がOpenAI自身の測定である点を明記して報じました。ドイツのメディアは、通常のチャット画面のモデル選択には表示されないことに戸惑う利用者向けに、提供範囲を整理しています。"
+   ]
+  },
+  {
+   "heading": "小規模事業者にとって",
+   "paragraphs": [
+    "書類作成や定型的な画面操作を安く試せる選択肢が増えますが、性能は自社の実際の作業で確かめてから使い始めるのが安全です。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "BleepingComputer（OpenAI発表の報道）",
+   "url": "https://www.bleepingcomputer.com/news/artificial-intelligence/openai-launches-gpt-61-terra-with-3x-faster-ai-agents-50-percent-lower-pricing/",
+   "note": "元記事",
+   "image": ""
+  },
+  {
+   "source": "BRIDGE",
+   "url": "https://thebridge.jp/2026/10/openai-gpt-6-1-terra-computer-use-model",
+   "note": "日本語での解説",
+   "image": "https://i0.wp.com/thebridge.jp/wp-content/uploads/2026/10/screenshot_580173-1.png?resize=1200%2C675&ssl=1"
+  },
+  {
+   "source": "MIXED",
+   "url": "https://mixed-news.com/en/?p=38341",
+   "note": "表示されない理由の整理",
+   "image": ""
+  }
+ ]
+}
