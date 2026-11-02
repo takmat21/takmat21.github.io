@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""ほぼ毎日AIニュースページを作る。news/data/*.json（1週1ファイル）から
+"""統括AIの朝刊ページを作る。news/data/*.json（1週1ファイル）から
 news/index.html（最新週＋過去の週の一覧）と news/<週の開始日>/index.html を生成する。"""
 import json, glob, os, html, re, urllib.request
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -111,7 +111,7 @@ def build_daily():
         arts.append(a)
         p = os.path.join(NEWS, 'd', a['slug']); os.makedirs(p, exist_ok=True)
         s = head(a['title'], a['lead'][:110], f'news/d/{a["slug"]}/', 3)
-        s += f'<header class="hero"><p class="name"><a href="../../">ほぼ毎日AIニュース</a></p><span class="tag">{E(a.get("category","今日の話題"))}</span><h1>{E(a["title"])}</h1><p class="news-meta">{E(a.get("date",a["slug"][:10]))}　発行：ZAZOU Inc.</p></header>\n<section class="news-item"><p class="lead">{E(a["lead"])}</p>'
+        s += f'<header class="hero"><p class="name"><a href="../../">統括AIの朝刊</a></p><span class="tag">{E(a.get("category","今日の話題"))}</span><h1>{E(a["title"])}</h1><p class="news-meta">{E(a.get("date",a["slug"][:10]))}　発行：ZAZOU Inc.</p></header>\n<section class="news-item"><p class="lead">{E(a["lead"])}</p>'
         for sec in a.get('sections', []):
             s += f'<h3>{E(sec["heading"])}</h3>' + ''.join(f'<p>{E(x)}</p>' for x in sec['paragraphs'])
         s += '<h3>関連記事</h3><div class="links">'
@@ -133,14 +133,14 @@ def main():
     weeks.sort(key=lambda d: d['slug'], reverse=True)
     for d in weeks:
         p = os.path.join(NEWS, d['slug']); os.makedirs(p, exist_ok=True)
-        t = f'ほぼ毎日AIニュース（{d["week"]}）'
+        t = f'統括AIの朝刊（{d["week"]}）'
         s = head(t, d['lead'][:110], f'news/{d["slug"]}/', 2)
-        s += f'<header class="hero"><p class="name"><a href="../">ほぼ毎日AIニュース</a></p><h1>{E(d["week"])}の動向</h1><p class="news-meta">更新：{E(d["updated"])}　発行：ZAZOU Inc.</p></header>\n<section>{body(d)}{NOTE}</section>\n' + FOOT
+        s += f'<header class="hero"><p class="name"><a href="../">統括AIの朝刊</a></p><h1>{E(d["week"])}の動向</h1><p class="news-meta">更新：{E(d["updated"])}　発行：ZAZOU Inc.</p></header>\n<section>{body(d)}{NOTE}</section>\n' + FOOT
         open(os.path.join(p, 'index.html'), 'w', encoding='utf-8').write(s)
     arts = build_daily()
     latest = weeks[0]
-    s = head('ほぼ毎日AIニュース', 'AI業界で話題になった記事を、ほぼ毎日1本選んで日本語で要約し、小規模事業者にとっての意味を添えてお届けします。', 'news/', 1)
-    s += f'<header class="hero"><h1>ほぼ毎日AIニュース</h1><p>AI業界で話題になった記事を、ほぼ毎日1本選んで日本語で要約し、小規模事業者にとっての意味を添えてお届けします。</p></header>\n'
+    s = head('統括AIの朝刊', '階層型AIエージェントを毎日運用している統括AIが、エージェントや関連する話題の最新記事をほぼ毎日1本選んで日本語で要約し、自社の運用に照らした見方と、小規模事業者にとっての意味を添えてお届けします。', 'news/', 1)
+    s += f'<header class="hero"><h1>統括AIの朝刊</h1><p>階層型AIエージェントを毎日運用している統括AIが、エージェントや関連する話題の最新記事をほぼ毎日1本選んで日本語で要約し、自社の運用に照らした見方と、小規模事業者にとっての意味を添えてお届けします。</p></header>\n'
     if arts:
         s += '<section><h2>Latest <span class="ja">／ 新着</span></h2><div class="links" style="grid-template-columns:repeat(auto-fill,minmax(230px,1fr))">'
         for a in arts[:30]:
