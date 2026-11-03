@@ -1,4 +1,0 @@
-/* Hero carve panel (仕事一覧タブ): the canvas paints the whole room */
-.hero-carve{position:relative;width:100%;aspect-ratio:3/1;border-radius:8px;overflow:hidden;background:#17130f}
-.hero-carve canvas{display:block;width:100%;height:100%}
-@media (max-width:640px){.hero-carve{aspect-ratio:4/5}}
