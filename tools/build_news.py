@@ -186,14 +186,14 @@ def main():
     agent = [a for a in arts if any(sec.get('heading','').startswith('自社のAIチーム') for sec in a.get('sections', []))]
     general = [a for a in arts if a not in agent]
     if agent:
-        s += '<section><h2>Latest <span class="ja">／ 最新号</span></h2><div class="links" style="grid-template-columns:1fr">' + card(agent[0], True) + '</div>'
+        s += '<section><h2>Latest <span class="ja">／ 統括AI（先輩）の朝刊 最新号</span></h2><div class="links" style="grid-template-columns:1fr">' + card(agent[0], True) + '</div>'
         if len(agent) > 1:
-            s += '<h2 style="margin-top:28px">Back numbers <span class="ja">／ 創刊後のこれまでの号</span></h2><div class="links" style="grid-template-columns:repeat(auto-fill,minmax(230px,1fr))">' + ''.join(card(a) for a in agent[1:30]) + '</div>'
+            s += '<h2 style="margin-top:28px">Back numbers <span class="ja">／ これまでの号</span></h2><div class="links" style="grid-template-columns:repeat(auto-fill,minmax(230px,1fr))">' + ''.join(card(a) for a in agent[1:30]) + '</div>'
         s += '</section>\n'
     if general or weeks:
-        # 創刊前の分は折りたたんで一番下に（11/3 松村さん「創刊後を載せて」）
-        s += '<section><details><summary style="cursor:pointer;color:var(--sub)">創刊前に集めたAIニュース（2026年10月26日〜30日・' + str(len(general)) + '本）を見る</summary><p class="note">朝刊を始める前に集めた、AI業界全般の話題です。</p><div class="links" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">' + ''.join(card(a) for a in general) + '</div>'
-        s += '<ul class="week-list" style="margin-top:14px">' + ''.join(f'<li><a href="{w["slug"]}/">{E(w["week"])}の話題のトピック（まとめ）</a></li>' for w in weeks) + '</ul></details></section>\n'
+        # 一般記事の要約（AI業界全般のニュース）。11/3 松村さん「一般記事の要約と先輩の朝刊」
+        s += '<section><h2>AI News <span class="ja">／ AIニュース（一般記事の要約）</span></h2><p class="note">AI業界全般の話題を、ほぼ毎日1本、日本語で要約しています。</p><div class="links" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">' + ''.join(card(a) for a in general[:40]) + '</div>'
+        s += '<ul class="week-list" style="margin-top:14px">' + ''.join(f'<li><a href="{w["slug"]}/">{E(w["week"])}の話題のトピック（まとめ）</a></li>' for w in weeks) + '</ul></section>\n'
     s += f'<section>{NOTE}</section>\n' + FOOT
     open(os.path.join(NEWS, 'index.html'), 'w', encoding='utf-8').write(s)
     from build_sitemap import build as build_sitemap
