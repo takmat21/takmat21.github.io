@@ -1,0 +1,34 @@
+{
+ "date": "2026-11-03",
+ "title": "ElevenLabs、文章から効果音を作る「SFX v3」を公開、複数の音の指示にも対応",
+ "category": "ニュース",
+ "lead": "音声AIの米ElevenLabs（イレブンラボ）が、文章の指示から効果音を作るAIモデルの新版「SFX v3」を公開しました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "ElevenLabsは10月29日、効果音を生成するモデルの最新版「SFX v3」を公開しました。同社の制作ツール「ElevenCreative」と、開発者向けの「ElevenAPI」から使えます。",
+    "改良点は主に3つです。1つ目は、1回の指示に複数の音を入れたとき、書かれた音がより漏れなく出るようになったこと。例として「歓声、ボールが落ちる音、同じ観客のブーイング」といった指示が挙げられています。2つ目は、音楽的なフレーズや人の声を含む効果音を、より自然に作れるようになったこと。3つ目は、ゴングやチャイム、笛などの音で余計な雑音が入りにくくなり、全体として音が澄んだことです。",
+    "ElevenCreativeでは、Flows、Sound Effectsタブ、Studio、Music Editorで利用でき、モバイルアプリにも対応します。料金は記事には書かれていません。",
+    "これは同社自身の発表です。前のバージョン（v2）より良いという説明はベンチマークに基づくとされていますが、具体的な数値や比較条件は示されていないため、実際に聞き比べて判断するのがよいでしょう。"
+   ]
+  },
+  {
+   "heading": "小規模事業者にとって",
+   "paragraphs": [
+    "店の紹介動画や商品のPR動画、音声案内などに効果音を付けたいとき、素材を探す手間を減らせる可能性があります。使う場合は、商用利用の条件や料金を、公式の案内で事前に確認してください。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "ElevenLabs",
+   "title": "Introducing SFX v3 in ElevenCreative and ElevenAPI",
+   "org": "発表：ElevenLabs（執筆：Renee Zhang、Eric Michaelis）",
+   "published": "2026-10-29",
+   "url": "https://elevenlabs.io/blog/sound-effects-v3",
+   "note": "元記事",
+   "image": "https://eleven-public-cdn.elevenlabs.io/payloadcms/4i9xsghce45-SFX-v3_-Thumbnail--1-.webp"
+  }
+ ]
+}
