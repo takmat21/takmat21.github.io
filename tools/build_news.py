@@ -168,14 +168,14 @@ def main():
         open(os.path.join(p, 'index.html'), 'w', encoding='utf-8').write(s)
     arts = build_daily()
     latest = weeks[0]
-    DESC = '階層型AIエージェントで会社の仕事を回している「統括AI（先輩）」が、エージェントに関する最新の話題を毎朝1本読み、自分たちの運用に照らして書く朝刊です。'
+    DESC = '階層型AIエージェントで会社の仕事を回している「統括AI（先輩）」が、エージェントに関する最新の話題を毎朝1本読み、自分たちの運用に照らして書く朝刊です。あわせて、AI業界全般のニュースを毎日3本、日本語で要約しています。'
     s = head('統括AI（先輩）の朝刊', DESC, 'news/', 1)
     # トップ画（tools/news_hero.py が作るSVG。PCは3:1、スマホは16:9）
     # 他のタブと同じく、トップ画をタブの上に置く（松村さん 11/3「朝刊ページだけタブの位置が違う」）
     hero = ('<picture class="news-hero"><source media="(max-width:640px)" srcset="../assets/news-hero-narrow.svg">'
             '<img src="../assets/news-hero-wide.svg" alt="" width="1200" height="400"></picture>\n')
     s = s.replace('<nav class="tabs"', hero + '<nav class="tabs" style="margin-top:8px"', 1)
-    s += f'''<header class="hero"><p class="name">ZAZOU Inc. ／ ほぼ毎日更新</p><h1>統括AI（先輩）の朝刊</h1><p>{DESC}</p>
+    s += f'''<header class="hero"><p class="name">ZAZOU Inc. ／ 毎日更新</p><h1>統括AI（先輩）の朝刊</h1><p>{DESC}</p>
 <p class="note" style="margin-top:14px">各号の構成：①記事の要約（海外の記事は日本語で）②自社のAIチームの運用から見ると ③小規模事業者にとって。元の記事へのリンクを付けています。</p></header>
 '''
     def card(a, big=False):
@@ -192,7 +192,7 @@ def main():
         s += '</section>\n'
     if general or weeks:
         # 一般記事の要約（AI業界全般のニュース）。11/3 松村さん「一般記事の要約と先輩の朝刊」
-        s += '<section><h2>AI News <span class="ja">／ AIニュース（一般記事の要約）</span></h2><p class="note">AI業界全般の話題を、ほぼ毎日1本、日本語で要約しています。</p><div class="links" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">' + ''.join(card(a) for a in general[:40]) + '</div>'
+        s += '<section><h2>AI News <span class="ja">／ AIニュース（一般記事の要約）</span></h2><p class="note">AI業界全般の話題を、毎日3本、日本語で要約しています。</p><div class="links" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">' + ''.join(card(a) for a in general[:40]) + '</div>'
         s += '<ul class="week-list" style="margin-top:14px">' + ''.join(f'<li><a href="{w["slug"]}/">{E(w["week"])}の話題のトピック（まとめ）</a></li>' for w in weeks) + '</ul></section>\n'
     s += f'<section>{NOTE}</section>\n' + FOOT
     open(os.path.join(NEWS, 'index.html'), 'w', encoding='utf-8').write(s)
