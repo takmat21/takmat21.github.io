@@ -24,7 +24,7 @@ def build(use_dirty=True):
     pages = []
     for p in glob.glob(os.path.join(ROOT, '**', 'index.html'), recursive=True):
         rel = os.path.relpath(p, ROOT)
-        if rel.split(os.sep)[0] in SKIP_TOP:
+        if rel.split(os.sep)[0] in SKIP_TOP and not rel.startswith(os.path.join('lab', 'gas') + os.sep):
             continue
         head = open(p, encoding='utf-8').read().split('</head>')[0]
         if not INCLUDE_NOINDEX and re.search(r'<meta[^>]+name=["\']robots["\'][^>]+noindex', head, re.I):

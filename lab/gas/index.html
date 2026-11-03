@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GASの見本ツール｜ZAZOU Lab</title>
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<link rel="canonical" href="https://takmat21.github.io/lab/gas/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="GASの見本ツール｜ZAZOU Lab">
+<meta property="og:site_name" content="ZAZOU Lab">
+<meta property="og:description" content="Google Apps Script（GAS）で作れる業務の自動化の見本を2つ。問い合わせメールを表に自動で記録する仕組みと、在庫が下限を下回ったらメールで知らせる仕組み。コードは全文を載せています。">
+<meta property="og:url" content="https://takmat21.github.io/lab/gas/">
+<meta property="og:image" content="https://takmat21.github.io/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="Google Apps Script（GAS）で作れる業務の自動化の見本を2つ。問い合わせメールを表に自動で記録する仕組みと、在庫が下限を下回ったらメールで知らせる仕組み。コードは全文を載せています。">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css?v=20261103a">
+<style>
+.gas h3{font-size:17px;margin:12px 0 10px}
+.gas h4{font-size:14px;margin:22px 0 6px}
+.gas ol,.gas ul{padding-left:1.3em;margin:6px 0}
+.gas li{margin:4px 0}
+.gas .sample{border-top:1px solid var(--line);padding-top:8px;margin-top:32px}
+.gas .warn{background:var(--accent-soft);border-left:3px solid var(--accent);padding:10px 14px;border-radius:0 6px 6px 0;font-size:14px}
+.codebox{position:relative;margin:10px 0}
+.codebox pre{margin:0;padding:14px;background:var(--soft);border:1px solid var(--line);border-radius:6px;overflow-x:auto;font-family:var(--mono);font-size:12.5px;line-height:1.65;tab-size:2}
+.codebox code{font-family:inherit}
+.codebox .cp{position:absolute;right:8px;top:8px;padding:4px 10px;font-size:12px;border:1px solid var(--line);border-radius:5px;background:var(--bg);color:var(--fg);cursor:pointer}
+.codebox .cp:hover{border-color:var(--accent)}
+.gas .dl{font-size:13px;font-weight:400}
+</style></head>
+<body><div class="wrap gas">
+<nav class="tabs" style="margin-top:8px" aria-label="ページの切り替え"><a href="../../#about">プロフィール</a><a href="../../#samples">仕事一覧</a><a href="../../#system" class="on" aria-current="page">仕組み</a><a href="../../#paper">論文</a><a href="../../#video">動画</a></nav>
+<header class="hero"><p class="name">ZAZOU Inc. ／ 仕組みの見本</p><h1>GASの見本ツール2つ</h1>
+<p class="lead">Googleのスプレッドシート・Gmailだけで動く、小さな自動化の見本です。新しいソフトを入れず、いつもの道具に「勝手に動く係」を足すイメージです。コードは全文を載せているので、そのままコピーして試せます。</p>
+<p class="note">これは「こういう仕組みを作れます」という見本です。お使いの環境に合わせた設計・設定のご相談は、トップページの案内からお願いします。</p></header>
+
+<section class="sample" id="a">
+<h3>見本A：問い合わせメールを表に自動で記録</h3>
+<p>Gmailで「問い合わせ」ラベルを付けたメールを読み、日時・差出人・件名・本文の冒頭を、スプレッドシートに1通1行で書き足します。同じメールを二度書かないよう、メッセージIDで見分けます。15分ごとに自動で動くので、メールを見返して表に写す手間がなくなります。</p>
+<h4>使い方</h4>
+<ol>
+<li>Gmailでラベル「問い合わせ」を作り、記録したいメールに付けます（フィルタで自動に付けることもできます）。</li>
+<li>新しいスプレッドシートを作り、［拡張機能］→［Apps Script］を開きます。</li>
+<li>下のコードをコピーして貼り付け、保存します。必要なら先頭の「設定」を書き換えます。</li>
+<li>関数 <code>setupTrigger</code> を選んで［実行］します。権限の確認画面で許可すると、15分ごとの自動実行が登録されます。</li>
+<li>試しに <code>recordInquiries</code> を実行して、シートに行が増えるのを確かめます。</li>
+</ol>
+<h4>コード全文 <a class="dl" href="sample-a.gs" download>（sample-a.gs をダウンロード）</a></h4>
+<div class="codebox"><button class="cp" type="button">コピー</button><pre><code>/**
+ * 見本A：問い合わせメールを表に自動で記録
+ * Gmailの特定ラベルが付いたメールを読み、スプレッドシートに1通1行で書き足します。
+ * 同じメールは二度書きません（メッセージIDで判定）。
+ *
+ * 使い方：スプレッドシートの［拡張機能］→［Apps Script］に貼り付け、
+ * 一度 setupTrigger を実行すると15分ごとに自動で動きます。
+ */
+
+// ===== 設定（ここだけ書き換えてください） =====
+const CONFIG = {
+  LABEL_NAME: &#x27;問い合わせ&#x27;,       // 記録したいメールに付けるGmailのラベル名
+  SHEET_NAME: &#x27;問い合わせ記録&#x27;,   // 書き込むシート名（なければ自動で作ります）
+  BODY_LENGTH: 200,               // 本文の冒頭を何文字まで記録するか
+  MAX_THREADS: 50,                // 1回の実行で見るスレッド数の上限
+};
+// ============================================
+
+const HEADERS = [&#x27;受信日時&#x27;, &#x27;差出人&#x27;, &#x27;件名&#x27;, &#x27;本文（冒頭）&#x27;, &#x27;メッセージID&#x27;];
+const ID_COLUMN = 5; // メッセージIDを入れる列（E列）
+
+/** 15分ごとに動かす本体 */
+function recordInquiries() {
+  const lock = LockService.getScriptLock();
+  if (!lock.tryLock(30000)) return; // 前の実行がまだ続いていたら今回は見送る
+  try {
+    const label = GmailApp.getUserLabelByName(CONFIG.LABEL_NAME);
+    if (!label) {
+      throw new Error(&#x27;ラベル「&#x27; + CONFIG.LABEL_NAME + &#x27;」が見つかりません。Gmailで作成してください。&#x27;);
+    }
+
+    const sheet = getSheet_();
+    const lastRow = sheet.getLastRow();
+
+    // すでに記録したメッセージIDの一覧
+    const known = new Set();
+    if (lastRow &gt; 1) {
+      sheet.getRange(2, ID_COLUMN, lastRow - 1, 1).getValues()
+        .forEach(function (r) { known.add(String(r[0])); });
+    }
+
+    const newRows = [];
+    label.getThreads(0, CONFIG.MAX_THREADS).forEach(function (thread) {
+      thread.getMessages().forEach(function (msg) {
+        const id = msg.getId();
+        if (known.has(id)) return; // 記録済みは飛ばす
+        known.add(id);
+        const body = msg.getPlainBody().replace(/\s+/g, &#x27; &#x27;).trim().slice(0, CONFIG.BODY_LENGTH);
+        newRows.push([msg.getDate(), msg.getFrom(), msg.getSubject(), body, id]);
+      });
+    });
+
+    if (newRows.length === 0) return;
+    newRows.sort(function (a, b) { return a[0] - b[0]; }); // 古い順に並べる
+    sheet.getRange(sheet.getLastRow() + 1, 1, newRows.length, HEADERS.length).setValues(newRows);
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+/** 書き込み先のシートを返す（なければ作って見出しを入れる） */
+function getSheet_() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+  if (!sheet) sheet = ss.insertSheet(CONFIG.SHEET_NAME);
+  if (sheet.getLastRow() === 0) {
+    sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]).setFontWeight(&#x27;bold&#x27;);
+    sheet.setFrozenRows(1);
+  }
+  return sheet;
+}
+
+/** 最初に1回だけ実行：15分ごとのトリガーを登録する */
+function setupTrigger() {
+  ScriptApp.getProjectTriggers().forEach(function (t) {
+    if (t.getHandlerFunction() === &#x27;recordInquiries&#x27;) ScriptApp.deleteTrigger(t);
+  });
+  ScriptApp.newTrigger(&#x27;recordInquiries&#x27;).timeBased().everyMinutes(15).create();
+}
+</code></pre></div>
+<div class="warn"><b>注意</b><ul>
+<li>初回の実行で「このアプリは Google で確認されていません」などの画面が出ます。自分で貼ったスクリプトなので、内容を確認のうえ［詳細］から進んで許可します（Gmailの閲覧とスプレッドシートの編集の権限を求められます）。</li>
+<li>メールの差出人や本文には個人情報が含まれます。表を共有する範囲は必要な人だけにし、本文は冒頭だけを記録する設定にしています。文字数は <code>BODY_LENGTH</code> で変えられます。</li>
+<li>メッセージIDの列（E列）を消すと、同じメールがもう一度記録されます。</li>
+</ul></div>
+</section>
+
+<section class="sample" id="b">
+<h3>見本B：在庫が減ったら知らせる</h3>
+<p>スプレッドシートの在庫表（商品名・在庫数・下限）を毎朝読み、下限を下回った商品を1通のメールにまとめて知らせます。下回った商品がない日はメールを送りません。商品ごとに通知が何通も届くことがなく、朝に1通だけ確認すれば済みます。</p>
+<h4>使い方</h4>
+<ol>
+<li>スプレッドシートに「在庫」シートを作り、1行目を見出し（商品名・在庫数・下限）、2行目から商品を入力します。</li>
+<li>［拡張機能］→［Apps Script］を開き、下のコードを貼り付けて保存します。</li>
+<li>先頭の「設定」で、宛先（<code>NOTIFY_TO</code>）と確認する時刻（<code>HOUR</code>）を決めます。宛先が空欄なら実行した本人に届きます。</li>
+<li>関数 <code>setupTrigger</code> を選んで［実行］し、権限を許可すると、毎朝の自動実行が登録されます。</li>
+<li>試しに在庫数を下限より小さくして <code>checkStock</code> を実行し、メールが届くのを確かめます。</li>
+</ol>
+<h4>コード全文 <a class="dl" href="sample-b.gs" download>（sample-b.gs をダウンロード）</a></h4>
+<div class="codebox"><button class="cp" type="button">コピー</button><pre><code>/**
+ * 見本B：在庫が減ったら知らせる
+ * 在庫表（商品名・在庫数・下限）を毎朝読み、下限を下回った商品を
+ * まとめて1通のメールで知らせます。下回った商品がなければ送りません。
+ *
+ * 使い方：在庫表のあるスプレッドシートの［拡張機能］→［Apps Script］に貼り付け、
+ * 一度 setupTrigger を実行すると毎朝自動で動きます。
+ */
+
+// ===== 設定（ここだけ書き換えてください） =====
+const CONFIG = {
+  SHEET_NAME: &#x27;在庫&#x27;,      // 在庫表のシート名
+  NOTIFY_TO: &#x27;&#x27;,           // 通知の宛先メールアドレス。空欄ならこのスクリプトを実行する本人宛て
+  HOUR: 8,                 // 毎朝何時ごろに確認するか（0〜23）
+  // 列の位置（A列=1）。1行目は見出し、2行目から商品が並ぶ前提です
+  COL_NAME: 1,             // 商品名
+  COL_STOCK: 2,            // 在庫数
+  COL_MIN: 3,              // 下限
+};
+// ============================================
+
+/** 毎朝動かす本体 */
+function checkStock() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+  if (!sheet) throw new Error(&#x27;シート「&#x27; + CONFIG.SHEET_NAME + &#x27;」が見つかりません。&#x27;);
+
+  const lastRow = sheet.getLastRow();
+  if (lastRow &lt; 2) return;
+  const width = Math.max(CONFIG.COL_NAME, CONFIG.COL_STOCK, CONFIG.COL_MIN);
+  const values = sheet.getRange(2, 1, lastRow - 1, width).getValues();
+
+  const low = [];
+  values.forEach(function (row) {
+    const name = String(row[CONFIG.COL_NAME - 1]).trim();
+    const stock = row[CONFIG.COL_STOCK - 1];
+    const min = row[CONFIG.COL_MIN - 1];
+    if (!name || stock === &#x27;&#x27; || min === &#x27;&#x27;) return;        // 空欄の行は飛ばす
+    if (isNaN(Number(stock)) || isNaN(Number(min))) return; // 数字でない行は飛ばす
+    if (Number(stock) &lt; Number(min)) {
+      low.push(&#x27;・&#x27; + name + &#x27;：在庫 &#x27; + stock + &#x27;（下限 &#x27; + min + &#x27;）&#x27;);
+    }
+  });
+
+  if (low.length === 0) return; // 問題なければ送らない
+
+  const to = CONFIG.NOTIFY_TO || Session.getEffectiveUser().getEmail();
+  const subject = &#x27;【在庫通知】下限を下回った商品が &#x27; + low.length + &#x27; 件あります&#x27;;
+  const body = &#x27;下限を下回っている商品は次のとおりです。\n\n&#x27; +
+    low.join(&#x27;\n&#x27;) + &#x27;\n\n在庫表：&#x27; + ss.getUrl();
+  MailApp.sendEmail(to, subject, body);
+}
+
+/** 最初に1回だけ実行：毎朝のトリガーを登録する */
+function setupTrigger() {
+  ScriptApp.getProjectTriggers().forEach(function (t) {
+    if (t.getHandlerFunction() === &#x27;checkStock&#x27;) ScriptApp.deleteTrigger(t);
+  });
+  ScriptApp.newTrigger(&#x27;checkStock&#x27;).timeBased().everyDays(1).atHour(CONFIG.HOUR).create();
+}
+</code></pre></div>
+<div class="warn"><b>注意</b><ul>
+<li>初回の実行で権限の確認画面が出ます。内容を確認して許可してください（スプレッドシートの閲覧とメール送信の権限を求められます）。</li>
+<li>宛先に社外のアドレスを入れると、在庫の情報が社外に送られます。宛先は必要な人に限ってください。</li>
+<li>Googleアカウントの種類によって、1日に送れるメールの数に上限があります。この見本は1日1通までなので、通常は問題になりません。</li>
+</ul></div>
+</section>
+
+<p class="note" style="margin-top:32px">どちらも、別々のスプレッドシート（別のスクリプト）に貼ってください。同じプロジェクトに両方を貼ると、設定の名前（<code>CONFIG</code>）などがぶつかります。</p>
+<p class="more"><a href="../../#system">仕組みの紹介に戻る</a></p>
+
+<footer>
+  ご依頼・ご相談は、各サービスのメッセージからお願いします。<br>
+  <a href="https://crowdworks.jp/public/employees/3288043">クラウドワークスのプロフィール</a><br><br>
+  <span class="mono">© 2026 Takashi Matsumura / ZAZOU Inc.</span>
+</footer>
+</div>
+<script>
+document.querySelectorAll('.codebox').forEach(function(b){var btn=b.querySelector('.cp');btn.addEventListener('click',function(){var t=b.querySelector('code').textContent;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){btn.textContent='コピーしました';setTimeout(function(){btn.textContent='コピー'},1800)},function(){})}})});
+</script>
+</body></html>
