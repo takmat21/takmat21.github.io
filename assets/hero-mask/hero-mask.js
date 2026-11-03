@@ -6,8 +6,8 @@
  * an arched brow, slit eyes, a long straight nose, a small pushed-out mouth,
  * flat cut cheeks, repeated incised lines) and copies no real mask. It borrows
  * only the cubist idea, not any painting: the front view and the profile are
- * one face (the left half looks at us, the right edge is a profile with its own
- * nose, lips and eye), the face is cut into flat planes, each plane has its own
+ * one face (the left half faces us, the right edge is a profile with its own
+ * nose, lips and eye; the eyes are calm, lowered lines, never dark holes), the face is cut into 16 flat planes, each plane has its own
  * light, and the two eyes and cheeks are deliberately unequal.
  *
  * φ builds it: the face is a 1 : φ rectangle; brow, nose base and mouth sit on
@@ -18,6 +18,9 @@
  * mask forms → the incisions are cut → the light moves from the front face to
  * the profile and back → the planes come apart and drift off → the empty frame
  * the loop began with.
+ *
+ * A quiet picture in daylight: a faded cream ground, a fixed camera (no zoom,
+ * no turning), only planes that fit, come apart and change their light, slowly.
  *
  * The picture: faded colour with lifted blacks, a soft image (drawn small and
  * enlarged), reds and yellows that bleed to the right, a slight colour
@@ -60,15 +63,15 @@
   }
 
   var C = {
-    ground: [24, 18, 15],
-    black: [30, 24, 20],
+    ground: [240, 232, 214],   // faded cream: a quiet picture in daylight
+    black: [70, 50, 38],       // the darkest ink is a deep brown, never black
     umber: [74, 48, 32],
     wood: [138, 92, 56],
     lightwood: [190, 142, 92],
     ochre: [196, 150, 70],
     blue: [78, 98, 120],
     red: [158, 74, 52],
-    guide: [214, 182, 128]
+    guide: [120, 86, 58]
   };
 
   // ---------- the mask, in units of its height (y from -0.5 to 0.5; the face is 1 : φ) ----------
@@ -88,9 +91,10 @@
     { pts: [[-0.27, 0.12], [-0.06, 0.15], [-0.075, NOSE], [-0.21, 0.28]], c: 'wood', a: 2.2, g: 'f' },
     { pts: [[-0.045, BROW], [0, BROW], [0, NOSE], [-0.075, NOSE]], c: 'lightwood', a: -1.2, g: 'f' },
     { pts: [[0, BROW], [0.045, BROW], [0.075, NOSE], [0, NOSE]], c: 'wood', a: 0.4, g: 'f' },
+    { pts: [[-0.075, NOSE], [0.075, NOSE], [0.055, MOUTH - 0.03], [-0.055, MOUTH - 0.03]], c: 'wood', a: -1.4, g: 'f' }, // under the nose
     { pts: [[0.05, BROW], [0.34, -0.11], [0.29, -0.06], [0.31, 0.05], [0.07, 0.06]], c: 'red', a: -0.3, g: 'p' },
     { pts: [[0.07, 0.06], [0.31, 0.05], [0.42, 0.22], [0.3, 0.25], [0.075, NOSE]], c: 'ochre', a: 0.2, g: 'p' },
-    { pts: [[-0.21, 0.28], [-0.075, NOSE], [-0.05, MOUTH - 0.03], [-0.055, MOUTH + 0.03], [-0.05, 0.49], [-0.13, 0.41]], c: 'black', a: 2.2, g: 'f' },
+    { pts: [[-0.21, 0.28], [-0.075, NOSE], [-0.05, MOUTH - 0.03], [-0.055, MOUTH + 0.03], [-0.05, 0.49], [-0.13, 0.41]], c: 'umber', a: 2.2, g: 'f' },
     { pts: [[0.075, NOSE], [0.3, 0.25], [0.35, 0.31], [0.31, 0.34], [0.34, 0.37], [0.24, 0.45], [0.06, 0.5], [0.055, MOUTH + 0.03], [0.05, MOUTH - 0.03]], c: 'wood', a: 0.9, g: 'p' },
     { pts: [[-0.05, 0.49], [-0.055, MOUTH + 0.03], [0.055, MOUTH + 0.03], [0.06, 0.5], [0, 0.505]], c: 'umber', a: 1.6, g: 'f' },
     // the small pushed-out mouth: a top plane and a front plane
@@ -107,11 +111,14 @@
     pl.cx = x / pl.pts.length; pl.cy = y / pl.pts.length;
   });
 
-  // eyes (unequal on purpose): a long slit on the front face, a larger almond on the profile
-  var EYES = [
-    { pts: [[-0.235, -0.068], [-0.15, -0.084], [-0.075, -0.066], [-0.15, -0.058]], g: 'f' },
-    { pts: [[0.17, -0.05], [0.235, -0.088], [0.3, -0.05], [0.235, -0.032]], g: 'p' }
+  // eyes (unequal on purpose), calm and lowered: thin lines and a pale plane, never a dark hole.
+  // front: a long, gently lowered lid line with a fold above it; profile: a small pale almond with a lid line
+  var LIDS = [
+    [[-0.235, -0.07], [-0.195, -0.056], [-0.155, -0.052], [-0.115, -0.056], [-0.075, -0.068]],
+    [[-0.225, -0.088], [-0.155, -0.098], [-0.09, -0.088]],
+    [[0.19, -0.06], [0.235, -0.05], [0.28, -0.06]]
   ];
+  var ALMOND = [[0.18, -0.062], [0.235, -0.084], [0.29, -0.062], [0.235, -0.044]];
   // the arched brow over the front eye, and the profile's lips
   var BROWARC = [[-0.27, -0.1], [-0.2, -0.15], [-0.12, -0.158], [-0.055, -0.125]];
 
@@ -197,11 +204,11 @@
 
       // backdrop: a few large, very dark planes on golden divisions of the frame
       var bk = 0.55 + 0.45 * smooth(0.3, 3, T) * (1 - smooth(21.5, 23.6, T));
-      g.fillStyle = rgba(C.blue, 0.22 * bk, 0.45);
+      g.fillStyle = rgba(C.blue, 0.2 * bk, 1.5);
       g.beginPath(); g.moveTo(0, 0); g.lineTo(W / PHI - h * 0.2, 0); g.lineTo(W / PHI - h * 0.55, H); g.lineTo(0, H); g.fill();
-      g.fillStyle = rgba(C.ochre, 0.14 * bk, 0.5);
+      g.fillStyle = rgba(C.ochre, 0.16 * bk, 1.15);
       g.beginPath(); g.moveTo(W - W / (PHI * PHI) + h * 0.1, 0); g.lineTo(W, 0); g.lineTo(W, H); g.lineTo(W - W / (PHI * PHI) - h * 0.15, H); g.fill();
-      g.fillStyle = rgba(C.red, 0.12 * bk, 0.5);
+      g.fillStyle = rgba(C.red, 0.08 * bk, 1.4);
       g.fillRect(X - h * 0.62, Y + h * 0.5 - h / (PHI * PHI * PHI), h * 1.24, h / (PHI * PHI * PHI));
 
       // the other view: the same head as a flat dark silhouette, turned to look the other way
@@ -210,7 +217,7 @@
         var shX = L.wide ? X - h * 0.74 : X - h * 0.16, shS = L.wide ? h / PHI * PHI : h * 1.08;
         g.save(); g.translate(shX, Y + (L.wide ? 0 : h * 0.03)); g.scale(-1, 1);
         path(g, OUT, 0, 0, shS, true);
-        g.fillStyle = rgba(C.blue, shA, 0.55); g.fill();
+        g.fillStyle = rgba(C.blue, shA * 0.7, 1.75); g.fill();
         g.lineWidth = Math.max(0.6, u * 0.7); g.strokeStyle = rgba(C.guide, shA * 0.6); g.stroke();
         g.restore();
       }
@@ -280,7 +287,7 @@
         g.rotate(rot);
         g.translate(-(X + pl.cx * h), -(Y + pl.cy * h));
         path(g, pl.pts, X, Y, h, true);
-        var b = 0.8 + 0.2 * Math.cos(pl.a - la) + (pl.g === 'f' ? 0.24 : -0.24) * sw;
+        var b = 1.02 + 0.16 * Math.cos(pl.a - la) + (pl.g === 'f' ? 0.17 : -0.17) * sw;
         g.fillStyle = rgba(C[pl.c], a, b);
         g.fill();
         g.lineWidth = Math.max(0.6, h * 0.004);
@@ -292,13 +299,17 @@
       // features and incisions, once the face is together
       var fe = smooth(8.4, 9.6, T) * (1 - smooth(18.4, 19.4, T));
       if (fe > 0.003) {
-        EYES.forEach(function (e) {
-          path(g, e.pts, X, Y, h, true);
-          g.fillStyle = rgba(C.black, fe, 0.6);
-          g.fill();
+        path(g, ALMOND, X, Y, h, true);
+        g.fillStyle = rgba(C.lightwood, 0.85 * fe, 1.1); g.fill();
+        g.lineWidth = Math.max(0.6, h * 0.0035);
+        g.strokeStyle = rgba(C.black, 0.6 * fe); g.stroke();
+        LIDS.forEach(function (ln, k) {
+          g.lineWidth = Math.max(0.7, h * (k === 1 ? 0.003 : 0.0055));
+          g.strokeStyle = rgba(C.black, (k === 1 ? 0.45 : 0.8) * fe);
+          path(g, ln, X, Y, h, false); g.stroke();
         });
-        g.lineWidth = Math.max(0.8, h * 0.008);
-        g.strokeStyle = rgba(C.black, 0.85 * fe);
+        g.lineWidth = Math.max(0.8, h * 0.006);
+        g.strokeStyle = rgba(C.black, 0.7 * fe);
         path(g, BROWARC, X, Y, h, false); g.stroke();
         var nc = CUTS.length;
         for (i = 0; i < nc; i++) {
@@ -336,15 +347,16 @@
       // reds and yellows bleed to the right; a faint blue ghost sits a little to the left
       rx.globalCompositeOperation = 'source-over';
       rx.drawImage(S, 0, 0);
-      rx.globalCompositeOperation = 'multiply';
-      rx.fillStyle = 'rgb(255,70,20)';
+      rx.globalCompositeOperation = 'screen';
+      rx.fillStyle = 'rgb(110,30,0)';  // the ghost keeps its red: where it falls, the picture turns warm
       rx.fillRect(0, 0, W, H);
       var wob = still ? 0 : Math.sin(fi * 0.05) * 0.5 + (hash(Math.floor(fi / 3), 1) - 0.5) * 0.6;
-      ctx.globalCompositeOperation = 'lighter';
-      ctx.globalAlpha = 0.2; ctx.drawImage(R, (2 + wob) * u, 0);
-      ctx.globalAlpha = 0.13; ctx.drawImage(R, (4.5 + wob) * u, 0);
-      ctx.globalAlpha = 0.07; ctx.drawImage(R, (8 + wob) * u, 0);
-      ctx.globalAlpha = 0.07; ctx.drawImage(S, (-2 - wob) * u, 0);
+      // (on a light ground the bleed is a warm ghost of each shape, trailing to the right)
+      ctx.globalCompositeOperation = 'darken'; // the ground is untouched; only shapes leave a trail
+      ctx.globalAlpha = 0.5; ctx.drawImage(R, (2 + wob) * u, 0);
+      ctx.globalAlpha = 0.28; ctx.drawImage(R, (4.5 + wob) * u, 0);
+      ctx.globalAlpha = 0.14; ctx.drawImage(R, (8 + wob) * u, 0);
+      ctx.globalAlpha = 0.12; ctx.drawImage(S, (-2 - wob) * u, 0);
       ctx.globalAlpha = 1;
       ctx.globalCompositeOperation = 'source-over';
       // a slow, slight drift in colour
@@ -361,7 +373,7 @@
           var by = Math.floor(H * hash(win, 40 + k) + (fi % 9) * H * 0.012), bh = Math.max(2, Math.round(H * (0.012 + 0.02 * hash(win, 50 + k))));
           var shift = Math.round((hash(fi, 60 + k) - 0.3) * 6 * u);
           if (by + bh < H) ctx.drawImage(canvas, 0, by, W, bh, shift, by, W, bh);
-          ctx.fillStyle = 'rgba(235,228,215,' + (0.05 + 0.06 * hash(fi, 70 + k)).toFixed(3) + ')';
+          ctx.fillStyle = 'rgba(255,250,240,' + (0.12 + 0.1 * hash(fi, 70 + k)).toFixed(3) + ')';
           var sx0 = W * hash(fi, 80 + k) * 0.6;
           ctx.fillRect(sx0, by + bh * 0.5, W * (0.15 + 0.35 * hash(fi, 90 + k)), Math.max(1, bh * 0.25));
         }
@@ -374,7 +386,7 @@
       ctx.globalCompositeOperation = 'source-over';
       // soft, darker edges
       var v = ctx.createRadialGradient(W / 2, H / 2, Math.min(W, H) * 0.35, W / 2, H / 2, Math.max(W, H) * 0.72);
-      v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,0.42)');
+      v.addColorStop(0, 'rgba(150,120,90,0)'); v.addColorStop(1, 'rgba(150,120,90,0.2)');
       ctx.fillStyle = v; ctx.fillRect(0, 0, W, H);
     }
 
