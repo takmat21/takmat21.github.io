@@ -3,10 +3,11 @@
 assets/news-hero-wide.svg（PC用 3:1）と assets/news-hero-narrow.svg（スマホ用 16:9）を書き出す。
 絵：生成りの地に、開いた新聞（文字は読めない細い線だけ）、うしろに朝日、
 新聞のまわりにチームの点が5つ、紙の上の朱の点（統括AI）と細い糸でつながる。
-線は手描き風にわずかに揺らす。開いたときに一度だけ、約12秒の動きが流れて最後の絵で止まる：
+線は手描き風にわずかに揺らす。17秒で一周するループ（約12.5秒の流れ→最後の絵で約3秒止まる→
+紙の色の幕でふわっと最初に戻る）：
 糸が描かれ朝日が少し昇る → ページがめくれ、見出しと本文の線が一本ずつ書かれる →
 朝日が昇りきり光の線が統括の点に届く → 担当どうしも糸でつながって小さな図になり、点が順に脈打つ。
-（SVG内のCSS。prefers-reduced-motion では最後の絵だけを出す）。文字・ロゴは入れない。
+（SVG内のCSS。prefers-reduced-motion では最後の絵だけを出し、ループしない）。文字・ロゴは入れない。
 
 使い方: python3 tools/news_hero.py
 """
@@ -161,41 +162,70 @@ def compose(W, H, seed=3):
     el.append('<path class="steam" pathLength="1" d="M%s %s c %s %s %s %s %s %s" fill="none" stroke="%s" stroke-width="%s" stroke-opacity="0.4" stroke-linecap="round"/>'
               % (f(st[0]), f(st[1] - 10 * s), f(-6 * s), f(-10 * s), f(6 * s), f(-16 * s), f(0), f(-28 * s), INK, f(1 * s)))
 
-    # ---- timeline (seconds). The page ends on the last scene and stays still.
+    # ---- timeline (seconds), one 17 s loop:
+    # 0-12.5 the story, 12.5-15.8 hold on the last scene, 15.8-16.4 a paper-coloured veil
+    # comes up, 16.4 everything returns to the start under the veil, 16.4-17 the veil clears.
+    LOOP, VEIL_IN, RESET = 17.0, 15.8, 16.4
     T_TURN, D_TURN = 2.8, 1.5
     T_WRITE = T_TURN + D_TURN - 0.1
-    T_SUN, D_SUN = 0.0, 9.6
-    T_BEAM = 8.0
-    T_RING = 9.0
-    css.append('.thread{stroke-dasharray:1;animation:draw 1.6s ease-out both}')
-    css += ['.t%d{animation-delay:%.2fs}' % (k, 0.4 + k * 0.22) for k in range(5)]
+    T_BEAM, T_RING = 8.0, 9.0
+    EASE_OUT, EASE_IO = 'cubic-bezier(.2,.6,.35,1)', 'cubic-bezier(.45,.05,.35,1)'
+    kf_count = [0]
+
+    def loop(selector, prop, points):
+        """points: [(seconds, value, easing to the next point)]. Holds the last value until RESET,
+        then snaps back to the first value (hidden by the veil) and repeats every LOOP seconds."""
+        kf_count[0] += 1
+        name = 'k%d' % kf_count[0]
+        first = points[0][1]
+        stops = [(0.0, first, points[0][2])]
+        for t, v, e in points:
+            stops.append((t, v, e))
+        stops.append((RESET - 0.01, points[-1][1], 'linear'))
+        stops.append((RESET, first, 'linear'))
+        stops.append((LOOP, first, 'linear'))
+        body = ''.join('%s%%{%s:%s;animation-timing-function:%s}' % (('%.3f' % (t / LOOP * 100)).rstrip('0').rstrip('.'), prop, v, e)
+                       for t, v, e in stops)
+        css.append('@keyframes %s{%s}%s{animation:%s %ss linear infinite}' % (name, body, selector, name, f(LOOP)))
+
+    def draw_on(selector, t0, dur, ease=EASE_OUT):
+        loop(selector, 'stroke-dashoffset', [(t0, '1', ease), (t0 + dur, '0', 'linear')])
+
+    css.append('.thread,.w,.ring,.steam{stroke-dasharray:1}')
+    for k in range(5):
+        draw_on('.t%d' % k, 0.4 + k * 0.22, 1.6)
+    draw_on('.steam', 1.2, 1.2)
     # the sun: a small rise at the start, a pause, then it clears the horizon
-    css.append('.sun{animation:sun %.1fs ease-in-out both}' % D_SUN)
-    css.append('@keyframes sun{0%%{transform:translateY(%spx)}25%%{transform:translateY(0)}62%%{transform:translateY(0)}100%%{transform:translateY(-%spx)}}'
-               % (f(10 * s), f(rise)))
+    loop('.sun', 'transform', [(0.0, 'translateY(%spx)' % f(10 * s), EASE_IO), (2.4, 'translateY(0)', 'linear'),
+                               (5.95, 'translateY(0)', EASE_IO), (9.6, 'translateY(-%spx)' % f(rise), 'linear')])
     # page turn about the fold
-    css.append('.turn{transform-origin:0 0;animation:turn %.1fs cubic-bezier(.45,.05,.35,1) %.1fs both}' % (D_TURN, T_TURN))
-    css.append('.front{animation:hideHalf %.1fs linear %.1fs both}.back{animation:showHalf %.1fs linear %.1fs both}' % (D_TURN, T_TURN, D_TURN, T_TURN))
-    css.append('.shade{animation:shade %.1fs ease-in-out %.1fs both}' % (D_TURN, T_TURN))
+    css.append('.turn{transform-origin:0 0}')
+    loop('.turn', 'transform', [(T_TURN, 'scaleX(1)', EASE_IO), (T_TURN + D_TURN, 'scaleX(-1)', 'linear')])
+    mid = T_TURN + D_TURN / 2
+    loop('.front', 'opacity', [(mid - 0.02, '1', 'linear'), (mid + 0.02, '0', 'linear')])
+    loop('.back', 'opacity', [(mid - 0.02, '0', 'linear'), (mid + 0.02, '1', 'linear')])
+    loop('.shade', 'opacity', [(T_TURN, '0', EASE_IO), (mid, '.14', EASE_IO), (T_TURN + D_TURN, '0', 'linear')])
     # headline and lines on the fresh page, one by one
-    css.append('.w{stroke-dasharray:1;animation:draw .5s ease-out both}')
-    css += ['.w%d{animation-delay:%.2fs}' % (k, T_WRITE + (0 if k == 0 else 0.55 + (k - 1) * 0.16)) for k in range(nfresh)]
-    css.append('.beam{animation:beam 1.4s ease-out %.1fs both}' % T_BEAM)
-    css.append('.ring{stroke-dasharray:1;animation:draw .7s ease-in-out both}')
-    css += ['.r%d{animation-delay:%.2fs}' % (i, T_RING + i * 0.32) for i in range(len(team))]
+    for k in range(nfresh):
+        draw_on('.w%d' % k, T_WRITE + (0 if k == 0 else 0.55 + (k - 1) * 0.16), 0.5)
+    loop('.beam', 'opacity', [(T_BEAM, '0', EASE_OUT), (T_BEAM + 1.4, '1', 'linear')])
+    for i in range(len(team)):
+        draw_on('.r%d' % i, T_RING + i * 0.32, 0.7, EASE_IO)
     css.append('.member,.lead{transform-box:fill-box;transform-origin:center}')
-    css += ['.m%d{animation:pulse .9s ease-in-out %.2fs both}' % (k, T_RING + 1.8 + k * 0.18) for k in range(len(team))]
-    css.append('.lead{animation:pulse 1.2s ease-in-out %.2fs both}' % (T_RING + 2.9))
-    css.append('.steam{stroke-dasharray:1;animation:draw 1.2s ease-out 1.2s both}')
-    css.append('@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}')
-    css.append('@keyframes turn{from{transform:scaleX(1)}to{transform:scaleX(-1)}}')
-    css.append('@keyframes hideHalf{0%,49%{opacity:1}51%,100%{opacity:0}}@keyframes showHalf{0%,49%{opacity:0}51%,100%{opacity:1}}')
-    css.append('@keyframes shade{0%{opacity:0}50%{opacity:.14}100%{opacity:0}}')
-    css.append('@keyframes beam{from{opacity:0;stroke-dashoffset:1}to{opacity:1;stroke-dashoffset:0}}')
-    css.append('@keyframes pulse{0%,100%{transform:scale(1)}45%{transform:scale(1.45)}}')
-    # without motion, the drawing simply shows the last scene
-    static = ('.sun{transform:translateY(-%spx)}.turn{transform:scaleX(-1)}.front{opacity:0}.shade{opacity:0}' % f(rise))
+
+    def pulse(selector, t0, dur):
+        loop(selector, 'transform', [(t0, 'scale(1)', EASE_IO), (t0 + dur * 0.45, 'scale(1.45)', EASE_IO), (t0 + dur, 'scale(1)', 'linear')])
+    for k in range(len(team)):
+        pulse('.m%d' % k, T_RING + 1.8 + k * 0.18, 0.9)
+    pulse('.lead', T_RING + 2.9, 1.2)
+    # the veil that carries the drawing back to the start
+    css.append('@keyframes veil{0%%,%s%%{opacity:0}%s%%{opacity:1;animation-timing-function:ease-in-out}100%%{opacity:0}}'
+               '.veil{animation:veil %ss ease-in-out infinite}'
+               % (('%.3f' % (VEIL_IN / LOOP * 100)).rstrip('0'), ('%.3f' % (RESET / LOOP * 100)).rstrip('0'), f(LOOP)))
+    # without motion, the drawing simply shows the last scene and does not loop
+    static = ('.sun{transform:translateY(-%spx)}.turn{transform:scaleX(-1)}.front{opacity:0}.shade{opacity:0}.veil{opacity:0}' % f(rise))
     style = '<style>%s@media (prefers-reduced-motion: no-preference){%s}</style>' % (static, ''.join(css))
+    el.append('<rect class="veil" width="%d" height="%d" fill="%s" opacity="0"/>' % (W, H, PAPER))
 
     # the page shows this at about 700 px wide, so lines are drawn a little heavier
     body = re.sub(r'stroke-width="([0-9.]+)"', lambda m: 'stroke-width="%s"' % f(float(m.group(1)) * 1.35), ''.join(el))
