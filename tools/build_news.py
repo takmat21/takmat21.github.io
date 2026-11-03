@@ -38,12 +38,13 @@ def head(title, desc, url, depth):
     up = '../' * depth
     return f'''<!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{E(title)}｜松村貴士</title>
+<title>{E(title)}｜ZAZOU Lab</title>
 <link rel="icon" href="{up}assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{up}assets/apple-touch-icon.png">
 <link rel="canonical" href="https://takmat21.github.io/{url}">
 <meta property="og:type" content="website">
-<meta property="og:title" content="{E(title)}｜松村貴士">
+<meta property="og:title" content="{E(title)}｜ZAZOU Lab">
+<meta property="og:site_name" content="ZAZOU Lab">
 <meta property="og:description" content="{E(desc)}">
 <meta property="og:url" content="https://takmat21.github.io/{url}">
 <meta property="og:image" content="https://takmat21.github.io/assets/ogp.png">
