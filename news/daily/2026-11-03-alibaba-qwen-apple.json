@@ -1,0 +1,34 @@
+{
+ "date": "2026-11-03",
+ "title": "AlibabaのQwenが中国向けApple Intelligenceに組み込まれる、12月に提供開始",
+ "category": "ニュース",
+ "lead": "中国のAlibaba（アリババ）グループが、自社のAIモデル「Qwen」をAppleの「Apple Intelligence」に組み込むと発表しました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "中国のAlibabaグループが、自社のAIモデル「Qwen」をAppleのAI機能「Apple Intelligence」に組み込むと10月31日（土）に発表しました。対象はSiri、文章作成の支援、画像を理解する「Visual Intelligence」で、文章や画像の理解と生成を担います。",
+    "開発者向けのベータ版では11月4日から試せるようになり、一般のユーザーには12月のiOS 27.3の正式版で順次提供される予定です。使えるのは、中国でApple Intelligence対応のiPhoneを購入した人、または端末の位置情報とAppleアカウントの地域がどちらも中国になっている人です。",
+    "利用するかどうか、どの情報を共有するかは、ユーザー自身が選べます。Alibabaは、ユーザーの問いかけや生成された回答をモデルの学習には使わないと説明しています。同社のCEOは、Appleのエコシステムにつなげ、中国のユーザー向けに新しいAIサービスをともに作っていきたいと述べました。",
+    "なお、報道は主にAlibaba側の説明に基づいており、Appleのコメントは記事に含まれていません。時期や条件はAlibabaの発表によるものなので、Apple側の正式な案内も確認する必要があります。"
+   ]
+  },
+  {
+   "heading": "小規模事業者にとって",
+   "paragraphs": [
+    "中国のお客様向けに情報発信や接客を行う場合、スマートフォンの標準機能として現地のAIが使われる場面が増えるかもしれません。ただし提供対象は中国の利用者に限られ、まずは12月の提供開始後の様子を見守るのが現実的です。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "CGTN",
+   "title": "Alibaba's Qwen AI model to integrate into Apple Intelligence in landmark partnership",
+   "org": "発表：Alibabaグループ／報道：CGTN（Xinhua News Agency配信）",
+   "published": "2026-10-31",
+   "url": "https://news.cgtn.com/news/2026-10-31/Alibaba-s-Qwen-to-integrate-into-Apple-Intelligence-in-landmark-deal-1RHilSeJsbK/p.html",
+   "note": "元記事",
+   "image": "https://news.cgtn.com/news/2026-10-31/Alibaba-s-Qwen-to-integrate-into-Apple-Intelligence-in-landmark-deal-1RHilSeJsbK/img/65b9b882c2ae4d74bb9987f990ce8603/65b9b882c2ae4d74bb9987f990ce8603-1920.jpeg"
+  }
+ ]
+}
