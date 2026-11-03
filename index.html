@@ -18,6 +18,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css?v=20261101g">
 <link rel="stylesheet" href="assets/hero-art/hero-art.css">
+<link rel="stylesheet" href="assets/hero-flower/hero-flower.css">
+<style>.sys-hero{display:none;margin-top:24px}body.sys-tab .sys-hero{display:block}</style>
 <link rel="canonical" href="https://takmat21.github.io/">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -30,6 +32,7 @@
 <div class="wrap">
 
 <div class="hero-art hero-top" data-hero-art role="img" aria-label="散らばった墨の断片が細い線でつながり、ひとつの形にまとまっていくアニメーション"></div>
+<div class="hero-flower sys-hero" data-hero-flower role="img" aria-label="暗い部屋で、弧を描く花茎のつぼみが順に開いていく蘭の絵"></div>
 <header class="hero">
 <div class="hero-text">
   <p class="name">ZAZOU Inc.</p>
@@ -208,7 +211,7 @@
   var tabs=[].slice.call(document.querySelectorAll('.tabs a[data-tab]')), panels=[].slice.call(document.querySelectorAll('[data-panel]'));
   function show(id){
     if(!panels.some(function(p){return p.dataset.panel===id;})) id='about';
-    panels.forEach(function(p){p.hidden=p.dataset.panel!==id;}); document.body.classList.toggle('no-hero', id==='samples'||id==='system');
+    panels.forEach(function(p){p.hidden=p.dataset.panel!==id;}); document.body.classList.toggle('no-hero', id==='samples'||id==='system'); document.body.classList.toggle('sys-tab', id==='system');
     tabs.forEach(function(a){var on=a.dataset.tab===id; a.classList.toggle('on',on); if(on)a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');});
   }
   tabs.forEach(function(a){a.addEventListener('click',function(e){e.preventDefault(); history.replaceState(null,'','#'+a.dataset.tab); show(a.dataset.tab); toTabs();});});
@@ -219,5 +222,6 @@
 })();
 </script>
 <script src="assets/hero-art/hero-art.js"></script>
+<script src="assets/hero-flower/hero-flower.js"></script>
 </body>
 </html>
