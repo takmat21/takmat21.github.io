@@ -61,10 +61,6 @@ def head(title, desc, url, depth):
 .links{{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:12px 0 4px}}
 .lk{{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:6px;overflow:hidden;text-decoration:none;color:inherit;background:var(--bg)}}
 .lk:hover{{border-color:var(--accent)}}
-.lk.big{{flex-direction:row;align-items:stretch}}
-.lk.big img,.lk.big .ph{{width:44%;flex:0 0 44%;height:auto;align-self:center}}
-.lk.big span{{padding:14px 16px;font-size:15px}}
-@media (max-width:640px){{.lk.big{{flex-direction:column}}.lk.big img,.lk.big .ph{{width:100%;flex:none}}}}
 .lk img{{width:100%;aspect-ratio:1.91/1;object-fit:cover;display:block;background:var(--soft)}}
 .lk .ph{{width:100%;aspect-ratio:1.91/1;background:var(--soft);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;color:var(--faint)}}
 .lk span{{padding:8px 10px;font-size:13px;line-height:1.5}}
@@ -186,7 +182,7 @@ def main():
         im = (a.get('links') or [{}])[0].get('image', '') or (f'd/{a["slug"]}/thumb.png' if a.get('thumb') else '')
         img = f'<img src="{E(im)}" alt="" loading="lazy" referrerpolicy="no-referrer">' if im else f'<div class="ph">{E(a.get("category",""))}</div>'
         extra = f'<small style="margin-top:6px;color:var(--sub)">{E(a.get("lead",""))}</small>' if big else ''
-        return f'<a class="lk{' big' if big else ''}" href="d/{a["slug"]}/">{img}<span><small>{E(a.get("date",""))}・{E(a.get("category",""))}</small>{E(a["title"])}{extra}</span></a>'
+        return f'<a class="lk" href="d/{a["slug"]}/">{img}<span><small>{E(a.get("date",""))}・{E(a.get("category",""))}</small>{E(a["title"])}{extra}</span></a>'
     agent = [a for a in arts if any(sec.get('heading','').startswith('自社のAIチーム') for sec in a.get('sections', []))]
     general = [a for a in arts if a not in agent]
     if agent:
