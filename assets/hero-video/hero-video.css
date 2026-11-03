@@ -1,0 +1,6 @@
+/* Hero video panel (動画タブ): shown only on the video tab, full width at the top */
+.video-top{display:none!important}
+body.video-tab .video-top{display:block!important;margin:24px 0 0}
+.hero-video{position:relative;width:100%;aspect-ratio:3/1;border-radius:8px;overflow:hidden;background:#f0e8d6}
+.hero-video canvas{display:block;width:100%;height:100%}
+@media (max-width:640px){.hero-video{aspect-ratio:4/5}}
