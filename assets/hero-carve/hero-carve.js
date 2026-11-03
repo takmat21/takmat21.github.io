@@ -18,6 +18,11 @@
  *   stillness → the carving withdraws into lines, the spirals rewind into the
  *   point, and the point goes out, exactly where it began.
  *
+ * Seen as an old documentary print: faded sepia monochrome, drawn small and
+ * enlarged (soft edges), 14 frames a second, gate weave, coarse grain, dust,
+ * scratches, a weak flicker (a few percent, never a hard flash) and dark edges.
+ * All of it is chosen from the frame number, so the loop still closes exactly.
+ *
  * Drawn with Canvas 2D paths only (no images, no fonts). Nothing runs until the
  * panel is shown (the tab is display:none until then), and the loop pauses when
  * the panel is off screen. With prefers-reduced-motion, one still of the
@@ -31,6 +36,13 @@
   var PHI = (1 + Math.sqrt(5)) / 2;
   var LOOP = 28;
   var STILL = 18; // the moment shown when motion is reduced
+  // film: the picture advances at 14 frames a second (392 frames a loop, so the loop still closes exactly)
+  var FPS = 14, FRAMES = LOOP * FPS;
+  function hash(a, b) {
+    var h = (a * 374761393 + (b || 0) * 668265263) | 0;
+    h = Math.imul(h ^ (h >>> 13), 1274126177);
+    return ((h ^ (h >>> 16)) >>> 0) / 4294967296;
+  }
   var COL = {
     room: [23, 19, 15],
     dark: [52, 36, 26],
@@ -46,7 +58,13 @@
   function env(t, a, b, c, d) { return smooth(a, b, t) * (1 - smooth(c, d, t)); }
   function lerp(a, b, t) { return a + (b - a) * t; }
   function mix(a, b, t) { return [lerp(a[0], b[0], t), lerp(a[1], b[1], t), lerp(a[2], b[2], t)]; }
-  function rgba(c, a) { return 'rgba(' + Math.round(c[0]) + ',' + Math.round(c[1]) + ',' + Math.round(c[2]) + ',' + clamp(a, 0, 1).toFixed(3) + ')'; }
+  // old film: every colour is pressed toward a faded sepia monochrome, with lifted blacks
+  function tone(c) {
+    var l = 0.3 * c[0] + 0.59 * c[1] + 0.11 * c[2];
+    l = 20 + l * 0.86;
+    return mix([l * 1.05, l * 0.98, l * 0.86], c, 0.1);
+  }
+  function rgba(c, a) { c = tone(c); return 'rgba(' + Math.round(c[0]) + ',' + Math.round(c[1]) + ',' + Math.round(c[2]) + ',' + clamp(a, 0, 1).toFixed(3) + ')'; }
   // wood shade from a brightness 0..1: dark heartwood → wood → light wood → bronze
   function shade(b) {
     b = clamp(b, 0, 1.25);
@@ -175,7 +193,7 @@
     el.appendChild(canvas);
     var ctx = canvas.getContext('2d');
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-    var W = 1, H = 1, dpr = 1, grain = null, G = null;
+    var W = 1, H = 1, dpr = 1, grains = null, G = null, lastFi = -1;
     // the first view starts as the spirals begin to unwind, not on an empty room
     var t0 = performance.now() - 1200, raf = 0, visible = true;
     var fixedTime = opts.time;
@@ -199,22 +217,26 @@
     function resize() {
       var r = el.getBoundingClientRect();
       if (r.width < 2) return;
-      dpr = Math.min(window.devicePixelRatio || 1, 1.5); // geometric shapes stay crisp at 1.5×, and each frame is about half the work of 2×
+      // the picture is drawn small and enlarged by the browser: the softness of an old print
+      dpr = r.width < 700 ? 0.8 : 0.6;
       W = Math.max(1, Math.round(r.width * dpr)); H = Math.max(1, Math.round(r.height * dpr));
       canvas.width = W; canvas.height = H;
       canvas.style.width = r.width + 'px'; canvas.style.height = r.height + 'px';
-      grain = makeGrain(W, H);
-      G = null;
-      if (reduce.matches || fixedTime != null) draw(fixedTime != null ? fixedTime : STILL);
+      grains = [makeGrain(W + 24, H + 24, 7), makeGrain(W + 24, H + 24, 11), makeGrain(W + 24, H + 24, 13)];
+      G = null; lastFi = -1;
+      if (fixedTime != null) draw(fixedTime); else if (reduce.matches) draw(STILL, true);
     }
 
-    function makeGrain(w, h) {
+    // grey film grain, laid over the picture with 'overlay' (lightens and darkens)
+    function makeGrain(w, h, seed) {
       var c = document.createElement('canvas'); c.width = w; c.height = h;
       var g = c.getContext('2d'), img = g.createImageData(w, h), d = img.data;
-      var seed = 7;
       for (var i = 0; i < w * h; i++) {
         seed = (seed * 16807) % 2147483647;
-        d[i * 4] = d[i * 4 + 1] = d[i * 4 + 2] = 255; d[i * 4 + 3] = (seed % 1000) / 1000 * 15;
+        var a = (seed % 1000) / 1000;
+        seed = (seed * 16807) % 2147483647;
+        var v = 128 + ((a + (seed % 1000) / 1000) - 1) * 150;
+        d[i * 4] = d[i * 4 + 1] = d[i * 4 + 2] = v; d[i * 4 + 3] = 255;
       }
       g.putImageData(img, 0, 0);
       return c;
@@ -339,12 +361,21 @@
       }
     }
 
-    function draw(time) {
+    function draw(time, still) {
       var T = ((time % LOOP) + LOOP) % LOOP;
-      var L = layout();
+      var fi = Math.floor(T * FPS + 1e-6) % FRAMES;
+      T = fi / FPS;
+      lastFi = fi;
+      var L = layout(), U = W / 700;
       ctx.globalAlpha = 1;
+      ctx.globalCompositeOperation = 'source-over';
       ctx.fillStyle = rgba(COL.room, 1);
       ctx.fillRect(0, 0, W, H);
+      // gate weave: the frame sits a little differently in the projector each time
+      var wx = still ? 0 : (Math.sin(fi * 0.9) * 0.35 + (hash(fi, 1) - 0.5) * 0.5) * U * 1.6;
+      var wy = still ? 0 : (Math.sin(fi * 0.37) * 0.5 + (hash(fi, 2) - 0.5) * 0.8) * U * 1.6;
+      ctx.save();
+      ctx.translate(wx, wy);
 
       // the climax: a raking light crosses from left to right, and the planes turn with it
       var sweepK = env(T, 13.0, 14.0, 16.4, 18.2);
@@ -357,9 +388,9 @@
       if (glow > 0.002) {
         var gx = L.eye[0], gy = L.figs[0].top + L.h * 0.5;
         var g = ctx.createRadialGradient(gx, gy, 0, gx, gy, L.h * 0.95);
-        g.addColorStop(0, 'rgba(150,104,60,' + glow.toFixed(3) + ')');
-        g.addColorStop(0.5, 'rgba(90,62,38,' + (glow * 0.4).toFixed(3) + ')');
-        g.addColorStop(1, 'rgba(23,19,15,0)');
+        g.addColorStop(0, rgba([150, 104, 60], glow * 1.3));
+        g.addColorStop(0.5, rgba([90, 62, 38], glow * 0.5));
+        g.addColorStop(1, rgba(COL.room, 0));
         ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
       }
 
@@ -386,18 +417,67 @@
         ctx.beginPath(); ctx.arc(L.eye[0], L.eye[1], r, 0, Math.PI * 2); ctx.fill();
       }
 
-      ctx.globalAlpha = 0.5;
-      ctx.drawImage(grain, 0, 0);
+      ctx.restore();
+      film(fi, still);
+    }
+
+    // the print and the projector: grain, dust, scratches, a weak flicker and dark edges.
+    // Everything is chosen from the frame number, so frame 392 is frame 0 again.
+    function film(fi, still) {
+      var i, x, y, U = W / 700;
+      // exposure: a weak, uneven breathing (a few percent; never a hard flash)
+      if (!still) {
+        var e = (hash(fi, 3) - 0.5) * 0.05 + Math.sin(fi * 0.21) * 0.015;
+        ctx.fillStyle = e > 0 ? 'rgba(235,225,205,' + e.toFixed(3) + ')' : 'rgba(0,0,0,' + (-e * 1.4).toFixed(3) + ')';
+        ctx.fillRect(0, 0, W, H);
+      }
+      // scratches along the length of the film, each lasting a few frames
+      for (var k = 0; k < 3; k++) {
+        var win = Math.floor(fi / 6) + k * 131;
+        if (hash(win, k + 20) > 0.3) continue;
+        x = W * (0.08 + 0.84 * hash(win, k + 30)) + Math.sin(fi * 1.3 + k) * 0.8 * U;
+        var y0 = H * hash(win, k + 40) * 0.5, y1 = H * (0.55 + 0.45 * hash(win, k + 50));
+        var dark = hash(win, k + 60) < 0.3;
+        ctx.strokeStyle = dark ? 'rgba(10,8,6,0.35)' : 'rgba(232,222,200,' + (0.12 + 0.12 * hash(fi, k + 70)).toFixed(3) + ')';
+        ctx.lineWidth = Math.max(0.6, U * (0.6 + hash(win, k + 80)));
+        ctx.beginPath(); ctx.moveTo(x, y0); ctx.lineTo(x + (hash(win, k + 90) - 0.5) * 3 * U, y1); ctx.stroke();
+      }
+      // dust: a few dark specks and, now and then, a hair; a different handful every frame
+      var nd = Math.floor(hash(fi, 4) * 5) - 1;
+      for (i = 0; i < nd; i++) {
+        x = W * hash(fi, 100 + i); y = H * hash(fi, 200 + i);
+        ctx.fillStyle = hash(fi, 300 + i) < 0.8 ? 'rgba(12,10,8,0.6)' : 'rgba(235,225,205,0.4)';
+        ctx.beginPath(); ctx.arc(x, y, U * (0.5 + 1.8 * hash(fi, 400 + i)), 0, Math.PI * 2); ctx.fill();
+      }
+      if (hash(fi, 5) < 0.06) {
+        x = W * hash(fi, 6); y = H * hash(fi, 7);
+        ctx.strokeStyle = 'rgba(12,10,8,0.5)'; ctx.lineWidth = Math.max(0.6, U * 0.7);
+        ctx.beginPath(); ctx.moveTo(x, y);
+        ctx.bezierCurveTo(x + 8 * U, y - 6 * U, x + 4 * U, y + 10 * U, x + 14 * U * hash(fi, 8), y + 12 * U); ctx.stroke();
+      }
+      // grain
+      ctx.globalCompositeOperation = 'overlay';
+      ctx.globalAlpha = 0.42;
+      ctx.drawImage(grains[fi % 3], -Math.floor(hash(fi, 9) * 24), -Math.floor(hash(fi, 10) * 24));
       ctx.globalAlpha = 1;
-      var v = ctx.createRadialGradient(W / 2, H / 2, Math.min(W, H) * 0.35, W / 2, H / 2, Math.max(W, H) * 0.75);
-      v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,0.45)');
+      ctx.globalCompositeOperation = 'source-over';
+      // dark, slightly uneven edges of the frame
+      var cx = W * (0.5 + (hash(Math.floor(fi / 20), 11) - 0.5) * 0.03), cy = H * 0.48;
+      var v = ctx.createRadialGradient(cx, cy, Math.min(W, H) * 0.3, cx, cy, Math.max(W, H) * 0.7);
+      v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(0.7, 'rgba(0,0,0,0.3)'); v.addColorStop(1, 'rgba(0,0,0,0.7)');
       ctx.fillStyle = v; ctx.fillRect(0, 0, W, H);
+      var eg = ctx.createLinearGradient(0, 0, 0, H);
+      eg.addColorStop(0, 'rgba(0,0,0,0.35)'); eg.addColorStop(0.07, 'rgba(0,0,0,0)');
+      eg.addColorStop(0.93, 'rgba(0,0,0,0)'); eg.addColorStop(1, 'rgba(0,0,0,0.35)');
+      ctx.fillStyle = eg; ctx.fillRect(0, 0, W, H);
     }
 
     function frame(now) {
       raf = 0;
       if (!visible || reduce.matches || fixedTime != null) return;
-      draw((now - t0) / 1000);
+      var t = (now - t0) / 1000;
+      // draw only when the film moves on to its next frame
+      if ((Math.floor((((t % LOOP) + LOOP) % LOOP) * FPS + 1e-6) % FRAMES) !== lastFi) draw(t);
       raf = requestAnimationFrame(frame);
     }
     function start() { if (!raf && visible && !reduce.matches && fixedTime == null) raf = requestAnimationFrame(frame); }
@@ -406,11 +486,11 @@
       new IntersectionObserver(function (en) { visible = en[0].isIntersecting; if (visible) start(); }).observe(el);
     }
     document.addEventListener('visibilitychange', function () { visible = !document.hidden; if (visible) start(); });
-    if (reduce.addEventListener) reduce.addEventListener('change', function () { if (reduce.matches) draw(STILL); else start(); });
+    if (reduce.addEventListener) reduce.addEventListener('change', function () { if (reduce.matches) draw(STILL, true); else { lastFi = -1; start(); } });
     if ('ResizeObserver' in window) new ResizeObserver(resize).observe(el); else window.addEventListener('resize', resize);
     resize();
     start();
-    return { draw: draw, setTime: function (t) { fixedTime = t; draw(t); }, loop: LOOP };
+    return { draw: draw, setTime: function (t, still) { fixedTime = t; draw(t, still); }, loop: LOOP };
   }
 
   window.HeroCarve = { mount: mount };
