@@ -188,11 +188,12 @@ def main():
     if agent:
         s += '<section><h2>Latest <span class="ja">／ 最新号</span></h2><div class="links" style="grid-template-columns:1fr">' + card(agent[0], True) + '</div>'
         if len(agent) > 1:
-            s += '<h2 style="margin-top:28px">Back numbers <span class="ja">／ これまでの号</span></h2><div class="links" style="grid-template-columns:repeat(auto-fill,minmax(230px,1fr))">' + ''.join(card(a) for a in agent[1:30]) + '</div>'
+            s += '<h2 style="margin-top:28px">Back numbers <span class="ja">／ 創刊後のこれまでの号</span></h2><div class="links" style="grid-template-columns:repeat(auto-fill,minmax(230px,1fr))">' + ''.join(card(a) for a in agent[1:30]) + '</div>'
         s += '</section>\n'
     if general or weeks:
-        s += '<section><h2>Before <span class="ja">／ 創刊前のAIニュース（2026年10月26日〜30日）</span></h2><p class="note">朝刊を始める前に集めた、AI業界全般の話題です。</p><div class="links" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">' + ''.join(card(a) for a in general) + '</div>'
-        s += '<ul class="week-list" style="margin-top:14px">' + ''.join(f'<li><a href="{w["slug"]}/">{E(w["week"])}の話題のトピック（まとめ）</a></li>' for w in weeks) + '</ul></section>\n'
+        # 創刊前の分は折りたたんで一番下に（11/3 松村さん「創刊後を載せて」）
+        s += '<section><details><summary style="cursor:pointer;color:var(--sub)">創刊前に集めたAIニュース（2026年10月26日〜30日・' + str(len(general)) + '本）を見る</summary><p class="note">朝刊を始める前に集めた、AI業界全般の話題です。</p><div class="links" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">' + ''.join(card(a) for a in general) + '</div>'
+        s += '<ul class="week-list" style="margin-top:14px">' + ''.join(f'<li><a href="{w["slug"]}/">{E(w["week"])}の話題のトピック（まとめ）</a></li>' for w in weeks) + '</ul></details></section>\n'
     s += f'<section>{NOTE}</section>\n' + FOOT
     open(os.path.join(NEWS, 'index.html'), 'w', encoding='utf-8').write(s)
     from build_sitemap import build as build_sitemap
