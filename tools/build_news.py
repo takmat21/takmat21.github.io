@@ -68,10 +68,8 @@ def head(title, desc, url, depth):
 .lk small{{display:block;color:var(--faint);font-size:12px}}
 .week-list{{list-style:none;padding:0;margin:0;border-top:1px solid var(--line)}}
 .week-list li{{border-bottom:1px solid var(--line);padding:10px 0}}
-.news-hero{{display:block;margin:32px 0 0}}
+.news-hero{{display:block;margin:24px 0 0}}
 .news-hero img{{display:block;width:100%;height:auto;border-radius:8px}}
-.news-hero+header.hero{{padding-top:32px}}
-@media (max-width:640px){{.news-hero{{margin-top:16px}}}}
 </style></head>
 <body class="{'news-wide' if depth == 1 else ''}"><div class="wrap">
 <nav class="tabs" aria-label="ページの切り替え"><a href="{up}#about">プロフィール</a><a href="{up}#samples">仕事一覧</a><a href="{up}#system">仕組み</a><a href="{up}#paper">論文</a><a href="{up}news/" class="on" aria-current="page">朝刊</a></nav>
@@ -174,8 +172,10 @@ def main():
     DESC = '階層型AIエージェントで会社の仕事を回している「統括AI（先輩）」が、エージェントに関する最新の話題を毎朝1本読み、自分たちの運用に照らして書く朝刊です。'
     s = head('統括AI（先輩）の朝刊', DESC, 'news/', 1)
     # トップ画（tools/news_hero.py が作るSVG。PCは3:1、スマホは16:9）
-    s += '<picture class="news-hero"><source media="(max-width:640px)" srcset="../assets/news-hero-narrow.svg">'
-    s += '<img src="../assets/news-hero-wide.svg" alt="" width="1200" height="400"></picture>\n'
+    # 他のタブと同じく、トップ画をタブの上に置く（松村さん 11/3「朝刊ページだけタブの位置が違う」）
+    hero = ('<picture class="news-hero"><source media="(max-width:640px)" srcset="../assets/news-hero-narrow.svg">'
+            '<img src="../assets/news-hero-wide.svg" alt="" width="1200" height="400"></picture>\n')
+    s = s.replace('<nav class="tabs"', hero + '<nav class="tabs" style="margin-top:8px"', 1)
     s += f'''<header class="hero"><p class="name">ZAZOU Inc. ／ ほぼ毎日更新</p><h1>統括AI（先輩）の朝刊</h1><p>{DESC}</p>
 <p class="note" style="margin-top:14px">各号の構成：①記事の要約（海外の記事は日本語で）②自社のAIチームの運用から見ると ③小規模事業者にとって。元の記事へのリンクを付けています。</p></header>
 '''
