@@ -211,14 +211,14 @@
       g.fillStyle = rgba(C.red, 0.08 * bk, 1.4);
       g.fillRect(X - h * 0.62, Y + h * 0.5 - h / (PHI * PHI * PHI), h * 1.24, h / (PHI * PHI * PHI));
 
-      // the other view: the same head as a flat dark silhouette, turned to look the other way
-      var shA = 0.3 * bk * smooth(1.5, 4.5, T) * (1 - smooth(20, 22.5, T));
+      // the other view: the same head as a faint thin line drawing, turned to look the other way (no fill)
+      var shA = 0.42 * bk * smooth(1.5, 4.5, T) * (1 - smooth(20, 22.5, T));
       if (shA > 0.003) {
         var shX = L.wide ? X - h * 0.74 : X - h * 0.16, shS = L.wide ? h / PHI * PHI : h * 1.08;
         g.save(); g.translate(shX, Y + (L.wide ? 0 : h * 0.03)); g.scale(-1, 1);
         path(g, OUT, 0, 0, shS, true);
-        g.fillStyle = rgba(C.blue, shA * 0.7, 1.75); g.fill();
-        g.lineWidth = Math.max(0.6, u * 0.7); g.strokeStyle = rgba(C.guide, shA * 0.6); g.stroke();
+        g.lineWidth = Math.max(0.6, u * 0.8); g.lineJoin = 'round';
+        g.strokeStyle = rgba(C.guide, shA); g.stroke();
         g.restore();
       }
 
@@ -386,7 +386,7 @@
       ctx.globalCompositeOperation = 'source-over';
       // soft, darker edges
       var v = ctx.createRadialGradient(W / 2, H / 2, Math.min(W, H) * 0.35, W / 2, H / 2, Math.max(W, H) * 0.72);
-      v.addColorStop(0, 'rgba(150,120,90,0)'); v.addColorStop(1, 'rgba(150,120,90,0.2)');
+      v.addColorStop(0, 'rgba(150,120,90,0)'); v.addColorStop(1, 'rgba(150,120,90,0.12)');
       ctx.fillStyle = v; ctx.fillRect(0, 0, W, H);
     }
 
