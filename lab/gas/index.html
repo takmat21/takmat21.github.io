@@ -7,11 +7,11 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="GASの見本ツール｜ZAZOU Lab">
 <meta property="og:site_name" content="ZAZOU Lab">
-<meta property="og:description" content="Google Apps Script（GAS）で作れる業務の自動化の見本を2つ。問い合わせメールを表に自動で記録する仕組みと、在庫が下限を下回ったらメールで知らせる仕組み。コードは全文を載せています。">
+<meta property="og:description" content="Google Apps Script（GAS）で作れる業務の自動化の見本を3つ。問い合わせメールを表に自動で記録する仕組み、在庫が下限を下回ったらメールで知らせる仕組み、注文メールから出荷用の表とCSVを作る仕組み。コードは全文を載せています。">
 <meta property="og:url" content="https://takmat21.github.io/lab/gas/">
 <meta property="og:image" content="https://takmat21.github.io/assets/ogp.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="description" content="Google Apps Script（GAS）で作れる業務の自動化の見本を2つ。問い合わせメールを表に自動で記録する仕組みと、在庫が下限を下回ったらメールで知らせる仕組み。コードは全文を載せています。">
+<meta name="description" content="Google Apps Script（GAS）で作れる業務の自動化の見本を3つ。問い合わせメールを表に自動で記録する仕組み、在庫が下限を下回ったらメールで知らせる仕組み、注文メールから出荷用の表とCSVを作る仕組み。コードは全文を載せています。">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css?v=20261103a">
 <style>
@@ -30,7 +30,7 @@
 </style></head>
 <body><div class="wrap gas">
 <nav class="tabs" style="margin-top:8px" aria-label="ページの切り替え"><a href="../../#about">プロフィール</a><a href="../../#samples">仕事一覧</a><a href="../../#system" class="on" aria-current="page">仕組み</a><a href="../../#paper">論文</a><a href="../../#video">動画</a></nav>
-<header class="hero"><p class="name">ZAZOU Inc. ／ 仕組みの見本</p><h1>GASの見本ツール2つ</h1>
+<header class="hero"><p class="name">ZAZOU Inc. ／ 仕組みの見本</p><h1>GASの見本ツール3つ</h1>
 <p class="lead">Googleのスプレッドシート・Gmailだけで動く、小さな自動化の見本です。新しいソフトを入れず、いつもの道具に「勝手に動く係」を足すイメージです。コードは全文を載せているので、そのままコピーして試せます。</p>
 <p class="note">これは「こういう仕組みを作れます」という見本です。お使いの環境に合わせた設計・設定のご相談は、トップページの案内からお願いします。</p></header>
 
@@ -213,7 +213,187 @@ function setupTrigger() {
 </ul></div>
 </section>
 
-<p class="note" style="margin-top:32px">どちらも、別々のスプレッドシート（別のスクリプト）に貼ってください。同じプロジェクトに両方を貼ると、設定の名前（<code>CONFIG</code>）などがぶつかります。</p>
+<section class="sample" id="c">
+<h3>見本C：注文メールから出荷用の表を作る</h3>
+<p>Gmailで「注文」ラベルを付けた注文通知メールを読み、注文番号・お名前・郵便番号・住所・電話番号・商品・数量を、スプレッドシートに1注文1行で書き足します。同じ注文は注文番号で見分け、二度書きません。読み取れなかった項目は空欄にして、「要確認」列に足りない項目名を書くので、そこだけ目で確かめれば済みます。あとから関数 <code>exportCsv</code> を実行すると、表をCSVにしてGoogleドライブに保存できます。</p>
+<p>メール本文に「注文番号：」「お名前：」などの行がある形を例にしています。書き方が違う場合は、先頭の「設定」にある読み取りのパターン（正規表現）を書き換えます。</p>
+<h4>使い方</h4>
+<ol>
+<li>Gmailでラベル「注文」を作り、注文通知メールに付けます（フィルタで自動に付けることもできます）。</li>
+<li>新しいスプレッドシートを作り、［拡張機能］→［Apps Script］を開いて、下のコードを貼り付けて保存します。</li>
+<li>お手元の注文メールの書き方に合わせて、先頭の「設定」の <code>PATTERNS</code> を確かめます（保存先フォルダを決めるなら <code>EXPORT_FOLDER_ID</code> も）。</li>
+<li>関数 <code>setupTrigger</code> を選んで［実行］し、権限を許可します。試しに <code>recordOrders</code> を実行して、シートに行が増えるのを確かめます。</li>
+<li>CSVが必要なときに関数 <code>exportCsv</code> を実行します。保存先のリンクは［実行ログ］に出ます。</li>
+</ol>
+<h4>コード全文 <a class="dl" href="sample-c.gs" download>（sample-c.gs をダウンロード）</a></h4>
+<div class="codebox"><button class="cp" type="button">コピー</button><pre><code>/**
+ * 見本C：注文メールから出荷用の表を作る
+ * Gmailの特定ラベルが付いた注文通知メールを読み、スプレッドシートに1注文1行で書き足します。
+ * 同じ注文は二度書きません（注文番号で判定）。読み取れなかった項目は空欄にして「要確認」列に印を付けます。
+ * 関数 exportCsv を実行すると、その表をCSVにしてGoogleドライブに保存します。
+ *
+ * 使い方：スプレッドシートの［拡張機能］→［Apps Script］に貼り付け、
+ * 一度 setupTrigger を実行すると15分ごとに自動で動きます。
+ *
+ * 注意：氏名・住所・電話番号などの個人情報を扱います。表とCSVの共有範囲は必要な人だけにしてください。
+ */
+
+// ===== 設定（ここだけ書き換えてください） =====
+const CONFIG = {
+  LABEL_NAME: &#x27;注文&#x27;,             // 記録したい注文メールに付けるGmailのラベル名
+  SHEET_NAME: &#x27;出荷表&#x27;,           // 書き込むシート名（なければ自動で作ります）
+  MAX_THREADS: 50,                // 1回の実行で見るスレッド数の上限
+  EXPORT_FOLDER_ID: &#x27;&#x27;,           // CSVの保存先フォルダのID。空欄ならマイドライブの直下
+  // 読み取りのパターン。メール本文の1行を読み、かっこ ( ) の中身を取り出します。
+  // メールの書き方が違う場合は、ここだけ書き換えます（全角の「：」も半角の「:」も読めます）。
+  PATTERNS: {
+    orderNo: /^\s*注文番号\s*[：:]\s*(.+?)\s*$/m,
+    name:    /^\s*お名前\s*[：:]\s*(.+?)\s*$/m,
+    zip:     /^\s*郵便番号\s*[：:]\s*(.+?)\s*$/m,
+    address: /^\s*住所\s*[：:]\s*(.+?)\s*$/m,
+    phone:   /^\s*電話番号\s*[：:]\s*(.+?)\s*$/m,
+    item:    /^\s*商品\s*[：:]\s*(.+?)\s*$/m,
+    qty:     /^\s*数量\s*[：:]\s*(.+?)\s*$/m,
+  },
+};
+// ============================================
+
+// 表の見出し（読み取る項目の順番と、項目の表示名）
+const FIELDS = [
+  [&#x27;orderNo&#x27;, &#x27;注文番号&#x27;],
+  [&#x27;name&#x27;, &#x27;お名前&#x27;],
+  [&#x27;zip&#x27;, &#x27;郵便番号&#x27;],
+  [&#x27;address&#x27;, &#x27;住所&#x27;],
+  [&#x27;phone&#x27;, &#x27;電話番号&#x27;],
+  [&#x27;item&#x27;, &#x27;商品&#x27;],
+  [&#x27;qty&#x27;, &#x27;数量&#x27;],
+];
+const HEADERS = [&#x27;受信日時&#x27;].concat(
+  FIELDS.map(function (f) { return f[1]; }),
+  [&#x27;要確認&#x27;, &#x27;メッセージID&#x27;]
+);
+const ORDER_COLUMN = 2;                 // 注文番号の列（B列）
+const ID_COLUMN = HEADERS.length;       // メッセージIDの列（最後の列）
+const TEXT_COLUMNS = [2, 4, 6];         // 先頭の0が消えないよう文字列で入れる列（注文番号・郵便番号・電話番号）
+
+/** 15分ごとに動かす本体 */
+function recordOrders() {
+  const lock = LockService.getScriptLock();
+  if (!lock.tryLock(30000)) return; // 前の実行がまだ続いていたら今回は見送る
+  try {
+    const label = GmailApp.getUserLabelByName(CONFIG.LABEL_NAME);
+    if (!label) {
+      throw new Error(&#x27;ラベル「&#x27; + CONFIG.LABEL_NAME + &#x27;」が見つかりません。Gmailで作成してください。&#x27;);
+    }
+
+    const sheet = getSheet_();
+    const lastRow = sheet.getLastRow();
+
+    // すでに記録した注文番号（注文番号が読めなかったメールはメッセージID）の一覧
+    const known = new Set();
+    if (lastRow &gt; 1) {
+      sheet.getRange(2, 1, lastRow - 1, HEADERS.length).getValues().forEach(function (r) {
+        if (r[ORDER_COLUMN - 1] !== &#x27;&#x27;) known.add(String(r[ORDER_COLUMN - 1]));
+        known.add(String(r[ID_COLUMN - 1]));
+      });
+    }
+
+    const newRows = [];
+    label.getThreads(0, CONFIG.MAX_THREADS).forEach(function (thread) {
+      thread.getMessages().forEach(function (msg) {
+        const id = msg.getId();
+        const parsed = parseOrder_(msg.getPlainBody());
+        const key = parsed.orderNo || id;
+        if (known.has(key) || known.has(id)) return; // 記録済みは飛ばす
+        known.add(key);
+        known.add(id);
+        const missing = FIELDS
+          .filter(function (f) { return parsed[f[0]] === &#x27;&#x27;; })
+          .map(function (f) { return f[1]; });
+        const flag = missing.length ? &#x27;要確認：&#x27; + missing.join(&#x27;・&#x27;) : &#x27;&#x27;;
+        const row = [msg.getDate()]
+          .concat(FIELDS.map(function (f) { return parsed[f[0]]; }), [flag, id]);
+        newRows.push(row);
+      });
+    });
+
+    if (newRows.length === 0) return;
+    newRows.sort(function (a, b) { return a[0] - b[0]; }); // 古い順に並べる
+    const startRow = sheet.getLastRow() + 1;
+    const range = sheet.getRange(startRow, 1, newRows.length, HEADERS.length);
+    TEXT_COLUMNS.forEach(function (c) {
+      sheet.getRange(startRow, c, newRows.length, 1).setNumberFormat(&#x27;@&#x27;); // 文字列にして先頭の0を残す
+    });
+    sheet.getRange(startRow, 1, newRows.length, 1).setNumberFormat(&#x27;yyyy/MM/dd HH:mm&#x27;);
+    range.setValues(newRows);
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+/** メール本文から各項目を読み取る（読めなかった項目は空欄） */
+function parseOrder_(body) {
+  const text = String(body).replace(/\r\n?/g, &#x27;\n&#x27;);
+  const result = {};
+  FIELDS.forEach(function (f) {
+    const m = CONFIG.PATTERNS[f[0]].exec(text);
+    result[f[0]] = m ? m[1].trim() : &#x27;&#x27;;
+  });
+  return result;
+}
+
+/** 書き込み先のシートを返す（なければ作って見出しを入れる） */
+function getSheet_() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+  if (!sheet) sheet = ss.insertSheet(CONFIG.SHEET_NAME);
+  if (sheet.getLastRow() === 0) {
+    sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]).setFontWeight(&#x27;bold&#x27;);
+    sheet.setFrozenRows(1);
+  }
+  return sheet;
+}
+
+/** 表をCSVにしてGoogleドライブに保存する（必要なときに手で実行） */
+function exportCsv() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(CONFIG.SHEET_NAME);
+  if (!sheet || sheet.getLastRow() &lt; 2) throw new Error(&#x27;書き出す注文がありません。&#x27;);
+
+  const tz = Session.getScriptTimeZone();
+  const values = sheet.getDataRange().getValues();
+  const lines = values.map(function (row) {
+    return row.map(function (cell) {
+      const s = cell instanceof Date ? Utilities.formatDate(cell, tz, &#x27;yyyy/MM/dd HH:mm&#x27;) : String(cell);
+      return &#x27;&quot;&#x27; + s.replace(/&quot;/g, &#x27;&quot;&quot;&#x27;) + &#x27;&quot;&#x27;; // 全項目を引用符で囲み、中の引用符は2つにする
+    }).join(&#x27;,&#x27;);
+  });
+
+  // 先頭にBOMを付けると、Excelでも日本語が文字化けしにくい
+  const csv = &#x27;﻿&#x27; + lines.join(&#x27;\r\n&#x27;);
+  const name = &#x27;出荷表_&#x27; + Utilities.formatDate(new Date(), tz, &#x27;yyyyMMdd_HHmm&#x27;) + &#x27;.csv&#x27;;
+  const file = CONFIG.EXPORT_FOLDER_ID
+    ? DriveApp.getFolderById(CONFIG.EXPORT_FOLDER_ID).createFile(name, csv, MimeType.CSV)
+    : DriveApp.createFile(name, csv, MimeType.CSV);
+  Logger.log(&#x27;保存しました：&#x27; + file.getUrl());
+}
+
+/** 最初に1回だけ実行：15分ごとのトリガーを登録する */
+function setupTrigger() {
+  ScriptApp.getProjectTriggers().forEach(function (t) {
+    if (t.getHandlerFunction() === &#x27;recordOrders&#x27;) ScriptApp.deleteTrigger(t);
+  });
+  ScriptApp.newTrigger(&#x27;recordOrders&#x27;).timeBased().everyMinutes(15).create();
+}
+</code></pre></div>
+<div class="warn"><b>注意</b><ul>
+<li>氏名・住所・電話番号などの個人情報を扱います。表のシートと、保存したCSVのファイルは、共有する範囲を必要な人だけにしてください。CSVはドライブに残るので、使い終わったら削除するか、保存先フォルダの共有設定を確かめてください。</li>
+<li>初回の実行で権限の確認画面が出ます。内容を確認のうえ許可してください（Gmailの閲覧、スプレッドシートの編集、ドライブへのファイル作成の権限を求められます）。</li>
+<li>注文番号の列（B列）を消すと、同じ注文がもう一度記録されます。注文番号が読めなかったメールは、メッセージID（最後の列）で二重記録を防ぎます。</li>
+<li>読み取りは「項目名：内容」が1行に収まっている前提です。内容が複数行にわたる住所などは、途中までしか読めないことがあります。出荷の前に「要確認」列と表の中身を必ず見比べてください。</li>
+</ul></div>
+</section>
+
+<p class="note" style="margin-top:32px">どれも、別々のスプレッドシート（別のスクリプト）に貼ってください。同じプロジェクトに両方を貼ると、設定の名前（<code>CONFIG</code>）などがぶつかります。</p>
 <p class="more"><a href="../../#system">仕組みの紹介に戻る</a></p>
 
 <footer>
