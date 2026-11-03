@@ -19,7 +19,8 @@
 <link rel="stylesheet" href="assets/style.css?v=20261103a">
 <link rel="stylesheet" href="assets/hero-art/hero-art.css">
 <link rel="stylesheet" href="assets/hero-flower/hero-flower.css">
-<style>.sys-hero{display:none;margin-top:24px}body.sys-tab .sys-hero{display:block}.paper-top{display:none!important}body.paper-tab .paper-top{display:block!important;margin:24px 0 0}</style>
+<link rel="stylesheet" href="assets/hero-carve/hero-carve.css">
+<style>.sys-hero{display:none;margin-top:24px}body.sys-tab .sys-hero{display:block}.paper-top{display:none!important}body.paper-tab .paper-top{display:block!important;margin:24px 0 0}.samples-top{display:none!important}body.samples-tab .samples-top{display:block!important;margin:24px 0 0}</style>
 <link rel="canonical" href="https://takmat21.github.io/">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -33,6 +34,7 @@
 
 <div class="hero-art hero-top" data-hero-art role="img" aria-label="散らばった墨の断片が細い線でつながり、ひとつの形にまとまっていくアニメーション"></div>
 <div class="hero-flower sys-hero" data-hero-flower role="img" aria-label="暗い部屋で、弧を描く花茎のつぼみが順に開いていく蘭の絵"></div>
+<div class="hero-carve samples-top" data-hero-carve role="img" aria-label="暗い部屋で、黄金比の螺旋から幾何学の彫刻が刻まれ、小さな写しが両脇に立ち、光が面をなぞっていく絵"></div>
 <picture class="paper-hero paper-top"><source media="(max-width:640px)" srcset="assets/paper-hero-narrow.svg"><img src="assets/paper-hero-wide.svg" alt="" width="1200" height="400" loading="lazy" decoding="async"></picture>
 <header class="hero">
 <div class="hero-text">
@@ -212,7 +214,7 @@
   var tabs=[].slice.call(document.querySelectorAll('.tabs a[data-tab]')), panels=[].slice.call(document.querySelectorAll('[data-panel]'));
   function show(id){
     if(!panels.some(function(p){return p.dataset.panel===id;})) id='about';
-    panels.forEach(function(p){p.hidden=p.dataset.panel!==id;}); document.body.classList.toggle('no-hero', id==='samples'||id==='system'||id==='paper'); document.body.classList.toggle('sys-tab', id==='system'); document.body.classList.toggle('paper-tab', id==='paper');
+    panels.forEach(function(p){p.hidden=p.dataset.panel!==id;}); document.body.classList.toggle('no-hero', id==='samples'||id==='system'||id==='paper'); document.body.classList.toggle('sys-tab', id==='system'); document.body.classList.toggle('paper-tab', id==='paper'); document.body.classList.toggle('samples-tab', id==='samples');
     tabs.forEach(function(a){var on=a.dataset.tab===id; a.classList.toggle('on',on); if(on)a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');});
   }
   tabs.forEach(function(a){a.addEventListener('click',function(e){e.preventDefault(); history.replaceState(null,'','#'+a.dataset.tab); show(a.dataset.tab); toTabs();});});
@@ -224,5 +226,6 @@
 </script>
 <script src="assets/hero-art/hero-art.js"></script>
 <script src="assets/hero-flower/hero-flower.js"></script>
+<script src="assets/hero-carve/hero-carve.js" defer></script>
 </body>
 </html>
