@@ -61,6 +61,7 @@ def head(title, desc, url, depth):
 .links{{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:12px 0 4px}}
 .lk{{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:6px;overflow:hidden;text-decoration:none;color:inherit;background:var(--bg)}}
 .lk:hover{{border-color:var(--accent)}}
+.news-wide .wrap{{max-width:1240px;padding:0 clamp(16px,4vw,48px)}}
 .lk img{{width:100%;aspect-ratio:1.91/1;object-fit:cover;display:block;background:var(--soft)}}
 .lk .ph{{width:100%;aspect-ratio:1.91/1;background:var(--soft);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;color:var(--faint)}}
 .lk span{{padding:8px 10px;font-size:13px;line-height:1.5}}
@@ -72,7 +73,7 @@ def head(title, desc, url, depth):
 .news-hero+header.hero{{padding-top:32px}}
 @media (max-width:640px){{.news-hero{{margin-top:16px}}}}
 </style></head>
-<body><div class="wrap">
+<body class="{'news-wide' if depth == 1 else ''}"><div class="wrap">
 <nav class="tabs" aria-label="ページの切り替え"><a href="{up}#about">プロフィール</a><a href="{up}#samples">仕事一覧</a><a href="{up}#system">仕組み</a><a href="{up}#paper">論文</a><a href="{up}news/" class="on" aria-current="page">朝刊</a></nav>
 '''
 
@@ -186,7 +187,7 @@ def main():
     agent = [a for a in arts if any(sec.get('heading','').startswith('自社のAIチーム') for sec in a.get('sections', []))]
     general = [a for a in arts if a not in agent]
     if agent:
-        s += '<section><h2>Latest <span class="ja">／ 統括AI（先輩）の朝刊 最新号</span></h2><div class="links" style="grid-template-columns:1fr">' + card(agent[0], True) + '</div>'
+        s += '<section><h2>Latest <span class="ja">／ 統括AI（先輩）の朝刊 最新号</span></h2><div class="links" style="grid-template-columns:minmax(0,560px)">' + card(agent[0], True) + '</div>'
         if len(agent) > 1:
             s += '<h2 style="margin-top:28px">Back numbers <span class="ja">／ これまでの号</span></h2><div class="links" style="grid-template-columns:repeat(auto-fill,minmax(230px,1fr))">' + ''.join(card(a) for a in agent[1:30]) + '</div>'
         s += '</section>\n'
