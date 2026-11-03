@@ -22,7 +22,17 @@
 <link rel="stylesheet" href="assets/hero-flower/hero-flower.css">
 <link rel="stylesheet" href="assets/hero-mask/hero-mask.css">
 <link rel="stylesheet" href="assets/hero-video/hero-video.css">
-<style>.hero .name .by{font-weight:400;opacity:.65;font-size:.85em;margin-left:.4em}.sys-hero{display:none;margin-top:24px}body.sys-tab .sys-hero{display:block}.paper-top{display:none!important}body.paper-tab .paper-top{display:block!important;margin:24px 0 0}.samples-top{display:none!important}body.samples-tab .samples-top{display:block!important;margin:24px 0 0}</style>
+<style>.hero .name .by{font-weight:400;opacity:.65;font-size:.85em;margin-left:.4em}.sys-hero{display:none;margin-top:24px}body.sys-tab .sys-hero{display:block}.paper-top{display:none!important}body.paper-tab .paper-top{display:block!important;margin:24px 0 0}.samples-top{display:none!important}body.samples-tab .samples-top{display:block!important;margin:24px 0 0}.v-lead{margin:0 0 8px}.v-h{font-size:15px;margin:28px 0 12px}.v-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.v-card{margin:0}.v-card figcaption{display:flex;flex-direction:column;gap:3px;margin-top:10px;font-size:13px;line-height:1.6}
+.v-card figcaption b{font-size:14px}.v-kind{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--sub)}
+.v-meta{color:var(--sub)}.v-why{color:var(--sub)}.v-note{font-size:12px;color:var(--sub);margin-top:12px}
+.yt{position:relative;display:block;width:100%;aspect-ratio:16/9;padding:0;border:0;border-radius:8px;overflow:hidden;background:#111;cursor:pointer}
+.yt img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .2s}.yt:hover img{opacity:.85}
+.yt .play{position:absolute;left:50%;top:50%;width:62px;height:44px;margin:-22px 0 0 -31px;border-radius:12px;background:rgba(20,20,20,.78)}
+.yt .play::after{content:"";position:absolute;left:25px;top:13px;border-style:solid;border-width:9px 0 9px 15px;border-color:transparent transparent transparent #fff}
+.yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.v-own{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px;align-items:start}.v-how ol{padding-left:1.2em;margin:8px 0}.v-how li{margin:4px 0}
+@media (max-width:800px){.v-grid{grid-template-columns:1fr}.v-own{grid-template-columns:1fr}}</style>
 <link rel="canonical" href="https://takmat21.github.io/">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -54,6 +64,7 @@
   <a href="#samples" data-tab="samples">仕事一覧</a>
   <a href="#system" data-tab="system">仕組み</a>
   <a href="#paper" data-tab="paper">論文</a>
+  <a href="#video" data-tab="video">動画</a>
   <a href="news/" class="ext">朝刊</a>
 </nav>
 
@@ -206,6 +217,28 @@
   </ul>
 </section>
 
+<section id="video" data-panel="video" class="cols">
+  <h2>Video <span class="ja">／ 動画</span></h2>
+  <p class="v-lead">AIで作られた動画は、すでに数千万回単位で見られています。話題になった3本を紹介します。</p>
+  <h3 class="v-h">話題になった、AIで作られた動画</h3>
+  <div class="v-grid">
+    <figure class="v-card">
+      <button class="yt" data-yt="O4y_P0YUwPY" aria-label="再生：BRAINROT GIGACHADS RAP"><img src="https://i.ytimg.com/vi/O4y_P0YUwPY/hqdefault.jpg" alt="" loading="lazy" referrerpolicy="no-referrer"><span class="play" aria-hidden="true"></span></button>
+      <figcaption><span class="v-kind">ミュージックビデオ</span><b>BRAINROT GIGACHADS RAP</b><span class="v-meta">devvey ・ 約4,207万回</span><span class="v-why">ネットのミーム「イタリアン・ブレインロット」のキャラクターが歌う、AI生成のラップ曲。映像も声もAIで作られたと紹介されています（<a href="https://knowyourmeme.com/memes/tung-tung-tung-sahur-song-steal-a-brainrot-rap-by-devvey" target="_blank" rel="noopener">Know Your Meme</a>）。</span></figcaption>
+    </figure>
+    <figure class="v-card">
+      <button class="yt" data-yt="Yy6fByUmPuE" aria-label="再生：Coca-Cola Holidays Are Coming"><img src="https://i.ytimg.com/vi/Yy6fByUmPuE/hqdefault.jpg" alt="" loading="lazy" referrerpolicy="no-referrer"><span class="play" aria-hidden="true"></span></button>
+      <figcaption><span class="v-kind">企業CM</span><b>Coca-Cola｜Holidays Are Coming</b><span class="v-meta">Coca-Cola ・ 約302万回</span><span class="v-why">1995年の名作クリスマスCMを、2024年に生成AIで作り直したもの。賛否を呼び、大きく報じられました（<a href="https://www.hollywoodreporter.com/business/digital/coke-new-ai-holiday-ad-video-1236416491/" target="_blank" rel="noopener">The Hollywood Reporter</a>）。</span></figcaption>
+    </figure>
+    <figure class="v-card">
+      <button class="yt" data-yt="t3Q1pD3_He8" aria-label="再生：This Is News 2"><img src="https://i.ytimg.com/vi/t3Q1pD3_He8/hqdefault.jpg" alt="" loading="lazy" referrerpolicy="no-referrer"><span class="play" aria-hidden="true"></span></button>
+      <figcaption><span class="v-kind">ニュース番組風</span><b>This Is News 2</b><span class="v-meta">Neural Viz ・ 約33万回</span><span class="v-why">元脚本家が生成AIで作る架空の世界を舞台にした、ニュース番組のパロディ。AIで作る「シリーズ作品」として注目されています（<a href="https://www.devx.com/daily-news/neural-viz-promises-ai-built-cinematic-universe/" target="_blank" rel="noopener">DevX</a>）。</span></figcaption>
+    </figure>
+  </div>
+  <p class="v-note">再生回数は2026年11月3日にYouTubeで表示された数（概数）。どれも他社の作品で、YouTubeの埋め込みで紹介しています。</p>
+
+</section>
+
 <footer>
   ご依頼・ご相談は、各サービスのメッセージからお願いします。<br>
   <a href="https://crowdworks.jp/public/employees/3288043">クラウドワークスのプロフィール</a><br><br>
@@ -218,7 +251,7 @@
   var tabs=[].slice.call(document.querySelectorAll('.tabs a[data-tab]')), panels=[].slice.call(document.querySelectorAll('[data-panel]'));
   function show(id){
     if(!panels.some(function(p){return p.dataset.panel===id;})) id='about';
-    panels.forEach(function(p){p.hidden=p.dataset.panel!==id;}); document.body.classList.toggle('no-hero', id==='samples'||id==='system'||id==='paper'); document.body.classList.toggle('sys-tab', id==='system'); document.body.classList.toggle('paper-tab', id==='paper'); document.body.classList.toggle('samples-tab', id==='samples'); document.body.classList.toggle('video-tab', id==='video');
+    panels.forEach(function(p){p.hidden=p.dataset.panel!==id;}); document.body.classList.toggle('no-hero', id==='samples'||id==='system'||id==='paper'||id==='video'); document.body.classList.toggle('sys-tab', id==='system'); document.body.classList.toggle('paper-tab', id==='paper'); document.body.classList.toggle('samples-tab', id==='samples'); document.body.classList.toggle('video-tab', id==='video');
     tabs.forEach(function(a){var on=a.dataset.tab===id; a.classList.toggle('on',on); if(on)a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');});
   }
   tabs.forEach(function(a){a.addEventListener('click',function(e){e.preventDefault(); history.replaceState(null,'','#'+a.dataset.tab); show(a.dataset.tab); toTabs();});});
@@ -232,5 +265,9 @@
 <script src="assets/hero-flower/hero-flower.js"></script>
 <script src="assets/hero-mask/hero-mask.js" defer></script>
 <script src="assets/hero-video/hero-video.js" defer></script>
+<script>
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.yt');if(!b||b.querySelector('iframe'))return;var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+b.dataset.yt+'?autoplay=1&rel=0';f.title=b.getAttribute('aria-label')||'YouTube';f.allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';f.allowFullscreen=true;b.appendChild(f);});
+</script>
+
 </body>
 </html>
