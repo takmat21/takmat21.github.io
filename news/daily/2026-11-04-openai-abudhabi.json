@@ -1,0 +1,34 @@
+{
+ "date": "2026-11-04",
+ "title": "OpenAI、アブダビで石油大手ADNOCや政府などと4件の契約、業務を担うAIエージェントを展開へ",
+ "category": "ニュース",
+ "lead": "OpenAIのサム・アルトマン氏がアブダビを訪れ、石油会社ADNOC、アブダビ政府、投資会社Mubadalaなどとの契約を得たと、Semaforが11月2日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "Semaforによると、アルトマン氏はアブダビで、政府、石油分野、政府系ファンドの運用にOpenAIの製品を導入する4件の契約を結びました。",
+    "最大の契約はADNOCとの複数年の合意で、G42傘下のInception42を通じて、OpenAIの「Frontier」基盤で、AIエージェントを作って管理します。油田の開発、生産、精製、取引にまたがる判断をつなげる計画で、システムはUAE国内のG42の設備で動くとのことです。金銭面の条件は公表されていません。",
+    "アブダビ政府とは、一部の行政の方針をAIエージェントが読める形にする取り組みを進めます。Mubadalaは、投資案件の分析にOpenAIのモデルを使う予定です。4件目の内容は記事に書かれていません。",
+    "記事は資金面にも触れ、UAEの出資者グループが、OpenAIの今回の資金調達でも最大の出資者になる見通しだと、Financial Timesの報道として伝えています。アルトマン氏は、最大の課題は何かと問われ「エネルギー」と答えました。以上は報道1本に基づく内容で、各社の公式発表は確認できていません。"
+   ]
+  },
+  {
+   "heading": "小規模事業者にとって",
+   "paragraphs": [
+    "大企業や政府が、判断を複数の業務にまたがってつなぐAIエージェントを使い始めている例です。自社では、まず一つの業務でAIの出した結果を人が確認する形から試すのが現実的でしょう。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "Semafor",
+   "url": "https://www.semafor.com/article/11/02/2026/openais-sam-altman-courts-abu-dhabi-ahead-of-ipo",
+   "note": "元記事",
+   "image": "",
+   "title": "OpenAI's Sam Altman courts Abu Dhabi ahead of IPO",
+   "org": "関係企業・団体：OpenAI、ADNOC、アブダビ政府、Mubadala（公式発表は未確認）／報道：Semafor（Kelsey Warner記者）",
+   "published": "2026-11-02"
+  }
+ ]
+}
