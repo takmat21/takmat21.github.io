@@ -41,6 +41,7 @@ def head(title, desc, url, depth):
 <title>{E(title)}｜松村貴士</title>
 <link rel="icon" href="{up}assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{up}assets/apple-touch-icon.png">
+<link rel="canonical" href="https://takmat21.github.io/{url}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{E(title)}｜松村貴士">
 <meta property="og:description" content="{E(desc)}">
@@ -194,6 +195,8 @@ def main():
         s += '<ul class="week-list" style="margin-top:14px">' + ''.join(f'<li><a href="{w["slug"]}/">{E(w["week"])}の話題のトピック（まとめ）</a></li>' for w in weeks) + '</ul></section>\n'
     s += f'<section>{NOTE}</section>\n' + FOOT
     open(os.path.join(NEWS, 'index.html'), 'w', encoding='utf-8').write(s)
+    from build_sitemap import build as build_sitemap
+    print('sitemap', build_sitemap(), 'urls')
     print('built', len(weeks), 'weeks; latest', latest['slug'])
 
 if __name__ == '__main__':
