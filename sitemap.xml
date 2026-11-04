@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://takmat21.github.io/</loc><lastmod>2026-11-03</lastmod></url>
-<url><loc>https://takmat21.github.io/news/</loc><lastmod>2026-11-03</lastmod></url>
+<url><loc>https://takmat21.github.io/</loc><lastmod>2026-11-04</lastmod></url>
+<url><loc>https://takmat21.github.io/lab/gas/</loc><lastmod>2026-11-03</lastmod></url>
+<url><loc>https://takmat21.github.io/news/</loc><lastmod>2026-11-04</lastmod></url>
 <url><loc>https://takmat21.github.io/news/2026-10-26/</loc><lastmod>2026-11-03</lastmod></url>
 <url><loc>https://takmat21.github.io/news/d/2026-10-25-anthropic-single-agent/</loc><lastmod>2026-11-03</lastmod></url>
 <url><loc>https://takmat21.github.io/news/d/2026-10-26-anthropic-s1/</loc><lastmod>2026-11-03</lastmod></url>
@@ -23,6 +24,10 @@
 <url><loc>https://takmat21.github.io/news/d/2026-11-04-meituan-longcat/</loc><lastmod>2026-11-03</lastmod></url>
 <url><loc>https://takmat21.github.io/news/d/2026-11-04-openai-abudhabi/</loc><lastmod>2026-11-03</lastmod></url>
 <url><loc>https://takmat21.github.io/news/d/2026-11-04-starbucks-ai-drivethru/</loc><lastmod>2026-11-03</lastmod></url>
+<url><loc>https://takmat21.github.io/news/d/2026-11-05-anthropic-flashprove/</loc><lastmod>2026-11-04</lastmod></url>
+<url><loc>https://takmat21.github.io/news/d/2026-11-05-atc-role-contract/</loc><lastmod>2026-11-04</lastmod></url>
+<url><loc>https://takmat21.github.io/news/d/2026-11-05-meta-conductor/</loc><lastmod>2026-11-04</lastmod></url>
+<url><loc>https://takmat21.github.io/news/d/2026-11-05-netflix-ai-discover/</loc><lastmod>2026-11-04</lastmod></url>
 <url><loc>https://takmat21.github.io/paper/</loc><lastmod>2026-11-03</lastmod></url>
 <url><loc>https://takmat21.github.io/paper2/</loc><lastmod>2026-11-03</lastmod></url>
 <url><loc>https://takmat21.github.io/paper3/</loc><lastmod>2026-11-03</lastmod></url>
@@ -44,5 +49,4 @@
 <url><loc>https://takmat21.github.io/samples/system/</loc><lastmod>2026-11-03</lastmod></url>
 <url><loc>https://takmat21.github.io/samples/x-article/</loc><lastmod>2026-11-03</lastmod></url>
 <url><loc>https://takmat21.github.io/video/interviews/</loc><lastmod>2026-11-03</lastmod></url>
-<url><loc>https://takmat21.github.io/lab/gas/</loc><lastmod>2026-11-03</lastmod></url>
 </urlset>
