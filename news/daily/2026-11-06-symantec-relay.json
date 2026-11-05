@@ -1,0 +1,34 @@
+{
+ "date": "2026-11-06",
+ "title": "AIコーディング道具の「中継サービス」が安全機能を切って入り込む例と、見つけるための点検項目（Symantec）",
+ "category": "セキュリティ",
+ "lead": "セキュリティ企業のSymantecとCarbon Black（Broadcom）の脅威調査チームが10月29日に公開した調査で、OpenAIのCodexやAnthropicのClaude Codeを装った中継サービスが、約12の組織で安全機能を無効にして使われていたと報告されました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "調査によると、この中継サービスは、本物のCodexまたはClaude Codeのコマンド道具をnpmで入れさせたあと、設定を書き換える手順を実行します。通信を中継サーバー経由に変え、実行の隔離（サンドボックス）を切り、利用状況の送信とエラー報告も止めます。手順はインストールから数分〜30分ほどで動くのが一般的だったとされています。",
+    "確認されたのは約12の組織で、多くは中国本土、ほかに韓国・台湾・マレーシアの子会社でした。少なくとも2026年初めから動いていたとされ、8つの業種に及びます。運営側は、OpenAIやAnthropicを思わせる名前のドメインを少なくとも8つ使い分けていました。ある端末では、本人の正規のログインを外して中継側が出した認証に置き換えた例もありました。",
+    "調査チームは、悪用された形跡はまだ見ていないと書いています。ただ、この設定のままでは運営側が入力文、ファイル、秘密情報を読み、利用者の権限で命令を実行できる状態になります。",
+    "見つける方法として、設定ファイルの接続先（base_urlやANTHROPIC_BASE_URL）の変更、sandbox_modeがdanger-full-accessになっていないか、承認された手順以外で設定された環境変数、インストール直後のダウンロード実行コマンド、AI道具の通信先の許可リスト化などが挙げられています。セキュリティ企業自身の発表で、検知製品の案内も含まれる点には留意が必要です。"
+   ]
+  },
+  {
+   "heading": "小規模事業者にとって",
+   "paragraphs": [
+    "AIの道具は公式の配布元から入れ、接続先の設定が勝手に変わっていないかを時々見るだけでも効果があります。「安く使える中継」をうたう手順には、安全機能を切る指示が含まれていないか注意してください。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "Symantec Enterprise Blog",
+   "url": "https://www.security.com/threat-intelligence/openai-claude-unauthorized-relays",
+   "note": "元記事",
+   "image": "",
+   "title": "Sandbox Flipped to ‘Danger-Full-Access’: Unauthorized AI Relays Create Risk for Organizations",
+   "org": "Threat Hunter Team、Symantec and Carbon Black（Broadcom）",
+   "published": "2026-10-29"
+  }
+ ]
+}
