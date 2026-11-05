@@ -25,6 +25,7 @@
 <style>.hero .name .by{font-weight:400;opacity:.65;font-size:.85em;margin-left:.4em}.sys-hero{display:none;margin-top:24px}body.sys-tab .sys-hero{display:block}.paper-top{display:none!important}body.paper-tab .paper-top{display:block!important;margin:24px 0 0}.samples-top{display:none!important}body.samples-tab .samples-top{display:block!important;margin:24px 0 0}.v-lead{margin:0 0 8px}.v-h{font-size:15px;margin:28px 0 12px}.v-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
 .v-card{margin:0}.v-card figcaption{display:flex;flex-direction:column;gap:3px;margin-top:10px;font-size:13px;line-height:1.6}
 .v-card figcaption b{font-size:14px}.v-kind{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--sub)}
+.v-hero{font-size:18px;line-height:1.6;margin:0 0 12px}.v-zero{font-size:24px;color:var(--accent,#e07a1f)}.v-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.v-stat{border:1px solid var(--line,#ddd);border-radius:10px;padding:10px 6px;text-align:center}.v-num{display:block;font-size:22px;font-weight:700}.v-lbl{display:block;font-size:12px;color:var(--sub)}.v-steps{margin-top:12px;font-size:13px;color:var(--sub)}.v-steps summary{cursor:pointer}
 .v-meta{color:var(--sub)}.v-why{color:var(--sub)}.v-note{font-size:12px;color:var(--sub);margin-top:12px}
 .yt{position:relative;display:block;width:100%;aspect-ratio:16/9;padding:0;border:0;border-radius:8px;overflow:hidden;background:#111;cursor:pointer}
 .yt img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .2s}.yt:hover img{opacity:.85}
@@ -246,14 +247,21 @@
   <div class="v-own">
     <figure class="v-card v-big"><button class="yt" data-yt="qCnYgGRZqNQ" aria-label="再生：SOCRA AIニュース 2026年11月5日"><img src="https://i.ytimg.com/vi/qCnYgGRZqNQ/hqdefault.jpg" alt="" loading="lazy" referrerpolicy="no-referrer"><span class="play" aria-hidden="true"></span></button><figcaption><span class="v-kind">最新回 ・ 2026年11月5日</span><b>SOCRA AIニュース</b><span class="v-meta"><a href="https://www.youtube.com/@SOCRAchannel" target="_blank" rel="noopener">SOCRA（@SOCRAchannel）</a></span></figcaption></figure>
     <div class="v-how">
-      <p>このサイトの<a href="news/">朝刊</a>に毎朝載るAIニュースを材料に、番組を自動で作っています。</p>
+      <p class="v-hero">台本・音声・画像・字幕・アニメーションまで、<b>すべてAIが制作</b>。公開もAIが自動で行います。<br><b class="v-zero">トークン以外の費用は0円</b></p>
+      <div class="v-stats">
+        <div class="v-stat"><span class="v-num">約750万</span><span class="v-lbl">1本あたりのトークン</span></div>
+        <div class="v-stat"><span class="v-num">約2円</span><span class="v-lbl">100万トークンあたり</span></div>
+        <div class="v-stat"><span class="v-num">約20円</span><span class="v-lbl">1本あたりの費用</span></div>
+      </div>
+      <p class="v-note">Claudeの定額プラン（Ultra・月額$200）を月の70%使った場合の試算。1ドル150円。プランにより変動します。</p>
+      <details class="v-steps"><summary>つくり方の流れ</summary>
+      <p>このサイトの<a href="news/">朝刊</a>に毎朝載るAIニュースを材料にしています。</p>
       <ol>
         <li><b>台本</b>：その日のニュース3本と「現場から見ると」のコーナーを、決まった型で書く</li>
         <li><b>声</b>：音声合成で、司会の葵が読み上げる</li>
         <li><b>映像</b>：見出し・発表元・日付が動くニュース画面を、コードで作って書き出す（記事の画像は使わない）</li>
         <li><b>投稿</b>：出典を概要欄に入れて、YouTubeへ</li>
-      </ol>
-      <p class="v-note">台本・音声・画像・字幕・アニメーションまで、すべてAIが作り、公開もAIに自動で行う許可を与えています。AIの利用料（トークン）のほかの費用は0円です。</p>
+      </ol></details>
     </div>
   </div>
   <p class="v-note">エンタメは受賞・入選など知っておく意味があるもの、ニュースは直近1か月のAI制作のAIニュースで再生回数の多いもの（回数は2026年11月4日にYouTubeで表示された概数）を選んでいます。どれも他社の作品で、YouTubeの埋め込みで紹介しています。</p>
