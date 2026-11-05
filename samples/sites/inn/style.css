@@ -119,3 +119,19 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   @keyframes fadein{from{opacity:0}to{opacity:1}}
 }
 .price tbody th{white-space:nowrap;padding-right:16px}
+
+/* 写真（Unsplash） */
+.hero-scene img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+@media (min-width:768px){.hero-scene{align-self:stretch}.hero-scene img{height:100%;min-height:560px;max-height:82vh;aspect-ratio:auto}}
+@media (max-width:767px){.hero-scene img{aspect-ratio:4/3}}
+.house-photos{display:grid;gap:var(--s3);margin-bottom:var(--s5)}
+@media (min-width:768px){.house-photos{grid-template-columns:1fr 1.6fr;align-items:end}}
+.house-photos figure{margin:0}
+.house-photos img{width:100%;object-fit:cover}
+.house-photos figure:first-child img{aspect-ratio:4/5}
+.house-photos figure:last-child img{aspect-ratio:3/2}
+@media (max-width:767px){.house-photos figure:first-child img{aspect-ratio:3/2}}
+.house-photos figcaption,.head-photo figcaption{font-size:13px;color:var(--sub);letter-spacing:.1em;margin-top:var(--s1)}
+.head-photo{margin:var(--s4) 0 0}
+.head-photo img{width:100%;aspect-ratio:21/8;object-fit:cover}
+@media (max-width:767px){.head-photo img{aspect-ratio:16/9}}

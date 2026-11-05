@@ -42,7 +42,7 @@
 <main id="main">
   <section class="hero" aria-labelledby="hero-title">
     <div class="container hero-grid">
-      <div class="arch reveal"><svg viewBox="-70 0 140 170" role="img" aria-label="ピンクのバラや淡い色の花を、白い紙で包んでリボンを結んだ花束のイラスト"><g transform="translate(0 0)"><g class="sway"><g stroke="#5c8a34" stroke-width="2.5"><path d="M-13 120L-40 60"/><path d="M-7 120L-22 34"/><path d="M1 120L4 22"/><path d="M9 120L28 34"/><path d="M15 120L44 60"/><path d="M-2 120L-6 58"/><path d="M6 120L18 62"/></g><use href="#lf" x="-56" y="64" width="12" height="32" fill="#7fa64f" transform="rotate(-40 -50 80)"/><use href="#lf" x="44" y="64" width="12" height="32" fill="#7fa64f" transform="rotate(40 50 80)"/><use href="#lf" x="-6" y="70" width="12" height="32" fill="#7fa64f" transform="rotate(0 0 86)"/><use href="#fl" x="-55.0" y="45.0" width="30" height="30" fill="#f6c9d5"/><use href="#rose" x="-37.0" y="19.0" width="30" height="30" fill="#d9637f"/><use href="#rose" x="-11.0" y="7.0" width="30" height="30" fill="#f9dfe6"/><use href="#rose" x="14.0" y="20.0" width="28" height="28" fill="#c44d70"/><use href="#fl" x="30.0" y="46.0" width="28" height="28" fill="#fbe9b7"/><use href="#fl" x="-19.0" y="45.0" width="26" height="26" fill="#f6c9d5"/><use href="#fl" x="6.0" y="50.0" width="24" height="24" fill="#fff"/></g><path d="M-38 92h76l-30 74h-16z" fill="#fff" stroke="#f0c2cf" stroke-width="1.5"/><path d="M-38 92l30 74M38 92l-30 74" stroke="#f6dbe3" stroke-width="1.5"/><g fill="#a8385c"><ellipse cx="-9" cy="128" rx="9" ry="5" transform="rotate(-20 -9 128)"/><ellipse cx="9" cy="128" rx="9" ry="5" transform="rotate(20 9 128)"/><circle cx="0" cy="129" r="3.5"/></g><path d="M-2 131l-7 18M2 131l7 18" stroke="#a8385c" stroke-width="2.5" stroke-linecap="round"/></g></svg></div>
+      <figure class="arch photo reveal"><img src="img/bouquet.webp" width="900" height="1200" alt="白い薄紙で包んだ、ピンクのバラと小花の花束" loading="eager" fetchpriority="high" decoding="async"></figure>
       <div>
         <span class="eyebrow">FLOWER SHOP &amp; DELIVERY</span>
         <h1 id="hero-title">贈る日に、<br><em>ちょうどいい</em>花を。</h1>
@@ -67,12 +67,15 @@
         <h2 id="season-title">いま店にある、季節の花</h2>
         <p>市場から週に3回（月・水・金）仕入れています。季節の花は長もちしやすく、値段も手ごろです。</p>
       </div>
+      <div class="season-wrap">
+      <figure class="season-photo"><img src="img/season.webp" width="720" height="960" alt="店頭に並んだバラ、芍薬、スターチスなどの切り花" loading="lazy" decoding="async"></figure>
       <ul class="seasons">
         <li><svg viewBox="0 0 56 56" aria-hidden="true"><path d="M28 54V30" stroke="#5c8a34" stroke-width="3"/><path d="M28 46c-8-2-12-8-12-14 8 2 12 6 12 14z" fill="#7fa64f"/><path d="M16 12l6 8 6-10 6 10 6-8v10c0 8-5 12-12 12s-12-4-12-12z" fill="#e889a4"/></svg><h3>春<span>3〜5月</span></h3><p>チューリップ、ラナンキュラス、スイートピー。淡い色が多く、入学や送別に。</p></li>
         <li><svg viewBox="0 0 56 56" aria-hidden="true"><path d="M28 54V34" stroke="#5c8a34" stroke-width="3"/><g fill="#f3c84b"><use href="#fl" x="6" y="2" width="44" height="44"/></g><circle cx="28" cy="24" r="8" fill="#7d5a2a"/></svg><h3>夏<span>6〜8月</span></h3><p>ひまわり、トルコキキョウ、グリーンの枝もの。水もちのよい花を選びます。</p></li>
         <li class="now"><svg viewBox="0 0 56 56" aria-hidden="true"><path d="M28 54V32" stroke="#5c8a34" stroke-width="3"/><use href="#fl" x="8" y="4" width="40" height="40" fill="#d9637f"/><use href="#fl" x="30" y="26" width="22" height="22" fill="#f6c9d5"/></svg><h3>秋<span>9〜11月</span></h3><p>ダリア、コスモス、実ものの枝。深い赤やくすんだピンクで落ち着いた束に。</p></li>
         <li><svg viewBox="0 0 56 56" aria-hidden="true"><path d="M28 54V32" stroke="#5c8a34" stroke-width="3"/><use href="#rose" x="10" y="6" width="36" height="36" fill="#c44d70"/><circle cx="12" cy="44" r="4" fill="#a8385c"/><circle cx="44" cy="42" r="4" fill="#a8385c"/></svg><h3>冬<span>12〜2月</span></h3><p>バラ、アネモネ、ヒヤシンス。クリスマスやお正月の飾りもご相談ください。</p></li>
       </ul>
+      </div>
     </div>
   </section>
 
@@ -133,21 +136,7 @@
 
   <section class="section" aria-labelledby="about-title">
     <div class="container duo">
-      <div class="frame">
-        <svg viewBox="0 0 300 300" role="img" aria-labelledby="b-t">
-          <title id="b-t">店先のブリキのバケツに、色とりどりの切り花が入っているイラスト</title>
-          <g stroke="#5c8a34" stroke-width="3"><path d="M80 200L60 90M110 200L110 60M150 200L160 80M190 200L220 70M220 200L250 110"/></g>
-          <use href="#fl" x="38" y="66" width="46" height="46" fill="#f6c9d5"/>
-          <use href="#rose" x="88" y="38" width="44" height="44" fill="#d9637f"/>
-          <use href="#fl" x="138" y="58" width="44" height="44" fill="#fff"/>
-          <use href="#rose" x="198" y="48" width="44" height="44" fill="#c44d70"/>
-          <use href="#fl" x="228" y="88" width="44" height="44" fill="#fbe9b7"/>
-          <use href="#lf" x="70" y="140" width="16" height="40" fill="#7fa64f" transform="rotate(-30 78 160)"/>
-          <use href="#lf" x="210" y="140" width="16" height="40" fill="#7fa64f" transform="rotate(30 218 160)"/>
-          <path d="M60 190h180l-16 96H76z" fill="#b9c2c0"/><path d="M60 190h180v12H60z" fill="#9aa5a3"/>
-          <path d="M100 230h100" stroke="#fff" stroke-width="2" opacity=".6"/>
-        </svg>
-      </div>
+      <figure class="frame photo"><img src="img/buckets.webp" width="1000" height="652" alt="店先に並んだブリキのバケツと、バラやトルコキキョウなどの切り花" loading="lazy" decoding="async"></figure>
       <div>
         <div class="section-head">
           <span class="eyebrow">ABOUT US</span>
@@ -191,7 +180,7 @@
     <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 38V20a12 12 0 0 1 24 0v18" fill="none" stroke="#a8385c" stroke-width="1.6"/><path d="M20 37V24" stroke="#3f6a20" stroke-width="1.6"/><path d="M20 31c-4-1-6-4-6-7 4 0 6 3 6 7z" fill="#7fa64f"/><use href="#fl" x="12" y="10" width="16" height="16" fill="#f6c9d5"/></svg>
     <p class="foot-name">花屋 うすべにの窓</p>
     <p>滋賀県みほん市花ノ辻3-5-1（架空）／ 電話 000-0000-0000（架空）</p>
-    <small>© 見本サイト（架空）— 制作 ZAZOU Lab ／ <a href="../">見本サイトの一覧へ戻る</a></small>
+    <small>写真：Unsplash（イメージ）　© 見本サイト（架空）— 制作 ZAZOU Lab ／ <a href="../">見本サイトの一覧へ戻る</a></small>
   </div>
 </footer>
 </body>

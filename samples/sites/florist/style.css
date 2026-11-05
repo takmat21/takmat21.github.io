@@ -148,3 +148,18 @@ a.bq{color:inherit;text-decoration:none}
 .site-footer small{opacity:1;color:var(--sub)}
 .card h3{font-weight:500}
 #arrange .grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
+
+/* 写真 */
+.arch.photo{padding:0;margin:0 auto;background:var(--petal-2)}
+.arch.photo img{width:100%;aspect-ratio:3/4;object-fit:cover}
+@media (max-width:767px){.arch.photo{max-width:320px}.arch.photo img{aspect-ratio:4/5}}
+.season-wrap{display:grid;gap:var(--s3);align-items:stretch}
+.season-photo{margin:0;border-radius:999px 999px var(--radius) var(--radius);overflow:hidden;border:1px solid var(--line);background:#fff}
+.season-photo img{width:100%;height:100%;aspect-ratio:16/10;object-fit:cover;object-position:50% 60%}
+@media (min-width:900px){.season-wrap{grid-template-columns:minmax(0,1fr) minmax(0,2fr)}.season-wrap .seasons{grid-template-columns:1fr 1fr}.season-photo img{aspect-ratio:auto;min-height:100%}}
+@media (max-width:899px){.season-photo{border-radius:var(--radius)}}
+.duo .frame.photo{margin:0 auto;padding:0;overflow:hidden;background:var(--sprout);max-width:420px}
+.duo .frame.photo img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:40% 100%}
+.page-head .head-photo{margin:var(--s4) auto 0;max-width:960px;border-radius:240px 240px var(--radius) var(--radius);overflow:hidden;border:1px solid var(--petal)}
+.page-head .head-photo img{width:100%;aspect-ratio:3/1;object-fit:cover;object-position:50% 40%}
+@media (max-width:640px){.page-head .head-photo{border-radius:120px 120px var(--radius) var(--radius)}.page-head .head-photo img{aspect-ratio:3/2}}

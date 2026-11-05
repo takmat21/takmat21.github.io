@@ -142,3 +142,18 @@ h1,h2,h3{font-feature-settings:"palt"}
 .site-footer{background:#1f2421;color:#faf9f6}
 .site-footer a{color:#faf9f6}
 .site-footer .f-name{font-family:var(--font-head);font-size:18px;font-weight:700;letter-spacing:.08em}
+
+/* 写真（Unsplash） */
+.hero-photo{margin:0;border:1px solid var(--line);background:#fff;padding:8px}
+.hero-photo img{width:100%;aspect-ratio:16/7;object-fit:cover;object-position:70% 60%}
+@media (min-width:768px){
+  .hero h1{grid-row:1 / span 2}
+  .hero-photo{grid-column:2;max-width:34em}
+}
+@media (max-width:767px){.hero-photo img{aspect-ratio:16/9}}
+.pillar img{width:calc(100% + 2*var(--s3));max-width:none;margin:calc(-1*var(--s4)) calc(-1*var(--s3)) var(--s1);aspect-ratio:16/7;object-fit:cover;filter:saturate(.85)}
+.svc-photo{margin:0;border:1px solid var(--line);padding:6px;background:#fff;align-self:start}
+.svc-photo img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:saturate(.85)}
+@media (min-width:768px){.svc-group > dl{grid-column:2;grid-row:1 / span 2}}
+@media (max-width:767px){.svc-photo img{aspect-ratio:16/7}}
+@media (min-width:768px){.svc-group{grid-template-rows:auto 1fr}}

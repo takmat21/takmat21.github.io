@@ -141,3 +141,19 @@ b,strong,th{font-weight:700}
 .site-footer .name{font-size:18px;font-weight:700}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .price tbody th{white-space:nowrap;padding-right:16px}
+
+/* 写真（Unsplash） */
+.hero-art.photo{position:relative;padding:10px}
+.hero-art.photo img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:22px}
+.hero-art .sticker{position:absolute;top:-18px;right:-10px;margin:0;background:var(--yellow);border:3px solid var(--fg);border-radius:16px;padding:6px 16px;font-weight:700;font-size:18px;transform:rotate(4deg);box-shadow:4px 4px 0 var(--fg)}
+.photo-pair{display:grid;gap:var(--s3);margin-bottom:var(--s4)}
+@media (min-width:768px){.photo-pair{grid-template-columns:1.3fr 1fr}}
+.photo-pair figure{margin:0;background:#fff;border:3px solid var(--fg);border-radius:24px;overflow:hidden}
+.photo-pair img{width:100%;aspect-ratio:16/10;object-fit:cover}
+@media (min-width:768px){.photo-pair img{height:280px;aspect-ratio:auto}}
+.photo-pair figcaption{padding:var(--s1) var(--s2);font-weight:700;font-size:15px;border-top:3px solid var(--fg)}
+.ph-grid{display:grid;gap:var(--s3);align-items:center}
+@media (min-width:768px){.ph-grid{grid-template-columns:1.4fr 1fr}}
+.ph-photo{margin:0;border:3px solid var(--fg);border-radius:24px;overflow:hidden;box-shadow:6px 6px 0 var(--fg);background:#fff;transform:rotate(1deg)}
+.ph-photo img{width:100%;aspect-ratio:16/9;object-fit:cover}
+@media (prefers-reduced-motion:reduce){.ph-photo,.hero-art{transform:none}}

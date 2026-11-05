@@ -129,3 +129,19 @@ body{overflow-wrap:anywhere}
 .cal-wrap,.cal td{position:relative}
 @media (max-width:480px){.crate{padding:var(--s2)}.crate svg{width:64px;height:64px}.crate h3{font-size:17px}.crate p{font-size:14px}}
 @media (max-width:480px){.price td.n{white-space:normal;min-width:7em}.price th{min-width:8em}}
+
+/* 写真（Unsplash） */
+.hero-grid{align-items:center}
+@media (min-width:900px){.hero-grid{grid-template-columns:1.05fr .95fr}}
+.hero-copy{display:grid;gap:var(--s3);min-width:0}
+.hero-photo{margin:0;border:3px solid var(--soil);border-bottom-width:12px;border-radius:6px;overflow:hidden;background:var(--soft);box-shadow:0 10px 0 -4px rgba(122,82,50,.18)}
+.hero-photo img{width:100%;aspect-ratio:4/3;object-fit:cover}
+@media (max-width:640px){.hero-photo img{aspect-ratio:3/2}}
+.farmer figure img{width:100%;aspect-ratio:5/4;object-fit:cover}
+.ship-photo{margin:0 0 var(--s3);border-radius:12px;overflow:hidden;background:#fff;border:2px solid var(--line)}
+.ship-photo img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:50% 55%}
+.ship-photo figcaption{font-size:14px;color:var(--sub);padding:var(--s1) var(--s2)}
+.head-photo{margin:var(--s3) 0 0;border-radius:12px;overflow:hidden;border:3px solid var(--soil)}
+.head-photo img{width:100%;aspect-ratio:3/1;object-fit:cover;object-position:50% 70%}
+@media (max-width:640px){.head-photo img{aspect-ratio:2/1}}
+@media (min-width:900px){.hero-grid h1{font-size:clamp(32px,3.6vw,46px)}}

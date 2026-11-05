@@ -177,3 +177,18 @@ main a:not(.btn):visited{color:#6b3a6e}
   .print p{font-size:14px}
   .print .yen b{font-size:19px}
 }
+
+/* 写真 */
+.hero{padding-bottom:var(--s5)}
+.studio-band{margin:0 auto var(--s6)}
+.studio-band img{width:100%;aspect-ratio:21/8;object-fit:cover;object-position:50% 45%;background:#fff;padding:12px 12px 44px;outline:1px solid var(--line);box-shadow:0 2px 0 var(--line)}
+.studio-band figcaption{margin-top:-34px;padding:0 20px;font-size:13px;color:var(--sub);position:relative}
+.studio-band figcaption span{font-family:var(--font-latin);font-style:italic;color:var(--accent);font-size:15px}
+@media (max-width:640px){.studio-band img{aspect-ratio:4/3;padding:8px 8px 40px}.studio-band figcaption{padding:0 12px}}
+.film-photo{margin:0 0 var(--s4);border:10px solid #000;outline:1px solid #4a4a4a}
+.film-photo img{width:100%;aspect-ratio:3/1;object-fit:cover;object-position:50% 40%}
+@media (max-width:640px){.film-photo img{aspect-ratio:16/9}}
+.page-hero .head-photo{margin:0;width:200px;background:#fff;padding:8px 8px 28px;outline:1px solid var(--line);transform:rotate(1.5deg)}
+.page-hero .head-photo img{width:100%;aspect-ratio:4/5;object-fit:cover}
+@media (max-width:640px){.page-hero .head-photo{width:150px;justify-self:end}}
+.page-hero .head-photo img[src$="oldcamera.webp"]{object-position:50% 85%}
