@@ -1,13 +1,13 @@
 /* ミニマルな個人サイトの作法：狭い1カラム、文字中心、等幅のメタ情報、カードより一覧、ダークモード対応 */
 :root{
-  --bg:#ffffff;--fg:#1a1a1a;--sub:#666;--faint:#999;--line:#e8e8e8;--soft:#f6f6f4;
+  --bg:#ffffff;--fg:#1a1a1a;--sub:#666;--faint:#767676;--line:#e8e8e8;--soft:#f6f6f4;
   --accent:#1f6f5c;--accent-soft:#e8f3ef;
   --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
   --sans:-apple-system,BlinkMacSystemFont,"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#121212;--fg:#e6e6e6;--sub:#a0a0a0;--faint:#707070;--line:#2a2a2a;--soft:#1b1b1b;--accent:#6fcfb0;--accent-soft:#16302a}}
-:root[data-theme="dark"]{--bg:#121212;--fg:#e6e6e6;--sub:#a0a0a0;--faint:#707070;--line:#2a2a2a;--soft:#1b1b1b;--accent:#6fcfb0;--accent-soft:#16302a}
+  --bg:#121212;--fg:#e6e6e6;--sub:#a0a0a0;--faint:#8a8a8a;--line:#2a2a2a;--soft:#1b1b1b;--accent:#6fcfb0;--accent-soft:#16302a}}
+:root[data-theme="dark"]{--bg:#121212;--fg:#e6e6e6;--sub:#a0a0a0;--faint:#8a8a8a;--line:#2a2a2a;--soft:#1b1b1b;--accent:#6fcfb0;--accent-soft:#16302a}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.85;-webkit-font-smoothing:antialiased}
