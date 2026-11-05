@@ -187,6 +187,16 @@ def run(root=None):
             faq = faq_of(t)
             if faq:
                 top["@graph"].append({"@type": "FAQPage", "@id": SITE + "#faq", "mainEntity": faq})
+            # 連絡先：本文の mailto: / tel: のリンクがあるときだけ入れる（決定ログ85、11/6 松村さん）
+            mails = sorted(set(re.findall(r'href="mailto:([^"?]+)', t)))
+            tels = sorted(set(re.findall(r'href="tel:([^"]+)"', t)))
+            if mails or tels:
+                cp = {"@type": "ContactPoint", "contactType": "customer service", "availableLanguage": "ja", "areaServed": "JP"}
+                if mails:
+                    cp["email"] = mails[0]
+                if tels:
+                    cp["telephone"] = tels[0] if tels[0].startswith("+") else "+81-" + tels[0].lstrip("0")
+                org["contactPoint"] = cp
             new = put(new, "ld-site", top)
         else:
             graph = page_ld(rel, head)
