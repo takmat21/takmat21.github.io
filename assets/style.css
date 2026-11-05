@@ -180,3 +180,6 @@ ul.rows div.row{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding
 /* キーボード操作の位置を見えるように */
 a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+/* 和文の改行と、和文・英数字のあいだの空き（対応ブラウザのみ） */
+body{line-break:strict;text-autospace:normal}
+p,dd,li{overflow-wrap:anywhere}
