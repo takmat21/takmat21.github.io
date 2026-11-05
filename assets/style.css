@@ -237,3 +237,17 @@ dl.qa dd{margin:2px 0 0;color:var(--sub);font-size:15px}
 #security .gates li b{margin-bottom:4px;line-height:1.6}
 #security .sp-r{background:var(--accent-soft);border-radius:6px;padding:8px 12px;color:var(--fg)}
 #security .sec-papers li{padding:20px 4px}
+
+/* 2026-11-06 デザインレビュー対応 */
+/* 致命1：width/height 属性があっても縦横比を保つ */
+.sys img,.shots img,.hero-shot img,figure img{max-width:100%;height:auto}
+/* 相談の入口 */
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0 0}
+.cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 24px;border-radius:8px;font-weight:700;font-size:15px;text-decoration:none;border:2px solid var(--accent)}
+.cta.main{background:var(--accent);color:#fff}
+:root[data-theme="dark"] .cta.main{color:#0d1f1a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cta.main{color:#0d1f1a}}
+.cta.sub{background:transparent;color:var(--accent)}
+.cta:hover{filter:brightness(1.08);text-decoration:none}
+.cta-note{font-size:13px;color:var(--sub);margin:8px 0 0}
+@media (max-width:640px){.cta-row .cta{width:100%}}
