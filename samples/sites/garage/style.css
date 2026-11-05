@@ -1,0 +1,193 @@
+/* クランク堂モータース（見本）— 黒＋警告イエロー、極太ゴシック、整備工場の掲示板と床ライン */
+:root{
+  --bg:#ffffff; --fg:#141414; --sub:#4a4a4a; --line:#dadada; --soft:#f2f2f0;
+  --accent:#141414; --accent-ink:#ffd400; --accent-soft:#fff6c2;
+  --yellow:#ffd400; --ink:#0d0d0d; --on-dark:#ffffff; --on-dark-sub:#c9c9c9; --red:#c4161c;
+  --font-body:"Hiragino Sans","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
+  --font-head:"Dela Gothic One","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --head-weight:400; --head-spacing:.01em;
+  --radius:4px;
+}
+body{overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+h1,h2{font-feature-settings:"palt"}
+main a:not(.btn):visited{color:#5b2a6e}
+a{color:#141414;text-decoration-color:var(--yellow);text-decoration-thickness:3px}
+
+/* 見出しの飾り：黄色の太い下線（床のラインのイメージ） */
+.eyebrow{color:var(--fg);font-family:var(--font-head);font-weight:400;letter-spacing:.14em;font-size:13px}
+.eyebrow::before{content:"";display:inline-block;width:16px;height:16px;background:repeating-linear-gradient(-45deg,var(--yellow) 0 4px,var(--ink) 4px 8px);vertical-align:-3px;margin-right:8px}
+.section-head h2{font-size:clamp(26px,3.6vw,38px);line-height:1.3}
+.section-head h2 span.hl{background:linear-gradient(transparent 62%,var(--yellow) 62% 92%,transparent 92%)}
+
+/* ヘッダー */
+.site-header{background:var(--ink);border-bottom:4px solid var(--yellow);backdrop-filter:none}
+.logo{color:#fff;font-weight:400;font-size:19px}
+.logo svg{width:40px;height:40px}
+.logo small{display:block;font-family:var(--font-body);font-size:12px;font-weight:700;color:var(--yellow);letter-spacing:.12em;line-height:1.2}
+.logo span{line-height:1.3}
+.site-nav a{color:#fff;font-weight:700}
+.site-nav a:hover{background:#2a2a2a}
+.site-nav a[aria-current="page"]{color:var(--ink);background:var(--yellow);border-radius:var(--radius)}
+.site-header a:focus-visible{outline-color:var(--yellow)}
+
+/* ボタン */
+.btn{border-radius:var(--radius);letter-spacing:.04em}
+.btn.yellow{background:var(--yellow);border-color:var(--yellow);color:var(--ink)}
+.btn.on-dark{background:transparent;border-color:#fff;color:#fff}
+.btn .arw{display:inline-block}
+@media (prefers-reduced-motion:no-preference){.btn .arw{transition:transform .2s}.btn:hover .arw{transform:translateX(3px)}}
+
+/* ヒーロー：黒い作業場＋リフトに乗った車 */
+.hero{background:var(--ink);color:#fff;padding:var(--s5) 0 0;position:relative;overflow:hidden}
+.hero .container{display:grid;gap:var(--s4);align-items:end}
+@media (min-width:768px){.hero .container{grid-template-columns:1fr 1.05fr}.hero{padding-top:var(--s6)}}
+.hero .tag{display:inline-flex;gap:8px;flex-wrap:wrap;margin-bottom:var(--s3)}
+.hero .tag span{font-size:13px;font-weight:700;border:2px solid var(--yellow);color:var(--yellow);padding:2px 10px;border-radius:2px;letter-spacing:.06em}
+.hero h1{font-size:clamp(34px,6vw,64px);line-height:1.18;letter-spacing:0}
+.hero h1 em{font-style:normal;color:var(--yellow)}
+.hero .lead{color:var(--on-dark-sub);margin-top:var(--s3);max-width:30em}
+.hero .copy{padding-bottom:var(--s5)}
+.hero .garage-art{margin:0;align-self:end}
+.hero .garage-art svg{width:100%;height:auto}
+.hazard{height:16px;background:repeating-linear-gradient(-45deg,var(--yellow) 0 16px,var(--ink) 16px 32px)}
+
+/* 受付ボード（営業時間・代車・駐車場） */
+.board{background:#1f1f1f;color:#fff}
+.board ul{list-style:none;margin:0;padding:var(--s3) 0;display:grid;gap:var(--s2);grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
+.board li{display:flex;gap:12px;align-items:center;font-size:15px}
+.board li b{display:block;font-size:13px;color:var(--yellow);letter-spacing:.08em}
+.board svg{width:32px;height:32px;flex:none}
+
+/* サービスカード：左に太い黒帯、番号つき */
+.svc{display:grid;gap:var(--s3);grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
+.svc-card{border:2px solid var(--ink);border-radius:var(--radius);padding:var(--s3);display:flex;flex-direction:column;gap:var(--s1);background:#fff;position:relative;color:inherit;text-decoration:none}
+.svc-card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.svc-card .no{font-family:var(--font-head);font-size:14px;background:var(--ink);color:var(--yellow);padding:2px 8px;border-radius:2px}
+.svc-card svg{width:64px;height:64px}
+.svc-card h3{font-size:21px;font-family:var(--font-head);font-weight:400}
+.svc-card p{margin:0;color:var(--sub);font-size:15px}
+.svc-card .from{margin-top:auto;padding-top:var(--s2);border-top:1px dashed #9a9a9a;font-size:14px;display:flex;justify-content:space-between;gap:8px}
+.svc-card .from b{font-size:17px}
+@media (prefers-reduced-motion:no-preference){a.svc-card{transition:transform .2s,box-shadow .2s}a.svc-card:hover{transform:translateY(-3px);box-shadow:6px 6px 0 var(--yellow)}}
+
+/* 見積の約束：大きい番号の3列 */
+.promise{display:grid;gap:var(--s3);grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));counter-reset:pr}
+.promise div{background:var(--soft);padding:var(--s3);border-top:6px solid var(--ink);counter-increment:pr}
+.promise div::before{content:"0" counter(pr);display:block;font-family:var(--font-head);font-size:48px;line-height:1;color:var(--ink);-webkit-text-stroke:0;margin-bottom:var(--s2)}
+.promise h3{font-size:19px;margin-bottom:var(--s1)}
+.promise p{margin:0;color:var(--sub);font-size:15px}
+
+/* 見積書の見本 */
+.quote{display:grid;gap:var(--s4);align-items:center}
+@media (min-width:768px){.quote{grid-template-columns:1fr 1fr}}
+.quote-sheet{background:#fff;border:2px solid var(--ink);padding:var(--s3);box-shadow:8px 8px 0 var(--yellow);font-size:15px}
+.quote-sheet h3{font-size:17px;display:flex;justify-content:space-between;gap:8px;border-bottom:2px solid var(--ink);padding-bottom:var(--s1);margin-bottom:var(--s1);flex-wrap:wrap}
+.quote-sheet h3 small{font-family:var(--font-body);font-size:13px;color:var(--sub);font-weight:400}
+.quote-sheet ul{list-style:none;margin:0;padding:0}
+.quote-sheet li{display:grid;grid-template-columns:auto 1fr auto;gap:8px;padding:10px 0;border-bottom:1px dashed #9a9a9a;align-items:baseline}
+.quote-sheet .lv{font-size:12px;font-weight:700;padding:1px 6px;border-radius:2px;white-space:nowrap}
+.quote-sheet .lv.must{background:var(--red);color:#fff}
+.quote-sheet .lv.soon{background:var(--yellow);color:var(--ink)}
+.quote-sheet .lv.ok{background:#e4e4e4;color:var(--ink)}
+.quote-sheet .yen{font-weight:700;white-space:nowrap}
+.quote-sheet .total{display:flex;justify-content:space-between;padding-top:var(--s2);font-weight:700;font-size:17px}
+.quote-sheet .note{font-size:13px;color:var(--sub);margin:var(--s1) 0 0}
+
+/* 数字 */
+.stats div{border-top:4px solid var(--ink)}
+.stats b{color:var(--ink);font-size:38px;font-weight:400}
+.stats b small{font-size:16px;margin-left:2px;font-family:var(--font-body);font-weight:700}
+
+/* 代車の帯 */
+.loaner{background:var(--yellow);color:var(--ink)}
+.loaner .container{display:grid;gap:var(--s3);align-items:center;padding-top:var(--s5);padding-bottom:var(--s5)}
+@media (min-width:768px){.loaner .container{grid-template-columns:auto 1fr auto}}
+.loaner svg{width:160px;height:auto}
+.loaner h2{font-size:clamp(24px,3.2vw,32px)}
+.loaner p{margin:var(--s1) 0 0}
+.loaner .btn{background:var(--ink);color:var(--yellow);border-color:var(--ink)}
+
+/* CTA */
+.cta{background:var(--ink);color:#fff;text-align:left}
+.cta h2{font-size:clamp(26px,3.6vw,40px)}
+.cta p{color:var(--on-dark-sub);margin-top:var(--s2)}
+.cta .tel{font-family:var(--font-head);font-size:clamp(26px,4vw,36px);color:var(--yellow);display:block;margin-top:var(--s2)}
+
+/* 下層ページの見出し */
+.page-hero{background:var(--ink);color:#fff;padding:var(--s5) 0}
+.page-hero h1{font-size:clamp(30px,4.6vw,48px)}
+.page-hero p{color:var(--on-dark-sub);margin:var(--s2) 0 0;max-width:34em}
+.page-hero .eyebrow{color:var(--yellow)}
+
+/* 車検費用の目安表 */
+.price-board{border:2px solid var(--ink);border-radius:var(--radius);overflow:hidden}
+.price{font-size:15px}
+.price thead th{background:var(--ink);color:#fff;font-weight:700;font-size:14px;padding:12px 10px}
+.price th,.price td{padding:14px 10px}
+.price tbody th{font-weight:700}
+.price tbody th small{display:block;font-weight:400;color:var(--sub);font-size:13px}
+.price td.n{font-size:16px}
+.price td.sum{background:var(--accent-soft);font-size:18px}
+.price .ex{display:inline-block;font-size:12px;font-weight:700;color:var(--red);border:1px solid var(--red);padding:0 6px;border-radius:2px;margin-left:4px;white-space:nowrap}
+.price-note{font-size:14px;color:var(--sub);margin-top:var(--s2)}
+.price-note li{margin-bottom:4px}
+.warn{border:2px solid var(--red);border-left-width:8px;padding:12px 16px;font-size:15px;margin-bottom:var(--s3);background:#fff5f5}
+.warn b{color:var(--red)}
+@media (max-width:640px){
+  .price-board .price thead{display:none}
+  .price-board .price,.price-board .price tbody,.price-board .price tr,.price-board .price th,.price-board .price td{display:block;width:100%}
+  .price-board .price tr{border-bottom:2px solid var(--ink);padding:8px 12px}
+  .price-board .price tbody th{border:0;padding:8px 0 4px;font-size:18px}
+  .price-board .price td{border:0;display:flex;justify-content:space-between;gap:12px;padding:6px 0;text-align:right}
+  .price-board .price td::before{content:attr(data-label);font-weight:400;color:var(--sub);text-align:left}
+  .price-board .price td.sum{padding:8px;margin-top:4px}
+  .price-board .price tr:last-child{border-bottom:0}
+}
+
+/* 車検の流れ：道路の上の工程 */
+.road{list-style:none;margin:0;padding:0;display:grid;gap:0;counter-reset:rd}
+.road li{counter-increment:rd;display:grid;grid-template-columns:56px 1fr;gap:var(--s2);padding-bottom:var(--s3);position:relative}
+.road li::before{content:counter(rd);display:grid;place-items:center;width:56px;height:56px;background:var(--yellow);color:var(--ink);font-family:var(--font-head);font-size:24px;border:3px solid var(--ink);border-radius:50%;position:relative;z-index:1}
+.road li::after{content:"";position:absolute;left:25px;top:56px;bottom:0;width:6px;background:repeating-linear-gradient(var(--ink) 0 12px,transparent 12px 20px)}
+.road li:last-child::after{display:none}
+.road h3{font-size:19px;margin-top:12px}
+.road p{margin:4px 0 0;color:var(--sub);font-size:15px}
+.road .time{display:inline-block;font-size:13px;font-weight:700;background:var(--ink);color:#fff;padding:0 8px;border-radius:2px;margin-left:8px;vertical-align:2px;font-family:var(--font-body)}
+
+/* メニュー表（2列） */
+.menu-cols{display:grid;gap:var(--s4);grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+.menu-cols h3{font-size:20px;display:flex;align-items:center;gap:10px;margin-bottom:var(--s1)}
+.menu-cols h3 svg{width:36px;height:36px}
+.menu-cols .price{border-top:3px solid var(--ink)}
+
+/* FAQ */
+.faq summary::after{color:var(--ink);font-weight:700}
+.faq summary{font-size:16px}
+.faq summary span::before{content:"Q.";font-family:var(--font-head);margin-right:8px;color:var(--ink);background:var(--yellow);padding:0 6px}
+
+/* アクセス */
+.access{display:grid;gap:var(--s4)}
+@media (min-width:768px){.access{grid-template-columns:1fr 1fr}}
+.map-ph{border:2px solid var(--ink);background:repeating-linear-gradient(-45deg,#f2f2f0 0 12px,#fff 12px 24px)}
+.form-note{border-left-color:var(--ink);background:var(--accent-soft)}
+.form input,.form select,.form textarea{border:2px solid #6b6b6b;border-radius:var(--radius)}
+.form .row2{display:grid;gap:var(--s3);grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
+.form button{font:inherit}
+.chk{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.chk li{padding-left:28px;position:relative}
+.chk li::before{content:"";position:absolute;left:0;top:7px;width:16px;height:16px;background:var(--yellow);border:2px solid var(--ink)}
+
+/* フッター */
+.site-footer{background:var(--ink);border-top:4px solid var(--yellow)}
+.site-footer .name{font-family:var(--font-head);font-size:20px}
+.site-footer a{color:#fff}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (min-width:640px){.svc{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1024px){.svc{grid-template-columns:repeat(4,1fr)}}
+.site-footer .container{gap:var(--s2)}
+.site-footer p{margin:0}
+.price thead .ex{color:var(--yellow);border-color:var(--yellow)}
+.price thead th:not(:first-child){text-align:right}
+.road{max-width:44em}
+.svc-card .from{flex-wrap:wrap;align-items:baseline;column-gap:12px;row-gap:0}.svc-card .from span,.svc-card .from b{white-space:nowrap}
+.svc-card .from{flex-direction:column;gap:0}

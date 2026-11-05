@@ -1,0 +1,162 @@
+/* 瑠璃杉酒造（見本サイト）— 格調：藍×白、金茶は線と小さな飾りだけ。明朝（Noto Serif JP）、漢数字の章番号、ラベル型の銘柄カード */
+:root{
+  --bg:#fbfaf6; --fg:#1c2233; --sub:#4a4f5c; --line:#d9d4c7; --soft:#f1eee6;
+  --accent:#1f3157; --accent-ink:#ffffff; --accent-soft:#e6e9f0;
+  --gold:#c9a66b; --gold-ink:#7a5c2a; --indigo:#1f3157; --indigo-2:#2b4273;
+  --font-body:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho","YuMincho",serif;
+  --font-head:var(--font-body);
+  --head-weight:600; --head-spacing:.06em;
+  --radius:2px; --maxw:1120px;
+}
+body{letter-spacing:.03em}
+a{color:var(--indigo)}
+a:visited{color:#4b3a6b}
+
+/* ヘッダー */
+.site-header{background:color-mix(in srgb,var(--bg) 95%,transparent);border-bottom:1px solid var(--line)}
+.logo{font-weight:600;font-size:20px;letter-spacing:.16em;color:var(--indigo)}
+.logo span{line-height:1.3}
+.logo small{display:block;font-size:12px;font-weight:400;letter-spacing:.08em;color:var(--sub)}
+.logo svg{width:36px;height:36px}
+.site-nav a{letter-spacing:.08em}
+.site-nav a[aria-current="page"]{color:var(--indigo);box-shadow:inset 0 -2px 0 var(--gold)}
+
+/* ボタン */
+.btn{border-radius:var(--radius);letter-spacing:.12em;font-weight:600}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--indigo)}
+.btn.ghost-w{background:transparent;border:1px solid #e9e4d6;color:#fff}
+.btn.ghost-w:hover{background:rgb(255 255 255 / .08)}
+
+/* 章見出し：漢数字の小さな印 */
+.eyebrow{display:flex;align-items:center;gap:12px;color:var(--gold-ink);letter-spacing:.24em;font-weight:600;font-size:14px}
+.eyebrow .kan{display:grid;place-items:center;width:32px;height:32px;border:1px solid var(--gold);color:var(--indigo);font-size:14px;letter-spacing:0}
+.section-head h2{font-size:clamp(24px,3.2vw,34px);font-feature-settings:"palt";letter-spacing:.08em;line-height:1.5}
+
+/* ヒーロー：藍の面、左に言葉、右に杉玉と一升瓶 */
+.hero{background:var(--indigo);color:#fff;overflow:hidden}
+.hero-in{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--s4);align-items:center;padding-top:var(--s5);padding-bottom:var(--s5)}
+.hero-kicker{font-size:14px;letter-spacing:.2em;color:var(--gold);margin-bottom:var(--s3)}
+.hero h1{font-size:clamp(36px,5.6vw,60px);letter-spacing:.12em;line-height:1.45;font-feature-settings:"palt";font-weight:600}
+.hero-lead{margin-top:var(--s3);max-width:30em;color:#e9e4d6}
+.hero-art svg{width:100%;max-width:420px;margin-left:auto}
+@media (max-width:767px){
+  .hero-in{grid-template-columns:1fr;padding-top:var(--s4);padding-bottom:var(--s4)}
+  .hero-art svg{max-width:260px;margin:0 auto}
+}
+
+/* 年齢表示の帯 */
+.age-band{background:#fff;border-bottom:1px solid var(--line);border-top:3px solid var(--gold)}
+.age-band .container{display:flex;flex-wrap:wrap;gap:4px 24px;align-items:baseline;padding-top:12px;padding-bottom:12px}
+.age-band b{color:var(--indigo);font-size:16px;letter-spacing:.06em}
+.age-band span{font-size:14px;color:var(--sub)}
+
+/* 蔵のこと */
+.kura-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:var(--s4) var(--s5)}
+.kura-intro .section-head{margin-bottom:0}
+.kura-stats{grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,1fr);margin:var(--s3) 0 0;border-top:1px solid var(--indigo)}
+.kura-stats div{padding:var(--s2) var(--s2) 0;border-left:1px solid var(--line)}
+.kura-stats div:first-child{border-left:0;padding-left:0}
+.kura-stats dt{font-size:14px;color:var(--sub)}
+.kura-stats dd{margin:0;font-size:20px;font-weight:600;color:var(--indigo);letter-spacing:.08em}
+.kura-stats small{display:block;font-size:14px;letter-spacing:.02em;font-weight:400;color:var(--sub)}
+@media (max-width:767px){
+  .kura-intro{grid-template-columns:1fr}
+  .kura-stats{grid-template-columns:1fr 1fr}
+  .kura-stats div{border-left:0;padding-left:0;border-bottom:1px solid var(--line);padding-bottom:var(--s2)}
+}
+
+/* 銘柄：酒のラベルに見立てたカード */
+.labels{display:grid;gap:var(--s3);grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+.label-card{display:grid;grid-template-columns:64px 1fr;background:#fff;border:1px solid var(--line)}
+.label-name{background:var(--indigo);color:#fff;display:flex;justify-content:center;padding:var(--s3) 0;position:relative}
+.label-name::after{content:"";position:absolute;inset:6px;border:1px solid var(--gold);opacity:.7;pointer-events:none}
+.label-name span{writing-mode:vertical-rl;font-size:24px;font-weight:600;letter-spacing:.3em}
+.label-body{padding:var(--s3);display:flex;flex-direction:column;gap:var(--s1)}
+.label-kind{margin:0;font-size:14px;color:var(--gold-ink);letter-spacing:.2em;font-weight:600}
+.label-body h3{font-size:20px;color:var(--indigo)}
+.label-body > p{margin:0;font-size:15px;color:var(--sub)}
+.specs{display:grid;grid-template-columns:80px 1fr;gap:var(--s2);align-items:end;margin:var(--s2) 0 var(--s1);padding-top:var(--s2);border-top:1px dashed var(--line)}
+.specs figure{margin:0;text-align:center}
+.specs figcaption{font-size:14px;color:var(--sub);line-height:1.4;margin-top:4px}
+.specs figcaption b{display:block;font-size:20px;color:var(--indigo)}
+.rice svg{width:64px;margin:0 auto}
+.taste svg{width:100%;max-width:150px;margin:0 auto}
+.label-body > p.price-line{margin-top:auto;padding-top:var(--s1);font-size:14px;color:var(--fg)}
+.price-line b{font-size:17px;color:var(--indigo)}
+.more{margin-top:var(--s4)}
+.more a{font-weight:600}
+.more a::after{content:" →"}
+
+/* 蔵見学の要点 */
+.tour-facts{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:0;border:1px solid var(--line);background:#fff}
+.tour-facts li{padding:var(--s3);border-right:1px solid var(--line);font-size:17px}
+.tour-facts li:last-child{border-right:0}
+.tour-facts b{display:block;font-size:14px;letter-spacing:.2em;color:var(--gold-ink)}
+@media (max-width:767px){.tour-facts li{border-right:0;border-bottom:1px solid var(--line)}}
+
+/* 藍のセクション */
+.section.indigo{background:var(--indigo);color:#fff}
+.section.indigo .eyebrow{color:var(--gold)}
+.section.indigo .eyebrow .kan{color:#fff}
+.section.indigo h2{font-size:clamp(24px,3vw,30px);letter-spacing:.08em;margin-bottom:var(--s3)}
+.section.indigo p{color:#e9e4d6}
+.section.indigo a{color:#fff}
+.shop{display:grid;grid-template-columns:1fr 1.1fr;gap:var(--s5);align-items:start}
+.section.indigo .info{border-color:rgb(255 255 255 / .3)}
+.section.indigo .info dt,.section.indigo .info dd{border-color:rgb(255 255 255 / .3)}
+.section.indigo .info dt{color:var(--gold)}
+@media (max-width:767px){.shop{grid-template-columns:1fr;gap:var(--s3)}}
+
+/* 下層ページの見出し */
+.page-head{background:var(--indigo);color:#fff;padding:var(--s5) 0 var(--s4)}
+.page-head .eyebrow{color:var(--gold)}
+.page-head h1{font-size:clamp(28px,4vw,40px);letter-spacing:.12em}
+.page-head p{margin:var(--s2) 0 0;color:#e9e4d6;max-width:38em}
+
+/* 銘柄一覧の表 */
+.price caption{font-size:17px;color:var(--indigo)}
+.price th{font-weight:600}
+.price thead th{font-size:14px;color:var(--sub);border-bottom:1px solid var(--indigo)}
+.price th.n{text-align:right}
+.price th small,.price td small{font-weight:400;display:block;color:var(--sub);font-size:14px}
+.tag{display:inline-block;font-size:12px;border:1px solid var(--gold);color:var(--gold-ink);padding:0 6px;margin-left:6px;vertical-align:2px;letter-spacing:.1em}
+
+/* 見学の流れ（縦の時間軸） */
+.flow{list-style:none;margin:0;padding:0;border-left:1px solid var(--gold);margin-left:8px}
+.flow li{position:relative;padding:0 0 var(--s4) var(--s4)}
+.flow li:last-child{padding-bottom:0}
+.flow li::before{content:"";position:absolute;left:-7px;top:8px;width:13px;height:13px;background:var(--indigo);border:2px solid var(--gold);border-radius:50%}
+.flow .time{display:block;font-size:14px;color:var(--gold-ink);letter-spacing:.14em;font-weight:600}
+.flow h3{font-size:19px;color:var(--indigo);margin:2px 0 var(--s1)}
+.flow p{margin:0;color:var(--sub);max-width:36em}
+.tour-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:var(--s5);align-items:start}
+.notice{background:#fff;border:1px solid var(--line);border-top:3px solid var(--indigo);padding:var(--s3)}
+.notice h3{font-size:18px;color:var(--indigo);margin-bottom:var(--s2)}
+.notice ul{margin:0;padding-left:1.2em}
+.notice li{margin-bottom:var(--s1);font-size:15px}
+@media (max-width:767px){.tour-grid{grid-template-columns:1fr;gap:var(--s4)}}
+
+.faq summary::after{color:var(--gold-ink)}
+
+/* お問い合わせ */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s5);align-items:start}
+@media (max-width:767px){.contact-grid{grid-template-columns:1fr;gap:var(--s4)}}
+.tel-box{border:1px solid var(--indigo);padding:var(--s3);background:#fff;margin-top:var(--s3)}
+.tel-box b{display:block;font-size:24px;color:var(--indigo);letter-spacing:.08em}
+.tel-box span{font-size:14px;color:var(--sub)}
+.form fieldset{border:0;padding:0;margin:0}
+.form legend{font-weight:700;margin-bottom:6px}
+.form .check{display:flex;align-items:center;gap:12px;min-height:44px;font-weight:400 !important}
+.form .check input{width:24px;height:24px;min-height:0}
+
+/* フッター */
+.site-footer{background:#141b2c;color:#fff}
+.site-footer a{color:#fff}
+.age-foot{border:1px solid var(--gold);padding:var(--s2);margin:0;font-size:14px;color:#fff}
+.foot-name{font-size:20px;letter-spacing:.2em;margin-bottom:4px}
+.site-footer p{margin-bottom:4px}
+
+@media (prefers-reduced-motion:no-preference){
+  .label-card{transition:transform .2s ease}
+  .label-card:hover{transform:translateY(-3px)}
+}

@@ -1,0 +1,167 @@
+/* 介護タクシー えんがわ便（見本サイト）— 見やすさ最優先：本文18px、紺×オレンジ、UDゴシック、大きなボタンと電話番号 */
+:root{
+  --bg:#ffffff; --fg:#14264a; --sub:#3b475c; --line:#9aa6b8; --soft:#fff4e6;
+  --accent:#c2410c; --accent-ink:#ffffff; --accent-soft:#fff4e6;
+  --navy:#14264a; --orange-lt:#ffb366;
+  --font-body:"BIZ UDGothic","BIZ UDPGothic","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --font-head:var(--font-body);
+  --head-weight:700; --head-spacing:.02em;
+  --radius:12px; --maxw:1120px; --measure:36em;
+}
+body{font-size:18px;line-height:1.8}
+a{color:#1d4ed8;text-decoration-thickness:2px}
+a:visited{color:#6b2fa3}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:4px solid var(--navy);outline-offset:2px;box-shadow:0 0 0 8px #ffd54a}
+p{margin-bottom:var(--s3)}
+
+/* ヘッダー：紺の太い下線 */
+.site-header{background:#fff;border-bottom:4px solid var(--navy)}
+.site-header .container{min-height:80px}
+.logo{font-size:24px;letter-spacing:.04em;color:var(--navy)}
+.logo span{line-height:1.25}
+.logo small{display:block;font-size:14px;font-weight:400;color:var(--sub);letter-spacing:0}
+.logo svg{width:44px;height:44px}
+.site-nav a{font-size:17px;min-height:48px;padding:0 16px;font-weight:700;color:var(--navy)}
+.site-nav a:hover{background:var(--soft)}
+.site-nav a[aria-current="page"]{background:var(--navy);color:#fff}
+@media (max-width:640px){
+  .site-nav{width:100%}
+  .site-nav ul{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;width:100%}
+  .site-nav a{width:100%;min-height:56px;font-size:15px;padding:4px 6px;justify-content:center;text-align:center;line-height:1.3;border:2px solid var(--navy)}
+}
+
+/* ボタン：大きく、四角に近い角丸 */
+.btn{min-height:56px;font-size:18px;padding:0 28px;border-width:3px}
+.btn-big{min-height:64px;font-size:20px;padding:0 32px}
+.btn.ghost{background:#fff;color:var(--navy);border-color:var(--navy)}
+.btn.ghost:hover{background:var(--soft)}
+.btn[disabled]{background:#5b6475;border-color:#5b6475}
+@media (max-width:640px){.btn-row .btn{width:100%}}
+
+/* 見出し */
+.eyebrow{font-size:16px;color:var(--accent);letter-spacing:.06em;display:inline-flex;align-items:center;gap:8px}
+.eyebrow::before{content:"";width:12px;height:12px;background:var(--accent);border-radius:2px}
+.section-head h2{font-size:clamp(28px,3.6vw,36px);color:var(--navy)}
+.section-head p{color:var(--sub);font-size:18px}
+
+/* ヒーロー */
+.hero{background:var(--soft);border-bottom:2px solid #f2d3b3}
+.hero .btn-row{display:grid;grid-template-columns:1fr 1fr;max-width:34em}
+.hero .btn-big{padding:0 16px}
+.hero-in{display:grid;grid-template-columns:1.05fr 1fr;gap:var(--s4);align-items:center;padding-top:var(--s5);padding-bottom:var(--s5)}
+.hero-tag{display:inline-block;background:var(--navy);color:#fff;font-weight:700;padding:4px 16px;border-radius:999px;font-size:16px;margin-bottom:var(--s2)}
+.hero h1{font-size:clamp(34px,5vw,52px);line-height:1.3;color:var(--navy)}
+.hero-lead{margin-top:var(--s3);font-size:19px;max-width:28em}
+.tel-card{background:#fff;border:3px solid var(--navy);border-radius:var(--radius);padding:var(--s2) var(--s3);margin-top:var(--s3);max-width:30em}
+.tel-label{margin:0;font-weight:700;font-size:16px}
+.tel-num{margin:0;font-size:clamp(30px,4.6vw,40px);font-weight:700;color:var(--accent);line-height:1.3;letter-spacing:.02em}
+.tel-num small,.cta-tel small{font-size:16px;color:var(--fg);font-weight:400}
+.tel-time{margin:0;font-size:16px}
+.hero-art svg{width:100%}
+@media (max-width:767px){
+  .hero .btn-row{grid-template-columns:1fr}
+  .hero-in{grid-template-columns:1fr;padding-top:var(--s4);padding-bottom:var(--s4)}
+  .hero-art{order:-1}
+  .hero-art svg{max-width:360px;margin:0 auto}
+}
+
+/* こんなときに */
+.scenes{list-style:none;margin:0;padding:0;display:grid;gap:var(--s3);grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.scenes li{border:2px solid var(--line);border-radius:var(--radius);padding:var(--s3);display:flex;flex-direction:column;gap:var(--s1)}
+.scenes svg{width:56px;height:56px;color:var(--navy)}
+.scenes b{font-size:21px;color:var(--navy)}
+.scenes span{color:var(--sub);font-size:17px}
+
+/* 3つの乗り方 */
+.ride{display:grid;gap:var(--s3);grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.ride-card{background:#fff;border-radius:var(--radius);border:3px solid var(--navy);padding:var(--s3);display:flex;flex-direction:column}
+.ride-no{margin:0 0 var(--s1);width:48px;height:48px;display:grid;place-items:center;background:var(--navy);color:#fff;font-size:24px;font-weight:700;border-radius:50%}
+.ride-card h3{font-size:24px;margin-bottom:var(--s2)}
+.ride-card p{font-size:17px}
+.ride-card .ride-for{margin:auto 0 0;padding-top:var(--s2);border-top:2px dashed var(--line);font-weight:700;color:var(--accent)}
+
+/* 料金の計算例 */
+.price-wrap{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);align-items:start}
+.price-wrap .more{grid-column:1 / -1}
+.calc{border:3px solid var(--navy);border-radius:var(--radius);overflow:hidden;background:#fff}
+.calc-row{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s2);padding:var(--s2) var(--s3);border-bottom:2px solid #dfe3ea;font-size:18px}
+.calc-row b{font-size:22px;white-space:nowrap}
+.calc-row.total{background:var(--navy);color:#fff;border-bottom:0}
+.calc-row.total b{font-size:30px;color:#ffd5ad}
+.calc-note{margin:0;padding:var(--s2) var(--s3);font-size:16px;color:var(--sub);background:var(--soft)}
+@media (max-width:767px){.price-wrap{grid-template-columns:1fr;gap:0}}
+.more{margin-top:var(--s3);margin-bottom:0}
+.more a{display:inline-flex;align-items:center;min-height:48px;font-weight:700;font-size:18px}
+.more a::after{content:"→";margin-left:8px}
+
+/* 4つの手順 */
+.flow4{list-style:none;margin:0;padding:0;counter-reset:f;display:grid;gap:var(--s3);grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.flow4 li{counter-increment:f;background:#fff;border-radius:var(--radius);padding:var(--s3);position:relative;border-top:8px solid var(--accent)}
+.flow4 li::before{content:"手順 " counter(f);display:block;font-weight:700;color:var(--accent);font-size:16px;margin-bottom:4px}
+.flow4 b{display:block;font-size:21px;margin-bottom:var(--s1)}
+.flow4 span{font-size:17px;color:var(--sub)}
+
+/* よくある質問：大きなタップ領域 */
+.faq{max-width:48em}
+.faq details{border:2px solid var(--line);border-radius:var(--radius);margin-bottom:var(--s2);padding:0 var(--s3);background:#fff}
+.faq summary{min-height:64px;align-items:center;font-size:19px;color:var(--navy)}
+.faq summary::before{content:"Q";flex:none;display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--navy);color:#fff;font-size:16px}
+.faq summary{justify-content:flex-start}
+.faq summary::after{margin-left:auto;font-size:28px;color:var(--accent)}
+.faq details p{font-size:18px;color:var(--fg);padding-left:48px}
+@media (max-width:640px){.faq details{padding:0 var(--s2)}.faq details p{padding-left:0}}
+
+/* 電話の帯 */
+.cta{background:var(--navy);color:#fff;padding:var(--s5) 0;text-align:center}
+.cta h2{font-size:clamp(26px,3.4vw,34px)}
+.cta-tel{font-size:clamp(34px,6vw,52px);font-weight:700;margin:var(--s2) 0 0;line-height:1.3;color:#ffd5ad}
+.cta-tel small{color:#fff}
+.cta p:last-child{margin:0}
+
+/* 下層ページの見出し */
+.page-head{background:var(--soft);border-bottom:2px solid #f2d3b3;padding:var(--s5) 0 var(--s4)}
+.page-head h1{font-size:clamp(30px,4.4vw,44px);color:var(--navy)}
+.page-head p{margin:var(--s2) 0 0;max-width:36em;font-size:19px}
+
+/* 料金表 */
+.price{font-size:18px}
+.price caption{font-size:22px;color:var(--navy);padding-bottom:var(--s2)}
+.price th,.price td{padding:16px 12px;border-bottom:2px solid #dfe3ea}
+.price thead th{background:var(--navy);color:#fff;font-size:16px}
+.price thead th.n{text-align:right}
+.price tbody th{font-weight:700}
+.price td.n{font-size:20px}
+.price td small,.price th small{display:block;font-weight:400;font-size:16px;color:var(--sub)}
+.fee-tables{display:grid;gap:var(--s5)}
+.fake-note{display:inline-block;background:var(--navy);color:#fff;font-weight:700;padding:4px 12px;border-radius:6px;font-size:16px;margin-bottom:var(--s3)}
+@media (max-width:640px){.price{font-size:16px}.price th,.price td{padding:12px 6px}.price td.n{font-size:18px}}
+
+.facts{display:grid;gap:var(--s3);grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.fact{background:#fff;border:2px solid var(--line);border-radius:var(--radius);padding:var(--s3)}
+.fact h3{font-size:21px;margin-bottom:var(--s1)}
+.fact p{margin:0;font-size:17px}
+
+/* お問い合わせ */
+.contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:var(--s5);align-items:start}
+@media (max-width:767px){.contact-grid{grid-template-columns:1fr;gap:var(--s4)}}
+.info dt{font-size:16px;color:var(--sub)}
+.info{grid-template-columns:9em 1fr}
+.form{max-width:none}
+.form label,.form legend{font-size:18px}
+.form input,.form select,.form textarea{min-height:56px;font-size:18px;border:2px solid #5b6475}
+.form .req{font-size:14px;background:#b3261e}
+.form .hint{font-size:16px}
+.form fieldset{border:0;margin:0;padding:0}
+.form legend{font-weight:700;margin-bottom:8px;padding:0}
+.choice{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr))}
+.form .choice label{display:flex;align-items:center;gap:12px;min-height:56px;border:2px solid #5b6475;border-radius:var(--radius);padding:0 16px;font-weight:400;margin:0;cursor:pointer}
+.form .choice input{width:24px;height:24px;min-height:0;accent-color:var(--accent);margin:0}
+.form-note{font-size:17px;border-left-width:6px}
+
+/* フッター */
+.site-footer{background:var(--navy);font-size:17px;border-top:8px solid var(--accent)}
+.site-footer p{margin-bottom:4px}
+.foot-name{font-size:22px;font-weight:700}
+.site-footer small{font-size:16px}
+.prep{margin:0;padding-left:1.4em}
+.prep li{margin-bottom:var(--s1)}

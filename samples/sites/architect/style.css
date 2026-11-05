@@ -1,0 +1,165 @@
+/* ハコノメ設計室（見本）— 白・グレー・群青一色。グリッドを見せる、角のない構成 */
+:root{
+  --bg:#ffffff; --fg:#1a1a1a; --sub:#5c5c5c; --line:#dcdcdc; --soft:#f4f4f2;
+  --accent:#3b38c9; --accent-ink:#ffffff; --accent-soft:#ececfb;
+  --font-body:"Inter","Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",system-ui,sans-serif;
+  --font-head:var(--font-body);
+  --head-weight:600; --head-spacing:.01em;
+  --radius:0px; --gridline:#efefef;
+}
+body{font-feature-settings:"palt" 0}
+h1,h2{font-feature-settings:"palt"}
+/* 見えるグリッド（12列／スマホ4列） */
+.gridlines{position:fixed;inset:0;z-index:-1;pointer-events:none}
+.gridlines div{max-width:var(--maxw);height:100%;margin:0 auto;padding:0 clamp(16px,4vw,40px);background-image:linear-gradient(to right,var(--gridline) 1px,transparent 1px);background-size:calc(100% / 12) 100%;background-origin:content-box;background-clip:content-box;box-shadow:inset -1px 0 0 0 transparent;position:relative}
+.gridlines div::after{content:"";position:absolute;top:0;bottom:0;right:clamp(16px,4vw,40px);width:1px;background:var(--gridline)}
+@media (max-width:767px){.gridlines div{background-size:25% 100%}}
+
+.site-header{background:color-mix(in srgb,#fff 92%,transparent);border-bottom:1px solid var(--fg)}
+.logo{font-weight:600;font-size:17px;letter-spacing:.06em;gap:12px}
+.logo svg{width:36px;height:36px}
+.logo span{line-height:1.25}
+.logo small{display:block;font-size:10px;letter-spacing:.24em;color:var(--sub);font-weight:400}
+.site-nav a{border-radius:0;font-size:14px;letter-spacing:.04em}
+.site-nav a[aria-current="page"]{color:var(--fg);box-shadow:inset 0 -2px 0 var(--accent)}
+.btn{border-radius:0;font-weight:600;letter-spacing:.06em;font-size:15px}
+.btn.ghost{color:var(--fg);border-color:var(--fg);background:#fff}
+.btn .arw{display:inline-block}
+@media (prefers-reduced-motion:no-preference){.btn .arw{transition:transform .2s}.btn:hover .arw{transform:translateX(4px)}}
+
+/* セクション：左に番号ラベル、右に内容 */
+.section{border-top:1px solid var(--line)}
+.section.soft{background:color-mix(in srgb,var(--soft) 85%,transparent)}
+.eyebrow{display:flex;gap:12px;align-items:baseline;color:var(--sub);font-weight:400;letter-spacing:.16em;font-size:12px;text-transform:uppercase}
+.eyebrow .num{color:var(--accent);font-weight:600;font-variant-numeric:tabular-nums}
+.section-head h2{font-size:clamp(24px,3vw,32px);letter-spacing:.02em}
+.cols{display:grid;gap:var(--s4)}
+@media (min-width:768px){
+  .cols{grid-template-columns:3fr 9fr;gap:32px}
+  .cols>.section-head{position:sticky;top:96px;align-self:start;margin-bottom:0}
+}
+
+/* ヒーロー */
+.hero{padding:var(--s5) 0 var(--s5)}
+.hero .container{display:grid;gap:var(--s4)}
+.hero .en{font-size:clamp(40px,8.4vw,104px);line-height:.95;font-weight:600;letter-spacing:-.03em;margin:0;color:var(--fg)}
+.hero .en span{color:var(--accent)}
+.hero h1{font-size:clamp(22px,2.6vw,28px);line-height:1.5;margin-top:var(--s3)}
+.hero .lead{color:var(--sub);max-width:30em;margin-top:var(--s2)}
+.hero figure{margin:0;border:1px solid var(--fg);background:#fff;position:relative}
+.hero figure svg{width:100%;height:auto}
+.hero figcaption,.work figcaption{font-size:12px;letter-spacing:.08em;color:var(--sub);padding:8px 12px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+@media (min-width:768px){.hero .container{grid-template-columns:5fr 7fr;align-items:end;gap:32px}.hero{padding:var(--s6) 0 var(--s5)}}
+
+/* 図面のスタイル（インラインSVG） */
+.dw .w{stroke:#1a1a1a;stroke-width:1.2;stroke-linejoin:round}
+.dw .acc{stroke:#1a1a1a;stroke-width:1.2}
+.dw .g{stroke:#ececec;stroke-width:1}
+.dw .t{stroke:#1a1a1a;stroke-width:1}
+.dw .m{stroke:#fff;stroke-width:1.4}
+.dw .wall{fill:none;stroke:#1a1a1a;stroke-width:5;stroke-linecap:square}
+.dw .iw{fill:none;stroke:#1a1a1a;stroke-width:2.4}
+.dw .thin{fill:none;stroke:#1a1a1a;stroke-width:1}
+.dw .dim{fill:none;stroke:#3b38c9;stroke-width:1}
+.dw .dimt{fill:#3b38c9;font:600 10px Inter,sans-serif;letter-spacing:.04em}
+.dw .lab{fill:#5c5c5c;font:400 10px "Hiragino Sans","Noto Sans JP",sans-serif;letter-spacing:.08em}
+.dw .fillacc{fill:#ececfb}
+.dw .hatch{fill:url(#hatch)}
+
+/* 数字（stats）を線で */
+.stats div{border-top:1px solid var(--fg)}
+.stats b{color:var(--fg);font-weight:600;letter-spacing:-.02em}
+.stats b small{font-size:16px;margin-left:4px;color:var(--sub);font-weight:400}
+
+/* 作品カード */
+.works{display:grid;gap:32px;grid-template-columns:1fr}
+@media (min-width:640px){.works{grid-template-columns:1fr 1fr}}
+.work{margin:0;display:flex;flex-direction:column;gap:8px}
+.work .sheet{border:1px solid var(--fg);background:#fff}
+.work .sheet svg{width:100%;height:auto;aspect-ratio:16/10}
+.work .meta{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12px;letter-spacing:.08em;color:var(--sub);margin-top:8px}
+.work .meta .tag{color:var(--accent);font-weight:600}
+.work h3{font-size:19px;letter-spacing:.02em}
+.work p{margin:0;color:var(--sub);font-size:15px}
+.work .result{color:var(--fg);font-size:15px;border-left:2px solid var(--accent);padding-left:12px}
+
+/* 考え方：3列の短文 */
+.principles{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--fg)}
+.principles li{display:grid;grid-template-columns:56px 1fr;gap:16px;padding:var(--s3) 0;border-bottom:1px solid var(--line)}
+.principles .n{font-size:13px;color:var(--accent);font-weight:600;letter-spacing:.08em;padding-top:4px}
+.principles h3{font-size:18px;margin-bottom:8px}
+.principles p{margin:0;color:var(--sub);font-size:15px}
+
+/* 流れ：期間つきの帯 */
+.flow{list-style:none;margin:0;padding:0;border-top:1px solid var(--fg);counter-reset:f}
+.flow li{counter-increment:f;display:grid;grid-template-columns:48px 1fr;gap:8px 16px;padding:var(--s3) 0;border-bottom:1px solid var(--line)}
+.flow li::before{content:counter(f,decimal-leading-zero);font-weight:600;color:var(--accent);font-size:15px;letter-spacing:.04em;padding-top:2px}
+.flow h3{font-size:18px}
+.flow p{margin:4px 0 0;color:var(--sub);font-size:15px}
+.flow .dur{display:inline-block;font-size:12px;letter-spacing:.08em;border:1px solid var(--fg);padding:2px 8px;margin-top:8px}
+.flow .bar{grid-column:2;height:6px;background:var(--soft);position:relative;margin-top:4px}
+.flow .bar i{position:absolute;top:0;bottom:0;background:var(--accent)}
+@media (min-width:900px){.flow li{grid-template-columns:48px 1fr 280px;align-items:start}.flow .bar{grid-column:3;margin-top:12px}}
+
+/* 料金の考え方 */
+.formula{border:1px solid var(--fg);background:#fff;padding:var(--s3);display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;font-size:clamp(16px,2.2vw,20px);font-weight:600;margin-bottom:var(--s4)}
+.formula .op{color:var(--accent);font-size:1.4em;font-weight:400;line-height:1}
+.formula .box{border:1px solid var(--line);padding:8px 16px;background:var(--soft)}
+.formula .box small{display:block;font-size:12px;color:var(--sub);font-weight:400;letter-spacing:.06em}
+.price{font-size:15px;background:#fff}
+.price thead th{border-bottom:1px solid var(--fg);font-size:13px;color:var(--sub);font-weight:400;letter-spacing:.06em}
+.price td.n{font-variant-numeric:tabular-nums}
+.price th small{display:block;font-weight:400;color:var(--sub);font-size:13px}
+.example{margin-top:var(--s4);background:var(--accent);color:#fff;padding:var(--s3)}
+.example h3{font-size:17px;margin-bottom:8px}
+.example p{margin:0}
+.example b{font-size:22px}
+.pay{display:grid;grid-template-columns:30fr 30fr 30fr 10fr;margin-top:var(--s2);border:1px solid var(--fg)}
+.pay div{padding:8px;border-right:1px solid var(--fg);font-size:12px;line-height:1.5;min-width:0;overflow-wrap:anywhere}
+.pay div:last-child{border-right:0}
+.pay b{display:block;font-size:16px}
+.incl{display:grid;gap:var(--s3);grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));margin-top:var(--s4)}
+.incl ul{margin:8px 0 0;padding-left:1.2em;color:var(--sub);font-size:15px}
+.incl h3{font-size:16px;border-bottom:1px solid var(--fg);padding-bottom:8px}
+
+/* 相談の方法 */
+.ways{display:grid;gap:0;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));border:1px solid var(--fg);background:#fff}
+.ways article{padding:var(--s3);border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.ways svg{width:48px;height:48px}
+.ways h3{font-size:18px}
+.ways p{margin:0;color:var(--sub);font-size:15px}
+.ways .fee{font-size:13px;color:var(--fg);font-weight:600;letter-spacing:.04em}
+
+.card{border-color:var(--fg)}
+.info{border-top:1px solid var(--fg)}
+.faq{border-top:1px solid var(--fg)}
+.faq summary::after{color:var(--accent);font-weight:400}
+.form input,.form select,.form textarea{border-radius:0;border-color:#8a8a8a}
+.form .row2{display:grid;gap:var(--s3)}
+@media (min-width:600px){.form .row2{grid-template-columns:1fr 1fr}}
+.form-note{border-radius:0}
+.map-ph{border-radius:0;border-color:var(--fg);background:repeating-linear-gradient(0deg,transparent 0 31px,#e4e4e4 31px 32px),repeating-linear-gradient(90deg,#fff 0 31px,#e4e4e4 31px 32px)}
+.map-ph span{background:#fff;padding:8px 12px;border:1px solid var(--fg)}
+
+.site-footer{background:#fff;color:var(--fg);border-top:1px solid var(--fg)}
+.site-footer a{color:var(--fg)}
+.site-footer .brand{font-weight:600;font-size:17px;letter-spacing:.06em}
+.site-footer .brand small{display:block;font-size:10px;letter-spacing:.24em;color:var(--sub)}
+.site-footer small{color:var(--sub);opacity:1}
+.foot-grid{display:grid;gap:var(--s2)}
+.foot-grid p{margin:0}
+@media (min-width:768px){.foot-grid{grid-template-columns:3fr 5fr 4fr;gap:32px}}
+
+.page-head{padding:var(--s5) 0 var(--s4)}
+.page-head h1{font-size:clamp(28px,4vw,44px);letter-spacing:.02em}
+.page-head p{color:var(--sub);max-width:var(--measure);margin-top:var(--s2)}
+.page-head .en{font-size:12px;letter-spacing:.24em;color:var(--accent);font-weight:600;display:block;margin-bottom:var(--s2)}
+.cols>*,.row2>*{min-width:0}
+.example .pay{border-color:#fff}
+.example .pay div{border-right-color:#fff}
+@media (max-width:520px){
+  .pay{grid-template-columns:1fr 1fr}
+  .pay div:nth-child(2){border-right:0}
+  .pay div:nth-child(-n+2){border-bottom:1px solid #fff}
+}
+.price thead th:last-child{white-space:nowrap}

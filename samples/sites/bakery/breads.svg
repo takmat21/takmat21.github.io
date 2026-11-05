@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!-- パンのイラスト（むぎぶえ舎 見本サイト用・自作） -->
+<symbol id="shokupan" viewBox="0 0 100 100">
+  <path d="M14 82V46c0-14 9-22 18-22 5 0 8 2 10 5 3-6 9-9 16-9s13 3 16 9c2-3 5-5 10-5 6 0 10 8 10 22v36z" fill="#c9782f"/>
+  <path d="M20 82V50c0-10 6-17 13-17 6 0 9 5 9 12 0-10 7-17 16-17s16 7 16 17c0-7 3-12 9-12 5 0 7 7 7 17v32z" fill="#f6dcaa"/>
+  <path d="M14 82h72v6H14z" fill="#a35c22"/>
+  <path d="M34 60q4 3 0 6M58 54q4 3 0 6M48 70q4 3 0 6M68 68q4 3 0 6" stroke="#e2bf83" stroke-width="2" fill="none" stroke-linecap="round"/>
+</symbol>
+<symbol id="croissant" viewBox="0 0 100 100">
+  <path d="M8 66c4-22 22-38 42-38s38 16 42 38c-4 6-10 8-16 6-6 8-16 12-26 12s-20-4-26-12c-6 2-12 0-16-6z" fill="#d1873a"/>
+  <path d="M30 34l8 42M50 28v54M70 34l-8 42" stroke="#9b521c" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M22 44q8 8 6 24M78 44q-8 8-6 24" stroke="#e8ad5c" stroke-width="3" fill="none" stroke-linecap="round"/>
+</symbol>
+<symbol id="baguette" viewBox="0 0 100 100">
+  <path d="M12 72c-6-6-2-14 6-20l50-34c8-6 18-6 22 0s0 14-8 20L32 72c-8 6-16 6-20 0z" fill="#c9782f"/>
+  <path d="M30 54q8-2 12-10M46 44q8-2 12-10M62 33q8-2 12-10M20 64q6-1 9-7" stroke="#f3d39a" stroke-width="4" fill="none" stroke-linecap="round"/>
+</symbol>
+<symbol id="anpan" viewBox="0 0 100 100">
+  <ellipse cx="50" cy="60" rx="38" ry="28" fill="#9b521c"/>
+  <ellipse cx="50" cy="56" rx="36" ry="24" fill="#c46f2a"/>
+  <ellipse cx="44" cy="44" rx="14" ry="6" fill="#d98c45"/>
+  <g fill="#fff3dc"><ellipse cx="48" cy="54" rx="2" ry="1.2"/><ellipse cx="53" cy="52" rx="2" ry="1.2" transform="rotate(30 53 52)"/><ellipse cx="51" cy="58" rx="2" ry="1.2" transform="rotate(-30 51 58)"/><ellipse cx="45" cy="58" rx="2" ry="1.2"/></g>
+</symbol>
+<symbol id="melonpan" viewBox="0 0 100 100">
+  <path d="M10 62c0-22 18-36 40-36s40 14 40 36c0 10-18 16-40 16S10 72 10 62z" fill="#e9b55a"/>
+  <g stroke="#c98a2c" stroke-width="2.5" fill="none" stroke-linecap="round"><path d="M22 44l30 30M34 34l34 34M50 29l28 28M18 58l14 14"/><path d="M78 44L48 74M66 34L32 68M50 29L22 57M82 58L68 72"/></g>
+  <path d="M12 66c10 8 66 8 76 0" stroke="#b97a22" stroke-width="3" fill="none"/>
+</symbol>
+<symbol id="curry" viewBox="0 0 100 100">
+  <path d="M10 60c0-16 18-28 40-28s40 12 40 28-18 22-40 22-40-6-40-22z" fill="#b8661f"/>
+  <g fill="#e6a24a"><circle cx="26" cy="52" r="3"/><circle cx="38" cy="44" r="3"/><circle cx="52" cy="48" r="3"/><circle cx="66" cy="44" r="3"/><circle cx="76" cy="54" r="3"/><circle cx="32" cy="62" r="3"/><circle cx="46" cy="60" r="3"/><circle cx="60" cy="62" r="3"/><circle cx="72" cy="66" r="3"/><circle cx="40" cy="72" r="3"/><circle cx="56" cy="72" r="3"/></g>
+</symbol>
+<symbol id="kuri" viewBox="0 0 100 100">
+  <path d="M14 70c0-18 16-30 36-30s36 12 36 30c0 8-16 12-36 12S14 78 14 70z" fill="#d1873a"/>
+  <path d="M38 40c0-12 6-22 12-24 6 2 12 12 12 24z" fill="#6b3a1e"/>
+  <path d="M40 44h20" stroke="#f3d39a" stroke-width="4" stroke-linecap="round"/>
+  <path d="M24 70q26 8 52 0" stroke="#a35c22" stroke-width="3" fill="none"/>
+</symbol>
+<symbol id="kabocha" viewBox="0 0 100 100">
+  <ellipse cx="50" cy="60" rx="38" ry="24" fill="#c46f2a"/>
+  <path d="M50 36v48M30 40q-8 20 0 40M70 40q8 20 0 40" stroke="#9b521c" stroke-width="3" fill="none"/>
+  <path d="M24 48q26-14 52 0" stroke="#3f6b2e" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="2 8"/>
+  <path d="M50 36q2-10 8-12" stroke="#3f6b2e" stroke-width="4" fill="none" stroke-linecap="round"/>
+</symbol>
+<symbol id="wheat" viewBox="0 0 40 100">
+  <path d="M20 96V30" stroke="#c98a2c" stroke-width="3"/>
+  <g fill="#e5a84b"><ellipse cx="20" cy="14" rx="5" ry="9"/><ellipse cx="13" cy="28" rx="5" ry="9" transform="rotate(-30 13 28)"/><ellipse cx="27" cy="28" rx="5" ry="9" transform="rotate(30 27 28)"/><ellipse cx="13" cy="44" rx="5" ry="9" transform="rotate(-30 13 44)"/><ellipse cx="27" cy="44" rx="5" ry="9" transform="rotate(30 27 44)"/><ellipse cx="13" cy="60" rx="5" ry="9" transform="rotate(-30 13 60)"/><ellipse cx="27" cy="60" rx="5" ry="9" transform="rotate(30 27 60)"/></g>
+</symbol>
+</svg>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>介護タクシー えんがわ便（見本サイト）｜ZAZOU Lab</title>
+<meta name="description" content="介護タクシー えんがわ便へのご予約・ご相談。お電話の受付時間、予約フォーム、事業所の所在地と営業区域。※架空の会社の見本サイトです。">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&display=swap"></noscript>
+<link rel="stylesheet" href="../base.css">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"介護タクシー えんがわ便（見本サイト・架空）","description":"ZAZOU Labが制作したホームページの見本。会社・住所・電話は架空です。","creator":{"@type":"Organization","name":"ZAZOU株式会社","url":"https://takmat21.github.io/"}}</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<div class="demo-bar">これは <a href="../">ZAZOU Lab の見本サイト</a> です。会社名・住所・電話番号・料金はすべて架空です。</div>
+
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="./">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="8" fill="#14264a"/><circle cx="17" cy="11" r="3.2" fill="#ffb366"/><path d="M17 15v9h8l3 7" fill="none" stroke="#ffb366" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 20a7 7 0 1 0 9 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>
+      <span><small>車いす・寝台の介護タクシー</small>えんがわ便</span>
+    </a>
+    <nav class="site-nav" aria-label="メインメニュー">
+      <ul>
+        <li><a href="./">トップ</a></li>
+        <li><a href="service.html">料金・サービス</a></li>
+        <li><a href="contact.html" aria-current="page">ご予約・お問い合わせ</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-head">
+    <div class="container">
+      <span class="eyebrow">ご予約・お問い合わせ</span>
+      <h1>ご予約・お問い合わせ</h1>
+      <p>お急ぎの方、当日のご予約はお電話でどうぞ。フォームからのご相談には、営業時間内に折り返しお電話します。</p>
+    </div>
+  </section>
+
+  <section class="section" id="form" aria-labelledby="h-form">
+    <div class="container contact-grid">
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">お電話</span>
+          <h2 id="h-form">お電話がいちばん早いです</h2>
+        </div>
+        <div class="tel-card">
+          <p class="tel-label">ご予約・ご相談</p>
+          <p class="tel-num">000-0000-0000<small>（架空）</small></p>
+          <p class="tel-time">受付 7:00〜19:00　土日・祝日も営業</p>
+        </div>
+        <p style="margin-top:24px">お電話では、次のことをお聞きします。メモをご用意いただくとスムーズです。</p>
+        <ul class="prep">
+          <li>ご希望の日時（病院の予約時間）</li>
+          <li>乗る場所と行き先</li>
+          <li>車いすの有無、寝たままの移動が必要か</li>
+          <li>お部屋の階数と、エレベーターの有無</li>
+          <li>同乗されるご家族の人数</li>
+        </ul>
+      </div>
+      <form class="form" onsubmit="return false" aria-describedby="fnote">
+        <p class="form-note" id="fnote">見本のため送信できません。実際のサイトでは、ここからお店にメールが届きます。</p>
+        <div><label for="name">お名前（ご相談者）<span class="req">必須</span></label><input id="name" name="name" autocomplete="name" required></div>
+        <div><label for="tel">折り返しの電話番号<span class="req">必須</span></label><input id="tel" name="tel" type="tel" autocomplete="tel" required></div>
+        <div><label for="date">ご希望の日にち</label><input id="date" name="date" type="date"></div>
+        <div><label for="time">ご希望の時間</label><input id="time" name="time" type="time"><p class="hint">病院の予約時間をお書きください。</p></div>
+        <fieldset>
+          <legend>乗り方<span class="req">必須</span></legend>
+          <div class="choice">
+            <label for="r1"><input type="radio" id="r1" name="ride" value="車いす" required>車いすのまま</label>
+            <label for="r2"><input type="radio" id="r2" name="ride" value="リクライニング">リクライニング</label>
+            <label for="r3"><input type="radio" id="r3" name="ride" value="寝台">寝たまま（寝台）</label>
+            <label for="r4"><input type="radio" id="r4" name="ride" value="未定">分からない</label>
+          </div>
+        </fieldset>
+        <div><label for="from">乗る場所・行き先<span class="req">必須</span></label><textarea id="from" name="from" required></textarea><p class="hint">例：自宅（〇〇町）から △△病院まで。帰りも利用。</p></div>
+        <div><button class="btn btn-big" type="submit" disabled>送信する（見本）</button></div>
+      </form>
+    </div>
+  </section>
+
+  <section class="section soft" aria-labelledby="h-access">
+    <div class="container contact-grid">
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">事業所</span>
+          <h2 id="h-access">事業所の場所と営業区域</h2>
+        </div>
+        <dl class="info">
+          <dt>所在地</dt><dd>滋賀県みほん市ひだまり町1-2-3（架空）</dd>
+          <dt>電話</dt><dd>000-0000-0000（架空）</dd>
+          <dt>営業時間</dt><dd>7:00〜19:00（土日・祝日も営業）<br>年末年始はお問い合わせください</dd>
+          <dt>営業区域</dt><dd>みほん市と周辺の市町（架空）。区域外もご相談ください</dd>
+          <dt>車両</dt><dd>スロープつき車両 2台、ストレッチャー対応 1台</dd>
+        </dl>
+      </div>
+      <div class="map-ph" role="img" aria-label="地図（架空の住所のため表示していません）">地図（架空の住所のため表示していません）</div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div>
+      <p class="foot-name">介護タクシー えんがわ便</p>
+      <p>滋賀県みほん市ひだまり町1-2-3（架空）</p>
+      <p>電話 000-0000-0000（架空）</p>
+    </div>
+    <small>© 見本サイト（架空）— 制作 ZAZOU Lab　<a href="../">見本サイト一覧へ戻る</a></small>
+  </div>
+</footer>
+</body>
+</html>

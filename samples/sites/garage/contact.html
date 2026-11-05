@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>クランク堂モータース（見本サイト）｜ZAZOU Lab</title>
+<meta name="description" content="クランク堂モータースへのアクセスと、車検・点検・修理の予約・見積の依頼フォーム。代車あり・駐車場8台。※架空の会社の見本サイトです。">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap"></noscript>
+<link rel="stylesheet" href="../base.css">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"クランク堂モータース（見本サイト・架空）","description":"ZAZOU Labが制作したホームページの見本。会社・住所・電話は架空です。","creator":{"@type":"Organization","name":"ZAZOU株式会社","url":"https://takmat21.github.io/"}}</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<div class="demo-bar">これは <a href="../">ZAZOU Lab の見本サイト</a> です。会社名・住所・電話番号・料金はすべて架空です。</div>
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="./">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="4" fill="#ffd400"/><path d="M12 28l11-11" stroke="#0d0d0d" stroke-width="5" stroke-linecap="round"/><path d="M22 10a7 7 0 0 1 9 9l-4-1-2-2-1-4z" fill="#0d0d0d"/><circle cx="12" cy="28" r="2" fill="#ffd400"/></svg>
+      <span>クランク堂モータース<small lang="en">CRANKDO MOTORS</small></span>
+    </a>
+    <nav class="site-nav" aria-label="メインメニュー">
+      <ul>
+        <li><a href="./">トップ</a></li>
+        <li><a href="service.html">車検・整備と料金</a></li>
+        <li><a href="contact.html" aria-current="page">アクセス・ご予約</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">ACCESS &amp; RESERVATION</span>
+      <h1>アクセス・ご予約</h1>
+      <p>車検・点検のご予約、修理のご相談、見積のご依頼はこちらから。お急ぎの故障はお電話のほうが早く対応できます。</p>
+    </div>
+  </section>
+  <div class="hazard" aria-hidden="true"></div>
+
+  <section class="section">
+    <div class="container access">
+      <div>
+        <div class="section-head" style="margin-bottom:var(--s3)">
+          <span class="eyebrow">ACCESS</span>
+          <h2>工場の場所</h2>
+        </div>
+        <dl class="info">
+          <dt>所在地</dt><dd>滋賀県みほん市くるま町1-2-3（架空）</dd>
+          <dt>電話</dt><dd>000-0000-0000（架空）</dd>
+          <dt>受付時間</dt><dd>平日 8:30–18:00<br>土曜 8:30–17:00</dd>
+          <dt>定休日</dt><dd>日曜・祝日、年末年始</dd>
+          <dt>駐車場</dt><dd>お客様用 8台（工場の正面）</dd>
+          <dt>代車</dt><dd>無料・予約制（6台）</dd>
+        </dl>
+      </div>
+      <div>
+        <div class="map-ph" role="img" aria-label="地図（架空の住所のため表示していません）">地図（架空の住所のため表示していません）</div>
+        <h3 style="font-size:18px;margin:var(--s3) 0 var(--s1)">ご来店のときにお持ちいただくもの</h3>
+        <ul class="chk">
+          <li>車検証</li>
+          <li>自賠責保険証（車検のとき）</li>
+          <li>自動車税の納税証明書（お手元にある場合）</li>
+          <li>ホイールロックのアダプター（タイヤ交換のとき）</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft" id="form">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">FORM</span>
+        <h2>予約・見積のご依頼</h2>
+        <p>内容を確認して、営業時間内に担当の整備士からお電話します。</p>
+      </div>
+      <p class="form-note" id="fnote">見本のため送信できません。実際のサイトでは、ここからお店にメールが届きます。</p>
+      <form class="form" onsubmit="return false" aria-describedby="fnote" style="margin-top:var(--s3)">
+        <div class="row2">
+          <div><label for="f-name">お名前<span class="req">必須</span></label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+          <div><label for="f-tel">お電話番号<span class="req">必須</span></label><input id="f-tel" name="tel" type="tel" autocomplete="tel" required></div>
+        </div>
+        <div><label for="f-kind">ご用件<span class="req">必須</span></label>
+          <select id="f-kind" name="kind" required>
+            <option value="">選んでください</option>
+            <option>車検の予約</option><option>12か月点検・オイル交換</option><option>修理・故障の相談</option><option>タイヤ交換・保管</option><option>見積のみ</option>
+          </select></div>
+        <div class="row2">
+          <div><label for="f-car">車種・年式</label><input id="f-car" name="car" type="text" placeholder="例：軽ワゴン・2019年"><p class="hint">分かる範囲でかまいません。</p></div>
+          <div><label for="f-date">ご希望日</label><input id="f-date" name="date" type="date"></div>
+        </div>
+        <div><label for="f-loaner">代車</label>
+          <select id="f-loaner" name="loaner"><option>必要</option><option>不要</option><option>相談したい</option></select></div>
+        <div><label for="f-msg">気になる症状・ご質問</label><textarea id="f-msg" name="msg" placeholder="例：ブレーキを踏むとキーッと音がする"></textarea></div>
+        <div><button class="btn" type="submit" disabled>この内容で送信する（見本）</button></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="name">クランク堂モータース</p>
+    <p>滋賀県みほん市くるま町1-2-3（架空）<br>電話 000-0000-0000（架空）／平日 8:30–18:00・土 8:30–17:00</p>
+    <small>© 見本サイト（架空）— 制作 ZAZOU Lab ／ <a href="../">見本サイトの一覧へ戻る</a></small>
+  </div>
+</footer>
+</body>
+</html>

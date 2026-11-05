@@ -1,0 +1,175 @@
+/* 焙煎と喫茶 ほろ月舎（見本）— 自家焙煎の小さな喫茶店
+   方針：クレマ色の紙＋深煎りの焦げ茶、夜のような焙煎室の帯。欧文見出しはセリフ（Cormorant Garamond）、和文見出しは明朝、本文はゴシック。
+   焙煎度を5段階の色で見せる「ものさし」を全ページで使う。 */
+:root{
+  --bg:#f5efe4; --fg:#2a1c15; --sub:#5f4c40; --line:#ddd0bd; --soft:#ece2d2;
+  --accent:#6b3a1f; --accent-ink:#ffffff; --accent-soft:#eadbc6;
+  --espresso:#1f1410; --on-dark:#f1e6d3; --on-dark-sub:#cbb9a3; --brass:#c89a5b;
+  --r1:#d1a46c; --r2:#b07a45; --r3:#8c5631; --r4:#64391f; --r5:#3a2014;
+  --font-body:"Hiragino Sans","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
+  --font-head:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+  --font-latin:"Cormorant Garamond","Times New Roman",serif;
+  --head-weight:700; --head-spacing:.04em;
+  --radius:4px; --maxw:1120px;
+}
+body{overflow-wrap:anywhere}
+h1,h2,h3{font-feature-settings:"palt"}
+main a:not(.btn):visited{color:#6a3550}
+.en{font-family:var(--font-latin);font-style:italic;font-weight:500;letter-spacing:.02em}
+
+/* ヘッダー：細い二重線 */
+.site-header{background:color-mix(in srgb,var(--bg) 95%,transparent);border-bottom:3px double var(--line)}
+.logo{font-size:18px;letter-spacing:.1em}
+.logo svg{width:36px;height:36px}
+.logo span{line-height:1.2}
+.logo small{display:block;font-family:var(--font-latin);font-style:italic;font-weight:500;font-size:14px;letter-spacing:.06em;color:var(--sub)}
+.site-nav a[aria-current="page"]{color:var(--accent);box-shadow:inset 0 -2px 0 var(--accent);border-radius:0}
+
+/* ボタン */
+.btn{border-radius:999px;font-weight:700}
+.btn.light{background:var(--on-dark);border-color:var(--on-dark);color:var(--espresso)}
+.btn.ghost-light{background:transparent;border-color:var(--on-dark-sub);color:var(--on-dark)}
+@media (prefers-reduced-motion:no-preference){.btn .arr{transition:transform .2s}.btn:hover .arr{transform:translateX(4px)}}
+
+/* 見出し：欧文の筆記体を上に、和文を下に */
+.section-head .en-title{display:block;font-family:var(--font-latin);font-style:italic;font-weight:500;font-size:clamp(32px,5vw,48px);line-height:1.1;color:var(--accent);margin-bottom:var(--s1)}
+.section-head h2{font-size:clamp(22px,3vw,30px)}
+.section-head h2::after{content:"";display:block;width:56px;height:10px;margin-top:16px;background:radial-gradient(ellipse 5px 4px at 6px 5px,var(--accent) 98%,transparent) 0 0/16px 10px repeat-x}
+.center .section-head{margin-left:auto;margin-right:auto;text-align:center}
+.center .section-head h2::after{margin-left:auto;margin-right:auto}
+
+/* 暗い帯（焙煎室） */
+.dark{background:var(--espresso);color:var(--on-dark)}
+.dark .section-head .en-title{color:var(--brass)}
+.dark .section-head p,.dark p{color:var(--on-dark-sub)}
+.dark .section-head h2::after{background:radial-gradient(ellipse 5px 4px at 6px 5px,var(--brass) 98%,transparent) 0 0/16px 10px repeat-x}
+.dark a:not(.btn){color:var(--on-dark)}
+.dark a:focus-visible,.dark .btn:focus-visible{outline-color:var(--brass)}
+
+/* ヒーロー */
+.hero{background:radial-gradient(120% 90% at 85% 30%,#3a261c 0,var(--espresso) 60%);color:var(--on-dark);padding:clamp(48px,8vw,104px) 0 clamp(56px,9vw,112px);position:relative;overflow:hidden}
+.hero-grid{display:grid;gap:var(--s4);align-items:center}
+.hero .kicker{display:block;font-family:var(--font-latin);font-style:italic;font-weight:500;font-size:clamp(20px,2.4vw,26px);color:var(--brass);margin-bottom:var(--s2)}
+.hero h1{font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;font-size:clamp(30px,4.6vw,50px);line-height:1.5;letter-spacing:.06em}
+.hero .lead{color:var(--on-dark-sub);max-width:28em;margin-top:var(--s3)}
+.hero .lead strong{color:var(--on-dark)}
+.hero-art svg{width:100%;max-width:380px;margin:0 auto}
+.hero .roast-days{display:flex;flex-wrap:wrap;gap:8px 24px;margin:var(--s3) 0 0;padding:0;list-style:none;font-size:14px;color:var(--on-dark-sub)}
+.hero .roast-days b{color:var(--on-dark)}
+@media (min-width:768px){.hero-grid{grid-template-columns:1.15fr 1fr;gap:var(--s5)}}
+@media (prefers-reduced-motion:no-preference){
+  .steam path{animation:steam 4s ease-in-out infinite;transform-box:fill-box;transform-origin:center bottom}
+  .steam path:nth-child(2){animation-delay:1.2s}.steam path:nth-child(3){animation-delay:2.4s}
+  @keyframes steam{0%,100%{opacity:.25;transform:translateY(4px)}50%{opacity:.85;transform:translateY(-4px)}}
+}
+
+/* 焙煎度のものさし */
+.scale{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);border-radius:var(--radius);overflow:hidden}
+.scale li{padding:var(--s3) 12px var(--s2);min-height:168px;display:flex;flex-direction:column;gap:4px;color:#fff}
+.scale li:nth-child(1){background:var(--r1);color:var(--espresso)}
+.scale li:nth-child(2){background:var(--r2);color:var(--espresso)}
+.scale li:nth-child(3){background:var(--r3)}
+.scale li:nth-child(4){background:var(--r4)}
+.scale li:nth-child(5){background:var(--r5)}
+.scale b{font-size:17px}
+.scale .en{font-size:18px;opacity:.95}
+.scale span{font-size:14px;line-height:1.6}
+@media (max-width:767px){.scale{grid-template-columns:1fr}.scale li{min-height:0;display:grid;grid-template-columns:6.5em 1fr;column-gap:16px;padding:16px}.scale .en{grid-column:1;grid-row:2}.scale b{grid-column:1;grid-row:1}.scale span{grid-column:2;grid-row:1/3;align-self:center}}
+
+/* 焙煎度メーター（表の中） */
+.meter{display:inline-flex;gap:4px;vertical-align:middle;margin-right:8px}
+.meter i{width:12px;height:16px;border-radius:50%;border:1.5px solid var(--accent);background:transparent}
+.meter i.on{background:var(--accent)}
+.roast-label{white-space:nowrap;font-size:14px}
+.beans-table td:nth-child(2){white-space:nowrap}
+
+/* 今週の豆：黒板ふうの札 */
+.beans-board{display:grid;gap:var(--s2);grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.bean-tag{border:1px solid #4a372c;border-radius:var(--radius);padding:var(--s3);background:#281a14;display:flex;flex-direction:column;gap:8px}
+.bean-tag .origin{font-family:var(--font-latin);font-style:italic;font-size:22px;color:var(--brass);line-height:1.2}
+.bean-tag h3{font-size:18px;color:var(--on-dark)}
+.bean-tag p{margin:0;font-size:15px}
+.bean-tag .meter i{border-color:var(--brass)}
+.bean-tag .meter i.on{background:var(--brass)}
+.bean-tag .roast-label{color:var(--on-dark)}
+.bean-tag .price-line{margin-top:auto;padding-top:12px;border-top:1px dashed #5a463a;color:var(--on-dark);font-weight:700;font-size:15px}
+
+/* 店のこと：2段組み */
+.story{display:grid;gap:var(--s4);align-items:center}
+.story .figure{background:var(--accent-soft);border-radius:var(--radius);padding:var(--s3)}
+.story .figure svg{max-width:360px;margin:0 auto}
+@media (min-width:768px){.story{grid-template-columns:1fr 1.2fr;gap:var(--s5)}}
+.stats{grid-template-columns:repeat(3,1fr)}
+.stats b{font-family:var(--font-latin);font-style:italic;font-weight:700;font-size:40px}
+
+/* メニュー：点線のリーダー */
+.menu-cols{display:grid;gap:var(--s4)}
+@media (min-width:768px){.menu-cols{grid-template-columns:1fr 1fr;column-gap:var(--s5)}}
+.menu-cols h3{font-size:20px;display:flex;align-items:baseline;gap:12px;padding-bottom:8px;border-bottom:2px solid var(--fg);margin-bottom:8px}
+.menu-cols h3 .en{font-size:18px;color:var(--sub)}
+.menu{list-style:none;margin:0;padding:0}
+.menu li{padding:12px 0;border-bottom:1px solid var(--line)}
+.menu .row{display:flex;align-items:baseline;gap:8px}
+.menu .row b{font-weight:700}
+.menu .row::after{content:none}
+.menu .dots{flex:1;border-bottom:2px dotted #b8a690;transform:translateY(-4px);min-width:16px}
+.menu .yen{font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+.menu small{display:block;color:var(--sub);font-size:14px;line-height:1.6;margin-top:2px}
+.menu-note{font-size:14px;color:var(--sub);margin-top:var(--s2)}
+
+/* 取り置き・通販の帯 */
+.cta-band{display:grid;gap:var(--s3);align-items:center;border:1px solid var(--line);background:var(--bg);border-radius:var(--radius);padding:var(--s4) clamp(24px,4vw,48px)}
+.cta-band h2{font-size:clamp(22px,3vw,28px)}
+.cta-band p{color:var(--sub);margin:var(--s1) 0 0}
+@media (min-width:768px){.cta-band{grid-template-columns:auto 1fr auto}}
+.cta-band svg{width:72px;height:72px}
+
+/* 営業案内 */
+.hours{display:grid;gap:var(--s4)}
+@media (min-width:768px){.hours{grid-template-columns:1fr 1fr;gap:var(--s5)}}
+
+/* 豆の表 */
+.price{background:var(--bg)}
+.price thead th{font-size:14px;color:var(--sub);border-bottom:2px solid var(--fg)}
+.price tbody th{font-weight:700}
+.price tbody th small{display:block;font-weight:400;color:var(--sub);font-size:14px}
+.price td.note{color:var(--sub);font-size:14px;min-width:12em}
+.beans-table{min-width:720px}
+.legend{font-size:14px;color:var(--sub);margin-top:var(--s2)}
+
+/* 通販・取り置きの2つの箱 */
+.ways{display:grid;gap:var(--s3)}
+@media (min-width:768px){.ways{grid-template-columns:1fr 1fr}}
+.way{border-top:4px solid var(--accent);background:var(--bg);padding:var(--s3);border-radius:0 0 var(--radius) var(--radius)}
+.way h3{font-size:20px;margin-bottom:var(--s2)}
+.way .en{display:block;color:var(--accent);font-size:20px;line-height:1.2;margin-bottom:4px}
+.way .steps li{padding:12px 0}
+.ship{margin-top:var(--s3)}
+
+/* アクセス */
+.access{display:grid;gap:var(--s4)}
+@media (min-width:768px){.access{grid-template-columns:1.1fr 1fr;align-items:start}}
+.contact-grid{display:grid;gap:var(--s5)}
+@media (min-width:900px){.contact-grid{grid-template-columns:1.4fr 1fr;align-items:start}}
+.side-note{background:var(--soft);border-radius:var(--radius);padding:var(--s3)}
+.side-note h3{font-size:18px;margin-bottom:var(--s1)}
+.side-note ul{margin:0;padding-left:1.2em;color:var(--sub);font-size:15px}
+.side-note li+li{margin-top:8px}
+.page-head{padding:clamp(40px,6vw,72px) 0 clamp(32px,5vw,56px);background:var(--espresso);color:var(--on-dark)}
+.page-head .kicker{display:block;font-family:var(--font-latin);font-style:italic;font-size:22px;color:var(--brass);margin-bottom:var(--s1)}
+.page-head h1{font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;font-size:clamp(28px,4vw,40px)}
+.page-head p{color:var(--on-dark-sub);max-width:36em;margin:var(--s2) 0 0}
+.page-head .toc{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:var(--s3) 0 0;padding:0}
+.page-head .toc a{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid #5a463a;border-radius:999px;color:var(--on-dark);text-decoration:none;font-size:14px}
+.page-head .toc a:hover{background:#2c1d16}
+
+.form input,.form select,.form textarea{background:#fffdf8;border-color:#8b7866}
+.form .two{display:grid;gap:var(--s3)}
+@media (min-width:600px){.form .two{grid-template-columns:1fr 1fr}}
+
+/* フッター */
+.site-footer{background:var(--espresso);color:var(--on-dark)}
+.site-footer a{color:var(--on-dark)}
+.site-footer .foot-name{font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;font-size:18px;font-weight:700;letter-spacing:.08em}
+.site-footer .foot-name .en{display:block;font-size:16px;color:var(--brass);font-weight:500}
+.site-footer p{margin:0;color:var(--on-dark-sub)}

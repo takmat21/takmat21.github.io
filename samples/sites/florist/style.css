@@ -1,0 +1,150 @@
+/* 花屋 うすべにの窓（見本）— 町の花屋
+   方針：白に近い桜色の地＋薄紅のアクセント＋若草。細めのゴシック（Zen Kaku Gothic New 300/500）、
+   アーチ窓の形をくり返し使う（ヒーロー・カード・写真枠）。ヘッダーは中央ぞろえ。 */
+:root{
+  --bg:#fffafa; --fg:#3b2a30; --sub:#6a5560; --line:#f0dde2; --soft:#fdeef1;
+  --accent:#a8385c; --accent-ink:#ffffff; --accent-soft:#fbe3ea;
+  --leaf:#3f6a20; --sprout:#dcebc4; --sprout-soft:#f1f7e8; --petal:#f6c9d5; --petal-2:#f9dfe6; --butter:#fbe9b7;
+  --font-body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
+  --font-head:var(--font-body);
+  --head-weight:300; --head-spacing:.06em;
+  --radius:20px; --maxw:1120px;
+}
+body{overflow-wrap:anywhere;font-weight:500}
+p,dd,li,td{font-weight:500}
+b,strong,th,dt{font-weight:500}
+h1,h2,h3{font-feature-settings:"palt"}
+main a:not(.btn):visited{color:#6b3a7a}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ヘッダー：ロゴ中央・ナビ下段 */
+.site-header{background:color-mix(in srgb,var(--bg) 92%,transparent);border-bottom:1px solid var(--line)}
+.site-header .container{flex-direction:column;justify-content:center;gap:0;padding-top:12px}
+.logo{flex-direction:column;gap:2px;font-weight:500;font-size:19px;letter-spacing:.16em;text-align:center}
+.logo svg{width:40px;height:40px}
+.logo small{display:block;font-size:12px;font-weight:500;letter-spacing:.24em;color:var(--leaf)}
+.site-nav a{border-radius:999px;font-weight:500}
+.site-nav a[aria-current="page"]{background:var(--accent-soft);color:var(--accent)}
+@media (min-width:641px){.site-header .container{min-height:0}.site-header{position:static}}
+
+/* ボタン */
+.btn{border-radius:999px;font-weight:500;letter-spacing:.08em}
+.btn.leaf{background:var(--leaf);border-color:var(--leaf)}
+@media (prefers-reduced-motion:no-preference){.btn .arr{transition:transform .2s}.btn:hover .arr{transform:translateX(4px)}}
+
+/* 見出し：小さな花びらを添えて中央ぞろえ */
+.eyebrow{color:var(--leaf);font-weight:500;letter-spacing:.24em;font-size:13px}
+.section-head h2{font-size:clamp(26px,3.6vw,36px);font-weight:300}
+.c-head{text-align:center;margin-left:auto;margin-right:auto}
+.c-head .eyebrow::before,.c-head .eyebrow::after{content:"";display:inline-block;width:8px;height:12px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:var(--petal);margin:0 12px;vertical-align:-1px}
+.section.pink{background:var(--soft)}
+.section.green{background:var(--sprout-soft)}
+
+/* ヒーロー：アーチの窓 */
+.hero{padding:clamp(40px,7vw,96px) 0 clamp(56px,8vw,104px);background:linear-gradient(180deg,var(--bg) 0,var(--soft) 100%)}
+.hero-grid{display:grid;gap:var(--s4);align-items:center}
+.arch{border-radius:999px 999px 24px 24px;background:linear-gradient(180deg,#fff 0,var(--petal-2) 100%);border:1px solid var(--petal);padding:48px 24px 16px;max-width:400px;margin:0 auto;width:100%;overflow:hidden}
+.arch svg{width:100%}
+.hero h1{font-size:clamp(30px,4.4vw,48px);font-weight:300;line-height:1.5;letter-spacing:.08em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .lead{color:var(--sub);max-width:28em;margin-top:var(--s3)}
+.hero .chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:var(--s3) 0 0}
+.hero .chips li{background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 14px;font-size:14px;color:var(--sub)}
+.hero .chips b{color:var(--leaf)}
+@media (min-width:768px){.hero-grid{grid-template-columns:1fr 1fr;gap:var(--s5)}.hero .arch{order:2}}
+@media (prefers-reduced-motion:no-preference){
+  .sway{animation:sway 6s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+  @keyframes sway{0%,100%{transform:rotate(-1.5deg)}50%{transform:rotate(1.5deg)}}
+}
+
+/* 予算別の花束：アーチのカード */
+.budget{display:grid;gap:var(--s3);grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
+.bq{background:#fff;border:1px solid var(--line);border-radius:999px 999px var(--radius) var(--radius);padding:24px var(--s3) var(--s3);display:flex;flex-direction:column;gap:8px;text-align:center}
+.bq .pic{height:132px;display:grid;place-items:end center;margin-bottom:8px}
+.bq .pic svg{height:100%;width:auto}
+.bq .yen{font-size:28px;font-weight:300;letter-spacing:.04em;color:var(--accent);line-height:1.2}
+.bq .yen small{font-size:15px}
+.bq h3{font-size:17px;font-weight:500}
+.bq p{margin:0;color:var(--sub);font-size:15px}
+.bq .size{margin-top:auto;padding-top:12px;border-top:1px dashed var(--petal);font-size:14px;color:var(--leaf)}
+a.bq{color:inherit;text-decoration:none}
+
+/* 季節の花：横に4つの季節 */
+.seasons{display:grid;gap:var(--s2);grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));list-style:none;margin:0;padding:0}
+.seasons li{border-radius:var(--radius);padding:var(--s3);background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.seasons svg{width:56px;height:56px}
+.seasons h3{font-size:19px;font-weight:500}
+.seasons h3 span{font-size:13px;color:var(--sub);margin-left:8px;letter-spacing:.08em}
+.seasons p{margin:0;color:var(--sub);font-size:15px}
+.seasons .now{border:2px solid var(--leaf);position:relative}
+.seasons .now::after{content:"いまの季節";position:absolute;top:-12px;right:16px;background:var(--leaf);color:#fff;font-size:12px;padding:2px 10px;border-radius:999px}
+
+/* 店のこと */
+.duo{display:grid;gap:var(--s4);align-items:center}
+@media (min-width:768px){.duo{grid-template-columns:1fr 1fr;gap:var(--s5)}}
+.duo .frame{border-radius:var(--radius) var(--radius) 999px 999px;background:var(--sprout);padding:24px 24px 56px;max-width:360px;margin:0 auto;width:100%}
+.check{list-style:none;padding:0;margin:var(--s3) 0 0;display:grid;gap:12px}
+.check li{padding-left:32px;position:relative}
+.check li::before{content:"";position:absolute;left:0;top:.45em;width:18px;height:18px;border-radius:50% 0;background:var(--leaf);transform:rotate(-45deg) scale(.85)}
+
+/* 手順：花びら番号 */
+.steps li::before{border-radius:50% 50% 50% 8px;background:var(--accent)}
+.flow{display:grid;gap:var(--s3)}
+@media (min-width:900px){
+  .flow.steps{grid-template-columns:repeat(4,1fr);gap:var(--s3)}
+  .flow.steps li{grid-template-columns:1fr;border-bottom:0;border-top:2px dotted var(--petal);padding-top:var(--s3)}
+}
+
+/* 配達エリア */
+.area{display:grid;gap:var(--s4);align-items:center}
+@media (min-width:768px){.area{grid-template-columns:1fr 1.2fr;gap:var(--s5)}}
+.area svg{max-width:360px;margin:0 auto;width:100%}
+.price{background:#fff;border-radius:var(--radius)}
+.price thead th{font-size:14px;color:var(--sub);font-weight:500;border-bottom:2px solid var(--petal)}
+.price tbody th{font-weight:500}
+.price td.sub{color:var(--sub);font-size:14px}
+.zone{display:inline-block;width:14px;height:14px;border-radius:50%;margin-right:8px;vertical-align:-1px;border:1px solid var(--fg)}
+.z1{background:var(--accent)}.z2{background:var(--petal)}.z3{background:var(--sprout)}
+.note{font-size:14px;color:var(--sub);margin-top:var(--s2)}
+
+/* 下層ページの見出し */
+.page-head{padding:clamp(40px,6vw,72px) 0 clamp(32px,5vw,56px);text-align:center;background:linear-gradient(180deg,var(--bg),var(--soft))}
+.page-head h1{font-size:clamp(30px,4.4vw,44px);font-weight:300;letter-spacing:.1em}
+.page-head p{color:var(--sub);max-width:34em;margin:var(--s2) auto 0}
+.page-head .toc{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;list-style:none;margin:var(--s3) 0 0;padding:0}
+.page-head .toc a{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;background:#fff;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-size:14px}
+.page-head svg{width:64px;height:40px;margin:0 auto var(--s2)}
+
+/* アレンジ・その他：小さなカード */
+.card{border-radius:var(--radius);background:#fff}
+.card .yen{color:var(--accent);font-size:20px;font-weight:300}
+
+/* フォーム */
+.form input,.form select,.form textarea{border-color:#a08690;border-radius:12px;background:#fff}
+.form .two{display:grid;gap:var(--s3)}
+@media (min-width:600px){.form .two{grid-template-columns:1fr 1fr}}
+.form fieldset{border:0;padding:0;margin:0}
+.form legend{font-weight:500;margin-bottom:6px;padding:0}
+.radios{display:flex;flex-wrap:wrap;gap:8px}
+.radios label{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:999px;background:#fff;font-weight:500;margin:0}
+.radios input{width:18px;height:18px;min-height:0;accent-color:var(--accent)}
+.contact-grid{display:grid;gap:var(--s5)}
+@media (min-width:900px){.contact-grid{grid-template-columns:1.4fr 1fr;align-items:start}}
+.side{background:var(--sprout-soft);border-radius:var(--radius);padding:var(--s3)}
+.side h3{font-size:19px;font-weight:500;margin-bottom:var(--s1)}
+.side ul{margin:0;padding-left:1.2em;color:var(--sub);font-size:15px}
+.side li+li{margin-top:8px}
+.access{display:grid;gap:var(--s4)}
+@media (min-width:768px){.access{grid-template-columns:1.1fr 1fr;align-items:start}}
+.map-ph{border-radius:var(--radius)}
+
+/* フッター：淡いピンクに深い文字 */
+.site-footer{background:var(--soft);color:var(--fg);border-top:1px solid var(--line);text-align:center}
+.site-footer a{color:var(--accent)}
+.site-footer .container{justify-items:center}
+.site-footer svg{width:48px;height:48px}
+.site-footer p{margin:0}
+.site-footer .foot-name{font-size:18px;letter-spacing:.16em}
+.site-footer small{opacity:1;color:var(--sub)}
+.card h3{font-weight:500}
+#arrange .grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}

@@ -1,0 +1,142 @@
+/* ヨガ室 凪灯（見本）— ベージュ×ラベンダー・細い書体・ゆるやかな曲線 */
+:root{
+  --bg:#f6f1e9; --fg:#37313f; --sub:#5f5669; --line:#ddd2c3; --soft:#efe7da;
+  --accent:#68588f; --accent-ink:#ffffff; --accent-soft:#ebe5f3;
+  --lav:#d9d0ea; --sand:#e8dcc8;
+  --font-body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --font-head:var(--font-body);
+  --head-weight:500; --head-spacing:.12em;
+  --radius:24px;
+}
+body{font-weight:300;font-size:17px;line-height:1.9;letter-spacing:.04em;overflow-wrap:anywhere}
+b,strong,.btn,label,legend,summary{font-weight:500}
+.site-header{border-bottom-color:transparent}
+.logo{font-weight:500;letter-spacing:.16em;font-size:17px}
+.logo svg{width:36px;height:36px}
+.logo span{display:flex;flex-direction:column;line-height:1.3}
+.logo small{font-size:11px;letter-spacing:.24em;color:var(--sub);font-weight:300}
+.site-nav a{border-radius:999px}
+.site-nav a[aria-current="page"]{font-weight:500;background:var(--accent-soft)}
+.btn{border-radius:999px;min-height:52px;padding:0 32px;letter-spacing:.1em}
+.btn.ghost{background:transparent}
+.eyebrow{font-weight:400;letter-spacing:.32em;font-size:13px;color:var(--accent)}
+.section-head h2{font-size:clamp(23px,3vw,30px);line-height:1.6}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.section-head.center .eyebrow::after{content:"";display:block;width:40px;height:10px;margin:8px auto 0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 10'%3E%3Cpath d='M1 5c6-6 13 6 19 0s13-6 19 0' fill='none' stroke='%2368588f' stroke-width='1.4'/%3E%3C/svg%3E") center/contain no-repeat}
+.section.lav{background:var(--accent-soft)}
+.section.soft{background:var(--soft)}
+
+/* 波の区切り */
+.wave{display:block;width:100%;height:48px;margin:-1px 0}
+.wave svg{width:100%;height:48px}
+
+/* ヒーロー：アーチの中に朝の光 */
+.hero{padding:var(--s5) 0 var(--s4);text-align:center}
+.arch{width:min(320px,72vw);margin:0 auto var(--s4)}
+.arch svg{width:100%;height:auto}
+.hero .en{display:block;font-size:14px;letter-spacing:.4em;color:var(--accent);margin-bottom:var(--s2)}
+.hero h1{font-size:clamp(28px,4.6vw,44px);font-weight:300;letter-spacing:.16em;line-height:1.7}
+.hero .lead{max-width:30em;margin:var(--s3) auto 0;color:var(--sub)}
+.hero .btn-row{justify-content:center}
+@media (prefers-reduced-motion:no-preference){
+  .arch .sun{animation:glow 8s ease-in-out infinite alternate}
+  @keyframes glow{from{opacity:.75}to{opacity:1}}
+}
+
+/* 3つの約束（小さな点で並べる） */
+.quiet{display:grid;gap:var(--s3);list-style:none;margin:var(--s4) 0 0;padding:0}
+@media (min-width:768px){.quiet{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.quiet li{text-align:center;padding:0 var(--s2)}
+.quiet b{display:block;font-size:30px;font-weight:300;color:var(--accent);letter-spacing:.08em;line-height:1.4}
+.quiet span{font-size:15px;color:var(--sub)}
+
+/* クラスのカード：上が丸いアーチ形 */
+.classes{display:grid;gap:var(--s3);grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr))}
+.cls{background:var(--bg);border-radius:200px 200px var(--radius) var(--radius);padding:var(--s4) var(--s3) var(--s3);text-align:center;display:flex;flex-direction:column;gap:var(--s1);border:1px solid var(--line)}
+.cls svg{width:120px;height:80px;margin:0 auto var(--s1)}
+.cls h3{font-size:20px;letter-spacing:.14em}
+.cls .meta{font-size:14px;color:var(--accent);letter-spacing:.08em}
+.cls p{font-size:15px;color:var(--sub);margin:0;text-align:left}
+
+/* 初めての方へ */
+.first{display:grid;gap:var(--s4)}
+@media (min-width:880px){.first{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.first h3{font-size:19px;letter-spacing:.12em;margin-bottom:var(--s2)}
+.bring{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.bring li{display:grid;grid-template-columns:48px 1fr;gap:16px;align-items:center;background:var(--bg);border-radius:999px;padding:8px 20px 8px 8px}
+.bring svg{width:48px;height:48px}
+.bring small{display:block;font-size:14px;color:var(--sub)}
+.day{list-style:none;margin:0;padding:0 0 0 28px;position:relative}
+.day::before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:2px;background:repeating-linear-gradient(var(--accent) 0 4px,transparent 4px 10px)}
+.day li{position:relative;padding:0 0 var(--s3)}
+.day li::before{content:"";position:absolute;left:-28px;top:8px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+.day time{display:block;font-size:14px;color:var(--accent);letter-spacing:.1em}
+.day p{margin:0;color:var(--sub);font-size:15px}
+.care{margin-top:var(--s4);border:1px solid var(--line);border-radius:var(--radius);padding:var(--s3);font-size:15px;color:var(--sub);background:var(--bg)}
+.care b{color:var(--fg)}
+
+/* スケジュール（曜日ごとの列） */
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;list-style:none;margin:0 0 var(--s3);padding:0;font-size:14px}
+.legend li{display:flex;align-items:center;gap:8px}
+.legend i{width:14px;height:14px;border-radius:50%;display:inline-block}
+.c-begin{--c:#cfe0d2;--ci:#25452c}
+.c-morning{--c:#f3dcb4;--ci:#5a3d00}
+.c-gentle{--c:#d9d0ea;--ci:#3d3060}
+.c-online{--c:#cfe1ef;--ci:#1e3f58}
+.legend .c-begin i,.legend .c-morning i,.legend .c-gentle i,.legend .c-online i{background:var(--c);border:1px solid var(--ci)}
+.week{display:grid;gap:12px;list-style:none;margin:0;padding:0}
+@media (min-width:880px){.week{grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}}
+.week>li{background:var(--bg);border-radius:20px;padding:var(--s2);border:1px solid var(--line)}
+.week h3{font-size:16px;letter-spacing:.1em;text-align:center;padding-bottom:8px;margin-bottom:8px;border-bottom:1px solid var(--line)}
+.week ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+@media (max-width:879px){
+  .week>li{display:grid;grid-template-columns:3em 1fr;gap:12px;align-items:start}
+  .week h3{border:0;padding:8px 0 0;margin:0;text-align:left}
+  .week ul{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}
+}
+.slot{background:var(--c);color:var(--ci);border-radius:14px;padding:8px 10px;font-size:14px;line-height:1.5;font-weight:500}
+.slot time{display:block;font-weight:500;font-size:14px}
+.slot.off{background:transparent;color:var(--sub);text-align:center;border:1px dashed var(--line)}
+.week .today{border-color:var(--accent);border-width:2px}
+
+/* 料金カード */
+.plans{display:grid;gap:var(--s3);grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.plan{background:var(--bg);border-radius:var(--radius);padding:var(--s3);display:flex;flex-direction:column;gap:var(--s1);border:1px solid var(--line);position:relative}
+.plan.rec{border:2px solid var(--accent)}
+.plan .badge{position:absolute;top:-14px;left:24px;background:var(--accent);color:#fff;font-size:13px;border-radius:999px;padding:2px 14px;font-weight:500}
+.plan h3{font-size:18px;letter-spacing:.1em}
+.plan .yen{font-size:32px;font-weight:300;color:var(--accent);line-height:1.3;letter-spacing:.04em}
+.plan .yen small{font-size:14px;color:var(--sub);margin-left:4px}
+.plan p{font-size:15px;color:var(--sub);margin:0}
+.plan ul{margin:var(--s1) 0 0;padding-left:1.2em;font-size:14px;color:var(--sub)}
+.note{font-size:14px;color:var(--sub)}
+
+.page-head{text-align:center;padding:var(--s5) 0 var(--s3)}
+.page-head h1{font-size:clamp(26px,3.6vw,36px);font-weight:300;letter-spacing:.2em}
+.page-head .en{display:block;font-size:13px;letter-spacing:.4em;color:var(--accent);margin-bottom:var(--s1)}
+.page-head p{max-width:32em;margin:var(--s2) auto 0;color:var(--sub)}
+.jump{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;list-style:none;padding:0;margin:var(--s3) 0 0}
+.jump a{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:999px;border:1px solid var(--accent);text-decoration:none;background:var(--bg)}
+
+.two{display:grid;gap:var(--s4)}
+@media (min-width:880px){.two{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.map-ph{border-radius:var(--radius)}
+.info{border-top-color:var(--line)}
+.form input,.form select,.form textarea{border-radius:16px;border-color:#8c8294;background:#fffdf9}
+.radio-row{display:flex;flex-wrap:wrap;gap:8px}
+.radio-row label{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 18px;border:1px solid #8c8294;border-radius:999px;font-weight:300;margin:0;cursor:pointer;background:#fffdf9}
+.radio-row input{width:auto;min-height:0;accent-color:var(--accent)}
+fieldset{border:0;padding:0;margin:0}
+legend{margin-bottom:6px;padding:0}
+.faq summary{font-weight:500}
+.faq summary::after{font-weight:300}
+
+.cta{text-align:center}
+.cta .btn-row{justify-content:center}
+
+.site-footer{background:#3b3447;color:#f6f1e9;border-radius:48px 48px 0 0}
+.site-footer a{color:#f6f1e9}
+.site-footer .fname{font-size:18px;letter-spacing:.16em;margin-bottom:var(--s1);font-weight:500}
+.site-footer p{margin:0 0 4px}
+@media (min-width:768px){.site-footer .container{grid-template-columns:1fr auto;align-items:end}}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}

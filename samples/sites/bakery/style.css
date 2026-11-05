@@ -1,0 +1,152 @@
+/* パン屋 むぎぶえ舎（見本）— 小麦色と焦げ茶、丸い太字、ころんとした形 */
+:root{
+  --bg:#fff8ec; --fg:#3b2414; --sub:#6e5040; --line:#ecd9bb; --soft:#f8e9cc;
+  --accent:#8a4b1c; --accent-ink:#ffffff; --accent-soft:#fbe7c6;
+  --wheat:#e5a84b; --crust:#c47a2c; --cocoa:#3b2414;
+  --font-body:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --font-head:var(--font-body);
+  --head-weight:800; --head-spacing:.01em;
+  --radius:20px;
+}
+body{font-weight:400}
+b,strong{font-weight:800}
+.btn{border-radius:999px;font-weight:800}
+.btn.ghost{background:var(--bg)}
+.site-nav a{border-radius:999px}
+.site-header{border-bottom:0;box-shadow:0 2px 0 var(--line)}
+.logo{font-weight:800;font-size:19px}
+.logo svg{width:40px;height:40px}
+.logo small{display:block;font-size:11px;font-weight:400;color:var(--sub);letter-spacing:.08em;line-height:1.2}
+.logo span{line-height:1.3}
+
+/* 見出しの飾り：麦の穂つきのラベル＋波線 */
+.eyebrow{display:inline-flex;align-items:center;gap:6px;background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:4px 14px 4px 10px;font-size:13px;letter-spacing:.06em}
+.eyebrow::before{content:"";width:10px;height:16px;background:var(--wheat);border-radius:50% 50% 50% 50%/60% 60% 40% 40%;flex:none}
+.section-head h2{font-size:clamp(26px,3.6vw,36px)}
+.section-head h2::after{content:"";display:block;width:88px;height:10px;margin-top:12px;background:radial-gradient(circle at 6px 0,transparent 5px,var(--wheat) 5.5px 7px,transparent 7.5px) 0 0/16px 10px repeat-x}
+.section.soft{background:var(--soft)}
+.section.cocoa{background:var(--cocoa);color:#fff6e6}
+.section.cocoa .section-head p{color:#ecd9bb}
+.section.cocoa .eyebrow{background:#5a3a22;color:#ffe3b3}
+
+/* ヒーロー */
+.hero{padding:var(--s5) 0 var(--s4);position:relative;overflow:hidden}
+.hero .container{display:grid;gap:var(--s4);align-items:center;grid-template-columns:1fr}
+.hero h1{font-size:clamp(32px,5.6vw,56px);line-height:1.3;letter-spacing:0}
+.hero h1 em{font-style:normal;color:var(--accent);background:linear-gradient(transparent 62%,#f7d79a 62% 92%,transparent 92%)}
+.hero .lead{margin-top:var(--s3);max-width:30em;font-size:17px}
+.hero-art{position:relative;max-width:480px;justify-self:center;width:100%}
+.hero-art .tray{aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 45%,#f9dfae 0 55%,#efc887 56% 100%);display:grid;place-items:center;padding:8%}
+.hero-art svg{width:100%;height:auto}
+.hero-art .badge{position:absolute;right:2%;top:4%;width:120px;height:120px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-content:center;text-align:center;font-weight:800;line-height:1.3;font-size:14px;transform:rotate(8deg);box-shadow:0 0 0 6px var(--bg),0 0 0 8px var(--accent)}
+.hero-art .badge b{font-size:28px;display:block;letter-spacing:.02em}
+.hero .open{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:var(--s3);font-size:15px}
+.hero .open span{background:#fff;border:2px solid var(--line);border-radius:999px;padding:6px 16px}
+@media (min-width:768px){.hero .container{grid-template-columns:1.1fr .9fr}.hero{padding:var(--s6) 0 var(--s5)}}
+
+/* 焼き上がり時間表（タイムライン） */
+.bake-time{list-style:none;margin:0;padding:0;display:grid;gap:0;position:relative}
+.bake-time li{display:grid;grid-template-columns:76px 56px 1fr;align-items:center;gap:12px;padding:12px 0;position:relative}
+.bake-time li::before{content:"";position:absolute;left:calc(76px + 12px + 27px);top:0;bottom:0;width:3px;background:#5a3a22}
+.bake-time li:first-child::before{top:50%}
+.bake-time li:last-child::before{bottom:50%}
+.bake-time time{font-size:24px;font-weight:800;color:#ffd894;letter-spacing:.02em;text-align:right;font-variant-numeric:tabular-nums}
+.bake-time .dot{width:56px;height:56px;border-radius:50%;background:#fff3dc;display:grid;place-items:center;position:relative;z-index:1;box-shadow:0 0 0 4px var(--cocoa)}
+.bake-time .dot svg{width:40px;height:40px}
+.bake-time b{display:block;font-size:17px;color:#fff}
+.bake-time span{font-size:14px;color:#ecd9bb}
+@media (min-width:900px){
+  .bake-time{grid-template-columns:repeat(6,1fr);gap:8px}
+  .bake-time li{grid-template-columns:1fr;justify-items:center;align-content:start;text-align:center;padding:0;gap:8px}
+  .bake-time li::before{left:0;right:0;top:calc(36px + 8px + 27px);bottom:auto;width:auto;height:3px}
+  .bake-time li:first-child::before{left:50%;top:calc(36px + 8px + 27px)}
+  .bake-time li:last-child::before{right:50%;bottom:auto}
+  .bake-time time{text-align:center}
+}
+.bake-note{margin-top:var(--s4);font-size:14px;color:#ecd9bb;max-width:var(--measure)}
+
+/* 商品カード：ころんとした札 */
+.breads{display:grid;gap:var(--s3);grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr))}
+.bread{background:#fff;border-radius:28px;padding:var(--s3);display:flex;flex-direction:column;gap:8px;position:relative;box-shadow:0 4px 0 var(--line)}
+.bread .pic{background:var(--soft);border-radius:50%;width:120px;height:120px;display:grid;place-items:center;margin:0 auto var(--s1)}
+.bread .pic svg{width:92px;height:92px}
+.bread .kind{font-size:13px;font-weight:800;color:var(--accent);letter-spacing:.06em}
+.bread h3{font-size:20px}
+.bread p{margin:0;font-size:15px;color:var(--sub)}
+.bread .yen{position:absolute;top:16px;right:16px;background:var(--accent);color:#fff;border-radius:50%;width:72px;height:72px;display:grid;place-content:center;text-align:center;font-weight:800;font-size:18px;line-height:1.1;transform:rotate(-6deg)}
+.bread .yen small{font-size:11px;font-weight:400;display:block}
+.bread .time{font-size:14px;color:var(--fg)}
+.allergen{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 0;padding:0;list-style:none}
+.allergen li{font-size:13px;line-height:1.5;border:1.5px solid #b48a63;color:var(--fg);border-radius:6px;padding:1px 8px}
+.allergen li.none{border-style:dashed}
+.bread.season{background:#fff3dc;box-shadow:0 4px 0 #efc887}
+.bread.season .kind{color:#7a3d12}
+
+/* アレルギー注意 */
+.caution{display:grid;grid-template-columns:48px 1fr;gap:var(--s2);background:#fff;border:3px solid var(--accent);border-radius:var(--radius);padding:var(--s3);max-width:840px}
+.caution .ic{width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:800;font-size:26px}
+.caution h3{font-size:19px;margin-bottom:8px}
+.caution p{margin:0 0 8px;font-size:15px}
+.caution p:last-child{margin:0}
+
+/* 取り置きの流れ（横並びの丸） */
+.hold{list-style:none;margin:0;padding:0;display:grid;gap:var(--s3);grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));counter-reset:h}
+.hold li{counter-increment:h;background:#fff;border-radius:var(--radius);padding:var(--s4) var(--s3) var(--s3);position:relative;border:2px solid var(--line)}
+.hold li::before{content:counter(h);position:absolute;top:-20px;left:24px;width:44px;height:44px;border-radius:50%;background:var(--wheat);color:var(--cocoa);font-weight:800;font-size:20px;display:grid;place-items:center;border:3px solid var(--bg)}
+.hold b{display:block;font-size:18px;margin-bottom:4px}
+.hold span{font-size:15px;color:var(--sub)}
+
+/* 2カラム */
+.split{display:grid;gap:var(--s4)}
+@media (min-width:768px){.split{grid-template-columns:1fr 1fr;align-items:start}}
+
+/* 料金表・メニュー */
+.menu-block{margin-bottom:var(--s5)}
+.menu-block:last-child{margin-bottom:0}
+.menu-block h3{font-size:22px;display:flex;align-items:center;gap:12px;margin-bottom:var(--s2)}
+.menu-block h3 svg{width:44px;height:44px;flex:none}
+.price{background:#fff;border-radius:var(--radius);overflow:hidden}
+.price th,.price td{padding:14px 16px;border-bottom:1.5px dashed var(--line)}
+.price tr:last-child th,.price tr:last-child td{border-bottom:0}
+.price thead th{background:var(--accent-soft);font-size:13px;color:var(--fg);border-bottom:0}
+.price td.al{font-size:13px;color:var(--sub)}
+.price th small{display:block;font-weight:400;font-size:13px;color:var(--sub)}
+.legend{font-size:14px;color:var(--sub);margin-top:var(--s2)}
+
+.cal{display:grid;gap:var(--s2);grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));margin:0;padding:0;list-style:none}
+.cal li{background:#fff;border-radius:var(--radius);padding:var(--s2) var(--s3);border-top:8px solid var(--wheat)}
+.cal li:nth-child(2){border-top-color:#d98c45}
+.cal li:nth-child(3){border-top-color:#a35c22}
+.cal li:nth-child(4){border-top-color:#c9a77c}
+.cal b{display:block;font-size:17px}
+.cal span{font-size:14px;color:var(--sub)}
+
+.faq details{border-bottom:2px dashed var(--line)}
+.card{border-radius:var(--radius);border:2px solid var(--line)}
+.map-ph{border-radius:var(--radius)}
+.form input,.form select,.form textarea{border-radius:14px;background:#fff}
+.form fieldset{border:0;padding:0;margin:0;display:grid;gap:var(--s2)}
+.form legend{font-weight:800;margin-bottom:6px;padding:0}
+.form .row2{display:grid;gap:var(--s2)}
+@media (min-width:600px){.form .row2{grid-template-columns:1fr 1fr}}
+.form .checks{display:flex;flex-wrap:wrap;gap:8px 16px}
+.form .checks label{display:inline-flex;align-items:center;gap:8px;font-weight:400;min-height:44px;margin:0}
+.form .checks input{width:22px;height:22px;min-height:0;accent-color:var(--accent)}
+
+.site-footer{background:var(--cocoa);color:#fff6e6;border-top:8px solid var(--wheat)}
+.site-footer a{color:#ffe3b3}
+.site-footer .brand{font-weight:800;font-size:18px}
+
+@media (prefers-reduced-motion:no-preference){
+  .hero-art .tray svg{animation:puff 3.6s ease-in-out infinite alternate}
+  @keyframes puff{from{transform:scale(1)}to{transform:scale(1.02)}}
+  .bread{transition:transform .2s ease}
+  .bread:hover{transform:translateY(-3px)}
+}
+@media (max-width:480px){
+  .caution{grid-template-columns:1fr;padding:var(--s3) var(--s2)}
+  .hero-art{max-width:320px}
+  .bake-time li{grid-template-columns:64px 56px 1fr}
+  .bake-time li::before{left:calc(64px + 12px + 27px)}
+  .bake-time time{font-size:21px}
+}
