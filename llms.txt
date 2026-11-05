@@ -1,0 +1,37 @@
+# ZAZOU Lab（ZAZOU株式会社・松村貴士）
+
+> ZAZOU株式会社（滋賀県蒲生郡日野町、2020年6月設立、代表取締役 松村貴士）のポートフォリオです。役割ごとの AI（Claude など）を統括役の AI がまとめる「階層型の AI エージェント体制」を自社の業務で毎日運用しています。AI には事実をまとめた表だけを使わせ、別の AI による二重チェックと人の最終確認を通してから外に出します。この運用をもとに、資料作成・リサーチ・業務改善・図面からの見積書作成を引き受けています。
+
+- 代表の松村貴士は、パナソニックで約15年、機構設計（チューナ、縦型洗濯機、ロボット掃除機の駆動部）に携わり、図面を描き、読んできました。使用 CAD は CATIA・NX・SolidWorks・MICRO CADAM Helix です。
+- 会社の本業は、家電・日用品・ペットフードの販売と輸出入（Amazon・Yahoo!ショッピング・BASE）です。
+- 「仕事一覧」の見本は、会社名・人名・数字を変えて載せたものです。
+
+## できること
+
+- [資料作成・リサーチ](https://takmat21.github.io/#samples): 一次情報（公式サイト・公募要領など）で確かめ、出典を添えてまとめます。PowerPoint・Googleスライド・PDF。
+- [業務改善（スプレッドシート・GAS）](https://takmat21.github.io/lab/gas/): 期限の通知、週次の集計、入力チェックなど、毎週の手作業を仕組みにします。
+- [図面から見積書作成](https://takmat21.github.io/samples/drawing-estimate/): 図面を読んで寸法・材質・溶接箇所を拾い出し、材料取り・加工工数・積算から見積書まで仕上げます。AI は下書きまでで、最終の金額は人が決めます。
+- EC・商品企画: Amazon・Yahoo!ショッピング・BASE での販売。Makuake では企画から撮影・文章・広告・発送まで一人で担当しました（[全身シャンプーバー](https://www.makuake.com/project/4szpaki/)、応援購入総額 424,930 円・達成率 141%）。
+- AI の業務活用（誤りを防ぐ仕組みつき）: 事実の表、AI による二重チェック、人の最終確認を組み込んだ運用。
+
+## 主なページ
+
+- [トップ（プロフィール・仕事一覧・仕組み・経歴）](https://takmat21.github.io/)
+- [図面見積アプリ（金属加工向け）](https://takmat21.github.io/samples/drawing-estimate/)
+- [見積書作成：図面から見積書までの流れ](https://takmat21.github.io/samples/estimate-flow/)
+- [階層型マルチエージェント 構成と運用（自社事例）](https://takmat21.github.io/samples/system/)
+- [GAS の見本ツール](https://takmat21.github.io/lab/gas/)
+- [統括 AI（先輩）の朝刊](https://takmat21.github.io/news/): 統括 AI が AI エージェントの最新動向を毎朝読み、自社の運用と照らして発行しています。
+- [論文（執筆中）：記憶の欠落への対処](https://takmat21.github.io/paper/)
+- [AI の今を語る人たちと、インタビューの日本語要約](https://takmat21.github.io/video/interviews/)
+
+## 連絡方法
+
+- ご依頼・ご相談は、各サービスのメッセージからお願いします：[クラウドワークスのプロフィール](https://crowdworks.jp/public/employees/3288043)
+- note（調査記事）：https://note.com/takashimatsumura
+- 会社サイト：https://koorogi.site/
+
+## Optional
+
+- [仕事一覧の見本（全件）](https://takmat21.github.io/#samples)
+- [サイトマップ](https://takmat21.github.io/sitemap.xml)
