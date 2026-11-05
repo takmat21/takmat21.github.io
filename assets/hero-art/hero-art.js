@@ -469,14 +469,14 @@
 
     function frame(now) {
       raf = 0;
-      if (!visible || reduce.matches || fixedPhase != null) return;
+      if (!visible || reduce.matches || fixedPhase != null || paused) return;
       mouse.x += (mouse.tx - mouse.x) * 0.04;
       mouse.y += (mouse.ty - mouse.y) * 0.04;
       var p = (((now - t0) % LOOP_MS) + LOOP_MS) % LOOP_MS / LOOP_MS;
       draw(p);
       raf = requestAnimationFrame(frame);
     }
-    function start() { if (!raf && fixedPhase == null && !reduce.matches) raf = requestAnimationFrame(frame); }
+    function start() { if (!paused && !raf && fixedPhase == null && !reduce.matches) raf = requestAnimationFrame(frame); }
 
     if (finePointer) {
       el.addEventListener('pointermove', function (ev) {
@@ -492,7 +492,20 @@
     document.addEventListener('visibilitychange', function () { visible = !document.hidden; if (visible) start(); });
     var onReduce = function () { if (reduce.matches) draw(STILL_PHASE); else start(); };
     if (reduce.addEventListener) reduce.addEventListener('change', onReduce);
-    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(el); else window.addEventListener('resize', resize);
+    // size changes come in bursts (a phone turning, a window being dragged): rebuild once they settle,
+    // but at once when the panel first gets a size (it was hidden)
+    var rzTimer = 0;
+    // a resize clears the canvas: while paused, paint the paused moment again
+    function resizeNow() { resize(); if (paused && !reduce.matches && fixedPhase == null) draw((((pausedAt - t0) % LOOP_MS) + LOOP_MS) % LOOP_MS / LOOP_MS); }
+    function resizeSoon() { clearTimeout(rzTimer); if (canvas.width <= 2) resizeNow(); else rzTimer = setTimeout(resizeNow, 150); }
+    if ('ResizeObserver' in window) new ResizeObserver(resizeSoon).observe(el); else window.addEventListener('resize', resizeSoon);
+    // pause and resume (for the pause button, assets/hero-pause): the picture stops where it is and goes on from there
+    var paused = false, pausedAt = 0;
+    el.__heroCtl = {
+      pause: function () { if (paused) return; paused = true; pausedAt = performance.now(); },
+      resume: function () { if (!paused) return; paused = false; t0 += performance.now() - pausedAt; start(); },
+      isPaused: function () { return paused; }
+    };
     resize();
     start();
     return { draw: draw, setPhase: function (p) { fixedPhase = p; draw(p); } };
