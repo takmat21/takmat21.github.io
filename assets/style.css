@@ -183,3 +183,15 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 /* 和文の改行と、和文・英数字のあいだの空き（対応ブラウザのみ） */
 body{line-break:strict;text-autospace:normal}
 p,dd,li{overflow-wrap:anywhere}
+/* 仕事一覧の上の「代表作」：成果の数字から読ませるカード */
+.picks{list-style:none;margin:0 0 36px;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.picks a{display:flex;flex-direction:column;height:100%;padding:20px;border:1px solid var(--line);border-radius:8px;color:inherit;text-decoration:none;background:var(--bg)}
+.picks .pk{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--sub)}
+.picks .pn{font-family:var(--mono);font-size:40px;font-weight:600;line-height:1.1;color:var(--accent);margin:14px 0 8px}
+.picks .pn small{font-size:16px;margin-left:2px}
+.picks .pt{font-weight:700;line-height:1.6}
+.picks .pd{font-size:14px;color:var(--sub);line-height:1.75;margin-top:6px}
+.picks a:hover{border-color:var(--accent)}
+.picks a:hover .pt{color:var(--accent)}
+@media (prefers-reduced-motion:no-preference){.picks a{transition:transform .2s,border-color .2s}.picks a:hover{transform:translateY(-3px)}}
+@media (max-width:800px){.picks{grid-template-columns:1fr;gap:12px}.picks .pn{font-size:34px}}
