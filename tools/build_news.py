@@ -5,6 +5,7 @@ import json, glob, os, html, re, urllib.request
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NEWS = os.path.join(ROOT, 'news')
 CSS_V = '20261101g'
+FONT_CSS = 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap'
 E = html.escape
 
 def og_image(url):
@@ -23,7 +24,8 @@ def og_image(url):
     return ''
 
 def fill_images(d, path):
-    """サムネイルのURLが未取得の記事だけ取りに行き、JSONに保存する（次回からは取りに行かない）。"""
+    """（使っていない）以前は記事の og:image を取りに行っていた。11/5 から外部の画像は表示しない
+    （他社の画像をそのまま使わない・表示を軽くする）ため、呼び出しをやめた。"""
     changed = False
     for it in d['items']:
         if 'image' not in it:
@@ -34,7 +36,7 @@ def fill_images(d, path):
     if changed:
         json.dump({k: v for k, v in d.items() if k != 'slug'}, open(path, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 
-def head(title, desc, url, depth):
+def head(title, desc, url, depth, og='https://takmat21.github.io/assets/ogp.png'):
     up = '../' * depth
     return f'''<!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -47,10 +49,11 @@ def head(title, desc, url, depth):
 <meta property="og:site_name" content="ZAZOU Lab">
 <meta property="og:description" content="{E(desc)}">
 <meta property="og:url" content="https://takmat21.github.io/{url}">
-<meta property="og:image" content="https://takmat21.github.io/assets/ogp.png">
+<meta property="og:image" content="{og}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="description" content="{E(desc)}">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="{FONT_CSS}" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href="{FONT_CSS}" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="{up}assets/style.css?v={CSS_V}">
 <style>
 .news-item{{border-top:1px solid var(--line);padding:20px 0}}
@@ -89,7 +92,7 @@ def body(d):
         links = [{'source': it['source'], 'url': it['url'], 'image': it.get('image', ''), 'note': '公式・一次情報'}] + list(it.get('reaction_sources') or [])
         cards = []
         for r in links:
-            img = f'<img src="{E(r["image"])}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.outerHTML=\'<div class=ph>{E(r["source"])}</div>\'">' if r.get('image') else f'<div class="ph">{E(r["source"])}</div>'
+            img = f'<div class="ph">{E(r["source"])}</div>'  # 外部の画像は表示しない（11/5）
             cards.append(f'<a class="lk" href="{E(r["url"])}" target="_blank" rel="noopener">{img}<span>{E(r["source"])}<small>{E(r.get("note",""))}</small></span></a>')
         parts.append('<div class="links">' + ''.join(cards) + '</div>')
         parts.append(f'<div class="news-meta">{E(it["date"])}</div></article>')
@@ -109,7 +112,14 @@ def make_thumb(a, p):
         js = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'news_thumb.js')
         subprocess.run(['node', js, png, a.get('category', '今日の話題'), a['title'], a.get('date', a['slug'][:10])], check=True)
         open(stamp, 'w').write(key)
-    a['thumb'] = True
+    webp = os.path.join(p, 'thumb.webp')
+    if not os.path.exists(webp) or os.path.getmtime(webp) < os.path.getmtime(png):
+        try:
+            from PIL import Image
+            Image.open(png).convert('RGB').resize((600, 314), Image.LANCZOS).save(webp, 'WEBP', quality=82, method=6)
+        except Exception:
+            pass  # Pillow が無い環境では PNG をそのまま使う
+    a['thumb'] = 'thumb.webp' if os.path.exists(webp) else 'thumb.png'
 
 
 def build_daily():
@@ -118,17 +128,10 @@ def build_daily():
     for f in glob.glob(os.path.join(NEWS, 'daily', '*.json')):
         a = json.load(open(f, encoding='utf-8'))
         a['slug'] = os.path.splitext(os.path.basename(f))[0]
-        changed = False
-        for l in a.get('links', []):
-            if 'image' not in l:
-                l['image'] = og_image(l['url']); changed = True
-        if changed:
-            json.dump({k: v for k, v in a.items() if k != 'slug'}, open(f, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
         arts.append(a)
         p = os.path.join(NEWS, 'd', a['slug']); os.makedirs(p, exist_ok=True)
-        if not (a.get('links') or [{}])[0].get('image'):
-            make_thumb(a, p)  # 写真のない号は見出し画像を作る（11/3 松村さん）
-        s = head(a['title'], a['lead'][:110], f'news/d/{a["slug"]}/', 3)
+        make_thumb(a, p)  # 全号で見出し画像を作る（外部の写真は使わない。11/5）
+        s = head(a['title'], a['lead'][:110], f'news/d/{a["slug"]}/', 3, f'https://takmat21.github.io/news/d/{a["slug"]}/thumb.png')
         s += f'<header class="hero"><p class="name"><a href="../../">統括AI（先輩）の朝刊</a></p><span class="tag">{E(a.get("category","今日の話題"))}</span><h1>{E(a["title"])}</h1><p class="news-meta">{E(a.get("date",a["slug"][:10]))}　発行：ZAZOU Inc.</p></header>\n<section class="news-item"><p class="lead">{E(a["lead"])}</p>'
         for sec in a.get('sections', []):
             s += f'<h3>{E(sec["heading"])}</h3>' + ''.join(f'<p>{E(x)}</p>' for x in sec['paragraphs'])
@@ -144,8 +147,8 @@ def build_daily():
         s += '</ul>'
         s += '<h3>関連記事</h3><div class="links">'
         for l in a.get('links', []):
-            src = l.get('image') or ('thumb.png' if a.get('thumb') and l is a['links'][0] else '')
-            img = f'<img src="{E(src)}" alt="" loading="lazy" referrerpolicy="no-referrer">' if src else f'<div class="ph">{E(l["source"])}</div>'
+            src = a['thumb'] if a.get('thumb') and l is a['links'][0] else ''
+            img = f'<img src="{E(src)}" alt="" loading="lazy" width="600" height="314">' if src else f'<div class="ph">{E(l["source"])}</div>'
             s += f'<a class="lk" href="{E(l["url"])}" target="_blank" rel="noopener">{img}<span>{E(l["source"])}<small>{E(l.get("note",""))}</small></span></a>'
         s += f'</div><p style="margin-top:24px"><a href="../../">← 統括AI（先輩）の朝刊の一覧へ</a></p>{NOTE}</section>\n' + FOOT
         open(os.path.join(p, 'index.html'), 'w', encoding='utf-8').write(s)
@@ -158,7 +161,6 @@ def main():
     for f in sorted(glob.glob(os.path.join(NEWS, 'data', '*.json'))):
         d = json.load(open(f, encoding='utf-8'))
         d['slug'] = os.path.splitext(os.path.basename(f))[0]
-        fill_images(d, f)
         weeks.append(d)
     weeks.sort(key=lambda d: d['slug'], reverse=True)
     for d in weeks:
@@ -180,8 +182,8 @@ def main():
 <p class="note" style="margin-top:14px">各号の構成：①記事の要約（海外の記事は日本語で）②自社のAIチームの運用から見ると ③小規模事業者にとって。元の記事へのリンクを付けています。</p></header>
 '''
     def card(a, big=False):
-        im = (a.get('links') or [{}])[0].get('image', '') or (f'd/{a["slug"]}/thumb.png' if a.get('thumb') else '')
-        img = f'<img src="{E(im)}" alt="" loading="lazy" referrerpolicy="no-referrer">' if im else f'<div class="ph">{E(a.get("category",""))}</div>'
+        im = f'd/{a["slug"]}/{a["thumb"]}' if a.get('thumb') else ''
+        img = f'<img src="{E(im)}" alt="" loading="lazy" width="600" height="314">' if im else f'<div class="ph">{E(a.get("category",""))}</div>'
         extra = f'<small style="margin-top:6px;color:var(--sub)">{E(a.get("lead",""))}</small>' if big else ''
         return f'<a class="lk" href="d/{a["slug"]}/">{img}<span><small>{E(a.get("date",""))}・{E(a.get("category",""))}</small>{E(a["title"])}{extra}</span></a>'
     agent = [a for a in arts if any(sec.get('heading','').startswith('自社のAIチーム') for sec in a.get('sections', []))]
@@ -199,6 +201,8 @@ def main():
     open(os.path.join(NEWS, 'index.html'), 'w', encoding='utf-8').write(s)
     from build_sitemap import build as build_sitemap
     print('sitemap', build_sitemap(), 'urls')
+    from seo_jsonld import run as add_jsonld  # 構造化データ（検索・AI検索向け。11/5 太郎）
+    print('json-ld', len(add_jsonld()), 'pages')
     print('built', len(weeks), 'weeks; latest', latest['slug'])
 
 if __name__ == '__main__':
