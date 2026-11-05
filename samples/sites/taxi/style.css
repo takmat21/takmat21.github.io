@@ -165,3 +165,44 @@ p{margin-bottom:var(--s3)}
 .site-footer small{font-size:16px}
 .prep{margin:0;padding-left:1.4em}
 .prep li{margin-bottom:var(--s1)}
+
+/* 写真（Unsplash・イメージ） */
+figure{margin:0}
+.hero-art.photo img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:30% 50%;border-radius:var(--radius);border:3px solid #fff;box-shadow:0 0 0 2px #f2d3b3}
+@media (max-width:767px){.hero-art.photo img{aspect-ratio:16/10}}
+.vehicle{display:grid;gap:var(--s3);margin-top:var(--s5)}
+@media (min-width:768px){.vehicle{grid-template-columns:1fr 1fr;align-items:stretch}}
+.vehicle figure{background:#fff;border:2px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+.vehicle img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.vehicle-art svg{width:100%;height:auto;margin:auto 0;padding:var(--s2)}
+.vehicle figcaption{padding:12px var(--s2);font-size:17px;font-weight:700;color:var(--navy);border-top:2px solid var(--line);margin-top:auto}
+.page-head.with-pic .container{display:grid;gap:var(--s3);align-items:center}
+@media (min-width:768px){.page-head.with-pic .container{grid-template-columns:1.4fr 1fr}}
+.page-head .head-pic img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius);background:#fff;border:2px solid #f2d3b3}
+@media (max-width:767px){.page-head .head-pic{max-width:360px}}
+
+/* 電話番号のリンク */
+.tel-link{color:inherit;text-decoration:none;border-bottom:2px solid currentColor}
+.tel-num .tel-link,.cta-tel .tel-link{border-bottom-width:3px}
+
+/* 見出しを単語の途中で折らない */
+.scenes b,.flow4 b,.fact h3,.ride-card h3{word-break:auto-phrase;text-wrap:balance}
+.nw,.scenes b .nw{display:inline-block;font-size:inherit;color:inherit}
+
+/* ナビ：スマホでは短い文言で3等分 */
+.site-nav .ns{display:none}
+@media (max-width:640px){
+  .site-nav ul{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .site-nav a{height:56px;min-height:56px;white-space:nowrap;font-size:17px;padding:0 4px}
+  .site-nav .nl{display:none}
+  .site-nav .ns{display:inline}
+}
+
+/* スマホ：画面下に固定の電話バー */
+.call-bar{display:none}
+@media (max-width:640px){
+  .call-bar{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;align-items:center;justify-content:center;gap:10px;height:64px;padding-bottom:env(safe-area-inset-bottom);box-sizing:content-box;background:#c2410c;color:#fff;font-size:20px;font-weight:700;text-decoration:none;box-shadow:0 -2px 8px rgba(0,0,0,.2)}
+  .call-bar small{font-size:14px;font-weight:400}
+  .call-bar:focus-visible{outline:3px solid #fff;outline-offset:-6px}
+  body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+}

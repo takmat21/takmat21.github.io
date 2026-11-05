@@ -150,3 +150,17 @@ b,strong{font-weight:800}
   .bake-time li::before{left:calc(64px + 12px + 27px)}
   .bake-time time{font-size:21px}
 }
+
+/* 写真（Unsplash・イメージ） */
+figure{margin:0}
+.hero-art .tray.photo{padding:0;overflow:hidden;background:var(--soft);box-shadow:0 0 0 10px #f9dfae,0 0 0 12px var(--crust)}
+.hero-art .tray.photo img{width:100%;height:100%;object-fit:cover}
+.make-pics{display:grid;gap:var(--s3)}
+@media (min-width:768px){.make-pics{grid-template-columns:1.6fr 1fr;align-items:stretch}}
+.make-pics figure{display:flex;flex-direction:column;gap:12px}
+.make-pics img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius);flex:1 1 auto;min-height:0}
+@media (min-width:768px){.make-pics img{aspect-ratio:auto;height:100%;max-height:440px}.make-pics figure:not(.big) img{object-position:50% 40%}}
+.make-pics figcaption{font-size:15px;color:var(--sub)}
+.make-pics figcaption b{display:inline-block;background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:0 12px;margin-right:8px}
+.head-pic{width:100%;aspect-ratio:3/1;object-fit:cover;border-radius:var(--radius);margin-top:var(--s4)}
+@media (max-width:640px){.head-pic{aspect-ratio:16/9}}

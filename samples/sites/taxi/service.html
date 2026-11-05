@@ -26,20 +26,23 @@
     </a>
     <nav class="site-nav" aria-label="メインメニュー">
       <ul>
-        <li><a href="./">トップ</a></li>
-        <li><a href="service.html" aria-current="page">料金・サービス</a></li>
-        <li><a href="contact.html">ご予約・お問い合わせ</a></li>
+        <li><a href="./" aria-label="トップ"><span class="nl">トップ</span><span class="ns" aria-hidden="true">トップ</span></a></li>
+        <li><a href="service.html" aria-current="page" aria-label="料金・サービス"><span class="nl">料金・サービス</span><span class="ns" aria-hidden="true">料金</span></a></li>
+        <li><a href="contact.html" aria-label="ご予約・お問い合わせ"><span class="nl">ご予約・お問い合わせ</span><span class="ns" aria-hidden="true">予約</span></a></li>
       </ul>
     </nav>
   </div>
 </header>
 
 <main id="main">
-  <section class="page-head">
+  <section class="page-head with-pic">
     <div class="container">
+      <div class="head-text">
       <span class="eyebrow">料金・サービス</span>
       <h1>料金とサービスの内容</h1>
       <p>料金は「運賃」「介助料」「機器の使用料」の合計です。ご予約の際に、おおよその金額をお伝えします。</p>
+      </div>
+      <figure class="head-pic"><img src="img/wheelchair.webp" width="900" height="697" alt="白い背景に置かれた、折りたたみ式の標準型車いす" loading="eager" fetchpriority="high" decoding="async"></figure>
     </div>
   </section>
 
@@ -127,7 +130,7 @@
   <section class="cta" aria-labelledby="h-cta">
     <div class="container cta-in">
       <h2 id="h-cta">料金のお見積もりだけでも、お気軽に。</h2>
-      <p class="cta-tel">000-0000-0000<small>（架空）</small></p>
+      <p class="cta-tel"><a class="tel-link" href="tel:00000000000">000-0000-0000</a><small>（架空）</small></p>
       <p>受付 7:00〜19:00　土日・祝日も営業</p>
     </div>
   </section>
@@ -138,10 +141,11 @@
     <div>
       <p class="foot-name">介護タクシー えんがわ便</p>
       <p>滋賀県みほん市ひだまり町1-2-3（架空）</p>
-      <p>電話 000-0000-0000（架空）</p>
+      <p>電話 <a class="tel-link" href="tel:00000000000">000-0000-0000</a>（架空）</p>
     </div>
-    <small>© 見本サイト（架空）— 制作 ZAZOU Lab　<a href="../">見本サイト一覧へ戻る</a></small>
+    <small>© 見本サイト（架空）— 制作 ZAZOU Lab　写真：Unsplash（イメージ）　<a href="../">見本サイト一覧へ戻る</a></small>
   </div>
 </footer>
+<a class="call-bar" href="tel:00000000000"><svg viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg>電話する<small>000-0000-0000（架空）</small></a>
 </body>
 </html>

@@ -140,3 +140,15 @@ legend{margin-bottom:6px;padding:0}
 .site-footer p{margin:0 0 4px}
 @media (min-width:768px){.site-footer .container{grid-template-columns:1fr auto;align-items:end}}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* 写真（Unsplash・イメージ） */
+figure{margin:0}
+.arch.photo{width:min(400px,78vw);aspect-ratio:320/360;border-radius:999px 999px var(--radius) var(--radius);overflow:hidden;background:var(--accent-soft);box-shadow:0 0 0 8px var(--bg),0 0 0 9px var(--line)}
+.arch.photo img{width:100%;height:100%;object-fit:cover;object-position:62% 60%}
+.arch.photo.small{width:min(240px,60vw);margin-bottom:var(--s3)}
+.arch.photo.small img{object-position:50% 70%}
+.room{margin:var(--s5) auto 0;max-width:960px}
+.room img{width:100%;aspect-ratio:21/9;object-fit:cover;object-position:50% 70%;border-radius:200px 200px var(--radius) var(--radius)}
+@media (max-width:640px){.room img{aspect-ratio:4/3;border-radius:120px 120px var(--radius) var(--radius)}}
+.room figcaption{text-align:center;font-size:14px;color:var(--sub);margin-top:var(--s1)}
+.first-pic{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--radius);margin-bottom:var(--s3)}

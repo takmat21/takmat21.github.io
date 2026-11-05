@@ -26,9 +26,9 @@
     </a>
     <nav class="site-nav" aria-label="メインメニュー">
       <ul>
-        <li><a href="./" aria-current="page">トップ</a></li>
-        <li><a href="service.html">料金・サービス</a></li>
-        <li><a href="contact.html">ご予約・お問い合わせ</a></li>
+        <li><a href="./" aria-current="page" aria-label="トップ"><span class="nl">トップ</span><span class="ns" aria-hidden="true">トップ</span></a></li>
+        <li><a href="service.html" aria-label="料金・サービス"><span class="nl">料金・サービス</span><span class="ns" aria-hidden="true">料金</span></a></li>
+        <li><a href="contact.html" aria-label="ご予約・お問い合わせ"><span class="nl">ご予約・お問い合わせ</span><span class="ns" aria-hidden="true">予約</span></a></li>
       </ul>
     </nav>
   </div>
@@ -43,7 +43,7 @@
         <p class="hero-lead">介護の資格をもつ運転手が、ご自宅のお部屋から病院の受付までお手伝いします。寝たままの移動もご相談ください。</p>
         <div class="tel-card">
           <p class="tel-label">お電話でのご予約</p>
-          <p class="tel-num">000-0000-0000<small>（架空）</small></p>
+          <p class="tel-num"><a class="tel-link" href="tel:00000000000">000-0000-0000</a><small>（架空）</small></p>
           <p class="tel-time">受付 7:00〜19:00　土日・祝日も営業</p>
         </div>
         <div class="btn-row">
@@ -51,33 +51,9 @@
           <a class="btn btn-big ghost" href="service.html#price">料金の目安を見る</a>
         </div>
       </div>
-      <div class="hero-art">
-        <svg viewBox="0 0 520 340" role="img" aria-label="後ろの扉を開けてスロープを下ろした福祉車両に、車いすの方が乗り込もうとしている絵">
-          <rect x="0" y="292" width="520" height="8" rx="4" fill="#14264a"/>
-          <g>
-            <path d="M40 120c0-30 20-50 52-56l120-20c18-3 30-4 50-4h120c20 0 30 10 30 30v200H40Z" fill="#ffffff" stroke="#14264a" stroke-width="5" stroke-linejoin="round"/>
-            <path d="M60 128l32-48c4-6 10-10 18-10h40v58Z" fill="#cfe0f5" stroke="#14264a" stroke-width="4" stroke-linejoin="round"/>
-            <rect x="168" y="70" width="80" height="58" rx="6" fill="#cfe0f5" stroke="#14264a" stroke-width="4"/>
-            <rect x="262" y="70" width="80" height="58" rx="6" fill="#cfe0f5" stroke="#14264a" stroke-width="4"/>
-            <rect x="40" y="176" width="372" height="24" fill="#c2410c"/>
-            <text x="226" y="194" text-anchor="middle" font-size="16" font-weight="700" fill="#fff" font-family="'BIZ UDGothic',sans-serif">介護タクシー えんがわ便</text>
-            <rect x="356" y="64" width="56" height="226" fill="#f3f5f9" stroke="#14264a" stroke-width="4"/>
-            <circle cx="112" cy="290" r="30" fill="#14264a"/><circle cx="112" cy="290" r="12" fill="#e5e7eb"/>
-            <circle cx="320" cy="290" r="30" fill="#14264a"/><circle cx="320" cy="290" r="12" fill="#e5e7eb"/>
-            <rect x="30" y="232" width="20" height="14" rx="3" fill="#ffb366" stroke="#14264a" stroke-width="3"/>
-          </g>
-          <path d="M412 262l96 30" stroke="#14264a" stroke-width="8" stroke-linecap="round"/>
-          <path d="M412 252l96 30" stroke="#c2410c" stroke-width="4" stroke-linecap="round"/>
-          <g transform="translate(438 150)">
-            <circle cx="18" cy="0" r="13" fill="#14264a"/>
-            <path d="M14 16c-6 0-10 4-10 10v34h30" fill="none" stroke="#14264a" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M34 60l8 30" stroke="#14264a" stroke-width="12" stroke-linecap="round"/>
-            <circle cx="16" cy="88" r="26" fill="none" stroke="#c2410c" stroke-width="7"/>
-            <path d="M-6 40h42" stroke="#c2410c" stroke-width="6" stroke-linecap="round"/>
-          </g>
-          <g fill="#c2410c"><circle cx="476" cy="40" r="6"/><circle cx="500" cy="64" r="4"/></g>
-        </svg>
-      </div>
+      <figure class="hero-art photo">
+        <img src="img/hero-wheelchair.webp" width="1000" height="667" alt="日の当たる庭先の小道で、車いすに座る白髪の方の後ろ姿" loading="eager" fetchpriority="high" decoding="async">
+      </figure>
     </div>
   </section>
 
@@ -89,9 +65,9 @@
       </div>
       <ul class="scenes">
         <li><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="12" width="32" height="30" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M24 18v14M17 25h14" stroke="#c2410c" stroke-width="4" stroke-linecap="round"/><path d="M18 12V7h12v5" fill="none" stroke="currentColor" stroke-width="3"/></svg><b>定期の通院</b><span>透析・リハビリ・検査など。毎週の送迎もお受けします。</span></li>
-        <li><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 34h36M6 34V18M42 34v-8c0-4-3-6-6-6H20v14" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><circle cx="13" cy="24" r="4" fill="#c2410c"/></svg><b>入院・退院・転院</b><span>荷物の運び込みや、病棟から玄関までのお手伝いも。</span></li>
-        <li><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 40V20L24 8l16 12v20Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><rect x="19" y="26" width="10" height="14" fill="#c2410c"/></svg><b>施設への入所・一時帰宅</b><span>ご自宅と施設のあいだを、ご家族と一緒に移動できます。</span></li>
-        <li><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 40c-8-6-14-12-14-20a8 8 0 0 1 14-5 8 8 0 0 1 14 5c0 8-6 14-14 20Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><circle cx="24" cy="22" r="4" fill="#c2410c"/></svg><b>お墓参り・冠婚葬祭</b><span>待ち時間のあいだも同行し、帰りまでお送りします。</span></li>
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 34h36M6 34V18M42 34v-8c0-4-3-6-6-6H20v14" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><circle cx="13" cy="24" r="4" fill="#c2410c"/></svg><b><span class="nw">入院・</span><wbr><span class="nw">退院・</span><wbr><span class="nw">転院</span></b><span>荷物の運び込みや、病棟から玄関までのお手伝いも。</span></li>
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 40V20L24 8l16 12v20Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><rect x="19" y="26" width="10" height="14" fill="#c2410c"/></svg><b><span class="nw">施設への入所・</span><wbr><span class="nw">一時帰宅</span></b><span>ご自宅と施設のあいだを、ご家族と一緒に移動できます。</span></li>
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 40c-8-6-14-12-14-20a8 8 0 0 1 14-5 8 8 0 0 1 14 5c0 8-6 14-14 20Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><circle cx="24" cy="22" r="4" fill="#c2410c"/></svg><b><span class="nw">お墓参り・</span><wbr><span class="nw">冠婚葬祭</span></b><span>待ち時間のあいだも同行し、帰りまでお送りします。</span></li>
       </ul>
     </div>
   </section>
@@ -122,6 +98,40 @@
           <p>寝たままで乗れます。ご家族やスタッフ2名での介助になり、事前にお部屋や通路の確認をします。</p>
           <p class="ride-for">起き上がるのが難しい方に</p>
         </article>
+      </div>
+      <div class="vehicle">
+        <figure class="vehicle-photo">
+          <img src="img/van.webp" width="1000" height="750" alt="横のスライドドアを大きく開けた、白いワンボックスの車" loading="lazy" decoding="async">
+          <figcaption>横のスライドドアから乗り降りできる車両もあります（写真はイメージ）</figcaption>
+        </figure>
+        <figure class="vehicle-art">
+            <svg viewBox="0 0 520 340" role="img" aria-label="後ろの扉を開けてスロープを下ろした福祉車両に、車いすの方が乗り込もうとしている絵">
+            <rect x="0" y="292" width="520" height="8" rx="4" fill="#14264a"/>
+            <g>
+              <path d="M40 120c0-30 20-50 52-56l120-20c18-3 30-4 50-4h120c20 0 30 10 30 30v200H40Z" fill="#ffffff" stroke="#14264a" stroke-width="5" stroke-linejoin="round"/>
+              <path d="M60 128l32-48c4-6 10-10 18-10h40v58Z" fill="#cfe0f5" stroke="#14264a" stroke-width="4" stroke-linejoin="round"/>
+              <rect x="168" y="70" width="80" height="58" rx="6" fill="#cfe0f5" stroke="#14264a" stroke-width="4"/>
+              <rect x="262" y="70" width="80" height="58" rx="6" fill="#cfe0f5" stroke="#14264a" stroke-width="4"/>
+              <rect x="40" y="176" width="372" height="24" fill="#c2410c"/>
+              <text x="226" y="194" text-anchor="middle" font-size="16" font-weight="700" fill="#fff" font-family="'BIZ UDGothic',sans-serif">介護タクシー えんがわ便</text>
+              <rect x="356" y="64" width="56" height="226" fill="#f3f5f9" stroke="#14264a" stroke-width="4"/>
+              <circle cx="112" cy="290" r="30" fill="#14264a"/><circle cx="112" cy="290" r="12" fill="#e5e7eb"/>
+              <circle cx="320" cy="290" r="30" fill="#14264a"/><circle cx="320" cy="290" r="12" fill="#e5e7eb"/>
+              <rect x="30" y="232" width="20" height="14" rx="3" fill="#ffb366" stroke="#14264a" stroke-width="3"/>
+            </g>
+            <path d="M412 262l96 30" stroke="#14264a" stroke-width="8" stroke-linecap="round"/>
+            <path d="M412 252l96 30" stroke="#c2410c" stroke-width="4" stroke-linecap="round"/>
+            <g transform="translate(438 150)">
+              <circle cx="18" cy="0" r="13" fill="#14264a"/>
+              <path d="M14 16c-6 0-10 4-10 10v34h30" fill="none" stroke="#14264a" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M34 60l8 30" stroke="#14264a" stroke-width="12" stroke-linecap="round"/>
+              <circle cx="16" cy="88" r="26" fill="none" stroke="#c2410c" stroke-width="7"/>
+              <path d="M-6 40h42" stroke="#c2410c" stroke-width="6" stroke-linecap="round"/>
+            </g>
+            <g fill="#c2410c"><circle cx="476" cy="40" r="6"/><circle cx="500" cy="64" r="4"/></g>
+          </svg>
+          <figcaption>後ろのスロープを下ろすと、車いすのまま乗れます</figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -178,7 +188,7 @@
   <section class="cta" aria-labelledby="h-cta">
     <div class="container cta-in">
       <h2 id="h-cta">迷ったら、まずお電話を。</h2>
-      <p class="cta-tel">000-0000-0000<small>（架空）</small></p>
+      <p class="cta-tel"><a class="tel-link" href="tel:00000000000">000-0000-0000</a><small>（架空）</small></p>
       <p>受付 7:00〜19:00　土日・祝日も営業</p>
     </div>
   </section>
@@ -189,10 +199,11 @@
     <div>
       <p class="foot-name">介護タクシー えんがわ便</p>
       <p>滋賀県みほん市ひだまり町1-2-3（架空）</p>
-      <p>電話 000-0000-0000（架空）</p>
+      <p>電話 <a class="tel-link" href="tel:00000000000">000-0000-0000</a>（架空）</p>
     </div>
-    <small>© 見本サイト（架空）— 制作 ZAZOU Lab　<a href="../">見本サイト一覧へ戻る</a></small>
+    <small>© 見本サイト（架空）— 制作 ZAZOU Lab　写真：Unsplash（イメージ）　<a href="../">見本サイト一覧へ戻る</a></small>
   </div>
 </footer>
+<a class="call-bar" href="tel:00000000000"><svg viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg>電話する<small>000-0000-0000（架空）</small></a>
 </body>
 </html>

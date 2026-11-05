@@ -790,5 +790,93 @@
   "page": "https://unsplash.com/photos/1NAXTpRVyo4",
   "photographer": "Jonathan Talbert",
   "image": "https://images.unsplash.com/photo-1528594498426-ea65fdafcbf4"
+ },
+ {
+  "site": "inn",
+  "file": "samples/sites/inn/img/hero-lake.webp",
+  "use": "トップのヒーロー：朝霧の湖と山",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/I_PjKdiD4wY",
+  "photographer": "Kouji Tsuru",
+  "image": "https://images.unsplash.com/photo-1739079772908-d1475778040c"
+ },
+ {
+  "site": "inn",
+  "file": "samples/sites/inn/img/zashiki.webp",
+  "use": "畳と障子の座敷",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/OdqFfuNsZLk",
+  "photographer": "Umanoide",
+  "image": "https://images.unsplash.com/photo-1779120388138-6ccf9c7bc5b0"
+ },
+ {
+  "site": "inn",
+  "file": "samples/sites/inn/img/engawa.webp",
+  "use": "庭に面した縁側",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/skPGTOe4RzA",
+  "photographer": "Akira",
+  "image": "https://images.unsplash.com/photo-1749646594612-cd0a2fd0b584"
+ },
+ {
+  "site": "inn",
+  "file": "samples/sites/inn/img/lake2.webp",
+  "use": "紅葉の山と湖",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/4T_74DQL3qg",
+  "photographer": "Sora Sagano",
+  "image": "https://images.unsplash.com/photo-1510307853572-cd978ae81304"
+ },
+ {
+  "site": "realty",
+  "file": "samples/sites/realty/img/tatami.webp",
+  "use": "トップ：空き家の和室",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/_bpLpkLWVxU",
+  "photographer": "Viviana Nysaether",
+  "image": "https://images.unsplash.com/photo-1712232907812-4bd219a99a49"
+ },
+ {
+  "site": "realty",
+  "file": "samples/sites/realty/img/keys.webp",
+  "use": "物件・ご相談：鍵",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/y5N2HDwagVw",
+  "photographer": "Jozsef Hocza",
+  "image": "https://images.unsplash.com/photo-1575908539614-ff89490f4a78"
+ },
+ {
+  "site": "realty",
+  "file": "samples/sites/realty/img/plan.webp",
+  "use": "物件・ご相談：図面",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/fteR0e2BzKo",
+  "photographer": "Sven Mieke",
+  "image": "https://images.unsplash.com/photo-1542621334-a254cf47733d"
+ },
+ {
+  "site": "realty",
+  "file": "samples/sites/realty/img/street.webp",
+  "use": "トップのヒーロー：桜の住宅街",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/l5q_0c7-sR8",
+  "photographer": "Emma Gasseau-Dryer",
+  "image": "https://images.unsplash.com/photo-1786801525089-d9854fa9a412"
  }
 ]

@@ -160,3 +160,19 @@ a:visited{color:#4b3a6b}
   .label-card{transition:transform .2s ease}
   .label-card:hover{transform:translateY(-3px)}
 }
+
+/* 写真（Unsplash・イメージ） */
+figure{margin:0}
+.hero-art.photo{margin:0;justify-self:end;width:100%;max-width:440px;position:relative}
+.hero-art.photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:62% 50%;border:1px solid var(--gold);padding:8px;background:var(--indigo-2)}
+.hero-art.photo figcaption{font-size:13px;letter-spacing:.12em;color:#e9e4d6;margin-top:8px;text-align:right}
+@media (max-width:767px){.hero-art.photo{justify-self:stretch;max-width:none}.hero-art.photo img{aspect-ratio:3/2}}
+.sake-pics{padding:0 0 var(--s6)}
+.sake-pics .container{display:grid;gap:var(--s3)}
+@media (min-width:768px){.sake-pics .container{grid-template-columns:3fr 2fr;align-items:end}}
+.sake-pics img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:var(--radius)}
+.sake-pics figure:not(.w) img{aspect-ratio:4/3}
+.sake-pics figcaption{font-size:14px;color:var(--sub);letter-spacing:.1em;margin-top:8px;padding-left:12px;border-left:2px solid var(--gold)}
+.page-head .head-pic{margin-top:var(--s4)}
+.page-head .head-pic img{width:100%;aspect-ratio:4/1;object-fit:cover;object-position:50% 60%;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold)}
+@media (max-width:640px){.page-head .head-pic img{aspect-ratio:2/1}}

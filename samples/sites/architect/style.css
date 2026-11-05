@@ -163,3 +163,16 @@ h1,h2{font-feature-settings:"palt"}
   .pay div:nth-child(-n+2){border-bottom:1px solid #fff}
 }
 .price thead th:last-child{white-space:nowrap}
+
+/* 写真（Unsplash・イメージ） */
+.hero figure img{width:100%;aspect-ratio:490/365;object-fit:cover;object-position:50% 55%}
+.atelier-pics{display:grid;gap:32px;grid-template-columns:1fr}
+@media (min-width:768px){.atelier-pics{grid-template-columns:5fr 3fr;align-items:start}}
+.atelier-pics figure{margin:0;border:1px solid var(--fg);background:#fff}
+.atelier-pics img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.atelier-pics figure:not(.wide) img{aspect-ratio:3/4;object-position:50% 60%}
+@media (max-width:767px){.atelier-pics figure:not(.wide) img{aspect-ratio:3/2}}
+.atelier-pics figcaption{font-size:12px;letter-spacing:.08em;color:var(--sub);padding:8px 12px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.page-head .head-pic{margin:var(--s4) 0 0;border:1px solid var(--fg)}
+.page-head .head-pic img{width:100%;aspect-ratio:16/5;object-fit:cover;object-position:50% 40%}
+@media (max-width:640px){.page-head .head-pic img{aspect-ratio:16/9}}
