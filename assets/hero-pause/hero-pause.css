@@ -9,5 +9,8 @@
 /* when paused: a "play" triangle */
 .hero-pause[aria-pressed="true"]::before{left:12px;top:9px;width:0;height:0;background:none;border-radius:0;border-style:solid;border-width:7px 0 7px 11px;border-color:transparent transparent transparent #2a2622}
 .hero-pause[aria-pressed="true"]::after{display:none}
+/* the paper tab's picture sits in a wrapper that holds the button (a button may not go inside <picture>) */
+.hero-pause-wrap{position:relative}
+.hero-pause-wrap>.paper-hero{margin:0}
 /* nothing moves when motion is reduced, so there is nothing to pause */
 @media (prefers-reduced-motion: reduce){.hero-pause{display:none}}
