@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ホームページの見本20業種｜ZAZOU Lab</title>
+<title>ホームページ制作と見本20業種｜ZAZOU Lab</title>
 <meta name="description" content="ZAZOU Lab が制作した、小さな事業者向けホームページの見本20サイト（町工場・工務店・食堂・美容室・整体院・直売所・ペット・士業・学習塾・宿・喫茶店・花屋・整備工場・写真館・不動産・ヨガ・パン屋・設計事務所・酒蔵・介護タクシー）。会社・住所・電話はすべて架空です。">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://takmat21.github.io/samples/sites/">
@@ -22,6 +22,24 @@
 .sc:hover .n{color:var(--accent)}
 @media (prefers-reduced-motion:no-preference){.sc img{transition:transform .2s}.sc:hover img{transform:translateY(-3px)}}
 .points{margin:8px 0 0;padding-left:1.2em}.points li{margin:4px 0}
+.svc{margin:8px 0 48px;padding:24px clamp(16px,3vw,32px) 28px;border:1px solid var(--line);border-radius:12px;background:var(--soft)}
+.svc h2,.all-h{margin:0 0 12px}
+.svc-lead{max-width:44em;margin:0 0 8px}
+.svc-h{font-size:16px;margin:28px 0 12px}
+.picks3{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.picks3 a{display:flex;flex-direction:column;gap:4px;color:inherit;text-decoration:none;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 10px 14px}
+.picks3 img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;border-radius:6px;margin-bottom:8px}
+.picks3 b{font-size:15px}.picks3 span{font-size:13px;color:var(--sub);line-height:1.7}
+.picks3 a:hover{border-color:var(--accent)}.picks3 a:hover b{color:var(--accent)}
+.svc-list{margin:0;padding-left:1.2em}.svc-list li{margin:4px 0}
+.svc-steps{list-style:none;margin:0;padding:0;counter-reset:st;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.svc-steps li{counter-increment:st;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px;font-size:13px;line-height:1.7}
+.svc-steps li::before{content:counter(st);display:block;font-family:var(--mono);color:var(--accent);font-size:12px}
+.svc-steps b{display:block;font-size:14px}.svc-steps span{color:var(--sub)}
+.svc .tw{background:var(--bg);border-radius:8px;padding:0 8px}
+.svc-cta{margin:16px 0 0;font-weight:700}
+.svc-cta a{margin-left:8px;font-weight:400}
+@media (max-width:800px){.picks3{grid-template-columns:1fr}.svc-steps{grid-template-columns:1fr}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"ホームページの見本20業種","url":"https://takmat21.github.io/samples/sites/","inLanguage":"ja","description":"小さな事業者向けホームページの見本。掲載の会社・住所・電話はすべて架空です。","creator":{"@type":"Organization","name":"ZAZOU株式会社","url":"https://takmat21.github.io/"}}</script>
 </head>
@@ -29,10 +47,54 @@
 <nav class="tabs" aria-label="ページの切り替え"><a href="../../#about">プロフィール</a><a href="../../#samples" class="on" aria-current="page">仕事一覧</a><a href="../../#system">仕組み</a><a href="../../#security">セキュリティ</a><a href="../../#paper">論文</a><a href="../../#video">動画</a><a href="../../news/">朝刊</a></nav>
 <header class="hero"><p class="name"><a href="../../">ZAZOU Lab</a></p>
 <span class="tag">Web制作 ／ 見本</span>
-<h1>ホームページの見本20業種</h1>
+<h1>ホームページ制作と見本20業種</h1>
 <p class="desc">町工場、工務店、食堂、美容室、酒蔵、介護タクシーなど、滋賀・近畿の小さな事業者によくある20業種のホームページ見本です。業種ごとに色・書体・構成を変えています。<strong>会社名・住所・電話番号・料金はすべて架空です。</strong></p>
 </header>
 <main>
+<section class="svc" id="service" aria-labelledby="svc-h">
+  <h2 id="svc-h">Service <span class="ja">／ ホームページ制作のご案内</span></h2>
+  <p class="svc-lead">お店や会社の「電話する前に知りたいこと」を先に載せた、スマホで読みやすいホームページをつくります。下の見本と同じ作り方で、業種に合わせて色・書体・構成を決めます。</p>
+
+  <h3 class="svc-h">営業でよく見ていただく見本</h3>
+  <ul class="picks3">
+    <li><a href="metal/"><img src="thumbs/metal.webp" width="640" height="400" alt="" loading="lazy" decoding="async"><b>町工場・金属加工</b><span>設備一覧と対応材質、図面で見積を頼める入口を前面に。</span></a></li>
+    <li><a href="builder/"><img src="thumbs/builder.webp" width="640" height="400" alt="" loading="lazy" decoding="async"><b>工務店</b><span>施工事例と家づくりの流れ、相談会の予約まで。</span></a></li>
+    <li><a href="restaurant/"><img src="thumbs/restaurant.webp" width="640" height="400" alt="" loading="lazy" decoding="async"><b>食堂・飲食店</b><span>日替わり・お品書き・営業時間・駐車場をひと目で。</span></a></li>
+  </ul>
+
+  <h3 class="svc-h">どのサイトにも入れること</h3>
+  <ul class="svc-list">
+    <li>スマホとパソコンの両方で崩れない作り。押す所は指で押しやすい大きさ。</li>
+    <li>料金の目安・流れ・よくある質問・営業時間・駐車場など、お客さんが知りたいことを先に。</li>
+    <li>文字と背景の明るさの差、見出しの順番など、読みやすさの基本。</li>
+    <li>写真がなくても見せられる、自作の絵（SVG）。軽く、速く表示されます。</li>
+  </ul>
+
+  <h3 class="svc-h">ご依頼の流れ</h3>
+  <ol class="svc-steps">
+    <li><b>ご相談</b><span>業種と、ホームページで困っていることをお聞きします。</span></li>
+    <li><b>お見積り</b><span>ページ数と内容から作業時間の目安を出し、下の料金でお見積りします。</span></li>
+    <li><b>方向を決める</b><span>見本を見ながら、色・書体・構成の方向を決めます。</span></li>
+    <li><b>制作・ご確認</b><span>つくったページをスマホとパソコンで確かめていただき、直します。</span></li>
+    <li><b>公開</b><span>ご確認のうえで公開します。</span></li>
+  </ol>
+
+  <h3 class="svc-h">料金（税込）</h3>
+  <div class="tw"><table class="price">
+    <thead><tr><th>段階</th><th>作業時間の目安</th><th>料金</th></tr></thead>
+    <tbody>
+      <tr><td>1段目</td><td>約17時間まで</td><td class="n">50,000円</td></tr>
+      <tr><td>2段目</td><td>約50時間</td><td class="n">150,000円</td></tr>
+      <tr><td>3段目</td><td>約93時間</td><td class="n">280,000円</td></tr>
+      <tr><td>保守</td><td>月3時間まで</td><td class="n">月10,000円</td></tr>
+      <tr><td>時間単価</td><td>上記以外・追加の作業</td><td class="n">3,000円／時間</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">ZAZOU Lab の共通の料金です。どの段階になるかは、ご相談の内容から事前にお見積りします。目安の時間を超える分は、事前にお見積りのうえ時間単価で承ります。</p>
+  <p class="svc-cta">ご依頼・ご相談は、各サービスのメッセージからお願いします。<a href="https://crowdworks.jp/public/employees/3288043">クラウドワークスのプロフィール</a></p>
+</section>
+
+<h2 class="all-h">Samples <span class="ja">／ 見本20業種</span></h2>
 <ul class="sites">
   <li><a class="sc" href="metal/"><img src="thumbs/metal.webp" width="640" height="400" alt="ミツカド精板（見本）のトップページ" loading="lazy" decoding="async"><span class="k">町工場・金属加工</span><span class="n">ミツカド精板</span><span class="d">図面1枚・1個から見積。設備一覧と対応材質を前面に出した、BtoB向けの町工場。</span><span class="f">鉄紺×安全オレンジ／BIZ UDゴシック／図面風のヒーロー</span></a></li>
   <li><a class="sc" href="builder/"><img src="thumbs/builder.webp" width="640" height="400" alt="木灯舎工務店（見本）のトップページ" loading="lazy" decoding="async"><span class="k">工務店</span><span class="n">木灯舎工務店</span><span class="d">地元の杉で建てる工務店。施工事例と家づくりの流れ、相談会の予約まで。</span><span class="f">生成り×杉茶／明朝の見出し／家の絵の事例カード</span></a></li>
