@@ -289,3 +289,12 @@ p,li,dd{text-wrap:pretty}
 .v-big .yt .play::after{left:22px;top:18px;border-color:transparent transparent transparent #1a1a1a}
 /* 料金の数字は本文と同じ書体で桁をそろえる */
 table.price td.n{font-family:var(--sans);font-feature-settings:"tnum";font-size:15px}
+/* 会社情報つきのフッター */
+footer.site-foot{display:grid;grid-template-columns:1fr 1.4fr;gap:24px 40px;padding:48px 0 56px;margin-top:48px;border-top:1px solid var(--line);font-size:14px;color:var(--sub)}
+.sf-co b{display:block;font-size:16px;color:var(--fg)}
+.sf-ct{display:flex;flex-direction:column;gap:6px}
+.sf-ct span{font-weight:700;color:var(--fg)}
+.sf-ct a{font-size:15px;min-height:28px}
+.sf-ct a.sf-cw{font-size:13px}
+.sf-small{grid-column:1/-1;margin:0;font-size:12px}
+@media (max-width:640px){footer.site-foot{grid-template-columns:1fr}}
