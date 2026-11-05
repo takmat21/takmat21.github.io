@@ -18,11 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="assets/style.css?v=20261106c">
-<link rel="stylesheet" href="assets/hero-art/hero-art.css">
-<link rel="stylesheet" href="assets/hero-flower/hero-flower.css">
-<link rel="stylesheet" href="assets/hero-mask/hero-mask.css">
-<link rel="stylesheet" href="assets/hero-video/hero-video.css">
+<link rel="stylesheet" href="assets/style.css?v=20261106d">
 <style>.hero .name .by{font-weight:400;opacity:.65;font-size:.85em;margin-left:.4em}.sys-hero{display:none;margin-top:24px}body.sys-tab .sys-hero{display:block}.paper-top{display:none!important}body.paper-tab .paper-top{display:block!important;margin:24px 0 0}.samples-top{display:none!important}body.samples-tab .samples-top{display:block!important;margin:24px 0 0}.v-lead{margin:0 0 8px}.v-h{font-size:15px;margin:28px 0 12px}.v-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
 .v-card{margin:0}.v-card figcaption{display:flex;flex-direction:column;gap:3px;margin-top:10px;font-size:13px;line-height:1.6}
 .v-card figcaption b{font-size:14px}.v-kind{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--sub)}
@@ -49,11 +45,13 @@
 <div class="wrap">
 
 <div class="topbar"><a class="tb-logo" href="./"><b>ZAZOU Lab</b><span>ZAZOU株式会社（滋賀県）</span></a><a class="tb-cta" href="mailto:matsumura.takashi@zazoucorp.com?subject=%E3%81%94%E7%9B%B8%E8%AB%87%EF%BC%88ZAZOU%20Lab%EF%BC%89">相談する</a></div>
-<div class="hero-art hero-top" data-hero-art role="img" aria-label="散らばった墨の断片が細い線でつながり、ひとつの形にまとまっていくアニメーション"></div>
-<div class="hero-flower sys-hero" data-hero-flower role="img" aria-label="暗い部屋で、弧を描く花茎のつぼみが順に開いていく蘭の絵"></div>
-<div class="hero-mask samples-top" data-hero-mask role="img" aria-label="黄金比の補助線の上で、正面と横顔がひとつになった幾何学の仮面が面ごとに組み上がり、光が正面から横顔へ移ってまたほどけていく、少し褪せたビデオの画質のアニメーション"></div>
-<div class="hero-video video-top" data-hero-video role="img" aria-label="生成りの紙の上で、台本の行が一行ずつ読まれて音の波になり、波がフィルムのコマになって流れ、画面の中で小さな絵が次々に映し出されるアニメーション"></div>
-<picture class="paper-hero paper-top"><source media="(max-width:640px)" srcset="assets/paper-hero-narrow.svg"><img src="assets/paper-hero-wide.svg" alt="" width="1200" height="400" loading="lazy" decoding="async"></picture>
+<div class="hero-line">
+  <img class="hl-about" src="assets/hero-line/about.svg" width="1200" height="240" alt="図面から見積書、ホームページへと仕事がつながる線画" fetchpriority="high">
+  <img class="hl-system" src="assets/hero-line/system.svg" width="1200" height="240" alt="統括のAIが担当のAIに指示し、最後に人が確認する流れの線画" loading="lazy">
+  <img class="hl-samples" src="assets/hero-line/samples.svg" width="1200" height="240" alt="重なった3つのホームページの線画" loading="lazy">
+  <img class="hl-paper" src="assets/hero-line/paper.svg" width="1200" height="240" alt="開いた本と虫めがねの線画" loading="lazy">
+  <img class="hl-video" src="assets/hero-line/video.svg" width="1200" height="240" alt="台本が音の波になり、映像のコマへつながる線画" loading="lazy">
+</div>
 <header class="hero">
 <div class="hero-text">
   <p class="name">AIで、仕事の流れをつくる。</p>
@@ -383,10 +381,6 @@
   if(location.hash && location.hash!=='#about'){setTimeout(toTabs,0);window.addEventListener('load',function(){setTimeout(toTabs,30);setTimeout(toTabs,150);});} else if(location.hash) setTimeout(function(){window.scrollTo(0,0);},0);
 })();
 </script>
-<script src="assets/hero-art/hero-art.js"></script>
-<script src="assets/hero-flower/hero-flower.js"></script>
-<script src="assets/hero-mask/hero-mask.js" defer></script>
-<script src="assets/hero-video/hero-video.js" defer></script>
 <script>
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.yt');if(!b||b.querySelector('iframe'))return;var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+b.dataset.yt+'?autoplay=1&rel=0';f.title=b.getAttribute('aria-label')||'YouTube';f.allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';f.allowFullscreen=true;b.appendChild(f);});
 </script>

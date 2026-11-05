@@ -298,3 +298,7 @@ footer.site-foot{display:grid;grid-template-columns:1fr 1.4fr;gap:24px 40px;padd
 .sf-ct a.sf-cw{font-size:13px}
 .sf-small{grid-column:1/-1;margin:0;font-size:12px}
 @media (max-width:640px){footer.site-foot{grid-template-columns:1fr}}
+/* タブの上の絵：1種類の線画にそろえる（静止画） */
+.hero-line img{display:none;width:100%;height:clamp(150px,20vw,240px);object-fit:cover;object-position:center;border-radius:8px;background:#f3efe6;margin:8px 0 0}
+body:not(.no-hero) .hero-line .hl-about,body.sys-tab .hero-line .hl-system,body.samples-tab .hero-line .hl-samples,body.paper-tab .hero-line .hl-paper,body.video-tab .hero-line .hl-video{display:block}
+.home .hero-line+header.hero{padding-top:32px}
