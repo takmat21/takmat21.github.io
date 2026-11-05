@@ -34,7 +34,7 @@ main a:not(.btn):visited{color:#6a3550}
 /* 見出し：欧文の筆記体を上に、和文を下に */
 .section-head .en-title{display:block;font-family:var(--font-latin);font-style:italic;font-weight:500;font-size:clamp(32px,5vw,48px);line-height:1.1;color:var(--accent);margin-bottom:var(--s1)}
 .section-head h2{font-size:clamp(22px,3vw,30px)}
-.section-head h2::after{content:"";display:block;width:56px;height:10px;margin-top:16px;background:radial-gradient(ellipse 5px 4px at 6px 5px,var(--accent) 98%,transparent) 0 0/16px 10px repeat-x}
+.section-head h2::after{content:"";display:block;width:60px;height:10px;margin-top:16px;background:radial-gradient(ellipse 5px 4px at 6px 5px,var(--accent) 98%,transparent) 0 0/16px 10px repeat-x}
 .center .section-head{margin-left:auto;margin-right:auto;text-align:center}
 .center .section-head h2::after{margin-left:auto;margin-right:auto}
 
