@@ -1,0 +1,131 @@
+/* 畑の直売所 おひさま畝（見本）— 土と太陽：生成り・赤土・ひまわり色、ポップな見出し、木箱のカード */
+:root{
+  --bg:#fffaf0; --fg:#2b2118; --sub:#5e4a38; --line:#e6d6bb; --soft:#f7ecd6;
+  --accent:#a3401c; --accent-ink:#ffffff; --accent-soft:#fbe5d6;
+  --leaf:#3d6e26; --leaf-soft:#e3efd2; --sun:#f6b80b; --soil:#7a5232; --crate:#c8935a;
+  --font-body:"Hiragino Sans","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
+  --font-head:"Mochiy Pop One","Hiragino Maru Gothic ProN","Yu Gothic",system-ui,sans-serif;
+  --head-weight:400; --head-spacing:.02em;
+  --radius:6px;
+}
+body{overflow-wrap:anywhere}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.site-header{border-bottom:4px solid var(--soil)}
+.logo{font-size:20px}
+.logo svg{width:36px;height:36px}
+.site-nav a[aria-current="page"]{background:var(--accent-soft);color:var(--accent)}
+.btn{border-radius:999px;font-family:var(--font-head);font-weight:400;letter-spacing:.04em}
+.btn.sun{background:var(--sun);border-color:var(--sun);color:var(--fg)}
+
+/* 見出し：下に畝（うね）の波線 */
+.section-head h2{display:inline-block;padding-bottom:16px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='10'%3E%3Cpath d='M0 8q6-8 12 0t12 0' fill='none' stroke='%237a5232' stroke-width='2.5'/%3E%3C/svg%3E") left bottom / 24px 10px repeat-x}
+.eyebrow{font-family:var(--font-head);font-weight:400;letter-spacing:.08em;color:var(--leaf)}
+
+/* ヒーロー：空→太陽→畑の帯 */
+.hero{position:relative;background:linear-gradient(180deg,#fff3cf 0%,#fffaf0 70%);overflow:hidden}
+.hero .container{display:grid;gap:var(--s3);padding-top:var(--s5);padding-bottom:var(--s3);position:relative;z-index:1}
+.hero h1{font-size:clamp(30px,5.2vw,56px);line-height:1.35;max-width:14em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .lead{font-size:17px;max-width:32em;margin:0}
+.hero .open{display:inline-flex;flex-wrap:wrap;gap:8px 16px;align-items:center;background:var(--bg);border:2px solid var(--soil);border-radius:999px;padding:8px 20px;font-weight:700;width:fit-content;max-width:100%}
+.hero .open b{color:var(--accent)}
+.hero-sun{position:absolute;right:max(16px,8vw);top:24px;width:clamp(96px,16vw,180px);z-index:0;opacity:.95}
+.field{display:block;width:100%;height:auto;margin-top:var(--s2)}
+@media (max-width:640px){.hero-sun{top:auto;bottom:150px;right:8px;width:80px}}
+@media (prefers-reduced-motion:no-preference){
+  .hero-sun{animation:spin 60s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+}
+
+/* 今の旬：木箱カード */
+.crates{display:grid;gap:var(--s2);grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr))}
+.crate{background:#fff;border:2px solid var(--crate);border-bottom-width:10px;border-radius:4px;padding:var(--s3);display:flex;flex-direction:column;gap:var(--s1);position:relative}
+.crate::before{content:"";position:absolute;left:-2px;right:-2px;bottom:18px;height:2px;background:var(--crate);opacity:.5}
+.crate svg{width:88px;height:88px;margin:0 auto var(--s1)}
+.crate h3{font-size:20px;text-align:center}
+.crate .kind{align-self:center;font-size:13px;font-weight:700;color:var(--leaf);background:var(--leaf-soft);border-radius:999px;padding:0 10px}
+.crate p{margin:0 0 var(--s3);color:var(--sub);font-size:15px}
+.crate .yen{font-weight:700;color:var(--accent);margin-bottom:var(--s3)}
+
+/* 営業日：曜日の札 */
+.week{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(7,1fr);gap:8px;max-width:720px}
+.week li{border-radius:8px;text-align:center;padding:12px 4px;border:2px solid var(--line);background:#fff;font-size:14px;line-height:1.5}
+.week li b{display:block;font-family:var(--font-head);font-weight:400;font-size:20px}
+.week li.on{background:var(--leaf);border-color:var(--leaf);color:#fff}
+.week li.off{color:var(--sub);background:repeating-linear-gradient(-45deg,#fff 0 6px,var(--soft) 6px 12px)}
+@media (max-width:480px){.week{gap:4px}.week li{font-size:12px;padding:8px 2px}.week li b{font-size:17px}}
+.split{display:grid;gap:var(--s4);align-items:start}
+@media (min-width:768px){.split{grid-template-columns:1fr 1fr}}
+
+/* 取り置き・発送：2枚の札 */
+.ways{display:grid;gap:var(--s3);grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+.way{background:#fff;border-radius:16px;padding:var(--s4) var(--s3) var(--s3);border-top:8px solid var(--accent);box-shadow:0 2px 0 var(--line)}
+.way.ship{border-top-color:var(--leaf)}
+.way h3{font-size:22px;margin-bottom:var(--s2)}
+.way p{color:var(--sub)}
+.way ul{padding-left:1.2em;margin:0 0 var(--s2)}
+
+/* 農家の紹介 */
+.farmer{display:grid;gap:var(--s4);align-items:center}
+@media (min-width:768px){.farmer{grid-template-columns:.8fr 1.2fr}}
+.farmer figure{margin:0;background:var(--leaf-soft);border-radius:50% 50% 16px 16px;overflow:hidden}
+.farmer figcaption{font-size:14px;color:var(--sub);padding:var(--s1) var(--s2) var(--s2);background:var(--bg);text-align:center}
+.stats b{font-family:var(--font-head);font-weight:400}
+.stats div{border-top-color:var(--soil)}
+.stats b{color:var(--soil)}
+
+/* 帯の呼びかけ */
+.cta-band{background:var(--soil);color:#fff;padding:var(--s5) 0}
+.cta-band .container{display:grid;gap:var(--s3);align-items:center}
+@media (min-width:768px){.cta-band .container{grid-template-columns:1fr auto}}
+.cta-band h2{font-size:clamp(22px,3vw,30px)}
+.cta-band p{margin:var(--s1) 0 0}
+
+/* 下層ページの見出し */
+.page-head{background:linear-gradient(180deg,#fff3cf,var(--bg));padding:var(--s5) 0 var(--s4)}
+.page-head h1{font-size:clamp(28px,4.4vw,44px)}
+.page-head p{max-width:var(--measure);margin-top:var(--s2)}
+
+/* 旬カレンダー */
+.cal-wrap{overflow-x:auto;background:#fff;border:2px solid var(--line);border-radius:12px;padding:var(--s2)}
+.cal{border-collapse:separate;border-spacing:3px;width:100%;min-width:600px;font-size:14px}
+.cal th{font-weight:700;text-align:center;font-size:13px;color:var(--sub);padding:4px 0}
+.cal th.m-now{color:var(--accent)}
+.cal th[scope="row"]{text-align:left;color:var(--fg);font-size:15px;white-space:nowrap;padding-right:8px}
+.cal th[scope="row"] svg{width:28px;height:28px;display:inline-block;vertical-align:middle;margin-right:6px}
+.cal td{height:28px;border-radius:6px;background:var(--soft)}
+.cal td.on{background:var(--leaf)}
+.cal td.few{background:repeating-linear-gradient(-45deg,var(--leaf-soft) 0 4px,#9fc387 4px 7px)}
+.cal td.now{outline:2px solid var(--accent);outline-offset:-1px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 24px;list-style:none;padding:0;margin:var(--s2) 0 0;font-size:14px}
+.legend li{display:flex;align-items:center;gap:8px}
+.legend i{width:24px;height:16px;border-radius:4px;display:inline-block}
+.legend .on{background:var(--leaf)}
+.legend .few{background:repeating-linear-gradient(-45deg,var(--leaf-soft) 0 4px,#9fc387 4px 7px)}
+.legend .now{outline:2px solid var(--accent);background:var(--soft)}
+.scroll-hint{font-size:14px;color:var(--sub);margin:var(--s1) 0 0}
+@media (min-width:700px){.scroll-hint{display:none}}
+
+.price-box{background:#fff;border:2px solid var(--line);border-radius:12px;padding:var(--s2) var(--s3)}
+.price td small,.price th small{display:block;color:var(--sub);font-weight:400;font-size:13px}
+.price th{font-weight:700}
+.steps li::before{font-family:var(--font-head);font-weight:400}
+.note{font-size:14px;color:var(--sub);margin-top:var(--s2)}
+
+/* アクセス・フォーム */
+.access{display:grid;gap:var(--s4)}
+@media (min-width:768px){.access{grid-template-columns:1fr 1fr}}
+.form{background:#fff;border:2px solid var(--line);border-radius:16px;padding:var(--s4) var(--s3)}
+.form fieldset{border:0;padding:0;margin:0}
+.form legend{font-weight:700;margin-bottom:6px;padding:0}
+.radio-row{display:flex;flex-wrap:wrap;gap:8px}
+.radio-row label{font-weight:400;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:1px solid #8a8a90;border-radius:999px;margin:0}
+.radio-row input{width:auto;min-height:0}
+.faq{max-width:760px}
+
+.site-footer{background:#3a2a1c;color:#fffaf0;border-top:8px solid var(--leaf)}
+.site-footer a{color:#fffaf0}
+.split>*,.access>*{min-width:0}
+.cal-wrap,.cal td{position:relative}
+@media (max-width:480px){.crate{padding:var(--s2)}.crate svg{width:64px;height:64px}.crate h3{font-size:17px}.crate p{font-size:14px}}
+@media (max-width:480px){.price td.n{white-space:normal;min-width:7em}.price th{min-width:8em}}

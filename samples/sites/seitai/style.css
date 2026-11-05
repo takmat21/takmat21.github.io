@@ -1,0 +1,126 @@
+/* 整体 しずく葉（見本）— 淡い緑・丸ゴシック・やわらかい角 */
+:root{
+  --bg:#f7fbf7; --fg:#1f2d26; --sub:#4a5b52; --line:#d5e4d9; --soft:#eaf4ec;
+  --accent:#2f6b4f; --accent-ink:#ffffff; --accent-soft:#e1efe5;
+  --leaf:#8fc3a1; --leaf-2:#cfe6d6; --cream:#fffdf8;
+  --font-body:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --font-head:var(--font-body);
+  --head-weight:700; --head-spacing:.04em;
+  --radius:16px;
+}
+body{overflow-wrap:anywhere}
+.btn{border-radius:999px}
+.site-header{background:color-mix(in srgb,var(--bg) 92%,transparent)}
+.logo{font-size:19px}
+.logo small{display:block;font-size:12px;font-weight:400;color:var(--sub);letter-spacing:.08em;line-height:1.2}
+.site-nav a{border-radius:999px}
+.site-nav a[aria-current="page"]{background:var(--accent-soft)}
+
+/* 見出しの飾り：小さな葉 */
+.section-head h2{display:flex;align-items:center;gap:12px}
+.section-head h2::before{content:"";flex:none;width:20px;height:20px;border-radius:0 50% 0 50%;background:var(--leaf);transform:rotate(0deg)}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.section-head.center h2{justify-content:center}
+
+/* ヒーロー：やわらかい丸窓のイラスト＋左寄せ文 */
+.hero{padding:var(--s5) 0 var(--s6);background:
+  radial-gradient(60% 80% at 100% 0%,var(--leaf-2) 0,transparent 70%),
+  radial-gradient(50% 60% at 0% 100%,#eef6ef 0,transparent 70%),var(--bg)}
+.hero .container{display:grid;gap:var(--s4);align-items:center}
+@media (min-width:768px){.hero .container{grid-template-columns:1.1fr .9fr}}
+.hero h1{font-size:clamp(28px,4.6vw,44px);line-height:1.45;letter-spacing:.04em}
+.hero .lead{font-size:17px;color:var(--sub);margin-top:var(--s3);max-width:30em}
+.hero .badges{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:var(--s3) 0 0}
+.hero .badges li{background:var(--cream);border:1px solid var(--line);border-radius:999px;padding:4px 14px;font-size:14px}
+.hero-art{border-radius:50% 50% 48% 52% / 55% 50% 50% 45%;overflow:hidden;background:var(--accent-soft);max-width:440px;margin:0 auto;width:100%}
+.hero-art svg{width:100%;height:auto}
+
+/* お悩み：丸いチップ */
+.worries{display:grid;gap:var(--s2);grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));list-style:none;padding:0;margin:0}
+.worries li{background:var(--cream);border:1px solid var(--line);border-radius:24px;padding:var(--s2) var(--s3);display:flex;gap:12px;align-items:flex-start}
+.worries li::before{content:"";flex:none;width:12px;height:12px;margin-top:8px;border-radius:50%;background:var(--leaf)}
+.note-soft{margin-top:var(--s3);font-size:14px;color:var(--sub)}
+
+/* 院の約束：番号つき丸カード */
+.promise .card{border-radius:24px;background:var(--cream);padding:var(--s4) var(--s3) var(--s3)}
+.promise .card .num{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.12em}
+.promise .card svg{width:56px;height:56px;margin-bottom:var(--s1)}
+
+/* 院内の様子（イラスト） */
+.room{display:grid;gap:var(--s4);align-items:center}
+@media (min-width:768px){.room{grid-template-columns:1fr 1fr}}
+.room figure{margin:0;border-radius:24px;overflow:hidden;background:var(--accent-soft)}
+.room figcaption{font-size:14px;color:var(--sub);padding:var(--s1) var(--s2) var(--s2);background:var(--cream)}
+.checks{list-style:none;padding:0;margin:var(--s3) 0 0;display:grid;gap:var(--s1)}
+.checks li{padding-left:28px;position:relative}
+.checks li::before{content:"";position:absolute;left:4px;top:.55em;width:12px;height:7px;border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg)}
+
+/* 料金カード（トップの抜粋） */
+.menu-cards .card{border-radius:24px;gap:var(--s2)}
+.menu-cards .card .yen{font-size:28px;font-weight:700;color:var(--accent);line-height:1.2}
+.menu-cards .card .yen small{font-size:14px;color:var(--sub);font-weight:400;margin-left:4px}
+.menu-cards .card.pick{border:2px solid var(--accent);position:relative}
+.menu-cards .tag{align-self:flex-start;background:var(--accent);color:var(--accent-ink);font-size:13px;font-weight:700;border-radius:999px;padding:2px 12px}
+.more{margin-top:var(--s3)}
+.more a{display:inline-flex;align-items:center;min-height:44px;font-weight:700}
+
+/* 予約の帯 */
+.cta{background:var(--accent);color:var(--accent-ink);border-radius:32px;padding:var(--s5) var(--s4);display:grid;gap:var(--s3);align-items:center}
+@media (min-width:768px){.cta{grid-template-columns:1fr auto}}
+.cta h2{font-size:clamp(22px,3vw,30px)}
+.cta p{margin:var(--s1) 0 0;opacity:.95}
+.cta .btn{background:var(--cream);color:var(--accent);border-color:var(--cream)}
+.cta .tel{font-size:14px;margin-top:8px;display:block}
+@media (max-width:640px){.cta{padding:var(--s4) var(--s3)}}
+
+/* 下層ページの見出し */
+.page-head{padding:var(--s5) 0 var(--s4);background:linear-gradient(180deg,var(--soft),var(--bg))}
+.page-head h1{font-size:clamp(26px,4vw,38px)}
+.page-head p{color:var(--sub);margin-top:var(--s2);max-width:var(--measure)}
+
+/* 施術の流れ：縦のタイムライン */
+.flow{list-style:none;margin:0;padding:0;display:grid;gap:0;max-width:760px}
+.flow li{display:grid;grid-template-columns:56px 1fr;gap:var(--s2);position:relative;padding-bottom:var(--s4)}
+.flow li:not(:last-child)::after{content:"";position:absolute;left:27px;top:56px;bottom:0;width:2px;background:var(--line)}
+.flow .dot{width:56px;height:56px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-weight:700;font-size:15px;border:2px solid var(--leaf)}
+.flow h3{font-size:19px;margin-top:12px}
+.flow .time{display:inline-block;font-size:13px;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:0 10px;margin-left:8px;vertical-align:middle;font-weight:700}
+.flow p{margin:var(--s1) 0 0;color:var(--sub)}
+
+/* 料金表 */
+.price-box{background:var(--cream);border:1px solid var(--line);border-radius:24px;padding:var(--s3)}
+.price th small,.price td small{display:block;color:var(--sub);font-size:13px;font-weight:400}
+.price th{font-weight:700;font-size:15px}
+.price thead th{font-size:13px;color:var(--sub)}
+
+/* 初回の方へ */
+.first{display:grid;gap:var(--s3);grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.first .card{border-radius:24px;background:var(--cream)}
+.first .card h3{display:flex;gap:10px;align-items:center}
+.first .card h3 svg{width:28px;height:28px;flex:none}
+.caution{border-radius:24px;border:2px dashed var(--leaf);padding:var(--s3);margin-top:var(--s4);background:var(--bg)}
+.caution h3{font-size:17px;margin-bottom:var(--s1)}
+.caution p{margin:0;color:var(--sub)}
+
+/* FAQ */
+.faq{max-width:760px;background:var(--cream);border-radius:24px;padding:var(--s1) var(--s3);border:1px solid var(--line)}
+.faq details:last-child{border-bottom:0}
+.faq summary span::before{content:"Q.";color:var(--accent);margin-right:8px}
+
+/* アクセス */
+.access{display:grid;gap:var(--s4)}
+@media (min-width:768px){.access{grid-template-columns:1fr 1fr}}
+.map-ph{border-radius:24px}
+.hours{width:100%;border-collapse:collapse;font-size:15px;margin-top:var(--s2)}
+.hours th,.hours td{border-bottom:1px solid var(--line);padding:12px 8px;text-align:left}
+.hours td.off{color:var(--sub)}
+.form{background:var(--cream);border:1px solid var(--line);border-radius:24px;padding:var(--s4) var(--s3)}
+.form input,.form select,.form textarea{border-radius:12px}
+.form fieldset{border:0;padding:0;margin:0}
+.form legend{font-weight:700;margin-bottom:6px;padding:0}
+.radio-row{display:flex;flex-wrap:wrap;gap:8px}
+.radio-row label{font-weight:400;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:1px solid #8a8a90;border-radius:999px;margin:0;background:var(--bg)}
+.radio-row input{width:auto;min-height:0}
+
+.site-footer{background:#1f2d26;color:#f7fbf7}
+.site-footer a{color:#f7fbf7}

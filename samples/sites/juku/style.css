@@ -1,0 +1,143 @@
+/* 個別指導 まるまど学舎（見本サイト）— 明るく元気：黄色×青、太めの丸ゴシック */
+:root{
+  --bg:#ffffff; --fg:#1c2433; --sub:#4a5366; --line:#d9dfea; --soft:#fff7d6;
+  --accent:#1a4fa0; --accent-ink:#ffffff; --accent-soft:#e6eefb;
+  --yellow:#ffd23f; --yellow-deep:#f5b800; --sky:#cfe2ff;
+  --font-body:"Zen Maru Gothic","Hiragino Maru Gothic ProN","BIZ UDPGothic","Hiragino Sans",system-ui,sans-serif;
+  --font-head:var(--font-body);
+  --head-weight:700; --head-spacing:.02em;
+  --radius:16px;
+}
+body{font-weight:500}
+b,strong,th{font-weight:700}
+
+/* ヘッダー */
+.site-header{border-bottom:3px solid var(--yellow)}
+.logo{font-size:19px;color:var(--fg)}
+.logo small{display:block;font-size:12px;color:var(--sub);letter-spacing:.08em;line-height:1.2}
+.logo span{line-height:1.25}
+.logo svg{width:40px;height:40px}
+.site-nav a{border-radius:999px}
+.site-nav a[aria-current="page"]{background:var(--accent-soft)}
+
+/* ボタン：丸く、押せる感じ */
+.btn{border-radius:999px;box-shadow:0 4px 0 #0f3470}
+.btn.ghost{box-shadow:none;background:#fff}
+.btn.yellow{background:var(--yellow);border-color:var(--fg);color:var(--fg);box-shadow:0 4px 0 var(--fg)}
+@media (prefers-reduced-motion:no-preference){
+  .btn:active{transform:translateY(3px);box-shadow:0 1px 0 #0f3470}
+}
+
+/* 見出しの飾り：黄色いマーカー */
+.mark{background:linear-gradient(transparent 62%,var(--yellow) 62%);padding:0 .1em}
+.eyebrow{display:inline-block;background:var(--accent);color:#fff;border-radius:999px;padding:4px 14px;letter-spacing:.08em}
+.section-head h2{font-size:clamp(26px,3.6vw,36px)}
+
+/* ヒーロー：黄色い面に、ノートと吹き出しのイラスト */
+.hero{background:var(--yellow);background-image:radial-gradient(rgb(28 36 51 / .10) 1.5px,transparent 1.5px);background-size:24px 24px;padding:var(--s5) 0 var(--s6);position:relative;overflow:hidden}
+.hero .container{display:grid;gap:var(--s4);align-items:center}
+@media (min-width:768px){.hero .container{grid-template-columns:1.1fr .9fr}}
+.hero-tag{display:inline-flex;gap:8px;flex-wrap:wrap;margin:0 0 var(--s2);padding:0;list-style:none}
+.hero-tag li{background:#fff;border:2px solid var(--fg);border-radius:999px;padding:2px 14px;font-size:14px;font-weight:700}
+.hero h1{font-size:clamp(34px,6vw,60px);line-height:1.3;letter-spacing:0}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .lead{font-size:18px;margin-top:var(--s3);max-width:26em}
+.hero-art{background:#fff;border:3px solid var(--fg);border-radius:32px;padding:var(--s2);box-shadow:8px 8px 0 var(--fg);transform:rotate(-1.5deg)}
+.hero-art svg{width:100%;height:auto}
+.wave{display:block;width:100%;height:32px;color:var(--bg);margin-top:-31px;position:relative}
+
+/* 指導方針：大きな番号つきの約束カード */
+.promise{display:grid;gap:var(--s3);grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));counter-reset:pr;list-style:none;margin:0;padding:0}
+.promise li{counter-increment:pr;position:relative;background:#fff;border:3px solid var(--fg);border-radius:24px;padding:var(--s4) var(--s3) var(--s3);margin-top:24px}
+.promise li::before{content:counter(pr);position:absolute;top:-26px;left:24px;width:52px;height:52px;border-radius:50%;background:var(--yellow);border:3px solid var(--fg);display:grid;place-items:center;font-size:24px;font-weight:700}
+.promise h3{font-size:21px;margin-bottom:var(--s1)}
+.promise p{margin:0;color:var(--sub)}
+
+/* 数字（実績ではなく、しくみの数字） */
+.stats{gap:var(--s3)}
+.stats div{border-top:0;background:var(--accent-soft);border-radius:var(--radius);padding:var(--s3)}
+.stats b{font-size:36px}
+.stats b small{font-size:18px;margin-left:2px}
+.stats span{font-size:15px;color:var(--fg)}
+
+/* 授業の流れ：横に流れるタイムライン */
+.flow{list-style:none;margin:0;padding:0;display:grid;gap:var(--s2);grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr))}
+.flow li{background:#fff;border-radius:var(--radius);padding:var(--s3);border:2px solid var(--line);position:relative}
+.flow .min{display:inline-block;font-size:14px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:0 12px;margin-bottom:var(--s1)}
+.flow h3{font-size:18px;margin-bottom:4px}
+.flow p{margin:0;font-size:15px;color:var(--sub)}
+
+/* コースカード：上に色帯 */
+.course{border:3px solid var(--fg);border-radius:24px;overflow:hidden;padding:0}
+.course .top{padding:var(--s3);background:var(--sky)}
+.course.jh .top{background:var(--yellow)}
+.course .top .grade{font-size:14px;font-weight:700}
+.course .top h3{font-size:24px}
+.course .body{padding:var(--s3);display:grid;gap:var(--s1)}
+.course .body p{color:var(--sub)}
+.course ul{margin:0;padding-left:1.2em}
+.course .fee{font-size:15px;color:var(--fg);font-weight:700}
+.course .fee b{font-size:26px;color:var(--accent)}
+.more{display:inline-flex;align-items:center;min-height:44px;font-weight:700}
+@media (prefers-reduced-motion:no-preference){.more::after{content:"→";margin-left:6px;transition:transform .2s}.more:hover::after{transform:translateX(4px)}}
+@media (prefers-reduced-motion:reduce){.more::after{content:"→";margin-left:6px}}
+
+/* 保護者の方へ：連絡の方法 */
+.contact-ways{display:grid;gap:var(--s3);grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.contact-ways .card{border:2px solid var(--line);border-radius:20px}
+.contact-ways .ico{width:56px;height:56px;border-radius:50%;background:var(--yellow);display:grid;place-items:center;margin-bottom:var(--s1)}
+.contact-ways .ico svg{width:30px;height:30px}
+.contact-ways .when{font-size:14px;font-weight:700;color:var(--accent)}
+
+/* 無料体験の帯 */
+.cta{background:var(--accent);color:#fff;border-radius:32px;padding:var(--s5) var(--s4);display:grid;gap:var(--s3);align-items:center}
+@media (min-width:768px){.cta{grid-template-columns:1fr auto}}
+.cta h2{font-size:clamp(24px,3.4vw,34px)}
+.cta p{margin:var(--s1) 0 0;color:#eef3fc}
+.cta .btn-row{margin-top:0}
+@media (max-width:640px){.cta{padding:var(--s4) var(--s3)}}
+
+/* 料金表 */
+.price-box{background:#fff;border:3px solid var(--fg);border-radius:24px;padding:var(--s3)}
+.price-box + .price-box{margin-top:var(--s3)}
+.price caption{font-size:19px}
+.price thead th{font-size:14px;color:var(--sub);border-bottom:2px solid var(--fg)}
+.price td.n small{font-weight:500;font-size:13px;color:var(--sub)}
+.note-list{margin:var(--s2) 0 0;padding-left:1.2em;color:var(--sub);font-size:15px}
+
+/* 時間割 */
+.timetable{width:100%;border-collapse:separate;border-spacing:4px;font-size:14px;text-align:center;table-layout:fixed}
+.timetable caption{text-align:left;font-weight:700;font-size:19px;padding-bottom:8px}
+.timetable th{font-weight:700;padding:8px 2px}
+.timetable thead th{background:var(--fg);color:#fff;border-radius:8px}
+.timetable thead th:first-child{background:transparent;color:var(--fg)}
+.timetable tbody th{text-align:left;font-size:13px;line-height:1.4;width:6.5em}
+.timetable tbody th span{display:block;font-weight:500;color:var(--sub);font-size:12px}
+.timetable td{border-radius:8px;padding:10px 2px;font-weight:700}
+.t-e{background:var(--sky)}
+.t-j{background:var(--yellow)}
+.t-x{background:#eef0f4;color:var(--sub);font-weight:500 !important}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin:var(--s2) 0 0;padding:0;list-style:none;font-size:14px}
+.legend li{display:flex;align-items:center;gap:6px}
+.legend i{display:inline-block;width:20px;height:20px;border-radius:6px}
+@media (max-width:480px){.timetable{border-spacing:2px;font-size:13px}.timetable tbody th{width:4.6em}}
+
+/* 無料体験の流れ */
+.steps li::before{background:var(--yellow);color:var(--fg);border:2px solid var(--fg)}
+.steps b{font-size:18px}
+
+/* お問い合わせページ */
+.tel-box{background:var(--soft);border:3px dashed var(--yellow-deep);border-radius:24px;padding:var(--s3)}
+.tel-box .num{font-size:clamp(24px,4vw,30px);font-weight:700;color:var(--fg);letter-spacing:.04em}
+.two{display:grid;gap:var(--s4)}
+@media (min-width:768px){.two{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.page-hero{background:var(--yellow);padding:var(--s5) 0 var(--s4)}
+.page-hero h1{font-size:clamp(30px,5vw,44px)}
+.page-hero p{margin:var(--s2) 0 0;max-width:var(--measure)}
+
+/* フッター */
+.site-footer{background:var(--accent);color:#fff;border-top:8px solid var(--yellow)}
+.site-footer a{color:#fff}
+.site-footer .name{font-size:18px;font-weight:700}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.price tbody th{white-space:nowrap;padding-right:16px}

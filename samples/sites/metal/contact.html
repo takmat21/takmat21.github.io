@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ミツカド精板（見本サイト）｜ZAZOU Lab</title>
+<meta name="description" content="ミツカド精板へのアクセスと、図面を添付できる見積依頼フォーム。来社・駐車場・営業時間のご案内。※架空の会社の見本サイトです。">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap"></noscript>
+<link rel="stylesheet" href="../base.css">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"ミツカド精板（見本サイト・架空）","description":"ZAZOU Labが制作したホームページの見本。会社・住所・電話は架空です。","creator":{"@type":"Organization","name":"ZAZOU株式会社","url":"https://takmat21.github.io/"}}</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<div class="demo-bar">これは <a href="../">ZAZOU Lab の見本サイト</a> です。会社名・住所・電話番号・料金はすべて架空です。</div>
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="./">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" fill="#1b2b48"/><path d="M7 25V9l9 7 9-7v16" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="miter"/><path d="M22 4h6v6" fill="none" stroke="#f07a2a" stroke-width="3"/></svg>
+      <span>ミツカド精板<small lang="en">MITSUKADO SHEET METAL</small></span>
+    </a>
+    <nav class="site-nav" aria-label="メインメニュー">
+      <ul>
+        <li><a href="./">トップ</a></li>
+        <li><a href="service.html">加工・設備</a></li>
+        <li><a href="contact.html" aria-current="page">アクセス・見積依頼</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero page-hero">
+    <div class="container">
+      <div>
+        <span class="tag">ACCESS ／ ESTIMATE</span>
+        <h1>アクセス・見積依頼</h1>
+        <p class="lead">図面を添付してお送りいただくと、原則2営業日以内に加工方法・単価・納期をお返事します。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="form" aria-labelledby="h-form">
+    <div class="container">
+      <div class="split">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow" lang="en">ESTIMATE FORM</span>
+            <h2 id="h-form">見積依頼フォーム</h2>
+            <p>わかる範囲のご記入で構いません。未定の項目は「ご相談内容」にお書きください。</p>
+          </div>
+          <h3 style="font-size:18px;margin-bottom:16px">あると見積が早くなるもの</h3>
+          <ul class="checklist">
+            <li>図面（DXF・DWG・PDF・STEP、手書きの写真も可）</li>
+            <li>材質と板厚</li>
+            <li>数量（試作と量産の予定数）</li>
+            <li>表面処理の有無（塗装・めっきなど）</li>
+            <li>希望納期と納品先</li>
+          </ul>
+        </div>
+        <form class="form" onsubmit="return false" aria-describedby="fnote">
+          <p class="form-note" id="fnote">見本のため送信できません。実際のサイトでは、ここからお店にメールが届きます。</p>
+          <div class="row2">
+            <div><label for="f-co">会社名<span class="req">必須</span></label><input id="f-co" name="company" autocomplete="organization" required></div>
+            <div><label for="f-name">ご担当者名<span class="req">必須</span></label><input id="f-name" name="name" autocomplete="name" required></div>
+          </div>
+          <div class="row2">
+            <div><label for="f-mail">メールアドレス<span class="req">必須</span></label><input id="f-mail" name="email" type="email" autocomplete="email" required></div>
+            <div><label for="f-tel">電話番号</label><input id="f-tel" name="tel" type="tel" autocomplete="tel"></div>
+          </div>
+          <fieldset>
+            <legend>加工の内容</legend>
+            <div class="row2">
+              <div><label for="f-mat">材質</label>
+                <select id="f-mat" name="material"><option value="">選択してください</option><option>SPCC・SECC（鉄・薄板）</option><option>SS400・SPHC（鉄・厚板）</option><option>SUS304・SUS430（ステンレス）</option><option>アルミ</option><option>銅・真鍮</option><option>未定・相談したい</option></select></div>
+              <div><label for="f-t">板厚（mm）</label><input id="f-t" name="thickness" inputmode="decimal" placeholder="例：1.6"></div>
+            </div>
+            <div class="row2">
+              <div><label for="f-qty">数量<span class="req">必須</span></label><input id="f-qty" name="qty" type="number" min="1" inputmode="numeric" required placeholder="例：10"></div>
+              <div><label for="f-date">希望納期</label><input id="f-date" name="due" type="date"></div>
+            </div>
+            <div><label for="f-file">図面ファイル</label><input id="f-file" name="drawing" type="file" accept=".dxf,.dwg,.pdf,.step,.stp,.jpg,.png" multiple aria-describedby="f-file-hint"><p class="hint" id="f-file-hint">1ファイル20MBまで、5ファイルまで添付できます。</p></div>
+          </fieldset>
+          <div><label for="f-msg">ご相談内容</label><textarea id="f-msg" name="message" placeholder="用途、表面処理の有無、図面にない注意点など"></textarea></div>
+          <div><button class="btn orange" type="submit" disabled>この内容で見積を依頼する</button></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft" aria-labelledby="h-access">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow" lang="en">ACCESS</span>
+        <h2 id="h-access">会社概要・アクセス</h2>
+      </div>
+      <div class="split">
+        <dl class="info">
+          <dt>会社名</dt><dd>ミツカド精板</dd>
+          <dt>所在地</dt><dd>〒000-0000 滋賀県みほん市工業団地町1-2-3（架空）</dd>
+          <dt>電話</dt><dd>000-0000-0000（架空）</dd>
+          <dt>営業時間</dt><dd>平日 8:30〜17:30（昼休み 12:00〜13:00）</dd>
+          <dt>休業日</dt><dd>土・日・祝日、夏季・年末年始（第2・第4土曜は事前予約で来社対応）</dd>
+          <dt>創業</dt><dd>1987年（見本）</dd>
+          <dt>従業員</dt><dd>18名（見本）</dd>
+          <dt>駐車場</dt><dd>来客用 3台（正門を入って左側）。大型車での引き取りは事前にご連絡ください。</dd>
+          <dt>交通</dt><dd>みほん駅から車で約10分（架空）／ 高速道路のみほんIC から約8分（架空）</dd>
+        </dl>
+        <div>
+          <div class="map-ph" role="img" aria-label="地図（架空の住所のため表示していません）">地図（架空の住所のため表示していません）</div>
+          <p class="note-s" style="margin-top:16px">工場見学・立ち会い検査も承ります。安全のため、工場内では安全靴の貸し出しをしています。前日までにご予約ください。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div>
+      <p class="fname">ミツカド精板</p>
+      <p>滋賀県みほん市工業団地町1-2-3（架空）</p>
+      <p>TEL 000-0000-0000（架空）／ 平日 8:30〜17:30</p>
+    </div>
+    <div>
+      <small>© 見本サイト（架空）— 制作 ZAZOU Lab</small><br>
+      <a href="../">見本サイト一覧へ戻る</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

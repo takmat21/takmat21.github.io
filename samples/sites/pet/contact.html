@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>まるみみ舎（見本サイト）｜ZAZOU Lab</title>
+<meta name="description" content="まるみみ舎へのアクセス、営業時間、駐車場、トリミング予約・相談のお問い合わせ。※架空の会社の見本サイトです。">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap"></noscript>
+<link rel="stylesheet" href="../base.css">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"まるみみ舎（見本サイト・架空）","description":"ZAZOU Labが制作したホームページの見本。会社・住所・電話は架空です。","creator":{"@type":"Organization","name":"ZAZOU株式会社","url":"https://takmat21.github.io/"}}</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<div class="demo-bar">これは <a href="../">ZAZOU Lab の見本サイト</a> です。会社名・住所・電話番号・料金はすべて架空です。</div>
+
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="./">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#b4462f"/><ellipse cx="20" cy="25.5" rx="7.5" ry="6.5" fill="#fffaf2"/><circle cx="11.5" cy="17" r="3.2" fill="#fffaf2"/><circle cx="16.5" cy="11.5" r="3.2" fill="#fffaf2"/><circle cx="23.5" cy="11.5" r="3.2" fill="#fffaf2"/><circle cx="28.5" cy="17" r="3.2" fill="#fffaf2"/></svg>
+      <span>まるみみ舎<small>ペット用品・トリミング</small></span>
+    </a>
+    <nav class="site-nav" aria-label="メイン">
+      <ul>
+        <li><a href="./">トップ</a></li>
+        <li><a href="service.html">トリミング・フード</a></li>
+        <li><a href="contact.html" aria-current="page">アクセス・お問い合わせ</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">アクセス・お問い合わせ</span>
+      <h1>お店への行き方と、ご予約</h1>
+      <p>トリミングのご予約は、お電話（000-0000-0000・架空）か下のフォームからどうぞ。作業中は電話に出られないことがあるため、フォームだと確実です。</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="h-access">
+    <div class="container contact-grid">
+      <div>
+        <div class="section-head">
+          <h2 id="h-access">アクセス</h2>
+        </div>
+        <dl class="info">
+          <dt>住所</dt><dd>〒000-0000 滋賀県みほん市しっぽ町1-2-3（架空）</dd>
+          <dt>電話</dt><dd>000-0000-0000（架空）</dd>
+          <dt>お店</dt><dd>10:00〜19:00</dd>
+          <dt>トリミング</dt><dd>10:00〜16:00受付（予約制・1日最大6頭）</dd>
+          <dt>定休日</dt><dd>水曜日・第3木曜日</dd>
+          <dt>駐車場</dt><dd>店前に3台（無料）。満車のときは、お声がけいただければ荷物の積みこみをお手伝いします。</dd>
+          <dt>電車・バス</dt><dd>みほん駅から徒歩12分。「しっぽ町」バス停から徒歩2分。</dd>
+        </dl>
+        <div class="map-ph" role="img" aria-label="地図の代わりの図">地図（架空の住所のため表示していません）</div>
+      </div>
+
+      <div class="form-panel">
+        <h2 id="h-form" style="font-size:clamp(22px,3vw,28px);margin-bottom:var(--s3)">予約・相談フォーム</h2>
+        <p class="form-note" id="fnote">見本のため送信できません。実際のサイトでは、ここからお店にメールが届きます。</p>
+        <form class="form" onsubmit="return false" aria-describedby="fnote" aria-labelledby="h-form" style="margin-top:var(--s3)">
+          <div>
+            <label for="f-name">お名前<span class="req">必須</span></label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div>
+            <label for="f-tel">電話番号<span class="req">必須</span></label>
+            <input id="f-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" required>
+            <p class="hint">日中につながりやすい番号をお書きください。</p>
+          </div>
+          <div>
+            <label for="f-kind">ご用件<span class="req">必須</span></label>
+            <select id="f-kind" name="kind" required>
+              <option value="">選んでください</option>
+              <option>トリミングの予約</option>
+              <option>フード・用品の相談</option>
+              <option>取り寄せのご依頼</option>
+              <option>その他</option>
+            </select>
+          </div>
+          <fieldset>
+            <legend>どの子のことですか</legend>
+            <div class="radio-row">
+              <label><input type="radio" name="pet" value="小型犬"> 小型犬</label>
+              <label><input type="radio" name="pet" value="中型犬"> 中型犬</label>
+              <label><input type="radio" name="pet" value="大型犬"> 大型犬</label>
+              <label><input type="radio" name="pet" value="猫"> 猫</label>
+            </div>
+          </fieldset>
+          <div>
+            <label for="f-date">希望日（トリミングの方）</label>
+            <input id="f-date" name="date" type="date">
+            <p class="hint">第2希望があれば、下の欄にお書きください。</p>
+          </div>
+          <div>
+            <label for="f-msg">犬種・年齢・ご相談の内容</label>
+            <textarea id="f-msg" name="message"></textarea>
+          </div>
+          <button class="btn" type="submit" disabled>送信する（見本のため無効）</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="f-name">まるみみ舎（ペット用品・トリミング）</p>
+    <p>滋賀県みほん市しっぽ町1-2-3（架空）<br>電話 000-0000-0000（架空）</p>
+    <small>© 見本サイト（架空）— 制作 ZAZOU Lab　<a href="../">見本サイト一覧へ戻る</a></small>
+  </div>
+</footer>
+</body>
+</html>

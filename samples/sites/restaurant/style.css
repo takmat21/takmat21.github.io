@@ -1,0 +1,126 @@
+/* みずべ食堂 とんぼ舎（見本）— 町の定食屋
+   方針：あたたかいクリーム地＋トマト色、黒板の緑。見出しは手書き風（Yusei Magic）、本文はOS標準のゴシック。 */
+:root{
+  --bg:#fffaf2; --fg:#2b1d14; --sub:#65503f; --line:#ead9c4; --soft:#f8ecdb;
+  --accent:#b3401f; --accent-ink:#ffffff; --accent-soft:#fbe4d3;
+  --green:#3d6b2e; --board:#2f3d33; --chalk:#f6f1e4; --mustard:#f2c86b;
+  --font-body:"Hiragino Sans","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
+  --font-head:"Yusei Magic","Hiragino Maru Gothic ProN","Hiragino Sans",sans-serif;
+  --head-weight:400; --head-spacing:.04em;
+  --radius:16px;
+}
+body{overflow-wrap:anywhere}
+h1,h2{font-feature-settings:"palt"}
+
+/* ヘッダー：のれん風の帯 */
+.site-header{border-top:8px solid var(--accent);border-bottom:2px dashed var(--line)}
+.logo{font-size:20px;font-weight:400}
+.logo small{display:block;font-family:var(--font-body);font-size:12px;color:var(--sub);letter-spacing:.08em;line-height:1.2}
+.logo svg{width:40px;height:40px}
+
+/* ボタン：丸く */
+.btn{border-radius:999px}
+.btn.ghost{background:var(--bg)}
+
+/* ヒーロー */
+.hero{padding:var(--s5) 0 0;background:radial-gradient(circle at 85% 30%,var(--accent-soft) 0,transparent 55%)}
+.hero-grid{display:grid;gap:var(--s4);align-items:center}
+@media (min-width:768px){.hero-grid{grid-template-columns:1.05fr 1fr}}
+.hero .eyebrow{color:var(--green)}
+.hero h1{font-size:clamp(32px,5.4vw,52px);line-height:1.35}
+.hero h1 em{font-style:normal;color:var(--accent);background:linear-gradient(transparent 70%,var(--mustard) 70%)}
+.hero .lead{margin-top:var(--s3);max-width:30em;font-size:17px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin:var(--s3) 0 0;padding:0;list-style:none}
+.hero-meta li{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:4px 14px;font-size:14px}
+.hero-art{position:relative}
+.hero-art svg{width:100%;height:auto}
+.wave{display:block;width:100%;height:48px;margin-top:var(--s4)}
+
+/* 今週の黒板 */
+.board{background:var(--board);color:var(--chalk);border-radius:var(--radius);padding:var(--s4) clamp(16px,4vw,48px);border:10px solid #8a5a3b;box-shadow:inset 0 0 0 2px rgb(255 255 255 / .06)}
+.board h2{font-size:clamp(24px,3.4vw,32px);color:var(--chalk)}
+.board .eyebrow{color:var(--mustard)}
+.board-note{color:#e6dfcf;margin-top:var(--s1);font-size:15px}
+.week{list-style:none;margin:var(--s3) 0 0;padding:0;display:grid;gap:0}
+@media (min-width:768px){.week{grid-template-columns:1fr 1fr;column-gap:var(--s4)}}
+.week li{display:grid;grid-template-columns:3em 1fr auto;gap:var(--s2);align-items:baseline;padding:12px 0;border-bottom:1px dashed rgb(246 241 228 / .35)}
+.week .d{font-family:var(--font-head);font-size:20px;color:var(--mustard)}
+.week .m{font-size:16px}
+.week .m small{display:block;color:#e6dfcf;font-size:14px}
+.week .p{font-family:var(--font-head);font-size:18px;white-space:nowrap}
+.week li.off{opacity:1}
+.week li.off .m{color:#e6dfcf}
+.board-foot{margin-top:var(--s3);font-size:14px;color:#e6dfcf}
+
+/* 3つのこだわり */
+.promise .card{border:2px solid var(--line);background:#fff;position:relative;padding-top:var(--s4)}
+.promise .icon{width:64px;height:64px;border-radius:50%;background:var(--accent-soft);display:grid;place-items:center;margin-bottom:var(--s1)}
+.promise .icon svg{width:40px;height:40px}
+.promise .tag{display:inline-block;font-size:13px;font-weight:700;color:var(--green);letter-spacing:.08em}
+.promise .card h3{font-family:var(--font-head);font-weight:400;font-size:20px}
+
+/* 数字 */
+.stats b{font-weight:400}
+.stats div{border-top:3px dotted var(--accent)}
+
+/* 一日の流れ（時間帯） */
+.timeline{display:grid;gap:var(--s2);grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.time{background:#fff;border-radius:var(--radius);padding:var(--s3);border:1px solid var(--line)}
+.time b{font-family:var(--font-head);font-weight:400;font-size:24px;color:var(--accent);display:block}
+.time h3{font-size:17px;margin:4px 0 var(--s1)}
+.time p{margin:0;color:var(--sub);font-size:15px}
+
+/* お品書き */
+.menu-cards .card{background:#fff;border:2px solid var(--line)}
+.menu-cards .card .art{background:var(--soft)}
+.menu-cards .yen{font-family:var(--font-head);font-size:24px;color:var(--accent);margin-top:auto;padding-top:var(--s1)}
+.menu-cards .yen small{font-family:var(--font-body);font-size:13px;color:var(--sub);margin-left:4px}
+.menu-cards .label{font-size:13px;font-weight:700;color:var(--green);letter-spacing:.06em}
+
+.oshinagaki{background:#fff;border:2px solid var(--line);border-radius:var(--radius);padding:var(--s4) clamp(16px,4vw,40px)}
+.oshinagaki h3{font-family:var(--font-head);font-weight:400;font-size:22px;margin-bottom:var(--s2);color:var(--accent)}
+.oshinagaki + .oshinagaki{margin-top:var(--s3)}
+.dots{list-style:none;margin:0;padding:0}
+.dots li{display:flex;align-items:baseline;gap:8px;padding:10px 0}
+.dots li + li{border-top:1px solid var(--line)}
+.dots .n{flex:0 1 auto}
+.dots li{flex-wrap:wrap;column-gap:8px;row-gap:0}
+.dots li>small{flex-basis:100%;color:var(--sub);font-size:14px;line-height:1.5}
+.dots .lead-dots{flex:1 1 24px;border-bottom:2px dotted #c9b49c;transform:translateY(-6px);min-width:24px}
+.dots .y{white-space:nowrap;font-weight:700}
+.menu-cols{display:grid;gap:var(--s3)}
+@media (min-width:768px){.menu-cols{grid-template-columns:1fr 1fr}.menu-cols .oshinagaki + .oshinagaki{margin-top:0}}
+
+.allergy{border:2px dashed var(--green);border-radius:var(--radius);padding:var(--s3);background:#fff}
+.allergy h2{font-size:22px;margin-bottom:var(--s1);color:var(--green)}
+.allergy p{margin:0}
+
+/* ページ見出し（下層） */
+.page-head{padding:var(--s5) 0 var(--s4);background:var(--soft);border-bottom:2px dashed var(--line)}
+.page-head h1{font-size:clamp(32px,4.6vw,44px)}
+.page-head p{margin:var(--s2) 0 0;color:var(--sub);max-width:var(--measure)}
+.page-head .eyebrow{color:var(--green)}
+
+.section-head h2{font-weight:400}
+.section-head h2::after{content:"";display:block;width:72px;height:8px;margin-top:12px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 8'%3E%3Cpath d='M2 5c8-4 12 2 20 0s12-4 20 0 12 2 20-1 6-1 8 0' fill='none' stroke='%23b3401f' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat}
+
+.two{display:grid;gap:var(--s4)}
+@media (min-width:768px){.two{grid-template-columns:1fr 1fr;align-items:start}}
+
+.cta{background:var(--accent);color:#fff;border-radius:var(--radius);padding:var(--s4) clamp(16px,4vw,48px);display:grid;gap:var(--s2)}
+.cta h2{font-size:clamp(24px,3.4vw,32px)}
+.cta p{margin:0}
+.cta .btn{background:#fff;color:var(--accent);border-color:#fff}
+.cta .btn.ghost{background:transparent;color:#fff;border-color:#fff}
+.cta a:focus-visible{outline-color:#fff}
+
+.site-footer{background:#3a2a1f;color:#fbf3e6}
+.site-footer a{color:#fbf3e6}
+.site-footer .fname{font-family:var(--font-head);font-size:20px}
+
+@media (prefers-reduced-motion:no-preference){
+  .steam{animation:steam 3.2s ease-in-out infinite}
+  .steam:nth-of-type(2){animation-delay:.8s}
+  .steam:nth-of-type(3){animation-delay:1.6s}
+  @keyframes steam{0%,100%{opacity:.25;transform:translateY(4px)}50%{opacity:.9;transform:translateY(-4px)}}
+}

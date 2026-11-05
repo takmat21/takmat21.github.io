@@ -1,0 +1,117 @@
+/* ヘアルーム しろつめ（見本）— 小さなプライベートサロン
+   方針：生成りの地＋くすんだセージ。見出しは明朝（Shippori Mincho 500）、余白を大きく、線は細く、角は立てる。 */
+:root{
+  --bg:#f7f5f0; --fg:#2a2826; --sub:#5e5953; --line:#d9d3c8; --soft:#efebe3;
+  --accent:#4b5a52; --accent-ink:#ffffff; --accent-soft:#e4e9e4;
+  --font-body:"Hiragino Sans","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
+  --font-head:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho","YuMincho",serif;
+  --head-weight:500; --head-spacing:.08em;
+  --radius:2px; --maxw:1080px;
+}
+body{overflow-wrap:anywhere}
+h1,h2,h3{font-weight:500}
+
+.site-header{background:color-mix(in srgb,var(--bg) 94%,transparent);border-bottom:1px solid var(--line)}
+.site-header .container{min-height:72px}
+.logo{font-weight:500;letter-spacing:.14em;font-size:18px}
+.logo small{display:block;font-family:var(--font-body);font-size:12px;letter-spacing:.2em;color:var(--sub);line-height:1.2;font-weight:400}
+.logo svg{width:36px;height:36px}
+.site-nav a{border-radius:0;letter-spacing:.06em}
+.site-nav a:hover{background:transparent;text-decoration:underline}
+.site-nav a[aria-current="page"]{color:var(--fg);box-shadow:inset 0 -2px 0 var(--accent)}
+
+.btn{border-radius:0;font-weight:400;letter-spacing:.12em;padding:0 32px}
+.btn.ghost{color:var(--fg);border:1px solid var(--fg)}
+.btn .arr{display:inline-block}
+@media (prefers-reduced-motion:no-preference){.btn .arr{transition:transform .2s}.btn:hover .arr{transform:translateX(4px)}}
+
+.section{padding:clamp(64px,10vw,128px) 0}
+.eyebrow{font-weight:400;letter-spacing:.2em;color:var(--sub);font-size:13px}
+.eyebrow .no{color:var(--accent);margin-right:8px}
+.section-head h2{font-size:clamp(24px,3vw,32px);line-height:1.6}
+.section-head{margin-bottom:clamp(40px,6vw,64px)}
+
+/* ヒーロー：縦書きの見出し＋細い線画 */
+.hero{padding:clamp(48px,8vw,112px) 0 clamp(64px,10vw,128px)}
+.hero-grid{display:grid;gap:var(--s4);align-items:end}
+.hero h1{font-size:clamp(30px,4.6vw,48px);line-height:1.7;letter-spacing:.14em}
+.hero .lead{color:var(--sub);max-width:26em}
+.hero .lead strong{color:var(--fg);font-weight:400}
+.hero-art{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:var(--s3) 0}
+.hero-art svg{width:100%;height:auto;max-width:320px;margin:0 auto}
+@media (min-width:768px){.hero-art svg{max-width:none;max-height:360px}}
+@media (min-width:768px){
+  .hero-grid{grid-template-columns:auto 1.25fr 1fr;gap:clamp(40px,5vw,80px);align-items:stretch}
+  .hero h1{writing-mode:vertical-rl;height:13.5em;line-height:1.9}
+  .hero .text{display:flex;flex-direction:column;justify-content:flex-end}
+}
+
+/* 考え方：大きな数字＋細い罫 */
+.principles{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.principles li{display:grid;gap:var(--s1) var(--s4);padding:var(--s4) 0;border-bottom:1px solid var(--line)}
+@media (min-width:768px){.principles li{grid-template-columns:96px 1fr 1.4fr;align-items:baseline}}
+.principles .num{font-family:var(--font-head);font-size:40px;line-height:1;color:var(--accent)}
+.principles h3{font-size:20px;line-height:1.6}
+.principles p{margin:0;color:var(--sub)}
+
+/* 部屋の紹介 */
+.room{display:grid;gap:var(--s4);align-items:center}
+@media (min-width:768px){.room{grid-template-columns:1fr 1fr;gap:var(--s5)}}
+.room-art{background:var(--soft);padding:var(--s4)}
+.stats{grid-template-columns:repeat(auto-fit,minmax(min(100%,120px),1fr))}
+.stats div{border-top:1px solid var(--fg)}
+.stats b{font-weight:500;font-size:32px;color:var(--fg)}
+.stats b small{font-size:16px;margin-left:2px}
+
+/* 料金の抜粋 */
+.menu-mini{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
+@media (min-width:768px){.menu-mini{grid-template-columns:1fr 1fr;column-gap:var(--s5)}}
+.menu-mini li{display:flex;justify-content:space-between;gap:var(--s2);padding:20px 0;border-bottom:1px solid var(--line)}
+.menu-mini .t{font-family:var(--font-head);font-size:18px}
+.menu-mini .t small{display:block;font-family:var(--font-body);font-size:14px;color:var(--sub);letter-spacing:.02em}
+.menu-mini .y{white-space:nowrap}
+
+/* 引用（店主のことば） */
+.quote{max-width:34em;margin:0 auto;text-align:center}
+.quote p{font-family:var(--font-head);font-size:clamp(20px,2.4vw,24px);line-height:2;letter-spacing:.1em;margin:0}
+.quote footer{margin-top:var(--s3);color:var(--sub);font-size:14px;letter-spacing:.2em}
+.quote svg{width:48px;height:48px;margin:0 auto var(--s3)}
+
+/* 初めての方へ（カード：枠なし、上に細線） */
+.first .card{border:0;border-top:1px solid var(--fg);border-radius:0;background:transparent;padding:var(--s3) 0 0}
+.first .card .k{font-size:13px;letter-spacing:.2em;color:var(--accent)}
+.first .card h3{font-size:19px;line-height:1.6}
+.first .card p{font-size:15px}
+
+/* 下層の見出し */
+.page-head{padding:clamp(64px,9vw,112px) 0 clamp(40px,6vw,64px);border-bottom:1px solid var(--line)}
+.page-head h1{font-size:clamp(28px,4vw,40px);line-height:1.7;letter-spacing:.12em}
+.page-head p{margin:var(--s3) 0 0;color:var(--sub);max-width:var(--measure)}
+
+/* 料金表 */
+.price-wrap{display:grid;gap:var(--s5)}
+@media (min-width:768px){.price-wrap{grid-template-columns:1fr 1fr;column-gap:var(--s5)}}
+.price caption{font-family:var(--font-head);font-weight:500;font-size:20px;letter-spacing:.12em;padding-bottom:var(--s2);border-bottom:1px solid var(--fg)}
+.price th{font-weight:400}
+.price th small{display:block;color:var(--sub);font-size:14px}
+.price td.n{font-weight:400;font-family:var(--font-head);font-size:17px}
+.note{color:var(--sub);font-size:14px;margin-top:var(--s4)}
+
+/* 予約の流れ：番号を細い円に */
+.steps li{padding:var(--s3) 0;grid-template-columns:56px 1fr}
+.steps li::before{background:transparent;color:var(--accent);border:1px solid var(--accent);font-family:var(--font-head);font-weight:500;width:44px;height:44px}
+.steps b{font-weight:500;font-family:var(--font-head);font-size:18px}
+
+.faq summary{font-weight:500;font-family:var(--font-head);min-height:56px;padding:16px 0}
+
+.two{display:grid;gap:var(--s5)}
+@media (min-width:768px){.two{grid-template-columns:1fr 1.3fr;align-items:start}}
+
+.info dt{font-weight:400;letter-spacing:.1em}
+.form label{font-weight:500}
+.form input,.form select,.form textarea{border-radius:0;background:#fff}
+.form-note{border-radius:0}
+
+.site-footer{background:#2a2826;color:#efebe3}
+.site-footer a{color:#efebe3}
+.site-footer .fname{font-family:var(--font-head);font-size:20px;letter-spacing:.16em}

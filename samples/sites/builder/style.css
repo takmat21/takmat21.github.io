@@ -1,0 +1,140 @@
+/* 木灯舎工務店（見本）— 生成りの紙と杉の色、明朝の見出し */
+:root{
+  --bg:#fbf6ee; --fg:#3a2a1e; --sub:#6b5a4b; --line:#e3d6c2; --soft:#f3e9da;
+  --accent:#8a4520; --accent-ink:#ffffff; --accent-soft:#f1e2cf;
+  --leaf:#5d6b3a; --wood:#c98e57; --wood-light:#e8c9a0;
+  --font-body:"Hiragino Sans","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
+  --font-head:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --head-weight:700; --head-spacing:.04em;
+  --radius:12px;
+}
+body{overflow-wrap:anywhere}
+h1,h2{font-feature-settings:"palt"}
+main a:not(.btn):visited{color:#6a3b5c}
+.eyebrow{color:var(--leaf);font-family:var(--font-head);letter-spacing:.2em;font-size:14px}
+.section-head h2{position:relative;padding-bottom:16px}
+.section-head h2::after{content:"";position:absolute;left:0;bottom:0;width:64px;height:6px;border-radius:3px;background:repeating-linear-gradient(90deg,var(--wood) 0 10px,var(--wood-light) 10px 14px)}
+.section-head.center{margin-inline:auto;text-align:center}
+.section-head.center h2::after{left:50%;transform:translateX(-50%)}
+
+/* ヘッダー */
+.site-header{background:color-mix(in srgb,var(--bg) 94%,transparent)}
+.logo{font-size:19px;letter-spacing:.08em}
+.logo svg{width:36px;height:36px}
+.site-nav a[aria-current="page"]{color:var(--accent);background:var(--accent-soft)}
+.btn{border-radius:999px;padding:0 28px}
+.btn.ghost{background:var(--bg)}
+
+/* ヒーロー：丘の上の家 */
+.hero{position:relative;padding:var(--s5) 0 0;background:linear-gradient(180deg,#f6ead6 0%,var(--bg) 100%);overflow:hidden}
+.hero .container{display:grid;gap:var(--s4);align-items:end}
+@media (min-width:768px){.hero .container{grid-template-columns:1fr 1.15fr}.hero{padding-top:var(--s6)}}
+.hero-copy{position:relative;padding-bottom:var(--s5)}
+.hero .kicker{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--leaf);font-weight:700;margin-bottom:var(--s2)}
+.hero .kicker::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--leaf)}
+.hero h1{font-size:clamp(30px,5vw,52px);line-height:1.4;letter-spacing:.06em}
+.hero .lead{margin-top:var(--s3);color:var(--sub);max-width:26em}
+.hero-art{margin:0;align-self:end}
+.hero-art svg{width:100%;height:auto}
+.vtext{display:none}
+@media (min-width:1024px){
+  .vtext{display:block;position:absolute;right:-8px;top:0;writing-mode:vertical-rl;font-family:var(--font-head);font-size:15px;letter-spacing:.4em;color:var(--sub);border-right:1px solid var(--line);padding-right:8px}
+}
+.page-hero{padding:var(--s5) 0;background:linear-gradient(180deg,#f6ead6,var(--bg));border-bottom:1px solid var(--line)}
+.page-hero h1{font-size:clamp(28px,4vw,42px)}
+.page-hero p{color:var(--sub);margin:var(--s2) 0 0;max-width:32em}
+
+/* 想い：漢数字の3行 */
+.points{display:grid;gap:var(--s4)}
+@media (min-width:768px){.points{grid-template-columns:repeat(3,1fr)}}
+.point{position:relative;padding-top:var(--s2)}
+.point .kan{font-family:var(--font-head);font-size:48px;line-height:1;color:#a06a3a;display:block;margin-bottom:var(--s2)}
+.point h3{font-size:21px;margin-bottom:var(--s1)}
+.point p{color:var(--sub);margin:0}
+
+/* 事例カード：屋根形のラベル */
+.case{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+.case .art{aspect-ratio:16/10;background:#eaf0e4}
+.case .art svg{width:100%;height:100%}
+.case .body{padding:var(--s3);display:flex;flex-direction:column;gap:var(--s1)}
+.case .meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--sub)}
+.case .label{background:var(--accent-soft);color:var(--accent);font-weight:700;padding:2px 10px;border-radius:999px;font-size:13px}
+.case h3{font-size:19px;line-height:1.5}
+.case p{margin:0;color:var(--sub);font-size:15px}
+.case dl{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;margin:8px 0 0;font-size:14px;padding-top:8px;border-top:1px dashed var(--line)}
+.case dt{color:var(--sub)}
+.case dd{margin:0}
+@media (prefers-reduced-motion:no-preference){.case{transition:transform .2s}.case:hover{transform:translateY(-3px)}}
+
+/* 施工の流れ：柱の縦線 */
+.timeline{list-style:none;margin:0;padding:0;position:relative;max-width:760px}
+.timeline::before{content:"";position:absolute;left:23px;top:8px;bottom:8px;width:6px;border-radius:3px;background:repeating-linear-gradient(180deg,var(--wood) 0 28px,var(--wood-light) 28px 32px)}
+.timeline li{position:relative;padding:0 0 var(--s4) 72px}
+.timeline li:last-child{padding-bottom:0}
+.timeline .dot{position:absolute;left:6px;top:0;width:40px;height:40px;border-radius:50%;background:var(--bg);border:3px solid var(--accent);display:grid;place-items:center;font-family:var(--font-head);font-weight:700;color:var(--accent)}
+.timeline h3{font-size:19px;display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}
+.timeline h3 small{font-family:var(--font-body);font-size:14px;font-weight:400;color:var(--leaf)}
+.timeline p{margin:8px 0 0;color:var(--sub)}
+
+/* 相談会：日めくり */
+.events{display:grid;gap:var(--s3)}
+@media (min-width:768px){.events{grid-template-columns:repeat(3,1fr)}}
+.event{background:#fff;border-radius:var(--radius);border:1px solid var(--line);padding:var(--s3);display:grid;grid-template-columns:72px 1fr;gap:var(--s2);align-items:start}
+.event .day{border-radius:8px;overflow:hidden;text-align:center;border:1px solid var(--accent);background:#fff}
+.event .day span{display:block;background:var(--accent);color:#fff;font-size:13px;padding:2px 0}
+.event .day b{display:block;font-family:var(--font-head);font-size:28px;line-height:1.3;color:var(--fg)}
+.event .day i{display:block;font-style:normal;font-size:13px;color:var(--sub);padding-bottom:4px}
+.event h3{font-size:18px;line-height:1.5}
+.event p{margin:4px 0 0;font-size:14px;color:var(--sub)}
+.event .seat{display:inline-block;margin-top:8px;font-size:13px;font-weight:700;color:var(--leaf);border:1px solid var(--leaf);border-radius:999px;padding:0 10px}
+
+/* 数字 */
+.stats div{border-top:0;border-left:4px solid var(--wood);padding:0 0 0 16px}
+.stats b{font-family:var(--font-head);color:var(--fg)}
+.stats b small{font-size:16px;margin-left:2px}
+
+/* 相談の案内帯 */
+.invite{background:var(--leaf);color:#fff;border-radius:24px;padding:var(--s5) var(--s4);display:grid;gap:var(--s3);align-items:center;position:relative;overflow:hidden}
+@media (min-width:768px){.invite{grid-template-columns:1.4fr 1fr}}
+.invite h2{font-size:clamp(24px,3.2vw,32px)}
+.invite p{margin:var(--s2) 0 0;color:#f1f3ea}
+.invite .btn{background:#fff;color:var(--fg);border-color:#fff}
+.invite .tel{margin-top:12px;font-size:14px;color:#f1f3ea}
+.invite .tel b{display:block;font-size:22px;color:#fff;font-family:var(--font-head)}
+@media (max-width:640px){.invite{padding:var(--s4) var(--s3)}}
+
+/* サービス */
+.menu{display:grid;gap:var(--s3)}
+@media (min-width:768px){.menu{grid-template-columns:repeat(3,1fr)}}
+.menu .card{background:#fff;border-radius:var(--radius);padding:var(--s4) var(--s3) var(--s3);border-top:6px solid var(--wood)}
+.menu .card .art{margin:0 0 var(--s1);aspect-ratio:auto;background:none;border-radius:0}
+.menu .card .art svg{width:64px;height:64px}
+.menu .card .from{font-family:var(--font-head);font-size:22px;color:var(--accent);margin-top:auto;padding-top:var(--s1)}
+.menu .card .from small{font-size:14px;color:var(--sub);font-family:var(--font-body)}
+.woods{display:grid;gap:var(--s3);grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.wood{border-radius:var(--radius);padding:var(--s3);background:#fff;border:1px solid var(--line)}
+.wood .grain{height:48px;border-radius:8px;margin-bottom:var(--s2)}
+.wood h3{font-size:19px}
+.wood p{margin:8px 0 0;font-size:15px;color:var(--sub)}
+.split{display:grid;gap:var(--s4)}
+@media (min-width:768px){.split{grid-template-columns:1fr 1fr}}
+.price{background:#fff;border-radius:var(--radius)}
+.price th,.price td{padding:14px 16px}
+.price td.n{color:var(--accent)}
+.price .s{display:block;font-size:14px;font-weight:400;color:var(--sub)}
+.note-s{font-size:14px;color:var(--sub)}
+.form fieldset{border:1px solid var(--line);border-radius:var(--radius);padding:var(--s2) var(--s3) var(--s3);margin:0}
+.form legend{font-weight:700;padding:0 8px}
+.choice{display:grid;gap:8px;margin-top:8px}
+.form .choice label{display:flex;align-items:center;gap:12px;min-height:48px;padding:8px 16px;border:1px solid var(--line);border-radius:8px;background:#fff;font-weight:400;margin:0;cursor:pointer}
+.form .choice input{width:20px;height:20px;min-height:0;margin:0;flex:none;accent-color:var(--accent)}
+.form .row2{display:grid;gap:var(--s3)}
+@media (min-width:640px){.form .row2{grid-template-columns:1fr 1fr}}
+.form input,.form select,.form textarea{background:#fff}
+.faq summary::after{color:var(--accent)}
+.site-footer{background:#3a2a1e}
+.site-footer .container{grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.site-footer p{margin:0}
+.site-footer .fname{font-family:var(--font-head);font-size:18px;font-weight:700;margin-bottom:8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media (max-width:767px){.hero-copy{padding-bottom:0}.hero .container{gap:var(--s3)}}
