@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>図面見積アプリ（金属加工向け）｜松村貴士</title>
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="図面見積アプリ（金属加工向け）｜松村貴士">
+<meta property="og:description" content="金属加工の図面PDFをAIが読み、見積書の下書きをExcelで出すアプリです。AIは下書きまで、最終の金額は人が決めます。">
+<meta property="og:url" content="https://takmat21.github.io/samples/drawing-estimate/">
+<meta property="og:image" content="https://takmat21.github.io/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css?v=20261101g"><link rel="canonical" href="https://takmat21.github.io/samples/drawing-estimate/">
+<meta name="description" content="金属加工の図面PDFをAIが読み、寸法・材質・数量を拾い出して見積書の下書きをExcelで出すアプリ。自作の見本図面10枚で項目の正解率は約99%。AIは間違えることがあるため、必ず人が確認して金額を決めます。">
+<style>
+/* このページだけの追加（共通の style.css の色の変数を使う） */
+.flow{list-style:none;margin:0;padding:0;counter-reset:f;border-top:1px solid var(--line)}
+.flow li{counter-increment:f;display:grid;grid-template-columns:2.4em 1fr;gap:0 12px;padding:14px 4px;border-bottom:1px solid var(--line)}
+.flow li::before{content:counter(f);font-family:var(--mono);font-size:13px;color:var(--accent);background:var(--accent-soft);border-radius:4px;text-align:center;height:1.9em;line-height:1.9em;margin-top:2px}
+.flow b{display:block}
+.flow span{grid-column:2;font-size:14px;color:var(--sub)}
+.ph{display:flex;align-items:center;justify-content:center;text-align:center;aspect-ratio:4/3;border:1px dashed var(--faint);border-radius:6px;background:var(--soft);color:var(--faint);font-family:var(--mono);font-size:12px;padding:12px}
+.figs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 8px}
+.figs figure{margin:0}
+.figs figcaption{font-size:13px;color:var(--sub);margin-top:6px}
+.sub{font-size:16px;margin:28px 0 10px}.sub .m{font-family:var(--mono);font-size:12px;color:var(--faint);font-weight:400;margin-left:6px}
+.dwg{margin:0 0 10px}.dwg img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:6px;background:#fff}
+.dwg figcaption{font-size:13px;color:var(--sub);margin-top:6px}
+.tw{overflow-x:auto;margin:0 0 8px}
+table.rd td:nth-child(2){word-break:break-word}table.rd td:nth-child(3),table.rd th:nth-child(n+3){white-space:nowrap}table.rd td:nth-child(1){width:7em}table.rd .ok,table.rd .ng{white-space:nowrap}table.rd td,table.rd th{padding-left:4px;padding-right:4px}
+table.price tr.sum td{font-weight:700;border-top:2px solid var(--line)}
+.ok{color:var(--accent);font-weight:700}.ng{color:#c0392b;font-weight:700}
+.stat{display:flex;align-items:center;gap:16px;margin:0 0 12px}.stat .big{font-family:var(--mono);font-size:40px;font-weight:600;color:var(--accent);line-height:1}.stat span{font-size:14px;color:var(--sub)}
+.warn{border-left:3px solid var(--accent);background:var(--accent-soft);padding:12px 16px;border-radius:0 6px 6px 0;font-size:15px;margin:0 0 8px}
+table.price{width:100%;border-collapse:collapse;font-size:15px}
+table.price th,table.price td{border-bottom:1px solid var(--line);padding:10px 6px;text-align:left;vertical-align:top}
+table.price th{font-size:12px;font-family:var(--mono);color:var(--faint);font-weight:600}
+table.price td.n{white-space:nowrap;font-family:var(--mono);font-size:14px}
+dl.qa{margin:0;display:grid;gap:16px}
+dl.qa dt{font-weight:700}
+dl.qa dd{margin:2px 0 0;color:var(--sub);font-size:15px}
+</style>
+</head>
+<body><div class="wrap">
+<nav class="tabs" aria-label="ページの切り替え"><a href="../../#about">プロフィール</a><a href="../../#samples" class="on" aria-current="page">仕事一覧</a><a href="../../#system">仕組み</a><a href="../../#paper">論文</a><a href="../../news/">朝刊</a></nav>
+
+<header class="hero"><p class="name"><a href="../../">松村貴士 ポートフォリオ</a></p>
+<span class="tag">見積・図面 ／ 試作</span>
+<h1>図面見積アプリ：図面PDFから見積書の下書きまで</h1>
+<p>金属加工の図面PDFをAIが読み、寸法・材質・数量などを拾い出して、見積書の下書きをExcelで出します。AIは下書きまで。最終の金額は、人が確認して決めます。</p>
+</header>
+
+<section>
+<h2>Problem <span class="ja">／ こんな困りごとに</span></h2>
+<ul class="rows">
+<li><div class="row" style="padding:14px 4px"><span class="t">見積が、特定の人に頼りきりになっている</span><span class="d">図面を読んで金額を出せる人が限られ、その人が休むと見積が止まる。</span></div></li>
+<li><div class="row" style="padding:14px 4px"><span class="t">図面を読む時間が、本業を圧迫している</span><span class="d">寸法・材質・数量の拾い出しと転記に、1件ごとに時間がかかる。</span></div></li>
+<li><div class="row" style="padding:14px 4px"><span class="t">見積の返事が遅れて、仕事を逃している</span><span class="d">返事を待つあいだに、先に回答した他社に決まってしまう。</span></div></li>
+</ul>
+</section>
+
+<section>
+<h2>Flow <span class="ja">／ 使い方の流れ</span></h2>
+<ol class="flow">
+<li><b>図面を入れる</b><span>図面のPDFを入れます。CADのソフトは要りません。</span></li>
+<li><b>AIが読み取る</b><span>寸法・材質・板厚・数量・加工の指示などを拾い出し、一覧にします。</span></li>
+<li><b>人が確認・修正する</b><span>読み取り結果を図面と見比べ、違うところを直します。単価や段取りの判断もここで。</span></li>
+<li><b>見積書の下書き（Excel）</b><span>確認した内容から、見積書の下書きをExcelで出します。金額は人が決めて仕上げます。</span></li>
+</ol>
+</section>
+
+<section>
+<h2>Sample <span class="ja">／ 見本（自作の図面で試作）</span></h2>
+<p class="lead">自作の見本図面10枚（板金・製缶・機械加工、易・中・難）から3枚を載せます。表は、図面を作っていないAIが読んだ結果を、正解と照らし合わせたものです。</p>
+<h3 class="sub">易：ZA-1001 L型ブラケット（板金） <span class="m">9/9 項目正解</span></h3><figure class="dwg"><a href="img/za-1001.png"><img src="img/za-1001.png" width="1200" height="849" loading="lazy" alt="見本図面 ZA-1001 L型ブラケット（板金）（自作・架空の部品）"></a><figcaption>見本図面 ZA-1001（自作・架空の部品）。画像を押すと大きく表示します。</figcaption></figure><div class="tw"><table class="price rd"><thead><tr><th>項目</th><th>AIの読み取り</th><th>自信度</th><th>判定</th></tr></thead><tbody><tr><td>品名</td><td>L型ブラケット</td><td class="n">高</td><td><span class="ok">正解</span></td></tr><tr><td>材質</td><td>SPCC</td><td class="n">高</td><td><span class="ok">正解</span></td></tr><tr><td>板厚</td><td>1.6 mm</td><td class="n">高</td><td><span class="ok">正解</span></td></tr><tr><td>外形寸法（幅×奥行×高さ）</td><td>50×40×30</td><td class="n">高</td><td><span class="ok">正解</span></td></tr><tr><td>数量</td><td>50 個</td><td class="n">高</td><td><span class="ok">正解</span></td></tr><tr><td>穴</td><td>φ6.5×4</td><td class="n">高</td><td><span class="ok">正解</span></td></tr><tr><td>曲げ数</td><td>1 回</td><td class="n">高</td><td><span class="ok">正解</span></td></tr><tr><td>溶接長</td><td>0 mm</td><td class="n">高</td><td><span class="ok">正解</span></td></tr><tr><td>表面処理</td><td>三価クロメートメッキ</td><td class="n">高</td><td><span class="ok">正解</span></td></tr></tbody></table></div><h3 class="sub">中：ZA-2004 架台脚（製缶） <span class="m">9/9 項目正解</span></h3><figure class="dwg"><a href="img/za-2004.png"><img src="img/za-2004.png" width="1200" height="849" loading="lazy" alt="見本図面 ZA-2004 架台脚（製缶）（自作・架空の部品）"></a><figcaption>見本図面 ZA-2004（自作・架空の部品）。画像を押すと大きく表示します。</figcaption></figure><div class="tw"><table class="price rd"><thead><tr><th>項目</th><th>AIの読み取り</th><th>自信度</th><th>判定</th></tr></thead><tbody><tr><td>品名</td><td>架台脚</td><td class="n">高</td><td><span class="ok">正解</span></td></tr><tr><td>材質</td><td>SS400</td><td class="n">高</td><td><span class="ok">正解</span></td></tr><tr><td>板厚</td><td>9 mm</td><td class="n">中</td><td><span class="ok">正解</span></td></tr><tr><td>外形寸法（幅×奥行×高さ）</td><td>120×120×415</td><td class="n">高</td><td><span class="ok">正解</span></td></tr><tr><td>数量</td><td>4 個</td><td class="n">高</td><td><span class="ok">正解</span></td></tr><tr><td>穴</td><td>φ12×4、φ9×4</td><td class="n">高</td><td><span class="ok">正解</span></td></tr><tr><td>曲げ数</td><td>0 回</td><td class="n">高</td><td><span class="ok">正解</span></td></tr><tr><td>溶接長</td><td>400 mm</td><td class="n">中</td><td><span class="ok">正解</span></td></tr><tr><td>表面処理</td><td>メラミン焼付塗装</td><td class="n">高</td><td><span class="ok">正解</span></td></tr></tbody></table></div><p class="note">板厚と溶接長は自信度が「中」。金額への影響が大きい項目なので、アプリはこの2つを「要確認」に出します（値は正解でした）。</p><h3 class="sub">難：ZA-3001 電装ボックス（板金） <span class="m">8/9 項目正解</span></h3><figure class="dwg"><a href="img/za-3001.png"><img src="img/za-3001.png" width="1200" height="849" loading="lazy" alt="見本図面 ZA-3001 電装ボックス（板金）（自作・架空の部品）"></a><figcaption>見本図面 ZA-3001（自作・架空の部品）。画像を押すと大きく表示します。</figcaption></figure><div class="tw"><table class="price rd"><thead><tr><th>項目</th><th>AIの読み取り</th><th>自信度</th><th>判定</th></tr></thead><tbody><tr><td>品名</td><td>電装ボックス</td><td class="n">高</td><td><span class="ok">正解</span></td></tr><tr><td>材質</td><td>SPCC</td><td class="n">高</td><td><span class="ok">正解</span></td></tr><tr><td>板厚</td><td>1.2 mm</td><td class="n">高</td><td><span class="ok">正解</span></td></tr><tr><td>外形寸法（幅×奥行×高さ）</td><td>250×180×80</td><td class="n">中</td><td><span class="ok">正解</span></td></tr><tr><td>数量</td><td>15 個</td><td class="n">高</td><td><span class="ok">正解</span></td></tr><tr><td>穴</td><td>φ6×4、φ22.5×2、φ4.5×4</td><td class="n">高</td><td><span class="ng">誤り</span><br>正しくは φ6×4、φ22.5×2、φ4.5×8</td></tr><tr><td>曲げ数</td><td>4 回</td><td class="n">高</td><td><span class="ok">正解</span></td></tr><tr><td>溶接長</td><td>320 mm</td><td class="n">高</td><td><span class="ok">正解</span></td></tr><tr><td>表面処理</td><td>粉体塗装 マンセル5Y7/1 内外面</td><td class="n">高</td><td><span class="ok">正解</span></td></tr></tbody></table></div><p class="warn">唯一の誤り：右側面図の「4-φ4.5（両側面）」を4個と読みました。正しくは両側面で8個です。しかもAIの自信度は「高」でした。このため、アプリは「両側」「n箇所」などの倍数の注記があれば、自信度に関係なく「要確認」に出し、人が確かめます。</p><h3 class="sub">見積の内訳の例：ZA-3001 電装ボックス（穴の数を人が8個に直したあと）</h3><div class="tw"><table class="price"><thead><tr><th>項目</th><th>計算のもと</th><th>金額</th></tr></thead><tbody><tr><td>材料費</td><td>SPCC t1.2 展開 407.4×337.4（約1.29kg）</td><td class="n">233円</td></tr><tr><td>切断費</td><td>レーザー切断（外周＋穴）</td><td class="n">273円</td></tr><tr><td>穴あけ費</td><td>14個</td><td class="n">280円</td></tr><tr><td>曲げ費</td><td>4回</td><td class="n">400円</td></tr><tr><td>溶接費</td><td>320mm</td><td class="n">1,600円</td></tr><tr><td>表面処理費</td><td>粉体塗装</td><td class="n">825円</td></tr><tr><td>加工費の数量割引</td><td>15個のため加工費の5%引き</td><td class="n">-169円</td></tr><tr class="sum"><td>1個あたり</td><td>段取り費を除く</td><td class="n">3,442円</td></tr><tr><td>数量</td><td>15個 × 3,442円</td><td class="n">51,628円</td></tr><tr><td>段取り費</td><td>板金・1ロット</td><td class="n">3,000円</td></tr><tr class="sum"><td>合計（税抜）</td><td>1個あたり 3,642円</td><td class="n">54,628円</td></tr></tbody></table></div><p class="note">単価はすべて試作用の仮の値です。導入時（2段目）に御社の単価表と見積のルールに置き換えます。最終の金額は人が決めます。</p>
+<p class="note">見本はすべて自作・架空の部品の図面です。お客様の図面は載せていません。</p>
+</section>
+
+<section>
+<h2>Accuracy <span class="ja">／ 精度と、人の確認</span></h2>
+<div class="stat"><span class="big">約99%</span><span>項目の正解率（90項目中89項目）<br>自作の見本図面10枚での結果</span></div><p>自作の見本図面10枚（板金・製缶・機械加工）を、図面を作っていないAIに読ませ、1枚あたり9項目（品名・材質・板厚・外形寸法・数量・穴・曲げ数・溶接長・表面処理）を正解と照らし合わせました（10枚×9項目＝90項目）。</p><p>実際の図面（手書きの注記・スキャン）では、正確さは下がります。そのため、導入時（1段目）に御社の図面で測定します。</p><p>読み違えやすい「両側」「n箇所」などの倍数の注記は、アプリが自動で「要確認」に出します。溶接長・数量など金額への影響が大きい項目も、AIの自信が高くないときは「要確認」に出します。人が確かめてから見積書にします。</p>
+<p class="warn">AIは読み間違えることがあります。読み取り結果と見積の下書きは、必ず人が図面と見比べて確認し、金額は人が決めます。</p>
+</section>
+
+<section>
+<h2>Plan <span class="ja">／ 導入の段階と料金（税込）</span></h2>
+<table class="price">
+<thead><tr><th>段階</th><th>内容</th><th>料金</th></tr></thead>
+<tbody>
+<tr><td>1段目<br>お試し導入</td><td>御社の図面で試し、読み取りの正確さと手間の減り方を確かめます（約17時間まで）。</td><td class="n">50,000円</td></tr>
+<tr><td>2段目<br>御社に合わせる</td><td>御社の単価表と見積のルールに合わせて、見積書の下書きを作れるようにします（約50時間）。</td><td class="n">150,000円</td></tr>
+<tr><td>保守</td><td>使い方の相談・小さな直し（月3時間まで）。</td><td class="n">月10,000円</td></tr>
+</tbody>
+</table>
+<p class="note">時間を超える分は、事前にお見積りのうえ時間単価3,000円で承ります。より広い範囲の仕組みづくり（3段目・280,000円、約93時間）もご相談ください。図面1枚の無料お試しもあります。</p>
+</section>
+
+<section>
+<h2>FAQ <span class="ja">／ よくある質問</span></h2>
+<dl class="qa">
+<dt>図面の秘密は守られますか。</dt><dd>図面は、読み取りのためにAI（AnthropicのClaude）へ送るだけで、それ以外の外部には送りません（自社のコード点検で確認）。AI側でのデータの扱いはご利用のアカウントの設定によります。詳しくはお問い合わせください。お試しの前に、使うサービスと扱い方をご説明し、秘密保持の取り決めをしたうえで進めます。社外に出せない図面は使いません。</dd>
+<dt>どのくらい正確ですか。</dt><dd>自作の見本図面10枚では、項目の正解率は約99%（90項目中89）でした。実際の図面（手書きの注記・スキャン）では下がるため、導入時に御社の図面で測定します。</dd>
+<dt>CADは要りますか。</dt><dd>要りません。図面のPDFがあれば使えます。</dd>
+<dt>AIの見積をそのまま出してよいですか。</dt><dd>いいえ。AIは間違えることがあるので、必ず人が確認してから出してください。</dd>
+</dl>
+</section>
+
+<section>
+<h2>About <span class="ja">／ つくっている人</span></h2>
+<p class="lead">松村貴士（ZAZOU株式会社 代表、滋賀県日野町）。パナソニックで2005〜2020年、チューナの機構設計、洗濯機・ロボット掃除機の開発に携わり、図面を描き、読んできました（CATIA・NX・SolidWorks・MICRO CADAM Helix）。2020年の独立時は設計事務所として図面の仕事もしていました。</p>
+<a class="btn ghost" href="../estimate-flow/">見本：図面から見積書までの流れ</a>
+</section>
+
+<footer>
+ご依頼・ご相談は、各サービスのメッセージからお願いします。<br>
+<a href="https://crowdworks.jp/public/employees/3288043">クラウドワークスのプロフィール</a><br><br>
+<span class="mono">© 2026 Takashi Matsumura / ZAZOU Inc.</span>
+</footer>
+</div></body></html>
