@@ -75,6 +75,16 @@ def offers_of(page_html, url):
     return offers
 
 
+def intl_tel(t):
+    """電話番号を国際表記に（090-6373-7945 / 09063737945 → +81-90-6373-7945）。"""
+    if t.startswith("+"):
+        return t
+    d = re.sub(r"\D", "", t)
+    if len(d) == 11 and d[:3] in ("090", "080", "070", "050"):
+        return f"+81-{d[1:3]}-{d[3:7]}-{d[7:]}"
+    return "+81-" + d.lstrip("0")
+
+
 def crumb(items):
     return {"@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": i + 1, "name": n, "item": u} for i, (n, u) in enumerate(items)]}
@@ -195,7 +205,7 @@ def run(root=None):
                 if mails:
                     cp["email"] = mails[0]
                 if tels:
-                    cp["telephone"] = tels[0] if tels[0].startswith("+") else "+81-" + tels[0].lstrip("0")
+                    cp["telephone"] = intl_tel(tels[0])
                 org["contactPoint"] = cp
             new = put(new, "ld-site", top)
         else:
