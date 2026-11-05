@@ -132,7 +132,7 @@ def build_daily():
         p = os.path.join(NEWS, 'd', a['slug']); os.makedirs(p, exist_ok=True)
         make_thumb(a, p)  # 全号で見出し画像を作る（外部の写真は使わない。11/5）
         s = head(a['title'], a['lead'][:110], f'news/d/{a["slug"]}/', 3, f'https://takmat21.github.io/news/d/{a["slug"]}/thumb.png')
-        s += f'<header class="hero"><p class="name"><a href="../../">統括AI（先輩）の朝刊</a></p><span class="tag">{E(a.get("category","今日の話題"))}</span><h1>{E(a["title"])}</h1><p class="news-meta">{E(a.get("date",a["slug"][:10]))}　発行：ZAZOU Inc.</p></header>\n<section class="news-item"><p class="lead">{E(a["lead"])}</p>'
+        s += f'<header class="hero"><p class="name"><a href="../../">統括AI（先輩）の朝刊</a></p><span class="tag">{E(a.get("category","今日の話題"))}</span><h1>{E(a["title"])}</h1><p class="news-meta">{E(a.get("date",a["slug"][:10]))}　発行：ZAZOU株式会社</p></header>\n<section class="news-item"><p class="lead">{E(a["lead"])}</p>'
         for sec in a.get('sections', []):
             s += f'<h3>{E(sec["heading"])}</h3>' + ''.join(f'<p>{E(x)}</p>' for x in sec['paragraphs'])
         # 出典（11/3 松村さん：URLと、どこの研究チーム・発行元かを必ず載せる）
@@ -167,7 +167,7 @@ def main():
         p = os.path.join(NEWS, d['slug']); os.makedirs(p, exist_ok=True)
         t = f'統括AI（先輩）の朝刊（{d["week"]}）'
         s = head(t, d['lead'][:110], f'news/{d["slug"]}/', 2)
-        s += f'<header class="hero"><p class="name"><a href="../">統括AI（先輩）の朝刊</a></p><h1>{E(d["week"])}の動向</h1><p class="news-meta">更新：{E(d["updated"])}　発行：ZAZOU Inc.</p></header>\n<section>{body(d)}{NOTE}</section>\n' + FOOT
+        s += f'<header class="hero"><p class="name"><a href="../">統括AI（先輩）の朝刊</a></p><h1>{E(d["week"])}の動向</h1><p class="news-meta">更新：{E(d["updated"])}　発行：ZAZOU株式会社</p></header>\n<section>{body(d)}{NOTE}</section>\n' + FOOT
         open(os.path.join(p, 'index.html'), 'w', encoding='utf-8').write(s)
     arts = build_daily()
     latest = weeks[0]
@@ -178,7 +178,7 @@ def main():
     hero = ('<picture class="news-hero"><source media="(max-width:640px)" srcset="../assets/news-hero-narrow.svg">'
             '<img src="../assets/news-hero-wide.svg" alt="" width="1200" height="400"></picture>\n')
     s = s.replace('<nav class="tabs"', hero + '<nav class="tabs" style="margin-top:8px"', 1)
-    s += f'''<header class="hero"><p class="name">ZAZOU Inc. ／ 毎日更新</p><h1>統括AI（先輩）の朝刊</h1><p>{DESC}</p>
+    s += f'''<header class="hero"><p class="name">ZAZOU株式会社 ／ 毎日更新</p><h1>統括AI（先輩）の朝刊</h1><p>{DESC}</p>
 <p class="note" style="margin-top:14px">各号の構成：①記事の要約（海外の記事は日本語で）②自社のAIチームの運用から見ると ③小規模事業者にとって。元の記事へのリンクを付けています。</p></header>
 '''
     def card(a, big=False):
