@@ -243,17 +243,6 @@
  },
  {
   "site": "sake",
-  "file": "samples/sites/sake/img/hero-sugidama.webp",
-  "use": "トップのヒーロー（杉玉）",
-  "source": "Unsplash",
-  "license": "Unsplash License（無料・商用可・クレジット不要）",
-  "license_url": "https://unsplash.com/license",
-  "page": "https://unsplash.com/photos/0XY1WeLEAkc",
-  "photographer": "Cindy Bissig",
-  "image": "https://images.unsplash.com/photo-1782966373463-3f424a95bcab"
- },
- {
-  "site": "sake",
   "file": "samples/sites/sake/img/tokkuri.webp",
   "use": "トップ本文（徳利とおちょこ）",
   "source": "Unsplash",
@@ -295,17 +284,6 @@
   "page": "https://unsplash.com/photos/33ssRCZI37Q",
   "photographer": "TOMOKO UJI",
   "image": "https://images.unsplash.com/photo-1606045426421-2412d1a18999"
- },
- {
-  "site": "taxi",
-  "file": "samples/sites/taxi/img/hero-wheelchair.webp",
-  "use": "トップのヒーロー（車いすの後ろ姿）",
-  "source": "Unsplash",
-  "license": "Unsplash License（無料・商用可・クレジット不要）",
-  "license_url": "https://unsplash.com/license",
-  "page": "https://unsplash.com/photos/woman-sitting-on-wheelchair-zBsdRTHIIm4",
-  "photographer": "Steven HWG",
-  "image": "https://images.unsplash.com/photo-1565615833231-e8c91a38a012"
  },
  {
   "site": "taxi",
@@ -473,17 +451,6 @@
   "image": "https://images.unsplash.com/photo-1523693916903-027d144a2b7d"
  },
  {
-  "site": "salon",
-  "file": "samples/sites/salon/img/tools.webp",
-  "use": "本文：はさみなどの道具",
-  "source": "Unsplash",
-  "license": "Unsplash License（無料・商用可・クレジット不要）",
-  "license_url": "https://unsplash.com/license",
-  "page": "https://unsplash.com/photos/eAlcaMVJYNg",
-  "photographer": "Lera Kogan",
-  "image": "https://images.unsplash.com/photo-1584906755531-f83be6b88d6b"
- },
- {
   "site": "florist",
   "file": "samples/sites/florist/img/buckets.webp",
   "use": "トップ：店先のバケツの花",
@@ -605,17 +572,6 @@
   "image": "https://images.unsplash.com/photo-1564046710162-5959a502ffe6"
  },
  {
-  "site": "builder",
-  "file": "samples/sites/builder/img/plane.webp",
-  "use": "本文：鉋と削りくず",
-  "source": "Unsplash",
-  "license": "Unsplash License（無料・商用可・クレジット不要）",
-  "license_url": "https://unsplash.com/license",
-  "page": "https://unsplash.com/photos/XFcPxg6plfQ",
-  "photographer": "Cristian Tarzi",
-  "image": "https://images.unsplash.com/photo-1700831213936-44bb92582be4"
- },
- {
   "site": "restaurant",
   "file": "samples/sites/restaurant/img/lake.webp",
   "use": "本文：湖畔の風景",
@@ -625,5 +581,214 @@
   "page": "https://unsplash.com/photos/a-group-of-trees-sitting-next-to-a-body-of-water--xVufQnHSi8",
   "photographer": "wei",
   "image": "https://images.unsplash.com/photo-1689607979529-9683ca728867"
+ },
+ {
+  "site": "office",
+  "file": "samples/sites/office/img/desk-calc.webp",
+  "use": "机の上の電卓・ノート・鉛筆・観葉植物",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/QfQW294I8sQ",
+  "photographer": "Cht Gsml",
+  "image": "https://images.unsplash.com/photo-1762831063004-bbd3ea38ba3a"
+ },
+ {
+  "site": "office",
+  "file": "samples/sites/office/img/lamp-plant.webp",
+  "use": "机のスタンドと観葉植物",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/BlIhVfXbi9s",
+  "photographer": "Samantha Gades",
+  "image": "https://images.unsplash.com/photo-1533090161767-e6ffed986c88"
+ },
+ {
+  "site": "builder",
+  "file": "samples/sites/builder/img/wood-table.webp",
+  "use": "本文：木のテーブルと光",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/a-close-up-of-a-wooden-table-with-a-white-curtain-in-the-background-QXYxInbJTuQ",
+  "photographer": "Se. Tsuchiya",
+  "image": "https://images.unsplash.com/photo-1699099647256-08047917681b"
+ },
+ {
+  "site": "salon",
+  "file": "samples/sites/salon/img/scissors.webp",
+  "use": "本文：はさみを持つ手",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/8OWQkqHQLlg",
+  "photographer": "Anastasiia T.",
+  "image": "https://images.unsplash.com/photo-1696091997052-f52f85285d8d"
+ },
+ {
+  "site": "office",
+  "file": "samples/sites/office/img/papers.webp",
+  "use": "書類を確認する打ち合わせ（手元）",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/MhqUBTxQ3Hw",
+  "photographer": "Olena Kholina",
+  "image": "https://images.unsplash.com/photo-1775163024488-e88e4a71179f"
+ },
+ {
+  "site": "garage",
+  "file": "samples/sites/garage/img/engine.webp",
+  "use": "トップのヒーロー：整備中の車",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/9gB7APNSquE",
+  "photographer": "Sasun Bughdaryan",
+  "image": "https://images.unsplash.com/photo-1775590766345-c117265f0c1b"
+ },
+ {
+  "site": "garage",
+  "file": "samples/sites/garage/img/tools.webp",
+  "use": "メニュー：工具箱",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/a-bunch-of-wrenches-and-other-tools-in-a-box-OegFhZfw6Ok",
+  "photographer": "Isabela Kronemberger",
+  "image": "https://images.unsplash.com/photo-1637640125496-31852f042a60"
+ },
+ {
+  "site": "garage",
+  "file": "samples/sites/garage/img/tires.webp",
+  "use": "メニュー：タイヤ",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/-gqb3xbGa5Y",
+  "photographer": "Shadrach Warid",
+  "image": "https://images.unsplash.com/photo-1571335746824-742511d49bce"
+ },
+ {
+  "site": "sake",
+  "file": "samples/sites/sake/img/hero-sugidama.webp",
+  "use": "トップのヒーロー（杉玉）",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/0XY1WeLEAkc",
+  "photographer": "Cindy Bissig",
+  "image": "https://images.unsplash.com/photo-1782966373463-3f424a95bcab"
+ },
+ {
+  "site": "juku",
+  "file": "samples/sites/juku/img/classroom.webp",
+  "use": "明るい教室の机",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/dFohf_GUZJ0",
+  "photographer": "2y.kang",
+  "image": "https://images.unsplash.com/photo-1635424239131-32dc44986b56"
+ },
+ {
+  "site": "juku",
+  "file": "samples/sites/juku/img/writing.webp",
+  "use": "鉛筆でノートに書く手元",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/RdmLSJR-tq8",
+  "photographer": "Thought Catalog",
+  "image": "https://images.unsplash.com/photo-1488722796624-0aa6f1bb6399"
+ },
+ {
+  "site": "garage",
+  "file": "samples/sites/garage/img/shop.webp",
+  "use": "トップ：整備工場のリフト",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/8Z-2KzjiIm8",
+  "photographer": "Mustafa Sheikhmouss",
+  "image": "https://images.unsplash.com/photo-1792792963003-e45290c28443"
+ },
+ {
+  "site": "juku",
+  "file": "samples/sites/juku/img/homework.webp",
+  "use": "算数の宿題をする手元",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/JexAuNCfefs",
+  "photographer": "Annie Spratt",
+  "image": "https://images.unsplash.com/photo-1560785477-d43d2b34e0df"
+ },
+ {
+  "site": "juku",
+  "file": "samples/sites/juku/img/pencils.webp",
+  "use": "色鉛筆",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/a-cup-filled-with-colored-pencils-on-top-of-a-wooden-table-EWi5aPcfJ5I",
+  "photographer": "Jason Leung",
+  "image": "https://images.unsplash.com/photo-1697228427217-bc2fe4a9c739"
+ },
+ {
+  "site": "taxi",
+  "file": "samples/sites/taxi/img/hero-wheelchair.webp",
+  "use": "トップのヒーロー（車いすの後ろ姿）",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/woman-sitting-on-wheelchair-zBsdRTHIIm4",
+  "photographer": "Steven HWG",
+  "image": "https://images.unsplash.com/photo-1565615833231-e8c91a38a012"
+ },
+ {
+  "site": "photo",
+  "file": "samples/sites/photo/img/studio.webp",
+  "use": "トップ：スタジオの照明",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/OZtzACzqKMM",
+  "photographer": "Sven Brandsma",
+  "image": "https://images.unsplash.com/photo-1555529240-d2ab39b74716"
+ },
+ {
+  "site": "photo",
+  "file": "samples/sites/photo/img/film.webp",
+  "use": "トップ：フィルム",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/hCDI6sPTjRY",
+  "photographer": "Eric TERRADE",
+  "image": "https://images.unsplash.com/photo-1570385404967-fe4e1b48454b"
+ },
+ {
+  "site": "photo",
+  "file": "samples/sites/photo/img/camera.webp",
+  "use": "撮影プラン：三脚のカメラ",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/2F3JgwHM0nU",
+  "photographer": "Allec Gomes",
+  "image": "https://images.unsplash.com/photo-1587090564077-c7b8f2f1249e"
+ },
+ {
+  "site": "photo",
+  "file": "samples/sites/photo/img/oldcamera.webp",
+  "use": "アクセス：古いカメラ",
+  "source": "Unsplash",
+  "license": "Unsplash License（無料・商用可・クレジット不要）",
+  "license_url": "https://unsplash.com/license",
+  "page": "https://unsplash.com/photos/1NAXTpRVyo4",
+  "photographer": "Jonathan Talbert",
+  "image": "https://images.unsplash.com/photo-1528594498426-ea65fdafcbf4"
  }
 ]

@@ -124,3 +124,14 @@ h1,h2{font-feature-settings:"palt"}
   .steam:nth-of-type(3){animation-delay:1.6s}
   @keyframes steam{0%,100%{opacity:.25;transform:translateY(4px)}50%{opacity:.9;transform:translateY(-4px)}}
 }
+
+/* 写真（Unsplash・イメージ） */
+.photo-strip-wrap{padding:var(--s4) 0}
+.photo-strip{display:grid;gap:var(--s2);grid-template-columns:1fr}
+@media (min-width:640px){.photo-strip{grid-template-columns:repeat(3,1fr)}}
+.photo-strip figure{margin:0}
+.photo-strip img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:var(--ph-radius,4px);background:var(--soft)}
+.photo-strip figcaption{font-size:14px;color:var(--sub);margin-top:8px}
+.photo-credit{font-size:12px;opacity:.85;margin:0 0 4px}
+.hero-art img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:24px;box-shadow:0 16px 36px -18px rgb(43 29 20 / .5)}
+.photo-strip-wrap{--ph-radius:16px;padding-top:0}

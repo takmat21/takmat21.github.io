@@ -138,3 +138,15 @@ main a:not(.btn):visited{color:#6a3b5c}
 .site-footer .fname{font-family:var(--font-head);font-size:18px;font-weight:700;margin-bottom:8px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @media (max-width:767px){.hero-copy{padding-bottom:0}.hero .container{gap:var(--s3)}}
+
+/* 写真（Unsplash・イメージ） */
+.photo-strip-wrap{padding:var(--s4) 0}
+.photo-strip{display:grid;gap:var(--s2);grid-template-columns:1fr}
+@media (min-width:640px){.photo-strip{grid-template-columns:repeat(3,1fr)}}
+.photo-strip figure{margin:0}
+.photo-strip img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:var(--ph-radius,4px);background:var(--soft)}
+.photo-strip figcaption{font-size:14px;color:var(--sub);margin-top:8px}
+.photo-credit{font-size:12px;opacity:.85;margin:0 0 4px}
+.hero-art{align-self:center;margin-bottom:var(--s5)}
+.hero-art img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:6px;box-shadow:0 18px 40px -20px rgb(58 42 30 / .55);border:8px solid #fff}
+.photo-strip-wrap{padding-top:0}
