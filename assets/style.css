@@ -166,3 +166,17 @@ html,body{overflow-x:clip}
 .paper-hero{display:block;margin:8px 0 28px}
 .paper-hero img{display:block;width:100%;height:auto;border-radius:8px}
 @media (max-width:640px){.paper-hero{margin:4px 0 20px}.paper-hero img{aspect-ratio:16/9}}
+
+/* アヤ 2026-11-05：読みやすさの小さな改善 */
+/* 見出しを単語の途中で折り返さない（「つく／る。」を防ぐ） */
+h1,h2,h3,.t{word-break:auto-phrase;text-wrap:balance}
+/* スマホ：タブが右に続くことを、端のぼかしで知らせる */
+@media (max-width:640px){
+  .tabs{-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 28px),transparent);padding-right:28px}
+  .tabs a{padding-top:4px;min-height:44px;display:inline-flex;align-items:flex-start}
+}
+/* リンクでない一覧（div.row）も、見出しと説明を別の行に */
+ul.rows div.row{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:16px 4px}
+/* キーボード操作の位置を見えるように */
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
