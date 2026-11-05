@@ -12,11 +12,11 @@
 <meta property="og:image" content="https://takmat21.github.io/assets/ogp.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="description" content="Google Apps Script（GAS）で作れる業務の自動化の見本を3つ。問い合わせメールを表に自動で記録する仕組み、在庫が下限を下回ったらメールで知らせる仕組み、注文メールから出荷用の表とCSVを作る仕組み。コードは全文を載せています。">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../assets/style.css?v=20261103a">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="../../assets/style.css?v=20261105e">
 <style>
-.gas h3{font-size:17px;margin:12px 0 10px}
-.gas h4{font-size:14px;margin:22px 0 6px}
+.gas h2.gh{font-size:17px;margin:12px 0 10px;font-family:var(--sans);text-transform:none;letter-spacing:.02em;color:var(--fg);font-weight:700}
+.gas h3{font-size:14px;margin:22px 0 6px}
 .gas ol,.gas ul{padding-left:1.3em;margin:6px 0}
 .gas li{margin:4px 0}
 .gas .sample{border-top:1px solid var(--line);padding-top:8px;margin-top:32px}
@@ -29,15 +29,15 @@
 .gas .dl{font-size:13px;font-weight:400}
 </style></head>
 <body><div class="wrap gas">
-<nav class="tabs" style="margin-top:8px" aria-label="ページの切り替え"><a href="../../#about">プロフィール</a><a href="../../#samples">仕事一覧</a><a href="../../#system" class="on" aria-current="page">仕組み</a><a href="../../#paper">論文</a><a href="../../#video">動画</a></nav>
+<nav class="tabs" style="margin-top:8px" aria-label="ページの切り替え"><a href="../../#about">プロフィール</a><a href="../../#samples">仕事一覧</a><a href="../../#system" class="on" aria-current="page">仕組み</a><a href="../../#security">セキュリティ</a><a href="../../#paper">論文</a><a href="../../#video">動画</a></nav>
 <header class="hero"><p class="name">ZAZOU Inc. ／ 仕組みの見本</p><h1>GASの見本ツール3つ</h1>
 <p class="lead">Googleのスプレッドシート・Gmailだけで動く、小さな自動化の見本です。新しいソフトを入れず、いつもの道具に「勝手に動く係」を足すイメージです。コードは全文を載せているので、そのままコピーして試せます。</p>
 <p class="note">これは「こういう仕組みを作れます」という見本です。お使いの環境に合わせた設計・設定のご相談は、トップページの案内からお願いします。</p></header>
 
 <section class="sample" id="a">
-<h3>見本A：問い合わせメールを表に自動で記録</h3>
+<h2 class="gh">見本A：問い合わせメールを表に自動で記録</h2>
 <p>Gmailで「問い合わせ」ラベルを付けたメールを読み、日時・差出人・件名・本文の冒頭を、スプレッドシートに1通1行で書き足します。同じメールを二度書かないよう、メッセージIDで見分けます。15分ごとに自動で動くので、メールを見返して表に写す手間がなくなります。</p>
-<h4>使い方</h4>
+<h3>使い方</h3>
 <ol>
 <li>Gmailでラベル「問い合わせ」を作り、記録したいメールに付けます（フィルタで自動に付けることもできます）。</li>
 <li>新しいスプレッドシートを作り、［拡張機能］→［Apps Script］を開きます。</li>
@@ -45,7 +45,7 @@
 <li>関数 <code>setupTrigger</code> を選んで［実行］します。権限の確認画面で許可すると、15分ごとの自動実行が登録されます。</li>
 <li>試しに <code>recordInquiries</code> を実行して、シートに行が増えるのを確かめます。</li>
 </ol>
-<h4>コード全文 <a class="dl" href="sample-a.gs" download>（sample-a.gs をダウンロード）</a></h4>
+<h3>コード全文 <a class="dl" href="sample-a.gs" download>（sample-a.gs をダウンロード）</a></h3>
 <div class="codebox"><button class="cp" type="button">コピー</button><pre><code>/**
  * 見本A：問い合わせメールを表に自動で記録
  * Gmailの特定ラベルが付いたメールを読み、スプレッドシートに1通1行で書き足します。
@@ -134,9 +134,9 @@ function setupTrigger() {
 </section>
 
 <section class="sample" id="b">
-<h3>見本B：在庫が減ったら知らせる</h3>
+<h2 class="gh">見本B：在庫が減ったら知らせる</h2>
 <p>スプレッドシートの在庫表（商品名・在庫数・下限）を毎朝読み、下限を下回った商品を1通のメールにまとめて知らせます。下回った商品がない日はメールを送りません。商品ごとに通知が何通も届くことがなく、朝に1通だけ確認すれば済みます。</p>
-<h4>使い方</h4>
+<h3>使い方</h3>
 <ol>
 <li>スプレッドシートに「在庫」シートを作り、1行目を見出し（商品名・在庫数・下限）、2行目から商品を入力します。</li>
 <li>［拡張機能］→［Apps Script］を開き、下のコードを貼り付けて保存します。</li>
@@ -144,7 +144,7 @@ function setupTrigger() {
 <li>関数 <code>setupTrigger</code> を選んで［実行］し、権限を許可すると、毎朝の自動実行が登録されます。</li>
 <li>試しに在庫数を下限より小さくして <code>checkStock</code> を実行し、メールが届くのを確かめます。</li>
 </ol>
-<h4>コード全文 <a class="dl" href="sample-b.gs" download>（sample-b.gs をダウンロード）</a></h4>
+<h3>コード全文 <a class="dl" href="sample-b.gs" download>（sample-b.gs をダウンロード）</a></h3>
 <div class="codebox"><button class="cp" type="button">コピー</button><pre><code>/**
  * 見本B：在庫が減ったら知らせる
  * 在庫表（商品名・在庫数・下限）を毎朝読み、下限を下回った商品を
@@ -214,10 +214,10 @@ function setupTrigger() {
 </section>
 
 <section class="sample" id="c">
-<h3>見本C：注文メールから出荷用の表を作る</h3>
+<h2 class="gh">見本C：注文メールから出荷用の表を作る</h2>
 <p>Gmailで「注文」ラベルを付けた注文通知メールを読み、注文番号・お名前・郵便番号・住所・電話番号・商品・数量を、スプレッドシートに1注文1行で書き足します。同じ注文は注文番号で見分け、二度書きません。読み取れなかった項目は空欄にして、「要確認」列に足りない項目名を書くので、そこだけ目で確かめれば済みます。あとから関数 <code>exportCsv</code> を実行すると、表をCSVにしてGoogleドライブに保存できます。</p>
 <p>メール本文に「注文番号：」「お名前：」などの行がある形を例にしています。書き方が違う場合は、先頭の「設定」にある読み取りのパターン（正規表現）を書き換えます。</p>
-<h4>使い方</h4>
+<h3>使い方</h3>
 <ol>
 <li>Gmailでラベル「注文」を作り、注文通知メールに付けます（フィルタで自動に付けることもできます）。</li>
 <li>新しいスプレッドシートを作り、［拡張機能］→［Apps Script］を開いて、下のコードを貼り付けて保存します。</li>
@@ -225,7 +225,7 @@ function setupTrigger() {
 <li>関数 <code>setupTrigger</code> を選んで［実行］し、権限を許可します。試しに <code>recordOrders</code> を実行して、シートに行が増えるのを確かめます。</li>
 <li>CSVが必要なときに関数 <code>exportCsv</code> を実行します。保存先のリンクは［実行ログ］に出ます。</li>
 </ol>
-<h4>コード全文 <a class="dl" href="sample-c.gs" download>（sample-c.gs をダウンロード）</a></h4>
+<h3>コード全文 <a class="dl" href="sample-c.gs" download>（sample-c.gs をダウンロード）</a></h3>
 <div class="codebox"><button class="cp" type="button">コピー</button><pre><code>/**
  * 見本C：注文メールから出荷用の表を作る
  * Gmailの特定ラベルが付いた注文通知メールを読み、スプレッドシートに1注文1行で書き足します。
