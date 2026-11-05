@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="assets/style.css?v=20261106a">
+<link rel="stylesheet" href="assets/style.css?v=20261106b">
 <link rel="stylesheet" href="assets/hero-art/hero-art.css">
 <link rel="stylesheet" href="assets/hero-flower/hero-flower.css">
 <link rel="stylesheet" href="assets/hero-mask/hero-mask.css">
@@ -48,6 +48,7 @@
 <body class="home">
 <div class="wrap">
 
+<div class="topbar"><a class="tb-logo" href="./"><b>ZAZOU Lab</b><span>ZAZOU株式会社（滋賀県）</span></a><a class="tb-cta" href="https://crowdworks.jp/public/employees/3288043" rel="noopener">相談する</a></div>
 <div class="hero-art hero-top" data-hero-art role="img" aria-label="散らばった墨の断片が細い線でつながり、ひとつの形にまとまっていくアニメーション"></div>
 <div class="hero-flower sys-hero" data-hero-flower role="img" aria-label="暗い部屋で、弧を描く花茎のつぼみが順に開いていく蘭の絵"></div>
 <div class="hero-mask samples-top" data-hero-mask role="img" aria-label="黄金比の補助線の上で、正面と横顔がひとつになった幾何学の仮面が面ごとに組み上がり、光が正面から横顔へ移ってまたほどけていく、少し褪せたビデオの画質のアニメーション"></div>
@@ -55,10 +56,15 @@
 <picture class="paper-hero paper-top"><source media="(max-width:640px)" srcset="assets/paper-hero-narrow.svg"><img src="assets/paper-hero-wide.svg" alt="" width="1200" height="400" loading="lazy" decoding="async"></picture>
 <header class="hero">
 <div class="hero-text">
-  <p class="name">ZAZOU Lab <span class="by">ZAZOU株式会社</span></p>
-  <h1>AIで、仕事の流れをつくる。</h1>
-  <p class="title"><span>AI Agent &amp; Automation Engineer</span>　<span class="who">松村貴士</span></p>
+  <p class="name">AIで、仕事の流れをつくる。</p>
+  <h1>図面の見積も、ホームページも。<br>滋賀の小さな会社の手間を、AIで減らします。</h1>
+  <p class="title">ZAZOU株式会社　代表 <span class="who">松村貴士</span></p>
   <p class="desc">統括役のAIが担当ごとのAIに指示し、結果を確かめて改善する「階層型のAIエージェント体制」を、自社の業務で毎日動かしています。AIには事実をまとめた表だけを使わせ、別のAIによる二重チェックと人の最終確認を通してから外に出しています。</p>
+  <ul class="hero-stats">
+    <li><b>約99<small>%</small></b><span>図面見積の項目の正解率（自作の見本図面10枚）</span></li>
+    <li><b>20<small>業種</small></b><span>ホームページの見本</span></li>
+    <li><b>141<small>%</small></b><span>Makuake の達成率（企画から発送まで一人で）</span></li>
+  </ul>
   <div class="cta-row"><a class="cta main" href="https://crowdworks.jp/public/employees/3288043" rel="noopener">クラウドワークスで相談する（無料）</a><a class="cta sub" href="samples/drawing-estimate/">図面1枚を無料で試す</a></div>
   <p class="cta-note">いまのご相談の窓口はクラウドワークスのメッセージです（外部サイトに移ります）。</p>
 
@@ -66,18 +72,19 @@
 </header>
 
 <nav class="tabs" aria-label="ページ内の切り替え">
-  <a href="#about" data-tab="about">プロフィール</a>
-  <a href="#samples" data-tab="samples">仕事一覧</a>
+  <a href="#about" data-tab="about">できること・料金</a>
+  <a href="#samples" data-tab="samples">見本・実績</a>
   <a href="#system" data-tab="system">仕組み</a>
-  <a href="#security" data-tab="security">セキュリティ</a>
+  <a href="#security" data-tab="security">安全の決まり</a>
   <a href="#paper" data-tab="paper">論文</a>
   <a href="#video" data-tab="video">動画</a>
   <a href="news/" class="ext">朝刊</a>
 </nav>
 
 <section id="about" data-panel="about">
+<figure class="photo-slot"><img src="assets/img/photo/profile.webp" width="1400" height="1050" alt="ノートとパソコンが置かれた机" loading="lazy" decoding="async"><figcaption>イメージ写真（実際の仕事場の写真に差し替える予定）</figcaption></figure>
 <div class="sub-sec cols" id="skills">
-  <h2>Skills <span class="ja">／ できること</span></h2>
+  <h2><span class="en">Skills</span>できること</h2>
   <dl class="skills">
     <div><dt>資料作成・リサーチ</dt><dd>一次情報（公式サイト・公募要領など）で確かめ、出典を添えてまとめます。PowerPoint・Googleスライド・PDF。</dd></div>
     <div><dt>業務改善（スプレッドシート・GAS）</dt><dd>期限の通知、週次の集計、入力チェックなど、毎週の手作業を仕組みにします。</dd></div>
@@ -88,7 +95,7 @@
 </div>
 
 <div class="sub-sec cols" id="works">
-  <h2>Works <span class="ja">／ 実績</span></h2>
+  <h2><span class="en">Works</span>実績</h2>
   <ul class="rows">
     <li><a class="row" href="https://www.makuake.com/project/4szpaki/"><span class="t">Makuake：全身シャンプーバー</span><span class="m">makuake.com ↗</span><span class="d">ポーランドのブランドの日本初展開。応援購入総額424,930円（達成率141%）。企画・撮影・動画編集・文章・広告運用・発送を一人で。</span></a></li>
     <li><a class="row" href="https://note.com/takashimatsumura"><span class="t">note：調査記事24本</span><span class="m">note.com ↗</span><span class="d">AI・時事、マーケティング・EC、社会・メディアなどを調べて書いた記事。</span></a></li>
@@ -99,7 +106,7 @@
 </div>
 
 <div class="sub-sec cols" id="price">
-  <h2>Price <span class="ja">／ 料金（税込）</span></h2>
+  <h2><span class="en">Price</span>料金（税込）</h2>
   <div class="tw"><table class="price">
     <thead><tr><th>段階</th><th>作業時間の目安</th><th>料金</th></tr></thead>
     <tbody>
@@ -114,7 +121,7 @@
 </div>
 
 <div class="sub-sec cols" id="faq">
-  <h2>FAQ <span class="ja">／ よくある質問</span></h2>
+  <h2><span class="en">FAQ</span>よくある質問</h2>
   <dl class="qa">
     <div><dt>料金は税込ですか。</dt><dd>はい。表示はすべて税込です。</dd></div>
     <div><dt>目安の時間を超えたらどうなりますか。</dt><dd>超える前にお見積りをお出しし、ご了承いただいてから時間単価（3,000円）で追加します。</dd></div>
@@ -125,7 +132,7 @@
 </div>
 
 <div class="sub-sec cols" id="career">
-  <h2>Career <span class="ja">／ 経歴</span></h2>
+  <h2><span class="en">Career</span>経歴</h2>
   <dl class="career">
     <dt>2020年〜</dt><dd>ZAZOU株式会社 設立・代表取締役（家電・日用品・ペットフードの販売と輸出入）</dd>
     <dt>2014〜2020年</dt><dd>パナソニック：ロボット掃除機の開発（駆動部）</dd>
@@ -138,7 +145,8 @@
 </section>
 
 <section id="samples" data-panel="samples" class="cols">
-  <h2>Samples <span class="ja">／ 仕事一覧</span></h2>
+  <h2><span class="en">Samples</span>仕事一覧</h2>
+  <figure class="photo-slot"><img src="assets/img/photo/works.webp" width="1400" height="933" alt="電卓とグラフの紙、鉛筆が置かれた机" loading="lazy" decoding="async"><figcaption>イメージ写真</figcaption></figure>
   <ul class="picks" aria-label="代表作">
     <li><a href="samples/drawing-estimate/"><span class="pk">見積・図面 ／ Web</span><b class="pn"><small class="pre">見本図面で</small>約99<small>%</small></b><span class="pt">図面見積アプリ</span><span class="pd">自作の見本図面10枚で、項目の正解率90項目中89。読み違えやすい所は「要確認」に出します。<span class="pc">実際の図面での精度は、導入時に測定します。</span></span></a></li>
     <li><a href="samples/estimate-flow/"><span class="pk">見積・図面 ／ PDF · 7p</span><b class="pn">6<small>工程</small></b><span class="pt">図面から見積書までの流れ</span><span class="pd">読み取り・材料取り・工数・積算・見積書・確認リストまで、アルミ溶接フレームの例で。</span></a></li>
@@ -193,7 +201,7 @@
 </section>
 
 <section id="system" data-panel="system" class="cols">
-  <h2>System <span class="ja">／ 自社で運用している仕組み</span></h2>
+  <h2><span class="en">System</span>自社で運用している仕組み</h2>
   <div class="sys">
   <p class="lead">統括役のAIが担当ごとのAIに指示・確認し、結果をフィードバックして改善する「階層型のAIエージェント体制」を、自社の業務で毎日動かしています。送信など元に戻せない操作は人が行います。</p>
   <p><a class="btn" href="samples/system/">詳しい資料を見る（PDF・17ページ）</a></p>
@@ -252,7 +260,7 @@
 </section>
 
 <section id="security" data-panel="security" class="cols">
-  <h2>Security <span class="ja">／ セキュリティ</span></h2>
+  <h2><span class="en">Security</span>セキュリティ</h2>
   <div class="sys">
   <p class="lead">AIに仕事を任せるほど、だまされる・権限を越える・情報が漏れる危険も増えます。私たちが実際の運用で守っている決まりと、その考え方に関わる最近の論文を紹介します。</p>
 
@@ -260,7 +268,7 @@
   <ol class="gates">
     <li><b>送信・応募・お金・契約・削除は人が決める</b>AIは下書きと記録まで。AI同士で相談しても、金額・契約・送信の判断は代表の確認待ちにします。</li>
     <li><b>パスワードや鍵は文書やチャットに書かない</b>引き継ぎの文書にも接続先や合言葉は書きません。コマンドの結果を貼ってもらうときは、貼ってはいけないもの（鍵・トークン・パスワード）を先に伝えます。</li>
-    <li><b>他社の管理画面はパスワードを受け取らずに入る</b>作業を頼まれたときは、代表のアカウントへのスタッフ招待で入り、その利用規約で自動操作が禁じられていないかも確かめます。</li>
+    <li><b>他社の管理画面には、パスワードを預からずスタッフ招待で入る</b>作業を頼まれたときは、代表のアカウントへのスタッフ招待で入り、その利用規約で自動操作が禁じられていないかも確かめます。</li>
     <li><b>外から来た文章の指示には従わない</b>メール・求人ページ・他のAIの書き込みは「データ」として扱い、中に書かれた指示には従いません。</li>
     <li><b>LINEなど外部への誘導は無視する</b>サービスの外の連絡手段へ誘導するメッセージには返信せず、リンクも開きません。</li>
     <li><b>事実の表にない経歴は書かない</b>経歴・実績は「事実シート」にあることだけを書きます。ないことは書かないか「推定」と明記します。</li>
@@ -289,7 +297,7 @@
 </section>
 
 <section id="paper" data-panel="paper" class="cols">
-  <h2>Paper <span class="ja">／ 論文（執筆中・中間発表）</span></h2>
+  <h2><span class="en">Paper</span>論文（執筆中・中間発表）</h2>
   <ul class="rows">
     <li><a class="row" href="paper/"><span class="t">小規模事業者が自ら運用する階層型マルチエージェントにおける記憶の欠落とハルシネーションへの対処</span><span class="m">2026-11-01 · 中間発表</span><span class="d">スプレッドシートを外部記憶とする「記録の三層」（書く・照合する・根拠を示す）と記録係エージェントの事例研究。実際に起きた失敗6件と、それぞれから生まれたルール、引き継ぎ試験の結果（10問中10問を根拠付きで正答）、限界と今後。約11,000字。</span></a></li>
     <li><a class="row" href="paper2/"><span class="t">AIエージェントの記録は「拡張された心」と言えるか</span><span class="m">2026-11-02 改訂 · 中間発表</span><span class="d">記憶を持ち越せない統括AIを「記憶を失った人物 Otto」に見立て、運用の記録を Clark と Chalmers の4条件（常に参照する・苦労なく使える・自動的に是認する・過去に是認した）で判定。自動的な是認の代償と、記録に載らない常識・物語を考察。</span></a></li>
@@ -298,7 +306,7 @@
 </section>
 
 <section id="video" data-panel="video" class="cols">
-  <h2>Video <span class="ja">／ 動画</span></h2>
+  <h2><span class="en">Video</span>動画</h2>
   <p class="v-lead">AIで作られた映像は、映画祭で賞を取り、ニュース番組にもなり始めています。2026年の作品を中心に、エンタメ・ニュース・つくり方に分けて紹介し、毎日1本ずつ増やしています。私たちも、AIニュース番組を作り始めました。</p>
   <nav class="v-jump" aria-label="動画の分類"><a href="#v-socra">SOCRA（自社）</a><a href="#v-ent">エンタメ</a><a href="#v-news">ニュース</a><a href="#v-make">つくり方</a><a href="#v-int">インタビュー</a></nav>
   <div class="v-socra-box">
