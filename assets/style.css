@@ -195,3 +195,7 @@ p,dd,li{overflow-wrap:anywhere}
 .picks a:hover .pt{color:var(--accent)}
 @media (prefers-reduced-motion:no-preference){.picks a{transition:transform .2s,border-color .2s}.picks a:hover{transform:translateY(-3px)}}
 @media (max-width:800px){.picks{grid-template-columns:1fr;gap:12px}.picks .pn{font-size:34px}}
+.picks .pn small.pre{display:block;font-family:var(--sans);font-size:12px;font-weight:700;color:var(--sub);margin:0 0 4px;letter-spacing:.02em}
+.picks .pc{display:block;font-size:12px;color:var(--sub);margin-top:6px}
+/* 固定タブが見出しを隠さないように */
+section[id],[id].sub-sec{scroll-margin-top:72px}
