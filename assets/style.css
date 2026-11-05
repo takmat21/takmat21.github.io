@@ -209,3 +209,12 @@ table.price th:last-child{text-align:right}
 dl.qa{margin:0;display:grid;gap:16px}
 dl.qa dt{font-weight:700}
 dl.qa dd{margin:2px 0 0;color:var(--sub);font-size:15px}
+/* 動画タブ：分類へのジャンプと、グループの区切り */
+.v-jump{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 8px}
+.v-jump a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--fg);text-decoration:none;background:var(--bg)}
+.v-jump a:hover{border-color:var(--accent);color:var(--accent)}
+#video .v-h{font-size:16px;margin:48px 0 16px;padding-top:16px;border-top:1px solid var(--line);scroll-margin-top:72px}
+#video .v-jump+.v-h{margin-top:24px}
+.v-card figcaption b{line-height:1.55}
+.v-card .yt{box-shadow:0 0 0 1px var(--line)}
+@media (prefers-reduced-motion:no-preference){.v-card .yt img{transition:transform .3s,opacity .2s}.v-card .yt:hover img{transform:scale(1.02)}}
