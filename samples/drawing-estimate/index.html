@@ -11,7 +11,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="../../assets/style.css?v=20261105e"><link rel="canonical" href="https://takmat21.github.io/samples/drawing-estimate/">
+<link rel="stylesheet" href="../../assets/style.css?v=20261105f"><link rel="canonical" href="https://takmat21.github.io/samples/drawing-estimate/">
 <meta name="description" content="金属加工の図面PDFをAIが読み、寸法・材質・数量を拾い出して見積書の下書きをExcelで出すアプリ。自作の見本図面10枚で項目の正解率は約99%。AIは間違えることがあるため、必ず人が確認して金額を決めます。">
 <style>
 /* このページだけの追加（共通の style.css の色の変数を使う） */
@@ -99,6 +99,7 @@ dl.qa dd{margin:2px 0 0;color:var(--sub);font-size:15px}
 <section>
 <h2>FAQ <span class="ja">／ よくある質問</span></h2>
 <dl class="qa">
+<dt>無料で試せますか。</dt><dd>直接のご依頼なら、図面1枚を無料でお試しいただけます。</dd>
 <dt>図面の秘密は守られますか。</dt><dd>図面は、読み取りのためにAI（AnthropicのClaude）へ送るだけで、それ以外の外部には送りません（自社のコード点検で確認）。AI側でのデータの扱いはご利用のアカウントの設定によります。詳しくはお問い合わせください。お試しの前に、使うサービスと扱い方をご説明し、秘密保持の取り決めをしたうえで進めます。社外に出せない図面は使いません。</dd>
 <dt>どのくらい正確ですか。</dt><dd>自作の見本図面10枚では、項目の正解率は約99%（90項目中89）でした。実際の図面（手書きの注記・スキャン）では下がるため、導入時に御社の図面で測定します。</dd>
 <dt>CADは要りますか。</dt><dd>要りません。図面のPDFがあればご依頼いただけます。AIのアカウントも不要です。</dd>

@@ -199,3 +199,13 @@ p,dd,li{overflow-wrap:anywhere}
 .picks .pc{display:block;font-size:12px;color:var(--sub);margin-top:6px}
 /* 固定タブが見出しを隠さないように */
 section[id],[id].sub-sec{scroll-margin-top:72px}
+/* 料金表とよくある質問（トップ） */
+.tw{overflow-x:auto}
+table.price{width:100%;border-collapse:collapse;font-size:15px}
+table.price th,table.price td{border-bottom:1px solid var(--line);padding:12px 6px;text-align:left;vertical-align:top}
+table.price th{font-size:12px;font-family:var(--mono);color:var(--faint);font-weight:600}
+table.price td.n{white-space:nowrap;text-align:right;font-family:var(--mono);font-size:14px;font-weight:600}
+table.price th:last-child{text-align:right}
+dl.qa{margin:0;display:grid;gap:16px}
+dl.qa dt{font-weight:700}
+dl.qa dd{margin:2px 0 0;color:var(--sub);font-size:15px}
