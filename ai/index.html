@@ -8,6 +8,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap"></noscript>
 <link rel="stylesheet" href="ai.css?v=1">
+<link rel="stylesheet" href="hero.css?v=1">
 <script type="application/ld+json" id="ld-auto">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","inLanguage":"ja","isPartOf":{"@type":"WebSite","@id":"https://takmat21.github.io/#site","name":"ZAZOU Lab","url":"https://takmat21.github.io/"},"url":"https://takmat21.github.io/ai/","name":"ZAZOU AI Works｜AIで業務を仕組み化する（ZAZOU株式会社）","description":"自社の業務でAIの仕組みを毎日動かしている設計者が、御社の業務を1つずつAIで仕組みにします。料金はすべて公開（税別）。滋賀県日野町のZAZOU株式会社。","publisher":{"@type":"Organization","@id":"https://takmat21.github.io/#org","name":"ZAZOU株式会社","url":"https://takmat21.github.io/"},"image":"https://takmat21.github.io/ai/ogp.png"},{"@type":"Service","name":"AIで業務を仕組み化する","serviceType":"業務の仕組み化（AI・自動化）","provider":{"@type":"Organization","@id":"https://takmat21.github.io/#org","name":"ZAZOU株式会社","url":"https://takmat21.github.io/"},"areaServed":"JP","url":"https://takmat21.github.io/ai/","description":"自社の業務でAIの仕組みを毎日動かしている設計者が、御社の業務を1つずつAIで仕組みにします。料金はすべて公開（税別）。滋賀県日野町のZAZOU株式会社。"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZAZOU AI Works","item":"https://takmat21.github.io/ai/"}]},{"@type":"FAQPage","url":"https://takmat21.github.io/ai/","mainEntity":[{"@type":"Question","name":"AIにくわしくなくても大丈夫ですか。","acceptedAnswer":{"@type":"Answer","text":"大丈夫です。今の仕事の手順を教えていただければ、AIの設定はこちらで行います。"}},{"@type":"Question","name":"料金は税込ですか、税別ですか。","acceptedAnswer":{"@type":"Answer","text":"表示はすべて税別です。"}},{"@type":"Question","name":"AIの答えをそのまま使うのですか。","acceptedAnswer":{"@type":"Answer","text":"いいえ。AIには決めた表だけを使わせ、別のAIで点検し、最後は人が確かめてから外に出します。"}}]}]}</script>
 <!-- seo-head -->
 <link rel="canonical" href="https://takmat21.github.io/ai/">
@@ -31,17 +32,37 @@
   <a class="hd-cta" href="contact/">無料で相談する</a>
 </div></header>
 <main id="main">
-<section class="hero"><div class="c">
-  <div class="reveal">
-    <p class="kicker"><b>滋賀・日野町</b>ZAZOU株式会社</p>
-    <h1>AIを、毎日の<wbr>仕事の流れに<wbr>組み込む。</h1>
-    <p class="lead">自社の業務でAIの仕組みを毎日動かしている設計者が、御社の業務を1つずつ仕組みにします。手順の書き出しから、AIの設定、人が確かめる所まで。</p>
-    <ul class="hero-points"><li>1つの業務から始める</li><li>料金はすべて公開</li><li>最後は人が確かめる</li></ul>
-    <div class="btns"><a class="btn" href="contact/">無料で相談する</a><a class="btn sub" href="price/">料金を見る</a></div>
-    <p class="btn-note">単発 50,000円〜（税別）／保守 月10,000円〜（税別）</p>
+<section class="xh" aria-labelledby="xh-title">
+  <div class="xh-bg" aria-hidden="true"></div>
+  <div class="c xh-grid">
+    <div class="xh-text">
+      <p class="xh-label"><span class="dot" aria-hidden="true"></span>ZAZOU AI WORKS <span class="sep">/</span> SHIGA, JAPAN</p>
+      <h1 id="xh-title">AIを、毎日の<wbr><em>仕事の流れ</em>に<wbr>組み込む。</h1>
+      <p class="xh-lead">自社の業務でAIの仕組みを毎日動かしている設計者が、御社の業務を1つずつ仕組みにします。手順の書き出しから、AIの設定、人が確かめる所まで。</p>
+      <div class="xh-btns"><a class="xb main" href="contact/">無料で相談する<span aria-hidden="true">→</span></a><a class="xb ghost" href="price/">料金を見る</a></div>
+      <ul class="xh-facts">
+        <li><b>50,000<small>円〜</small></b><span>単発（税別）</span></li>
+        <li><b>10,000<small>円〜/月</small></b><span>保守（税別）</span></li>
+        <li><b>60<small>分</small></b><span>無料相談</span></li>
+      </ul>
+    </div>
+    <figure class="xh-panel" aria-label="仕事の流れのイメージ：手順を決め、AIが下書きし、別のAIが点検し、人が確かめて出す">
+      <div class="xp-head"><span class="xp-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="xp-title">workflow.run</span><span class="xp-tag">イメージ</span></div>
+      <p class="xp-job"><span>例</span>問い合わせメールへの返信</p>
+      <ol class="xp-steps">
+        <li class="s1"><span class="who h">人</span><b>手順を決める</b><span class="st">設定済み</span></li>
+        <li class="s2"><span class="who a">AI</span><b>返信を下書き</b><span class="st">完了</span></li>
+        <li class="s3"><span class="who a">AI</span><b>別のAIが点検</b><span class="st">事実・誤字・抜け</span></li>
+        <li class="s4"><span class="who h">人</span><b>確かめて送る</b><span class="st wait">確認待ち</span></li>
+      </ol>
+      <div class="xp-bar" aria-hidden="true"><i></i></div>
+      <figcaption>送信・公開・お金・契約は、いつも人が決めます。</figcaption>
+    </figure>
   </div>
-  <figure class="shot"><img src="../assets/img/board.webp" srcset="../assets/img/board-800.webp 800w, ../assets/img/board.webp 1600w" sizes="(max-width:900px) 92vw, 46vw" width="1600" height="1460" alt="案件・タスク・予定を1画面にまとめたオペレーションボードの画面" fetchpriority="high" decoding="async"><figcaption>自社で毎日使っている画面（オペレーションボード、見本データ）</figcaption></figure>
-</div></section>
+  <div class="c xh-shot">
+    <figure><img src="../assets/img/board.webp" srcset="../assets/img/board-800.webp 800w, ../assets/img/board.webp 1600w" sizes="(max-width:900px) 92vw, 1080px" width="1600" height="1460" alt="案件・タスク・予定を1画面にまとめたオペレーションボードの画面" loading="lazy" decoding="async"><figcaption>自社で毎日使っている画面（オペレーションボード、見本データ）</figcaption></figure>
+  </div>
+</section>
 
 <section class="sec"><div class="c">
   <div class="sec-h"><span class="en">For you</span><h2>こんな会社のお手伝いをします</h2></div>

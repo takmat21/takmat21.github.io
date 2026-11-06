@@ -1,0 +1,85 @@
+/* ZAZOU AI Works トップのヒーロー（アヤ） */
+.xh{position:relative;background:var(--night);color:var(--night-ink);overflow:hidden;padding:104px 0 0;isolation:isolate}
+.xh-bg{position:absolute;inset:0;z-index:-1;
+  background:
+    radial-gradient(600px 380px at 82% 18%,rgb(47 211 160 / .20),transparent 70%),
+    radial-gradient(520px 320px at 8% 92%,rgb(47 211 160 / .08),transparent 70%),
+    linear-gradient(rgb(255 255 255 / .045) 1px,transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(90deg,rgb(255 255 255 / .045) 1px,transparent 1px) 0 0 / 48px 48px;
+  -webkit-mask-image:linear-gradient(#000 70%,transparent);mask-image:linear-gradient(#000 70%,transparent)}
+.xh-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:64px;align-items:center}
+.xh-label{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--glow);margin:0 0 28px}
+.xh-label .sep{color:var(--night-sub)}
+.xh-label .dot{width:8px;height:8px;border-radius:50%;background:var(--glow);box-shadow:0 0 0 4px rgb(47 211 160 / .18)}
+.xh h1{font-family:var(--sans);font-weight:700;font-size:clamp(36px,5.4vw,64px);line-height:1.22;letter-spacing:.01em;color:#fff}
+.xh h1 em{font-style:normal;background:linear-gradient(90deg,#2fd3a0,#a6f5dc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.xh-lead{margin:28px 0 0;font-size:17px;line-height:1.9;color:var(--night-sub);max-width:32em}
+.xh-btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.xb{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 26px;border-radius:var(--r);font-weight:700;font-size:15.5px;text-decoration:none;border:1px solid transparent;transition:background .2s,border-color .2s,transform .2s}
+.xb.main{background:var(--glow);color:#03241a}
+.xb.main:hover{background:#5fe3b9}
+.xb.ghost{border-color:var(--night-line);color:var(--night-ink)}
+.xb.ghost:hover{border-color:var(--glow);color:#fff}
+.xb:focus-visible{outline:3px solid var(--glow);outline-offset:3px}
+.xh-facts{list-style:none;margin:44px 0 0;padding:20px 0 0;border-top:1px solid var(--night-line);display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:8px 40px}
+.xh-facts b{display:block;font-size:26px;line-height:1.2;color:#fff;letter-spacing:.01em}
+.xh-facts small{font-size:13px;font-weight:400;color:var(--night-sub);margin-left:2px}
+.xh-facts span{font-size:12.5px;color:var(--night-sub)}
+
+/* 流れのパネル */
+.xh-panel{margin:0;background:linear-gradient(180deg,#141b19,#0f1513);border:1px solid var(--night-line);border-radius:10px;padding:18px 18px 16px;box-shadow:0 30px 80px -30px rgb(47 211 160 / .35),inset 0 1px 0 rgb(255 255 255 / .04)}
+.xp-head{display:flex;align-items:center;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--night-line)}
+.xp-dots{display:flex;gap:6px}.xp-dots i{width:9px;height:9px;border-radius:50%;background:#2a3532}
+.xp-title{font-family:var(--mono);font-size:12px;color:var(--night-sub)}
+.xp-tag{margin-left:auto;font-size:11px;color:var(--night-sub);border:1px solid var(--night-line);border-radius:4px;padding:0 8px}
+.xp-job{margin:16px 2px 12px;font-size:14px;color:#fff;font-weight:700;display:flex;gap:10px;align-items:center}
+.xp-job span{font-family:var(--mono);font-size:11px;font-weight:400;color:var(--glow);border:1px solid rgb(47 211 160 / .4);border-radius:4px;padding:0 6px}
+.xp-steps{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.xp-steps li{display:grid;grid-template-columns:40px 1fr auto;align-items:center;gap:12px;padding:12px 12px;border:1px solid var(--night-line);border-radius:8px;background:rgb(255 255 255 / .02);font-size:14.5px}
+.xp-steps b{color:#fff;font-weight:700}
+.xp-steps .who{display:grid;place-items:center;height:26px;border-radius:5px;font-size:12px;font-weight:700}
+.xp-steps .who.a{background:rgb(47 211 160 / .14);color:var(--glow)}
+.xp-steps .who.h{background:rgb(255 176 120 / .14);color:#ffb078}
+.xp-steps .st{font-size:12px;color:var(--night-sub);font-family:var(--mono)}
+.xp-steps .st::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--glow);margin-right:7px;vertical-align:1px}
+.xp-steps .st.wait{color:#ffb078}
+.xp-steps .st.wait::before{background:#ffb078}
+.xp-bar{height:3px;background:var(--night-line);border-radius:3px;margin:16px 2px 12px;overflow:hidden}
+.xp-bar i{display:block;height:100%;width:82%;background:linear-gradient(90deg,var(--glow),#a6f5dc);border-radius:3px}
+.xh-panel figcaption{font-size:12.5px;color:var(--night-sub);margin:0 2px}
+
+/* 画面の写真 */
+.xh-shot{margin-top:88px}
+.xh-shot figure{margin:0}
+.xh-shot img{width:100%;border-radius:10px 10px 0 0;border:1px solid var(--night-line);border-bottom:0;max-height:440px;object-fit:cover;object-position:top;-webkit-mask-image:linear-gradient(#000 60%,transparent);mask-image:linear-gradient(#000 60%,transparent)}
+.xh-shot figcaption{font-size:12.5px;color:var(--night-sub);padding:12px 0 40px;text-align:center}
+
+/* 動き：1回だけ順に灯る（約3秒）。reduced-motion では最初から完成形 */
+@media (prefers-reduced-motion:no-preference){
+  .xh-text>*{animation:xh-in .8s cubic-bezier(.2,.7,.2,1) both}
+  .xh-text>:nth-child(2){animation-delay:.08s}.xh-text>:nth-child(3){animation-delay:.16s}.xh-text>:nth-child(4){animation-delay:.24s}.xh-text>:nth-child(5){animation-delay:.32s}
+  .xh-panel{animation:xh-in .9s .2s cubic-bezier(.2,.7,.2,1) both}
+  .xp-steps li{animation:xp-on .6s ease both}
+  .xp-steps .s1{animation-delay:.6s}.xp-steps .s2{animation-delay:1.2s}.xp-steps .s3{animation-delay:1.8s}.xp-steps .s4{animation-delay:2.4s}
+  .xp-bar i{animation:xp-bar 2.6s .5s cubic-bezier(.4,0,.2,1) both}
+  .xp-steps .st.wait::before{animation:xp-blink 1.2s 3s ease-in-out 3}
+  .xh-shot figure{animation:xh-in 1s .4s ease both}
+  @keyframes xh-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @keyframes xp-on{from{opacity:.25;border-color:var(--night-line)}60%{border-color:rgb(47 211 160 / .55)}to{opacity:1}}
+  @keyframes xp-bar{from{width:0}to{width:82%}}
+  @keyframes xp-blink{50%{opacity:.2}}
+}
+
+@media (max-width:960px){
+  .xh{padding-top:56px}
+  .xh-grid{grid-template-columns:1fr;gap:44px}
+  .xh-shot{margin-top:56px}
+}
+@media (max-width:520px){
+  .xh-facts{grid-template-columns:repeat(3,1fr);gap:8px 16px}
+  .xh-facts b{font-size:21px}
+  .xh-facts small{display:block;margin:0}
+  .xb{flex:1 1 auto;justify-content:center}
+  .xp-steps li{grid-template-columns:34px 1fr;gap:4px 10px}
+  .xp-steps .st{grid-column:2}
+}
