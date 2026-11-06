@@ -53,7 +53,7 @@ def faq_of(page_html):
 def offers_of(page_html, url):
     """見出しに「料金」の列がある <table class="price"> の行を Offer にする（税込の表示どおり）。"""
     offers = []
-    for tm in re.finditer(r'<table class="price">(.*?)</table>', page_html, re.S):
+    for tm in re.finditer(r'<table class="(?:[^"]*\s)?price(?:\s[^"]*)?">(.*?)</table>', page_html, re.S):
         tb = tm.group(1)
         # 税込か税別かは、表とその前後の表記で決める（どちらも無ければ書かない）
         near = _txt(page_html[max(0, tm.start() - 600):tm.end() + 400])
@@ -62,19 +62,22 @@ def offers_of(page_html, url):
         if not head or "料金" not in _txt(head.group(1)):
             continue
         for row in re.findall(r"<tr>(.*?)</tr>", re.search(r"<tbody>(.*?)</tbody>", tb, re.S).group(1), re.S):
-            cells = [_txt(c) for c in re.findall(r"<td[^>]*>(.*?)</td>", row, re.S)]
+            cells = [_txt(c) for c in re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", row, re.S)]
             if len(cells) < 2:
                 continue
-            m = re.fullmatch(r"(月)?([\d,]+)円(／時間)?", cells[-1].replace(" ", ""))
+            m = re.fullmatch(r"(月)?([\d,]+)円(〜)?(／月|/月|／時間|/時間)?", cells[-1].replace(" ", ""))
             if not m:
                 continue
             spec = {"@type": "UnitPriceSpecification", "price": int(m.group(2).replace(",", "")),
                     "priceCurrency": "JPY"}
+            if m.group(3):  # 「〜」＝この金額から
+                spec["minPrice"] = spec["price"]
             if tax is not None:
                 spec["valueAddedTaxIncluded"] = tax
-            if m.group(1):
+            unit = (m.group(1) or "") + (m.group(4) or "")
+            if "月" in unit:
                 spec["unitCode"] = "MON"
-            if m.group(3):
+            if "時間" in unit:
                 spec["unitCode"] = "HUR"
             offers.append({"@type": "Offer", "name": cells[0], "description": " ".join(cells[1:-1]),
                            "price": spec["price"], "priceCurrency": "JPY", "priceSpecification": spec, "url": url})
@@ -134,6 +137,8 @@ def page_ld(rel, head):
     if desc:
         base["description"] = desc
     home = ("ホーム", SITE)
+    if rel.startswith("ai/"):
+        return ai_page_ld(rel, head, base, img)
     if rel.startswith("samples/sites/") and rel != "samples/sites/":
         page = {"@type": "WebPage", **base, "creator": ORG,
                 "about": "制作の見本として作った架空のサイト（実在の店舗・会社ではありません）"}
@@ -167,6 +172,51 @@ def put(text, sid, data):
     if pat.search(text):
         return pat.sub(lambda m: block, text, count=1)
     return text.replace("</head>", block + "</head>", 1)
+
+
+def ai_site_name():
+    """/ai/ のサイト名（ai/index.html の title の「｜」より前）。"""
+    f = ROOT / "ai" / "index.html"
+    if not f.exists():
+        return "AI業務の仕組み化"
+    t = html.unescape(re.search(r"<title>(.*?)</title>", f.read_text(encoding="utf-8"), re.S).group(1))
+    return t.split("｜")[0].strip()
+
+
+def ai_org(page_html):
+    """会社の情報（事実シートの確認済み事項）＋そのページの連絡先。"""
+    org = json.loads(json.dumps(TOP["@graph"][2]))
+    org.pop("makesOffer", None)
+    mails = sorted(set(re.findall(r'href="mailto:([^"?]+)', page_html)))
+    tels = sorted(set(re.findall(r'href="tel:([^"]+)"', page_html)))
+    if mails or tels:
+        cp = {"@type": "ContactPoint", "contactType": "customer service", "availableLanguage": "ja", "areaServed": "JP"}
+        if mails:
+            cp["email"] = mails[0]
+        if tels:
+            cp["telephone"] = intl_tel(tels[0])
+        org["contactPoint"] = cp
+    return org
+
+
+def ai_page_ld(rel, head, base, img):
+    """/ai/ の各ページ：ページの種類＋パンくず。料金・FAQ は run() で本文から足す。"""
+    site = ai_site_name()
+    root = SITE + "ai/"
+    name = base["name"].split("｜")[0].strip()
+    page = AI_PAGES.get(rel, "WebPage")
+    graph = [{"@type": page, **base, "publisher": ORG, "image": img}]
+    if rel == "ai/":
+        graph.append({"@type": "Service", "name": "AIで業務を仕組み化する", "serviceType": "業務の仕組み化（AI・自動化）",
+                      "provider": ORG, "areaServed": "JP", "url": root, "description": base.get("description", "")})
+        graph.append(crumb([(site, root)]))
+    else:
+        graph.append(crumb([(site, root), (name, SITE + rel)]))
+    return graph
+
+
+AI_PAGES = {"ai/": "WebPage", "ai/service/": "WebPage", "ai/price/": "WebPage", "ai/cases/": "CollectionPage",
+            "ai/company/": "AboutPage", "ai/contact/": "ContactPage", "ai/faq/": "WebPage"}
 
 
 def run(root=None):
@@ -217,11 +267,14 @@ def run(root=None):
             new = put(new, "ld-site", top)
         else:
             graph = page_ld(rel, head)
+            if rel in ("ai/company/", "ai/contact/"):
+                graph.append(ai_org(t))
             if not sites:
                 url = SITE + rel
                 offers = offers_of(t, url)
                 if offers:
-                    graph.append({"@type": "Service", "name": strip_site(html.unescape(re.search(r"<title>(.*?)</title>", head, re.S).group(1))),
+                    sname = "AIで業務を仕組み化する" if rel.startswith("ai/") else strip_site(html.unescape(re.search(r"<title>(.*?)</title>", head, re.S).group(1)))
+                    graph.append({"@type": "Service", "name": sname,
                                   "provider": ORG, "areaServed": "JP", "url": url, "offers": offers})
                 faq = faq_of(t)
                 if faq:
