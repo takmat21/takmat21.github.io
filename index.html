@@ -64,6 +64,7 @@
   <a href="#security" data-tab="security">安全の決まり</a>
   <a href="#paper" data-tab="paper">論文</a>
   <a href="#video" data-tab="video">動画</a>
+  <a href="#prompts" data-tab="prompts">プロンプト</a>
   <a href="news/" class="ext">朝刊</a>
 </nav>
 
@@ -320,6 +321,28 @@
   </div>
 </section>
 
+<section id="prompts" data-panel="prompts" class="cols">
+  <h2><span class="en">Prompts</span>プロンプトを学べるサイト</h2>
+  <p class="lead note">AIへの頼み方（プロンプト）を、例つきで紹介しているサイトです。仕事で使うなら、まず公式の2つ（Claude と OpenAI）がおすすめです。リンク先は2026年11月6日に開けることを確かめました。</p>
+  <p class="group">公式（AIをつくっている会社）</p>
+  <ul class="rows">
+    <li><a class="row" href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview"><span class="t">Claude：プロンプトの書き方</span><span class="m">Anthropic ↗</span><span class="d">Claudeの開発元による公式の手引き。役割の与え方、例の見せ方、手順を分けて考えさせる方法など。英語。</span></a></li>
+    <li><a class="row" href="https://developers.openai.com/api/docs/guides/prompt-engineering"><span class="t">OpenAI：プロンプトの書き方</span><span class="m">OpenAI ↗</span><span class="d">ChatGPTの開発元による公式の手引き。英語。</span></a></li>
+    <li><a class="row" href="https://developers.openai.com/cookbook"><span class="t">OpenAI Cookbook</span><span class="m">OpenAI ↗</span><span class="d">用途ごとの作り方の例を集めた公式のレシピ集。開発者向け。英語。</span></a></li>
+  </ul>
+  <p class="group">学ぶ（考え方と講座）</p>
+  <ul class="rows">
+    <li><a class="row" href="https://www.promptingguide.ai/jp"><span class="t">Prompt Engineering Guide（日本語版）</span><span class="m">promptingguide.ai ↗</span><span class="d">プロンプトの考え方と手法を体系的にまとめたガイド。日本語で読めます。</span></a></li>
+    <li><a class="row" href="https://learnprompting.org/"><span class="t">Learn Prompting</span><span class="m">learnprompting.org ↗</span><span class="d">入門から応用までの講座形式の教材。英語。</span></a></li>
+  </ul>
+  <p class="group">集める（みんなのプロンプト集）</p>
+  <ul class="rows">
+    <li><a class="row" href="https://prompts.chat/"><span class="t">prompts.chat</span><span class="m">prompts.chat ↗</span><span class="d">世界中の人が投稿したプロンプトの大きな一覧。英語。</span></a></li>
+  </ul>
+  <p class="note">使うときの注意：お客様の名前・住所・図面など外に出せない情報は、プロンプトに入れないでください。AIの答えは、必ず人が確かめてから使ってください。</p>
+</section>
+
+
 <footer class="site-foot">
   <div class="sf-co"><b>ZAZOU株式会社</b><span>ZAZOU Lab ／ 滋賀県日野町</span></div>
   <div class="sf-ct"><span>ご相談・お問い合わせ（無料）</span><a href="mailto:matsumura.takashi@zazoucorp.com">matsumura.takashi@zazoucorp.com</a><a href="tel:090-6373-7945">090-6373-7945</a><a class="sf-cw" href="https://crowdworks.jp/public/employees/3288043">クラウドワークスからのご相談も受け付けています</a></div>
@@ -332,7 +355,7 @@
   var tabs=[].slice.call(document.querySelectorAll('.tabs a[data-tab]')), panels=[].slice.call(document.querySelectorAll('[data-panel]'));
   function show(id){
     if(!panels.some(function(p){return p.dataset.panel===id;})) id='about';
-    panels.forEach(function(p){p.hidden=p.dataset.panel!==id;}); document.body.classList.toggle('no-hero', id==='samples'||id==='system'||id==='paper'||id==='video'||id==='security'); document.body.classList.toggle('sys-tab', id==='system'); document.body.classList.toggle('paper-tab', id==='paper'); document.body.classList.toggle('samples-tab', id==='samples'); document.body.classList.toggle('video-tab', id==='video');
+    panels.forEach(function(p){p.hidden=p.dataset.panel!==id;}); document.body.classList.toggle('no-hero', id==='samples'||id==='system'||id==='paper'||id==='video'||id==='security'||id==='prompts'); document.body.classList.toggle('sys-tab', id==='system'); document.body.classList.toggle('paper-tab', id==='paper'); document.body.classList.toggle('samples-tab', id==='samples'); document.body.classList.toggle('video-tab', id==='video');
     tabs.forEach(function(a){var on=a.dataset.tab===id; a.classList.toggle('on',on); if(on){a.setAttribute('aria-current','page'); var n=a.parentNode; if(n.scrollWidth>n.clientWidth) n.scrollLeft=Math.max(0,a.offsetLeft-n.offsetLeft-16);} else a.removeAttribute('aria-current');});
   }
   tabs.forEach(function(a){a.addEventListener('click',function(e){e.preventDefault(); history.replaceState(null,'','#'+a.dataset.tab); show(a.dataset.tab); toTabs();});});
