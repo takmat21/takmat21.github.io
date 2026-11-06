@@ -302,3 +302,21 @@ footer.site-foot{display:grid;grid-template-columns:1fr 1.4fr;gap:24px 40px;padd
 .hero-line img{display:none;width:100%;height:clamp(150px,20vw,240px);object-fit:cover;object-position:center;border-radius:8px;background:#f3efe6;margin:8px 0 0}
 body:not(.no-hero) .hero-line .hl-about,body.sys-tab .hero-line .hl-system,body.samples-tab .hero-line .hl-samples,body.paper-tab .hero-line .hl-paper,body.video-tab .hero-line .hl-video{display:block}
 .home .hero-line+header.hero{padding-top:32px}
+/* 受賞作との比較（11/6）：最初の画面は「大きな一文＋大きな絵＋行動1つ」に絞る */
+.home .hero .hero-text{max-width:none}
+.home .hero h1{font-size:clamp(26px,3.6vw,52px);line-height:1.3;letter-spacing:.01em;margin:8px 0 0}
+.home header.hero{padding:40px 0 56px}
+.home .hero .cta-row{margin-top:32px}
+.home .hero .cta-note{font-size:14px}
+.hero-line img{height:clamp(160px,24vw,340px);border-radius:12px}
+.hero-more{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px 56px;align-items:start;padding:40px 0 72px;border-top:1px solid var(--line)}
+.hero-more .hero-stats{margin:0;grid-column:1;grid-row:1}
+.hero-more .desc{grid-column:2;grid-row:1;margin:0;font-size:16px;line-height:1.9;color:var(--sub)}
+body.no-hero .hero-more{display:none}
+@media (max-width:860px){.hero-more{grid-template-columns:1fr}.hero-more .desc{grid-column:1;grid-row:auto}}
+/* 本文は16pxを基本に、補足も14px以上 */
+.home dl.skills dd,.home .sys p,.home ul.rows .d,.home .card p{font-size:16px;line-height:1.85}
+.home ul.rows .t{font-size:17px}
+.home .note,.home .v-card figcaption,.home .sp-r,.home .sp-d{font-size:14px}
+/* 区切りの余白を広く */
+@media (min-width:961px){.home .sub-sec{padding:0 0 96px}.home section[data-panel]{padding-top:56px}}
