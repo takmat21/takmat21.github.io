@@ -1,0 +1,38 @@
+{
+ "date": "2026-11-07",
+ "title": "Axiom Math、AIエージェントで代数幾何の大きな教科書「Stacks Project」を機械で確かめられる形に",
+ "category": "研究",
+ "lead": "数学向けAIの米スタートアップAxiom Mathが11月4日、数学の大規模な資料集「Stacks Project」を、AIエージェントを使って形式検証したと発表したと、TechCrunchが報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "Stacks Projectは、米コロンビア大学のヨハン・デ・ヨング氏が2005年に始めた公開の参考書で、大学の代数から代数幾何、数論の最先端までを多くの数学者が書き足してきました。Axiomのエージェントは、約7,654ページの内容を、証明を1行ずつ機械が確かめるLeanというプログラミング言語の約1,600万行に書き直しました。",
+    "難しかったのは、定理や定義が前の結果の上に積み重なっている点です。同社は全体に大まかな役割の階層を決めたうえで、エージェントが自分で仕事を見つけ並行して進める形にしたと説明しています。数学向けに自社でモデルを訓練し、当初は社内のLeanの専門家がエージェントに「よい書き方」を教えたといいます。同社の技術者は、これまで形式化された数学には代数幾何という大きな空白があり、それを埋めたと話しています。",
+    "同社は、確かめた結果は次の証明の部品として使え、将来はAIが書くソフトウェアの安全確認にも役立つとしています。いずれも同社自身の発表と説明で、第三者による点検の結果は記事にありません。"
+   ]
+  },
+  {
+   "heading": "小規模事業者にとって",
+   "paragraphs": [
+    "AIの成果を信頼するには、正しさを人の目ではなく仕組みで確かめる土台が要る、という流れの一例です。身近なところでは、AIが作った見積もりや表を、計算式や照合表で機械的に確かめる習慣が同じ考え方になります。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/05/axiom-math-wants-to-keep-ai-slop-out-of-mathematics/",
+   "note": "元記事",
+   "title": "Axiom Math wants to keep AI slop out of mathematics",
+   "org": "発表：Axiom Math（カリナ・ホン最高経営責任者、Ashvin Swaminathan氏）／報道：TechCrunch（Aditya Mehta記者）",
+   "published": "2026-11-05",
+   "image": "https://techcrunch.com/wp-content/uploads/2026/11/Axiom-Team-2.jpg?resize=1200,800",
+   "image_ok": true,
+   "image_size": [
+    1200,
+    800
+   ]
+  }
+ ]
+}
