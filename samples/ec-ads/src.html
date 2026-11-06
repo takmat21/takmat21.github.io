@@ -1,0 +1,278 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="robots" content="noindex"><title>Amazon広告運用の進め方：スポンサープロダクトを中心に</title>
+<style>
+@page{size:A4 landscape;margin:0}
+:root{--navy:#12355b;--blue:#2f7ae5;--blueL:#f2f7ff;--ink:#2a2f36;--mut:#5f6772;--line:#d6dde6;--green:#5fb37c;--greenL:#eefaf1;--orange:#f0b25a;--orangeL:#fff6e8;--red:#c9473d;--redL:#fdf0ef}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:#fff;font-size:15pt;line-height:1.5}
+.page{width:297mm;height:210mm;padding:12mm 16mm 0;position:relative;overflow:hidden;page-break-after:always;display:flex;flex-direction:column}
+.page:last-child{page-break-after:auto}
+h1{font-size:24pt;font-weight:700;color:var(--navy);line-height:1.3;border-left:6px solid var(--blue);padding-left:4mm}
+.sub{font-size:15pt;color:var(--mut);margin:1.5mm 0 0 6mm}
+.body{flex:1;display:flex;flex-direction:column;justify-content:flex-start;gap:5mm;padding-bottom:15mm;padding-top:5mm}
+.foot{position:absolute;left:16mm;right:16mm;bottom:7mm;display:flex;justify-content:space-between;font-size:9pt;color:var(--mut);border-top:1px solid var(--line);padding-top:1.5mm}
+.src{margin-top:auto;font-size:12pt;color:var(--mut);line-height:1.4}
+.card{background:var(--blueL);border:1.5px solid var(--blue);border-radius:3mm;padding:4mm 5.5mm}
+.card h3{font-size:17pt;font-weight:700;color:var(--navy);line-height:1.35;margin-bottom:2mm}
+.card h3 .n{color:var(--blue);margin-right:2mm}
+.card ul,.band ul{margin-left:6mm}
+.card li,.band li{margin-bottom:1mm}
+b{color:var(--navy)}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+.g64{display:grid;grid-template-columns:1.5fr 1fr;gap:5mm}
+.band{border-radius:3mm;padding:3.5mm 6mm}
+.band.green{background:var(--greenL);border:1.5px solid var(--green)}
+.band.orange{background:var(--orangeL);border:1.5px solid var(--orange)}
+.band.red{background:var(--redL);border:1.5px solid var(--red)}
+.lead{font-size:16pt;line-height:1.7}
+.formula{display:inline-block;font-weight:700;color:var(--navy);background:#fff;border:1px dashed var(--blue);padding:.8mm 3mm;border-radius:1.5mm;margin:1mm 0}
+table{width:100%;border-collapse:collapse;font-size:14.5pt;background:#fff}
+th,td{border-bottom:1px solid var(--line);padding:1.6mm 2.6mm;text-align:left;vertical-align:top}
+thead th{background:var(--navy);color:#fff;font-weight:500}
+td.num,th.num{text-align:right;white-space:nowrap}
+td.num{font-weight:700;color:var(--navy)}
+tr.total td{background:#e2edfd;font-weight:700}
+td.good{background:var(--greenL)} td.warn{background:var(--orangeL)} td.bad{background:var(--redL)}
+.note{font-size:12.5pt;color:var(--mut)}
+.check{list-style:none;margin-left:0!important;columns:2;column-gap:8mm}
+.check li{break-inside:avoid;padding-left:7mm;position:relative}
+.check li:before{content:"";position:absolute;left:0;top:2.2mm;width:3.6mm;height:3.6mm;border:2px solid var(--blue);border-radius:.6mm;background:#fff}
+.flow{display:flex;align-items:stretch;gap:0}
+.flow .st{flex:1;background:#fff;border:1.5px solid var(--blue);border-radius:3mm;padding:2.5mm 3.5mm;font-size:14.5pt;line-height:1.45}
+.flow .st h4{font-size:16pt;color:var(--navy);margin-bottom:1mm}
+.flow .st .k{display:inline-block;background:var(--blue);color:#fff;border-radius:1.5mm;padding:0 2mm;font-size:13pt;font-weight:700;margin-bottom:1mm}
+.flow .ar{width:9mm;display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:22pt;font-weight:700}
+.pill{display:inline-block;border-radius:10mm;padding:0 3mm;font-size:13pt;font-weight:700;color:#fff;background:var(--blue)}
+.pill.o{background:#b86e12}.pill.g{background:#3c8a58}.pill.r{background:var(--red)}
+.cover{justify-content:center}
+.cover h1{font-size:26pt}
+</style></head><body>
+<!-- 1 表紙 -->
+<section class="page">
+ <h1>Amazon広告運用の進め方：スポンサープロダクトを中心に</h1>
+ <p class="sub">はじめての出稿から、毎週の見直しまで。数字で判断できる形にそろえます。</p>
+ <div class="body">
+  <div class="card lead">広告は「出して終わり」ではなく、<b>利益から決めた上限（許容ACOS）</b>を基準に、<b>毎週同じ手順で見直す</b>ことで成果が安定します。この資料は、その手順を1冊にまとめたものです。</div>
+  <div class="flow">
+   <div class="st"><span class="k">1</span><h4>目的と指標</h4>何を見て良し悪しを決めるか（2ページ）</div><div class="ar">→</div>
+   <div class="st"><span class="k">2</span><h4>最初の設定</h4>オート→マニュアル、除外キーワード（3）</div><div class="ar">→</div>
+   <div class="st"><span class="k">3</span><h4>入札と予算</h4>利益から許容ACOSを出す（4）</div><div class="ar">→</div>
+   <div class="st"><span class="k">4</span><h4>週次の見直し</h4>手順とチェックリスト（5・8）</div>
+  </div>
+  <div class="g2">
+   <div class="band orange"><b>広告の外側も確かめる：</b>在庫切れ・カート（おすすめ出品）を取れていない・値上げ直後は、入札をいじっても広告が回りません（6・7ページ）。</div>
+   <div class="band green"><b>この資料の前提：</b>大口出品の出品者が、自社商品にスポンサープロダクト広告を出す場合。スポンサーブランド・ディスプレイ広告は扱いません。</div>
+  </div>
+  <p class="note">※見本資料のため、商品名・数字はすべて架空です（会社名・数字は変更しています）。画面の名前や仕様は変わることがあるため、出典と確認日を各ページの下に記載しています。</p>
+ </div>
+ <div class="foot"><span>Amazon広告運用の進め方：スポンサープロダクトを中心に（松村貴士）</span><span>1 / 9</span></div>
+</section>
+
+<!-- 2 指標 -->
+<section class="page">
+ <h1>目的と指標：5つの数字の意味</h1>
+ <p class="sub">まず「売上を伸ばしたいのか／利益を守りたいのか」を決め、見る数字を絞ります。</p>
+ <div class="body">
+  <table>
+   <thead><tr><th style="width:17%">指標</th><th style="width:31%">計算式</th><th>何がわかるか・どう使うか</th></tr></thead>
+   <tbody>
+    <tr><td><b>ACOS</b><br><span class="note">広告費売上高比率</span></td><td>広告費 ÷ 広告経由の売上 × 100</td><td>広告の<b>費用効率</b>。低いほど効率がよい。利益率より高いと、売れても赤字。</td></tr>
+    <tr><td><b>ROAS</b><br><span class="note">広告費用対効果</span></td><td>広告経由の売上 ÷ 広告費</td><td>ACOSの逆数（ACOS 25% ＝ ROAS 4.0）。他の広告媒体と比べるときに使う。</td></tr>
+    <tr><td><b>TACoS</b></td><td>広告費 ÷ 総売上（広告＋自然検索）× 100</td><td>店全体の売上に対する広告の重さ。<b>下がっていれば自然検索の売上が育っている</b>サイン。</td></tr>
+    <tr><td><b>CTR</b><br><span class="note">クリック率</span></td><td>クリック数 ÷ 表示回数 × 100</td><td>画像・商品名・価格が検索した人に響いているか。低ければ<b>商品ページ側</b>を直す。</td></tr>
+    <tr><td><b>CVR</b><br><span class="note">転換率</span></td><td>注文数 ÷ クリック数 × 100</td><td>ページに来た人が買ったか。低ければ<b>価格・レビュー・説明</b>、またはキーワードのずれ。</td></tr>
+   </tbody>
+  </table>
+  <div class="g2">
+   <div class="band green"><b>売上を伸ばす時期</b>（新商品・セール前）：ACOSは許容値の上限まで使い、TACoSの推移を見る。</div>
+   <div class="band orange"><b>利益を守る時期</b>（定番・値上げ後）：ACOSを許容値より下に保ち、売れない語句を止める。</div>
+  </div>
+  <p class="src">出典：advertising.amazon.com/ja-jp/library/guides/acos-advertising-cost-of-sales（ACOS・ROAS）、…/guides/conversion-rate（CVR）。TACoS・CTRは公式ガイドで定義を確認できず、一般的な式で記載。確認日 2026-11-06</p>
+ </div>
+ <div class="foot"><span>Amazon広告運用の進め方：スポンサープロダクトを中心に（松村貴士）</span><span>2 / 9</span></div>
+</section>
+
+<!-- 3 最初の設定 -->
+<section class="page">
+ <h1>最初の設定：オートで探し、マニュアルで育てる</h1>
+ <p class="sub">オートで「実際に売れる検索語句」を集め、当たった語句だけをマニュアルに移します。</p>
+ <div class="body">
+  <div class="flow">
+   <div class="st"><span class="k">1〜2週</span><h4>オートで出す</h4>商品に合う語句・商品をAmazonが自動で選んで配信</div><div class="ar">→</div>
+   <div class="st"><span class="k">毎週</span><h4>検索語句を読む</h4>レポートで、注文につながった語句・つながらない語句を分ける</div><div class="ar">→</div>
+   <div class="st"><span class="k">移す</span><h4>マニュアルに登録</h4>売れた語句をキーワードとして登録し、入札を個別に調整</div><div class="ar">→</div>
+   <div class="st"><span class="k">止める</span><h4>除外する</h4>売れない・関係ない語句は除外キーワードに入れる</div>
+  </div>
+  <div class="g3">
+   <div class="card"><h3>マッチタイプの使い分け</h3>
+    <ul><li><b>部分一致</b>：語順を問わず関連検索に出る。<b>語句探し用</b></li><li><b>フレーズ一致</b>：同じ語順を含む検索に出る</li><li><b>完全一致</b>：入れたとおりの検索だけ。<b>売れた語句の本命用</b></li></ul></div>
+   <div class="card"><h3>キーワードの育て方</h3>
+    <ul><li>注文が出た語句 → <b>完全一致</b>で別に登録</li><li>オート・部分一致側では同じ語句を<b>除外</b>し、入札の取り合いを防ぐ</li><li>新しい語句探しはオートと部分一致に任せる</li></ul></div>
+   <div class="card"><h3>除外キーワード</h3>
+    <ul><li>商品と関係ない語句（例：別の動物・別の用途）</li><li>クリックが溜まっても注文ゼロの語句</li><li>除外は<b>週1回まとめて</b>。1日の数字で決めない</li></ul></div>
+  </div>
+  <p class="src">出典：advertising.amazon.com/ja-jp/library/guides/keyword-targeting（マッチタイプ・除外・検索ワードレポート）、…/guides/sponsored-products-best-practices（オートを補うマニュアル）。除外に使えるマッチタイプの種類は要確認。確認日 2026-11-06</p>
+ </div>
+ <div class="foot"><span>Amazon広告運用の進め方：スポンサープロダクトを中心に（松村貴士）</span><span>3 / 9</span></div>
+</section>
+
+<!-- 4 入札と予算 -->
+<section class="page">
+ <h1>入札と予算：利益から許容ACOSを出す</h1>
+ <p class="sub">「いくらまで広告に使えるか」を先に計算し、入札額はそこから逆算します。</p>
+ <div class="body">
+  <div class="g64">
+   <table>
+    <thead><tr><th>計算例（架空の商品X・Amazon FBA）</th><th class="num">金額</th><th class="num">売価比</th></tr></thead>
+    <tbody>
+     <tr><td>販売価格（税込）</td><td class="num">3,000円</td><td class="num">100%</td></tr>
+     <tr><td>消費税（3,000 × 10/110）</td><td class="num">−273円</td><td class="num">9.1%</td></tr>
+     <tr><td>販売手数料（ペット用品 15.4% の例）</td><td class="num">−462円</td><td class="num">15.4%</td></tr>
+     <tr><td>原価・FBA手数料・梱包（架空）</td><td class="num">−1,300円</td><td class="num">43.3%</td></tr>
+     <tr class="total"><td>広告前の利益 ＝ 損益分岐ACOS</td><td class="num">965円</td><td class="num">32.2%</td></tr>
+     <tr><td>残したい利益（売価の10%）</td><td class="num">−300円</td><td class="num">10.0%</td></tr>
+     <tr class="total"><td>広告に使える額 ＝ <b>許容ACOS</b></td><td class="num">665円</td><td class="num">22.2%</td></tr>
+    </tbody>
+   </table>
+   <div style="display:flex;flex-direction:column;gap:4mm">
+    <div class="card"><h3>入札の上限（1クリック）</h3>
+     <span class="formula">売価 × CVR × 許容ACOS</span><br>例：3,000円 × 8% × 22.2% ＝ 約<b>53円</b><br><span class="note">CVRはその語句の実績。実績が少ないうちは店の平均で仮置き。</span></div>
+    <div class="card"><h3>予算の決め方</h3>
+     <ul><li>公式の推奨は、開始時は1日10ドル相当から</li><li>予算切れで止まる日が続くなら、許容ACOS内の語句から増やす</li></ul></div>
+   </div>
+  </div>
+  <div class="band orange"><b>使い分け：</b>損益分岐ACOSは「利益ゼロ」の線。普段は<b>許容ACOS</b>を上限にし、新商品の立ち上げ時だけ損益分岐まで許します。</div>
+  <p class="src">出典：advertising.amazon.com/ja-jp/library/guides/acos-advertising-cost-of-sales（損益分岐ACOS）、…/guides/sponsored-products-best-practices（開始時の1日予算）、sell.amazon.co.jp/pricing（販売手数料）。確認日 2026-11-06</p>
+ </div>
+ <div class="foot"><span>Amazon広告運用の進め方：スポンサープロダクトを中心に（松村貴士）</span><span>4 / 9</span></div>
+</section>
+
+<!-- 5 週次の見直し -->
+<section class="page">
+ <h1>週次の見直し：毎週同じ順番で、同じ基準で</h1>
+ <p class="sub">期間は「直近7日」と「直近30日」を並べ、1日の上下では判断しません。</p>
+ <div class="body">
+  <div class="flow">
+   <div class="st"><span class="k">①</span><h4>前提を確認</h4>在庫・カート・価格</div><div class="ar">→</div>
+   <div class="st"><span class="k">②</span><h4>全体を見る</h4>ACOS・TACoSを先週と比較</div><div class="ar">→</div>
+   <div class="st"><span class="k">③</span><h4>語句を仕分け</h4>良い／高い／売れない</div><div class="ar">→</div>
+   <div class="st"><span class="k">④</span><h4>手を打つ</h4>入札・登録・除外</div><div class="ar">→</div>
+   <div class="st"><span class="k">⑤</span><h4>記録する</h4>変えた内容を1行で</div>
+  </div>
+  <div class="card"><h3>週次チェックリスト</h3>
+   <ul class="check">
+    <li>在庫切れ・在庫僅少の商品がない</li>
+    <li>主力商品がカートを取れている</li>
+    <li>価格・クーポンを変えた商品を把握した</li>
+    <li>許容ACOS超えの語句を洗い出した</li>
+    <li>許容内で売れる語句は入札を上げた</li>
+    <li>注文ゼロの語句を除外・停止した</li>
+    <li>オートで売れた語句をマニュアルへ</li>
+    <li>予算切れで止まった日がない</li>
+    <li>CTRが低い商品を改善候補に入れた</li>
+    <li>変更内容と理由をメモに残した</li>
+   </ul></div>
+  <div class="band green"><b>変更幅：</b>入札は1回1〜2割までにとどめ、翌週の結果を見て次を決めます（目安）。開始した最初の週は週2回以上確認します（公式の推奨）。</div>
+  <p class="src">出典：advertising.amazon.com/ja-jp/library/guides/sponsored-products-best-practices（最初の週の確認頻度）。手順・変更幅は運用上の目安。確認日 2026-11-06</p>
+ </div>
+ <div class="foot"><span>Amazon広告運用の進め方：スポンサープロダクトを中心に（松村貴士）</span><span>5 / 9</span></div>
+</section>
+
+<!-- 6 在庫・カート -->
+<section class="page">
+ <h1>在庫切れ・カート獲得と広告の関係</h1>
+ <p class="sub">広告が出るのは「在庫がある」かつ「おすすめ出品（カート）を取れている」ときだけです。</p>
+ <div class="body">
+  <div class="flow">
+   <div class="st"><h4>入札・予算を設定</h4>キャンペーンは「配信中」</div><div class="ar">→</div>
+   <div class="st" style="border-color:#b86e12"><h4>在庫はあるか</h4><span class="pill r">なし</span> 広告は表示されない</div><div class="ar">→</div>
+   <div class="st" style="border-color:#b86e12"><h4>おすすめ出品か</h4><span class="pill r">いいえ</span> 広告は表示されない</div><div class="ar">→</div>
+   <div class="st" style="border-color:var(--green)"><h4>広告が表示される</h4><span class="pill g">はい</span> 入札・関連度で競う</div>
+  </div>
+  <div class="g2">
+   <div class="card"><h3>公式に書かれていること</h3>
+    <ul><li>おすすめ出品として表示されていない、または在庫切れの商品は、<b>広告が表示されない</b></li><li>広告の対象になるには、在庫があり、おすすめ出品であることが必要</li><li>ベストプラクティスでも「在庫があること」「おすすめ出品として表示されていること」の確認を挙げている</li></ul></div>
+   <div class="card"><h3>運用で気をつけること</h3>
+    <ul><li>在庫が戻っても、止まっていた間の<b>売上実績の減少</b>で立ち上がりが遅れることがある</li><li>入荷の見込みを先に共有してもらい、切れる前に予算を絞る</li><li>相乗り出品がある商品は、カートを失っていないか毎週見る</li></ul></div>
+  </div>
+  <div class="band orange"><b>「広告費が急に減った」は、まず在庫とカートを疑う。</b>入札を上げても、表示の条件を満たしていなければ数字は戻りません。</div>
+  <p class="src">出典：advertising.amazon.com/ja-jp/library/guides/new-advertiser-success-guide、…/guides/sponsored-products-best-practices。在庫復帰後の回復の速さは公式に記載なし（経験則）。確認日 2026-11-06</p>
+ </div>
+ <div class="foot"><span>Amazon広告運用の進め方：スポンサープロダクトを中心に（松村貴士）</span><span>6 / 9</span></div>
+</section>
+
+<!-- 7 値上げ -->
+<section class="page">
+ <h1>値上げ時の注意：広告の数字は一度崩れる前提で</h1>
+ <p class="sub">価格が上がるとCVRが下がりやすく、同じ入札のままだとACOSが悪化します。</p>
+ <div class="body">
+  <div class="g3">
+   <div class="card"><h3><span class="n">前</span>値上げの前に</h3>
+    <ul><li>新しい価格で<b>許容ACOSを計算し直す</b>（利益が増えれば上限も上がる）</li><li>直近4週のCVR・ACOSを控えておく（比べる基準）</li><li>セール・クーポンの予定と重ねない</li></ul></div>
+   <div class="card"><h3><span class="n">中</span>値上げ直後</h3>
+    <ul><li>1〜2週は<b>入札を大きく動かさない</b></li><li>CVRの下がり幅を語句ごとに見る</li><li>カート（おすすめ出品）を失っていないか確認</li></ul></div>
+   <div class="card"><h3><span class="n">後</span>落ち着いたら</h3>
+    <ul><li>新しい許容ACOSで入札の上限を引き直す</li><li>売れなくなった語句は入札を下げるか除外</li><li>TACoSが戻るかを月単位で見る</li></ul></div>
+  </div>
+  <table>
+   <thead><tr><th>例（架空）</th><th class="num">価格</th><th class="num">CVR</th><th class="num">1クリックの上限</th><th>読み方</th></tr></thead>
+   <tbody>
+    <tr><td>値上げ前</td><td class="num">3,000円</td><td class="num">8.0%</td><td class="num">53円</td><td>許容ACOS 22.2%</td></tr>
+    <tr><td>値上げ後</td><td class="num">3,300円</td><td class="num">6.5%</td><td class="num">56円</td><td>利益が増え許容ACOSは約26%に。CVRが下がっても上限は下がらない</td></tr>
+   </tbody>
+  </table>
+  <p class="note">※値上げ後の許容ACOSは、手数料・原価が同じと仮定した計算例です。検索順位の決まり方は公開されていないため、順位への影響は「売れ行きの数字」で確かめます（推測で判断しない）。</p>
+ </div>
+ <div class="foot"><span>Amazon広告運用の進め方：スポンサープロダクトを中心に（松村貴士）</span><span>7 / 9</span></div>
+</section>
+
+<!-- 8 レポート -->
+<section class="page">
+ <h1>レポートの見方の例：1週間分を仕分ける</h1>
+ <p class="sub">許容ACOS 22%・1クリック上限の式（4ページ）に当てはめて、打ち手を決めます。数字は架空です。</p>
+ <div class="body">
+  <table style="font-size:14pt">
+   <thead><tr><th>ターゲティング</th><th class="num">表示</th><th class="num">クリック</th><th class="num">CTR</th><th class="num">広告費</th><th class="num">注文</th><th class="num">売上</th><th class="num">ACOS</th><th class="num">CVR</th><th>判定</th></tr></thead>
+   <tbody>
+    <tr><td>オート</td><td class="num">42,000</td><td class="num">310</td><td class="num">0.74%</td><td class="num">15,500</td><td class="num">18</td><td class="num">54,000</td><td class="num warn">28.7%</td><td class="num">5.8%</td><td><span class="pill o">下げる</span></td></tr>
+    <tr><td>完全一致「犬 ブラシ」</td><td class="num">18,500</td><td class="num">260</td><td class="num">1.41%</td><td class="num">16,900</td><td class="num">26</td><td class="num">78,000</td><td class="num good">21.7%</td><td class="num">10.0%</td><td><span class="pill g">上げる</span></td></tr>
+    <tr><td>フレーズ「ブラシ 抜け毛」</td><td class="num">9,800</td><td class="num">95</td><td class="num">0.97%</td><td class="num">6,650</td><td class="num">4</td><td class="num">12,000</td><td class="num bad">55.4%</td><td class="num">4.2%</td><td><span class="pill o">下げる</span></td></tr>
+    <tr><td>部分一致「猫 ブラシ」</td><td class="num">25,000</td><td class="num">140</td><td class="num">0.56%</td><td class="num">7,000</td><td class="num">0</td><td class="num">0</td><td class="num bad">—</td><td class="num">0%</td><td><span class="pill r">除外</span></td></tr>
+    <tr class="total"><td>合計</td><td class="num">95,300</td><td class="num">805</td><td class="num">0.84%</td><td class="num">46,050</td><td class="num">48</td><td class="num">144,000</td><td class="num">32.0%</td><td class="num">6.0%</td><td></td></tr>
+   </tbody>
+  </table>
+  <div class="g3">
+   <div class="card"><h3>完全一致は伸ばす</h3>ACOS 21.7%で許容内。上限66円に対し実績65円。<b>予算切れ</b>がないか確認。</div>
+   <div class="card"><h3>オート・フレーズは下げる</h3>上限はオート39円・フレーズ28円。実績50円・70円から<b>段階的に下げる</b>。</div>
+   <div class="card"><h3>「猫 ブラシ」は止める</h3>犬用の商品に猫の語句。7,000円使って注文ゼロ。<b>除外</b>に入れる。</div>
+  </div>
+  <div class="band green">店全体の売上（自然検索込み）が420,000円なら、<b>TACoS ＝ 46,050 ÷ 420,000 ＝ 約11.0%</b>。広告のACOSが高めでも、TACoSが下がっていれば全体は育っています。</div>
+ </div>
+ <div class="foot"><span>Amazon広告運用の進め方：スポンサープロダクトを中心に（松村貴士）</span><span>8 / 9</span></div>
+</section>
+
+<!-- 9 ZAZOU -->
+<section class="page">
+ <h1>ZAZOUができること（代行の範囲）</h1>
+ <p class="sub">設定から毎週の見直し・報告まで、決まった手順で回します。判断に必要な数字は御社と共有します。</p>
+ <div class="body">
+  <table>
+   <thead><tr><th style="width:24%">項目</th><th>ZAZOUが行うこと</th><th style="width:30%">御社にお願いすること</th></tr></thead>
+   <tbody>
+    <tr><td><b>最初の設計</b></td><td>商品ごとの許容ACOSの計算、オート／マニュアルのキャンペーン設計と設定</td><td>原価・送料など利益計算の数字</td></tr>
+    <tr><td><b>週次の運用</b></td><td>検索語句の仕分け、入札の上げ下げ、キーワード登録・除外（5ページの手順）</td><td>広告の管理画面への担当者権限の付与</td></tr>
+    <tr><td><b>在庫・価格との連動</b></td><td>在庫切れ・カート喪失・値上げの前後で予算と入札を調整</td><td>入荷予定・値上げ予定の共有</td></tr>
+    <tr><td><b>報告</b></td><td>週1回、ACOS・TACoS・売上と「何を変えたか」を1枚で報告。月1回、翌月の方針を提案</td><td>方針（売上重視か利益重視か）の決定</td></tr>
+    <tr><td><b>商品ページの改善提案</b></td><td>CTR・CVRが低い商品について、画像・商品名・説明の見直し案を作成</td><td>修正の可否の判断</td></tr>
+   </tbody>
+  </table>
+  <div class="g2">
+   <div class="band green"><b>実務の経験：</b>Amazon・Yahoo!ショッピング・BASEで自社で販売しています。Makuakeでは企画から発送まで一人で担当しました。</div>
+   <div class="band orange"><b>やらないこと：</b>ログイン情報（パスワード等）の受け取りはしません。権限は御社のアカウントから担当者として付与していただきます。</div>
+  </div>
+ </div>
+ <div class="foot"><span>Amazon広告運用の進め方：スポンサープロダクトを中心に（松村貴士）</span><span>9 / 9</span></div>
+</section>
+
+</body></html>

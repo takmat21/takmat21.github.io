@@ -1,0 +1,267 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="robots" content="noindex"><title>EC価格設定の考え方：相場・利益・モール間の統一</title>
+<style>
+@page{size:A4 landscape;margin:0}
+:root{--navy:#12355b;--blue:#2f7ae5;--blueL:#f2f7ff;--ink:#2a2f36;--mut:#5f6772;--line:#d6dde6;--green:#5fb37c;--greenL:#eefaf1;--orange:#f0b25a;--orangeL:#fff6e8;--red:#c9473d;--redL:#fdf0ef}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:#fff;font-size:15pt;line-height:1.5}
+.page{width:297mm;height:210mm;padding:12mm 16mm 0;position:relative;overflow:hidden;page-break-after:always;display:flex;flex-direction:column}
+.page:last-child{page-break-after:auto}
+h1{font-size:24pt;font-weight:700;color:var(--navy);line-height:1.3;border-left:6px solid var(--blue);padding-left:4mm}
+.sub{font-size:15pt;color:var(--mut);margin:1.5mm 0 0 6mm}
+.body{flex:1;display:flex;flex-direction:column;justify-content:flex-start;gap:5mm;padding-bottom:15mm;padding-top:5mm}
+.foot{position:absolute;left:16mm;right:16mm;bottom:7mm;display:flex;justify-content:space-between;font-size:9pt;color:var(--mut);border-top:1px solid var(--line);padding-top:1.5mm}
+.src{margin-top:auto;font-size:12pt;color:var(--mut);line-height:1.4}
+.card{background:var(--blueL);border:1.5px solid var(--blue);border-radius:3mm;padding:4mm 5.5mm}
+.card h3{font-size:17pt;font-weight:700;color:var(--navy);line-height:1.35;margin-bottom:2mm}
+.card h3 .n{color:var(--blue);margin-right:2mm}
+.card ul,.band ul{margin-left:6mm}
+.card li,.band li{margin-bottom:1mm}
+b{color:var(--navy)}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+.g64{display:grid;grid-template-columns:1.5fr 1fr;gap:5mm}
+.band{border-radius:3mm;padding:3.5mm 6mm}
+.band.green{background:var(--greenL);border:1.5px solid var(--green)}
+.band.orange{background:var(--orangeL);border:1.5px solid var(--orange)}
+.band.red{background:var(--redL);border:1.5px solid var(--red)}
+.lead{font-size:16pt;line-height:1.7}
+.formula{display:inline-block;font-weight:700;color:var(--navy);background:#fff;border:1px dashed var(--blue);padding:.8mm 3mm;border-radius:1.5mm;margin:1mm 0}
+table{width:100%;border-collapse:collapse;font-size:14.5pt;background:#fff}
+th,td{border-bottom:1px solid var(--line);padding:1.6mm 2.6mm;text-align:left;vertical-align:top}
+thead th{background:var(--navy);color:#fff;font-weight:500}
+td.num,th.num{text-align:right;white-space:nowrap}
+td.num{font-weight:700;color:var(--navy)}
+tr.total td{background:#e2edfd;font-weight:700}
+td.good{background:var(--greenL)} td.warn{background:var(--orangeL)} td.bad{background:var(--redL)}
+.note{font-size:12.5pt;color:var(--mut)}
+.check{list-style:none;margin-left:0!important;columns:2;column-gap:8mm}
+.check li{break-inside:avoid;padding-left:7mm;position:relative}
+.check li:before{content:"";position:absolute;left:0;top:2.2mm;width:3.6mm;height:3.6mm;border:2px solid var(--blue);border-radius:.6mm;background:#fff}
+.flow{display:flex;align-items:stretch;gap:0}
+.flow .st{flex:1;background:#fff;border:1.5px solid var(--blue);border-radius:3mm;padding:2.5mm 3.5mm;font-size:14.5pt;line-height:1.45}
+.flow .st h4{font-size:16pt;color:var(--navy);margin-bottom:1mm}
+.flow .st .k{display:inline-block;background:var(--blue);color:#fff;border-radius:1.5mm;padding:0 2mm;font-size:13pt;font-weight:700;margin-bottom:1mm}
+.flow .ar{width:9mm;display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:22pt;font-weight:700}
+.pill{display:inline-block;border-radius:10mm;padding:0 3mm;font-size:13pt;font-weight:700;color:#fff;background:var(--blue)}
+.pill.o{background:#b86e12}.pill.g{background:#3c8a58}.pill.r{background:var(--red)}
+.cover{justify-content:center}
+.cover h1{font-size:26pt}
+</style></head><body>
+<!-- 1 表紙 -->
+<section class="page">
+ <h1>EC価格設定の考え方：相場・利益・モール間の統一</h1>
+ <p class="sub">「なんとなくの価格」をやめ、利益の下限と相場の両方から決めます。</p>
+ <div class="body">
+  <div class="card lead">価格は<b>「下限＝利益が残る最低価格」</b>と<b>「上限＝相場から見て売れる価格」</b>の間で決めます。下限は計算で、上限は他社との比較で出します。この資料は、その手順を架空の商品「ペット用品A」で通して示します。</div>
+  <div class="flow">
+   <div class="st"><span class="k">1</span><h4>下限を出す</h4>原価・手数料・送料から最低価格を計算（2・3ページ）</div><div class="ar">→</div>
+   <div class="st"><span class="k">2</span><h4>相場を見る</h4>他社を1個あたりに直して比べる（4）</div><div class="ar">→</div>
+   <div class="st"><span class="k">3</span><h4>モール間をそろえる</h4>売上の多いモールに合わせる（5）</div><div class="ar">→</div>
+   <div class="st"><span class="k">4</span><h4>段差と値上げ</h4>サイズ違いの価格表、値上げの進め方（6・7）</div>
+  </div>
+  <div class="g2">
+   <div class="band green"><b>対象：</b>Amazon・Yahoo!ショッピング・BASEで、同じ商品をサイズ（入数）違いで販売している場合。</div>
+   <div class="band orange"><b>手数料は変わります：</b>各モールの料金は公式ページで確認した日付を書いています。使う前に必ず最新の料金で計算し直します。</div>
+  </div>
+  <p class="note">※見本資料のため、商品名・数字はすべて架空です（会社名・数字は変更しています）。「ペット用品A」はSS〜LLの5サイズ（入数違い）の消耗品として例示しています。</p>
+ </div>
+ <div class="foot"><span>EC価格設定の考え方：相場・利益・モール間の統一（松村貴士）</span><span>1 / 8</span></div>
+</section>
+
+<!-- 2 最低価格の式 -->
+<section class="page">
+ <h1>最低価格の式：売価に比例する費用と、1件ごとの費用を分ける</h1>
+ <p class="sub">手数料・消費税・広告費は「売価の◯%」、原価・送料・梱包は「1件いくら」。分けて計算します。</p>
+ <div class="body">
+  <div class="card"><h3>最低価格の式</h3>
+   <span class="formula">最低価格 ＝（原価＋送料＋梱包＋1件ごとの手数料）÷（1 − 消費税分 9.09% − 販売手数料率 − 広告費率 − 残したい利益率）</span>
+   <p class="note" style="margin-top:1mm">消費税分は税込価格 × 10/110。月額費用は別に、月の販売数で割って「1件ごとの費用」に足します。</p></div>
+  <div class="g64">
+   <table>
+    <thead><tr><th>計算例：ペット用品A Mサイズ（40個入）／Amazon・自社発送</th><th class="num">値</th></tr></thead>
+    <tbody>
+     <tr><td>原価（1個22円 × 40個）</td><td class="num">880円</td></tr>
+     <tr><td>送料（架空）＋梱包資材</td><td class="num">380円＋60円</td></tr>
+     <tr class="total"><td>1件ごとの費用 合計</td><td class="num">1,320円</td></tr>
+     <tr><td>売価に比例：消費税分 9.09%＋販売手数料 15.4%＋広告 10%＋利益 10%</td><td class="num">44.49%</td></tr>
+     <tr class="total"><td>最低価格 ＝ 1,320 ÷（1 − 0.4449）</td><td class="num">2,378円 → 2,380円</td></tr>
+    </tbody>
+   </table>
+   <div style="display:flex;flex-direction:column;gap:4mm">
+    <div class="card"><h3>検算（2,380円で売ると）</h3>
+     消費税 216円・手数料 367円・広告 238円・費用 1,320円を引いて<b>残り 239円（10.0%）</b>。目標どおり。</div>
+    <div class="band orange">Amazonのペット用品は<b>売価帯で手数料率が変わる</b>（1,500円超は15.4%）。価格を決めたら、その価格帯の率で計算し直します。</div>
+   </div>
+  </div>
+  <p class="src">出典：sell.amazon.co.jp/pricing（ペット用品の販売手数料率）。確認日 2026-11-06。送料・原価は架空。</p>
+ </div>
+ <div class="foot"><span>EC価格設定の考え方：相場・利益・モール間の統一（松村貴士）</span><span>2 / 8</span></div>
+</section>
+
+<!-- 3 手数料 -->
+<section class="page">
+ <h1>3モールの手数料と、モールごとの最低価格</h1>
+ <p class="sub">同じ商品でも、手数料の差でモールごとに最低価格が変わります（Mサイズ・広告10%・利益10%で計算）。</p>
+ <div class="body">
+  <table style="font-size:14pt">
+   <thead><tr><th style="width:14%">モール</th><th style="width:15%">月額</th><th>売れたときの手数料（公式の記載）</th><th class="num" style="width:12%">計算の率</th><th class="num" style="width:11%">最低価格</th></tr></thead>
+   <tbody>
+    <tr><td><b>Amazon</b><br><span class="note">大口出品</span></td><td>4,900円<br><span class="note">（税抜）</span></td><td>販売手数料：ペット用品は1点の売上合計が750円以下 5%／1,500円以下 8.4%／1,500円超 15.4%（最低30円）</td><td class="num">15.4%</td><td class="num">2,380円</td></tr>
+    <tr><td><b>Yahoo!<br>ショッピング</b></td><td>10,000円<br><span class="note">（税抜）</span></td><td>売上ロイヤリティ 2.5%／決済サービス利用料（決済方法で異なる）／ストアポイント原資 1%（必須）／アフィリエイト報酬 2〜4%（必須）＋手数料 報酬の30%（経由分のみ）</td><td class="num">約7.1%</td><td class="num">2,070円</td></tr>
+    <tr><td><b>BASE</b><br><span class="note">スタンダード</span></td><td>0円</td><td>決済手数料 3.6%＋40円／サービス利用料 3%<br><span class="note">グロースプラン：月額16,580円（年払いの月あたり）・決済2.9%・サービス0円</span></td><td class="num">6.6%＋40円</td><td class="num">2,120円</td></tr>
+   </tbody>
+  </table>
+  <div class="g2">
+   <div class="band green"><b>Yahoo!約7.1%の内訳：</b>ロイヤリティ2.5%＋決済3%（公式の試算の値）＋ポイント1%＋アフィリエイト約0.6%（仮定）。</div>
+   <div class="band orange"><b>要確認：</b>料率がかかる金額が税込か税抜か。月額費用は最低価格に含めていません。</div>
+  </div>
+  <p class="src">出典：sell.amazon.co.jp/pricing ／ business-ec.yahoo.co.jp/shopping/cost/ ／ thebase.com（料金プラン） 。確認日 2026-11-06。最低価格は10円単位で切り上げ。BASEはPayPay等の決済で1%加算の記載あり。</p>
+ </div>
+ <div class="foot"><span>EC価格設定の考え方：相場・利益・モール間の統一（松村貴士）</span><span>3 / 8</span></div>
+</section>
+
+<!-- 4 相場 -->
+<section class="page">
+ <h1>他社の相場の調べ方：1個あたりに直して比べる</h1>
+ <p class="sub">入数・送料・ポイントがばらばらのままでは比べられません。条件をそろえてから並べます。</p>
+ <div class="body">
+  <div class="flow">
+   <div class="st"><span class="k">1</span><h4>集める</h4>お客様が使う検索語で上位の同等品を10〜20件</div><div class="ar">→</div>
+   <div class="st"><span class="k">2</span><h4>条件をそろえる</h4>税込・送料込みにし、ポイント還元は別の列に</div><div class="ar">→</div>
+   <div class="st"><span class="k">3</span><h4>1個あたりに直す</h4>送料込み価格 ÷ 入数</div><div class="ar">→</div>
+   <div class="st"><span class="k">4</span><h4>真ん中を見る</h4>平均ではなく中央値。極端な安値は除く</div>
+  </div>
+  <div class="g64">
+   <table>
+    <thead><tr><th>例（架空）</th><th class="num">入数</th><th class="num">送料込み</th><th class="num">1個あたり</th></tr></thead>
+    <tbody>
+     <tr><td>他社D</td><td class="num">20個</td><td class="num">1,780円</td><td class="num">89.0円</td></tr>
+     <tr><td>他社A</td><td class="num">30個</td><td class="num">2,380円</td><td class="num">79.3円</td></tr>
+     <tr><td>他社B</td><td class="num">50個</td><td class="num">3,480円</td><td class="num">69.6円</td></tr>
+     <tr><td>他社C</td><td class="num">100個</td><td class="num">5,980円</td><td class="num">59.8円</td></tr>
+     <tr class="total"><td>自社 ペット用品A M</td><td class="num">40個</td><td class="num">2,780円</td><td class="num">69.5円</td></tr>
+    </tbody>
+   </table>
+   <div class="card"><h3>読み方</h3>
+    <ul><li>入数が近い他社A・Bの間（69.6〜79.3円）に入っていれば、<b>相場の中</b></li><li>同じ入数どうしで比べる。100個入と40個入をそのまま比べない</li><li>レビュー数・星の数が大きく違う商品は、別の列で区別</li></ul></div>
+  </div>
+ </div>
+ <div class="foot"><span>EC価格設定の考え方：相場・利益・モール間の統一（松村貴士）</span><span>4 / 8</span></div>
+</section>
+
+<!-- 5 モール間 -->
+<section class="page">
+ <h1>複数モールで価格をそろえるか：売上の多いモールに合わせる</h1>
+ <p class="sub">お客様はモールをまたいで比べます。基本は「同じ価格」、基準は「いちばん売れているモール」です。</p>
+ <div class="body">
+  <div class="g64">
+   <table>
+    <thead><tr><th>Mサイズを2,780円にそろえた場合</th><th class="num">手数料</th><th class="num">利益</th><th class="num">利益率</th></tr></thead>
+    <tbody>
+     <tr><td><b>Amazon</b>（売上の中心・基準）</td><td class="num">428円</td><td class="num">501円</td><td class="num">18.0%</td></tr>
+     <tr><td>Yahoo!ショッピング</td><td class="num">197円</td><td class="num">732円</td><td class="num">26.3%</td></tr>
+     <tr><td>BASE（スタンダード）</td><td class="num">223円</td><td class="num">706円</td><td class="num">25.4%</td></tr>
+    </tbody>
+   </table>
+   <div class="card"><h3>なぜ売上の多いモールか</h3>
+    <ul><li>売上の大半が出るモールで、<b>相場と順位を守る</b>のが最優先</li><li>手数料の安いモールは、そろえても利益が厚くなる</li></ul></div>
+  </div>
+  <div class="g3">
+   <div class="card"><h3><span class="n">A</span>そろえる（基本）</h3>
+    <ul><li>問い合わせ・比較での不信を防ぐ</li><li>価格変更の手間が1回で済む</li></ul></div>
+   <div class="card"><h3><span class="n">B</span>差を還元で出す</h3>
+    <ul><li>表示価格はそろえ、手数料の安いモールは<b>ポイント・クーポン</b>で差をつける</li></ul></div>
+   <div class="card"><h3><span class="n">C</span>そろえない場合</h3>
+    <ul><li>最低価格を下回るモールだけは上げる</li><li>理由（送料条件など）を商品ページで説明</li></ul></div>
+  </div>
+  <p class="note">※利益は消費税分・手数料・広告10%・1件ごとの費用（1,320円、BASEは＋40円）を引いた額。BASEの手数料は決済3.6%＋40円＋サービス3%。</p>
+ </div>
+ <div class="foot"><span>EC価格設定の考え方：相場・利益・モール間の統一（松村貴士）</span><span>5 / 8</span></div>
+</section>
+
+<!-- 6 値上げ -->
+<section class="page">
+ <h1>値上げの進め方：一度に上げるか、段階で上げるか</h1>
+ <p class="sub">値上げ後2〜4週間は、売れ行きと広告の数字を値上げ前と並べて見ます。</p>
+ <div class="body">
+  <table>
+   <thead><tr><th style="width:16%"></th><th>一度に上げる</th><th>段階で上げる（例：2回に分ける）</th></tr></thead>
+   <tbody>
+    <tr><td><b>よい点</b></td><td>利益の改善が早い。説明が1回で済む</td><td>売れ行きの変化を見ながら止められる</td></tr>
+    <tr><td><b>気になる点</b></td><td>売れ行きが大きく落ちても戻しにくい（戻すと値下げに見える）</td><td>何度も価格が変わり、比べられる回数が増える</td></tr>
+    <tr><td><b>向く場合</b></td><td>原価が大きく上がり、全社でそろって上がっている</td><td>相場の上限に近い・競合が多い商品</td></tr>
+   </tbody>
+  </table>
+  <div class="flow">
+   <div class="st"><h4>値上げ</h4>価格が上がる</div><div class="ar">→</div>
+   <div class="st"><h4>CVRが下がる</h4>同じ入札でもACOSが悪化</div><div class="ar">→</div>
+   <div class="st"><h4>広告を絞る</h4>表示・クリックが減る</div><div class="ar">→</div>
+   <div class="st" style="border-color:#b86e12"><h4>注文が減る</h4>検索順位に響くことも</div>
+  </div>
+  <div class="band green"><b>売れ行きの見方：</b>値上げ前4週の平均と、注文数・セッション数・CVRを週ごとに比べます。判断は<b>利益の総額（1件の利益 × 注文数）</b>が値上げ前を上回っているか。注文数だけ見て慌てて戻さない。</div>
+  <div class="band orange"><b>この連鎖を切る：</b>値上げ前に新しい価格で許容ACOSを計算し直し（利益が増えれば上限も上がる）、直後の1〜2週は入札を大きく動かさない。検索順位の決まり方は公開されていないため、<b>注文数・セッション数の推移</b>で確かめます。</div>
+ </div>
+ <div class="foot"><span>EC価格設定の考え方：相場・利益・モール間の統一（松村貴士）</span><span>6 / 8</span></div>
+</section>
+
+<!-- 7 価格表 -->
+<section class="page">
+ <h1>価格表の作り方の例：ペット用品A（SS〜LL）</h1>
+ <p class="sub">小さいサイズほど1個あたりは高くてよい。送料・梱包・手数料の「1件ごと」の重さが違うためです。</p>
+ <div class="body">
+  <div class="g2" style="grid-template-columns:1.15fr 1fr;align-items:start">
+   <table style="font-size:14pt">
+    <thead><tr><th>サイズ</th><th class="num">入数</th><th class="num">価格</th><th class="num">1個あたり</th><th class="num">相場</th><th class="num">最低価格※</th></tr></thead>
+    <tbody>
+     <tr><td>SS</td><td class="num">10</td><td class="num">980円</td><td class="num">98.0円</td><td class="num">105円</td><td class="num">784円</td></tr>
+     <tr><td>S</td><td class="num">20</td><td class="num">1,580円</td><td class="num">79.0円</td><td class="num">82円</td><td class="num">1,279円</td></tr>
+     <tr><td>M</td><td class="num">40</td><td class="num">2,780円</td><td class="num">69.5円</td><td class="num">72円</td><td class="num">2,378円</td></tr>
+     <tr><td>L</td><td class="num">60</td><td class="num">3,880円</td><td class="num">64.7円</td><td class="num">66円</td><td class="num">3,171円</td></tr>
+     <tr><td>LL</td><td class="num">100</td><td class="num">5,980円</td><td class="num">59.8円</td><td class="num">60円</td><td class="num">5,008円</td></tr>
+    </tbody>
+   </table>
+   <svg viewBox="0 0 420 300" style="width:100%;height:auto" role="img" aria-label="1個あたり価格の折れ線グラフ（自社と相場）">
+    <text x="4" y="18" font-size="17" fill="#2a2f36" font-weight="700">1個あたりの価格（円）</text>
+    <g font-size="16" fill="#5f6772"><line x1="50" x2="410" y1="250.0" y2="250.0" stroke="#9aa3ad" stroke-width="1"/><text x="42" y="255.0" text-anchor="end">50</text><line x1="50" x2="410" y1="178.0" y2="178.0" stroke="#e3e8ee" stroke-width="1"/><text x="42" y="183.0" text-anchor="end">70</text><line x1="50" x2="410" y1="106.0" y2="106.0" stroke="#e3e8ee" stroke-width="1"/><text x="42" y="111.0" text-anchor="end">90</text><line x1="50" x2="410" y1="52.0" y2="52.0" stroke="#e3e8ee" stroke-width="1"/><text x="42" y="57.0" text-anchor="end">105</text><text x="70" y="272" text-anchor="middle">SS</text><text x="150" y="272" text-anchor="middle">S</text><text x="230" y="272" text-anchor="middle">M</text><text x="310" y="272" text-anchor="middle">L</text><text x="390" y="272" text-anchor="middle">LL</text><text x="230" y="294" text-anchor="middle">サイズ（入数 10・20・40・60・100）</text></g>
+    <polyline fill="none" stroke="#e08a1e" stroke-width="2.5" stroke-dasharray="7 5" points="70,52.0 150,134.8 230,170.8 310,192.4 390,214.0"/>
+    <g fill="#e08a1e" stroke="#fff" stroke-width="2"><rect x="64" y="46.0" width="12" height="12"/><rect x="144" y="128.8" width="12" height="12"/><rect x="224" y="164.8" width="12" height="12"/><rect x="304" y="186.4" width="12" height="12"/><rect x="384" y="208.0" width="12" height="12"/></g>
+    <polyline fill="none" stroke="#2f7ae5" stroke-width="2.5" points="70,77.2 150,145.6 230,179.8 310,197.1 390,214.7"/>
+    <g fill="#2f7ae5" stroke="#fff" stroke-width="2"><circle cx="70" cy="77.2" r="6.5"/><circle cx="150" cy="145.6" r="6.5"/><circle cx="230" cy="179.8" r="6.5"/><circle cx="310" cy="197.1" r="6.5"/><circle cx="390" cy="214.7" r="6.5"/></g>
+    <g font-size="17" font-weight="700" fill="#2a2f36"><text x="84" y="50">相場（点線）</text><circle cx="148" cy="202" r="6" fill="#2f7ae5"/><text x="160" y="208">自社の価格（実線）</text></g>
+   </svg>
+  </div>
+  <div class="g3">
+   <div class="card"><h3>段差の目安</h3>隣のサイズとの1個あたりの差は、小さいサイズ側で大きく（SS→Sで約2割）、大きいサイズ側で小さく（1割弱）。</div>
+   <div class="card"><h3>相場のすぐ下に置く</h3>どのサイズも相場の1個あたりを<b>少し下回る</b>位置に。LLは相場と同じ水準で、上限です。</div>
+   <div class="card"><h3>下限を割らない</h3>最低価格を全サイズで上回っていることを確認。</div>
+  </div>
+  <p class="note">※最低価格：Amazon・自社発送・広告10%・利益10%で計算（2ページの式）。相場は他社同等品の1個あたり中央値（架空）。</p>
+ </div>
+ <div class="foot"><span>EC価格設定の考え方：相場・利益・モール間の統一（松村貴士）</span><span>7 / 8</span></div>
+</section>
+
+<!-- 8 ZAZOU -->
+<section class="page">
+ <h1>ZAZOUができること（代行の範囲）</h1>
+ <p class="sub">価格の計算表づくりから、モール間の価格更新・値上げ後の見守りまで行います。</p>
+ <div class="body">
+  <table>
+   <thead><tr><th style="width:24%">項目</th><th>ZAZOUが行うこと</th><th style="width:30%">御社にお願いすること</th></tr></thead>
+   <tbody>
+    <tr><td><b>最低価格の計算表</b></td><td>商品・サイズ・モールごとの最低価格を自動で出すスプレッドシートを作成。手数料改定時に更新</td><td>原価・送料・梱包費の数字</td></tr>
+    <tr><td><b>相場の調査</b></td><td>競合の価格を1個あたりに直して一覧化。月1回更新</td><td>比べたい競合商品の指定（任意）</td></tr>
+    <tr><td><b>価格表の設計</b></td><td>サイズ違いの段差を決め、価格表とグラフで提案</td><td>最終の価格の決定</td></tr>
+    <tr><td><b>モール間の価格更新</b></td><td>Amazon・Yahoo!ショッピング・BASEの価格をそろえて更新し、反映を確認</td><td>各モールの担当者権限の付与</td></tr>
+    <tr><td><b>値上げの見守り</b></td><td>値上げ前後の注文数・CVR・広告の数字を週1回報告</td><td>値上げの時期・幅の決定</td></tr>
+   </tbody>
+  </table>
+  <div class="g2">
+   <div class="band green"><b>実務の経験：</b>Amazon・Yahoo!ショッピング・BASEで自社で販売しています。Makuakeでは企画から発送まで一人で担当しました。</div>
+   <div class="band orange"><b>やらないこと：</b>ログイン情報（パスワード等）の受け取りはしません。権限は御社のアカウントから担当者として付与していただきます。</div>
+  </div>
+ </div>
+ <div class="foot"><span>EC価格設定の考え方：相場・利益・モール間の統一（松村貴士）</span><span>8 / 8</span></div>
+</section>
+
+</body></html>
