@@ -328,3 +328,7 @@ ul.rows a.row.has-thumb .d{grid-column:2 / -1}
 .app-name{font-weight:700;color:var(--accent);margin:12px 0 0;font-size:16px}
 .cta-row .cta{margin:0}
 .app-name{word-break:auto-phrase;text-wrap:balance}
+/* スマホのタブ：右だけでなく左端もぼかし、横に動かしたときの「切れ」を目立たせない */
+@media (max-width:640px){
+  .tabs{-webkit-mask-image:linear-gradient(to right,transparent 0,#000 24px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(to right,transparent 0,#000 24px,#000 calc(100% - 28px),transparent);padding-left:12px}
+}
