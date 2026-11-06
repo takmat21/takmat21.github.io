@@ -1,0 +1,108 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AIは動こうとしていた。では、なぜ仕事が進まなかったのか｜記事｜ZAZOU Lab</title>
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AIは動こうとしていた。では、なぜ仕事が進まなかったのか">
+<meta property="og:description" content="ClaudeとChatGPTをつなぐ定期連携で見えた「道具」と再現性の問題。小さな会社のAIチームの実践記録（2026年11月6日時点）。">
+<meta property="og:url" content="https://takmat21.github.io/articles/ai-tool-readiness/">
+<meta property="og:image" content="https://takmat21.github.io/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="description" content="ClaudeとChatGPTをつなぐ定期連携で見えた「道具」と再現性の問題。小さな会社のAIチームの実践記録（2026年11月6日時点）。">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet"></noscript>
+<style>
+:root{--bg:#fbfaf7;--fg:#1f1f1c;--muted:#5d5b55;--line:#dedad1;--card:#f2efe8;--accent:#8a4b1f;--code:#f0ece3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161614;--fg:#e8e6e1;--muted:#a6a39b;--line:#3a3833;--card:#211f1c;--accent:#e0a473;--code:#24221e}}
+:root[data-theme="dark"]{--bg:#161614;--fg:#e8e6e1;--muted:#a6a39b;--line:#3a3833;--card:#211f1c;--accent:#e0a473;--code:#24221e}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Noto Serif JP","Hiragino Mincho ProN",serif;font-size:16.5px;line-height:1.95;letter-spacing:.02em}
+main{max-width:46rem;margin:0 auto;padding:48px 16px 96px}
+h1,h2,h3{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;line-height:1.45;letter-spacing:0}
+h1{font-size:1.6rem;margin:0 0 .4em}
+main>h2:first-of-type{font-size:1.05rem;font-weight:500;color:var(--muted);margin-top:0;border:0;padding:0}
+h2{font-size:1.3rem;margin:2.6em 0 .8em;padding-top:.6em;border-top:1px solid var(--line)}
+h3{font-size:1.08rem;margin:2em 0 .6em;color:var(--accent)}
+p{margin:0 0 1.1em}
+hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+a{color:var(--accent);word-break:break-all}
+strong{font-weight:700}
+ul,ol{padding-left:1.4em}li{margin:.3em 0}
+.tw{overflow-x:auto;margin:1.2em 0 1.6em;border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-family:"Noto Sans JP",sans-serif;font-size:14px;line-height:1.7}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;min-width:6em}
+th{background:var(--card);font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+pre{background:var(--code);border:1px solid var(--line);border-radius:6px;padding:14px;overflow-x:auto;font-size:13px;line-height:1.6}
+code{font-family:"Noto Sans Mono","SFMono-Regular",Menlo,monospace;font-size:.92em}
+pre code{font-size:inherit}
+.wip{font-family:"Noto Sans JP",sans-serif;font-size:14px;line-height:1.8;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:12px 16px;margin:0 0 1.6em}
+pre,.tw{max-width:100%}
+html,body{overflow-x:clip}
+.back{font-family:"Noto Sans JP",sans-serif;font-size:14px;margin:0 0 1.2em}
+main>p:nth-of-type(1){color:var(--muted);font-family:"Noto Sans JP",sans-serif;font-size:14px}
+@media print{body{background:#fff;color:#000}}
+.tabs{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--line);margin:0 0 1.4em;font-family:"Noto Sans JP",sans-serif}
+.tabs a{flex:0 0 auto;padding:10px 9px;font-size:14px;color:var(--muted);text-decoration:none;border-bottom:3px solid transparent;white-space:nowrap;word-break:normal}
+h4{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;font-size:1rem;margin:1.6em 0 .5em}
+.tabs a.on{color:var(--accent);border-bottom-color:var(--accent);font-weight:700}
+</style><link rel="canonical" href="https://takmat21.github.io/articles/ai-tool-readiness/">
+<script type="application/ld+json" id="ld-auto">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"置き場所と引き方の改訂（執筆中）","author":{"@type":"Organization","@id":"https://takmat21.github.io/#org","name":"ZAZOU株式会社","url":"https://takmat21.github.io/"},"publisher":{"@type":"Organization","@id":"https://takmat21.github.io/#org","name":"ZAZOU株式会社","url":"https://takmat21.github.io/"},"image":["https://takmat21.github.io/assets/ogp.png"],"mainEntityOfPage":"https://takmat21.github.io/articles/ai-tool-readiness/","inLanguage":"ja","isPartOf":{"@type":"WebSite","@id":"https://takmat21.github.io/#site","name":"ZAZOU Lab","url":"https://takmat21.github.io/"},"url":"https://takmat21.github.io/articles/ai-tool-readiness/","name":"置き場所と引き方の改訂（執筆中）","description":"外部記憶の「置き場所」と「引き方」は運用の中で作り変えられる：小規模事業者の階層型AIエージェントにおける格納と検索の改訂記録（事例研究・執筆中の中間発表）","dateModified":"2026-11-06"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://takmat21.github.io/"},{"@type":"ListItem","position":2,"name":"論文","item":"https://takmat21.github.io/articles/ai-tool-readiness/"}]}]}</script>
+<style>@media (max-width:640px){.tabs{-webkit-mask-image:linear-gradient(to right,transparent 0,#000 28px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(to right,transparent 0,#000 28px,#000 calc(100% - 28px),transparent);padding-left:12px;padding-right:12px}}</style>
+</head><body><main>
+<nav class="tabs" aria-label="ページの切り替え"><a href="../../#about">プロフィール</a><a href="../../#samples">仕事一覧</a><a href="../../#system">仕組み</a><a href="../../#security">安全の決まり</a><a href="../../#paper" class="on" aria-current="page">論文</a><a href="../../#video">動画</a><a href="../../#prompts">プロンプト</a><a href="../../news/">朝刊</a></nav>
+<div class="wip"><strong>記事</strong>　AIチームの運用で起きたことの実践記録です。</div>
+<h1>AIは動こうとしていた。では、なぜ仕事が進まなかったのか</h1>
+<h2>ClaudeとChatGPTをつなぐ定期連携で見えた「道具」と再現性の問題</h2>
+<p>文：松村貴士（ZAZOU株式会社）　｜　下書き：ノーム（ChatGPT）　｜　2026年11月6日</p><hr />
+<p>複数のAIに仕事を任せれば、人間は判断に集中できる。そんな小さな会社の働き方を目指して、私はClaudeを「先輩」、ChatGPTを「ノーム」と呼び、役割を分けている。先輩は案件管理や文章作成、ノームは二重チェックや専門調査を担当する。人間である私は、契約や金額などの最終判断をする。</p>
+<p>ところが、仕組みを作り始めて気づいた。AIが一度できた仕事を、次も同じようにできるとは限らない。問題は回答の賢さだけではなかった。仕事を実行するための「道具」が、その場で使えるかどうか。そして、つまずいた経緯を次の会話へ残せるかどうかだった。</p>
+<p>この記事は2026年11月6日時点の実践記録である。根本原因を特定した障害報告でも、製品全体の不具合を証明する研究でもない。確認できた記録と、まだ分かっていないことを分けて紹介する。</p>
+<h2>1．AI同士の会話を、スプレッドシートに置く</h2>
+<p>今回の連携では、Googleスプレッドシートを共有の記録場所にした。案件、ルール、会社の事実情報、AI間の連携メモなどを保存する。AI同士が直接会話し続けるのではなく、片方が依頼を書き、もう片方が読んで返信する形だ。</p>
+<p>その橋渡しに使うのがGoogle Apps Script、通称GASである。GASはGoogleのサービスを操作するプログラムを動かせる仕組みで、Webアプリとして公開すればURLへの要求を受け取れる。[1] 今回の独自実装には、メモを読むlist、返信するreply、新しい議題を追加するaddなどの操作があった。これらはGAS一般の標準命令ではなく、この連携用に決めた操作名である。</p>
+<p>ノーム側には、24時間、毎時20分に確認する定期タスクが設定されていた。最新のメモを読み、必要な仕事を行い、結果を残す。設計だけを見れば分かりやすい。しかし、予定時刻が設定されていることと、依頼への返信まで届くことは別だった。</p>
+<h2>2．「読める」と「書ける」は同じ能力ではない</h2>
+<p>調査では三つの接続経路を区別した。</p>
+<div class="tw"><table><thead><tr><th>経路</th><th>何を使うか</th><th>今回の役割</th></tr></thead><tbody><tr><td>Google Drive連携</td><td>接続アプリの機能</td><td>スプレッドシートの内容を読む</td></tr><tr><td>クラウドブラウザー</td><td>遠隔のブラウザーを操作する機能</td><td>GASのURLを開き、応答を読む</td></tr><tr><td>プログラムからの通信</td><td>PythonなどからのHTTP要求</td><td>ブラウザーを介さずGASへ接続する</td></tr></tbody></table></div>
+<p>クラウドブラウザーは、私のパソコン上のChromeを操作しているわけではない。今回使ったのは遠隔のブラウザーであり、私のパソコンを閉じることと、そのブラウザーが使えるかは分けて考える必要がある。</p>
+<p>操作に使ったツールの識別名はmcp__cua_replで、そのjs機能を呼び出した。CUAはComputer-Using Agentの略。REPLは一般にRead–Eval–Print Loop、入力を実行して結果を確認する対話型実行環境を指す。ただし、この識別名だけから内部実装や、予約実行での提供条件までは分からない。</p>
+<p>公式資料でも、クラウドブラウザー、接続アプリ、コードからのネットワーク通信は別の機能として説明されている。[2] つまり「スプレッドシートを読めた」だけでは、別経路での返信書き込みまで保証されない。</p>
+<h2>3．成功した予約テストと、書き込めなかった実行</h2>
+<p>取得できた10月30日朝の予約テストの結果には、ブラウザー経由で読み取りと書き込みに成功した記録があった。成功応答にはok=trueと、新しく発行されたメモIDが含まれていた。</p>
+<p>一方、同日の10時20分に予定されていた定期実行の報告は違った。Google Drive連携から管理表は読めた。しかし、ブラウザー操作ツールは「その回のツール一覧にないため未試行」と報告されていた。代わりのWeb経路も使えず、Pythonによる通信では次のエラーが残っていた。</p>
+<p>Temporary failure in name resolution</p>
+<p>これは接続先の名前を調べる段階のエラーで、GASが内容を審査して書き込みを拒否したことを示すものではない。報告に従えば、成功実績のある経路を使えず、代替経路でも通信を成立させられなかった、という経緯になる。</p>
+<p>さらに11月6日の会話中には、同じ識別名のブラウザーツールを使って連携メモを読み、実際に返信を書き込めた。したがって「GASは一切使えない」「予約実行では絶対に書けない」という説明は記録と合わない。私自身は予約テストを二回行って成功したと説明しており、今回結果本文を取り直せたのは、そのうち朝の一件だった。</p>
+<h2>4．本当に調べるべき問いを、取り違えていた</h2>
+<p>ここで対話が長くなった。ノームは「予約実行で書けるか、もう一度テストしよう」と繰り返した。しかし私が知りたかったのは、既に成功した書き込みをもう一度見られるかではない。</p>
+<p>なぜ、必要な道具が使えないと報告された回があったのか。</p>
+<p>この一点だった。「道具がありませんでした」は経過の説明にはなるが、その理由の説明にはならない。成功と失敗を並べるだけでも、原因を特定したことにはならない。</p>
+<p>同時に、現時点の証拠には限界がある。取得できたのは、その回のAIがまとめた実行結果であり、生の全ツール一覧や、ツールの探索・提供に関する完全な履歴ではなかった。本当にシステムから提供されなかったのか、探索や確認に漏れがあったのかは、まだ切り分けられていない。</p>
+<p>一般論として、ツールには必要になった時点で定義を読み込む仕組みもある。OpenAIのAPI資料にも遅延読み込みとツール検索の説明がある。[3] ただし、その仕組みが今回の失敗回で原因になったと確認したわけではない。「見えていない」と「提供されていない」を同じにしないための補足である。</p>
+<h2>5．「準備する」と書くだけでは、準備できたことにならない</h2>
+<p>私が求めた改善は、実行前に必要な道具を揃えようとすることを、定期タスクの条件として残すことだった。GitHubを使う仕事なら接続と権限が必要なように、ブラウザーを使う仕事にも、その機能が利用可能な準備が要る。</p>
+<p>ただし、準備には二つの範囲がある。AIが実施できるツール探索、接続、初期化。そして、アカウントや実行システムがその機能を提供する設定だ。前者を丁寧にしても、後者を必ず変更できるとは限らない。</p>
+<p>今回使えたタスク更新機能には、ブラウザーツールを強制的に有効化したり、毎回の提供一覧を固定したりする項目は見つからなかった。そのため、できたのは準備手順の改善までであり、毎回の提供を保証する設定を完了したわけではない。</p>
+<p>指示文は追記を重ねると読みにくくなる。そこで、ツール準備、最新情報の読み取り、業務実施、GASへの書き込み、失敗時の報告という五段階へ整理した。ツールの未提供、探索未完了、初期化失敗、通信失敗も分けて記録する。公式資料も、予約タスクの継続的な指示は保存されたタスク内容などに残すことを案内している。[4]</p>
+<h2>6．もう一つの問題は「次の会話で忘れる」こと</h2>
+<p>長い調査をしても、次のチャットで経緯が失われれば、同じ説明とテストを繰り返すことになる。そこで、成功した操作、失敗の原文、未確定事項、接続手順、タスクの状態をレポートにした。</p>
+<p>ここでも接続経路の違いが表れた。Google Drive連携から専用タブを追加しようとすると、403 PERMISSION_DENIED、The caller does not have permissionという応答になった。対してGAS経由で連携メモに追記する操作は成功した。</p>
+<p>この結果から言えるのは、今回の接続ではタブ追加が拒否され、GASへのメモ追加は受け付けられたということまでだ。GASの実行主体や権限設定の詳細を調べずに、その理由を決めつけることはできない。[1]</p>
+<p>最終的に、レポートは連携メモへ全四部で保存し、先輩に保存場所とタブ追加権限の相談を伝えた。権限を依頼したことと、付与されたことは別である。記事執筆時点では、権限付与は確認していない。</p>
+<p>また、会話中にはノームが「タブを作って入れた」と、保存前に説明してしまう場面もあった。これは後で訂正された。実行結果を語るときは、予定、試行、成功応答の確認を分けなければ、共有記録そのものの信頼性が崩れる。</p>
+<h2>7．今回の到達点と、残った課題</h2>
+<p>現在、単発の読み書きには成功記録がある。定期タスクの手順も整理して保存し、調査記録をAI同士の共有場所へ残せた。一方、定期タスクは停止中で、今回再開はしていない。過去に必要ツールが使えなかった理由と、停止に至った理由も未解明だ。</p>
+<p>今後は、各実行のツール探索結果、接続・初期化の操作、権限、通信経路、成功応答を対応づけて記録する必要がある。以前の履歴を取得できなければ、その限界も残す。新しい実行が成功しても、それだけで過去の原因が解けたことにはしない。</p>
+<p>これは単一の事例であり、ツールの提供が毎回変動する製品仕様を実証したものではない。論文へ発展させるなら、条件を揃えた複数回の観測と、一次ログの保存、成否判定の基準が必要になる。</p>
+<p>今回見えたのは、AIの能力を「できるか」で尋ねるだけでは、運用の問いとして足りないということだ。どの道具と権限を使い、どこまで実行でき、失敗したら何を残し、次の担当がどこから再開するのか。小さなAIチームでも、そこまで設計して初めて、仕事を任せる仕組みになる。</p>
+<hr />
+<h3>参照資料</h3>
+<p>本文の事例は本会話で取得した実行結果・設定・GAS応答に基づく。認証キー、個別管理表のURL、顧客情報は掲載していない。以下は一般的な仕組みの確認に用いた公式資料であり、当該障害の原因を証明するものではない。参照日：2026年11月6日。</p>
+<ol><li>Google：Web Apps（Apps Script） <a href="https://developers.google.com/apps-script/guides/web" target="_blank" rel="noopener">https://developers.google.com/apps-script/guides/web</a></li><li>OpenAI：ChatGPT Work cloud security <a href="https://learn.chatgpt.com/docs/enterprise/chatgpt-work-cloud-security" target="_blank" rel="noopener">https://learn.chatgpt.com/docs/enterprise/chatgpt-work-cloud-security</a></li><li>OpenAI：Tool search <a href="https://developers.openai.com/api/docs/guides/tools-tool-search" target="_blank" rel="noopener">https://developers.openai.com/api/docs/guides/tools-tool-search</a></li><li>OpenAI：Scheduled tasks <a href="https://learn.chatgpt.com/docs/automations" target="_blank" rel="noopener">https://learn.chatgpt.com/docs/automations</a></li></ol>
+<p>※公開前の原稿。人間の運用者の視点で構成し、AIが下書きを支援した。製品仕様と調査時点の事実を区別し、更新時には未解決事項を見直す。</p>
+<p><a href="../../#paper">← 論文・記事の一覧へ</a></p>
+</main><script>(function(){var n=document.querySelector(".tabs"),a=n&&n.querySelector(".on");if(a&&n.scrollWidth>n.clientWidth)n.scrollLeft=Math.max(0,a.offsetLeft-n.offsetLeft-16);})();</script>
+</body></html>
