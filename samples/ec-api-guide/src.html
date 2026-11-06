@@ -1,0 +1,426 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="robots" content="noindex"><title>ECのAPI 取得方法ガイド</title>
+<style>
+@page{size:A4 landscape;margin:0}
+:root{--navy:#12355b;--blue:#2f7ae5;--blueL:#f2f7ff;--ink:#2a2f36;--mut:#5f6772;--line:#d6dde6;--green:#5fb37c;--greenL:#eefaf1;--orange:#f0b25a;--orangeL:#fff6e8;--red:#d9534f;--redL:#fdf0ef}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:#fff;font-size:15pt;line-height:1.55}
+.page{width:297mm;height:210mm;padding:10mm 16mm 0;position:relative;overflow:hidden;page-break-after:always;display:flex;flex-direction:column}
+.page:last-child{page-break-after:auto}
+h1{font-size:24pt;font-weight:700;color:var(--navy);line-height:1.3;border-left:6px solid var(--blue);padding-left:4mm}
+.sub{font-size:15pt;color:var(--mut);margin:1.5mm 0 0 6mm}
+.body{flex:1;display:flex;flex-direction:column;justify-content:flex-start;gap:4mm;padding-bottom:16mm;padding-top:4.5mm}
+.foot{position:absolute;left:16mm;right:16mm;bottom:7mm;display:flex;justify-content:space-between;font-size:9pt;color:var(--mut);border-top:1px solid var(--line);padding-top:1.5mm}
+.card{background:var(--blueL);border:1.5px solid var(--blue);border-radius:3mm;padding:3.2mm 5mm}
+.card h3{font-size:17.5pt;font-weight:700;color:var(--navy);line-height:1.35;margin-bottom:2mm}
+.card h3 .n{color:var(--blue);margin-right:2mm}
+.card ul{margin-left:6mm}
+.card li{margin-bottom:1mm}
+b{color:var(--navy)}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+.g2w{display:grid;grid-template-columns:1.35fr 1fr;gap:5mm}
+.step{display:flex;flex-direction:column}
+.step ul{flex:1}
+.out{margin-top:3mm;background:#fff;border:1px solid var(--blue);border-radius:2mm;padding:1.5mm 3mm;color:var(--navy);font-weight:500}
+.formula{display:inline-block;font-weight:700;color:var(--navy);background:#fff;border:1.5px dashed var(--blue);padding:1.5mm 4mm;border-radius:1.5mm;font-size:17pt}
+.band{border-radius:3mm;padding:3mm 5.5mm}
+.band.green{background:var(--greenL);border:1.5px solid var(--green)}
+.band.orange{background:var(--orangeL);border:1.5px solid var(--orange)}
+.band.red{background:var(--redL);border:1.5px solid var(--red)}
+.lead{font-size:16.5pt;line-height:1.7}
+.lead b{color:var(--blue)}
+table{width:100%;border-collapse:collapse;font-size:14.5pt;background:#fff;line-height:1.45}
+th,td{border-bottom:1px solid var(--line);padding:1.2mm 2.5mm;text-align:left;vertical-align:top}
+thead th{background:var(--navy);color:#fff;font-weight:700}
+td.num{text-align:right;font-weight:700;color:var(--navy);white-space:nowrap}
+tr.total td{background:#e2edfd;font-weight:700}
+td.k{white-space:nowrap;color:var(--navy);font-weight:700}
+.note{font-size:12pt;color:var(--mut);line-height:1.45}
+.src{font-size:12pt;color:var(--mut);margin-top:auto;line-height:1.4;border-top:1px dashed var(--line);padding-top:1.5mm}
+.check{list-style:none;margin-left:0!important}
+.check li:before{content:"";display:inline-block;width:3.6mm;height:3.6mm;border:1.6px solid var(--blue);border-radius:.6mm;margin-right:2mm;vertical-align:-0.4mm}
+.cols2{columns:2;column-gap:8mm}
+.flow{display:flex;align-items:stretch;gap:0}
+.flow .box{flex:1;background:#fff;border:1.5px solid var(--blue);border-radius:2.5mm;padding:3mm 3.5mm;font-size:15pt;line-height:1.45}
+.flow .box .t{display:block;font-weight:700;color:var(--navy);font-size:16pt;margin-bottom:1mm}
+.flow .box.hi{background:var(--blueL)}
+.flow .ar{flex:0 0 9mm;display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:20pt;font-weight:700}
+.pill{display:inline-block;background:var(--navy);color:#fff;border-radius:10mm;padding:0 3mm;font-size:13pt;font-weight:700;margin-right:1.5mm}
+.tbc{color:#b5402c;font-weight:700}
+.small15 td,.small15 th{font-size:14pt}
+
+ol.st{list-style:none;counter-reset:st;margin:0}
+ol.st li{counter-increment:st;position:relative;padding-left:9mm;margin-bottom:1.4mm;line-height:1.45}
+ol.st li:before{content:counter(st);position:absolute;left:0;top:.5mm;width:6.5mm;height:6.5mm;border-radius:50%;background:var(--blue);color:#fff;font-size:12.5pt;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1}
+.card .out{font-size:14.5pt;line-height:1.45}
+.band li{margin-bottom:1mm}
+</style></head><body>
+<!-- 1 -->
+<section class="page">
+ <h1>ECのAPI 取得方法ガイド：Amazon SP-API・Amazon広告API・Yahoo!ショッピング・BASE</h1>
+ <p class="sub">注文・在庫・価格・広告の数字を自動で取り出すための「鍵」の取り方（会社名・数字は変更しています）</p>
+ <div class="body">
+  <div class="flow">
+   <div class="box hi"><span class="t">① 申し込む</span>本人確認・開発者登録</div><div class="ar">→</div>
+   <div class="box"><span class="t">② 審査を待つ</span>1営業日〜2週間</div><div class="ar">→</div>
+   <div class="box"><span class="t">③ 鍵を受け取る</span>ID・シークレット・トークン</div><div class="ar">→</div>
+   <div class="box hi"><span class="t">④ 確かめる</span>読み取り1回・権限は最小</div>
+  </div>
+  <table>
+   <thead><tr><th>API</th><th>注文</th><th>在庫</th><th>商品</th><th>価格</th><th>広告</th><th>売上・入金</th></tr></thead>
+   <tbody>
+    <tr><td class="k">Amazon SP-API</td><td>○</td><td>○</td><td>○</td><td>○</td><td>—</td><td>○</td></tr>
+    <tr><td class="k">Amazon広告API</td><td>—</td><td>—</td><td>—</td><td>—</td><td>○ キャンペーン管理・レポート</td><td>—</td></tr>
+    <tr><td class="k">Yahoo!ショッピング</td><td>○ 要申請</td><td>○</td><td>○</td><td class="tbc">要確認</td><td>—</td><td>—</td></tr>
+    <tr><td class="k">BASE</td><td>○</td><td>○</td><td>○</td><td>○</td><td>—</td><td>○ 振込申請情報</td></tr>
+   </tbody>
+  </table>
+  <div class="band green">前提：雑貨の通販ショップ「こもれび雑貨」（架空）が<b>自社のデータを自社だけで使う</b>場合の手順です。手順・画面名は 2026-11-06 に公式文書で確認（変わることがあります）。表の○は公式文書で確認、—は対象外。</div>
+  <p class="src">出典（確認日 2026-11-06）：developer-docs.amazon/sp-api/docs/（.com から転送）／advertising.amazon.com/API/docs/／developer.yahoo.co.jp/webapi/shopping/／docs.thebase.in・apiv2.thebase.com</p>
+ </div>
+ <div class="foot"><span>ECのAPI 取得方法ガイド（松村貴士）</span><span>1 / 12</span></div>
+</section>
+
+<!-- 2 -->
+<section class="page">
+ <h1>Amazon SP-API ①：申し込みに要るものと全体の流れ</h1>
+ <p class="sub">注文・在庫・価格・売上を扱うAPI。自社専用なら「プライベート開発者」として申し込みます</p>
+ <div class="body">
+  <div class="flow">
+   <div class="box hi"><span class="t">SPP登録</span>専用ポータル</div><div class="ar">→</div>
+   <div class="box"><span class="t">本人確認</span>書類＋ビデオ通話</div><div class="ar">→</div>
+   <div class="box"><span class="t">開発者登録</span>ロールを選ぶ</div><div class="ar">→</div>
+   <div class="box"><span class="t">審査</span>通常1〜2週間</div><div class="ar">→</div>
+   <div class="box hi"><span class="t">アプリ登録</span>鍵の発行</div>
+  </div>
+  <div class="g2">
+   <div class="card"><h3>申し込みに要るもの</h3>
+    <ul>
+     <li>出品アカウントの<b>主アカウント（所有者）</b>のログイン</li>
+     <li>法人番号（会社の登録番号）と登記上の住所</li>
+     <li>写真付きの身分証（パスポート・運転免許証など）</li>
+     <li>住所確認：銀行・カードの明細（<b>発行180日以内</b>）</li>
+     <li>カメラ付きの端末（ビデオ通話用）</li>
+    </ul></div>
+   <div class="card"><h3>かかる日数と費用</h3>
+    <ul>
+     <li>本人確認：書類がそろってから<b>最大2営業日</b>（公式）</li>
+     <li>開発者登録の審査：制限なしロールのみで<b>通常1〜2週間</b>（公式）</li>
+     <li>住所を扱う「制限付き」ロールは面談を含む3段階審査</li>
+     <li>費用：2026年に年会費の告知、のち取り下げの報道。公式の現状は<span class="tbc">要確認</span></li>
+    </ul></div>
+  </div>
+  <p class="src">出典（確認日 2026-11-06）：developer-docs.amazon/sp-api/docs/ の onboarding-step-2-create-an-spp-account・verify-identity-in-spp・onboarding-step-3-create-a-developer-profile・register-as-a-private-developer。費用の告知ページ developer.amazonservices.com/spp-announcement は開けず</p>
+ </div>
+ <div class="foot"><span>ECのAPI 取得方法ガイド（松村貴士）</span><span>2 / 12</span></div>
+</section>
+
+<!-- 3 -->
+<section class="page">
+ <h1>Amazon SP-API ②：アカウント作成と本人確認の手順</h1>
+ <p class="sub">Solution Provider Portal（SPP）の画面の順。ボタン名は英語表示のもの（2026-11-06 確認）</p>
+ <div class="body">
+  <div class="g2">
+   <div class="card"><h3>A. SPPアカウントを作る</h3>
+    <ol class="st">
+     <li>SPP に Amazon のログインでサインイン。「Not Authorized」と出たら未登録なので続ける</li>
+     <li>「Register」を押す</li>
+     <li>Solution Provider Portal Account Setup で「Acknowledge &amp; Continue」</li>
+     <li>Program Enrollment：チェックを入れ、Amazonアカウント番号を選んで「Enroll and Finish」</li>
+     <li>Solution Type Setup：「Build applications that use SP APIs」を選び「Apply」</li>
+    </ol></div>
+   <div class="card"><h3>B. 本人確認</h3>
+    <ol class="st" style="counter-reset:st 5">
+     <li>「Verify your identity」→「Get Started」→「Next」</li>
+     <li>Business Information：所在地・事業形態・事業者名 → 法人番号・登記住所。SMSか電話でPINを受けて入力</li>
+     <li>Primary Contact Person：氏名・国籍・出生国・身分証の種類・住所 → 身分証と住所確認書類をアップロード</li>
+     <li>Select Account で作ったアカウントを選び、Identity verification の「Continue」</li>
+     <li>言語を選び「Join video call」。担当者に身分証を見せ、「Verification successful」で完了</li>
+    </ol></div>
+  </div>
+  <div class="band orange">氏名・生年月日・身分証の番号・有効期限は<b>書類と完全に一致</b>させます。送信した内容はあとから直せません（公式）。ビデオ通話で日本語を選べるかは、公式に記載がありません（<span class="tbc">要確認</span>）。</div>
+  <p class="src">出典（確認日 2026-11-06）：developer-docs.amazon/sp-api/docs/onboarding-step-2-create-an-spp-account ／ verify-identity-in-spp</p>
+ </div>
+ <div class="foot"><span>ECのAPI 取得方法ガイド（松村貴士）</span><span>3 / 12</span></div>
+</section>
+
+<!-- 4 -->
+<section class="page">
+ <h1>Amazon SP-API ③：開発者登録・アプリ登録・鍵の発行</h1>
+ <p class="sub">審査に出すのは「誰が・何のデータを・どう守って使うか」。ロールは今使うものだけにします</p>
+ <div class="body">
+  <div class="g2">
+   <div class="card"><h3>C. 開発者プロフィール</h3>
+    <ol class="st" style="counter-reset:st 10">
+     <li>SPP の「Settings」→「Developer Profile」</li>
+     <li>Data Access で「Private Developer」を選ぶ</li>
+     <li>Roles・Use Cases・Security Controls に答える</li>
+     <li>規約3つに同意し「Register」</li>
+     <li>追加質問のメールは<b>5日以内</b>に返信</li>
+    </ol></div>
+   <div class="card"><h3>D. アプリ登録と自己承認</h3>
+    <ol class="st" style="counter-reset:st 15">
+     <li>「Develop Apps」→「Add new app client」で登録</li>
+     <li>「LWA credentials」の「View」でIDとシークレットを確認</li>
+     <li>「Authorize app」でリフレッシュトークンを発行（<b>主アカウントのみ</b>）</li>
+    </ol></div>
+  </div>
+  <table class="small15">
+   <thead><tr><th>ロール（画面の英語名）</th><th>扱えるもの</th><th>区分</th></tr></thead>
+   <tbody>
+    <tr><td class="k">Inventory and Order Tracking</td><td>在庫・注文（配送先の個人情報なし）</td><td>制限なし</td></tr>
+    <tr><td class="k">Product Listing ／ Pricing</td><td>商品・出品情報 ／ 価格の参照と更新</td><td>制限なし</td></tr>
+    <tr><td class="k">Finance and Accounting</td><td>売上・手数料・入金</td><td>制限なし</td></tr>
+    <tr><td class="k">Direct-to-Consumer Shipping</td><td>配送先住所を含む注文</td><td class="tbc">制限付き</td></tr>
+   </tbody>
+  </table>
+  <p class="src">出典（確認日 2026-11-06）：developer-docs.amazon/sp-api/docs/ の register-as-a-private-developer・registering-your-application・viewing-your-application-information-and-credentials・self-authorization・roles-in-the-selling-partner-api</p>
+ </div>
+ <div class="foot"><span>ECのAPI 取得方法ガイド（松村貴士）</span><span>4 / 12</span></div>
+</section>
+
+<!-- 5 -->
+<section class="page">
+ <h1>Amazon SP-API ④：発行されるものと、つまずきやすい所</h1>
+ <p class="sub">鍵は4種類。いちばん多いつまずきは「どのログインで入るか」です</p>
+ <div class="body">
+  <table class="small15">
+   <thead><tr><th>発行されるもの</th><th>意味</th><th>期限・保管の注意</th></tr></thead>
+   <tbody>
+    <tr><td class="k">クライアントID</td><td>アプリを見分ける番号</td><td>シークレットと組で管理する</td></tr>
+    <tr><td class="k">シークレット</td><td>アプリのパスワード</td><td><b>180日ごとに更新</b>。古いものは更新7日後に失効</td></tr>
+    <tr><td class="k">リフレッシュトークン</td><td>読んでよいという許可証</td><td>長期有効。暗号化して保管。再発行しても前のものは残る</td></tr>
+    <tr><td class="k">アクセストークン</td><td>呼び出し用の通行証</td><td>約1時間で失効。その都度取り直す</td></tr>
+   </tbody>
+  </table>
+  <div class="g3">
+   <div class="card"><h3>米国のアカウントが出る</h3>米国のアカウントだけが出て「登録に使用できません」と表示される。<div class="out">→「アカウントの作成」は押さない。セラーセントラル「設定」→「ユーザー権限」で主アカウントを確かめ、そのログインで入り直す</div></div>
+   <div class="card"><h3>名義が個人のまま</h3>会社設立前に開いた出品アカウントは個人名義のことがある。<div class="out">→ 事業者名を登録内容と合わせる。迷えばサポートへ</div></div>
+   <div class="card"><h3>自己承認できない</h3>「Authorize app」は主アカウントだけ。承認は最大10件。<div class="out">→ 主アカウントで操作。不要な承認は消す</div></div>
+  </div>
+  <p class="src">出典（確認日 2026-11-06）：developer-docs.amazon/sp-api/docs/ の rotating-your-apps-lwa-credentials・self-authorization・application-authorization-limits。左・中のカードは社内の作業記録（公式に説明なし）</p>
+ </div>
+ <div class="foot"><span>ECのAPI 取得方法ガイド（松村貴士）</span><span>5 / 12</span></div>
+</section>
+
+<!-- 6 -->
+<section class="page">
+ <h1>Amazon広告API ①：何ができるか・要るもの・申し込みの手順</h1>
+ <p class="sub">スポンサー広告のキャンペーン管理とレポート。申し込みは3段階で、承認は最大1営業日（公式）</p>
+ <div class="body">
+  <div class="g2w">
+   <div class="card"><h3>申し込みの手順（自社の広告の場合）</h3>
+    <ol class="st">
+     <li>developer.amazon.com で「Sign In」→ 開発者登録し「Submit」</li>
+     <li>「Developer Console」→「Login with Amazon」→「Create a New Security Profile」</li>
+     <li>名前・説明・プライバシーポリシーのURLを入れて「Save」</li>
+     <li>一覧の「Show Client ID and Client Secret」で控える</li>
+     <li>「Request API Access」→「Direct Advertiser」→ <b>1と同じメール</b>でサインインし「Submit for review」</li>
+     <li>承認メールのリンクを開く →「Continue」→ 2のアプリを選び「Submit」</li>
+    </ol></div>
+   <div class="step" style="display:flex;flex-direction:column;gap:4mm">
+    <div class="card"><h3>何ができるか</h3>キャンペーン・キーワードの取得と変更、広告レポートの取得</div>
+    <div class="card"><h3>要るもの</h3>
+     <ul>
+      <li>広告アカウントを管理するログイン</li>
+      <li>社内の複数人で見られるメール（推奨）</li>
+      <li>プライバシーポリシーのURL（自社広告のみなら任意で可）</li>
+     </ul></div>
+   </div>
+  </div>
+  <div class="band orange">SP-API の鍵があっても、広告API用のプロファイルは<b>新しく作ります</b>。申請メールとアプリの組は後から変えられません（公式）。</div>
+  <p class="src">出典（確認日 2026-11-06）：advertising.amazon.com/API/docs/en-us/guides/onboarding/（overview・create-lwa-app・apply-for-access ほか）</p>
+ </div>
+ <div class="foot"><span>ECのAPI 取得方法ガイド（松村貴士）</span><span>6 / 12</span></div>
+</section>
+
+<!-- 7 -->
+<section class="page">
+ <h1>Amazon広告API ②：トークンの取り方と、つまずきやすい所</h1>
+ <p class="sub">日本の広告アカウントは「極東（FE）」の窓口を使います。間違えると広告アカウントが出てきません</p>
+ <div class="body">
+  <div class="g2">
+   <div class="card"><h3>認可してトークンを受け取る</h3>
+    <ol class="st" style="counter-reset:st 6">
+     <li>歯車 →「Web Settings」→「Edit」で戻り先URLを足して「Save」</li>
+     <li>極東用の認可URL（apac.account.amazon.com）で許可し、code を控える（<b>5分で失効</b>）</li>
+     <li>code を極東用のトークンURL（api.amazon.co.jp）に送る</li>
+     <li>/v2/profiles でプロフィールIDを取る</li>
+    </ol></div>
+   <table class="small15">
+    <thead><tr><th>発行されるもの</th><th>期限・注意</th></tr></thead>
+    <tbody>
+     <tr><td class="k">ID／シークレット</td><td>同じ画面でいつでも再表示</td></tr>
+     <tr><td class="k">リフレッシュトークン</td><td>2026-07-30以降の発行分は同意から<b>365日</b></td></tr>
+     <tr><td class="k">アクセストークン</td><td>60分で失効</td></tr>
+     <tr><td class="k">プロフィールID</td><td>国ごとの広告アカウント番号。毎回ヘッダーに付ける</td></tr>
+    </tbody>
+   </table>
+  </div>
+  <div class="band orange">
+   <ul style="margin-left:6mm">
+    <li><b>profiles が空 [ ]</b>：その地域に権限のある広告アカウントがない → 極東の認可URLで同意し直す</li>
+    <li><b>承認リンクが無効に</b>：別アカウントでログインしたまま開いた → 他は全部ログアウトして開く</li>
+    <li><b>本人確認の催促</b>：developer.amazon.com の本人確認はアプリストア向けの別手続き</li>
+    <li><b>費用</b>：LWAアプリの作成は無料（公式）。APIの利用料は記載が見当たらず<span class="tbc">要確認</span></li>
+   </ul></div>
+  <p class="src">出典（確認日 2026-11-06）：advertising.amazon.com/API/docs/en-us/guides/get-started/ の create-authorization-grant・retrieve-access-token・retrieve-profiles ／ developer.amazon.com/docs/app-submission/identity-verification.html</p>
+ </div>
+ <div class="foot"><span>ECのAPI 取得方法ガイド（松村貴士）</span><span>7 / 12</span></div>
+</section>
+
+<!-- 8 -->
+<section class="page">
+ <h1>Yahoo!ショッピング ①：何ができるか・要るもの・申し込みの手順</h1>
+ <p class="sub">ストア向けAPI。商品・在庫はアプリ登録だけで使え、注文APIは別の利用申請（審査）が要ります</p>
+ <div class="body">
+  <div class="g2w">
+   <div class="card"><h3>申し込みの手順</h3>
+    <ol class="st">
+     <li>Yahoo! JAPAN ID でログインし、ショッピング用のアプリ登録画面で「本番環境用」を選んで登録</li>
+     <li>「アプリケーション一覧」で「ストア向け操作関連の機能（開示先限定スコープ）」があるか確認</li>
+     <li>注文APIを使うなら「ショッピングAPI利用申請フォーム」で申請</li>
+     <li>ストアクリエイターProの「ビジネスID」を1のIDに紐づける</li>
+     <li>（任意）「設定」→「暗号鍵管理」で公開鍵を発行</li>
+     <li>Yahoo! ID連携（v2）でトークンを受け取る</li>
+    </ol></div>
+   <div style="display:flex;flex-direction:column;gap:4mm">
+    <div class="card"><h3>何ができるか</h3>
+     <ul>
+      <li>注文：検索・詳細・状態の変更など</li>
+      <li>在庫：参照・更新　商品：登録・更新</li>
+      <li>価格の更新可否は<span class="tbc">要確認</span></li>
+     </ul></div>
+    <div class="card"><h3>要るもの</h3>
+     <ul>
+      <li>Yahoo! JAPAN ID とビジネスID</li>
+      <li>呼び出し元のグローバルIP（範囲指定は不可）</li>
+     </ul></div>
+   </div>
+  </div>
+  <p class="src">出典（確認日 2026-11-06）：developer.yahoo.co.jp/webapi/shopping/ の introduction.html・help/application.html・order/・stock/・item/</p>
+ </div>
+ <div class="foot"><span>ECのAPI 取得方法ガイド（松村貴士）</span><span>8 / 12</span></div>
+</section>
+
+<!-- 9 -->
+<section class="page">
+ <h1>Yahoo!ショッピング ②：発行されるもの・期限・つまずきやすい所</h1>
+ <p class="sub">期限が短いのがYahoo!の特徴。公開鍵を使っても4週間ごとに認可し直します</p>
+ <div class="body">
+  <table class="small15">
+   <thead><tr><th>発行されるもの</th><th>意味</th><th>期限・注意</th></tr></thead>
+   <tbody>
+    <tr><td class="k">Client ID</td><td>アプリを見分ける番号</td><td>「アプリケーションの管理」で確認</td></tr>
+    <tr><td class="k">シークレット</td><td>Client ID と組のパスワード</td><td>サーバー側で使う。表示の画面名は<span class="tbc">要確認</span></td></tr>
+    <tr><td class="k">リフレッシュトークン</td><td>トークンを取り直す許可証</td><td>公開鍵ありで<b>4週間</b>、なしで注文検索などは<b>最大12時間</b></td></tr>
+    <tr><td class="k">公開鍵</td><td>トークンを長く使うための鍵</td><td>発行月から1年。発行5つ・有効2つまで</td></tr>
+   </tbody>
+  </table>
+  <div class="band orange">
+   <ul style="margin-left:6mm">
+    <li><b>4週間で切れる</b>：「AccessToken has been expired」（px-04102）→ 再認可の日を予定表に</li>
+    <li><b>違う用途のClient ID</b>：ショッピング用でないIDでの申請が多いと公式が注意 → スコープを先に確認</li>
+    <li><b>IPアドレスの変更</b>：反映まで約1週間〜10日 → 固定のIPを決めてから申請</li>
+   </ul></div>
+  <div class="band green">日数：本番の利用申請は設定完了まで<b>約1週間〜10日</b>（早める対応はなし）。テスト環境は5営業日程度で、注文APIの申請は不要（ストアアカウントは「snbx-」で始まる）。費用：公式に記載が見当たらず<span class="tbc">要確認</span>。</div>
+  <p class="src">出典（確認日 2026-11-06）：developer.yahoo.co.jp/webapi/shopping/help/・help/application.html・help/sandbox.html ／ developer.yahoo.co.jp/yconnect/v2/authorization_code/token.html</p>
+ </div>
+ <div class="foot"><span>ECのAPI 取得方法ガイド（松村貴士）</span><span>9 / 12</span></div>
+</section>
+
+<!-- 10 -->
+<section class="page">
+ <h1>BASE：何ができるか・申し込みの手順・発行されるもの</h1>
+ <p class="sub">申請も利用も無料。審査で承認されるまでは、トークンを発行できません（公式）</p>
+ <div class="body">
+  <div class="g2">
+   <div class="card"><h3>申し込みの手順（v1・OAuth）</h3>
+    <ol class="st">
+     <li>ショップのアカウントで BASE Developers に「ログイン」</li>
+     <li>「BASE API」の「申請する」から申請（非公開のアプリでも可）</li>
+     <li>承認メール「BASE APIの利用申請について」が届けば、すぐ使える</li>
+     <li>client_id・client_secret を確認（画面名は<span class="tbc">要確認</span>）</li>
+     <li>必要なスコープだけ許可してトークンを受け取る</li>
+    </ol></div>
+   <div style="display:flex;flex-direction:column;gap:4mm">
+    <div class="card"><h3>何ができるか</h3>商品の取得・登録・更新、在庫数の更新、注文の取得・更新、振込申請情報の取得</div>
+    <div class="card"><h3>新しい v2（β）</h3>Personal Access Token を発行して使う方式。権限は操作ごとに細かい。正式リリースは2026年末が目標</div>
+   </div>
+  </div>
+  <div class="band orange">
+   <ul style="margin-left:6mm">
+    <li><b>テスト環境がない</b> →「シークレットEC」App でショップを非公開にして試す（公式FAQ）</li>
+    <li><b>あとで権限を足した</b> → 接続し直してトークンを取り直す（社内の作業記録）</li>
+    <li><b>期限</b> → v1のアクセストークンは1時間。v2のトークンの期限は発行後に変えられない</li>
+   </ul></div>
+  <p class="src">出典（確認日 2026-11-06）：developers.thebase.com ／ docs.thebase.in/docs/api/ ／ apiv2.thebase.com/docs/（scopes・migration）／ help.thebase.in「BASE APIについて」。申請フォームの入力項目はログインが必要なため未確認</p>
+ </div>
+ <div class="foot"><span>ECのAPI 取得方法ガイド（松村貴士）</span><span>10 / 12</span></div>
+</section>
+
+<!-- 11 -->
+<section class="page">
+ <h1>4つのAPIを比べる</h1>
+ <p class="sub">審査が長いのはSP-API、期限の管理が多いのはYahoo!。申し込みはSP-APIから始めます</p>
+ <div class="body">
+  <table class="small15">
+   <thead><tr><th></th><th>Amazon SP-API</th><th>Amazon広告API</th><th>Yahoo!ショッピング</th><th>BASE</th></tr></thead>
+   <tbody>
+    <tr><td class="k">申し込む所</td><td>Solution Provider Portal</td><td>developer.amazon.com＋申請フォーム</td><td>デベロッパーネットワーク</td><td>BASE Developers</td></tr>
+    <tr><td class="k">要るアカウント</td><td>出品の主アカウント</td><td>広告を管理するログイン</td><td>Yahoo! JAPAN ID＋ビジネスID</td><td>ショップのアカウント</td></tr>
+    <tr><td class="k">本人確認</td><td>書類＋ビデオ通話</td><td>手順に記載なし</td><td>手順に記載なし</td><td>手順に記載なし</td></tr>
+    <tr><td class="k">審査の日数</td><td>通常1〜2週間</td><td>最大1営業日</td><td>注文APIのみ 約1週間〜10日</td><td>あり（日数記載なし）</td></tr>
+    <tr><td class="k">発行されるもの</td><td>ID・シークレット・トークン</td><td>同左＋プロフィールID</td><td>同左＋公開鍵</td><td>同左（v2はPAT）</td></tr>
+    <tr><td class="k">期限の管理</td><td>シークレット180日ごと</td><td>リフレッシュ365日</td><td>4週間ごと再認可</td><td>v2は発行時の期限</td></tr>
+    <tr><td class="k">試せる環境</td><td>サンドボックス</td><td>テストアカウント</td><td>テスト環境（申請）</td><td>なし</td></tr>
+    <tr><td class="k">費用</td><td class="tbc">要確認</td><td>作成無料・利用料<span class="tbc">要確認</span></td><td class="tbc">要確認</td><td>無料</td></tr>
+   </tbody>
+  </table>
+  <p class="src">出典（確認日 2026-11-06）：2〜10ページの各出典。「記載なし」は今回読んだ公式の手順ページに書かれていない、の意味</p>
+ </div>
+ <div class="foot"><span>ECのAPI 取得方法ガイド（松村貴士）</span><span>11 / 12</span></div>
+</section>
+
+<!-- 12 -->
+<section class="page">
+ <h1>取得後にまずやること：接続確認と、権限を最小に</h1>
+ <p class="sub">鍵を受け取った日に、この3つを済ませます</p>
+ <div class="body">
+  <div class="g3">
+   <div class="card"><h3><span class="n">1</span>つないで確かめる</h3>
+    <ul class="check">
+     <li>読み取りを1回だけ呼ぶ</li>
+     <li>日本の窓口か確かめる（広告APIは極東 FE）</li>
+     <li>書き込みはテスト用の商品1点で試す</li>
+     <li>回数の上限を守る（BASE v1は1時間5,000回）</li>
+    </ul></div>
+   <div class="card"><h3><span class="n">2</span>権限を最小にする</h3>
+    <ul class="check">
+     <li>ロール・スコープは今使うものだけ</li>
+     <li>住所を扱う「制限付き」は必要になるまで申請しない</li>
+     <li>主アカウントは共有せず、人ごとにユーザーを作る</li>
+     <li>使わない承認は取り消す</li>
+    </ul></div>
+   <div class="card"><h3><span class="n">3</span>鍵をしまう</h3>
+    <ul class="check">
+     <li>チャット・メール・文書に貼らない</li>
+     <li>暗号化した場所に入れ、見る人を絞る</li>
+     <li>更新日を予定表に入れる</li>
+     <li>漏れたらすぐ更新し、承認を取り消す</li>
+    </ul></div>
+  </div>
+  <table class="small15">
+   <thead><tr><th>期限の一覧（例）</th><th>更新のタイミング</th><th>やること</th></tr></thead>
+   <tbody>
+    <tr><td class="k">SP-API シークレット</td><td>180日ごと（90日前に通知）</td><td>「Rotate secret」→ 7日以内に差し替え</td></tr>
+    <tr><td class="k">Yahoo! リフレッシュトークン</td><td>4週間ごと</td><td>再認可してトークンを取り直す</td></tr>
+    <tr><td class="k">広告API リフレッシュトークン</td><td>同意から365日</td><td>期限の前に同意し直す</td></tr>
+   </tbody>
+  </table>
+  <p class="src">出典（確認日 2026-11-06）：developer-docs.amazon/sp-api/docs/rotating-your-apps-lwa-credentials ／ advertising.amazon.com/API/docs/en-us/guides/get-started/retrieve-access-token ／ developer.yahoo.co.jp/webapi/shopping/help/ ／ docs.thebase.in/docs/api/</p>
+ </div>
+ <div class="foot"><span>ECのAPI 取得方法ガイド（松村貴士）</span><span>12 / 12</span></div>
+</section>
+</body></html>
