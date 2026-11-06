@@ -48,8 +48,8 @@ def run():
                 '<meta property="og:locale" content="ja_JP">',
                 '<meta name="twitter:card" content="summary_large_image">']
         block = "<!-- seo-head -->\n" + "\n".join(tags) + "\n<!-- /seo-head -->\n"
-        new = BLOCK.sub("", t)
-        new = new.replace("</head>", block + "</head>", 1)
+        # 既にあればその場で置き換え（位置を動かさない）、無ければ </head> の前に足す
+        new = BLOCK.sub(lambda m: block, t, count=1) if BLOCK.search(t) else t.replace("</head>", block + "</head>", 1)
         if new != t:
             f.write_text(new, encoding="utf-8")
             changed.append(rel)
