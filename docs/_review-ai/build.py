@@ -112,7 +112,7 @@ top=f'''<section class="hero"><div class="c">
 </div></section>
 
 <section class="sec"><div class="c">
-  <div class="sec-h"><span class="en">For you</span><h2>こんな会社のお手伝いをしています</h2></div>
+  <div class="sec-h"><span class="en">For you</span><h2>こんな会社のお手伝いをします</h2></div>
   <ul class="fit">
     <li><a href="contact/"><b>AIを試したが、仕事で使えていない</b><span>使う人が限られ、毎日の業務に入っていない。</span><em>まず話してみる →</em></a></li>
     <li><a href="service/"><b>同じ転記や集計を、毎週手でやっている</b><span>決まった作業を、仕組みに任せたい。</span><em>進め方を見る →</em></a></li>
