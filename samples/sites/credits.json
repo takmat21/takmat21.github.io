@@ -848,17 +848,6 @@
  },
  {
   "site": "portfolio",
-  "file": "assets/img/photo/profile.webp",
-  "use": "トップ・プロフィール（イメージ写真の仮置き）",
-  "source": "Unsplash",
-  "license": "Unsplash License（無料・商用可・クレジット不要）",
-  "license_url": "https://unsplash.com/license",
-  "page": "https://unsplash.com/photos/macbook-pro-near-white-open-book-FHnnjk1Yj7Y",
-  "photographer": "Nick Morrison",
-  "image": "https://images.unsplash.com/photo-1501504905252-473c47e087f8"
- },
- {
-  "site": "portfolio",
   "file": "assets/img/photo/drawing.webp",
   "use": "図面見積の紹介（イメージ写真の仮置き）",
   "source": "Unsplash",
