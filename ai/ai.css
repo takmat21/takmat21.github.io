@@ -1,11 +1,13 @@
-/* 【サイト名】（ZAZOU株式会社）独立サイト用 */
+/* ZAZOU AI Works（ZAZOU株式会社）独立サイト用 */
 :root{
-  --ink:#1c1c1a;--sub:#55554f;--faint:#6e6e68;--line:#e3e0d7;--paper:#f7f5ef;--bg:#ffffff;
-  --accent:#1f6f5c;--accent-ink:#ffffff;--accent-soft:#e8f2ee;--seal:#b13e2c;
+  /* ZAZOU AI Works トークン（アヤ）：墨の黒×電気の緑 */
+  --ink:#0d1211;--sub:#4b5553;--faint:#66706e;--line:#e2e6e5;--paper:#f4f6f5;--bg:#ffffff;
+  --accent:#14795f;--accent-ink:#ffffff;--accent-soft:#e6f4ef;--seal:#c2412d;
+  --night:#0b0f0e;--night-2:#121816;--night-line:#24302c;--night-ink:#eef3f1;--night-sub:#9aa8a4;--glow:#2fd3a0;
   --sans:"Noto Sans JP","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
-  --serif:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --serif:var(--sans);
   --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
-  --maxw:1120px;--r:10px;
+  --maxw:1160px;--r:6px;
 }
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-padding-top:88px}
