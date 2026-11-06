@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="assets/style.css?v=20261106i">
+<link rel="stylesheet" href="assets/style.css?v=20261106j">
 <link rel="stylesheet" href="assets/hero-art/hero-art.css">
 <link rel="stylesheet" href="assets/hero-flower/hero-flower.css">
 <link rel="stylesheet" href="assets/hero-desk/hero-desk.css">
@@ -357,6 +357,20 @@
   <p class="group">集める（みんなのプロンプト集）</p>
   <ul class="rows">
     <li><a class="row" href="https://prompts.chat/"><span class="t">prompts.chat</span><span class="m">prompts.chat ↗</span><span class="d">世界中の人が投稿したプロンプトの大きな一覧。英語。</span></a></li>
+  </ul>
+  <h2 class="pr-h"><span class="en">Picks</span>うちで使えそうなプロンプト</h2>
+  <p class="lead note">上のサイトから、ZAZOU の仕事に近いものを10個選びました。サイトの文章は写さず、型の要点を自分の言葉で短くまとめています。くわしくは出典のページをご覧ください。</p>
+  <ul class="rows pr-list">
+    <li><div class="row pr"><span class="t">頼み方の土台（4つに分けて書く）</span><p class="d"><b>使いどころ</b>どの頼みごとにも。業務手順の書き出しや報告書の下書きで、まずこの形から。</p><p class="d"><b>型の要点</b>「前提（あなたは誰として）」「やること」「補足（目的・読む人・形式・長さ・守ること）」に分けて書く。1回の頼みで作るものは1つにしぼる。</p><a class="src" href="https://developers.openai.com/cookbook/examples/chatgpt/chatgpt_prompt_guide/chatgpt_prompt_guide">出典：OpenAI Cookbook：毎日の仕事のためのプロンプト ↗</a></div></li>
+    <li><div class="row pr"><span class="t">メール返信の下書き</span><p class="d"><b>使いどころ</b>長い問い合わせメールに返事を書くとき。</p><p class="d"><b>型の要点</b>まず相手の用件と、こちらがやることを箇条書きで出させる。次にそれを元に返信を下書きさせ、語調（丁寧・簡潔など）を指定する。送る前に必ず人が読み直す。</p><a class="src" href="https://learnprompting.org/docs/basic_applications/writing_emails">出典：Learn Prompting：AIでメールを書く ↗</a></div></li>
+    <li><div class="row pr"><span class="t">議事録の要約とやること一覧</span><p class="d"><b>使いどころ</b>打ち合わせのメモ・文字起こしから、決まったことを残すとき。</p><p class="d"><b>型の要点</b>「決まったこと」「やること（担当・期限）」「気になる点」の欄を先に決めて埋めさせる。記録に無いことは書かせず、分からない担当や期限は空欄のままにさせる。各項目に元の発言を添えさせると確かめやすい。</p><a class="src" href="https://developers.openai.com/cookbook/examples/audio/speaker_aware_meeting_intelligence/speaker_aware_meeting_intelligence">出典：OpenAI Cookbook：会議の記録から要点を出す ↗</a></div></li>
+    <li><div class="row pr"><span class="t">文章の数字を表にまとめる</span><p class="d"><b>使いどころ</b>報告書や見積の文面に散らばった数字を、表計算に移すとき。</p><p class="d"><b>型の要点</b>列（項目・金額・前回との差など）、並べる順、単位を具体的に指定し、表計算に貼れる形で出させる。数字は必ず元の資料と照らし合わせる。</p><a class="src" href="https://learnprompting.org/docs/basic_applications/table_generation">出典：Learn Prompting：AIでデータを表にする ↗</a></div></li>
+    <li><div class="row pr"><span class="t">長い資料の点検（資料が先、質問は後）</span><p class="d"><b>使いどころ</b>仕様書・図面の注記・契約書などを読み合わせるとき。</p><p class="d"><b>型の要点</b>資料を先に置いてタグ（例：&lt;document&gt;）で区切り、質問は最後に書く。答える前に、関係する箇所を抜き出させてから判断させる。</p><a class="src" href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices">出典：Claude：プロンプトの書き方のコツ ↗</a></div></li>
+    <li><div class="row pr"><span class="t">見本を見せて形をそろえる</span><p class="d"><b>使いどころ</b>商品説明文や、問い合わせの仕分けを毎回同じ書式で出したいとき。</p><p class="d"><b>型の要点</b>「入力」と「ほしい答え」の組を3〜5つ見せてから本番を頼む。見本は内容に幅を持たせる。書式がそろいやすくなる。</p><a class="src" href="https://www.promptingguide.ai/jp/techniques/fewshot">出典：Prompt Engineering Guide：Few-shot（日本語） ↗</a></div></li>
+    <li><div class="row pr"><span class="t">順を追って考えさせる</span><p class="d"><b>使いどころ</b>集計・計算・数量の確認など、答えが1つに決まるもの。</p><p class="d"><b>型の要点</b>答えだけでなく途中の計算を書かせる。「順を追って考えてください」と添えるだけでも効くことがある。最後の数字は人が検算する。</p><a class="src" href="https://www.promptingguide.ai/jp/techniques/cot">出典：Prompt Engineering Guide：Chain-of-Thought（日本語） ↗</a></div></li>
+    <li><div class="row pr"><span class="t">段階に分けて頼む</span><p class="d"><b>使いどころ</b>業務手順の書き出し → 点検 → 清書のように、工程が分かれる仕事。</p><p class="d"><b>型の要点</b>1回目で根拠や材料を抜き出させ、2回目でそれを使って仕上げさせる。途中の結果が見えるので、どこで間違えたかを追いやすい。</p><a class="src" href="https://www.promptingguide.ai/jp/techniques/prompt_chaining">出典：Prompt Engineering Guide：Prompt Chaining（日本語） ↗</a></div></li>
+    <li><div class="row pr"><span class="t">図面・帳票から項目を抜き出す</span><p class="d"><b>使いどころ</b>図面や注文書のPDFから、寸法・数量・品名などを拾うとき。</p><p class="d"><b>型の要点</b>抜き出す項目と出す形（表など）を先に決める。見えない値は推測させず空欄にさせる。小さい文字は、その部分を切り出してもう一度読ませる。</p><a class="src" href="https://developers.openai.com/cookbook/examples/multimodal/document_and_multimodal_understanding_tips">出典：OpenAI Cookbook：資料や画像を読み取るコツ ↗</a></div></li>
+    <li><div class="row pr"><span class="t">AIの答えの事実確認</span><p class="d"><b>使いどころ</b>AIが書いた説明や資料を、外に出す前に確かめるとき。</p><p class="d"><b>型の要点</b>答えを確かめられる短い主張に分け、主張ごとに出典を探させて「正しい／誤り／不明」と理由・出典を付けさせる。根拠がはっきりしないものは「不明」にさせる。</p><a class="src" href="https://developers.openai.com/cookbook/articles/gpt-oss/build-your-own-fact-checker-cerebras">出典：OpenAI Cookbook：事実確認の仕組みを作る ↗</a></div></li>
   </ul>
   <p class="note">使うときの注意：お客様の名前・住所・図面など外に出せない情報は、プロンプトに入れないでください。AIの答えは、必ず人が確かめてから使ってください。</p>
 </section>

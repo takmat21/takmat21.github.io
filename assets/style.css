@@ -332,3 +332,9 @@ ul.rows a.row.has-thumb .d{grid-column:2 / -1}
 @media (max-width:640px){
   .tabs{-webkit-mask-image:linear-gradient(to right,transparent 0,#000 24px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(to right,transparent 0,#000 24px,#000 calc(100% - 28px),transparent);padding-left:12px}
 }
+/* プロンプトタブ：うちで使えそうなプロンプト */
+.pr-h{margin-top:56px}
+ul.rows div.row.pr{grid-template-columns:1fr;gap:8px}
+ul.rows div.row.pr .d{margin:0}
+ul.rows div.row.pr .d b{display:inline-block;font-size:12px;font-weight:700;color:var(--accent);border:1px solid currentColor;border-radius:4px;padding:0 6px;margin-right:8px;line-height:1.6;vertical-align:1px}
+ul.rows div.row.pr .src{font-size:14px;justify-self:start;padding:6px 0;min-height:32px}
