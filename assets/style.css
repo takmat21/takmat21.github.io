@@ -279,7 +279,6 @@ p,li,dd{text-wrap:pretty}
 .hero-stats span{display:block;font-size:12.5px;color:var(--sub);line-height:1.6;margin-top:4px}
 @media (max-width:640px){.hero-stats{grid-template-columns:1fr;gap:12px}.hero-stats li{display:grid;grid-template-columns:7.5em 1fr;align-items:baseline;gap:8px}.hero-stats b{font-size:26px}}
 /* 絵の高さを抑える */
-@media (min-width:961px){.hero-art.hero-top{aspect-ratio:4/1}}
 /* 写真の枠（イメージ写真の仮置き） */
 .photo-slot{margin:8px 0 40px}
 .photo-slot img{width:100%;height:auto;max-height:420px;object-fit:cover;border-radius:8px;display:block}
