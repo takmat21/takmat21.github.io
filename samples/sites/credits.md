@@ -1,11 +1,14 @@
 # 写真の出典（ZAZOU Lab）
 
-見本サイト（samples/sites/）に使った写真の一覧です。
+見本サイト（samples/sites/）とトップの「イメージ写真」に使った写真の一覧です。
 すべて [Unsplash License](https://unsplash.com/license)（無料・商用利用可・クレジット表記は不要）の写真で、写真ページで Unsplash+（有料）でないことを確認して取り込みました。
 見本サイトの写真はイメージで、実在の店舗・人物とは関係ありません。ロゴや商品名が読める部分は、ぼかしを入れています。
 
 | サイト | ファイル | 用途 | 撮影者 | 写真ページ |
 |---|---|---|---|---|
+| portfolio | assets/img/photo/drawing.webp | 図面見積の紹介（イメージ写真の仮置き） | EnCata PD | https://unsplash.com/photos/two-metal-mechanical-parts-on-engineering-blueprints-SRqJ3eli-4I |
+| portfolio | assets/img/photo/profile.webp | トップ・プロフィール（イメージ写真の仮置き） | Nick Morrison | https://unsplash.com/photos/macbook-pro-near-white-open-book-FHnnjk1Yj7Y |
+| portfolio | assets/img/photo/works.webp | トップ・仕事一覧（イメージ写真の仮置き） | Cht Gsml | https://unsplash.com/photos/desk-with-calculator-charts-and-pencil-dspKrJYp644 |
 | architect | samples/sites/architect/img/drawings.webp | トップ本文（図面） | Jonathan Borba | https://unsplash.com/photos/rn00OVh0gEI |
 | architect | samples/sites/architect/img/hero-model.webp | トップのヒーロー（白い建築模型） | Fernando Andrade | https://unsplash.com/photos/a-model-of-a-house-sitting-on-top-of-a-book-UW4_FYJ_jRc |
 | architect | samples/sites/architect/img/model-wood.webp | トップ本文（木の模型） | Zhouxing Lu | https://unsplash.com/photos/Mb32AJpqd-g |
