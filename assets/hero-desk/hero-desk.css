@@ -1,0 +1,35 @@
+/* 仕事一覧タブのトップ絵：和紙の上に本物の成果物を並べ、墨の線で仕事の流れをつなぐ
+   紙が順に置かれ、線が引かれて約4秒で止まる。動きを減らす設定では最初から完成形 */
+.hero-desk{position:relative;aspect-ratio:3/1;border-radius:8px;overflow:hidden;margin:8px 0 0;
+ background:#f1ebe0 radial-gradient(ellipse at 30% 25%,#f7f2e9 0,#f1ebe0 55%,#ebe3d5 100%)}
+/* 和紙：細かい繊維を控えめに（方向の偏りなし） */
+.hero-desk::before{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='a'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .44  0 0 0 0 .35  0 0 0 .16 0'/></filter><filter id='b'><feTurbulence type='turbulence' baseFrequency='.035' numOctaves='2' seed='8'/><feColorMatrix values='0 0 0 0 .55  0 0 0 0 .48  0 0 0 0 .38  0 0 0 .07 0'/></filter><rect width='100%' height='100%' filter='url(%23a)'/><rect width='100%' height='100%' filter='url(%23b)'/></svg>")}
+.hero-desk .hd-line{position:absolute;inset:0;width:100%;height:100%;z-index:3;overflow:visible;pointer-events:none}
+.hero-desk .hd-line path{fill:none;stroke:#2b2b2b;stroke-width:1.6;stroke-linecap:round;opacity:.82}
+.hero-desk .hd-line circle{fill:#2b2b2b;opacity:.85}
+.hero-desk .hd-sheet{position:absolute;z-index:2;background:#fffdf8;padding:5px;box-shadow:0 1px 2px rgba(60,40,20,.12),0 10px 24px rgba(60,40,20,.15);transform:rotate(var(--r));opacity:0;animation:hd-place 1.4s cubic-bezier(.2,.7,.2,1) forwards}
+.hero-desk .hd-sheet img{display:block;width:100%;height:auto}
+.hero-desk .hd-sheet picture{display:block}
+.hd-seal{position:absolute;right:7px;top:7px;font:700 11px/1 "Noto Serif JP",serif;color:#b8432f;border:1.5px solid #b8432f;padding:4px 5px;border-radius:2px;background:rgba(255,253,248,.9);letter-spacing:.06em;white-space:nowrap}
+/* PC：5枚を少しずつ間をあけて横に並べる（主役の見出しを隠さない） */
+.hero-desk .hd-s1{left:4%;top:28%;width:15%;--r:-3deg;animation-delay:.2s}
+.hero-desk .hd-s2{left:23.5%;top:40%;width:15%;--r:2deg;animation-delay:.6s}
+.hero-desk .hd-s3{left:43%;top:24%;width:15%;--r:-1.5deg;animation-delay:1s}
+.hero-desk .hd-s4{left:62.5%;top:38%;width:15%;--r:2.5deg;animation-delay:1.4s}
+.hero-desk .hd-s5{left:82%;top:26%;width:15%;--r:-2deg;animation-delay:1.8s}
+@keyframes hd-place{from{opacity:0;transform:translateY(-14px) rotate(calc(var(--r) - 2deg))}to{opacity:1;transform:rotate(var(--r))}}
+.hero-desk .hd-line .seg{animation:hd-draw .6s ease-out forwards}
+.hero-desk .hd-line .dot{opacity:0;animation:hd-dot .3s ease-out forwards}
+@keyframes hd-draw{to{stroke-dashoffset:0}}
+@keyframes hd-dot{to{opacity:.85}}
+/* スマホ：4枚を2段に、流れはZ字ではなく「コ」の字（図面→見積→業務改善→Web） */
+@media (max-width:640px){
+ .hero-desk{aspect-ratio:4/3}
+ .hero-desk .hd-s1{left:5%;top:9%;width:41%}
+ .hero-desk .hd-s2{left:54%;top:7%;width:41%}
+ .hero-desk .hd-s3{left:54%;top:55%;width:41%}
+ .hero-desk .hd-s4{left:5%;top:53%;width:41%}
+ .hero-desk .hd-s5{display:none}
+ .hd-seal{font-size:9px;padding:3px 4px;right:5px;top:5px}
+}
+@media (prefers-reduced-motion:reduce){.hero-desk .hd-sheet{animation:none;opacity:1}.hero-desk .hd-line .seg,.hero-desk .hd-line .dot{animation:none;stroke-dashoffset:0;opacity:.85}}
