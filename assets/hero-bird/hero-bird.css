@@ -1,0 +1,10 @@
+.hero-bird{position:relative;width:100%;aspect-ratio:2/1;overflow:hidden;background:#f0e9df;isolation:isolate}
+.hero-bird .bird-scene{display:block;width:100%;height:100%;object-fit:cover}
+.hero-bird .bird-actor{position:absolute;left:59%;top:25.5%;width:20%;aspect-ratio:360/468;transform-origin:44% 81%;will-change:transform}
+.hero-bird .bird-perch{display:block;width:100%;height:auto}
+.hero-bird .bird-flight{position:absolute;width:153%;height:auto;left:-18%;top:-27%;opacity:0;transform-origin:45% 74%;will-change:transform}
+.hero-bird .bird-actor:not(.is-flying) .bird-flight{visibility:hidden}
+.hero-bird .bird-actor.is-flying .bird-perch{opacity:0}
+.hero-bird .bird-actor.is-flying .bird-flight{opacity:1}
+@media(prefers-reduced-motion:reduce){.hero-bird .bird-actor,.hero-bird .bird-flight{will-change:auto}}
+.hero-bird{border-radius:8px}
