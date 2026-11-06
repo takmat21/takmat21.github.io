@@ -44,13 +44,13 @@
 
 <div class="hero-art hero-top" data-hero-art role="img" aria-label="散らばった墨の断片が細い線でつながり、ひとつの形にまとまっていくアニメーション"></div>
 <div class="hero-flower sys-hero" data-hero-flower role="img" aria-label="暗い部屋で、弧を描く花茎のつぼみが順に開いていく蘭の絵"></div>
-<div class="hero-desk samples-top" role="img" aria-label="和紙の上に、図面と、これまでに作った画面が重ねて置かれ、細い墨の線でつながっている絵">
-<svg class="hd-line" viewBox="0 0 1200 400" preserveAspectRatio="none" aria-hidden="true"><path class="ink" d="M40 305 C140 320 250 290 340 282 S470 338 560 326 S690 282 790 272 S900 320 1000 314 S1110 252 1170 242"/><path class="ink2" d="M40 305 C140 320 250 290 340 282 S470 338 560 326 S690 282 790 272 S900 320 1000 314 S1110 252 1170 242" transform="translate(0 1.4)"/></svg>
-<div class="hd-sheet hd-s1"><img src="assets/img/thumb-drawing.webp" width="640" height="400" alt="" loading="lazy" decoding="async"><span class="hd-seal">見積</span></div>
-<div class="hd-sheet hd-s2"><img src="assets/hero-desk/za-1001.webp" width="640" height="453" alt="" loading="lazy" decoding="async"><span class="hd-seal">図面</span></div>
-<div class="hd-sheet hd-s3"><img src="samples/sites/thumbs/metal.webp" width="640" height="400" alt="" loading="lazy" decoding="async"><span class="hd-seal">Web</span></div>
-<div class="hd-sheet hd-s4"><img src="samples/sites/thumbs/inn.webp" width="640" height="400" alt="" loading="lazy" decoding="async"><span class="hd-seal">Web</span></div>
-<div class="hd-sheet hd-s5"><picture><source media="(min-width:641px)" srcset="samples/sites/thumbs/restaurant.webp"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" width="640" height="400" alt=""></picture><span class="hd-seal">Web</span></div>
+<div class="hero-desk samples-top" role="img" aria-label="和紙の上に、図面・見積・業務改善・ホームページ・論文と、これまでに作ったものが並び、細い墨の線で順につながっている絵">
+<svg class="hd-line" aria-hidden="true"></svg>
+<div class="hd-sheet hd-s1" data-step="1"><img src="assets/hero-desk/za-1001.webp" width="640" height="453" alt="" loading="lazy" decoding="async"><span class="hd-seal">図面</span></div>
+<div class="hd-sheet hd-s2" data-step="2"><img src="assets/hero-desk/estimate.webp" width="640" height="400" alt="" loading="lazy" decoding="async"><span class="hd-seal">見積</span></div>
+<div class="hd-sheet hd-s3" data-step="3"><img src="assets/hero-desk/gas.webp" width="640" height="400" alt="" loading="lazy" decoding="async"><span class="hd-seal">業務改善</span></div>
+<div class="hd-sheet hd-s4" data-step="4"><img src="assets/hero-desk/web-metal.webp" width="640" height="400" alt="" loading="lazy" decoding="async"><span class="hd-seal">Web</span></div>
+<div class="hd-sheet hd-s5" data-step="5"><picture><source media="(min-width:641px)" srcset="assets/hero-desk/paper.webp"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" width="640" height="400" alt=""></picture><span class="hd-seal">論文</span></div>
 </div>
 <div class="hero-video video-top" data-hero-video role="img" aria-label="生成りの紙の上で、台本の行が一行ずつ読まれて音の波になり、波がフィルムのコマになって流れ、画面の中で小さな絵が次々に映し出されるアニメーション"></div>
 <picture class="paper-hero paper-top"><source media="(max-width:640px)" srcset="assets/paper-hero-narrow.svg"><img src="assets/paper-hero-wide.svg" alt="" width="1200" height="400" loading="lazy" decoding="async"></picture>
@@ -392,5 +392,6 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
 <script src="assets/hero-art/hero-art.js"></script>
 <script src="assets/hero-flower/hero-flower.js"></script>
 <script src="assets/hero-video/hero-video.js" defer></script>
+<script src="assets/hero-desk/hero-desk.js" defer></script>
 </body>
 </html>
