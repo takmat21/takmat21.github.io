@@ -1,0 +1,24 @@
+/* 仕事一覧タブのトップ絵：和紙の上に本物の成果物を重ね、墨の線でつなぐ（約4秒で止まる。動きを減らす設定では最初から完成形） */
+
+.hero-desk{position:relative;aspect-ratio:3/1;border-radius:8px;overflow:hidden;
+ background:#efe7da radial-gradient(ellipse at 30% 20%,#f6f0e6 0,#efe7da 60%,#e8dfcf 100%)}
+.hero-desk::before{content:"";position:absolute;inset:0;opacity:.35;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.012 .35' numOctaves='3'/><feColorMatrix values='0 0 0 0 .55  0 0 0 0 .48  0 0 0 0 .38  0 0 0 .5 0'/></filter><rect width='100%' height='100%' filter='url(%23f)'/></svg>")}
+.hero-desk .hd-line{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.hero-desk .hd-line path{fill:none;stroke:#2b2b2b;stroke-linecap:round;stroke-dasharray:1700;stroke-dashoffset:1700;animation:hd-draw 3.2s .8s cubic-bezier(.4,0,.2,1) forwards}
+.hero-desk .hd-sheet{position:absolute;z-index:2;background:#fffdf8;padding:6px;box-shadow:0 1px 2px rgba(60,40,20,.12),0 12px 28px rgba(60,40,20,.16);opacity:0;animation:hd-place 1.4s cubic-bezier(.2,.7,.2,1) forwards}
+.hero-desk .hd-sheet img{display:block;width:100%;height:auto}
+.hd-seal{position:absolute;right:8px;bottom:8px;font:700 11px/1 "Noto Serif JP",serif;color:#b8432f;border:1.5px solid #b8432f;padding:4px 5px;border-radius:2px;background:rgba(255,253,248,.85);letter-spacing:.08em}
+.hero-desk .hd-s1{left:6%;top:21%;width:22%;--r:-4deg;animation-delay:.2s}.hero-desk .hd-s1 .hd-seal{left:8px;right:auto;top:8px;bottom:auto}
+.hero-desk .hd-s2{left:27%;top:39%;width:16%;--r:2deg;animation-delay:.6s}
+.hero-desk .hd-s3{left:42%;top:17%;width:22%;--r:-1.5deg;animation-delay:1.0s}.hero-desk .hd-s3 .hd-seal{left:8px;right:auto}
+.hero-desk .hd-s4{left:62%;top:33%;width:19%;--r:3deg;animation-delay:1.4s}
+.hero-desk .hd-s5{left:79%;top:19%;width:17%;--r:-2.5deg;animation-delay:1.8s}
+@keyframes hd-place{from{opacity:0;transform:translateY(-14px) rotate(calc(var(--r) - 2deg))}to{opacity:1;transform:rotate(var(--r))}}
+.hero-desk .hd-sheet{transform:rotate(var(--r))}
+@keyframes hd-draw{to{stroke-dashoffset:0}}
+@media (max-width:640px){.hero-desk{aspect-ratio:4/3}.hero-desk .hd-s1{left:4%;top:8%;width:44%}.hero-desk .hd-s2{left:8%;top:52%;width:34%}.hero-desk .hd-s3{left:44%;top:14%;width:50%}.hero-desk .hd-s4{left:50%;top:50%;width:42%}.hero-desk .hd-s5{display:none}.hd-seal{font-size:9px;padding:3px 4px}}
+@media (prefers-reduced-motion:reduce){.hero-desk .hd-sheet{animation:none;opacity:1}.hero-desk .hd-line path{animation:none;stroke-dashoffset:0}}
+.hero-desk .hd-line .ink{stroke-width:1.6;opacity:.78}.hero-desk .hd-line .ink2{stroke-width:.7;opacity:.3}
+@media (max-width:640px){.hero-desk .hd-s3 .hd-seal{left:auto;right:6px;top:6px;bottom:auto}}
+
+.hero-desk{margin:8px 0 0}
