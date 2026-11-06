@@ -53,7 +53,11 @@ def faq_of(page_html):
 def offers_of(page_html, url):
     """見出しに「料金」の列がある <table class="price"> の行を Offer にする（税込の表示どおり）。"""
     offers = []
-    for tb in re.findall(r'<table class="price">(.*?)</table>', page_html, re.S):
+    for tm in re.finditer(r'<table class="price">(.*?)</table>', page_html, re.S):
+        tb = tm.group(1)
+        # 税込か税別かは、表とその前後の表記で決める（どちらも無ければ書かない）
+        near = _txt(page_html[max(0, tm.start() - 600):tm.end() + 400])
+        tax = False if re.search(r"税別|税抜", near) else True if "税込" in near else None
         head = re.search(r"<thead>(.*?)</thead>", tb, re.S)
         if not head or "料金" not in _txt(head.group(1)):
             continue
@@ -65,7 +69,9 @@ def offers_of(page_html, url):
             if not m:
                 continue
             spec = {"@type": "UnitPriceSpecification", "price": int(m.group(2).replace(",", "")),
-                    "priceCurrency": "JPY", "valueAddedTaxIncluded": True}
+                    "priceCurrency": "JPY"}
+            if tax is not None:
+                spec["valueAddedTaxIncluded"] = tax
             if m.group(1):
                 spec["unitCode"] = "MON"
             if m.group(3):
@@ -178,7 +184,8 @@ def run(root=None):
         rel = f.relative_to(ROOT).as_posix()
         # 見本サイトの下層（架空）は WebPage のみ。一覧ページ samples/sites/ は実在のご案内なので通常のページと同じ扱い（11/5 アヤ）
         sites = rel.startswith("samples/sites/") and rel != "samples/sites/index.html"
-        if not sites and ("noindex" in head or 'rel="canonical"' not in head and rel != "index.html"):
+        draft_ai = rel.startswith("ai/")  # 公開前（noindex）でも入れておく。noindex を外すのは松村さんの指示後
+        if not sites and not draft_ai and ("noindex" in head or 'rel="canonical"' not in head and rel != "index.html"):
             continue
         if sites and "<title>" not in head:
             continue
