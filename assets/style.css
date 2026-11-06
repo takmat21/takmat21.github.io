@@ -320,3 +320,10 @@ body.no-hero .hero-more{display:none}
 .home .note,.home .v-card figcaption,.home .sp-r,.home .sp-d{font-size:14px}
 /* 区切りの余白を広く */
 @media (min-width:961px){.home .sub-sec{padding:0 0 96px}.home section[data-panel]{padding-top:56px}}
+/* 仕事一覧：サムネイルつきの行 */
+ul.rows a.row.has-thumb{grid-template-columns:200px 1fr auto;align-items:start}
+ul.rows a.row.has-thumb img{grid-row:1 / span 2;width:200px;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top;border:1px solid var(--line);border-radius:6px}
+ul.rows a.row.has-thumb .d{grid-column:2 / -1}
+@media (min-width:1100px){.home ul.rows li:has(> a.has-thumb){grid-column:1 / -1}}
+@media (max-width:640px){ul.rows a.row.has-thumb{grid-template-columns:1fr auto}ul.rows a.row.has-thumb img{grid-row:auto;grid-column:1 / -1;width:100%}ul.rows a.row.has-thumb .d{grid-column:1 / -1}}
+.app-name{font-weight:700;color:var(--accent);margin:12px 0 0;font-size:16px}
