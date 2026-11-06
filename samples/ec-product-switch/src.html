@@ -1,0 +1,260 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="robots" content="noindex"><title>商品切り替えの手順：旧商品から新商品へ、売上を落とさずに</title>
+<style>
+@page{size:A4 landscape;margin:0}
+:root{--navy:#12355b;--blue:#2f7ae5;--blueL:#f2f7ff;--ink:#2a2f36;--mut:#5f6772;--line:#d6dde6;--green:#5fb37c;--greenL:#eefaf1;--orange:#f0b25a;--orangeL:#fff6e8;--red:#d9534f;--redL:#fdf0ef}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:#fff;font-size:15pt;line-height:1.55}
+.page{width:297mm;height:210mm;padding:12mm 16mm 0;position:relative;overflow:hidden;page-break-after:always;display:flex;flex-direction:column}
+.page:last-child{page-break-after:auto}
+h1{font-size:25pt;font-weight:700;color:var(--navy);line-height:1.3;border-left:6px solid var(--blue);padding-left:4mm}
+.sub{font-size:15pt;color:var(--mut);margin:1.5mm 0 0 6mm}
+.body{flex:1;display:flex;flex-direction:column;justify-content:flex-start;gap:5mm;padding-bottom:17mm;padding-top:6mm}
+.foot{position:absolute;left:16mm;right:16mm;bottom:7mm;display:flex;justify-content:space-between;font-size:9pt;color:var(--mut);border-top:1px solid var(--line);padding-top:1.5mm}
+.card{background:var(--blueL);border:1.5px solid var(--blue);border-radius:3mm;padding:4mm 5.5mm}
+.card h3{font-size:18pt;font-weight:700;color:var(--navy);line-height:1.35;margin-bottom:2mm}
+.card h3 .n{color:var(--blue);margin-right:2mm}
+.card ul{margin-left:6mm}
+.card li{margin-bottom:1mm}
+b{color:var(--navy)}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+.g2w{display:grid;grid-template-columns:1.35fr 1fr;gap:5mm}
+.step{display:flex;flex-direction:column}
+.step ul{flex:1}
+.out{margin-top:3mm;background:#fff;border:1px solid var(--blue);border-radius:2mm;padding:1.5mm 3mm;color:var(--navy);font-weight:500}
+.formula{display:inline-block;font-weight:700;color:var(--navy);background:#fff;border:1.5px dashed var(--blue);padding:1.5mm 4mm;border-radius:1.5mm;font-size:17pt}
+.band{border-radius:3mm;padding:3mm 5.5mm}
+.band.green{background:var(--greenL);border:1.5px solid var(--green)}
+.band.orange{background:var(--orangeL);border:1.5px solid var(--orange)}
+.band.red{background:var(--redL);border:1.5px solid var(--red)}
+.lead{font-size:16.5pt;line-height:1.7}
+.lead b{color:var(--blue)}
+table{width:100%;border-collapse:collapse;font-size:14.5pt;background:#fff;line-height:1.45}
+th,td{border-bottom:1px solid var(--line);padding:1.5mm 2.5mm;text-align:left;vertical-align:top}
+thead th{background:var(--navy);color:#fff;font-weight:700}
+td.num{text-align:right;font-weight:700;color:var(--navy);white-space:nowrap}
+tr.total td{background:#e2edfd;font-weight:700}
+td.k{white-space:nowrap;color:var(--navy);font-weight:700}
+.note{font-size:12pt;color:var(--mut);line-height:1.45}
+.src{font-size:12pt;color:var(--mut);margin-top:auto;line-height:1.4;border-top:1px dashed var(--line);padding-top:1.5mm}
+.check{list-style:none;margin-left:0!important}
+.check li:before{content:"";display:inline-block;width:3.6mm;height:3.6mm;border:1.6px solid var(--blue);border-radius:.6mm;margin-right:2mm;vertical-align:-0.4mm}
+.cols2{columns:2;column-gap:8mm}
+.flow{display:flex;align-items:stretch;gap:0}
+.flow .box{flex:1;background:#fff;border:1.5px solid var(--blue);border-radius:2.5mm;padding:3mm 3.5mm;font-size:15pt;line-height:1.45}
+.flow .box .t{display:block;font-weight:700;color:var(--navy);font-size:16pt;margin-bottom:1mm}
+.flow .box.hi{background:var(--blueL)}
+.flow .ar{flex:0 0 9mm;display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:20pt;font-weight:700}
+.pill{display:inline-block;background:var(--navy);color:#fff;border-radius:10mm;padding:0 3mm;font-size:13pt;font-weight:700;margin-right:1.5mm}
+.tbc{color:#b5402c;font-weight:700}
+.small15 td,.small15 th{font-size:14pt}
+
+</style></head><body>
+
+<!-- 1 -->
+<section class="page">
+ <h1>商品切り替えの手順：旧商品から新商品へ、売上を落とさずに</h1>
+ <p class="sub">パッケージ変更・後継品・仕入れ先変更のときに、在庫・商品ページ・告知をどう進めるか</p>
+ <div class="body">
+  <div class="card lead">切り替えで売上が落ちる主な理由は、<b>在庫の空白</b>と<b>商品ページの作り直し</b>（レビュー・検索の順位がゼロから）です。まず、どの種類の切り替えかを見分けます。</div>
+  <div class="g3">
+   <div class="card step"><h3><span class="n">A</span>パッケージ変更</h3><ul><li>中身は同じ、箱・ラベルが変わる</li><li>外寸・重さが大きく変わるとJANも変わる</li></ul><div class="out">→ 画像と説明の差し替え</div></div>
+   <div class="card step"><h3><span class="n">B</span>後継品</h3><ul><li>機能・素材・容量が変わる</li><li>多くの場合JANが変わる</li></ul><div class="out">→ 新しい商品ページが前提</div></div>
+   <div class="card step"><h3><span class="n">C</span>仕入れ先変更</h3><ul><li>品質・入荷日数・表示（原産国など）が変わる</li></ul><div class="out">→ 表示と発注点の直し</div></div>
+  </div>
+  <div class="band orange">例に出す「ミナト生活雑貨」・商品・数字は架空です（<b>会社名・数字は変更しています</b>）。モールの扱いで公式に確かめられなかった所は「<span class="tbc">要確認</span>」と書いています。</div>
+ </div>
+ <div class="foot"><span>商品切り替えの手順（松村貴士）</span><span>1 / 8</span></div>
+</section>
+
+<!-- 2 -->
+<section class="page">
+ <h1>決める順番：在庫の消化計画 → 切り替え日 → 価格</h1>
+ <p class="sub">価格から決めると在庫が余ります。旧品が何日で無くなるかを先に出します。</p>
+ <div class="body">
+  <div class="flow">
+   <div class="box hi"><span class="t">① 在庫の消化計画</span>旧品の在庫 ÷ 1日の販売数 ＝ 残りの日数</div><div class="ar">→</div>
+   <div class="box"><span class="t">② 切り替え日</span>旧品が尽きる日の<b>前</b>に新品を入荷・検品</div><div class="ar">→</div>
+   <div class="box"><span class="t">③ 価格</span>旧品を値下げで早く売るか、同じ値で売り切るか</div>
+  </div>
+  <div class="g2">
+   <table class="small15">
+    <thead><tr><th>計算例（架空：保冷ボトル）</th><th style="text-align:right">数</th></tr></thead>
+    <tbody>
+     <tr><td>旧品の在庫（3モールと倉庫の合計）</td><td class="num">420 個</td></tr>
+     <tr><td>1日の販売数（3モール合計）</td><td class="num">14 個</td></tr>
+     <tr class="total"><td>旧品が尽きるまで</td><td class="num">30 日</td></tr>
+     <tr><td>新品の入荷・検品・登録にかかる日数</td><td class="num">7 日</td></tr>
+     <tr><td>切り替え日（旧品の残りが約3日分の日）</td><td class="num">27日目</td></tr>
+    </tbody>
+   </table>
+   <div class="card"><h3>価格の決め方</h3><ul>
+    <li>新品の値段を先に決め、<b>旧品が新品より高くならない</b>ようにする</li>
+    <li>旧品を値下げするなら、<b>3モール同時</b>に。1か所だけ安いと在庫が偏る</li>
+    <li>値下げの幅は、残り日数が予定より長いときだけ</li></ul></div>
+  </div>
+  <div class="flow">
+   <div class="box"><span class="t">1日目</span>計画を決め、新品を発注</div><div class="ar">→</div>
+   <div class="box"><span class="t">13日目</span>告知を始める（2週間前）</div><div class="ar">→</div>
+   <div class="box"><span class="t">20日目</span>新品が入荷・検品・非公開で登録</div><div class="ar">→</div>
+   <div class="box hi"><span class="t">27日目</span>切り替え日</div><div class="ar">→</div>
+   <div class="box"><span class="t">30日目</span>旧品が尽きる見込み</div>
+  </div>
+ </div>
+ <div class="foot"><span>商品切り替えの手順（松村貴士）</span><span>2 / 8</span></div>
+</section>
+
+<!-- 3 -->
+<section class="page">
+ <h1>Amazonでの扱い：同じ商品ページか、新しいページか</h1>
+ <p class="sub">判断の目安は「JANが変わるか」「中身が変わるか」。最終の判断はAmazonの決まりに従います。</p>
+ <div class="body">
+  <div class="g2w" style="grid-template-columns:1.7fr 1fr">
+   <table class="small15">
+    <thead><tr><th style="width:42%">状況</th><th>考え方</th></tr></thead>
+    <tbody>
+     <tr><td class="k">箱のデザインだけ変わる（JANは同じ）</td><td>同じページで画像を差し替える方向。可否は<span class="tbc">要確認</span></td></tr>
+     <tr><td class="k">JANが変わる・中身が変わる</td><td>新しいページ（新しいASIN）の方向。旧ページとのつなぎ方は<span class="tbc">要確認</span></td></tr>
+     <tr><td class="k">色・サイズ違いとして並べたい</td><td>バリエーションの条件はカテゴリごと。<span class="tbc">要確認</span></td></tr>
+     <tr><td class="k">FBAに旧品が残る</td><td>旧品・新品を別のSKUにし、混ぜて納品しない</td></tr>
+    </tbody>
+   </table>
+   <div class="card"><h3>JANが変わる主な場合（GS1 Japanの基準）</h3><ul>
+    <li>表示が変わる成分・機能の変更</li>
+    <li>表示が変わる内容量の変更</li>
+    <li>包装の外寸・総重量が<b>20%を超えて</b>変わる</li>
+    <li>認証マークの追加・削除、ブランドの変更</li></ul>
+    <div class="note" style="margin-top:1.5mm">全10の基準から抜き出し。</div></div>
+  </div>
+  <div class="band orange">Amazonの出品ルール（ページの使い回し・バリエーション・JAN）は<b>セラーセントラルのログイン後のヘルプ</b>にあり、本資料では本文を確かめていません。切り替え前にヘルプを読み、不明ならセラーサポートへ。</div>
+  <p class="src">出典（確認日 2026-11-06）：GS1 Japan「GTIN（JANコード/集合包装用商品コード）の変更ルール」gs1jp.org/code/jan/gtin_rules/</p>
+ </div>
+ <div class="foot"><span>商品切り替えの手順（松村貴士）</span><span>3 / 8</span></div>
+</section>
+
+<!-- 4 -->
+<section class="page">
+ <h1>Yahoo!ショッピング・BASEでの手順</h1>
+ <p class="sub">新しい商品を「非公開」で先に作っておき、切り替え日に公開と旧品の非公開を同時に行います。</p>
+ <div class="body">
+  <div class="g2">
+   <div class="card step"><h3>Yahoo!ショッピング</h3><ul>
+    <li><b>1週間前</b>：ストアクリエイターProで新しい商品コードを登録（非公開・在庫0）</li>
+    <li>画像・説明・JAN・価格を入れる</li>
+    <li><b>当日</b>：新品を公開 → 旧品を在庫0・非公開</li></ul>
+    <div class="out">APIで在庫を回すなら、台帳の商品コードも同じ日に替える</div></div>
+   <div class="card step"><h3>BASE</h3><ul>
+    <li><b>1週間前</b>：新しい商品を作成（非公開・在庫0）</li>
+    <li>画像・説明・価格を入れる</li>
+    <li><b>当日</b>：新品を公開し在庫を入れる → 旧品を非公開</li>
+    </ul>
+    <div class="out">APIで在庫を回すなら、台帳の商品IDを新品に替える</div></div>
+  </div>
+  <div class="band orange">旧品のコード・IDを新品に使い回すかは、<b>レビューや注文の記録の扱い</b>で変わります（各モールの案内で<span class="tbc">要確認</span>）。ここでは新しく作る手順を基本にしています。</div>
+  <p class="src">出典（確認日 2026-11-06）：developer.yahoo.co.jp/webapi/shopping/introduction.html ／ docs.thebase.in/api/</p>
+ </div>
+ <div class="foot"><span>商品切り替えの手順（松村貴士）</span><span>4 / 8</span></div>
+</section>
+
+<!-- 5 -->
+<section class="page">
+ <h1>レビューと検索順位を引き継ぐ考え方／告知と問い合わせ</h1>
+ <p class="sub">「仕組みで引き継げるか」は各モール次第。引き継げなくても、お客様を新しいページへ案内できます。</p>
+ <div class="body">
+  <div class="g2">
+   <div class="card"><h3>引き継ぐための考え方</h3><ul>
+    <li>同じページを使えるなら使う（ルールの範囲で：3ページ）</li>
+    <li>新しいページにするなら、<b>旧ページの説明に後継品の案内</b>を書く（モールのルールの範囲で）</li>
+    <li>題名・検索語は旧品で売れていた言葉を引き継ぐ</li>
+    <li>切り替え直後の数週間は、広告で新しいページに人を集める</li>
+    <li>レビューを頼むときも見返りは付けない</li></ul></div>
+   <div class="card"><h3>告知と問い合わせ</h3><ul>
+    <li><b>2週間前</b>：商品ページと店のお知らせに「何が変わるか」を書く</li>
+    <li>変わらない点（中身・使い方）も必ず書く</li>
+    <li>問い合わせの答えを先に3つ用意する（下の例）</li>
+    <li>切り替え後1か月は、旧品のレビューにある質問に注意</li></ul></div>
+  </div>
+  <table class="small15">
+   <thead><tr><th style="width:34%">よくある問い合わせ（架空）</th><th>用意する答え</th></tr></thead>
+   <tbody>
+    <tr><td class="k">古い箱の商品が届いた</td><td>切り替えの時期で、中身は同じであること。気になる場合の交換の受け方</td></tr>
+    <tr><td class="k">前の商品と何が違う？</td><td>変わった点を表で（容量・素材・付属品）。変わらない点も書く</td></tr>
+    <tr><td class="k">替えのふたは合う？</td><td>合う・合わないを型番ごとに書く。分からないなら「確かめて返事」</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <div class="foot"><span>商品切り替えの手順（松村貴士）</span><span>5 / 8</span></div>
+</section>
+
+<!-- 6 -->
+<section class="page">
+ <h1>切り替え当日のチェックリスト</h1>
+ <p class="sub">当日は「止める → 入れ替える → 確かめる」の順。1つ終わるごとに印を付けます。</p>
+ <div class="body">
+  <div class="flow">
+   <div class="box"><span class="t">朝　止める</span>旧品の在庫を3モールで0に</div><div class="ar">→</div>
+   <div class="box hi"><span class="t">昼　入れ替える</span>新品を公開し、在庫を入れる</div><div class="ar">→</div>
+   <div class="box"><span class="t">夕　確かめる</span>買い手の目で3モールを見る</div>
+  </div>
+  <div class="g3">
+   <div class="card"><h3>朝</h3><ul class="check">
+    <li>新品の入荷・検品が済んでいる</li>
+    <li>旧品の在庫を3モールで0にした</li>
+    <li>未出荷の旧品の注文を数えた</li></ul></div>
+   <div class="card"><h3>昼</h3><ul class="check">
+    <li>新品を公開し在庫を入れた</li>
+    <li>台帳のコードを新品に替えた</li>
+    <li>価格が3モールでそろっている</li></ul></div>
+   <div class="card"><h3>夕方</h3><ul class="check">
+    <li>検索から新品のページが出る</li>
+    <li>試しにカートまで進めた</li>
+    <li>旧品が買えない状態になっている</li></ul></div>
+  </div>
+  <div class="band green"><b>翌日から1週間</b>：新品の注文数を毎日記録し、旧品の注文が入っていないかを確かめます。FBAに旧品が残っている場合は、販売を続けるか返送・処分するかを決めます。</div>
+ </div>
+ <div class="foot"><span>商品切り替えの手順（松村貴士）</span><span>6 / 8</span></div>
+</section>
+
+<!-- 7 -->
+<section class="page">
+ <h1>よくある失敗と防ぎ方</h1>
+ <p class="sub">ほとんどは「同じ日に、全部のモールで、同じことをする」で防げます。</p>
+ <div class="body">
+  <table class="small15">
+   <thead><tr><th style="width:22%">失敗</th><th style="width:38%">何が起きたか（架空の例）</th><th>防ぎ方</th></tr></thead>
+   <tbody>
+    <tr><td class="k">在庫の二重販売</td><td>旧品と新品を同じ在庫として両方のページで売り、実物より多く注文が入った</td><td>台帳で旧品・新品を別のSKUにし、各モールへ出す数の合計を実物以下に</td></tr>
+    <tr><td class="k">在庫の空白</td><td>新品の入荷が遅れ、旧品が尽きて10日間売るものがなかった</td><td>2ページの計算で、切り替え日を旧品が尽きる前に置く。入荷の遅れに備えて旧品を少し残す</td></tr>
+    <tr><td class="k">古い画像のまま</td><td>1モールだけ写真を替え忘れ、「写真と違う」と返品が続いた</td><td>当日のチェックリストで3モールを1つずつ確かめる</td></tr>
+    <tr><td class="k">JANの食い違い</td><td>新品のJANを台帳とモールで別々に入れ、出荷で取り違えた</td><td>JANは台帳から写す。手で打たない</td></tr>
+    <tr><td class="k">価格のずれ</td><td>旧品の値下げを1モールだけで行い、在庫がそこに偏った</td><td>値段は3モール同時に変える</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <div class="foot"><span>商品切り替えの手順（松村貴士）</span><span>7 / 8</span></div>
+</section>
+
+<!-- 8 -->
+<section class="page">
+ <h1>ZAZOUができること（代行の範囲）</h1>
+ <p class="sub">切り替えの計画から当日の作業、その後の見張りまで、まとめて引き受けます。</p>
+ <div class="body">
+  <table>
+   <thead><tr><th style="width:24%">範囲</th><th>内容</th></tr></thead>
+   <tbody>
+    <tr><td class="k">切り替えの計画</td><td>在庫の消化計画・切り替え日・価格を、販売の記録から決めて日程表にします</td></tr>
+    <tr><td class="k">商品ページの準備</td><td>新しい商品ページの題名・画像の構成・説明文を作り、非公開で用意します</td></tr>
+    <tr><td class="k">モールの決まりの確認</td><td>Amazonの商品ページの扱いなど、公式のヘルプを読んで判断の材料をまとめます</td></tr>
+    <tr><td class="k">当日の作業</td><td>3モールの在庫・公開状態・価格の切り替えと、台帳の書き換え</td></tr>
+    <tr><td class="k">告知と問い合わせ</td><td>お知らせの文と問い合わせの答えを用意し、切り替え後の問い合わせに対応します</td></tr>
+   </tbody>
+  </table>
+  <div class="g2">
+   <div class="card"><h3>御社にお願いすること</h3>新商品の仕様・JAN・入荷日の情報と、値下げの範囲の判断、モールへの問い合わせが要る場合の名義の確認をお願いします。</div>
+   <div class="card"><h3>担当者の経験</h3>Amazon・Yahoo!ショッピング・BASE で自社商品を販売。Makuake では企画から発送まで一人で担当しました。</div>
+  </div>
+ </div>
+ <div class="foot"><span>商品切り替えの手順（松村貴士）</span><span>8 / 8</span></div>
+</section>
+</body></html>

@@ -1,0 +1,256 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="robots" content="noindex"><title>EC在庫管理：3モールの在庫を1つの台帳で回す</title>
+<style>
+@page{size:A4 landscape;margin:0}
+:root{--navy:#12355b;--blue:#2f7ae5;--blueL:#f2f7ff;--ink:#2a2f36;--mut:#5f6772;--line:#d6dde6;--green:#5fb37c;--greenL:#eefaf1;--orange:#f0b25a;--orangeL:#fff6e8;--red:#d9534f;--redL:#fdf0ef}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:#fff;font-size:15pt;line-height:1.55}
+.page{width:297mm;height:210mm;padding:12mm 16mm 0;position:relative;overflow:hidden;page-break-after:always;display:flex;flex-direction:column}
+.page:last-child{page-break-after:auto}
+h1{font-size:25pt;font-weight:700;color:var(--navy);line-height:1.3;border-left:6px solid var(--blue);padding-left:4mm}
+.sub{font-size:15pt;color:var(--mut);margin:1.5mm 0 0 6mm}
+.body{flex:1;display:flex;flex-direction:column;justify-content:flex-start;gap:5mm;padding-bottom:17mm;padding-top:6mm}
+.foot{position:absolute;left:16mm;right:16mm;bottom:7mm;display:flex;justify-content:space-between;font-size:9pt;color:var(--mut);border-top:1px solid var(--line);padding-top:1.5mm}
+.card{background:var(--blueL);border:1.5px solid var(--blue);border-radius:3mm;padding:4mm 5.5mm}
+.card h3{font-size:18pt;font-weight:700;color:var(--navy);line-height:1.35;margin-bottom:2mm}
+.card h3 .n{color:var(--blue);margin-right:2mm}
+.card ul{margin-left:6mm}
+.card li{margin-bottom:1mm}
+b{color:var(--navy)}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+.g2w{display:grid;grid-template-columns:1.35fr 1fr;gap:5mm}
+.step{display:flex;flex-direction:column}
+.step ul{flex:1}
+.out{margin-top:3mm;background:#fff;border:1px solid var(--blue);border-radius:2mm;padding:1.5mm 3mm;color:var(--navy);font-weight:500}
+.formula{display:inline-block;font-weight:700;color:var(--navy);background:#fff;border:1.5px dashed var(--blue);padding:1.5mm 4mm;border-radius:1.5mm;font-size:17pt}
+.band{border-radius:3mm;padding:3mm 5.5mm}
+.band.green{background:var(--greenL);border:1.5px solid var(--green)}
+.band.orange{background:var(--orangeL);border:1.5px solid var(--orange)}
+.band.red{background:var(--redL);border:1.5px solid var(--red)}
+.lead{font-size:16.5pt;line-height:1.7}
+.lead b{color:var(--blue)}
+table{width:100%;border-collapse:collapse;font-size:14.5pt;background:#fff;line-height:1.45}
+th,td{border-bottom:1px solid var(--line);padding:1.5mm 2.5mm;text-align:left;vertical-align:top}
+thead th{background:var(--navy);color:#fff;font-weight:700}
+td.num{text-align:right;font-weight:700;color:var(--navy);white-space:nowrap}
+tr.total td{background:#e2edfd;font-weight:700}
+td.k{white-space:nowrap;color:var(--navy);font-weight:700}
+.note{font-size:12pt;color:var(--mut);line-height:1.45}
+.src{font-size:12pt;color:var(--mut);margin-top:auto;line-height:1.4;border-top:1px dashed var(--line);padding-top:1.5mm}
+.check{list-style:none;margin-left:0!important}
+.check li:before{content:"";display:inline-block;width:3.6mm;height:3.6mm;border:1.6px solid var(--blue);border-radius:.6mm;margin-right:2mm;vertical-align:-0.4mm}
+.cols2{columns:2;column-gap:8mm}
+.flow{display:flex;align-items:stretch;gap:0}
+.flow .box{flex:1;background:#fff;border:1.5px solid var(--blue);border-radius:2.5mm;padding:3mm 3.5mm;font-size:15pt;line-height:1.45}
+.flow .box .t{display:block;font-weight:700;color:var(--navy);font-size:16pt;margin-bottom:1mm}
+.flow .box.hi{background:var(--blueL)}
+.flow .ar{flex:0 0 9mm;display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:20pt;font-weight:700}
+.pill{display:inline-block;background:var(--navy);color:#fff;border-radius:10mm;padding:0 3mm;font-size:13pt;font-weight:700;margin-right:1.5mm}
+.tbc{color:#b5402c;font-weight:700}
+.small15 td,.small15 th{font-size:14pt}
+
+</style></head><body>
+
+<!-- 1 -->
+<section class="page">
+ <h1>EC在庫管理：3モールの在庫を1つの台帳で回す</h1>
+ <p class="sub">Amazon・Yahoo!ショッピング・BASE で同じ在庫を売るときの、台帳・発注・通知・棚卸しの型</p>
+ <div class="body">
+  <div class="card lead">3つのモールで同じ商品を売ると、<b>在庫の数がモールごとにずれ</b>、売り切れなのに注文が入る・まだあるのに「在庫切れ」になる、が起きます。<br>この資料は、<b>台帳を1つに決めて、そこから各モールへ数を配る</b>やり方を、手順と表でまとめたものです。</div>
+  <div class="g4">
+   <div class="card"><h3><span class="n">1</span>原因を知る</h3>ずれる3つの理由と、それぞれの防ぎ方（2ページ）</div>
+   <div class="card"><h3><span class="n">2</span>台帳を作る</h3>スプレッドシートの列の設計例（3ページ）</div>
+   <div class="card"><h3><span class="n">3</span>切らさない</h3>発注点・安全在庫の計算と、売り切れ前の知らせ（4〜5ページ）</div>
+   <div class="card"><h3><span class="n">4</span>楽にする・確かめる</h3>手作業→CSV→APIの段階と、棚卸し（6〜7ページ）</div>
+  </div>
+  <div class="band orange">例に出す会社「ミナト生活雑貨」・商品名・数字はすべて架空です（<b>会社名・数字は変更しています</b>）。APIや画面の名前は、各ページの下に出典の公式文書と確認日を書いています。</div>
+ </div>
+ <div class="foot"><span>EC在庫管理（松村貴士）</span><span>1 / 8</span></div>
+</section>
+
+<!-- 2 -->
+<section class="page">
+ <h1>在庫がずれる3つの原因</h1>
+ <p class="sub">ずれは「誰かのミス」ではなく、仕組みから起きます。原因ごとに防ぎ方を決めておきます。</p>
+ <div class="body">
+  <div class="flow">
+   <div class="box"><span class="t">Amazon</span>そこの数だけ減る</div><div class="ar">→</div>
+   <div class="box"><span class="t">Yahoo!</span>そこの数だけ減る</div><div class="ar">→</div>
+   <div class="box"><span class="t">BASE</span>そこの数だけ減る</div><div class="ar">→</div>
+   <div class="box hi" style="flex:1.3"><span class="t">倉庫の実物は1つ</span>直さないと数がずれる</div>
+  </div>
+  <table>
+   <thead><tr><th style="width:21%">原因</th><th style="width:40%">起きること</th><th>防ぎ方</th></tr></thead>
+   <tbody>
+    <tr><td class="k">① 同じ在庫を3か所で売る</td><td>BASEで売れた分をAmazonに反映する前に、Amazonでも売れる（二重販売）</td><td>台帳を「正」に決め、各モールの数は台帳から配る。残りが少ない商品は<b>モールごとに上限</b>を決める</td></tr>
+    <tr><td class="k">② 手入力</td><td>打ち間違い・反映忘れ・どのモールを直したか分からない</td><td>直す時刻を決める（例：10時・16時）。<b>入出庫は別シートに1行ずつ記録</b>し、在庫数は式で出す</td></tr>
+    <tr><td class="k">③ 返品・交換</td><td>戻った商品を「売れる在庫」に戻すか決めずに、数だけ戻してしまう</td><td>返品は<b>「検品待ち」の列</b>に入れ、良品と判断してから在庫に戻す。不良は別の列へ</td></tr>
+   </tbody>
+  </table>
+  <div class="band green">Amazonの倉庫に預ける在庫（FBA）は別の場所の在庫です。台帳では<b>「自社倉庫」と「FBA」を別の列</b>にします。</div>
+ </div>
+ <div class="foot"><span>EC在庫管理（松村貴士）</span><span>2 / 8</span></div>
+</section>
+
+<!-- 3 -->
+<section class="page">
+ <h1>1つの台帳：列の設計例（スプレッドシート）</h1>
+ <p class="sub">1行＝1商品（SKU）。在庫数は手で書かず、入出庫の記録から式で出します。</p>
+ <div class="body">
+  <table class="small15">
+   <thead><tr><th style="width:22%">列</th><th style="width:38%">例（架空）</th><th>決まり</th></tr></thead>
+   <tbody>
+    <tr><td class="k">台帳SKU・商品名</td><td>BT-500-NV　保冷ボトル500ml 紺</td><td>社内の番号。全シートの鍵。色・サイズまで</td></tr>
+    <tr><td class="k">JAN</td><td>（13けた）</td><td>各モールの登録と一致させる</td></tr>
+    <tr><td class="k">各モールのコード</td><td>Amazon SKU／Yahoo!商品コード／BASE商品ID</td><td>モールごとに1列ずつ</td></tr>
+    <tr><td class="k">自社倉庫の在庫</td><td>182</td><td>入出庫シートから式で出す</td></tr>
+    <tr><td class="k">FBA在庫</td><td>60</td><td>Amazonの数を写す（自社倉庫と別）</td></tr>
+    <tr><td class="k">検品待ち／不良</td><td>3／1</td><td>売れる在庫に含めない</td></tr>
+    <tr><td class="k">各モールへ出す数</td><td>A 120／Y 40／B 22</td><td>自社倉庫の在庫を配る（合計≦在庫）</td></tr>
+    <tr><td class="k">発注点・状態</td><td>210／要発注</td><td>4ページの式。条件付き書式で色を付ける</td></tr>
+    <tr><td class="k">最終更新</td><td>11/6 10:05　担当A</td><td>誰がいつ直したか</td></tr>
+   </tbody>
+  </table>
+  <div class="g2">
+   <div class="band green"><b>シートは3枚</b>：商品マスタ（上の表）／入出庫（入荷・出荷・返品を1件1行で追記）／棚卸し（月末の実数と差）</div>
+   <div class="band green"><b>在庫数の式（例）</b>：<span style="font-weight:700;color:var(--navy)">=SUMIFS(入出庫!D:D, 入出庫!B:B, A2)</span><br><span class="note">入荷は＋、出荷は−で記録する前提。セルの位置は例です。</span></div>
+  </div>
+ </div>
+ <div class="foot"><span>EC在庫管理（松村貴士）</span><span>3 / 8</span></div>
+</section>
+
+<!-- 4 -->
+<section class="page">
+ <h1>発注点と安全在庫の計算</h1>
+ <p class="sub">「残りがこの数になったら発注する」を、商品ごとに数字で決めておきます。</p>
+ <div class="body">
+  <div style="text-align:center"><span class="formula">発注点 ＝ 1日の販売数 × 仕入れ日数 ＋ 安全在庫</span></div>
+  <div class="g2">
+   <div class="card"><h3>言葉の意味</h3><ul>
+    <li><b>1日の販売数</b>：3モール合計の、直近4週間の平均</li>
+    <li><b>仕入れ日数</b>：発注してから倉庫に入るまでの日数（検品まで含める）</li>
+    <li><b>安全在庫</b>：売れ行きが急に伸びた・入荷が遅れたときの余裕</li>
+    <li>簡単な決め方：<b>（多い日の販売数 − 平均）× 仕入れ日数</b></li></ul></div>
+   <table>
+    <thead><tr><th>計算例（架空：保冷ボトル）</th><th style="text-align:right">数</th></tr></thead>
+    <tbody>
+     <tr><td>1日の販売数（A 6＋Y 3＋B 1）</td><td class="num">10 個</td></tr>
+     <tr><td>仕入れ日数</td><td class="num">14 日</td></tr>
+     <tr><td>仕入れ中に売れる数（10 × 14）</td><td class="num">140 個</td></tr>
+     <tr><td>安全在庫（多い日15 − 平均10）× 14</td><td class="num">70 個</td></tr>
+     <tr class="total"><td>発注点（140 ＋ 70）</td><td class="num">210 個</td></tr>
+     <tr><td>1回の発注量（30日分の例）</td><td class="num">300 個</td></tr>
+    </tbody>
+   </table>
+  </div>
+  <div class="band orange">セール・季節（夏の保冷ボトルなど）の前は、<b>1日の販売数を見込みで上げて</b>計算し直します。仕入れ先が変わったら仕入れ日数も直します。統計を使う決め方（ばらつきから出す方法）もありますが、まずは上の簡単な式で回し、欠品と余りを見て直すのが現実的です。</div>
+ </div>
+ <div class="foot"><span>EC在庫管理（松村貴士）</span><span>4 / 8</span></div>
+</section>
+
+<!-- 5 -->
+<section class="page">
+ <h1>売り切れ前の知らせ：GASで通知する設計</h1>
+ <p class="sub">Google Apps Script（GAS）で台帳を定期的に見て、発注点を下回った商品だけを知らせます。</p>
+ <div class="body">
+  <div class="flow">
+   <div class="box hi"><span class="t">① 時間で起動</span>毎朝9時台など<br>（時間主導型トリガー）</div><div class="ar">→</div>
+   <div class="box"><span class="t">② 台帳を読む</span>商品マスタの<br>在庫数と発注点</div><div class="ar">→</div>
+   <div class="box"><span class="t">③ 選ぶ</span>在庫 ≦ 発注点<br>かつ 未通知</div><div class="ar">→</div>
+   <div class="box"><span class="t">④ 知らせる</span>メール1通に<br>まとめて送る</div><div class="ar">→</div>
+   <div class="box"><span class="t">⑤ 記録</span>「通知日」の列に<br>日付を書く</div>
+  </div>
+  <div class="g2">
+   <div class="card"><h3>設計の決まり</h3><ul>
+    <li>同じ商品を毎日知らせない（<b>通知日</b>があれば飛ばす。入荷したら消す）</li>
+    <li>1通に一覧でまとめる（SKU・在庫・発注点・あと何日分）</li>
+    <li>宛先・しきい値はシートに書き、コードを直さず変えられるように</li>
+    <li>エラーが出たら担当者に知らせる（止まったことに気づける）</li></ul></div>
+   <div class="card"><h3>公式の文書で確かめた制限</h3><ul>
+    <li>時間主導型トリガーは<b>毎分〜毎月</b>で設定できる。起動時刻は指定の1時間の中でずれることがある</li>
+    <li>1回の実行は<b>6分まで</b></li>
+    <li>メールの宛先は1日<b>100人</b>（Gmail）／<b>1,500人</b>（Workspace、社外）まで</li></ul>
+    <div class="note" style="margin-top:2mm">通知はメールのほか、チャットへの送信も同じ流れで作れます。</div></div>
+  </div>
+  <p class="src">出典（確認日 2026-11-06）：Google「Installable Triggers」developers.google.com/apps-script/guides/triggers/installable ／「Quotas for Google Services」developers.google.com/apps-script/guides/services/quotas</p>
+ </div>
+ <div class="foot"><span>EC在庫管理（松村貴士）</span><span>5 / 8</span></div>
+</section>
+
+<!-- 6 -->
+<section class="page">
+ <h1>APIでの自動化の段階：手作業 → CSV → API</h1>
+ <p class="sub">いきなりAPIにせず、商品数と手間に合わせて一段ずつ進めます。</p>
+ <div class="body">
+  <div class="flow">
+   <div class="box"><span class="t">段階1　手作業</span>管理画面で直す</div><div class="ar">→</div>
+   <div class="box"><span class="t">段階2　CSV</span><b>列を3モール共通</b>に</div><div class="ar">→</div>
+   <div class="box hi"><span class="t">段階3　API</span>自動更新。申請が要る</div>
+  </div>
+  <table class="small15">
+   <thead><tr><th style="width:18%">モール</th><th style="width:44%">在庫・注文に使うAPI（公式の名前）</th><th>始める前に必要なこと・つまずく所</th></tr></thead>
+   <tbody>
+    <tr><td class="k">Amazon<br>（SP-API）</td><td>在庫の更新：Listings Items API（patchListingsItem）<br>FBA在庫：FBA Inventory API（getInventorySummaries）</td><td>開発者登録・本人確認（ビデオ通話）・審査。<b>出品アカウントの所有者のログイン</b>で進める</td></tr>
+    <tr><td class="k">Yahoo!<br>ショッピング</td><td>在庫更新API（setStock、1回1,000商品まで）／注文APIは別に申請</td><td>アプリ登録 → ビジネスIDの紐づけ → トークン取得。トークンの期限は<span class="tbc">要確認</span></td></tr>
+    <tr><td class="k">BASE</td><td>在庫の更新：/1/items/edit_stock（権限 write_items）<br>注文：/1/orders（権限 read_orders）</td><td>アプリに必要な権限を付ける。上限は1時間5,000回・1日100,000回</td></tr>
+   </tbody>
+  </table>
+  <p class="note">鍵・トークンは台帳やチャットに貼らず、GASならスクリプトのプロパティに保管。APIにしても<b>正は台帳</b>のまま。</p>
+  <p class="src">出典（確認日 2026-11-06）：developer-docs.amazon/sp-api/docs/ の listings-items-api・fba-inventory-api ／ developer.yahoo.co.jp/webapi/shopping/ の introduction.html・setStock.html ／ docs.thebase.in/api/</p>
+ </div>
+ <div class="foot"><span>EC在庫管理（松村貴士）</span><span>6 / 8</span></div>
+</section>
+
+<!-- 7 -->
+<section class="page">
+ <h1>棚卸しの手順とチェックリスト</h1>
+ <p class="sub">月に1回、台帳の数と倉庫の実物を合わせます。差は「直す」より先に「理由を書く」。</p>
+ <div class="body">
+  <div class="flow">
+   <div class="box"><span class="t">① 止める</span>締めの時刻を決め、出荷・入荷を一時止める</div><div class="ar">→</div>
+   <div class="box"><span class="t">② 数える</span>2人で、棚の順に。数えた人の名前を書く</div><div class="ar">→</div>
+   <div class="box"><span class="t">③ 比べる</span>棚卸しシートで台帳との差を出す</div><div class="ar">→</div>
+   <div class="box"><span class="t">④ 理由を書く</span>未反映の注文・返品・破損・数え間違い</div><div class="ar">→</div>
+   <div class="box hi"><span class="t">⑤ 直す</span>入出庫に「棚卸し調整」1行で直し、モールへ反映</div>
+  </div>
+  <div class="g2">
+   <div class="card"><h3>前日まで</h3><ul class="check">
+    <li>未出荷の注文をすべて出荷済みにした</li>
+    <li>返品の「検品待ち」を良品・不良に分けた</li>
+    <li>入荷済みの分を入出庫シートに入れた</li>
+    <li>棚卸しシートを最新の商品マスタから作った</li></ul></div>
+   <div class="card"><h3>当日・あと</h3><ul class="check">
+    <li>差が<b>±2個または2%</b>（例）を超えたSKUは数え直した</li>
+    <li>FBA在庫はAmazonの数と台帳を別に照らした</li>
+    <li>差の理由を全SKU分書いた</li>
+    <li>直した数を3モールに反映し、販売を再開した</li></ul></div>
+  </div>
+  <div class="band orange">同じ理由の差が続くとき（例：毎月返品の戻し忘れ）は、数を直すだけでなく<b>手順の方を直します</b>。差の記録は会計の在庫評価にも使えます。</div>
+ </div>
+ <div class="foot"><span>EC在庫管理（松村貴士）</span><span>7 / 8</span></div>
+</section>
+
+<!-- 8 -->
+<section class="page">
+ <h1>ZAZOUができること（代行の範囲）</h1>
+ <p class="sub">台帳づくりから毎日の運用まで、御社の商品数と体制に合わせて引き受けます。</p>
+ <div class="body">
+  <table>
+   <thead><tr><th style="width:24%">範囲</th><th>内容</th></tr></thead>
+   <tbody>
+    <tr><td class="k">台帳の設計・作成</td><td>今の商品とモールの登録を洗い出し、SKU・JAN・各モールのコードをそろえた台帳を作ります</td></tr>
+    <tr><td class="k">発注点の設定</td><td>販売の記録から1日の販売数を出し、商品ごとの発注点・発注量を決めて、見直しの時期も決めます</td></tr>
+    <tr><td class="k">通知・自動化</td><td>GASでの売り切れ前の通知、CSVの取り込み、APIでの在庫更新（申請の手順書づくりと設定）</td></tr>
+    <tr><td class="k">毎日の在庫運用</td><td>決めた時刻の在庫反映、返品の振り分け、欠品・二重販売の見張り</td></tr>
+    <tr><td class="k">棚卸しの支援</td><td>棚卸しシートの準備、差の集計と理由の整理、手順の見直しの提案</td></tr>
+   </tbody>
+  </table>
+  <div class="g2">
+   <div class="card"><h3>御社にお願いすること</h3>モールへのログイン、API申請の本人確認・審査の回答、契約まわりは、アカウントの持ち主である御社の担当者に行っていただきます。手順は画面ごとに用意します。</div>
+   <div class="card"><h3>担当者の経験</h3>Amazon・Yahoo!ショッピング・BASE で自社商品を販売。Makuake では企画から発送まで一人で担当しました。</div>
+  </div>
+ </div>
+ <div class="foot"><span>EC在庫管理（松村貴士）</span><span>8 / 8</span></div>
+</section>
+</body></html>

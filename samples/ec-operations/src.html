@@ -1,0 +1,256 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="robots" content="noindex"><title>EC商品の運用：毎日・毎週・毎月のやること</title>
+<style>
+@page{size:A4 landscape;margin:0}
+:root{--navy:#12355b;--blue:#2f7ae5;--blueL:#f2f7ff;--ink:#2a2f36;--mut:#5f6772;--line:#d6dde6;--green:#5fb37c;--greenL:#eefaf1;--orange:#f0b25a;--orangeL:#fff6e8;--red:#d9534f;--redL:#fdf0ef}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:#fff;font-size:15pt;line-height:1.55}
+.page{width:297mm;height:210mm;padding:12mm 16mm 0;position:relative;overflow:hidden;page-break-after:always;display:flex;flex-direction:column}
+.page:last-child{page-break-after:auto}
+h1{font-size:25pt;font-weight:700;color:var(--navy);line-height:1.3;border-left:6px solid var(--blue);padding-left:4mm}
+.sub{font-size:15pt;color:var(--mut);margin:1.5mm 0 0 6mm}
+.body{flex:1;display:flex;flex-direction:column;justify-content:flex-start;gap:5mm;padding-bottom:17mm;padding-top:6mm}
+.foot{position:absolute;left:16mm;right:16mm;bottom:7mm;display:flex;justify-content:space-between;font-size:9pt;color:var(--mut);border-top:1px solid var(--line);padding-top:1.5mm}
+.card{background:var(--blueL);border:1.5px solid var(--blue);border-radius:3mm;padding:4mm 5.5mm}
+.card h3{font-size:18pt;font-weight:700;color:var(--navy);line-height:1.35;margin-bottom:2mm}
+.card h3 .n{color:var(--blue);margin-right:2mm}
+.card ul{margin-left:6mm}
+.card li{margin-bottom:1mm}
+b{color:var(--navy)}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+.g2w{display:grid;grid-template-columns:1.35fr 1fr;gap:5mm}
+.step{display:flex;flex-direction:column}
+.step ul{flex:1}
+.out{margin-top:3mm;background:#fff;border:1px solid var(--blue);border-radius:2mm;padding:1.5mm 3mm;color:var(--navy);font-weight:500}
+.formula{display:inline-block;font-weight:700;color:var(--navy);background:#fff;border:1.5px dashed var(--blue);padding:1.5mm 4mm;border-radius:1.5mm;font-size:17pt}
+.band{border-radius:3mm;padding:3mm 5.5mm}
+.band.green{background:var(--greenL);border:1.5px solid var(--green)}
+.band.orange{background:var(--orangeL);border:1.5px solid var(--orange)}
+.band.red{background:var(--redL);border:1.5px solid var(--red)}
+.lead{font-size:16.5pt;line-height:1.7}
+.lead b{color:var(--blue)}
+table{width:100%;border-collapse:collapse;font-size:14.5pt;background:#fff;line-height:1.45}
+th,td{border-bottom:1px solid var(--line);padding:1.5mm 2.5mm;text-align:left;vertical-align:top}
+thead th{background:var(--navy);color:#fff;font-weight:700}
+td.num{text-align:right;font-weight:700;color:var(--navy);white-space:nowrap}
+tr.total td{background:#e2edfd;font-weight:700}
+td.k{white-space:nowrap;color:var(--navy);font-weight:700}
+.note{font-size:12pt;color:var(--mut);line-height:1.45}
+.src{font-size:12pt;color:var(--mut);margin-top:auto;line-height:1.4;border-top:1px dashed var(--line);padding-top:1.5mm}
+.check{list-style:none;margin-left:0!important}
+.check li:before{content:"";display:inline-block;width:3.6mm;height:3.6mm;border:1.6px solid var(--blue);border-radius:.6mm;margin-right:2mm;vertical-align:-0.4mm}
+.cols2{columns:2;column-gap:8mm}
+.flow{display:flex;align-items:stretch;gap:0}
+.flow .box{flex:1;background:#fff;border:1.5px solid var(--blue);border-radius:2.5mm;padding:3mm 3.5mm;font-size:15pt;line-height:1.45}
+.flow .box .t{display:block;font-weight:700;color:var(--navy);font-size:16pt;margin-bottom:1mm}
+.flow .box.hi{background:var(--blueL)}
+.flow .ar{flex:0 0 9mm;display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:20pt;font-weight:700}
+.pill{display:inline-block;background:var(--navy);color:#fff;border-radius:10mm;padding:0 3mm;font-size:13pt;font-weight:700;margin-right:1.5mm}
+.tbc{color:#b5402c;font-weight:700}
+.small15 td,.small15 th{font-size:14pt}
+
+</style></head><body>
+
+<!-- 1 -->
+<section class="page">
+ <h1>EC商品の運用：毎日・毎週・毎月のやること</h1>
+ <p class="sub">Amazon・Yahoo!ショッピング・BASE で商品を売り続けるための、決まった仕事の一覧</p>
+ <div class="body">
+  <div class="card lead">EC運営の仕事は、<b>毎日の「止めない仕事」</b>と、<b>毎週・毎月の「伸ばす仕事」</b>に分かれます。止めない仕事を決まった時刻・決まった順で片づけると、伸ばす仕事に時間が残ります。</div>
+  <div class="flow">
+   <div class="box hi"><span class="t">毎日（約60分）</span>注文・出荷・問い合わせ・在庫<br><span class="note">→ 2ページ</span></div><div class="ar">→</div>
+   <div class="box"><span class="t">毎週（約2時間）</span>売上と広告・レビュー・価格<br><span class="note">→ 3ページ</span></div><div class="ar">→</div>
+   <div class="box"><span class="t">毎月（約半日）</span>商品ページ・写真と説明文・季節<br><span class="note">→ 4〜5ページ</span></div>
+  </div>
+  <div class="g2">
+   <div class="card"><h3>この資料の使い方</h3>2〜4ページのチェックリストを担当者に渡し、終わったら日付を書いてもらいます。6〜7ページは、対応の型と注意点です。</div>
+   <div class="card"><h3>例について</h3>例に出す「ミナト生活雑貨」・商品・数字は架空です（<b>会社名・数字は変更しています</b>）。時間は商品30点ほどの店の目安です。</div>
+  </div>
+ </div>
+ <div class="foot"><span>EC商品の運用（松村貴士）</span><span>1 / 8</span></div>
+</section>
+
+<!-- 2 -->
+<section class="page">
+ <h1>毎日のチェックリスト</h1>
+ <p class="sub">午前と午後の2回、同じ順で回します。漏れると、出荷遅れ・評価の低下に直結する仕事です。</p>
+ <div class="body">
+  <div class="g2">
+   <div class="card"><h3><span class="n">1</span>注文</h3><ul class="check">
+    <li>3モールの新しい注文を確かめた</li>
+    <li>保留・キャンセル依頼を見た</li>
+    </ul></div>
+   <div class="card"><h3><span class="n">2</span>出荷</h3><ul class="check">
+    <li>伝票を作り、期限の近い注文から出した</li>
+    <li>出荷した注文に追跡番号を入れた</li>
+    </ul></div>
+   <div class="card"><h3><span class="n">3</span>問い合わせ</h3><ul class="check">
+    <li>3モールの問い合わせ欄を全部開いた</li>
+    <li>その日のうちに一次返事をした（迷う件は担当者へ）</li>
+    </ul></div>
+   <div class="card"><h3><span class="n">4</span>在庫</h3><ul class="check">
+    <li>台帳の数を3モールに反映した</li>
+    <li>発注点割れの報告・返品を「検品待ち」へ</li>
+    </ul></div>
+  </div>
+  <table class="small15"><thead><tr><th style="width:16%">時刻（例）</th><th>やること</th></tr></thead><tbody>
+<tr><td class="k">10:00</td><td>注文の確認 → 伝票づくり → 問い合わせの一次返事 → 在庫の反映</td></tr>
+<tr><td class="k">15:00</td><td>午後の注文の確認 → 出荷と追跡番号の入力 → 問い合わせの残り → 発注点の報告</td></tr></tbody></table>
+  <div class="band orange">モールごとに出荷期限・返事の目安の決まりがあります。<b>期限は各モールの管理画面・ヘルプで確かめて</b>、チェックリストに書き込んでおきます。</div>
+ </div>
+ <div class="foot"><span>EC商品の運用（松村貴士）</span><span>2 / 8</span></div>
+</section>
+
+<!-- 3 -->
+<section class="page">
+ <h1>毎週のチェックリスト</h1>
+ <p class="sub">週に1回（例：月曜の午前）、数字を先週と比べて、手を打つ商品を3つまでに絞ります。</p>
+ <div class="body">
+  <div class="g3">
+   <div class="card step"><h3>売上と広告</h3><ul class="check">
+    <li>商品ごとの売上・注文数を先週と比べた</li>
+    <li>広告費÷広告経由の売上（比率）を見た</li>
+    <li>売れない検索語を広告から外した</li></ul></div>
+   <div class="card step"><h3>レビュー</h3><ul class="check">
+    <li>新しいレビューを全部読んだ</li>
+    <li>星1〜2の理由を分類した</li>
+    <li>返事が要る件に返事した（できるモールのみ）</li></ul></div>
+   <div class="card step"><h3>価格</h3><ul class="check">
+    <li>同じ商品・近い商品の値段を見た</li>
+    <li>3モールの値段の差を確かめた</li>
+    <li>送料込みで利益が残るか計算した</li></ul></div>
+  </div>
+  <table class="small15">
+   <thead><tr><th>週の記録の例（架空）</th><th style="text-align:right">先週</th><th style="text-align:right">今週</th><th>次の手</th></tr></thead>
+   <tbody>
+    <tr><td>保冷ボトル 売上</td><td class="num">186,000円</td><td class="num">152,000円</td><td>検索の順位と在庫切れの日がないかを見る</td></tr>
+    <tr><td>広告費の比率（広告費÷広告売上）</td><td class="num">18%</td><td class="num">27%</td><td>上位の検索語を見直し、社内の目安（20%）以下へ</td></tr>
+    <tr><td>星1〜2のレビュー</td><td class="num">0件</td><td class="num">2件</td><td>「ふたが固い」→ 説明文に開け方を足す</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <div class="foot"><span>EC商品の運用（松村貴士）</span><span>3 / 8</span></div>
+</section>
+
+<!-- 4 -->
+<section class="page">
+ <h1>毎月のチェックリスト</h1>
+ <p class="sub">月に1回、商品ページを1〜3点ずつ直し、2か月先の季節に備えます。</p>
+ <div class="body">
+  <div class="g3">
+   <div class="card step"><h3>商品ページの改善</h3><ul class="check">
+    <li>売上の上位・落ちた商品を選んだ</li>
+    <li>5ページの手順で直した</li>
+    <li>直した日と内容を記録した</li></ul></div>
+   <div class="card step"><h3>写真・説明文</h3><ul class="check">
+    <li>レビューの質問を説明文に足した</li>
+    <li>大きさが分かる写真がある</li>
+    <li>3モールで内容がそろっている</li></ul></div>
+   <div class="card step"><h3>季節の準備</h3><ul class="check">
+    <li>2か月先の行事を確かめた</li>
+    <li>仕入れ量と発注点を直した</li>
+    <li>季節の言葉を商品名・説明に足した</li></ul></div>
+  </div>
+  <table class="small15">
+   <thead><tr><th style="width:16%">準備する月</th><th style="width:22%">売る時期</th><th>やること（例）</th></tr></thead>
+   <tbody>
+    <tr><td class="k">3月</td><td>5〜8月（夏）</td><td>保冷ボトルの在庫を厚くする。「保冷」「夏」の写真を差し替える</td></tr>
+    <tr><td class="k">9月</td><td>11〜12月（年末・贈り物）</td><td>ギフト包装の案内、贈り物向けの写真と箇条書きを足す</td></tr>
+    <tr><td class="k">毎月</td><td>モールの大きなセール</td><td>セールの日程・参加の条件を各モールの案内で確かめ、在庫と価格を決める</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <div class="foot"><span>EC商品の運用（松村貴士）</span><span>4 / 8</span></div>
+</section>
+
+<!-- 5 -->
+<section class="page">
+ <h1>商品ページの改善の手順</h1>
+ <p class="sub">一度に全部変えず、1回に1か所。直す前の数字を残し、2〜4週間後に比べます。</p>
+ <div class="body">
+  <div class="flow">
+   <div class="box"><span class="t">① 題名</span>何か・誰向けか・大きさを先頭に</div><div class="ar">→</div>
+   <div class="box"><span class="t">② 画像</span>1枚目は商品だけ、2枚目以降で使う場面・大きさ</div><div class="ar">→</div>
+   <div class="box"><span class="t">③ 箇条書き</span>1行に1つの利点。数字で書く</div><div class="ar">→</div>
+   <div class="box"><span class="t">④ 検索語</span>レビュー・問い合わせの言葉を拾う</div>
+  </div>
+  <table class="small15">
+   <thead><tr><th style="width:12%">場所</th><th style="width:40%">直す前（架空）</th><th>直した後（架空）</th></tr></thead>
+   <tbody>
+    <tr><td class="k">題名</td><td>【大人気】おしゃれ ボトル 水筒 便利 おすすめ</td><td>保冷ボトル 500ml 真空二重 紺 食洗機対応 通勤用</td></tr>
+    <tr><td class="k">箇条書き</td><td>とても冷たさが続きます</td><td>氷を入れた水が6時間後も冷たい（自社の試験）</td></tr>
+    <tr><td class="k">画像</td><td>白背景の1枚だけ</td><td>手に持った写真・かばんに入れた写真・寸法の図</td></tr>
+    <tr><td class="k">検索語</td><td>「水筒」だけ</td><td>「マグボトル」「ステンレスボトル」など、買う人が使う言い方</td></tr>
+   </tbody>
+  </table>
+  <div class="band orange">題名の文字数・使えない記号・画像の決まり（背景の色など）は<b>モールとカテゴリごとに違い、変わることもあります</b>。直す前に各モールの出品ガイドラインで確かめます（数字はここでは書きません：<span class="tbc">要確認</span>）。</div>
+ </div>
+ <div class="foot"><span>EC商品の運用（松村貴士）</span><span>5 / 8</span></div>
+</section>
+
+<!-- 6 -->
+<section class="page">
+ <h1>レビューと問い合わせへの対応の型</h1>
+ <p class="sub">返事は「お礼 → 事実の確認 → 次にすること」の順。言い訳から始めません。</p>
+ <div class="body">
+  <table class="small15">
+   <thead><tr><th style="width:20%">よくある内容</th><th style="width:40%">最初の返事（型）</th><th>社内でやること</th></tr></thead>
+   <tbody>
+    <tr><td class="k">届かない</td><td>追跡番号と今の状況をお伝えし、届く見込みを書く</td><td>配送会社に確認。住所の誤りなら再送の手配</td></tr>
+    <tr><td class="k">壊れていた・違う</td><td>おわびと、写真を送っていただく方法を書く</td><td>交換か返金を決める。返品は「検品待ち」へ</td></tr>
+    <tr><td class="k">使い方の質問</td><td>答えと、説明書・商品ページの該当箇所を書く</td><td>同じ質問が2回来たら商品ページに足す</td></tr>
+    <tr><td class="k">星1〜2のレビュー</td><td>（返事ができるモールのみ）お礼と、改善したことを短く</td><td>理由を分類し、毎週の記録に入れる</td></tr>
+   </tbody>
+  </table>
+  <div class="card"><h3>返事の文例（架空・届いた商品が違う場合）</h3>
+   ご連絡ありがとうございます。ご注文と違う色の商品が届いたとのこと、ご迷惑をおかけし申し訳ございません。お手数ですが、届いた商品の写真をこちらに送っていただけますか。確認でき次第、正しい商品を本日中に発送いたします。届いた商品の返送方法は、あわせてご案内いたします。</div>
+  <div class="band red"><b>しないこと</b>：お客様の使い方のせいにする／返事を翌々日以降に延ばす／レビューの書き直しや削除を頼む／個人情報をレビューの返事に書く</div>
+ </div>
+ <div class="foot"><span>EC商品の運用（松村貴士）</span><span>6 / 8</span></div>
+</section>
+
+<!-- 7 -->
+<section class="page">
+ <h1>モールのルール違反を避ける注意</h1>
+ <p class="sub">違反は出品の停止につながります。迷ったら「公式の文書で確かめてから」が決まりです。</p>
+ <div class="body">
+  <table class="small15">
+   <thead><tr><th style="width:30%">やりがちなこと</th><th style="width:38%">危ない理由</th><th>確かめる所</th></tr></thead>
+   <tbody>
+    <tr><td class="k">割引・返金と引き換えに高い評価を頼む</td><td>レビューを不正に操作する行為として、規約違反になるおそれ</td><td>各モールのレビューの規約（<span class="tbc">要確認</span>）</td></tr>
+    <tr><td class="k">広告と分からない形で紹介してもらう</td><td>ステルスマーケティングは、2023年10月1日から景品表示法の対象</td><td>消費者庁の案内</td></tr>
+    <tr><td class="k">「No.1」「最安」を根拠なしで書く</td><td>実際より良く・安く見せる表示は景品表示法で問題になりうる</td><td>消費者庁の案内／モールの出品ガイドライン</td></tr>
+    <tr><td class="k">購入者に自社サイトや連絡先を案内する</td><td>購入者への連絡の範囲は、モールごとに決まりがある</td><td>各モールの規約（<span class="tbc">要確認</span>）</td></tr>
+    <tr><td class="k">他社の写真・説明文をそのまま使う</td><td>著作権の侵害。削除の申し立てを受ける</td><td>自社で撮る・書く</td></tr>
+    <tr><td class="k">化粧品・食品などで効き目をうたう</td><td>薬機法など、商品の種類ごとの法律がある</td><td>所管する役所の案内</td></tr>
+   </tbody>
+  </table>
+  <p class="src">出典（確認日 2026-11-06）：消費者庁「ステルスマーケティングに関する景品表示法の規制」caa.go.jp/policies/policy/representation/fair_labeling/stealth_marketing/ 。モール各社の規約は出品者用の管理画面で読むため、この資料では条文を引用していません。</p>
+ </div>
+ <div class="foot"><span>EC商品の運用（松村貴士）</span><span>7 / 8</span></div>
+</section>
+
+<!-- 8 -->
+<section class="page">
+ <h1>ZAZOUができること（代行の範囲）</h1>
+ <p class="sub">毎日の「止めない仕事」から、毎月の「伸ばす仕事」まで、範囲を決めて引き受けます。</p>
+ <div class="body">
+  <table>
+   <thead><tr><th style="width:24%">範囲</th><th>内容</th></tr></thead>
+   <tbody>
+    <tr><td class="k">毎日の運用</td><td>注文の確認、出荷の手配と追跡番号の入力、問い合わせの一次返事、在庫の反映</td></tr>
+    <tr><td class="k">毎週の見直し</td><td>売上と広告の記録、レビューの分類と返事、価格の確認。週1回、短い報告を出します</td></tr>
+    <tr><td class="k">商品ページの改善</td><td>題名・画像の構成・箇条書き・検索語の見直し。直す前後の数字で効果を確かめます</td></tr>
+    <tr><td class="k">季節の準備</td><td>2か月先の行事に合わせた仕入れ量の見直し、写真と説明文の差し替え</td></tr>
+    <tr><td class="k">手順書づくり</td><td>このチェックリストを御社の商品・体制に合わせて作り直し、社内の誰でも回せる形にします</td></tr>
+   </tbody>
+  </table>
+  <div class="g2">
+   <div class="card"><h3>御社にお願いすること</h3>モールのアカウントの持ち主としての判断（値下げ・返金の上限、広告費の上限）と、ログインの権限の付与をお願いします。</div>
+   <div class="card"><h3>担当者の経験</h3>Amazon・Yahoo!ショッピング・BASE で自社商品を販売。Makuake では企画から発送まで一人で担当しました。</div>
+  </div>
+ </div>
+ <div class="foot"><span>EC商品の運用（松村貴士）</span><span>8 / 8</span></div>
+</section>
+</body></html>
