@@ -23,7 +23,12 @@
    "source": "BleepingComputer（OpenAI発表の報道）",
    "url": "https://www.bleepingcomputer.com/news/artificial-intelligence/openai-launches-gpt-61-terra-with-3x-faster-ai-agents-50-percent-lower-pricing/",
    "note": "元記事",
-   "image": ""
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
   },
   {
    "source": "BRIDGE",

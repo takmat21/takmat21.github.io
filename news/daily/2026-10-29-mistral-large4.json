@@ -23,7 +23,12 @@
    "source": "Mistral AI",
    "url": "https://mistral.ai/news/mistral-large-4-oss/",
    "note": "元記事",
-   "image": "https://mistral.ai/cms-media/api/media/file/cover-mistral-sovereign%20copie.webp"
+   "image": "https://mistral.ai/cms-media/api/media/file/cover-mistral-sovereign%20copie.webp",
+   "image_ok": true,
+   "image_size": [
+    1200,
+    630
+   ]
   },
   {
    "source": "Let's Data Science",

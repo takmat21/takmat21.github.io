@@ -69,6 +69,7 @@ def head(title, desc, url, depth, og='https://takmat21.github.io/assets/ogp.png'
 .lk .ph{{width:100%;aspect-ratio:1.91/1;background:var(--soft);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;color:var(--faint)}}
 .lk span{{padding:8px 10px;font-size:13px;line-height:1.5}}
 .lk small{{display:block;color:var(--faint);font-size:12px}}
+.lk small.credit{{margin-top:4px;font-size:11px}}
 .week-list{{list-style:none;padding:0;margin:0;border-top:1px solid var(--line)}}
 .week-list li{{border-bottom:1px solid var(--line);padding:10px 0}}
 .news-hero{{display:block;margin:24px 0 0}}
@@ -103,6 +104,53 @@ NOTE = '<p class="note" style="margin-top:28px">要約は元の記事を読ん�
 FOOT = '<footer>© 松村貴士 / ZAZOU株式会社</footer>\n</div></body></html>\n'
 
 
+def check_photo(url):
+    """og:image が「写真として使えるか」を調べる。ロゴ・小さい画像・極端な形は使わない。
+    画像は大きさを調べるためだけに読み、保存しない（自サイトにコピーしない。11/6 松村さん）。"""
+    if not url or re.search(r'(^|[/_.-])(logo|favicon|icon|placeholder)([/_.-]|$)', url.split('?')[0], re.I) or url.lower().split('?')[0].endswith('.svg'):
+        return False, 0, 0
+    try:
+        import io
+        from PIL import Image
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        data = urllib.request.urlopen(req, timeout=20).read(8_000_000)
+        im = Image.open(io.BytesIO(data))
+        w, h = im.size
+        # ロゴらしさ：縮小して色を粗くまとめ、色の種類が少ない・一色が大半を占める画像は写真ではない
+        small = im.convert("RGB").resize((64, 34)).quantize(colors=64)
+        hist = sorted(small.histogram()[:64], reverse=True)
+        flat = hist[0] / (64 * 34)
+        kinds = sum(1 for c in hist if c > 4)
+    except Exception:
+        return False, 0, 0
+    is_logo = flat > 0.45 or kinds < 12
+    return (w >= 400 and h >= 200 and 1.2 <= w / h <= 2.6 and not is_logo), w, h
+
+
+def photo_of(a, path):
+    """出典（links の1本目）の og:image を、使えるときだけ返す。結果は JSON に残し、次回からは調べない。"""
+    l0 = (a.get('links') or [None])[0]
+    if not l0:
+        return ''
+    changed = False
+    if 'image' not in l0:
+        l0['image'] = og_image(l0['url']); changed = True
+    if 'image_ok' not in l0:
+        ok, w, h = check_photo(l0.get('image', ''))
+        l0['image_ok'], l0['image_size'] = ok, [w, h]; changed = True
+    if changed:
+        json.dump({k: v for k, v in a.items() if k not in ('slug', 'thumb', 'photo')}, open(path, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    return l0['image'] if l0.get('image_ok') else ''
+
+
+def photo_img(src, fallback):
+    """出典元の写真を元の URL のまま表示。読めなかったときは自前の見出し画像に切り替える。"""
+    # 読めないときは自前の見出し画像に替え、「画像：出典元」の表記も消す
+    fb = (f' onerror="this.onerror=null;this.src=\'{E(fallback)}\';var c=this.closest(\'.lk\').querySelector(\'.credit\');if(c)c.remove()"'
+          if fallback else '')
+    return f'<img src="{E(src)}" alt="" loading="lazy" width="600" height="314" referrerpolicy="no-referrer"{fb}>'
+
+
 def make_thumb(a, p):
     """写真のない号の見出し画像 thumb.png を作る（題名・カテゴリ・日付が変わったときだけ作り直す）。"""
     import hashlib, subprocess
@@ -130,7 +178,8 @@ def build_daily():
         a['slug'] = os.path.splitext(os.path.basename(f))[0]
         arts.append(a)
         p = os.path.join(NEWS, 'd', a['slug']); os.makedirs(p, exist_ok=True)
-        make_thumb(a, p)  # 全号で見出し画像を作る（外部の写真は使わない。11/5）
+        make_thumb(a, p)  # 自前の見出し画像（写真が使えないときの代わり・自ページの og:image 用）
+        a['photo'] = photo_of(a, f)  # 出典の写真（11/6 松村さん「転用できるものは転用する」）
         s = head(a['title'], a['lead'][:110], f'news/d/{a["slug"]}/', 3, f'https://takmat21.github.io/news/d/{a["slug"]}/thumb.png')
         s += f'<header class="hero"><p class="name"><a href="../../">統括AI（先輩）の朝刊</a></p><span class="tag">{E(a.get("category","今日の話題"))}</span><h1>{E(a["title"])}</h1><p class="news-meta">{E(a.get("date",a["slug"][:10]))}　発行：ZAZOU株式会社</p></header>\n<section class="news-item"><p class="lead">{E(a["lead"])}</p>'
         for sec in a.get('sections', []):
@@ -147,9 +196,16 @@ def build_daily():
         s += '</ul>'
         s += '<h3>関連記事</h3><div class="links">'
         for l in a.get('links', []):
-            src = a['thumb'] if a.get('thumb') and l is a['links'][0] else ''
-            img = f'<img src="{E(src)}" alt="" loading="lazy" width="600" height="314">' if src else f'<div class="ph">{E(l["source"])}</div>'
-            s += f'<a class="lk" href="{E(l["url"])}" target="_blank" rel="noopener">{img}<span>{E(l["source"])}<small>{E(l.get("note",""))}</small></span></a>'
+            first = l is a['links'][0]
+            credit = ''
+            if first and a.get('photo'):
+                img = photo_img(a['photo'], a.get('thumb', ''))
+                credit = f'<small class="credit">画像：{E(l["source"])}</small>'
+            elif first and a.get('thumb'):
+                img = f'<img src="{E(a["thumb"])}" alt="" loading="lazy" width="600" height="314">'
+            else:
+                img = f'<div class="ph">{E(l["source"])}</div>'
+            s += f'<a class="lk" href="{E(l["url"])}" target="_blank" rel="noopener">{img}<span>{E(l["source"])}<small>{E(l.get("note",""))}</small>{credit}</span></a>'
         s += f'</div><p style="margin-top:24px"><a href="../../">← 統括AI（先輩）の朝刊の一覧へ</a></p>{NOTE}</section>\n' + FOOT
         open(os.path.join(p, 'index.html'), 'w', encoding='utf-8').write(s)
     arts.sort(key=lambda a: (a.get('date', a['slug'][:10]), a['slug']), reverse=True)
@@ -182,10 +238,17 @@ def main():
 <p class="note" style="margin-top:14px">各号の構成：①記事の要約（海外の記事は日本語で）②自社のAIチームの運用から見ると ③小規模事業者にとって。元の記事へのリンクを付けています。</p></header>
 '''
     def card(a, big=False):
-        im = f'd/{a["slug"]}/{a["thumb"]}' if a.get('thumb') else ''
-        img = f'<img src="{E(im)}" alt="" loading="lazy" width="600" height="314">' if im else f'<div class="ph">{E(a.get("category",""))}</div>'
+        own = f'd/{a["slug"]}/{a["thumb"]}' if a.get('thumb') else ''
+        credit = ''
+        if a.get('photo'):  # 出典の写真（元の URL のまま。11/6）
+            img = photo_img(a['photo'], own)
+            credit = f'<small class="credit">画像：{E((a.get("links") or [{}])[0].get("source", ""))}</small>'
+        elif own:
+            img = f'<img src="{E(own)}" alt="" loading="lazy" width="600" height="314">'
+        else:
+            img = f'<div class="ph">{E(a.get("category",""))}</div>'
         extra = f'<small style="margin-top:6px;color:var(--sub)">{E(a.get("lead",""))}</small>' if big else ''
-        return f'<a class="lk" href="d/{a["slug"]}/">{img}<span><small>{E(a.get("date",""))}・{E(a.get("category",""))}</small>{E(a["title"])}{extra}</span></a>'
+        return f'<a class="lk" href="d/{a["slug"]}/">{img}<span><small>{E(a.get("date",""))}・{E(a.get("category",""))}</small>{E(a["title"])}{extra}{credit}</span></a>'
     agent = [a for a in arts if any(sec.get('heading','').startswith('自社のAIチーム') for sec in a.get('sections', []))]
     general = [a for a in arts if a not in agent]
     if agent:

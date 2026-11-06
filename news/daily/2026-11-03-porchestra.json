@@ -32,10 +32,15 @@
    "source": "arXiv",
    "url": "https://arxiv.org/abs/2610.13485",
    "note": "元記事",
-   "image": "",
    "title": "Proactive Agentic Orchestration",
    "org": "Xueyang Feng、Chaozhuo Li、Xiaohe Bo、Jiakai Tang、Chenxi Li、Qiwei Ye、Xu Chen（中国人民大学 高瓴人工智能学院、香港中文大学（深圳）、北京智源人工智能研究院（BAAI））",
-   "published": "2026-10-09（arXiv投稿 v1）"
+   "published": "2026-10-09（arXiv投稿 v1）",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
   }
  ]
 }

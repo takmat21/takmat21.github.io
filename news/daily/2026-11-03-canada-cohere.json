@@ -28,7 +28,12 @@
    "published": "2026-10-29",
    "url": "https://www.investmentexecutive.com/news/ottawa-investing-up-to-1-6b-in-canadian-ai-company-cohere/",
    "note": "元記事",
-   "image": ""
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
   }
  ]
 }

@@ -25,10 +25,15 @@
    "source": "Symantec Enterprise Blog",
    "url": "https://www.security.com/threat-intelligence/openai-claude-unauthorized-relays",
    "note": "元記事",
-   "image": "",
    "title": "Sandbox Flipped to ‘Danger-Full-Access’: Unauthorized AI Relays Create Risk for Organizations",
    "org": "Threat Hunter Team、Symantec and Carbon Black（Broadcom）",
-   "published": "2026-10-29"
+   "published": "2026-10-29",
+   "image": "https://www.security.com/sites/default/files/styles/blogs_hero_tiny/public/2026-10/Hero%20Image_2.jpg.webp?h=790be497&itok=vPNqu6m8",
+   "image_ok": true,
+   "image_size": [
+    420,
+    350
+   ]
   }
  ]
 }

@@ -23,7 +23,12 @@
    "source": "Google",
    "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
    "note": "元記事",
-   "image": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini_carbon_102726_social_share.width-1300.png"
+   "image": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini_carbon_102726_social_share.width-1300.png",
+   "image_ok": true,
+   "image_size": [
+    1300,
+    731
+   ]
   },
   {
    "source": "AI Business",

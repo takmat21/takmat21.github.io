@@ -25,10 +25,15 @@
    "source": "TechCrunch",
    "url": "https://techcrunch.com/2026/11/03/netflixs-new-ai-discover-tab-helps-you-find-something-to-watch-based-on-your-mood/",
    "note": "元記事",
-   "image": "",
    "title": "Netflix's new AI Discover tab helps you find something to watch based on your mood",
    "org": "発表：Netflix／報道：TechCrunch（Aisha Malik記者）",
-   "published": "2026-11-03"
+   "published": "2026-11-03",
+   "image": "https://techcrunch.com/wp-content/uploads/2026/04/GettyImages-2235383828.jpg?resize=1200,800",
+   "image_ok": true,
+   "image_size": [
+    1200,
+    800
+   ]
   }
  ]
 }

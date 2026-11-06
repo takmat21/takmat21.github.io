@@ -34,7 +34,12 @@
    "image": "https://d.techtimes.com/en/full/477437/singapore-justice-rights-gender.jpg",
    "title": "Multi-agent AI flaw is information loss, not agent quality; NUS system fixes it with code",
    "org": "研究：シンガポール国立大学（NUS）の研究チーム／報道：TechTimes",
-   "published": "2026-10-30"
+   "published": "2026-10-30",
+   "image_ok": true,
+   "image_size": [
+    1024,
+    683
+   ]
   }
  ],
  "top": true

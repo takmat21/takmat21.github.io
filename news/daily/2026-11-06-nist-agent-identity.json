@@ -25,10 +25,15 @@
    "source": "NIST",
    "url": "https://www.nist.gov/blogs/cybersecurity-insights/design-tenets-agent-identity-management-systems",
    "note": "元記事",
-   "image": "",
    "title": "Design Tenets for Agent Identity Management Systems",
    "org": "NIST（Harold Booth、Bill Fisher、Ryan Galluzzo、Tom Clancy）",
-   "published": "2026-10-27"
+   "published": "2026-10-27",
+   "image": "https://www.nist.gov/themes/custom/nist_www/img/homepage/nist_mark.png",
+   "image_ok": false,
+   "image_size": [
+    2048,
+    1152
+   ]
   }
  ]
 }

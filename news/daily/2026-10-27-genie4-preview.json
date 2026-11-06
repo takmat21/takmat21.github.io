@@ -25,7 +25,12 @@
    "source": "Google DeepMind",
    "url": "https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/",
    "note": "元記事",
-   "image": ""
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
   }
  ]
 }

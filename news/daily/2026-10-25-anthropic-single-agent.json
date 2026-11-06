@@ -43,7 +43,12 @@
    "note": "元記事",
    "image": "https://the-decoder.com/wp-content/uploads/2026/10/claude_claude_baby_logos.png",
    "title": "Anthropic says one AI agent beats many subagents now that models can handle complexity alone",
-   "org": "発言：Anthropic 応用AIチーム／報道：The Decoder"
+   "org": "発言：Anthropic 応用AIチーム／報道：The Decoder",
+   "image_ok": true,
+   "image_size": [
+    1376,
+    768
+   ]
   }
  ],
  "top": true

@@ -25,10 +25,15 @@
    "source": "TechNode",
    "url": "https://technode.com/2026/11/02/meituan-launches-longcat-2-5-multimodal-ai-model-for-extended-coding-tasks/",
    "note": "元記事",
-   "image": "",
    "title": "Meituan launches LongCat-2.5 multimodal AI model for extended coding tasks",
    "org": "発表：Meituan（美団）／報道：TechNode（TechNode Feed名義、元は中国語メディアIT Homeの報道）",
-   "published": "2026-11-02"
+   "published": "2026-11-02",
+   "image": "https://i0.wp.com/technode.com/wp-content/uploads/2026/11/feed-20261102-cn-371978.png?fit=2350%2C1000&ssl=1",
+   "image_ok": false,
+   "image_size": [
+    2350,
+    1000
+   ]
   }
  ]
 }

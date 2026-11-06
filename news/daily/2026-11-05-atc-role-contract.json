@@ -32,10 +32,15 @@
    "source": "arXiv",
    "url": "https://arxiv.org/abs/2611.04321",
    "note": "元記事",
-   "image": "",
    "title": "ATC: Agent Trajectory Control for Role-Contract Enforcement in Black-Box Multi-Agent Systems",
    "org": "Maisha Maliha（オクラホマ大学）、Vishal Pramanik、Sumit Kumar Jha（フロリダ大学）",
-   "published": "2026-11-03（arXiv投稿 v1）"
+   "published": "2026-11-03（arXiv投稿 v1）",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
   }
  ]
 }

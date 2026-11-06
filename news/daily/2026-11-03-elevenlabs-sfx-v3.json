@@ -28,7 +28,12 @@
    "published": "2026-10-29",
    "url": "https://elevenlabs.io/blog/sound-effects-v3",
    "note": "元記事",
-   "image": "https://eleven-public-cdn.elevenlabs.io/payloadcms/4i9xsghce45-SFX-v3_-Thumbnail--1-.webp"
+   "image": "https://eleven-public-cdn.elevenlabs.io/payloadcms/4i9xsghce45-SFX-v3_-Thumbnail--1-.webp",
+   "image_ok": true,
+   "image_size": [
+    1912,
+    1075
+   ]
   }
  ]
 }

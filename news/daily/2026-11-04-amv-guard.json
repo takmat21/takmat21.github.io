@@ -31,10 +31,15 @@
    "source": "arXiv",
    "url": "https://arxiv.org/abs/2610.31446",
    "note": "元記事",
-   "image": "",
    "title": "When Is a Memory Safe Enough to Act On? Action-Conditioned Verification for Long-Lived Agents",
    "org": "Yiqi Wang、Yifei Wang、Jiaqi Zhang、Zhangkai Wu、Yiqun Duan、Taotao Cai、Mingkai Zheng（南クイーンズランド大学、南方科技大学、江蘇大学、シドニー大学、Uploading Inc.）",
-   "published": "2026-10-22（arXiv投稿 v1）"
+   "published": "2026-10-22（arXiv投稿 v1）",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
   }
  ]
 }

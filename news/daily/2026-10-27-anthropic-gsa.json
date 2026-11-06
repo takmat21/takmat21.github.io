@@ -23,7 +23,12 @@
    "source": "Anthropic",
    "url": "https://www.anthropic.com/news/expanding-partnership-gsa",
    "note": "元記事",
-   "image": "https://www-cdn.anthropic.com/images/4zrzovbb/website/4e3bfa972a8ec391977288fa36de3da1ecd78232-1920x1080.webp"
+   "image": "https://www-cdn.anthropic.com/images/4zrzovbb/website/4e3bfa972a8ec391977288fa36de3da1ecd78232-1920x1080.webp",
+   "image_ok": true,
+   "image_size": [
+    1920,
+    1080
+   ]
   },
   {
    "source": "GSA（米政府調達庁）",

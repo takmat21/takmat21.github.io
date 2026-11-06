@@ -25,7 +25,12 @@
    "source": "Android Headlines",
    "url": "https://www.androidheadlines.com/2026/10/opera-webai-local-browser-ai-launch.html",
    "note": "元記事(Opera公式ページは未取得)",
-   "image": ""
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
   }
  ]
 }

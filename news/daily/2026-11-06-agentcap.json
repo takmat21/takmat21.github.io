@@ -31,10 +31,15 @@
    "source": "arXiv",
    "url": "https://arxiv.org/abs/2611.00729",
    "note": "元記事",
-   "image": "",
    "title": "AgentCap: Capability-Based Runtime Authorization for Secure LLM Agent Execution",
    "org": "Aravinda Kashyap Kabbinamakki Suresh、Peng Gao（バージニア工科大学）",
-   "published": "2026-10-31（arXiv投稿 v1）"
+   "published": "2026-10-31（arXiv投稿 v1）",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
   },
   {
    "source": "ZAZOU Lab",

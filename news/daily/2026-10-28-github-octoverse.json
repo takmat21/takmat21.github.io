@@ -23,7 +23,12 @@
    "source": "GitHub",
    "url": "https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/",
    "note": "元記事",
-   "image": "https://github.blog/wp-content/uploads/2026/10/Octoverse2026_BlogHeader_2.jpg"
+   "image": "https://github.blog/wp-content/uploads/2026/10/Octoverse2026_BlogHeader_2.jpg",
+   "image_ok": true,
+   "image_size": [
+    1920,
+    1080
+   ]
   },
   {
    "source": "Blog du Modérateur",

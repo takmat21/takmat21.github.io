@@ -25,10 +25,15 @@
    "source": "Dexerto",
    "url": "https://www.dexerto.com/food/starbucks-wants-to-use-ai-to-personalize-drive-thru-menus-for-every-customer-3423386/",
    "note": "元記事",
-   "image": "",
    "title": "Starbucks wants to use AI to personalize drive-thru menus for every customer",
    "org": "発表：Starbucks（ブライアン・ニコル最高経営責任者、決算説明会）／報道：Dexerto（Dylan Horetski記者）",
-   "published": "2026-10-30（報道）／発言は2026-10-29"
+   "published": "2026-10-30（報道）／発言は2026-10-29",
+   "image": "https://www.dexerto.com/cdn-image/wp-content/uploads/2024/09/27/Starbucks-store.jpg",
+   "image_ok": true,
+   "image_size": [
+    1600,
+    900
+   ]
   }
  ]
 }

@@ -25,10 +25,15 @@
    "source": "Anthropic",
    "url": "https://www.anthropic.com/research/provable-inference",
    "note": "元記事",
-   "image": "",
    "title": "Progress on provable inference for large language models",
    "org": "発表：Anthropic Frontier Red Team（Roy Rinberg、Alex Allainほか。EPFL、MITなどと共同）",
-   "published": "2026-11-02"
+   "published": "2026-11-02",
+   "image": "https://www-cdn.anthropic.com/images/4zrzovbb/website/2eba335a28661a8253187053fa36add230af728b-2000x1125.jpg",
+   "image_ok": true,
+   "image_size": [
+    2000,
+    1125
+   ]
   },
   {
    "source": "TechCrunch",

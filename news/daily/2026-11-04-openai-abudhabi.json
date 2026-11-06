@@ -25,10 +25,15 @@
    "source": "Semafor",
    "url": "https://www.semafor.com/article/11/02/2026/openais-sam-altman-courts-abu-dhabi-ahead-of-ipo",
    "note": "元記事",
-   "image": "",
    "title": "OpenAI's Sam Altman courts Abu Dhabi ahead of IPO",
    "org": "関係企業・団体：OpenAI、ADNOC、アブダビ政府、Mubadala（公式発表は未確認）／報道：Semafor（Kelsey Warner記者）",
-   "published": "2026-11-02"
+   "published": "2026-11-02",
+   "image": "https://img.semafor.com/c269bb91ed04e250cd0b7ab0b31ddce8b862bfcb-1362x762.jpg?rect=0,24,1362,715&w=1200&h=630&q=75&auto=format",
+   "image_ok": true,
+   "image_size": [
+    1200,
+    630
+   ]
   }
  ]
 }

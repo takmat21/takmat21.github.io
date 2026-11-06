@@ -25,10 +25,15 @@
    "source": "METR",
    "url": "https://metr.org/blog/2026-10-22-red-teaming-openai-agent-monitoring/",
    "note": "元記事",
-   "image": "",
    "title": "Red-Teaming OpenAI's Internal Agent Monitoring Systems",
    "org": "METR（Redwood Researchと共同）",
-   "published": "2026-10-22"
+   "published": "2026-10-22",
+   "image": "https://metr.org/assets/images/logo/og-image-logo.png",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
   }
  ]
 }
