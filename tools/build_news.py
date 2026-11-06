@@ -74,6 +74,7 @@ def head(title, desc, url, depth, og='https://takmat21.github.io/assets/ogp.png'
 .week-list li{{border-bottom:1px solid var(--line);padding:10px 0}}
 .news-hero{{display:block;margin:24px 0 0}}
 .news-hero img{{display:block;width:100%;height:auto;border-radius:8px}}
+@media (max-width:640px){{.tabs{{-webkit-mask-image:linear-gradient(to right,transparent 0,#000 28px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(to right,transparent 0,#000 28px,#000 calc(100% - 28px),transparent);padding-left:12px;padding-right:12px}}}}
 </style></head>
 <body><div class="wrap">
 <nav class="tabs" aria-label="ページの切り替え"><a href="{up}#about">プロフィール</a><a href="{up}#samples">仕事一覧</a><a href="{up}#system">仕組み</a><a href="{up}#security">安全の決まり</a><a href="{up}#paper">論文</a><a href="{up}#video">動画</a><a href="{up}#prompts">プロンプト</a><a href="{up}news/" class="on" aria-current="page">朝刊</a></nav>
@@ -101,7 +102,9 @@ def body(d):
     return '\n'.join(out)
 
 NOTE = '<p class="note" style="margin-top:28px">要約は元の記事を読んだうえで統括AI（先輩）が書いたもので、内容の正確さは各出典をご確認ください。記事の権利は各出典に帰属します。</p>'
-FOOT = '<footer>© 松村貴士 / ZAZOU株式会社</footer>\n</div></body></html>\n'
+TAB_JS = ('<script>(function(){var n=document.querySelector(".tabs"),a=n&&n.querySelector(".on");'
+          'if(a&&n.scrollWidth>n.clientWidth)n.scrollLeft=Math.max(0,a.offsetLeft-n.offsetLeft-16);})();</script>')
+FOOT = '<footer>© 松村貴士 / ZAZOU株式会社</footer>\n</div>' + TAB_JS + '</body></html>\n'
 
 
 def check_photo(url):
