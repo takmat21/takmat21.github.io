@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>自社の仕組み｜【サイト名】（ZAZOU株式会社）</title>
+<meta name="description" content="ZAZOU 自身の業務で毎日動かしているAIの仕組み6つを、どこをAIに任せ、どこを人が確かめているかの図つきで紹介します。">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&amp;family=Shippori+Mincho:wght@700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&amp;family=Shippori+Mincho:wght@700&amp;family=JetBrains+Mono:wght@400&amp;display=swap"></noscript>
+<link rel="stylesheet" href="../ai.css?v=1">
+</head>
+<body>
+<a class="skip" href="#main">本文へ</a>
+<header class="hd"><div class="c">
+  <a class="brand" href="../"><b>【サイト名】</b><small>ZAZOU株式会社 ／ AIで業務を仕組み化する</small></a>
+  <nav class="gnav" aria-label="サイト内"><ul><li><a href="../service/">サービス</a></li><li><a href="../price/">料金</a></li><li><a href="../cases/" aria-current="page">自社の仕組み</a></li><li><a href="../company/">会社概要</a></li><li><a href="../faq/">よくある質問</a></li><li><a href="../contact/">お問い合わせ</a></li></ul></nav>
+  <a class="hd-cta" href="../contact/">無料で相談する</a>
+</div></header>
+<main id="main">
+<div class="ph"><div class="c">
+  <p class="crumb"><a href="../">トップ</a> ／ 自社の仕組み</p>
+  <h1>自社の仕組み</h1>
+  <p>他社の事例ではなく、ZAZOU 自身の業務で毎日動かしている仕組みです。どこをAIに任せ、どこを人が確かめているかを、1つずつ図で紹介します。</p>
+</div></div>
+<section class="sec"><div class="c">
+  <ul class="toc"><li><a href="#jobs">01 求人サイトの見回りと提案文の下書き</a></li><li><a href="#mail">02 メールの確認と、やることの一覧</a></li><li><a href="#csv">03 送り状のCSV作成</a></li><li><a href="#minutes">04 議事録づくり</a></li><li><a href="#drawing">05 図面見積アプリ（試作）</a></li><li><a href="#news">06 朝刊とAIニュース番組</a></li></ul>
+</div></section>
+<section class="sec paper" style="padding-top:64px"><div class="c">
+  <div class="sec-h"><span class="en">Structure</span><h2>全体の体制</h2><p>統括役のAIが担当ごとのAIに仕事を割り振り、結果を確かめます。送信・公開・削除など、元に戻せない操作は人が行います。</p></div>
+  <div class="two">
+    <div class="org" role="img" aria-label="人（代表）が統括AIに指示し、統括AIが担当ごとのAIに仕事を割り振る体制の図">
+      <div class="node hu">人（代表）<small>方針・承認・送信</small></div>
+      <div class="arrow">指示 ↓　↑ 報告・確認待ち</div>
+      <div class="node lead">統括AI<small>仕事の割り振り・結果の確認</small></div>
+      <div class="arrow">↓ 指示　↑ 報告</div>
+      <div class="row"><div class="node">提案書・見本</div><div class="node">プロフィール管理</div><div class="node">在庫・出荷</div><div class="node">給与計算・デザイン</div><div class="node">補助金</div><div class="node">調べ物</div></div>
+    </div>
+    <figure class="fig"><img src="../../assets/img/office.webp" width="1600" height="963" alt="担当AIの状態とチームのやり取りを表示するオフィス画面" loading="lazy" decoding="async"><figcaption>オフィス画面：どの担当AIが何をしていて、どこで人の確認待ちになっているかを一目で見られます。</figcaption></figure>
+  </div>
+  <ol class="rules" style="margin-top:48px">
+    <li><b>事実の表だけを使う</b><span>経歴や実績は、決めた表にあることだけを書きます。ないことは書きません。</span></li>
+    <li><b>一次情報で確かめる</b><span>制度や会社のことは、その場で開いた公式ページで確かめます。</span></li>
+    <li><b>別のAIで二重チェック</b><span>外に出す文面は、作ったAIとは別のAIが事実・誤字・抜けを点検します。</span></li>
+    <li><b>元に戻せない操作は人が押す</b><span>送信・応募・公開・削除は人が行います。AIは下書きと記録までです。</span></li>
+  </ol>
+</div></section>
+<section class="sec"><div class="c">
+<article class="case" id="jobs">
+  <div class="case-h"><span class="no">01</span><h2>求人サイトの見回りと提案文の下書き</h2></div>
+  <p class="prose" style="margin:0">複数の求人サイトを決めた時刻に自動で見回り、条件に合う案件を選んで表に記録し、提案文の下書きまでAIが作ります。送るかどうかは人が決めます。</p>
+  <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who auto">自動</span><br>平日2回・土日1回、決めた時刻に起動</li><li><span class="who ai">AI</span><br>求人サイトを見回り、新しい案件を集める</li><li><span class="who ai">AI</span><br>条件に合うかを選び、表に記録</li><li><span class="who ai">AI</span><br>提案文を下書きし、別のAIが点検</li><li><span class="who hu">人</span><br>送るかどうかを決め、人が送る</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めた時刻に動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が確かめて決める</span></p></div>
+  <dl><dt>使っている道具</dt><dd>Claude、Googleスプレッドシート</dd><dt>人が確かめる所</dt><dd>提案文を送るかどうか、送る前の最終確認</dd><dt>分野</dt><dd>自社の営業（仕事探し）</dd></dl>
+  
+</article>
+<article class="case" id="mail">
+  <div class="case-h"><span class="no">02</span><h2>メールの確認と、やることの一覧</h2></div>
+  <p class="prose" style="margin:0">平日の決めた時刻にAIがメールを読み、返事やお客様への対応が要るものを分けて一覧にし、タスクとして登録します。返信するかどうか、何を書くかは人が決めます。</p>
+  <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who auto">自動</span><br>平日の決めた時刻に起動</li><li><span class="who ai">AI</span><br>新しいメールを読む</li><li><span class="who ai">AI</span><br>対応が要るものを分け、一覧とタスクに登録</li><li><span class="who hu">人</span><br>一覧を見て、返事や対応を決める</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めた時刻に動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が確かめて決める</span></p></div>
+  <dl><dt>使っている道具</dt><dd>Claude、Gmail、Googleスプレッドシート、GAS</dd><dt>人が確かめる所</dt><dd>返信の内容と送信</dd><dt>分野</dt><dd>毎日のメール対応</dd></dl>
+  
+</article>
+<article class="case" id="csv">
+  <div class="case-h"><span class="no">03</span><h2>送り状のCSV作成</h2></div>
+  <p class="prose" style="margin:0">注文データを、ヤマト運輸のB2クラウドに取り込める形式（CSV・Shift_JIS）に変換します。変換ツールは公開していて、だれでも試せます。</p>
+  <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who auto">自動</span><br>注文データを取り出す</li><li><span class="who auto">自動</span><br>GASでB2クラウドの形式に変換</li><li><span class="who auto">自動</span><br>送り状のCSV（Shift_JIS）を作成</li><li><span class="who hu">人</span><br>中身を確かめて、送り状の発行に使う</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めた時刻に動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が確かめて決める</span></p></div>
+  <dl><dt>使っている道具</dt><dd>Googleスプレッドシート、GAS、HTML・JavaScript（公開ツール）</dd><dt>人が確かめる所</dt><dd>CSVの中身と、送り状の発行</dd><dt>分野</dt><dd>出荷の準備</dd></dl>
+  <p><a href="https://takmat21.github.io/yamato-b2-/">公開している変換ツールを見る →</a></p>
+</article>
+<article class="case" id="minutes">
+  <div class="case-h"><span class="no">04</span><h2>議事録づくり</h2></div>
+  <p class="prose" style="margin:0">打ち合わせの録音を文字起こしし、AIで議事録にまとめます。決まったこととやることを、あとから探せる形で残します。</p>
+  <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who hu">人</span><br>打ち合わせを録音する</li><li><span class="who ai">AI</span><br>録音を文字起こし</li><li><span class="who ai">AI</span><br>議事録にまとめる（決まったこと・やること）</li><li><span class="who hu">人</span><br>内容を確かめて残す</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めた時刻に動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が確かめて決める</span></p></div>
+  <dl><dt>使っている道具</dt><dd>Claude、ChatGPT、Googleドキュメント</dd><dt>人が確かめる所</dt><dd>議事録の中身</dd><dt>分野</dt><dd>打ち合わせの記録</dd></dl>
+  
+</article>
+<article class="case" id="drawing">
+  <div class="case-h"><span class="no">05</span><h2>図面見積アプリ（試作）</h2></div>
+  <p class="prose" style="margin:0">金属加工の図面PDFをAIが読み、寸法・材質・数量などを拾い出して、見積書の下書きを作ります。読み違えやすい所は「要確認」として出し、人が確かめて金額を決めます。自作の見本図面10枚では、90項目中89項目が合いました（自作の見本での結果で、実際の図面での結果ではありません）。</p>
+  <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who hu">人</span><br>図面のPDFを受け取る</li><li><span class="who ai">AI</span><br>寸法・材質・数量などを拾い出す</li><li><span class="who ai">AI</span><br>読み違えやすい所に「要確認」を付ける</li><li><span class="who ai">AI</span><br>見積書の下書きを作る</li><li><span class="who hu">人</span><br>確かめて金額を決める</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めた時刻に動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が確かめて決める</span></p></div>
+  <dl><dt>使っている道具</dt><dd>Claude、Excel</dd><dt>人が確かめる所</dt><dd>拾い出した値の確認と、見積の金額</dd><dt>分野</dt><dd>製造業向けの試作</dd></dl>
+  <p><a href="../../samples/drawing-estimate/">図面見積アプリの紹介ページ →</a></p>
+</article>
+<article class="case" id="news">
+  <div class="case-h"><span class="no">06</span><h2>朝刊とAIニュース番組</h2></div>
+  <p class="prose" style="margin:0">統括役のAIが毎朝AIの最新の動きを読み、自社の運用と照らし合わせて「朝刊」としてWebに出しています。YouTubeのAIニュース番組（SOCRA）も、台本・音声・画像・字幕までAIが作り、公開まで自動で行っています。費用はAIの利用料のほかにかかっていません。</p>
+  <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who auto">自動</span><br>毎朝6時台に起動</li><li><span class="who ai">AI</span><br>記事を選んで読み、日本語で要約</li><li><span class="who ai">AI</span><br>自社の運用と比べ「取り入れるか」を書く</li><li><span class="who auto">自動</span><br>ページを自動で作り、公開</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めた時刻に動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が確かめて決める</span></p></div>
+  <dl><dt>使っている道具</dt><dd>Claude、GitHub Pages、YouTube</dd><dt>人が確かめる所</dt><dd>どの番組・記事を出すかの方針、公開の許可（最初に人が決める）</dd><dt>分野</dt><dd>情報収集と発信</dd></dl>
+  <p><a href="../../news/">朝刊を見る →</a></p>
+</article>
+
+</div></section>
+
+<section class="cta-band"><div class="c">
+  <h2>まず1つの業務から、一緒に整理しましょう。</h2>
+  <p>相談は無料です。手間がかかっている業務の名前だけでも大丈夫です。相談だけで終わっても費用はかかりません。</p>
+  <div class="btns"><a class="btn" href="mailto:matsumura.takashi@zazoucorp.com?subject=%E3%81%94%E7%9B%B8%E8%AB%87%EF%BC%88AI%E3%81%AE%E4%BB%95%E7%B5%84%E3%81%BF%E5%8C%96%EF%BC%89&amp;body=%E4%BC%9A%E7%A4%BE%E5%90%8D%EF%BC%9A%0A%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0A%E9%9B%BB%E8%A9%B1%E7%95%AA%E5%8F%B7%EF%BC%88%E4%BB%BB%E6%84%8F%EF%BC%89%EF%BC%9A%0A%0A%E6%89%8B%E9%96%93%E3%81%8C%E3%81%8B%E3%81%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E6%A5%AD%E5%8B%99%EF%BC%9A%0A%0A%E4%BB%8A%E3%81%AE%E3%82%84%E3%82%8A%E6%96%B9%EF%BC%88%E3%81%8B%E3%82%93%E3%81%9F%E3%82%93%E3%81%A7%E5%A4%A7%E4%B8%88%E5%A4%AB%E3%81%A7%E3%81%99%EF%BC%89%EF%BC%9A%0A%0A">メールで相談する（無料）</a><a class="btn sub" href="tel:090-6373-7945">電話で相談する</a></div>
+  <p class="btn-note">電話：<a class="tel" href="tel:090-6373-7945">090-6373-7945</a>（ZAZOU株式会社　松村）</p>
+</div></section>
+</main>
+<footer class="ft"><div class="c">
+  <div><b class="n">【サイト名】</b><p>ZAZOU株式会社<br>滋賀県蒲生郡日野町<br>代表取締役 松村貴士</p></div>
+  <div><h3>MENU</h3><ul><li><a href="../">トップ</a></li><li><a href="../service/">サービス</a></li><li><a href="../price/">料金</a></li><li><a href="../cases/">自社の仕組み</a></li><li><a href="../company/">会社概要</a></li><li><a href="../faq/">よくある質問</a></li><li><a href="../contact/">お問い合わせ</a></li></ul></div>
+  <div><h3>CONTACT</h3><ul><li><a href="mailto:matsumura.takashi@zazoucorp.com">matsumura.takashi@zazoucorp.com</a></li><li><a href="tel:090-6373-7945">090-6373-7945</a></li><li><a href="../../">代表のポートフォリオ（ZAZOU Lab）</a></li></ul></div>
+  <p class="copy">© 2026 ZAZOU株式会社</p>
+</div></footer>
+</body></html>
