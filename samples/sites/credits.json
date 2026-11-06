@@ -44,28 +44,6 @@
   "image": "https://images.unsplash.com/photo-1635341083777-5f93a755e916"
  },
  {
-  "site": "portfolio",
-  "file": "assets/img/photo/profile.webp",
-  "use": "トップ・プロフィール（イメージ写真の仮置き）",
-  "source": "Unsplash",
-  "license": "Unsplash License（無料・商用可・クレジット不要）",
-  "license_url": "https://unsplash.com/license",
-  "page": "https://unsplash.com/photos/macbook-pro-near-white-open-book-FHnnjk1Yj7Y",
-  "photographer": "Nick Morrison",
-  "image": "https://images.unsplash.com/photo-1501504905252-473c47e087f8"
- },
- {
-  "site": "portfolio",
-  "file": "assets/img/photo/drawing.webp",
-  "use": "図面見積の紹介（イメージ写真の仮置き）",
-  "source": "Unsplash",
-  "license": "Unsplash License（無料・商用可・クレジット不要）",
-  "license_url": "https://unsplash.com/license",
-  "page": "https://unsplash.com/photos/two-metal-mechanical-parts-on-engineering-blueprints-SRqJ3eli-4I",
-  "photographer": "EnCata PD",
-  "image": "https://images.unsplash.com/photo-1769147339214-076740872485"
- },
- {
   "site": "pet",
   "file": "samples/sites/pet/img/food.webp",
   "use": "フード：ごはんを食べる犬",
@@ -306,17 +284,6 @@
   "page": "https://unsplash.com/photos/a-wheelchair-with-wheels-is-shown-against-a-white-background-Bmzi7LDUFVY",
   "photographer": "Junseong Lee",
   "image": "https://images.unsplash.com/photo-1642680936843-b09109c69104"
- },
- {
-  "site": "portfolio",
-  "file": "assets/img/photo/works.webp",
-  "use": "トップ・仕事一覧（イメージ写真の仮置き）",
-  "source": "Unsplash",
-  "license": "Unsplash License（無料・商用可・クレジット不要）",
-  "license_url": "https://unsplash.com/license",
-  "page": "https://unsplash.com/photos/desk-with-calculator-charts-and-pencil-dspKrJYp644",
-  "photographer": "Cht Gsml",
-  "image": "https://images.unsplash.com/photo-1762427354397-854a52e0ded7"
  },
  {
   "site": "metal",
