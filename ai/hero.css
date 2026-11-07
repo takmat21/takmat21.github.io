@@ -58,7 +58,7 @@
 @media (max-width:960px){
   .xh{padding:48px 0 64px}
   .xh-sub{grid-template-columns:1fr;gap:32px;margin-top:28px}
-  .xh-stage{grid-template-columns:1fr;padding:24px 16px 56px;margin-top:40px;gap:28px}
+  .xh-stage{grid-template-columns:minmax(0,1fr);padding:24px 16px 56px;margin-top:40px;gap:28px}
 }
 @media (max-width:520px){
   .xh-facts{grid-template-columns:repeat(3,1fr);gap:8px 12px}
