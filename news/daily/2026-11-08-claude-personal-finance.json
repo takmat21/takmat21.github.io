@@ -1,0 +1,37 @@
+{
+ "date": "2026-11-08",
+ "title": "Anthropic、Claudeに家計の支出を整理・分析する「Personal Finance」を追加、読み取り専用で米国のβ版",
+ "category": "ニュース",
+ "lead": "AI企業のAnthropicが11月5日までに、チャットAI「Claude」で銀行やカードの利用状況を確かめられる新機能「Personal Finance」を発表したと、TechCrunchが報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "利用者はPlaid経由で銀行やクレジットカードの口座をつなぎ、お金に関する質問をClaudeにできます。Claudeは口座全体の支出を合計し、家賃・光熱費、飲食、買い物などの分類で見せ、続けて「今月は多いか」といった質問にも答えます。二重の請求、思いがけない手数料、少しずつ上がる請求の発見や、APRなどの用語の説明、過去1年に払った利息の計算もできるとしています。",
+    "Anthropicによると、アクセスは読み取り専用で、資金の移動や運用はできません。Claudeが見られるのは銀行名、口座名と種類、口座番号の下4桁、残高、利用限度額、最大2年分の取引履歴で、この画面での会話はモデルの学習に使われず、広告や特定商品のおすすめもないと説明しています。今週から、米国のPro、Max、Ultraプランの利用者にβ版として順次提供されます。内容は提供会社自身の説明に基づく報道で、精度を示す数字は記事にありません。"
+   ]
+  },
+  {
+   "heading": "小規模事業者にとって",
+   "paragraphs": [
+    "個人事業の経費や固定費も、AIに分類させて「増えている請求」を見つける使い方が広がりそうです。ただし今回は米国の個人向けなので、日本で似た道具を使う際は、読み取り専用か、学習に使われないかを先に確認すると安心です。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/05/claude-can-now-analyze-your-spending-with-its-new-personal-finance-tool/",
+   "note": "元記事",
+   "title": "Claude can now analyze your spending with its new Personal Finance tool",
+   "org": "発表：Anthropic／報道：TechCrunch（Aisha Malik記者）",
+   "published": "2026-11-05",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}

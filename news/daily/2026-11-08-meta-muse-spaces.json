@@ -1,0 +1,37 @@
+{
+ "date": "2026-11-08",
+ "title": "Meta、AIエージェント「Muse」と話題ごとに作業を進める「Spaces」を公開、予定表や計画表を会話から作成",
+ "category": "ニュース",
+ "lead": "米Metaが11月6日までに、同社のAIエージェント「Muse」に目的ごとの作業場「Spaces」を加えたと、TechCrunchが報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "Spacesは、Museの画面の横に並ぶ話題別の会話の場です。開くと、Museが利用者の目的に向けて作業を進めます。チャットで考えを伝えると、記録表、計画表、プロジェクトボードなどを作ってくれ、例として旅行の計画、家族の行事のレシピ集め、贈り物の管理、結婚式の準備、日曜大工の記録が挙げられています。",
+    "外部のアプリをつなぐと、頼まなくても背景で更新され、コンサートの新しい日程や価格の変化、貯金の進み具合が反映されるとMetaは説明しています。ザッカーバーグ氏はXで、自分でも試してバーベキューのゲームや行事の管理表、家の制御画面を作ったと投稿しました。10月の決算説明会では、Museの利用者は米国とカナダで1,000万人に達したと述べています。前日にはMuse Voiceも発表され、米国の利用者は動画通話でエージェントと話せます。数字はMeta側の発言に基づく報道です。"
+   ]
+  },
+  {
+   "heading": "小規模事業者にとって",
+   "paragraphs": [
+    "予約、仕入れ、イベント準備のような「続けて見る必要がある作業」を、話題ごとの作業場にまとめる使い方が広がっています。まずは1つの題材だけで試し、AIが外部アプリのどの情報を見るかを確認してから広げると安心です。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/06/meta-introduces-spaces-a-new-way-to-collaborate-with-your-muse-agent/",
+   "note": "元記事",
+   "title": "Meta introduces Spaces, a new way to collaborate with your Muse agent",
+   "org": "発表：Meta／報道：TechCrunch（Lucas Ropek記者）",
+   "published": "2026-11-06",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}
