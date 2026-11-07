@@ -11,7 +11,8 @@
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var seed = 20261107;
   function rnd() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
-  var MAX = 360;                 // 育つマスの上限
+  var MAX = 1100;                // ここまで育ったら、ふわっと消して1マスから育ち直す（くり返し）
+  var fade = 1, fading = false;  // 育ち直すときの薄くなり具合
   var cells = new Map();         // "x,y" → {x,y,born,tone}
   var tips = [{ x: 0, y: 0, dx: 1, dy: 0 }];
   var t0 = 0, clock = 0, radius = 1, view = 1;
@@ -25,18 +26,38 @@
     return true;
   }
   add(0, 0);
+  // Zモード（.xh-art に data-mode="z"）：Zの字（5×5マス）が1つ描かれ、描き終わると隣にZが生まれて増えていく
+  var mode = (cv.parentNode && cv.parentNode.getAttribute("data-mode")) || "grow";
+  var ZSHAPE = [[-2,-2],[-1,-2],[0,-2],[1,-2],[2,-2],[1,-1],[0,0],[-1,1],[-2,2],[-1,2],[0,2],[1,2],[2,2]]; // 書き順
+  var ZGAP = 6, zs = [], zUsed = new Set();
+  var ZN = [[1,0],[-1,0],[0,1],[0,-1],[1,1],[-1,-1],[1,-1],[-1,1]];
+  function zStart(gx, gy) { var k = gx + "," + gy; if (zUsed.has(k)) return false; zUsed.add(k); zs.push({ gx: gx, gy: gy, i: 0 }); return true; }
+  function growZ() {
+    if (cells.size >= MAX) { fading = true; return; }
+    var next = [];
+    zs.forEach(function (z) {
+      var p = ZSHAPE[z.i++]; add(z.gx * ZGAP + p[0], z.gy * ZGAP + p[1]);
+      if (z.i < ZSHAPE.length) { next.push(z); return; }
+      var want = zs.length > 14 ? 0 : 1 + (rnd() < 0.55 ? 1 : 0), tries = 0;   // 描き終わったZから、1〜2個のZが生まれる
+      while (want > 0 && tries++ < 8) { var d = ZN[Math.floor(rnd() * (tries < 4 ? 4 : 8))]; if (zStart(z.gx + d[0], z.gy + d[1])) want--; }
+    });
+    zs = next.concat(zs.filter(function (z) { return z.i === 0; }).filter(function (z) { return next.indexOf(z) < 0; }));
+    if (!zs.length) { var g = Array.from(zUsed).map(function (k) { return k.split(",").map(Number); }); for (var t = 0; t < 40 && !zs.length; t++) { var b = g[Math.floor(rnd() * g.length)], d2 = ZN[Math.floor(rnd() * 8)]; zStart(b[0] + d2[0], b[1] + d2[1]); } }
+  }
+  if (mode === "z") { cells.clear(); radius = 1; zStart(0, 0); }
+  function restart() { cells.clear(); tips = [{ x: 0, y: 0, dx: DIRS[Math.floor(rnd() * 4)][0], dy: DIRS[Math.floor(rnd() * 4)][1] }]; radius = 1; view = size / 9; if (mode === "z") { zs = []; zUsed.clear(); zStart(0, 0); } else add(0, 0); }
   // 1回の成長：先端を進める・ときどき枝分かれ・中心のほうを少し太らせる
-  function grow() {
-    if (cells.size >= MAX) return;
+  var grow = function () {
+    if (cells.size >= MAX) { fading = true; return; }
     var next = [];
     tips.forEach(function (t) {
       if (rnd() < 0.16) { var turn = rnd() < 0.5 ? 1 : -1; var nd = [-t.dy * turn, t.dx * turn]; t.dx = nd[0]; t.dy = nd[1]; }
       var nx = t.x + t.dx, ny = t.y + t.dy;
       if (add(nx, ny) || rnd() < 0.5) { t.x = nx; t.y = ny; }
       next.push(t);
-      if (rnd() < 0.09 && tips.length + next.length < 12) { var b = DIRS[Math.floor(rnd() * 4)]; next.push({ x: t.x, y: t.y, dx: b[0], dy: b[1] }); }
+      if (rnd() < 0.09 && tips.length + next.length < 10 + Math.floor(cells.size / 80)) { var b = DIRS[Math.floor(rnd() * 4)]; next.push({ x: t.x, y: t.y, dx: b[0], dy: b[1] }); }
     });
-    tips = next.filter(function (t) { return Math.hypot(t.x, t.y) < 16 || rnd() < 0.4; });
+    tips = next.filter(function (t) { return Math.hypot(t.x, t.y) < 16 + cells.size / 45 || rnd() < 0.4; });
     if (!tips.length) tips.push({ x: 0, y: 0, dx: DIRS[Math.floor(rnd() * 4)][0], dy: DIRS[Math.floor(rnd() * 4)][1] });
     var arr = Array.from(cells.values());
     if (rnd() < 0.45) { // 中心のほうを少しだけ太らせる
@@ -56,7 +77,7 @@
   function resize() { var r = cv.getBoundingClientRect(); dpr = Math.min(2, window.devicePixelRatio || 1); cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr); size = r.width; }
   function rr(x, y, w, k) { ctx.beginPath(); ctx.moveTo(x + k, y); ctx.arcTo(x + w, y, x + w, y + w, k); ctx.arcTo(x + w, y + w, x, y + w, k); ctx.arcTo(x, y + w, x, y, k); ctx.arcTo(x, y, x + w, y, k); ctx.closePath(); }
   function draw() {
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, size, size);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, size, size); ctx.globalAlpha = fade;
     var want = size / (2 * radius + 3);           // 育つほど視点を引く
     view += (Math.min(size / 9, want) - view) * (reduce ? 1 : 0.025);
     var cell = view, s = cell * 0.8, cx = size / 2, cy = size / 2;
@@ -84,15 +105,17 @@
     var dt = Math.min(0.1, (now - last) / 1000); last = now;
     if (visible && !(hero && hero.classList.contains("paused"))) {
       clock += dt; acc += dt;
-      var step = cells.size < 30 ? 0.42 : cells.size < 120 ? 0.2 : 0.12;      // 最初はゆっくり、育つと少し速く
-      while (acc > step) { grow(); acc -= step; }
+      var step = cells.size < 6 ? 0.42 : cells.size < 120 ? 0.13 : cells.size < 400 ? 0.08 : 0.06;      // 最初の2秒ほどはゆっくり、そのあと速く
+      while (acc > step) { (mode === "z" ? growZ : grow)(); acc -= step; }
+      if (fading) { fade -= dt / 1.6; if (fade <= 0) { fade = 0; fading = false; restart(); } }
+      else if (fade < 1) fade = Math.min(1, fade + dt / 0.8);
       draw();
     }
     requestAnimationFrame(loop);
   }
   resize();
   window.addEventListener("resize", function () { resize(); draw(); });
-  if (reduce) { for (var i = 0; i < 600; i++) { grow(); clock += 0.12; } clock += 5; draw(); }
+  if (reduce) { for (var i = 0; i < 600 && cells.size < 360; i++) { (mode === "z" ? growZ : grow)(); clock += 0.12; } clock += 5; draw(); }
   else requestAnimationFrame(loop);
   if ("IntersectionObserver" in window) new IntersectionObserver(function (es) { visible = es[0].isIntersecting; last = 0; }).observe(cv);
   document.addEventListener("visibilitychange", function () { var was = running; running = !document.hidden; last = 0; if (running && !was && !reduce) requestAnimationFrame(loop); });
