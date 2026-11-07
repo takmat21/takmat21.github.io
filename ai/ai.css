@@ -265,3 +265,19 @@ a.card:hover .go::after{transform:translateX(4px)}
   a.card:hover,.fit a:hover,.plan:hover{transform:none}
   ::view-transition-old(root),::view-transition-new(root){animation:none}
 }
+
+/* 料金表：スマホでは1行を縦に積む（プラン名を見出しに、内容・目安・料金を下に）。表の形は変えない */
+@media (max-width:640px){
+  .tw:has(.tbl.price){border:0;background:none;overflow:visible}
+  .tbl.price{min-width:0;background:none}
+  .tbl.price thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .tbl.price tbody,.tbl.price tr{display:block}
+  .tbl.price tr{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;margin-bottom:12px}
+  .tbl.price tbody th,.tbl.price td{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px;width:auto;padding:8px 0;border-bottom:1px solid var(--line)}
+  .tbl.price tbody th{display:block;font-size:17px;color:var(--ink);padding:0 0 10px}
+  .tbl.price tr:last-child td{border-bottom:1px solid var(--line)}
+  .tbl.price tr td:last-child{border-bottom:0}
+  .tbl.price td::before{content:attr(data-label);flex:0 0 7.5em;margin-right:8px;font-size:12.5px;color:var(--faint);font-weight:400}
+  .tbl.price td.n{font-size:18px}
+  .tbl.price caption{display:block;border:0;padding:4px 2px 0}
+}
