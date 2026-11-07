@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>EC出荷作業の自動化：送り状のデータ入力を2時間から10分へ｜ZAZOU Lab</title>
+<meta name="description" content="自社EC（Amazon・Yahoo!ショッピング・BASE）の出荷作業を自動化した実績。1日約20件の送り状のデータ入力を2時間から10分に。注文ファイルのダウンロードはAIのブラウザ拡張、変換は自作ツール、発行は人。">
+<meta property="og:title" content="EC出荷作業の自動化：送り状のデータ入力を2時間から10分へ｜ZAZOU Lab">
+<meta property="og:description" content="自社ECの送り状のデータ入力（1日約20件）を、2時間から10分に。変換ツールは無料で公開中。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://takmat21.github.io/samples/shipping/">
+<meta property="og:image" content="https://takmat21.github.io/assets/ogp.png">
+<link rel="canonical" href="https://takmat21.github.io/samples/shipping/">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* 縦に並ぶスライド（16:9）。1枚に1つの主張。白地＋緑1色、数字は等幅 */
+:root{
+  --bg:#f3f3f0;--slide:#ffffff;--ink:#1a1a1a;--sub:#4f4f4f;--faint:#6f6f6f;--line:#e4e4df;--soft:#f6f6f3;
+  --accent:#1f6f5c;--accent-soft:#e8f3ef;--warn:#b3412c;--warn-soft:#fbece8;
+  --sans:"Noto Sans JP","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f0f0f;--slide:#181818;--ink:#e8e8e6;--sub:#a8a8a4;--faint:#8c8c88;--line:#2c2c2a;--soft:#1f1f1e;--accent:#6fcfb0;--accent-soft:#17302a;--warn:#ff9b84;--warn-soft:#3a1f19;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f0f0f;--slide:#181818;--ink:#e8e8e6;--sub:#a8a8a4;--faint:#8c8c88;--line:#2c2c2a;--soft:#1f1f1e;--accent:#6fcfb0;--accent-soft:#17302a;--warn:#ff9b84;--warn-soft:#3a1f19;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.75;letter-spacing:.02em;-webkit-font-smoothing:antialiased}
+.deck{max-width:1080px;margin:0 auto;padding-block:32px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:28px}
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 16px;font-size:13px;color:var(--sub)}
+.top a{color:var(--accent)}
+.slide{position:relative;background:var(--slide);border:1px solid var(--line);border-radius:10px;padding:clamp(24px,5vw,56px);min-width:0;display:flex;flex-direction:column;gap:20px}
+@media (min-width:900px){.slide{aspect-ratio:16/9}}
+.no{position:absolute;right:clamp(16px,3vw,28px);bottom:clamp(12px,2.4vw,22px);font-family:var(--mono);font-size:12px;color:var(--faint)}
+.kick{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;margin:0}
+h1,h2{margin:0;line-height:1.35;text-wrap:balance;word-break:auto-phrase}
+h1{font-size:clamp(28px,4.6vw,48px);font-weight:700}
+h2{font-size:clamp(22px,3.2vw,32px);font-weight:700}
+p{margin:0}
+.lead{color:var(--sub);max-width:40em}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* 1 表紙 */
+.cover{justify-content:space-between}
+.cover .big{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 18px;font-weight:700}
+.cover .big .from{font-size:clamp(32px,6vw,64px);color:var(--faint);text-decoration:line-through;text-decoration-thickness:2px}
+.cover .big .arrow{font-size:clamp(24px,4vw,40px);color:var(--faint)}
+.cover .big .to{font-size:clamp(48px,10vw,112px);color:var(--accent);line-height:1}
+.meta{display:flex;flex-wrap:wrap;gap:6px 20px;font-size:13.5px;color:var(--sub)}
+.meta span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-right:8px;vertical-align:2px}
+
+/* 2 課題 */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+@media (max-width:760px){.two{grid-template-columns:1fr}}
+.shops{display:grid;gap:10px}
+.shop{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--soft);font-size:14.5px}
+.shop b{font-family:var(--mono);font-size:12px;color:var(--sub);border:1px solid var(--line);border-radius:4px;padding:0 6px;background:var(--slide)}
+.pain{display:grid;gap:12px}
+.pain li{list-style:none;padding-left:18px;position:relative}
+.pain li::before{content:"";position:absolute;left:0;top:.75em;width:8px;height:1px;background:var(--warn)}
+.pain{margin:0;padding:0}
+
+/* 3 流れ */
+.flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;counter-reset:f}
+.flow li{position:relative;border:1px solid var(--line);border-radius:10px;padding:16px;background:var(--slide);display:flex;flex-direction:column;gap:8px;min-width:0}
+.flow li:not(:last-child)::after{content:"→";position:absolute;right:-22px;top:50%;transform:translateY(-50%);color:var(--faint)}
+.who{align-self:flex-start;font-size:11.5px;font-weight:700;border:1px solid currentColor;border-radius:999px;padding:0 9px}
+.who.ai{color:var(--accent)}.who.tool{color:var(--sub)}.who.hu{color:var(--ink)}
+.flow b{font-size:15.5px;line-height:1.5}
+.flow span.d{font-size:13.5px;color:var(--sub);line-height:1.65}
+@media (max-width:760px){.flow{grid-template-columns:1fr;gap:22px}.flow li:not(:last-child)::after{content:"↓";right:auto;left:20px;top:auto;bottom:-22px;transform:none}}
+
+/* 4 変換の見本 */
+.conv{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1.25fr);gap:16px;align-items:center}
+.conv .mid{font-size:13px;color:var(--sub);text-align:center}
+.conv .mid b{display:block;font-size:22px;color:var(--accent)}
+@media (max-width:760px){.conv{grid-template-columns:1fr}.conv .mid b{transform:rotate(90deg)}}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;font-size:12.5px;width:100%;white-space:nowrap}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left}
+th{background:var(--soft);color:var(--sub);font-weight:500}
+tr:last-child td{border-bottom:0}
+td.flag{background:var(--warn-soft);color:var(--warn)}
+.cap{font-size:12.5px;color:var(--faint)}
+.tag{display:inline-block;font-size:11.5px;border:1px solid var(--line);border-radius:999px;padding:0 9px;color:var(--sub);margin-right:6px}
+
+/* 5 結果 */
+.bars{display:grid;gap:18px;max-width:760px}
+.bar{display:grid;grid-template-columns:112px minmax(0,1fr) 72px;gap:14px;align-items:center}
+.bar .t{font-size:14px;color:var(--sub)}
+.bar .track{height:28px;background:var(--soft);border-radius:4px;overflow:hidden}
+.bar .fill{height:100%;background:var(--faint);border-radius:4px}
+.bar.after .fill{background:var(--accent)}
+.bar .v{font-family:var(--mono);font-weight:600;font-size:18px;text-align:right}
+.bar.after .v{color:var(--accent)}
+.scale{display:grid;grid-template-columns:112px minmax(0,1fr) 72px;gap:14px;font-family:var(--mono);font-size:11px;color:var(--faint)}
+@media (max-width:520px){.bar,.scale{grid-template-columns:minmax(0,1fr) 64px;gap:6px 10px}.bar .t{grid-column:1 / -1}.scale>span:first-child{display:none}}
+.scale div{display:flex;justify-content:space-between}
+.stat{display:flex;flex-wrap:wrap;gap:12px 40px}
+.stat div{border-left:2px solid var(--accent);padding-left:14px}
+.stat b{display:block;font-size:28px;font-family:var(--mono);font-variant-numeric:tabular-nums;line-height:1.2}
+.stat span{font-size:13px;color:var(--sub)}
+
+/* 6 工夫 */
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:860px){.feats{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.feats{grid-template-columns:1fr}}
+.feat{border-top:1px solid var(--line);padding-top:12px;display:grid;gap:4px}
+.feat b{font-size:15px}
+.feat span{font-size:13.5px;color:var(--sub);line-height:1.65}
+
+/* 7 公開 */
+.url{font-family:var(--mono);font-size:clamp(15px,2.4vw,20px);word-break:break-all}
+.close{background:var(--accent-soft);border-color:transparent}
+.contact{display:grid;gap:4px;font-size:15px}
+.contact .mono{font-family:var(--mono)}
+@media (prefers-reduced-motion:no-preference){.slide{animation:in .6s ease both}@keyframes in{from{opacity:.4;transform:translateY(8px)}to{opacity:1;transform:none}}}
+</style>
+</head>
+<body>
+
+<main class="deck">
+  <div class="top"><span><a href="../../#samples">ZAZOU Lab</a> ／ 仕事一覧 ／ 実績</span><span>ZAZOU株式会社　業務改善エンジニア 松村貴士</span></div>
+
+  <section class="slide cover" aria-labelledby="s1">
+    <p class="kick">Case study ／ EC shipping</p>
+    <div style="display:grid;gap:18px">
+      <h1 id="s1">EC出荷作業の自動化<br>送り状のデータ入力を、1日2時間から10分へ。</h1>
+      <div class="big" aria-label="1日約20件の送り状のデータ入力が2時間から10分に"><span class="from num">2時間</span><span class="arrow">→</span><span class="to num">10分</span></div>
+    </div>
+    <div class="meta"><span>自社のEC（Amazon・Yahoo!ショッピング・BASE）</span><span>2024年に最初に自動化した業務</span><span>1日 約20件</span></div>
+    <span class="no">01 / 07</span>
+  </section>
+
+  <section class="slide" aria-labelledby="s2">
+    <p class="kick">Before</p>
+    <h2 id="s2">3つの店舗の注文を、毎日手で送り状に写していた</h2>
+    <div class="two">
+      <div class="shops">
+        <div class="shop"><b>.txt</b>Amazon の注文ファイル</div>
+        <div class="shop"><b>.csv</b>Yahoo!ショッピング の注文ファイル</div>
+        <div class="shop"><b>.csv</b>BASE の注文ファイル</div>
+        <p class="cap">店舗ごとに、ファイルの形も列の並びも違う。</p>
+      </div>
+      <ul class="pain">
+        <li>1日約20件の注文を、ヤマト運輸の「B2クラウド」の送り状へ1件ずつ入力していた。</li>
+        <li>この入力だけで、毎日 約2時間 かかっていた。</li>
+        <li>住所の書き方や電話番号の形がそろっておらず、写すたびに直しが入る。</li>
+        <li>同じ相手への注文が複数あると、まとめるかどうかを毎回目で判断していた。</li>
+      </ul>
+    </div>
+    <span class="no">02 / 07</span>
+  </section>
+
+  <section class="slide" aria-labelledby="s3">
+    <p class="kick">How it works</p>
+    <h2 id="s3">ダウンロードはAI、変換は自作ツール、発行は人</h2>
+    <ol class="flow">
+      <li><span class="who ai">AI</span><b>注文ファイルを集める</b><span class="d">AIのブラウザ拡張が、各店舗の管理画面から注文ファイルをダウンロード。</span></li>
+      <li><span class="who tool">ツール</span><b>B2クラウドの形式に変換</b><span class="d">自作の変換ツールが店舗を自動で見分け、取り込み用CSVに変換。</span></li>
+      <li><span class="who tool">ツール</span><b>CSVを自動で保存</b><span class="d">変換後のCSV（Shift-JIS）は自動で保存される。</span></li>
+      <li><span class="who hu">人</span><b>確かめて送り状を発行</b><span class="d">赤い印の所だけ確かめ、B2クラウドに取り込んで発行。</span></li>
+    </ol>
+    <p class="lead">変換はAIに任せず、決めたルールで動くツールにした。同じファイルなら毎回同じ結果になるので、確かめる所が少なくて済む。</p>
+    <span class="no">03 / 07</span>
+  </section>
+
+  <section class="slide" aria-labelledby="s4">
+    <p class="kick">Conversion</p>
+    <h2 id="s4">店舗ごとに違うファイルを、1つのCSVにそろえる</h2>
+    <div class="conv">
+      <div class="tw"><table aria-label="変換前の注文ファイルの見本">
+        <thead><tr><th>店舗</th><th>お届け先</th><th>電話</th><th>住所</th></tr></thead>
+        <tbody>
+          <tr><td>Amazon</td><td>見本 一郎</td><td class="num">+81 90-0000-0001</td><td>東京都〇〇区 1-2-3 　〇〇ハイツ 101</td></tr>
+          <tr><td>Yahoo!</td><td>見本 花子</td><td class="num">090-0000-0002</td><td>大阪府〇〇市 4-5-6</td></tr>
+          <tr><td>BASE</td><td>見本 一郎</td><td class="num">09000000001</td><td>東京都〇〇区1-2-3〇〇ハイツ101</td></tr>
+        </tbody>
+      </table></div>
+      <div class="mid"><b aria-hidden="true">→</b>変換</div>
+      <div class="tw"><table aria-label="変換後のB2クラウド取り込み用CSVの見本（一部の列）">
+        <thead><tr><th>送り状種類</th><th>お届け先電話番号</th><th>お届け先住所</th><th>お届け先名</th><th>品名１</th></tr></thead>
+        <tbody>
+          <tr><td>0</td><td class="num">090-0000-0001</td><td>東京都〇〇区1-2-3</td><td>見本 一郎</td><td>見本商品A×2</td></tr>
+          <tr><td>0</td><td class="num">090-0000-0002</td><td class="flag">大阪府〇〇市4-5-6</td><td>見本 花子</td><td>見本商品B</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <p class="cap"><span class="tag">見本（ダミーデータ）</span>名前・住所・電話番号はすべて架空です。実際の出力はB2クラウドの取り込み形式（95列）で、ここでは一部の列だけを示しています。赤い所は「確かめてください」の印。</p>
+    <span class="no">04 / 07</span>
+  </section>
+
+  <section class="slide" aria-labelledby="s5">
+    <p class="kick">Result</p>
+    <h2 id="s5">1日約20件の入力が、2時間から10分になった</h2>
+    <div class="bars" role="img" aria-label="作業時間の比較：前は120分、後は10分">
+      <div class="bar"><span class="t">前（手入力）</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="v">120分</span></div>
+      <div class="bar after"><span class="t">後（自動化）</span><div class="track"><div class="fill" style="width:8.33%"></div></div><span class="v">10分</span></div>
+      <div class="scale" aria-hidden="true"><span></span><div><span>0</span><span>30</span><span>60</span><span>90</span><span>120</span></div><span>分</span></div>
+    </div>
+    <div class="stat">
+      <div><b>約1時間50分</b><span>1日に減った時間</span></div>
+      <div><b>約12分の1</b><span>作業時間の割合</span></div>
+      <div><b>約20件</b><span>1日の送り状の数</span></div>
+    </div>
+    <span class="no">05 / 07</span>
+  </section>
+
+  <section class="slide" aria-labelledby="s6">
+    <p class="kick">Details</p>
+    <h2 id="s6">毎日使って困った所を、1つずつツールに入れた</h2>
+    <div class="feats">
+      <div class="feat"><b>店舗を自動で見分ける</b><span>3店舗のファイルをまとめて入れても、種類を自動で判別する。</span></div>
+      <div class="feat"><b>同じ相手は1枚にまとめる</b><span>同じ宛先の注文を1つの送り状に統合できる。</span></div>
+      <div class="feat"><b>住所と電話番号を整える</b><span>住所のスペースを詰め、電話番号の +81 を 0 に直す。</span></div>
+      <div class="feat"><b>確かめる所に赤い印</b><span>住所や品名が文字数を超える所、到着日が最短日の所などを赤で示す。</span></div>
+      <div class="feat"><b>二重の発送を防ぐ</b><span>一度出した注文を記録し、次に同じ注文が来たら警告する。</span></div>
+      <div class="feat"><b>注文データを外に出さない</b><span>読み込んだ注文はブラウザの中だけで処理し、サーバーには送らない。</span></div>
+    </div>
+    <span class="no">06 / 07</span>
+  </section>
+
+  <section class="slide close" aria-labelledby="s7">
+    <p class="kick">Try it</p>
+    <h2 id="s7">変換ツールは無料で公開しています</h2>
+    <p class="lead">Amazon・Yahoo!ショッピング・BASEの注文ファイルを、ブラウザだけでB2クラウド用のCSVに変換できます。インストールやマクロは要りません。</p>
+    <p class="url"><a href="https://takmat21.github.io/yamato-b2-/">https://takmat21.github.io/yamato-b2-/</a></p>
+    <div class="contact">
+      <p>同じ形で、御社の出荷作業も仕組みにできます。ご相談はこちらへ。</p>
+      <p class="mono">matsumura.takashi@zazoucorp.com</p>
+      <p class="mono">090-6373-7945</p>
+    </div>
+    <span class="no">07 / 07</span>
+  </section>
+</main>
+
+</body></html>
