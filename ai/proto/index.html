@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>試作：トップ（組み上がる絵）｜ZAZOU AI Works</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;500&family=JetBrains+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../ai.css?v=7">
+<style>
+/* 試作（太郎）：Anthropic の記事ページの組み立て方（左に大きな見出し、右に組み上がる絵、下はスクロールで段階が灯る）を参考に。絵・文・色は自分たちのもの */
+:root{--serif-d:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif}
+body{background:var(--bg)}
+.dots{background-image:radial-gradient(rgb(20 20 19 / .16) 1px,transparent 1.2px);background-size:36px 36px;background-position:18px 18px}
+
+.ph-hero{position:relative;min-height:min(86vh,820px);display:flex;align-items:center}
+.ph-hero .c{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;width:100%;padding-top:48px;padding-bottom:64px}
+.ph-kicker{font-size:13px;color:var(--faint);letter-spacing:.04em;margin:0 0 28px}
+.ph-hero h1{font-family:var(--serif-d);font-weight:400;font-size:clamp(40px,5.2vw,68px);line-height:1.18;letter-spacing:-.01em;color:var(--ink)}
+.ph-hero h1 em{font-style:normal;color:var(--accent)}
+.ph-lead{margin:28px 0 0;font-size:17.5px;line-height:1.75;color:var(--sub);max-width:28em}
+.ph-art{position:relative;aspect-ratio:1/1;width:100%;max-width:600px;justify-self:end}
+.ph-art canvas{width:100%;height:100%;display:block}
+.ph-facts{display:flex;flex-wrap:wrap;gap:28px;margin-top:40px;padding-top:24px;border-top:1px solid var(--line);max-width:30em}
+.ph-facts b{display:block;font-size:24px;font-weight:700;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.ph-facts b small{font-size:13px;font-weight:400;color:var(--sub);margin-left:2px}
+.ph-facts span{font-size:12.5px;color:var(--faint)}
+@media (max-width:860px){
+  .ph-hero{min-height:0}
+  .ph-hero .c{grid-template-columns:1fr;gap:8px;padding-top:24px}
+  .ph-art{order:-1;max-width:360px;justify-self:center;margin:0 auto -12px}
+}
+
+/* 本文＋右に段階（スクロールで灯る） */
+.story{padding:clamp(48px,8vw,120px) 0 clamp(80px,10vw,140px)}
+.story .c{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:clamp(40px,8vw,120px);align-items:start}
+.story-body{max-width:36em}
+.story-body p{font-size:18px;line-height:1.95;color:var(--ink);margin:0 0 1.4em}
+.story-body h2{font-family:var(--serif-d);font-weight:400;font-size:clamp(26px,3vw,36px);line-height:1.35;margin:72px 0 24px}
+.story-body .em{color:var(--accent)}
+.stage{margin:0 0 72vh}
+.stage:last-child{margin-bottom:0}
+.rail{position:sticky;top:120px}
+.rail ol{list-style:none;margin:0;padding:0;display:grid;gap:30px}
+.rail li{position:relative;padding-left:22px;color:var(--faint);transition:color .6s cubic-bezier(.2,.7,.2,1)}
+.rail li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:2px;background:var(--line);transition:background .6s,transform .6s}
+.rail .t{display:block;font-size:12px;letter-spacing:.06em;margin-bottom:4px}
+.rail b{display:block;font-size:17px;font-weight:700;margin-bottom:4px}
+.rail span{display:block;font-size:14.5px;line-height:1.7}
+.rail li.on{color:var(--ink)}
+.rail li.on span{color:var(--sub)}
+.rail li.on::before{background:var(--accent);transform:scale(1.25)}
+.rail li.done::before{background:var(--accent)}
+.rail li.done{color:var(--sub)}
+@media (max-width:860px){
+  .story .c{grid-template-columns:1fr}
+  .rail{position:static;order:-1}
+  .rail li{color:var(--ink)}.rail li::before{background:var(--accent)}
+  .stage{margin-bottom:56px}
+}
+@media (prefers-reduced-motion:reduce){.rail li{transition:none}}
+.proto-note{position:fixed;left:16px;bottom:16px;z-index:70;font-size:12px;background:var(--ink);color:#fff;border-radius:999px;padding:6px 14px}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へ</a>
+<header class="hd"><div class="c">
+  <a class="brand" href="../"><b>ZAZOU AI Works</b><small>ZAZOU株式会社 ／ AIで業務を仕組み化する</small></a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="gnav"><span class="bars" aria-hidden="true"></span>メニュー</button>
+  <nav class="gnav" id="gnav" aria-label="サイト内"><ul><li><a href="../service/">サービス</a></li><li><a href="../price/">料金</a></li><li><a href="../cases/">自社の仕組み</a></li><li><a href="../company/">会社概要</a></li><li><a href="../faq/">よくある質問</a></li><li><a href="../contact/">お問い合わせ</a></li></ul></nav>
+  <a class="hd-cta" href="../contact/">無料で相談する</a>
+</div></header>
+
+<main id="main">
+<section class="ph-hero dots" aria-labelledby="h1">
+  <div class="c">
+    <div>
+      <p class="ph-kicker">ZAZOU AI Works　·　滋賀県日野町</p>
+      <h1 id="h1">AIを、毎日の<br><em>仕事の流れ</em>に<br>組み込む。</h1>
+      <p class="ph-lead">自社の業務でAIの仕組みを毎日動かしている設計者が、御社の業務を1つずつ仕組みにします。手順の書き出しから、AIの設定、人が確かめる所まで。</p>
+      <div class="btns"><a class="btn" href="../contact/">無料で相談する</a><a class="btn sub" href="../price/">料金を見る</a></div>
+      <div class="ph-facts">
+        <div><b>50,000<small>円〜</small></b><span>単発（税別）</span></div>
+        <div><b>10,000<small>円〜/月</small></b><span>保守（税別）</span></div>
+        <div><b>60<small>分</small></b><span>無料相談</span></div>
+      </div>
+    </div>
+    <div class="ph-art" aria-hidden="true"><canvas id="tiles"></canvas></div>
+  </div>
+</section>
+
+<section class="story" aria-label="進め方">
+  <div class="c">
+    <div class="story-body">
+      <div class="stage" data-step="0">
+        <p>AIは、試しに使うだけなら誰でもできます。むずかしいのは、毎日の仕事の流れの中に入れて、<span class="em">人が確かめる所まで含めて</span>回し続けることです。</p>
+        <p>ZAZOU は、メールの確認、案件の管理、送り状のCSV作成、議事録づくりを、自社の業務で毎日AIに任せています。そのやり方を、そのまま御社の業務に持ち込みます。</p>
+      </div>
+      <div class="stage" data-step="1">
+        <h2>まず、業務を1つ決める</h2>
+        <p>無料相談で、いちばん手間がかかっている業務を選びます。全部を一度に変えるのではなく、1つから始めます。</p>
+      </div>
+      <div class="stage" data-step="2">
+        <h2>手順を、だれが見ても分かる形に</h2>
+        <p>今のやり方を書き出します。どこをAIに任せ、どこを人が確かめるかも、この時点で決めておきます。</p>
+      </div>
+      <div class="stage" data-step="3">
+        <h2>AIを組み込む</h2>
+        <p>指示文・スプレッドシート・GASで仕組みにします。AIの答えは別のAIが点検し、送信・公開・お金・契約は、いつも人が決めます。</p>
+      </div>
+      <div class="stage" data-step="4">
+        <h2>使いながら直す</h2>
+        <p>現場で使い、合わない所を直します。手順書と設定は御社に残り、御社の人が使い続けられる形でお渡しします。</p>
+        <div class="btns"><a class="btn" href="../contact/">無料で相談する</a><a class="btn sub" href="../service/">サービスをくわしく</a></div>
+      </div>
+    </div>
+    <aside class="rail" aria-label="進め方の段階">
+      <ol>
+        <li data-step="1"><span class="t">STEP 01</span><b>業務を1つ決める</b><span>いちばん手間がかかっている業務を選ぶ</span></li>
+        <li data-step="2"><span class="t">STEP 02</span><b>手順を書き出す</b><span>任せる所と、人が確かめる所を決める</span></li>
+        <li data-step="3"><span class="t">STEP 03</span><b>AIを組み込む</b><span>指示文・スプレッドシート・GASで</span></li>
+        <li data-step="4"><span class="t">STEP 04</span><b>使いながら直す</b><span>手順書と設定は御社に残る</span></li>
+      </ol>
+    </aside>
+  </div>
+</section>
+</main>
+
+<footer class="ft"><div class="c">
+  <div><b class="n">ZAZOU AI Works</b>ZAZOU株式会社<br>滋賀県蒲生郡日野町</div>
+  <div><h3>MENU</h3><ul><li><a href="../">トップ（今の版）</a></li><li><a href="../price/">料金</a></li><li><a href="../contact/">お問い合わせ</a></li></ul></div>
+  <div><h3>CONTACT</h3><ul><li><a href="mailto:matsumura.takashi@zazoucorp.com">matsumura.takashi@zazoucorp.com</a></li><li><a href="tel:090-6373-7945">090-6373-7945</a></li></ul></div>
+  <p class="copy">© 2026 ZAZOU株式会社</p>
+</div></footer>
+<p class="proto-note">試作（トップの別案）</p>
+
+<script>
+/* 育つ絵（太郎）：1つのマス（最初の1業務）から、仕組みが枝を伸ばすように育つ。
+   伸びる先は「光の粒 → 点の集まり → 薄い緑 → 濃い緑」と変わり、育つにつれて視点が引いていく。
+   Anthropic の記事ページの「育つ」動きの考え方を参考に、形・色・描き方は自分で作ったもの。
+   動きを減らす設定では、育ち終わった形を最初から描く。画面の外・タブ非表示では止める。 */
+(function () {
+  "use strict";
+  var cv = document.getElementById("tiles"); if (!cv) return;
+  var ctx = cv.getContext("2d");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var seed = 20261107;
+  function rnd() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
+  var MAX = 360;                 // 育つマスの上限
+  var cells = new Map();         // "x,y" → {x,y,born,tone}
+  var tips = [{ x: 0, y: 0, dx: 1, dy: 0 }];
+  var t0 = 0, clock = 0, radius = 1, view = 1;
+  var DIRS = [[1,0],[0,1],[-1,0],[0,-1]];
+  function key(x, y) { return x + "," + y; }
+  function add(x, y) {
+    var k = key(x, y); if (cells.has(k)) return false;
+    var d = Math.hypot(x, y);
+    cells.set(k, { x: x, y: y, born: clock, ph: rnd() * 6.28, tone: d });
+    radius = Math.max(radius, d + 1);
+    return true;
+  }
+  add(0, 0);
+  // 1回の成長：先端を進める・ときどき枝分かれ・中心のほうを少し太らせる
+  function grow() {
+    if (cells.size >= MAX) return;
+    var next = [];
+    tips.forEach(function (t) {
+      if (rnd() < 0.16) { var turn = rnd() < 0.5 ? 1 : -1; var nd = [-t.dy * turn, t.dx * turn]; t.dx = nd[0]; t.dy = nd[1]; }
+      var nx = t.x + t.dx, ny = t.y + t.dy;
+      if (add(nx, ny) || rnd() < 0.5) { t.x = nx; t.y = ny; }
+      next.push(t);
+      if (rnd() < 0.09 && tips.length + next.length < 12) { var b = DIRS[Math.floor(rnd() * 4)]; next.push({ x: t.x, y: t.y, dx: b[0], dy: b[1] }); }
+    });
+    tips = next.filter(function (t) { return Math.hypot(t.x, t.y) < 16 || rnd() < 0.4; });
+    if (!tips.length) tips.push({ x: 0, y: 0, dx: DIRS[Math.floor(rnd() * 4)][0], dy: DIRS[Math.floor(rnd() * 4)][1] });
+    var arr = Array.from(cells.values());
+    if (rnd() < 0.45) { // 中心のほうを少しだけ太らせる
+      var c = arr[Math.floor(rnd() * arr.length)];
+      if (Math.hypot(c.x, c.y) < radius * 0.35) { var d2 = DIRS[Math.floor(rnd() * 4)]; add(c.x + d2[0], c.y + d2[1]); }
+    }
+  }
+  var TONES = [[29,122,90],[63,154,118],[127,195,164],[185,220,203]];
+  function tileColor(c, a) { // 中心ほど濃く、生まれて時間がたつほど濃く
+    var age = Math.min(1, Math.max(0, (clock - c.born - 0.9) / 1.4));
+    var far = Math.min(1, c.tone / (radius * 0.9));
+    var light = TONES[3], dark = TONES[Math.min(2, Math.floor(far * 3))];
+    var m = age * (1 - far * 0.35);
+    return "rgba(" + Math.round(light[0] + (dark[0] - light[0]) * m) + "," + Math.round(light[1] + (dark[1] - light[1]) * m) + "," + Math.round(light[2] + (dark[2] - light[2]) * m) + "," + a + ")";
+  }
+  var size = 0, dpr = 1;
+  function resize() { var r = cv.getBoundingClientRect(); dpr = Math.min(2, window.devicePixelRatio || 1); cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr); size = r.width; }
+  function rr(x, y, w, k) { ctx.beginPath(); ctx.moveTo(x + k, y); ctx.arcTo(x + w, y, x + w, y + w, k); ctx.arcTo(x + w, y + w, x, y + w, k); ctx.arcTo(x, y + w, x, y, k); ctx.arcTo(x, y, x + w, y, k); ctx.closePath(); }
+  function draw() {
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, size, size);
+    var want = size / (2 * radius + 3);           // 育つほど視点を引く
+    view += (Math.min(size / 9, want) - view) * (reduce ? 1 : 0.025);
+    var cell = view, s = cell * 0.8, cx = size / 2, cy = size / 2;
+    cells.forEach(function (c) {
+      var age = clock - c.born;
+      var x = cx + c.x * cell - s / 2, y = cy + c.y * cell - s / 2;
+      if (age < 0.45) {                              // 光の粒
+        var k = age / 0.45, L = s * (0.25 + 0.3 * k);
+        ctx.strokeStyle = tileColor(c, 0.9); ctx.lineWidth = Math.max(1, cell * 0.05); ctx.lineCap = "round";
+        for (var q = 0; q < 8; q++) { var an = c.ph + q * Math.PI / 4, l = q % 2 ? L * 0.6 : L; ctx.beginPath(); ctx.moveTo(x + s / 2 + Math.cos(an) * s * 0.06, y + s / 2 + Math.sin(an) * s * 0.06); ctx.lineTo(x + s / 2 + Math.cos(an) * l, y + s / 2 + Math.sin(an) * l); ctx.stroke(); }
+      } else if (age < 0.9) {                        // 点の集まり
+        ctx.fillStyle = tileColor(c, 0.85); var g = 5, u = s / g;
+        for (var i = 0; i < g; i++) for (var j = 0; j < g; j++) if ((i * 7 + j * 3 + Math.floor(c.ph * 10) + Math.floor(age * 20)) % 3) ctx.fillRect(x + i * u + u * 0.15, y + j * u + u * 0.15, u * 0.7, u * 0.7);
+      } else {                                       // マス
+        var a = Math.min(1, (age - 0.9) / 0.3);
+        var sh = reduce ? 0 : Math.sin(clock * 0.8 + c.ph) * 0.05;
+        ctx.fillStyle = tileColor(c, a * (0.95 + sh)); rr(x, y, s, s * 0.2); ctx.fill();
+      }
+    });
+  }
+  var last = 0, acc = 0, running = true, visible = true;
+  function loop(now) {
+    if (!running) return;
+    if (!last) last = now;
+    var dt = Math.min(0.1, (now - last) / 1000); last = now;
+    if (visible) {
+      clock += dt; acc += dt;
+      var step = cells.size < 30 ? 0.42 : cells.size < 120 ? 0.2 : 0.12;      // 最初はゆっくり、育つと少し速く
+      while (acc > step) { grow(); acc -= step; }
+      draw();
+    }
+    requestAnimationFrame(loop);
+  }
+  resize();
+  window.addEventListener("resize", function () { resize(); draw(); });
+  if (reduce) { for (var i = 0; i < 600; i++) { grow(); clock += 0.12; } clock += 5; draw(); }
+  else requestAnimationFrame(loop);
+  if ("IntersectionObserver" in window) new IntersectionObserver(function (es) { visible = es[0].isIntersecting; last = 0; }).observe(cv);
+  document.addEventListener("visibilitychange", function () { running = !document.hidden; last = 0; if (running && !reduce) requestAnimationFrame(loop); });
+
+  // スクロールの段階：本文の段落が画面の中ほどに来たら、右の段階を灯す
+  var rail = document.querySelectorAll(".rail li"), stages = document.querySelectorAll(".stage");
+  function setStep(n) { rail.forEach(function (li) { var k = +li.dataset.step; li.classList.toggle("on", k === n); li.classList.toggle("done", k < n); }); }
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) setStep(+e.target.dataset.step); }); }, { rootMargin: "-45% 0px -45% 0px" });
+    stages.forEach(function (s) { io.observe(s); });
+  }
+})();
+</script>
+<script src="../site.js?v=2" defer></script>
+</body>
+</html>
