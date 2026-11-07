@@ -229,8 +229,7 @@ a.card:hover .go::after{transform:translateX(4px)}
 
 /* 締めの相談帯：一段濃い生成りの大きな箱 */
 .cta-band{padding:clamp(48px,7vw,96px) 0;background:var(--bg)}
-.cta-band>.c{background:var(--paper);border-radius:calc(var(--r) * 2);padding-top:clamp(56px,8vw,104px);padding-bottom:clamp(56px,8vw,104px);padding-left:clamp(24px,6vw,88px);padding-right:clamp(24px,6vw,88px);max-width:calc(var(--maxw) - 2 * clamp(16px,4vw,40px));margin:0 clamp(16px,4vw,40px)}
-@media (min-width:1281px){.cta-band>.c{margin:0 auto}}
+.cta-band>.c{background:var(--paper);border-radius:calc(var(--r) * 2);padding-top:clamp(56px,8vw,104px);padding-bottom:clamp(56px,8vw,104px);padding-left:clamp(24px,6vw,88px);padding-right:clamp(24px,6vw,88px);width:calc(100% - 2 * clamp(16px,4vw,40px));max-width:calc(var(--maxw) - 2 * clamp(16px,4vw,40px));margin:0 auto}
 .cta-band h2{font-size:clamp(30px,4.8vw,58px);font-weight:700;letter-spacing:-.02em;line-height:1.18;max-width:16em}
 .cta-band p{color:var(--sub);margin-top:24px;max-width:40em;font-size:17px}
 .cta-band a.tel{color:var(--ink)}
