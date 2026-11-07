@@ -24,7 +24,8 @@
 .xh-facts{list-style:none;margin:44px 0 0;padding:20px 0 0;border-top:1px solid var(--night-line);display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:8px 40px}
 .xh-facts b{display:block;font-size:26px;line-height:1.2;color:#fff;letter-spacing:.01em}
 .xh-facts small{font-size:13px;font-weight:400;color:var(--night-sub);margin-left:2px}
-.xh-facts span{font-size:12.5px;color:var(--night-sub)}
+.xh-facts li>span{font-size:12.5px;color:var(--night-sub)}
+.xh-facts .cnt{font-variant-numeric:tabular-nums}
 
 /* 流れのパネル */
 .xh-panel{margin:0;background:linear-gradient(180deg,#141b19,#0f1513);border:1px solid var(--night-line);border-radius:10px;padding:18px 18px 16px;box-shadow:0 30px 80px -30px rgb(47 211 160 / .35),inset 0 1px 0 rgb(255 255 255 / .04)}
@@ -82,4 +83,33 @@
   .xb{flex:1 1 auto;justify-content:center}
   .xp-steps li{grid-template-columns:34px 1fr;gap:4px 10px}
   .xp-steps .st{grid-column:2}
+}
+
+/* ===== 動き（hero.js がある時だけ） ===== */
+.xh-cv{position:absolute;inset:0;z-index:-1;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent 0,transparent 42%,#000 62%);mask-image:linear-gradient(90deg,transparent 0,transparent 42%,#000 62%)}
+.xh-glow{position:absolute;left:0;top:0;width:600px;height:600px;border-radius:50%;background:radial-gradient(closest-side,rgb(47 211 160 / .13),transparent);pointer-events:none;z-index:-1;opacity:0;transition:opacity .5s;will-change:transform}
+.xh.glow-on .xh-glow{opacity:1}
+.xh-pause{position:absolute;right:clamp(16px,4vw,40px);top:20px;z-index:2;display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:0 12px;border-radius:999px;border:1px solid var(--night-line);background:rgb(11 15 14 / .6);color:var(--night-sub);font:12px var(--sans);cursor:pointer}
+.xh-pause:hover{color:#fff;border-color:var(--glow)}
+.xh-pause .i{width:10px;height:10px;border-left:3px solid currentColor;border-right:3px solid currentColor}
+.xh-pause[aria-pressed="true"] .i{border:0;width:0;height:0;border-left:9px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.xh-pause:focus-visible{outline:3px solid var(--glow);outline-offset:2px}
+.xh:not(.js-motion) .xh-pause{display:none}
+@media (prefers-reduced-motion:reduce){.xh-pause,.xh-glow{display:none}}
+
+/* パネルのくり返し：JSで .on を順に付ける */
+.xh.js-motion .xp-steps li{animation:none;opacity:.32;transition:opacity .45s,border-color .45s,background .45s}
+.xh.js-motion .xp-steps li.on{opacity:1;border-color:rgb(47 211 160 / .45);background:rgb(47 211 160 / .05)}
+.xh.js-motion .xp-steps li.on:last-child{border-color:rgb(255 176 120 / .5);background:rgb(255 176 120 / .05)}
+.xh.js-motion .xp-bar i{animation:none;width:100%;transform-origin:left;transform:scaleX(0);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.xh-panel.loop .xp-steps,.xh-panel.loop .xp-job{transition:opacity .35s,transform .35s}
+.xh-panel.swap .xp-steps,.xh-panel.swap .xp-job{opacity:0;transform:translateY(6px)}
+.xp-steps .who.t{background:rgb(255 255 255 / .08);color:#cfd8d5}
+
+/* ゆっくり動く光（スマホも。transformだけ） */
+.xh::after{content:"";position:absolute;z-index:-1;right:-120px;top:-80px;width:520px;height:520px;border-radius:50%;background:radial-gradient(closest-side,rgb(47 211 160 / .16),transparent);pointer-events:none}
+@media (prefers-reduced-motion:no-preference){
+  .xh.js-motion::after{animation:xh-drift 14s ease-in-out infinite alternate}
+  .xh.paused::after,.xh.offscreen::after{animation-play-state:paused}
+  @keyframes xh-drift{to{transform:translate3d(-180px,140px,0) scale(1.15)}}
 }

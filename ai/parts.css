@@ -34,3 +34,17 @@
 .org .arrow{font-family:var(--mono);font-size:12px;color:var(--night-sub)}
 .org .row{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
 .org .row .node{font-weight:400;font-size:13.5px;color:#dfe7e4;padding:8px 12px}
+
+/* 流れ図の動き（parts.js がある時だけ） */
+@media (prefers-reduced-motion:no-preference){
+  .flow-js .flow li{opacity:0;transform:translateY(10px)}
+  .flow-js .flow.lit li{opacity:1;transform:none;transition:opacity .5s calc(var(--i) * .22s),transform .5s calc(var(--i) * .22s) cubic-bezier(.2,.7,.2,1),box-shadow .6s calc(var(--i) * .22s + .3s)}
+  .flow-js .flow.lit li:has(.who.ai){box-shadow:0 8px 24px -14px rgb(20 121 95 / .55)}
+  .flow-js .flow li:not(:last-child)::after{border-top:0;height:1px;background:repeating-linear-gradient(90deg,#9fb3ad 0 4px,transparent 4px 8px);background-size:16px 1px}
+  .flow-js .flow.lit li:not(:last-child)::after{animation:fl-dash .8s linear calc(var(--i) * .22s + .4s) 4}
+  @keyframes fl-dash{to{background-position:16px 0}}
+  @media (max-width:820px){
+    .flow-js .flow li:not(:last-child)::after{width:1px;height:26px;border-left:0;background:repeating-linear-gradient(180deg,#9fb3ad 0 4px,transparent 4px 8px);background-size:1px 16px}
+    @keyframes fl-dash{to{background-position:0 16px}}
+  }
+}
