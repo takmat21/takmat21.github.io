@@ -281,3 +281,7 @@ a.card:hover .go::after{transform:translateX(4px)}
   .tbl.price td.n{font-size:18px}
   .tbl.price caption{display:block;border:0;padding:4px 2px 0}
 }
+/* SECURITY ACTION のマーク（アヤ）：ガイドラインどおり白い無地の上に置く。縦横比そのまま・高さ34px以上 */
+.sa-mark{display:inline-block;margin-top:16px;background:#fff;padding:8px;border-radius:6px;line-height:0}
+.sa-mark img{height:64px;width:auto;max-width:none}
+.sa-mark:focus-visible{outline:3px solid var(--glow);outline-offset:2px}
