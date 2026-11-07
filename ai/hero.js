@@ -40,6 +40,7 @@
     panel.classList.remove('swap'); 
     var lis=list.querySelectorAll('li');
     if(bar) bar.style.transform='scaleX(0)';
+    lis.forEach(function(li){li.classList.remove('on');});
     lis.forEach(function(li,i){
       timers.push(setTimeout(function(){li.classList.add('on'); if(bar) bar.style.transform='scaleX('+((i+1)/lis.length*0.92)+')';},400+i*650));
     });
@@ -52,54 +53,13 @@
   }
   if(list){ panel.classList.add('loop'); play(); }
 
-  /* 3. 背景：方眼の線をたどって光が流れる（PCだけ） */
-  var big=window.matchMedia('(min-width: 961px) and (pointer: fine)');
-  var cv=null, ctx=null, dots=[], W=0, H=0, G=48, dpr=1, raf=0;
-  function setup(){
-    if(!big.matches||cv) return;
-    cv=document.createElement('canvas'); cv.className='xh-cv'; cv.setAttribute('aria-hidden','true');
-    hero.insertBefore(cv,hero.firstChild.nextSibling); ctx=cv.getContext('2d');
-    size(); for(var i=0;i<16;i++) dots.push(mk());
-    loop();
-  }
-  function size(){ if(!cv)return; dpr=Math.min(2,window.devicePixelRatio||1); W=hero.clientWidth; H=hero.clientHeight; cv.width=W*dpr; cv.height=H*dpr; cv.style.width=W+'px'; cv.style.height=H+'px'; ctx.setTransform(dpr,0,0,dpr,0,0); }
-  function mk(){ var h=Math.random()<.5; return {x:Math.floor(Math.random()*W/G)*G,y:Math.floor(Math.random()*H*0.75/G)*G,dx:h?(Math.random()<.5?1:-1):0,dy:h?0:(Math.random()<.5?1:-1),v:.6+Math.random()*1.1,len:60+Math.random()*90,life:0,max:240+Math.random()*320}; }
-  function step(d){
-    d.x+=d.dx*d.v; d.y+=d.dy*d.v; d.life++;
-    if(Math.abs(d.x%G)<d.v&&Math.abs(d.y%G)<d.v&&Math.random()<.18){ var h=d.dx!==0; d.dx=h?0:(Math.random()<.5?1:-1); d.dy=h?(Math.random()<.5?1:-1):0; d.x=Math.round(d.x/G)*G; d.y=Math.round(d.y/G)*G; }
-    if(d.life>d.max||d.x<-G||d.x>W+G||d.y<-G||d.y>H*0.8) Object.assign(d,mk());
-  }
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    dots.forEach(function(d){
-      step(d);
-      var a=Math.min(1,d.life/40)*Math.min(1,(d.max-d.life)/60);
-      var tx=d.x-d.dx*d.len, ty=d.y-d.dy*d.len;
-      var g=ctx.createLinearGradient(tx,ty,d.x,d.y); g.addColorStop(0,'rgba(47,211,160,0)'); g.addColorStop(1,'rgba(47,211,160,'+(.55*a)+')');
-      ctx.strokeStyle=g; ctx.lineWidth=1.2; ctx.beginPath(); ctx.moveTo(tx+.5,ty+.5); ctx.lineTo(d.x+.5,d.y+.5); ctx.stroke();
-      ctx.fillStyle='rgba(166,245,220,'+(.9*a)+')'; ctx.beginPath(); ctx.arc(d.x+.5,d.y+.5,1.8,0,6.283); ctx.fill();
-    });
-  }
-  function loop(){ cancelAnimationFrame(raf); if(paused||!visible||document.hidden||!cv) return; draw(); raf=requestAnimationFrame(loop); }
-  setup();
-  big.addEventListener&&big.addEventListener('change',function(){ if(big.matches) setup(); else if(cv){cancelAnimationFrame(raf);cv.remove();cv=null;dots=[];} });
-  var rt; window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(size,150);});
-
-  /* 4. マウスに付いてくる光（PCだけ） */
-  var glow=hero.querySelector('.xh-glow'), gx=0, gy=0, tx=0, ty=0, graf=0;
-  if(glow&&big.matches){
-    hero.addEventListener('pointermove',function(e){var r=hero.getBoundingClientRect(); tx=e.clientX-r.left; ty=e.clientY-r.top; if(!graf) graf=requestAnimationFrame(follow); hero.classList.add('glow-on');});
-    hero.addEventListener('pointerleave',function(){hero.classList.remove('glow-on');});
-  }
-  function follow(){ gx+=(tx-gx)*.12; gy+=(ty-gy)*.12; glow.style.transform='translate3d('+(gx-300)+'px,'+(gy-300)+'px,0)'; graf=(Math.abs(tx-gx)+Math.abs(ty-gy)>.5)?requestAnimationFrame(follow):0; }
-
   /* 画面外・タブ非表示では止める */
-  if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ visible=es[0].isIntersecting; hero.classList.toggle('offscreen',!visible); loop(); }).observe(hero); }
-  document.addEventListener('visibilitychange',loop);
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ visible=es[0].isIntersecting; }).observe(hero); }
+  document.addEventListener('visibilitychange',function(){visible=!document.hidden;});
 
   /* 5. 動きを止めるボタン（WCAG 2.2.2） */
   if(btn){ btn.hidden=false; btn.addEventListener('click',function(){
     paused=!paused; btn.setAttribute('aria-pressed',paused); btn.querySelector('.t').textContent=paused?'動かす':'動きを止める';
-    hero.classList.toggle('paused',paused); if(!paused){loop();}
+    hero.classList.toggle('paused',paused);
   }); }
 })();
