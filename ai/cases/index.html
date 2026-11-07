@@ -39,7 +39,7 @@
   <p>他社の事例ではなく、ZAZOU 自身の業務で毎日動かしている仕組みです。どこをAIに任せ、どこを人が確かめているかを、1つずつ図で紹介します。</p>
 </div></div>
 <section class="sec"><div class="c">
-  <ul class="toc"><li><a href="#jobs">01 求人サイトの見回りと提案文の下書き</a></li><li><a href="#mail">02 メールの確認と、やることの一覧</a></li><li><a href="#csv">03 送り状のCSV作成</a></li><li><a href="#minutes">04 議事録づくり</a></li><li><a href="#drawing">05 図面見積アプリ（試作）</a></li><li><a href="#news">06 朝刊とAIニュース番組</a></li></ul>
+  <ul class="toc"><li><a href="#jobs">01 営業先探しと提案文の下書き</a></li><li><a href="#mail">02 メールの確認と、やることの一覧</a></li><li><a href="#csv">03 送り状のCSV作成</a></li><li><a href="#minutes">04 議事録づくり</a></li><li><a href="#drawing">05 図面見積アプリ（試作）</a></li><li><a href="#news">06 朝刊とAIニュース番組</a></li></ul>
 </div></section>
 <section class="sec paper" style="padding-top:64px"><div class="c">
   <div class="sec-h"><span class="en">Structure</span><h2>全体の体制</h2><p>統括役のAIが担当ごとのAIに仕事を割り振り、結果を確かめます。送信・公開・削除など、元に戻せない操作は人が行います。</p></div>
@@ -62,10 +62,10 @@
 </div></section>
 <section class="sec"><div class="c">
 <article class="case" id="jobs">
-  <div class="case-h"><span class="no">01</span><h2>求人サイトの見回りと提案文の下書き</h2></div>
-  <p class="prose" style="margin:0">複数の求人サイトを決めた時刻に自動で見回り、条件に合う案件を選んで表に記録し、提案文の下書きまでAIが作ります。送るかどうかは人が決めます。</p>
-  <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who auto">自動</span><br>平日2回・土日1回、決めた時刻に起動</li><li><span class="who ai">AI</span><br>求人サイトを見回り、新しい案件を集める</li><li><span class="who ai">AI</span><br>条件に合うかを選び、表に記録</li><li><span class="who ai">AI</span><br>提案文を下書きし、別のAIが点検</li><li><span class="who hu">人</span><br>送るかどうかを決め、人が送る</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めた時刻に動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が確かめて決める</span></p></div>
-  <dl><dt>使っている道具</dt><dd>Claude、Googleスプレッドシート</dd><dt>人が確かめる所</dt><dd>提案文を送るかどうか、送る前の最終確認</dd><dt>分野</dt><dd>自社の営業（仕事探し）</dd></dl>
+  <div class="case-h"><span class="no">01</span><h2>営業先探しと提案文の下書き</h2></div>
+  <p class="prose" style="margin:0">営業先になりそうな相手が集まる複数のサイトを、決めた時刻に自動で見回ります。自社に合う相手を選んで表に記録し、提案文の下書きまでAIが作ります。送るかどうかは人が決めます。</p>
+  <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who auto">自動</span><br>平日2回・土日1回、決めた時刻に起動</li><li><span class="who ai">AI</span><br>サイトを見回り、新しい営業先の候補を集める</li><li><span class="who ai">AI</span><br>自社に合う相手かを選び、表に記録</li><li><span class="who ai">AI</span><br>提案文を下書きし、別のAIが点検</li><li><span class="who hu">人</span><br>送るかどうかを決め、人が送る</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めた時刻に動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が確かめて決める</span></p></div>
+  <dl><dt>使っている道具</dt><dd>Claude、Googleスプレッドシート</dd><dt>人が確かめる所</dt><dd>提案文を送るかどうか、送る前の最終確認</dd><dt>分野</dt><dd>自社の営業</dd></dl>
   
 </article>
 <article class="case" id="mail">
