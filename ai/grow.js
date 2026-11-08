@@ -13,6 +13,8 @@
   function rnd() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
   var MAX = 1100;                // ここまで育ったら、ふわっと消して1マスから育ち直す（くり返し）
   var fade = 1, fading = false;  // 育ち直すときの薄くなり具合
+  // 入れ子モード（data-mode="nest"）：育ちきった絵がそのまま縮んで、次の絵の最初の1マスになる。これを無限にくり返す
+  var snap = null, shrink = -1, hold = 0;
   var cells = new Map();         // "x,y" → {x,y,born,tone}
   var tips = [{ x: 0, y: 0, dx: 1, dy: 0 }];
   var t0 = 0, clock = 0, radius = 1, view = 1;
@@ -78,6 +80,11 @@
   function rr(x, y, w, k) { ctx.beginPath(); ctx.moveTo(x + k, y); ctx.arcTo(x + w, y, x + w, y + w, k); ctx.arcTo(x + w, y + w, x, y + w, k); ctx.arcTo(x, y + w, x, y, k); ctx.arcTo(x, y, x + w, y, k); ctx.closePath(); }
   function draw() {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, size, size); ctx.globalAlpha = fade;
+    if (shrink >= 0) {                             // 育ちきった絵を、次の最初の1マスの大きさまで縮める
+      var e = shrink < 0.5 ? 2 * shrink * shrink : 1 - Math.pow(-2 * shrink + 2, 2) / 2;
+      var w = size + (size / 9 * 0.8 - size) * e;
+      ctx.drawImage(snap, (size - w) / 2, (size - w) / 2, w, w); return;
+    }
     var want = size / (2 * radius + 3);           // 育つほど視点を引く
     view += (Math.min(size / 9, want) - view) * (reduce ? 1 : 0.025);
     var cell = view, s = cell * 0.8, cx = size / 2, cy = size / 2;
@@ -91,6 +98,8 @@
       } else if (age < 0.9) {                        // 点の集まり
         ctx.fillStyle = tileColor(c, 0.85); var g = 5, u = s / g;
         for (var i = 0; i < g; i++) for (var j = 0; j < g; j++) if ((i * 7 + j * 3 + Math.floor(c.ph * 10) + Math.floor(age * 20)) % 3) ctx.fillRect(x + i * u + u * 0.15, y + j * u + u * 0.15, u * 0.7, u * 0.7);
+      } else if (c.snap) {                           // 前の絵（入れ子）
+        ctx.drawImage(c.snap, x, y, s, s);
       } else {                                       // マス
         var a = Math.min(1, (age - 0.9) / 0.3);
         var sh = reduce ? 0 : Math.sin(clock * 0.8 + c.ph) * 0.05;
@@ -107,7 +116,16 @@
       clock += dt; acc += dt;
       var step = cells.size < 6 ? 0.42 : cells.size < 120 ? 0.13 : cells.size < 400 ? 0.08 : 0.06;      // 最初の2秒ほどはゆっくり、そのあと速く
       while (acc > step) { (mode === "z" ? growZ : grow)(); acc -= step; }
-      if (fading) { fade -= dt / 1.6; if (fade <= 0) { fade = 0; fading = false; restart(); } }
+      if (mode === "nest" && fading) {
+        hold += dt;
+        if (shrink < 0 && hold > 1.6) {             // 新しいマスが濃くなりきってから写し取る
+          snap = document.createElement("canvas"); snap.width = cv.width; snap.height = cv.height; snap.getContext("2d").drawImage(cv, 0, 0); shrink = 0;
+        }
+        if (shrink >= 0 && (shrink += dt / 2.4) >= 1) {
+          restart(); var first = cells.get("0,0"); first.snap = snap; first.born = clock - 5;
+          fading = false; hold = 0; shrink = -1;
+        }
+      } else if (fading) { fade -= dt / 1.6; if (fade <= 0) { fade = 0; fading = false; restart(); } }
       else if (fade < 1) fade = Math.min(1, fade + dt / 0.8);
       draw();
     }
