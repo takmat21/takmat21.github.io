@@ -180,7 +180,7 @@
 <section id="system" data-panel="system" class="cols">
   <h2><span class="en">System</span>自社で運用している仕組み</h2>
   <div class="sys">
-  <p class="lead">統括役のAIが担当ごとのAIに指示・確認し、結果をフィードバックして改善する「階層型のAIエージェント体制」を、毎日の業務で動かしています。送信など元に戻せない操作は人が行います。</p>
+  <p class="lead">統括役のAIが、仕事に合わせてスキル（手順書）・プラグイン・ナレッジを使い分け、ほかの会社のAIとも分担しながら、毎日の業務を動かしています。送信など元に戻せない操作は人が行います。</p>
   <p><a class="btn" href="samples/system/">詳しい資料を見る（PDF・17ページ）</a></p>
 
   <figure class="hero-shot"><img src="assets/img/office.webp" width="1600" height="963" decoding="async" alt="担当AIの状態とチームチャットを表示するオフィス画面" loading="lazy"><figcaption>オフィス画面：誰が何をしているか、どこで人の確認待ちになっているかを一目で見られます。</figcaption></figure>
@@ -206,6 +206,22 @@
       <div class="node sub">外部記憶<small>スプレッドシート（事実・ルール・台帳）</small></div>
     </div>
   </div>
+
+  <h3>AI連携について</h3>
+  <p>得意なことが違うAIを、仕事ごとに組み合わせています（2026年11月時点）。</p>
+  <div style="overflow-x:auto;margin:0 0 8px"><table class="ai-roles" style="width:100%;border-collapse:collapse;font-size:15px">
+    <thead><tr><th style="text-align:left;border-bottom:1px solid var(--line);padding:10px 8px;font-size:12px;color:var(--faint)">担当</th><th style="text-align:left;border-bottom:1px solid var(--line);padding:10px 8px;font-size:12px;color:var(--faint)">主な役割</th></tr></thead>
+    <tbody>
+      <tr><th style="text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:10px 8px;width:38%">人（代表）</th><td style="border-bottom:1px solid var(--line);padding:10px 8px">依頼、重要な判断、最終確認。送信・公開・お金は人</td></tr>
+      <tr><th style="text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:10px 8px;width:38%">Claude（統括AI）</th><td style="border-bottom:1px solid var(--line);padding:10px 8px">全体の管理、手順の選択、仕事の振り分け、最後のまとめ</td></tr>
+      <tr><th style="text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:10px 8px;width:38%">Gemini（Nano Banana Pro）</th><td style="border-bottom:1px solid var(--line);padding:10px 8px">パンフレット・チラシなどの画像づくり</td></tr>
+      <tr><th style="text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:10px 8px;width:38%">Gemini</th><td style="border-bottom:1px solid var(--line);padding:10px 8px">長い資料や動画の読み込み、成果物の講評</td></tr>
+      <tr><th style="text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:10px 8px;width:38%">OpenAI（GPT・gpt-image）</th><td style="border-bottom:1px solid var(--line);padding:10px 8px">別の目での二重チェック、画像の比較案</td></tr>
+      <tr><th style="text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:10px 8px;width:38%">サブエージェント</th><td style="border-bottom:1px solid var(--line);padding:10px 8px">朝刊・台帳など決まった作業、文章の下書き、動画の台本、検品を分担</td></tr>
+      <tr><th style="text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:10px 8px;width:38%">Gmail・Googleカレンダー</th><td style="border-bottom:1px solid var(--line);padding:10px 8px">メールの確認と、やること・予定の登録</td></tr>
+      <tr><th style="text-align:left;vertical-align:top;padding:10px 8px;width:38%">Googleスプレッドシート</th><td style="padding:10px 8px">ナレッジ（事実・ルール・台帳）の置き場</td></tr>
+    </tbody></table></div>
+  <p style="font-size:14px;color:var(--sub)">ほかの会社のAIには、外に出す前の成果物だけを見せ、お客様の個人情報は送りません。</p>
 
   <h3>誤りを防ぐ4つの関門</h3>
   <ol class="gates">
