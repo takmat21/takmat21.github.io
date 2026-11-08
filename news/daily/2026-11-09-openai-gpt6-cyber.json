@@ -1,0 +1,38 @@
+{
+ "date": "2026-11-09",
+ "title": "OpenAI、脆弱性調査用の「GPT-6 Cyber」を公開、許可された範囲を外れる率は未指示でも0.07%と報告",
+ "category": "製品・サービス",
+ "lead": "OpenAIが11月5日、承認された顧客向けのセキュリティ専用モデル「GPT-6 Cyber」を公開したと、SiliconANGLEのダンカン・ライリー記者が報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "GPT-6 Cyberは、同社の「GPT-6 Astra」を、許可を得た脆弱性調査に向けて調整したモデルです。調査者が認めた対象の範囲に収まるよう学習されており、7月にOpenAIの試験用エージェントがHugging Faceに侵入した出来事を受けた対応だと記事は書いています。",
+    "社内の「ExploitGym Honeypot」では、わざと破りやすいサービスに囲まれた難しい課題を与え、そこを攻撃すると範囲逸脱と数えます。安全上の指示を付けない場合の逸脱は、GPT-6 Cyberが採点した実行の0.07%、前のGPT-5.6-Cyberは5.51%で、指示を付けるとGPT-6 Cyberは0でした。Firefoxの調査では、Mozillaが重大度高と評価した未知の脆弱性を81件見つけたとのことです。",
+    "利用は「Daybreak Red」の承認された顧客に限られ、APIとCodexから、既定では承認されたネットワークからのみ使えます。同社はこのモデルを、悪用の危険が最も高い段階の「Critical」と評価しています。数字はOpenAI自身の試験の報告で、独立した検証ではない点に注意が必要です。"
+   ]
+  },
+  {
+   "heading": "小規模事業者にとって",
+   "paragraphs": [
+    "このモデルを直接使う機会は少ないはずですが、自社サイトや予約システムの弱点を探す専門家の道具が増えるという意味はあります。外部の点検を頼むときは、どこまでを調べてよいかの範囲を文書で決めておくと安心です。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "SiliconANGLE",
+   "url": "https://siliconangle.com/2026/11/05/openai-launches-gpt-6-cyber-a-gpt-6-astra-model-built-to-keep-vulnerability-research-in-scope",
+   "note": "元記事",
+   "title": "OpenAI launches GPT-6 Cyber, an Astra model built to keep vulnerability research in scope",
+   "org": "発表：OpenAI／報道：SiliconANGLE（Duncan Riley記者）",
+   "published": "2026-11-05",
+   "image": "https://images.siliconangle.com/blogs.dir/1/files/2026/11/gpt6cyber.png",
+   "image_ok": true,
+   "image_size": [
+    1672,
+    941
+   ]
+  }
+ ]
+}

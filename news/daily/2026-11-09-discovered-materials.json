@@ -1,0 +1,37 @@
+{
+ "date": "2026-11-09",
+ "title": "新素材探しのYC発スタートアップ、AIに挑む未解決の5問に総額100万ドルの賞金",
+ "category": "研究",
+ "lead": "AIで先端半導体向けの新素材を探すサンフランシスコの新興企業Discovered Materialsが、材料科学の未解決問題5つに総額100万ドルの賞金を出すと、TechCrunchのティム・ファーンホルツ記者が11月5日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "同社は2026年春のY Combinatorの参加企業で、大学の研究者でつくる助言グループとともに問題を決めました。5問は、銅酸化物の超伝導を説明する理論、シリコンと二酸化ケイ素の境界の構造を予測する数値的方法、結晶粒の構造から熱の伝わり方を求める方法、光を当てると材料の性質が変わる理由の理論、そして原子や分子の計算に使う密度汎関数理論の改良です。",
+    "公開前に、最先端のAIモデルへインターネットの利用などを許し、各問題に数日ずつ自律的に取り組ませましたが、大きな進展はなかったそうです。共同創業者は、誰が解いてもよく、問題は「AIがこの分野で進んでいるかを測る目印」だと述べています。応募の規則や審査の基準、賞金の渡し方は記事に書かれていません。"
+   ]
+  },
+  {
+   "heading": "小規模事業者にとって",
+   "paragraphs": [
+    "AIに何ができて何がまだ難しいかを、明確な課題と賞金で確かめる動きです。自社でAIに任せる仕事を決めるときも、先に「できたと言える基準」を決めておくと、期待しすぎや見落としを減らせます。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/05/a-yc-startup-is-putting-1m-behind-five-unsolved-materials-science-problems-for-ai/",
+   "note": "元記事",
+   "title": "A YC startup is putting $1M behind 5 unsolved materials science problems for AI",
+   "org": "発表：Discovered Materials／報道：TechCrunch（Tim Fernholz記者）",
+   "published": "2026-11-05",
+   "image": "https://techcrunch.com/wp-content/uploads/2026/08/discoverd-materials.jpg?resize=1200,800",
+   "image_ok": true,
+   "image_size": [
+    1200,
+    800
+   ]
+  }
+ ]
+}

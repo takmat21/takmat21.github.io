@@ -1,0 +1,38 @@
+{
+ "date": "2026-11-09",
+ "title": "Google・Microsoft・OpenAI・Anthropicが、AI学習への利用を1行で断れる共通の仕組みに対応へ",
+ "category": "規制・標準",
+ "lead": "Google、Microsoft、Anthropic、OpenAIの4社が10月30日、サイトの運営者がAIの学習に使われるのを共通の方法で断れる新しい基準に対応する方針を示したと、SiliconANGLEのマリア・ドイッチャー記者が報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "現在は、AI事業者ごと、さらに1社が複数の収集用プログラムを使う場合はその1つずつに、robots.txtへ個別の記述を足す必要があります。新しい基準では、生成AIの学習データを集めるプログラムすべてを、1つの記述でまとめて断れるようになります。基準はサイトの巡回ルールであるRobots Exclusion Protocolに組み込まれ、草案がIETFに提出されたと記事は伝えています。",
+    "対応の時期は会社で異なり、MicrosoftとOpenAIは「数か月以内」、Googleは2027年とされています。Metaは考えに賛成したものの、実装は約束していません。文章を生成しない用途だけのモデルは対象外です。",
+    "Microsoftは学習とは別に、利用者の質問に答えるためにAIがページを読みに来る場合を断る「AIグラウンディング」の設定も用意するとのことです。なお、すでに集められたデータには触れておらず、実際に守られるかは各社の実装次第です。"
+   ]
+  },
+  {
+   "heading": "小規模事業者にとって",
+   "paragraphs": [
+    "自社のサイトの文章や写真をAIの学習に使わせたくない場合、いずれ設定が1か所で済むようになります。一方で、AIの回答にお店が出ることも集客につながるので、断る範囲は目的に合わせて選ぶ必要があります。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "SiliconANGLE",
+   "url": "https://siliconangle.com/2026/10/30/google-anthropic-and-others-to-support-new-ai-crawling-opt-out-standard/",
+   "note": "元記事",
+   "title": "Google, Anthropic and others to support new AI crawling opt-out standard",
+   "org": "発表：Google、Microsoft、Anthropic、OpenAI／報道：SiliconANGLE（Maria Deutscher記者）",
+   "published": "2026-10-30",
+   "image": "https://images.siliconangle.com/blogs.dir/1/files/2026/10/AI-1-1.png",
+   "image_ok": true,
+   "image_size": [
+    900,
+    506
+   ]
+  }
+ ]
+}
