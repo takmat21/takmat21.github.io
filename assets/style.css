@@ -341,3 +341,9 @@ ul.rows div.row.pr .src{font-size:14px;justify-self:start;padding:6px 0;min-heig
 
 /* ラボの冒頭の一文（11/8） */
 .hero .lab-about{margin:12px 0 0;font-size:14px;color:var(--sub);line-height:1.8;max-width:40em}
+
+/* ラボ冒頭のコピー（11/8） */
+.hero .lab-copy{margin:14px 0 0;font-size:15.5px;font-weight:700;color:var(--fg);line-height:1.8}
+.hero .lab-copy span{display:inline-block}
+.hero .lab-copy a{font-weight:400;font-size:14px;margin-left:8px;white-space:nowrap}
+.hero .lab-copy a::after{content:" →"}
