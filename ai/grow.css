@@ -1,0 +1,10 @@
+/* 育つ絵（太郎）：トップの見出しの右に置く。アヤの hero.css は変えず、ここで並びだけ足す。 */
+.xh-top{display:grid;grid-template-columns:minmax(0,1fr) clamp(220px,30%,360px);column-gap:48px;align-items:end}
+.xh-top>.xh-label,.xh-top>h1{grid-column:1}
+.xh-art{grid-column:2;grid-row:1/span 2;align-self:center;aspect-ratio:1;width:100%;position:relative}
+.xh-art canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+@media (max-width:720px){
+  .xh-top{grid-template-columns:minmax(0,1fr) 96px;column-gap:16px}
+  .xh-top>h1{grid-column:1/span 2}
+  .xh-art{grid-row:1;align-self:end;margin-bottom:12px}
+}
