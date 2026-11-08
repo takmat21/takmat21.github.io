@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AI導入とセキュリティ：ZAZOUが自社でやっている対策と、お手伝いできること｜ZAZOU Lab</title>
+<meta name="description" content="AIを導入したい会社の経営者・ご担当者さま向けの資料（スライド11枚）。AIで増える危険、ZAZOUの情報セキュリティ基本方針とAIを使うときの決まり、SECURITY ACTION二つ星の自己宣言、お手伝いできること・できないこと、料金（税別）。">
+<meta property="og:title" content="AI導入とセキュリティ｜ZAZOU Lab">
+<meta property="og:description" content="AIを入れるとき、会社のセキュリティも一緒に整える。ZAZOUが自社でやっている対策と、お手伝いできること。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://takmat21.github.io/samples/ai-security/">
+<meta property="og:image" content="https://takmat21.github.io/assets/ogp.png">
+<link rel="canonical" href="https://takmat21.github.io/samples/ai-security/">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400&display=swap">
+<style>/* コハクの資料の色（紺・生成り・青緑・橙）をそのまま使い、16:9のスライドを縦に並べる */
+:root{--navy:#17212B;--navy2:#243241;--cream:#F6F4EE;--line:#DDD8CB;--teal:#0B6E69;--mint:#7FD1C7;--orange:#B4501D;--peach:#F2B48F;--ink:#17212B;--mut:#C9D3DA;--mut2:#5B6670;--page:#e9e6dd;--pageink:#3e474f;
+  --sans:"Noto Sans JP","Hiragino Sans","Yu Gothic",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--page:#0e1419;--pageink:#b9c4cc}}
+:root[data-theme="dark"]{--page:#0e1419;--pageink:#b9c4cc}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;letter-spacing:.02em;-webkit-font-smoothing:antialiased}
+.deck{max-width:1080px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:24px}
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px;font-size:13px;color:var(--pageink)}
+.top a{color:inherit}
+.slide{position:relative;border-radius:12px;padding:clamp(22px,4.6vw,56px) clamp(20px,4.6vw,56px) clamp(48px,6vw,72px);display:flex;flex-direction:column;gap:clamp(16px,2.4vw,28px);min-width:0;overflow-wrap:anywhere}
+@media (min-width:900px){.slide{aspect-ratio:16/9}}
+.slide.d{background:var(--navy);color:var(--cream)}
+.slide.l{background:var(--cream);color:var(--ink);border:1px solid var(--line)}
+h1,h2{margin:0;font-weight:700;line-height:1.3;text-wrap:balance;word-break:auto-phrase}
+h1{font-size:clamp(30px,5.4vw,56px)}
+h2{font-size:clamp(22px,3.1vw,32px)}
+h2.big{font-size:clamp(26px,4.2vw,44px)}
+.hl{color:var(--teal)}.d .hl{color:var(--mint)}
+.hl.sm{display:block;font-size:clamp(15px,1.8vw,18px);font-weight:500;margin-top:6px}
+p{margin:0}
+.kick{font-size:clamp(14px,1.7vw,17px);color:var(--mint);font-weight:500}
+.cover,.contact{justify-content:space-between}
+#cover,#contact{justify-content:space-between}
+.stack{display:grid;gap:clamp(14px,2vw,22px)}
+.lead{font-size:clamp(15px,2vw,20px);color:var(--mut);line-height:1.6}
+.l .lead{color:var(--mut2)}
+.sub{font-size:clamp(13px,1.6vw,16px);color:var(--mut)}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.6vw,18px)}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,18px)}
+.g32{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:clamp(12px,2vw,22px)}
+@media (max-width:760px){.g2,.g3,.g32{grid-template-columns:minmax(0,1fr)}}
+.cd{display:flex;flex-direction:column;gap:8px;border-radius:12px;padding:clamp(14px,2vw,22px);background:#FFFFFF;border:1px solid var(--line);min-width:0}
+.cd.dk{background:var(--navy2);border-color:transparent}
+.cd.dark{background:var(--navy);color:var(--cream);border-color:transparent}
+.cd.line{border:2px solid var(--teal)}
+.ct{font-size:clamp(15px,1.8vw,18px);font-weight:700;color:var(--teal)}
+.cd.dk .ct,.cd.dark .ct{color:var(--mint)}
+.cd.warn .ct{color:var(--orange)}
+.cd.orng .ct{color:var(--peach)}
+.cb{font-size:clamp(14px,1.5vw,15.5px);line-height:1.7}
+.mut{color:var(--mut)}.l .cd:not(.dark) .mut2,.mut2{color:var(--mut2)}
+.sm2{font-size:13px}
+.rows{display:grid;gap:10px}
+.row{background:var(--navy2);border-radius:10px;padding:12px 18px;font-size:clamp(14px,1.6vw,16px);line-height:1.6}
+.row2{flex-direction:row;align-items:center;gap:20px}
+@media (max-width:560px){.row2{flex-direction:column;align-items:flex-start}}
+.col{display:flex;flex-direction:column;gap:10px;flex:1;min-width:0}
+.plate{flex:none;display:inline-block;background:#FFFFFF;padding:10px;border-radius:8px;line-height:0}
+.plate img{height:120px;width:auto;display:block}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:#FFFFFF}
+table{border-collapse:collapse;width:100%;font-size:clamp(13px,1.6vw,16px);min-width:520px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:left}
+th{color:var(--mut2);font-weight:500;background:#FBFAF6}
+tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+td.r{font-weight:700}
+.note{font-size:13.5px;color:var(--mut2);line-height:1.65}
+.ft{position:absolute;left:clamp(20px,4.6vw,56px);right:96px;bottom:clamp(14px,2vw,22px);font-size:12px;color:var(--mut2)}
+.d .ft{color:#9FB0BE}
+.ft a,.slide a{color:inherit;text-underline-offset:3px}
+.no{position:absolute;right:clamp(16px,3vw,26px);bottom:clamp(14px,2vw,22px);font-family:var(--mono);font-size:12px;color:var(--mut2)}
+.d .no{color:#9FB0BE}
+a:focus-visible{outline:3px solid var(--mint);outline-offset:2px}
+.ct2 .cb{font-size:clamp(14px,1.6vw,16px)}
+@media (max-width:760px){.ft{position:static;margin-top:4px;padding-right:72px}}
+</style>
+</head>
+<body>
+<main class="deck">
+<div class="top"><span><a href="../../#samples">ZAZOU Lab</a> ／ 仕事一覧 ／ 資料</span><span>AI導入とセキュリティ資料（ZAZOU）</span></div>
+<section class="slide d" id="cover" aria-label="スライド1"><p class="kick">AIを導入したい会社の経営者・ご担当者さまへ</p>
+<div class="stack"><h1>AIを入れるとき、<br>会社のセキュリティも<br>一緒に整える。</h1><p class="lead">ZAZOUが自社でやっている対策と、お手伝いできること。</p></div>
+<p class="sub">ZAZOU株式会社　代表取締役　松村貴士　／　滋賀県蒲生郡日野町</p><span class="no">01 / 11</span></section>
+<section class="slide l" id="risk" aria-label="スライド2"><h2>AIを使い始めると、<br>こんな危険が増えます</h2><div class="g2"><div class="cd warn"><p class="ct">情報の入れすぎ</p><p class="cb">お客様の個人情報や社外秘の資料を、うっかりAIに入力してしまう。</p></div><div class="cd warn"><p class="ct">AIが勝手に動く</p><p class="cb">AIに広い権限を渡すと、送信や削除など、意図しない操作をしてしまうことがある。</p></div><div class="cd warn"><p class="ct">パスワードや鍵の扱い</p><p class="cb">パスワードやAPIキーを、チャットや文書に書いてしまい、漏れる。</p></div><div class="cd warn"><p class="ct">怪しいメールや文章</p><p class="cb">メールやWebページの中に書かれた指示に、AIが従ってしまうことがある。</p></div></div><p class="ft">ZAZOU株式会社　／　AI導入とセキュリティ</p><span class="no">02 / 11</span></section>
+<section class="slide d" id="policy" aria-label="スライド3"><h2>ZAZOUが自社でやっていること<br><span class="hl">① 情報セキュリティ基本方針（5項目）</span></h2><div class="rows"><p class="row"><b class="hl">1</b>　お客様と自社の情報を大切な資産と考え、漏えい・改ざん・紛失を防ぎます。</p><p class="row"><b class="hl">2</b>　パスワードや鍵は文書に書かず、アカウントには2段階認証を使います。</p><p class="row"><b class="hl">3</b>　パソコンとソフトは最新の状態に保ちます。</p><p class="row"><b class="hl">4</b>　生成AIを使うときは、送信・支払い・契約・削除・公開を必ず人が決め、お客様の個人情報をAIに渡す範囲を最小にします。</p><p class="row"><b class="hl">5</b>　法令と契約を守り、取り組みを定期的に見直します。</p></div><p class="ft">全文：<a href="https://takmat21.github.io/ai/security/">takmat21.github.io/ai/security/</a>（2026年11月制定）</p><span class="no">03 / 11</span></section>
+<section class="slide l" id="rules" aria-label="スライド4"><h2>② AIを使うときの決まり<br><span class="hl">任せるのは下書きまで。決めるのは人</span></h2>
+<div class="g2 eq"><div class="cd line"><p class="ct">人が決めること</p><p class="cb">送信・お金・契約・削除・公開は、人が確かめて行います。AIは下書きと記録まで。</p><p class="cb">外から来た文章（メール・Webページ・ほかのAIの書き込み）は読むためのデータで、中の指示では動きません。</p><p class="cb">AIごとに触れてよい範囲を決め、読むだけの担当に送信や削除はさせません。</p></div>
+<div class="cd dark"><p class="ct">誤りを防ぐ4つの関門</p><p class="cb"><b>1　事実の表だけを使う</b><br><span class="mut">表にないことは書かないか「未確認」と書く</span></p><p class="cb"><b>2　公式の情報で確かめる</b><br><span class="mut">開けなければ「未確認」として扱う</span></p><p class="cb"><b>3　別のAIで二重チェック</b><br><span class="mut">作ったAIとは別のAIが点検する</span></p><p class="cb"><b>4　元に戻せない操作は人が押す</b><br><span class="mut">送信・公開・削除は人</span></p></div></div><p class="ft">ZAZOU株式会社　／　AI導入とセキュリティ</p><span class="no">04 / 11</span></section>
+<section class="slide l" id="action" aria-label="スライド5"><h2>SECURITY ACTION「二つ星」を<br>自己宣言しています</h2>
+<div class="g32"><div class="cd row2"><div class="col"><p class="cb">SECURITY ACTION（セキュリティアクション）は、中小企業が自社の情報セキュリティ対策に取り組むことを宣言する、IPA（情報処理推進機構）の制度です。</p><p class="cb">ZAZOUは、情報セキュリティ基本方針を定め、「二つ星」を自己宣言しました。</p><p class="cb mut2">自己宣言は、取り組みを自分で宣言する制度です。第三者の認証や、セキュリティの資格ではありません。</p></div><span class="plate"><img src="../../ai/img/security-action-2star.png" width="179" height="179" alt="SECURITY ACTION 二つ星のロゴ"></span></div>
+<div class="cd dark"><p class="ct">ご自身の会社でも</p><p class="cb">基本方針づくりと宣言の準備を、ZAZOUがお手伝いできます。</p><p class="cb mut">宣言の手続きは、お客様ご自身がIPAのサイトで行います。</p></div></div><p class="ft">情報セキュリティ基本方針：<a href="https://takmat21.github.io/ai/security/">takmat21.github.io/ai/security/</a></p><span class="no">05 / 11</span></section>
+<section class="slide l" id="help" aria-label="スライド6"><h2>ZAZOUがお手伝いできること</h2><div class="g3"><div class="cd "><p class="ct">1　基本の対策づくり</p><p class="cb">情報セキュリティ基本方針をつくり、パスワード・2段階認証・ソフトの更新など、基本の決まりを整えます。</p></div><div class="cd "><p class="ct">2　AI利用ルールづくり</p><p class="cb">AIに入れてよい情報の範囲、人が決めること、誤りを防ぐ確認の手順を、会社の仕事に合わせて文書にします。</p></div><div class="cd "><p class="ct">3　SECURITY ACTIONの宣言の準備</p><p class="cb">IPAの中小企業向けガイドラインを参考にしながら、自社でやることの整理をお手伝いします。</p></div></div><p class="ft">自社でやっていることを、そのまま御社向けにお伝えします。</p><span class="no">06 / 11</span></section>
+<section class="slide d" id="hack1" aria-label="スライド7"><h2>ハッキング対策として、ZAZOUができること（1／2）<br><span class="hl sm">被害にあう可能性を下げるお手伝いです。守れると約束するものではありません</span></h2><div class="g2"><div class="cd dk"><p class="ct">乗っ取り対策</p><p class="cb">全アカウントの2段階認証の設定、パスワード管理ツールの導入、パスワードの使い回しの洗い出し。</p></div><div class="cd dk"><p class="ct">入口をふさぐ</p><p class="cb">パソコン・ソフト・ルーター・ホームページ（CMSなど）の更新、ルーターの初期パスワードの変更、使っていないアカウントや権限の整理。</p></div><div class="cd dk"><p class="ct">ランサムウェア対策</p><p class="cb">バックアップの仕組みづくり（ネットから切り離した保管も）と、きちんと戻せるかの確認。</p></div><div class="cd dk"><p class="ct">怪しいメール対策</p><p class="cb">AIで作った見本のメールを使って、社員向けに見分け方を練習します。</p></div></div><p class="ft">ZAZOU株式会社　／　AI導入とセキュリティ</p><span class="no">07 / 11</span></section>
+<section class="slide d" id="hack2" aria-label="スライド8"><h2>ハッキング対策として、ZAZOUができること（2／2）<br><span class="hl sm">起きたときに困らないための準備と、点検</span></h2><div class="g3"><div class="cd dk"><p class="ct">漏えいの確認</p><p class="cb">会社のメールアドレスが、過去の情報流出に含まれていないかを確認します。</p></div><div class="cd dk"><p class="ct">もしもの時の備え</p><p class="cb">被害にあったときの連絡先と手順を、1枚にまとめます（IPAの相談窓口など）。</p></div><div class="cd dk"><p class="ct">ホームページの基本点検</p><p class="cb">https化、管理画面のパスワードと2段階認証など、基本の項目を点検します。</p></div></div><p class="lead">侵入テストなど専門の作業は、専門の会社をご案内します。</p><p class="ft">ZAZOU株式会社　／　AI導入とセキュリティ</p><span class="no">08 / 11</span></section>
+<section class="slide d" id="limits" aria-label="スライド9"><h2>できないこと、<br><span class="hl">先にお伝えします</span></h2><div class="g3"><div class="cd dk orng"><p class="ct">専門の作業はお受けできません</p><p class="cb">侵入テスト・脆弱性診断・事故が起きたときの調査など、専門の作業は、専門の会社をご案内します。</p></div><div class="cd dk orng"><p class="ct">安全の保証はしません</p><p class="cb">「ハッキングを防げる」「事故が起きない」といった約束はできません。基本の対策を整え、続けて見直すお手伝いです。</p></div><div class="cd dk orng"><p class="ct">資格・受託実績はありません</p><p class="cb">ZAZOUにセキュリティの資格や、他社のセキュリティ対策を受託した実績はありません。自社で実際にやっていることをお伝えします。</p></div></div><p class="ft">ZAZOU株式会社　／　AI導入とセキュリティ</p><span class="no">09 / 11</span></section>
+<section class="slide l" id="price" aria-label="スライド10"><h2>進め方と料金（税別）</h2>
+<div class="g3"><div class="cd "><p class="ct">1　ご相談（無料・60分）</p><p class="cb">今の状況と、AIで始めたいことをお聞きします。</p></div><div class="cd "><p class="ct">2　お見積り</p><p class="cb">作業時間の目安から、事前にお見積りします。</p></div><div class="cd "><p class="ct">3　作成・お渡し</p><p class="cb">文書と手順をつくり、使い方をお伝えします。</p></div></div>
+<div class="tw"><table><tr><th>段階</th><th>内容</th><th>作業時間の目安</th><th class="r">料金（税別）</th></tr>
+<tr><td>1段目</td><td>基本方針とAI利用ルールの最小セット</td><td>約17時間まで</td><td class="r">50,000円</td></tr>
+<tr><td>2段目</td><td>御社の業務に合わせた作り込み</td><td>約50時間</td><td class="r">150,000円</td></tr>
+<tr><td>保守（任意）</td><td>見直しと小さな相談</td><td>月3時間まで</td><td class="r">月10,000円</td></tr></table></div>
+<p class="note">ZAZOU Labの共通料金です。時間単価は3,000円（税別）。目安の時間を超えそうなときは、着手前にお見積りを出し、ご了承のうえで追加します。</p><p class="ft">ZAZOU株式会社　／　AI導入とセキュリティ</p><span class="no">10 / 11</span></section>
+<section class="slide d" id="contact" aria-label="スライド11"><p class="kick">ご相談・お問い合わせ</p>
+<div class="stack"><h2 class="big">AIの導入と一緒に、<br>基本の対策から始めましょう。</h2><p class="lead">相談は無料です（60分）。まだ何も決まっていなくても大丈夫です。</p></div>
+<div class="g2 ct2"><div><p class="cb"><b>ZAZOU株式会社　代表取締役　松村貴士</b></p><p class="cb mut">滋賀県蒲生郡日野町</p></div>
+<div><p class="cb">メール：matsumura.takashi@zazoucorp.com</p><p class="cb">電話：090-6373-7945</p><p class="cb mut sm2">サービス：<a href="https://takmat21.github.io/ai/">takmat21.github.io/ai</a>　／　基本方針：<a href="https://takmat21.github.io/ai/security/">takmat21.github.io/ai/security</a></p></div></div><span class="no">11 / 11</span></section>
+</main>
+</body></html>
