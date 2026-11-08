@@ -42,16 +42,74 @@
   <ul class="toc"><li><a href="#jobs">01 営業先探しと提案文の下書き</a></li><li><a href="#mail">02 メールの確認と、やることの一覧</a></li><li><a href="#csv">03 EC出荷作業の自動化</a></li><li><a href="#minutes">04 議事録づくり</a></li><li><a href="#drawing">05 図面見積アプリ（試作）</a></li><li><a href="#news">06 朝刊とAIニュース番組</a></li></ul>
 </div></section>
 <section class="sec paper" style="padding-top:64px"><div class="c">
-  <div class="sec-h"><span class="en">Structure</span><h2>全体の体制</h2><p>統括役のAIが担当ごとのAIに仕事を割り振り、結果を確かめます。送信・公開・削除など、元に戻せない操作は人が行います。</p></div>
+  <style>
+  .kit3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%}
+  .kit3 .node{font-weight:700;font-size:14px;padding:12px 10px;border-radius:10px}
+  .kit3 .node small{font-size:11.5px;line-height:1.5}
+  .kit3 .sk{border-color:var(--accent)}
+  .kit3 .pl{border-color:#8a8678}
+  .kit3 .kn{border-color:var(--accent);background:var(--accent-soft)}
+  .kit-tb{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+  .kit-tb th,.kit-tb td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;line-height:1.55}
+  .kit-tb thead th{background:var(--paper);font-size:12.5px;color:var(--sub);font-weight:700}
+  .kit-tb tbody th{font-weight:700;white-space:nowrap}
+  .kit-tb tr:last-child td,.kit-tb tr:last-child th{border-bottom:0}
+  .kit-note{font-size:13px;color:var(--sub);margin:10px 0 0}
+  .loop{list-style:none;margin:0;padding:28px 20px;background:#fff;border:1px solid var(--line);border-radius:16px;display:grid;gap:6px;counter-reset:lp}
+  .loop li{counter-increment:lp;display:flex;gap:12px;align-items:center;font-size:15px}
+  .loop li::before{content:counter(lp);flex:0 0 28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;font-size:13px;display:grid;place-items:center}
+  .loop li small{display:block;color:var(--sub);font-size:12.5px}
+  .loop .dn{counter-increment:none;justify-content:flex-start;padding-left:8px;color:var(--faint);font-size:12px}
+  .loop .dn::before{content:"↓";background:none;color:var(--faint);flex:0 0 20px;height:auto;font-size:14px}
+  .loop .bk::before{content:"↺"}
+  .kit-h3{font-size:16px;margin:0 0 12px}
+  @media (max-width:560px){.kit3{grid-template-columns:1fr}.kit-tb{font-size:13px}.kit-tb th,.kit-tb td{padding:8px}}
+  </style>
+  <div class="sec-h"><span class="en">Structure</span><h2>全体の体制</h2><p>人が方針を決め、統括役のAIが仕事を進めます。仕事ごとに、スキル（手順書）とプラグイン（道具とのつなぎ）を組み合わせて使います。仕事をするほどナレッジがたまり、次の仕事が速く、正確になります。</p></div>
   <div class="two">
-    <div class="org" role="img" aria-label="人（代表）が統括AIに指示し、統括AIが担当ごとのAIに仕事を割り振る体制の図">
-      <div class="node hu">人（代表）<small>方針・承認・送信</small></div>
-      <div class="arrow">指示 ↓　↑ 報告・確認待ち</div>
-      <div class="node lead">統括AI<small>仕事の割り振り・結果の確認</small></div>
-      <div class="arrow">↓ 指示　↑ 報告</div>
-      <div class="row"><div class="node">提案書・見本</div><div class="node">プロフィール管理</div><div class="node">在庫・出荷</div><div class="node">給与計算・デザイン</div><div class="node">補助金</div><div class="node">調べ物</div></div>
+    <div>
+      <h3 class="kit-h3">人とAIの役割</h3>
+      <div class="org" role="img" aria-label="人が統括AIに指示し、統括AIが仕事に合わせてスキル・プラグイン・ナレッジを使う図">
+        <div class="node hu">人（代表）<small>方針・承認・送信</small></div>
+        <div class="arrow">指示 ↓　↑ 報告・確認待ち</div>
+        <div class="node lead">統括AI<small>仕事の進行・結果の確認</small></div>
+        <div class="arrow">↓ 仕事に合わせて選ぶ</div>
+        <div class="kit3">
+          <div class="node sk">スキル<small>手順書。やり方と確かめる順番</small></div>
+          <div class="node pl">プラグイン<small>メール・表・店舗の管理画面などとのつなぎ</small></div>
+          <div class="node kn">ナレッジ<small>事実の表・決めたこと・過去の直し</small></div>
+        </div>
+        <div class="arrow">長く続く仕事は、専任の担当AIが受け持ちます</div>
+      </div>
     </div>
-    <figure class="fig"><img src="../../assets/img/office.webp" width="1600" height="963" alt="担当AIの状態とチームのやり取りを表示するオフィス画面" loading="lazy" decoding="async"><figcaption>オフィス画面：どの担当AIが何をしていて、どこで人の確認待ちになっているかを一目で見られます。</figcaption></figure>
+    <div>
+      <h3 class="kit-h3">仕事ごとの組み合わせ</h3>
+      <table class="kit-tb">
+        <thead><tr><th>仕事</th><th>スキル</th><th>プラグイン</th><th>ナレッジ</th></tr></thead>
+        <tbody>
+          <tr><th>EC出荷</th><td>送り状データの作り方</td><td>店舗の管理画面（ブラウザ拡張）</td><td>店舗ごとの注文ファイルの形</td></tr>
+          <tr><th>営業・提案</th><td>提案文の下書きと点検</td><td>メール・スプレッドシート</td><td>経歴・実績の事実の表</td></tr>
+          <tr><th>見積</th><td>図面の読み取りと要確認の付け方</td><td>表計算</td><td>材料・加工の単価</td></tr>
+          <tr><th>朝刊</th><td>記事の選び方と書き方</td><td>Webの公開</td><td>今の運用・過去の朝刊</td></tr>
+        </tbody>
+      </table>
+      <p class="kit-note">仕事が変われば、要るスキルとプラグインも変わります。仕事に合わせて、必要なものを足していきます。</p>
+    </div>
+  </div>
+  <div class="two" style="margin-top:48px">
+    <div>
+      <h3 class="kit-h3">ナレッジを育てる</h3>
+      <ol class="loop" aria-label="仕事をし、人が直し、直したことをナレッジとスキルに書き足し、次の仕事に生かす流れ">
+        <li><span>AIが仕事をする<small>スキルとナレッジを読んでから始める</small></span></li>
+        <li class="dn">&nbsp;</li>
+        <li><span>人が確かめて、直す<small>言い回し・数字・判断のずれ</small></span></li>
+        <li class="dn">&nbsp;</li>
+        <li><span>直したことを書き足す<small>事実はナレッジへ、やり方はスキルへ</small></span></li>
+        <li class="dn bk">次の仕事へ</li>
+      </ol>
+      <p class="kit-note">一度直したことは、次から最初の手順に入ります。使うほど、その会社の仕事に合ったAIになります。</p>
+    </div>
+    <figure class="fig"><img src="../../assets/img/office.webp" width="1600" height="963" alt="担当AIの状態とチームのやり取りを表示するオフィス画面" loading="lazy" decoding="async"><figcaption>オフィス画面：どのAIが何をしていて、どこで人の確認待ちになっているかを一目で見られます。</figcaption></figure>
   </div>
   <ol class="rules" style="margin-top:48px">
     <li><b>事実の表だけを使う</b><span>経歴や実績は、決めた表にあることだけを書きます。ないことは書きません。</span></li>
