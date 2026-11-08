@@ -64,44 +64,44 @@
 <article class="case" id="jobs">
   <div class="case-h"><span class="no">01</span><h2>営業先探しと提案文の下書き</h2></div>
   <p class="prose" style="margin:0">営業先になりそうな相手が集まる複数のサイトを、決めた時刻に自動で見回ります。自社に合う相手を選んで表に記録し、提案文の下書きまでAIが作ります。送るかどうかは人が決めます。</p>
-  <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who auto">自動</span><br>平日2回・土日1回、決めた時刻に起動</li><li><span class="who ai">AI</span><br>サイトを見回り、新しい営業先の候補を集める</li><li><span class="who ai">AI</span><br>自社に合う相手かを選び、表に記録</li><li><span class="who ai">AI</span><br>提案文を下書きし、別のAIが点検</li><li><span class="who hu">人</span><br>送るかどうかを決め、人が送る</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めた時刻に動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が確かめて決める</span></p></div>
-  <dl><dt>使っている道具</dt><dd>Claude、Googleスプレッドシート</dd><dt>人が確かめる所</dt><dd>提案文を送るかどうか、送る前の最終確認</dd><dt>分野</dt><dd>自社の営業</dd></dl>
+  <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who auto">自動</span><br>平日2回・土日1回、決めた時刻に起動</li><li><span class="who ai">AI</span><br>サイトを見回り、新しい営業先の候補を集める</li><li><span class="who ai">AI</span><br>自社に合う相手かを選び、表に記録</li><li><span class="who ai">AI</span><br>提案文を下書きし、別のAIが点検</li><li><span class="who hu">人</span><br>送るかどうかを決め、人が送る</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めた時刻に動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が行う</span></p></div>
+  <dl><dt>使っている道具</dt><dd>Claude、Googleスプレッドシート</dd><dt>分野</dt><dd>自社の営業</dd></dl>
   
 </article>
 <article class="case" id="mail">
   <div class="case-h"><span class="no">02</span><h2>メールの確認と、やることの一覧</h2></div>
   <p class="prose" style="margin:0">平日の決めた時刻にAIがメールを読み、返事やお客様への対応が要るものを分けて一覧にし、タスクとして登録します。返信するかどうか、何を書くかは人が決めます。</p>
-  <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who auto">自動</span><br>平日の決めた時刻に起動</li><li><span class="who ai">AI</span><br>新しいメールを読む</li><li><span class="who ai">AI</span><br>対応が要るものを分け、一覧とタスクに登録</li><li><span class="who hu">人</span><br>一覧を見て、返事や対応を決める</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めた時刻に動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が確かめて決める</span></p></div>
-  <dl><dt>使っている道具</dt><dd>Claude、Gmail、Googleスプレッドシート、GAS</dd><dt>人が確かめる所</dt><dd>返信の内容と送信</dd><dt>分野</dt><dd>毎日のメール対応</dd></dl>
+  <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who auto">自動</span><br>平日の決めた時刻に起動</li><li><span class="who ai">AI</span><br>新しいメールを読む</li><li><span class="who ai">AI</span><br>対応が要るものを分け、一覧とタスクに登録</li><li><span class="who hu">人</span><br>一覧を見て、返事や対応を決める</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めた時刻に動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が行う</span></p></div>
+  <dl><dt>使っている道具</dt><dd>Claude、Gmail、Googleスプレッドシート、GAS</dd><dt>分野</dt><dd>毎日のメール対応</dd></dl>
   
 </article>
 <article class="case" id="csv">
   <div class="case-h"><span class="no">03</span><h2>EC出荷作業の自動化（送り状のデータ入力）</h2></div>
   <p class="prose" style="margin:0">自社のEC（Amazon・Yahoo!ショッピング・BASE）の出荷作業で、2024年に最初に自動化した業務です。各店舗の注文ファイルのダウンロードはAIのブラウザ拡張に任せ、自作の変換ツールでヤマト運輸のB2クラウドに取り込める形式（CSV・Shift_JIS）に変換し、自動で保存します。1日約20件の送り状のデータ入力が、約2時間から10分になりました。変換ツールは公開していて、だれでも試せます。</p>
-  <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who ai">AI</span><br>AIのブラウザ拡張が、各店舗の注文ファイルをダウンロード</li><li><span class="who auto">自動</span><br>自作のツールが店舗を見分け、B2クラウドの形式に変換</li><li><span class="who auto">自動</span><br>送り状のCSV（Shift_JIS）を自動で保存</li><li><span class="who hu">人</span><br>赤い印の所を確かめて、送り状を発行</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めたとおりに動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が確かめて決める</span></p></div>
-  <dl><dt>結果</dt><dd>1日約20件の送り状のデータ入力が、約2時間 → 10分</dd><dt>使っている道具</dt><dd>AIのブラウザ拡張、自作の変換ツール（HTML・JavaScript、ブラウザの中だけで処理）</dd><dt>人が確かめる所</dt><dd>赤い印の所（住所や品名が長すぎる、同じ注文の二重処理など）と、送り状の発行</dd><dt>分野</dt><dd>EC（自社の出荷作業）</dd></dl>
+  <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who ai">AI</span><br>AIのブラウザ拡張が、各店舗の注文ファイルをダウンロード</li><li><span class="who auto">自動</span><br>自作のツールが店舗を見分け、B2クラウドの形式に変換</li><li><span class="who auto">自動</span><br>送り状のCSV（Shift_JIS）を自動で保存</li><li><span class="who hu">人</span><br>赤い印の所を確かめて、送り状を発行</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めたとおりに動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が行う</span></p></div>
+  <dl><dt>結果</dt><dd>1日約20件の送り状のデータ入力が、約2時間 → 10分</dd><dt>使っている道具</dt><dd>AIのブラウザ拡張、自作の変換ツール（HTML・JavaScript、ブラウザの中だけで処理）</dd><dt>分野</dt><dd>EC（自社の出荷作業）</dd></dl>
   <p><a href="../../samples/shipping/">くわしく見る（スライド7枚） →</a></p>
   <p><a href="https://takmat21.github.io/yamato-b2-/">公開している変換ツールを見る →</a></p>
 </article>
 <article class="case" id="minutes">
   <div class="case-h"><span class="no">04</span><h2>議事録づくり</h2></div>
   <p class="prose" style="margin:0">打ち合わせの録音を文字起こしし、AIで議事録にまとめます。決まったこととやることを、あとから探せる形で残します。</p>
-  <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who hu">人</span><br>打ち合わせを録音する</li><li><span class="who ai">AI</span><br>録音を文字起こし</li><li><span class="who ai">AI</span><br>議事録にまとめる（決まったこと・やること）</li><li><span class="who hu">人</span><br>内容を確かめて残す</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めた時刻に動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が確かめて決める</span></p></div>
-  <dl><dt>使っている道具</dt><dd>Claude、ChatGPT、Googleドキュメント</dd><dt>人が確かめる所</dt><dd>議事録の中身</dd><dt>分野</dt><dd>打ち合わせの記録</dd></dl>
+  <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who hu">人</span><br>打ち合わせを録音する</li><li><span class="who ai">AI</span><br>録音を文字起こし</li><li><span class="who ai">AI</span><br>議事録にまとめる（決まったこと・やること）</li><li><span class="who hu">人</span><br>内容を確かめて残す</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めた時刻に動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が行う</span></p></div>
+  <dl><dt>使っている道具</dt><dd>Claude、ChatGPT、Googleドキュメント</dd><dt>分野</dt><dd>打ち合わせの記録</dd></dl>
   
 </article>
 <article class="case" id="drawing">
   <div class="case-h"><span class="no">05</span><h2>図面見積アプリ（試作）</h2></div>
   <p class="prose" style="margin:0">金属加工の図面PDFをAIが読み、寸法・材質・数量などを拾い出して、見積書の下書きを作ります。読み違えやすい所は「要確認」として出し、人が確かめて金額を決めます。自作の見本図面10枚では、90項目中89項目が合いました（自作の見本での結果で、実際の図面での結果ではありません）。</p>
-  <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who hu">人</span><br>図面のPDFを受け取る</li><li><span class="who ai">AI</span><br>寸法・材質・数量などを拾い出す</li><li><span class="who ai">AI</span><br>読み違えやすい所に「要確認」を付ける</li><li><span class="who ai">AI</span><br>見積書の下書きを作る</li><li><span class="who hu">人</span><br>確かめて金額を決める</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めた時刻に動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が確かめて決める</span></p></div>
-  <dl><dt>使っている道具</dt><dd>Claude、Excel</dd><dt>人が確かめる所</dt><dd>拾い出した値の確認と、見積の金額</dd><dt>分野</dt><dd>製造業向けの試作</dd></dl>
+  <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who hu">人</span><br>図面のPDFを受け取る</li><li><span class="who ai">AI</span><br>寸法・材質・数量などを拾い出す</li><li><span class="who ai">AI</span><br>読み違えやすい所に「要確認」を付ける</li><li><span class="who ai">AI</span><br>見積書の下書きを作る</li><li><span class="who hu">人</span><br>確かめて金額を決める</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めた時刻に動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が行う</span></p></div>
+  <dl><dt>使っている道具</dt><dd>Claude、Excel</dd><dt>分野</dt><dd>製造業向けの試作</dd></dl>
   <p><a href="../../samples/drawing-estimate/">図面見積アプリの紹介ページ →</a></p>
 </article>
 <article class="case" id="news">
   <div class="case-h"><span class="no">06</span><h2>朝刊とAIニュース番組</h2></div>
   <p class="prose" style="margin:0">統括役のAIが毎朝AIの最新の動きを読み、自社の運用と照らし合わせて「朝刊」としてWebに出しています。YouTubeのAIニュース番組（SOCRA）も、台本・音声・画像・字幕までAIが作り、公開まで自動で行っています。費用はAIの利用料のほかにかかっていません。</p>
-  <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who auto">自動</span><br>毎朝6時台に起動</li><li><span class="who ai">AI</span><br>記事を選んで読み、日本語で要約</li><li><span class="who ai">AI</span><br>自社の運用と比べ「取り入れるか」を書く</li><li><span class="who auto">自動</span><br>ページを自動で作り、公開</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めた時刻に動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が確かめて決める</span></p></div>
-  <dl><dt>使っている道具</dt><dd>Claude、GitHub Pages、YouTube</dd><dt>人が確かめる所</dt><dd>どの番組・記事を出すかの方針、公開の許可（最初に人が決める）</dd><dt>分野</dt><dd>情報収集と発信</dd></dl>
+  <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who auto">自動</span><br>毎朝6時台に起動</li><li><span class="who ai">AI</span><br>記事を選んで読み、日本語で要約</li><li><span class="who ai">AI</span><br>自社の運用と比べ「取り入れるか」を書く</li><li><span class="who auto">自動</span><br>ページを自動で作り、公開</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めた時刻に動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が行う</span></p></div>
+  <dl><dt>使っている道具</dt><dd>Claude、GitHub Pages、YouTube</dd><dt>分野</dt><dd>情報収集と発信</dd></dl>
   <p><a href="../../news/">朝刊を見る →</a></p>
 </article>
 
