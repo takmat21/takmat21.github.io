@@ -268,7 +268,8 @@ def main():
     from build_sitemap import build as build_sitemap
     print('sitemap', build_sitemap(), 'urls')
     from seo_jsonld import run as add_jsonld  # 構造化データ（検索・AI検索向け。11/5 太郎）
-    print('json-ld', len(add_jsonld()), 'pages')
+    # 朝刊で書き換えるのは news/ だけ。ai/ や samples/ など他のページは触らない（11/8 松村さん「なおして」）
+    print('json-ld', len(add_jsonld(only=("news/",))), 'pages')
     print('built', len(weeks), 'weeks; latest', latest['slug'])
 
 if __name__ == '__main__':

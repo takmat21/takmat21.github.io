@@ -169,7 +169,12 @@ def put(text, sid, data):
     return text.replace("</head>", block + "</head>", 1)
 
 
-def run(root=None):
+# 手で整えた構造化データがあるページ。今のページの内容を正とし、この道具では書き換えない（11/8 松村さん「なおして」・先輩5）
+KEEP = ("ai/", "samples/")
+
+
+def run(root=None, only=None):
+    """only: 書き換えてよいページの頭（例 ("news/",)）。None のときは KEEP 以外の全ページ。"""
     global ROOT, lastmod
     if root:
         ROOT = Path(root).resolve()
@@ -182,6 +187,11 @@ def run(root=None):
         t = f.read_text(encoding="utf-8")
         head = t.split("</head>")[0]
         rel = f.relative_to(ROOT).as_posix()
+        if only is not None:
+            if not rel.startswith(tuple(only)):
+                continue
+        elif rel.startswith(KEEP):
+            continue
         # 見本サイトの下層（架空）は WebPage のみ。一覧ページ samples/sites/ は実在のご案内なので通常のページと同じ扱い（11/5 アヤ）
         sites = rel.startswith("samples/sites/") and rel != "samples/sites/index.html"
         draft_ai = rel.startswith("ai/")  # 公開前（noindex）でも入れておく。noindex を外すのは松村さんの指示後
