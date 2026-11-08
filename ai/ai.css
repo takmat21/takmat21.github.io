@@ -285,3 +285,10 @@ a.card:hover .go::after{transform:translateX(4px)}
 .sa-mark{display:inline-block;margin-top:16px;background:#fff;padding:8px;border-radius:6px;line-height:0}
 .sa-mark img{height:64px;width:auto;max-width:none}
 .sa-mark:focus-visible{outline:3px solid var(--glow);outline-offset:2px}
+/* トップのすぐ見える所の案内（ラボ・セキュリティ）とフッターの一言（アヤ 11/8） */
+.xh-quick{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
+.xh-quick a{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 14px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--ink);text-decoration:none;background:#fff}
+.xh-quick a:hover{border-color:var(--accent);color:var(--accent)}
+.lab-note{display:block;font-size:12px;color:var(--night-sub);margin-top:2px}
+#lab{scroll-margin:120px}
+.sec-notes{margin:24px 0 0;padding-left:1.2em;color:var(--sub);font-size:14.5px;display:grid;gap:4px}
