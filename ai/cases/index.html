@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap"></noscript>
-<link rel="stylesheet" href="../ai.css?v=10">
+<link rel="stylesheet" href="../ai.css?v=11">
 <link rel="stylesheet" href="../parts.css?v=1">
 <script type="application/ld+json" id="ld-auto">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","inLanguage":"ja","isPartOf":{"@type":"WebSite","@id":"https://takmat21.github.io/#site","name":"ZAZOU Lab","url":"https://takmat21.github.io/"},"url":"https://takmat21.github.io/ai/cases/","name":"自社の仕組み｜ZAZOU AI Works（ZAZOU株式会社）","description":"自社の業務で毎日動かしているAIの仕組み6つを、どこをAIに任せ、どこを人が確かめているかの図つきで紹介します。","publisher":{"@type":"Organization","@id":"https://takmat21.github.io/#org","name":"ZAZOU株式会社","url":"https://takmat21.github.io/"},"image":"https://takmat21.github.io/ai/ogp.png"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZAZOU AI Works","item":"https://takmat21.github.io/ai/"},{"@type":"ListItem","position":2,"name":"自社の仕組み","item":"https://takmat21.github.io/ai/cases/"}]}]}</script>
 <!-- seo-head -->
@@ -120,6 +120,7 @@
 </div></section>
 <section class="sec"><div class="c">
 <article class="case" id="jobs">
+  <img class="cthumb wide" src="../img/cases/case1.webp" width="640" height="480" alt="" loading="lazy" decoding="async">
   <div class="case-h"><span class="no">01</span><h2>営業先探しと提案文の下書き</h2></div>
   <p class="prose" style="margin:0">営業先になりそうな相手が集まる複数のサイトを、決めた時刻に自動で見回ります。合いそうな相手を選んで表に記録し、提案文の下書きまでAIが作ります。送るかどうかは人が決めます。</p>
   <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who auto">自動</span><br>平日2回・土日1回、決めた時刻に起動</li><li><span class="who ai">AI</span><br>サイトを見回り、新しい営業先の候補を集める</li><li><span class="who ai">AI</span><br>合う相手かを選び、表に記録</li><li><span class="who ai">AI</span><br>提案文を下書きし、別のAIが点検</li><li><span class="who hu">人</span><br>送るかどうかを決め、人が送る</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めた時刻に動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が行う</span></p></div>
@@ -127,6 +128,7 @@
   
 </article>
 <article class="case" id="mail">
+  <img class="cthumb wide" src="../img/cases/case2.webp" width="640" height="480" alt="" loading="lazy" decoding="async">
   <div class="case-h"><span class="no">02</span><h2>メールの確認と、やることの一覧</h2></div>
   <p class="prose" style="margin:0">平日の決めた時刻にAIがメールを読み、返事やお客様への対応が要るものを分けて一覧にし、タスクとして登録します。返信するかどうか、何を書くかは人が決めます。</p>
   <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who auto">自動</span><br>平日の決めた時刻に起動</li><li><span class="who ai">AI</span><br>新しいメールを読む</li><li><span class="who ai">AI</span><br>対応が要るものを分け、一覧とタスクに登録</li><li><span class="who hu">人</span><br>一覧を見て、返事や対応を決める</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めた時刻に動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が行う</span></p></div>
@@ -134,6 +136,7 @@
   
 </article>
 <article class="case" id="csv">
+  <img class="cthumb wide" src="../img/cases/case3.webp" width="640" height="480" alt="" loading="lazy" decoding="async">
   <div class="case-h"><span class="no">03</span><h2>EC出荷作業の自動化（送り状のデータ入力）</h2></div>
   <p class="prose" style="margin:0">EC（Amazon・Yahoo!ショッピング・BASE）の出荷作業で、2024年に最初に自動化した業務です。各店舗の注文ファイルのダウンロードはAIのブラウザ拡張に任せ、自作の変換ツールでヤマト運輸のB2クラウドに取り込める形式（CSV・Shift_JIS）に変換し、自動で保存します。1日約20件の送り状のデータ入力が、約2時間から10分になりました。変換ツールは公開していて、だれでも試せます。</p>
   <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who ai">AI</span><br>AIのブラウザ拡張が、各店舗の注文ファイルをダウンロード</li><li><span class="who auto">自動</span><br>自作のツールが店舗を見分け、B2クラウドの形式に変換</li><li><span class="who auto">自動</span><br>送り状のCSV（Shift_JIS）を自動で保存</li><li><span class="who hu">人</span><br>赤い印の所を確かめて、送り状を発行</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めたとおりに動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が行う</span></p></div>
@@ -142,6 +145,7 @@
   <p><a href="https://takmat21.github.io/yamato-b2-/">公開している変換ツールを見る →</a></p>
 </article>
 <article class="case" id="minutes">
+  <img class="cthumb wide" src="../img/cases/case4.webp" width="640" height="480" alt="" loading="lazy" decoding="async">
   <div class="case-h"><span class="no">04</span><h2>議事録づくり</h2></div>
   <p class="prose" style="margin:0">会議の内容をAIで残します（議事録の下書き）。決まったこととやることを、あとから探せる形にまとめます。</p>
   <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who hu">人</span><br>会議の内容をAIで残す</li><li><span class="who ai">AI</span><br>話した内容を文字に起こす</li><li><span class="who ai">AI</span><br>議事録にまとめる（決まったこと・やること）</li><li><span class="who hu">人</span><br>内容を確かめて残す</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めた時刻に動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が行う</span></p></div>
@@ -149,6 +153,7 @@
   
 </article>
 <article class="case" id="drawing">
+  <img class="cthumb wide" src="../img/cases/case5.webp" width="640" height="480" alt="" loading="lazy" decoding="async">
   <div class="case-h"><span class="no">05</span><h2>図面見積アプリ（試作）</h2></div>
   <p class="prose" style="margin:0">金属加工の図面PDFをAIが読み、寸法・材質・数量などを拾い出して、見積書の下書きを作ります。読み違えやすい所は「要確認」として出し、人が確かめて金額を決めます。自作の見本図面10枚では、90項目中89項目が合いました（自作の見本での結果で、実際の図面での結果ではありません）。</p>
   <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who hu">人</span><br>図面のPDFを受け取る</li><li><span class="who ai">AI</span><br>寸法・材質・数量などを拾い出す</li><li><span class="who ai">AI</span><br>読み違えやすい所に「要確認」を付ける</li><li><span class="who ai">AI</span><br>見積書の下書きを作る</li><li><span class="who hu">人</span><br>確かめて金額を決める</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めた時刻に動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が行う</span></p></div>
@@ -156,6 +161,7 @@
   <p><a href="../../samples/drawing-estimate/">図面見積アプリの紹介ページ →</a></p>
 </article>
 <article class="case" id="news">
+  <img class="cthumb wide" src="../img/cases/case6.webp" width="640" height="480" alt="" loading="lazy" decoding="async">
   <div class="case-h"><span class="no">06</span><h2>朝刊とAIニュース番組</h2></div>
   <p class="prose" style="margin:0">統括役のAIが毎朝AIの最新の動きを読み、今の運用と照らし合わせて「朝刊」としてWebに出しています。YouTubeのAIニュース番組（SOCRA）も、台本・音声・画像・字幕までAIが作り、公開まで自動で行っています。費用はAIの利用料のほかにかかっていません。</p>
   <div><h3 class="note" style="font-weight:700">流れ</h3><ol class="flow"><li><span class="who auto">自動</span><br>毎朝6時台に起動</li><li><span class="who ai">AI</span><br>記事を選んで読み、日本語で要約</li><li><span class="who ai">AI</span><br>今の運用と比べ「取り入れるか」を書く</li><li><span class="who auto">自動</span><br>ページを自動で作り、公開</li></ol><p class="flow-key"><span><span class="who auto">自動</span> 決めた時刻に動く</span><span><span class="who ai">AI</span> AIが下書き・作業</span><span><span class="who hu">人</span> 人が行う</span></p></div>
@@ -176,6 +182,7 @@
   <div><b class="n">ZAZOU AI Works</b><p>ZAZOU株式会社<br>代表取締役 松村貴士</p><a class="sa-mark" href="../security/" aria-label="情報セキュリティ基本方針（SECURITY ACTION 二つ星を自己宣言）"><img src="../img/security-action-2star.png" width="179" height="179" alt="SECURITY ACTION 二つ星" loading="lazy" decoding="async"></a></div>
   <div><h3>MENU</h3><ul><li><a href="../">トップ</a></li><li><a href="../service/">サービス</a></li><li><a href="../price/">料金</a></li><li><a href="../cases/">自社の仕組み</a></li><li><a href="../company/">会社概要</a></li><li><a href="../faq/">よくある質問</a></li><li><a href="../contact/">お問い合わせ</a></li><li><a href="../glossary/">用語集</a></li><li><a href="../security/">情報セキュリティ基本方針</a></li></ul></div>
   <div><h3>CONTACT</h3><ul><li><a href="mailto:matsumura.takashi@zazoucorp.com">matsumura.takashi@zazoucorp.com</a></li><li><a href="tel:090-6373-7945">090-6373-7945</a></li><li id="lab"><a href="../../">代表のポートフォリオ（ZAZOU Lab）</a><span class="lab-note">試作・研究の途中経過も載せています</span></li></ul></div>
+  <p class="to-top-wrap"><a class="to-top" href="#">↑ ページの上へ戻る</a></p>
   <p class="copy">© 2026 ZAZOU株式会社</p>
 </div></footer>
 <script src="../parts.js?v=1" defer></script>
