@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="assets/style.css?v=20261109b">
+<link rel="stylesheet" href="assets/style.css?v=20261110a">
 <link rel="stylesheet" href="assets/hero-art/hero-art.css">
 <link rel="stylesheet" href="assets/hero-flower/hero-flower.css">
 <link rel="stylesheet" href="assets/hero-desk/hero-desk.css">
@@ -183,6 +183,10 @@
   <div class="sys">
   <p class="lead">統括役のAIが、仕事に合わせてスキル（手順書）・プラグイン・ナレッジを使い分け、ほかの会社のAIとも分担しながら、毎日の業務を動かしています。送信など元に戻せない操作は人が行います。</p>
   <p><a class="btn" href="samples/system/">詳しい資料を見る（PDF・17ページ、2026年10月の階層型の構成）</a></p>
+
+  <h3>全体図：頼む → 束ねる → 確かめる → 届ける</h3>
+  <figure class="sysmap"><a href="samples/system-map/"><img src="assets/img/system-map.webp" width="2640" height="1735" decoding="async" loading="lazy" alt="ZAZOUの仕組みの全体図。松村が4つの入口から頼み、統括AIのClaude Codeが、判断・権限・安全の関門を通して、ほかのAIに頼む・スキルで動かす・外部サービスを操作・外部APIを呼ぶの4つの枝に仕事を配り、公開先と届け先に出す。下にナレッジと担当AIの帯がある。"></a><figcaption>クリックすると大きな図が開きます（文字を選べます）。「稼働中」と「これから」を分けて書いています。2026年11月10日時点。</figcaption></figure>
+  <p class="map-terms"><b>図の用語：</b><a href="#t-skill">スキル</a>・<a href="#t-tokatsu">統括AI</a>・<a href="#t-tanto">担当AI</a>・<a href="#t-connector">コネクタ</a>・<a href="#t-extension">ブラウザ拡張</a>・<a href="#t-api">外部API</a>・<a href="#t-plugin">プラグイン</a>・<a href="#t-hook">フック</a>・<a href="#t-permission">禁止設定</a>・<a href="#t-level0">レベル0</a>・<a href="#t-knowledge">ナレッジ</a>・<a href="#t-facts">事実シート</a>・<a href="#t-decisions">決定ログ</a>・<a href="#t-doublecheck">二重チェック</a>・<a href="#t-judge">判断用AI</a>・<a href="#t-routine">定時作業</a>・<a href="#t-vertical">垂直型AIエージェント</a></p>
 
   <figure class="hero-shot"><img src="assets/img/office.webp" width="1600" height="963" decoding="async" alt="担当AIの状態とチームチャットを表示するオフィス画面" loading="lazy"><figcaption>オフィス画面：誰が何をしているか、どこで人の確認待ちになっているかを一目で見られます。</figcaption></figure>
 
@@ -475,6 +479,27 @@
   </ul>
   <p class="note">道具は増やしすぎると、AIが迷ったり費用が増えたりします。使わなくなったものは外し、この一覧も合わせて直します。</p>
 
+  <h2 class="pr-h" id="terms"><span class="en">Terms</span>用語の解説</h2>
+  <p class="lead note">仕組みタブの絵に出てくる言葉を、短く説明します。くわしい用語集は <a href="ai/glossary/">ZAZOU AI Works の用語集</a> にあります。</p>
+  <dl class="terms">
+    <div id="t-skill"><dt>スキル</dt><dd>仕事ごとの手順書。仕事の名前（例：「今日の出荷」）に合うと、AIが中身をまるごと読んで、そのとおりに動きます。直されたことを書き足して育てます。</dd></div>
+    <div id="t-tokatsu"><dt>統括AI</dt><dd>依頼を受けて、どの仕事かを見分け、スキル・道具・ナレッジを束ねて動かす進行役のAI。ZAZOUではClaude Codeが担当しています。</dd></div>
+    <div id="t-tanto"><dt>担当AI</dt><dd>動画づくりや補助金の書類など、1つの仕事だけを受け持つAI。統括AIが頼み、結果を確かめます。</dd></div>
+    <div id="t-connector"><dt>コネクタ</dt><dd>Gmailや表計算など、外のサービスにAIを直接つなぐ仕組み（MCPとも呼びます）。AIがメールを読んだり、表に書き込んだりできるようになります。</dd></div>
+    <div id="t-extension"><dt>ブラウザ拡張</dt><dd>AIにブラウザの操作を任せる道具（Claude in Chrome）。店の管理画面のように、コネクタがないサービスで使います。</dd></div>
+    <div id="t-api"><dt>外部API</dt><dd>ほかのサービスの機能を、プログラムから呼び出す窓口。画像生成や音声合成で使っています。使うための鍵（APIキー）は、安全な入力画面で保存し、チャットには書きません。</dd></div>
+    <div id="t-plugin"><dt>プラグイン</dt><dd>スキル・コネクタ・フックなどを1つにまとめ、入れるだけで使えるようにした箱。</dd></div>
+    <div id="t-hook"><dt>フック</dt><dd>AIが操作する前後に、決まったチェックを必ず走らせる仕組み。お願いではなく、仕組みで守らせます。</dd></div>
+    <div id="t-permission"><dt>禁止設定</dt><dd>特定の操作（例：メールの送信、ファイルの削除）を、AIがやろうとしても実行させない設定。</dd></div>
+    <div id="t-level0"><dt>レベル0</dt><dd>どの仕事でも必ず守る5つの決まり。送信・応募・お金・契約・削除・公開は人が行う／鍵を書かない／経歴・実績を作り話にしない／他社の文・画像をそのまま使わない／仕組みを変える前にOKをもらう。</dd></div>
+    <div id="t-knowledge"><dt>ナレッジ</dt><dd>AIの会話の外に置いておく記憶。会話が終わっても残り、次の仕事で読み直せます。事実シート・決定ログ・スキル・台帳がこれにあたります。</dd></div>
+    <div id="t-facts"><dt>事実シート</dt><dd>経歴・実績・会社の情報をまとめた表。応募文やプロフィールは、ここにあることだけを書きます。</dd></div>
+    <div id="t-decisions"><dt>決定ログ</dt><dd>いつ・誰が・何を決めたかの記録。決まりの経緯をたどれます。</dd></div>
+    <div id="t-doublecheck"><dt>二重チェック</dt><dd>あるAIが書いたものを、別の会社のAIに読ませて講評させること。同じAIの思い込みを減らします。</dd></div>
+    <div id="t-judge"><dt>判断用AI</dt><dd>文章を書かず、「どれを選ぶか」「何点か」「はい／いいえ」だけを確率つきで返すAI（例：Jev）。仕分けや振り分けに向きます。</dd></div>
+    <div id="t-routine"><dt>定時作業</dt><dd>決まった時刻に自動で始まる仕事。朝刊、毎朝の注文件数、メール確認、トークン台帳など。</dd></div>
+    <div id="t-vertical"><dt>垂直型AIエージェント</dt><dd>1つの何でも屋ではなく、仕事ごとに手順・道具・ナレッジを縦に積んで深く作るAIの組み立て方。</dd></div>
+  </dl>
   <h2 class="pr-h" id="prompts-learn"><span class="en">Prompts</span>AIへの頼み方（プロンプト）を学ぶ</h2>
   <p class="lead note">AIへの頼み方（プロンプト）を、例つきで紹介しているサイトです。仕事で使うなら、まず公式の2つ（Claude と OpenAI）がおすすめです。リンク先は2026年11月6日に開けることを確かめました。</p>
   <p class="group">公式（AIをつくっている会社）</p>
@@ -523,16 +548,18 @@
   var tabs=[].slice.call(document.querySelectorAll('.tabs a[data-tab]')), panels=[].slice.call(document.querySelectorAll('[data-panel]'));
   function show(id){
     if(id==='prompts') id='tools';
+    var tg=id&&document.getElementById(id), anchor=null; if(tg&&!tg.hasAttribute('data-panel')){var pn=tg.closest('[data-panel]'); if(pn){anchor=tg; id=pn.dataset.panel;}} window.__anc=anchor;
     if(!panels.some(function(p){return p.dataset.panel===id;})) id='about';
     panels.forEach(function(p){p.hidden=p.dataset.panel!==id;}); document.body.classList.toggle('no-hero', id==='samples'||id==='system'||id==='paper'||id==='video'||id==='security'||id==='prompts'||id==='tools'); document.body.classList.toggle('sys-tab', id==='system'); document.body.classList.toggle('paper-tab', id==='paper'); document.body.classList.toggle('samples-tab', id==='samples'); document.body.classList.toggle('video-tab', id==='video');
     tabs.forEach(function(a){var on=a.dataset.tab===id; a.classList.toggle('on',on); if(on){a.setAttribute('aria-current','page'); var n=a.parentNode; if(n.scrollWidth>n.clientWidth) n.scrollLeft=Math.max(0,a.offsetLeft-n.offsetLeft-16);} else a.removeAttribute('aria-current');});
+    if(anchor){setTimeout(function(){var n=document.querySelector('.tabs');var y=anchor.getBoundingClientRect().top+window.scrollY-(n?n.offsetHeight:0)-12;window.scrollTo(0,Math.max(0,y));anchor.classList.add('hit');setTimeout(function(){anchor.classList.remove('hit');},2200);},60);}
   }
   tabs.forEach(function(a){a.addEventListener('click',function(e){e.preventDefault(); history.replaceState(null,'','#'+a.dataset.tab); show(a.dataset.tab); toTabs();});});
   window.addEventListener('hashchange',function(){show(location.hash.slice(1));});
   [].forEach.call(document.querySelectorAll('.v-jump a'),function(a){a.addEventListener('click',function(e){e.preventDefault();var t=document.getElementById(a.getAttribute('href').slice(1));if(t)t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});});});
   [].forEach.call(document.querySelectorAll('a.to-s'),function(a){a.addEventListener('click',function(e){e.preventDefault();history.replaceState(null,'','#samples');show('samples');var t=document.getElementById(a.getAttribute('href').slice(1));if(t)setTimeout(function(){t.scrollIntoView({block:'start'});},0);});});
   show(location.hash.slice(1));
-  function toTabs(){if(document.body.classList.contains('no-hero')||!document.querySelector('[data-panel="about"][hidden]')){window.scrollTo(0,0);return;}var s=document.querySelector('[data-panel]:not([hidden])'),n=document.querySelector('.tabs');if(!s)return;var y=s.getBoundingClientRect().top+window.scrollY-(n?n.offsetHeight:0)-8;window.scrollTo(0,Math.max(0,y));}
+  function toTabs(){if(window.__anc){var n0=document.querySelector('.tabs');window.scrollTo(0,Math.max(0,window.__anc.getBoundingClientRect().top+window.scrollY-(n0?n0.offsetHeight:0)-12));return;}if(document.body.classList.contains('no-hero')||!document.querySelector('[data-panel="about"][hidden]')){window.scrollTo(0,0);return;}var s=document.querySelector('[data-panel]:not([hidden])'),n=document.querySelector('.tabs');if(!s)return;var y=s.getBoundingClientRect().top+window.scrollY-(n?n.offsetHeight:0)-8;window.scrollTo(0,Math.max(0,y));}
   if(location.hash && location.hash!=='#about'){setTimeout(toTabs,0);window.addEventListener('load',function(){setTimeout(toTabs,30);setTimeout(toTabs,150);});} else if(location.hash) setTimeout(function(){window.scrollTo(0,0);},0);
 })();
 </script>

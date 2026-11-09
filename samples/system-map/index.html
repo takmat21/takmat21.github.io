@@ -1,0 +1,145 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>仕組みの絵（全体図）｜ZAZOU Lab</title>
+<meta name="description" content="ZAZOUで動かしているAIの仕組みの全体図。人が頼み、統括AIがスキル・道具・ナレッジを束ね、最後は人が確かめる。">
+<link rel="canonical" href="https://takmat21.github.io/samples/system-map/">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<style>
+:root{--bg:#f6f4ee;--ink:#1c1c1a;--sub:#5f5d57;--line:#cfcabd;--card:#fff;--g:#1d7a5a;--gs:#e6f2ec;--a:#b4541f;--as:#fbeee6;--b:#2c5d86;--bs:#e8f0f7;--y:#8a6a12;--ys:#f7f0d9}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans JP","Noto Sans CJK JP","Hiragino Sans",sans-serif;font-size:14px;line-height:1.55}
+.wrap{width:2640px;padding:36px 40px 40px}
+h1{font-size:28px;margin:0 0 4px}.lead{color:var(--sub);margin:0 0 26px;font-size:15px}
+.map{display:grid;grid-template-columns:150px 34px 250px 34px 270px 34px 290px 44px 1fr 40px 230px;align-items:center}
+.arr{height:3px;background:var(--b);position:relative;border-radius:2px}
+.arr:after{content:"";position:absolute;right:-2px;top:-5px;border-left:10px solid var(--b);border-top:6.5px solid transparent;border-bottom:6.5px solid transparent}
+.me{background:var(--ink);color:#fff;border-radius:50%;width:150px;height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.me b{font-size:22px;letter-spacing:.06em}.me span{font-size:11.5px;color:#cfcdc6;margin-top:4px}
+.me svg{width:34px;height:34px;margin-bottom:4px}
+.col{display:flex;flex-direction:column;gap:12px}
+.in{background:var(--bs);border-radius:12px;padding:10px 12px}
+.in b{display:block;font-size:14.5px}.in i{font-style:normal;color:var(--b);font-size:11.5px;display:block}.in span{font-size:12px;color:var(--sub)}
+.hub{background:var(--card);border:3px solid var(--ink);border-radius:20px;padding:18px 18px 14px;text-align:center}
+.hub .ic{width:38px;height:38px;border:2.5px solid var(--a);border-radius:8px;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;color:var(--a);font-weight:900;font-size:17px}
+.hub h2{margin:0;font-size:25px}.hub .pill{display:inline-block;background:var(--ink);color:#fff;border-radius:999px;font-size:12px;padding:2px 12px;margin:6px 0 8px;font-weight:700}
+.hub p{font-size:12.5px;color:var(--sub);text-align:left;margin:0 0 8px}
+.hub ul{list-style:none;margin:0;padding:0;text-align:left;font-size:12.5px}.hub li{border-top:1px solid var(--line);padding:5px 0 5px 14px;position:relative}
+.hub li:before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:var(--a)}
+.har{background:#ecebe2;border-radius:16px;padding:14px}
+.har h3{margin:0 0 2px;font-size:15.5px}.har>p{margin:0 0 10px;font-size:12px;color:var(--sub)}
+.hc{background:var(--card);border-radius:10px;padding:8px 10px;margin-top:8px;font-size:12.5px}
+.hc b{display:block;font-size:13px}.hc span{color:var(--sub)}
+.tag{display:inline-block;font-size:10.5px;font-weight:700;border-radius:999px;padding:0 8px;margin-left:6px;vertical-align:1px}
+.on{background:var(--gs);color:var(--g)}.pl{background:var(--ys);color:var(--y)}
+.right{display:flex;flex-direction:column;gap:26px;position:relative}
+.fork{position:absolute;left:-22px;width:3px;background:var(--b);border-radius:2px}
+.stub{position:absolute;left:-22px;width:22px;height:3px;background:var(--b)}
+.arr.noh:after{display:none}
+.br{display:grid;grid-template-columns:150px 26px 1fr;align-items:center}
+.node{border-radius:999px;color:#fff;text-align:center;padding:16px 8px;font-weight:800;font-size:16px}
+.node small{display:block;font-weight:500;font-size:11px;opacity:.9;margin-top:2px}
+.n-a{background:var(--a)}.n-g{background:var(--g)}.n-y{background:#a07a14}.n-t{background:#1f7c86}
+.rows{display:flex;flex-direction:column;gap:8px;border-left:3px solid;padding-left:14px}
+.r-a{border-color:var(--a)}.r-g{border-color:var(--g)}.r-t{border-color:#1f7c86}.r-t .row{color:#1f7c86}.r-t .c.k{background:#e3f1f3;border-color:#bfdde1}.r-y{border-color:#a07a14}.r-y .row{color:#a07a14}.r-y .c.k{background:var(--ys);border-color:#e6d9a8}
+.row{display:grid;grid-template-columns:130px 16px 1.15fr 16px 1fr 16px 1.1fr;align-items:stretch;gap:0}
+.row .s{align-self:center;height:2px;background:currentColor;opacity:.55}
+.r-a .row{color:var(--a)}.r-g .row{color:var(--g)}
+.c{border-radius:9px;padding:7px 11px;font-size:13px;color:var(--ink);background:var(--card);border:1px solid var(--line)}
+.c b{display:block;font-size:13.5px}.c span{color:var(--sub);font-size:12.5px}
+.r-a .c.k{background:var(--as);border-color:#efd2c0}.r-g .c.k{background:var(--gs);border-color:#c6e0d3}
+.c.k b{font-size:15px}.c.k{display:flex;align-items:center}
+.head{display:grid;grid-template-columns:130px 16px 1.15fr 16px 1fr 16px 1.1fr;font-size:11px;color:var(--sub);font-weight:700;letter-spacing:.08em;margin:0 0 -2px;padding-left:17px}
+.kn{margin-top:30px;display:grid;grid-template-columns:150px 34px 1fr;align-items:center}
+.knb{background:var(--card);border:2px solid var(--g);border-radius:16px;padding:12px 16px;display:grid;grid-template-columns:210px 1fr;gap:14px;align-items:center}
+.knb h3{margin:0;font-size:16px;color:var(--g)}.knb p{margin:2px 0 0;font-size:12px;color:var(--sub)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chips span{background:var(--gs);border-radius:8px;padding:5px 10px;font-size:12.5px}
+.chips span b{color:var(--g)}
+.loop{font-size:12.5px;color:var(--g);font-weight:700;text-align:center;line-height:1.4}
+.out{display:flex;flex-direction:column;gap:14px}.ob{background:var(--ink);color:#fff;border-radius:14px;padding:12px 14px}.ob h4{margin:0 0 6px;font-size:14px}.ob li{font-size:12.5px;color:#dcdad3;margin:3px 0}.ob ul{margin:0;padding-left:16px}.ob.l{background:var(--card);color:var(--ink);border:2px solid var(--ink)}.ob.l li{color:var(--sub)}
+.team{margin-top:14px;display:grid;grid-template-columns:150px 34px 1fr;align-items:center}.tb{background:#ecebe2;border-radius:16px;padding:12px 16px;display:grid;grid-template-columns:210px 1fr;gap:14px;align-items:center}.tb h3{margin:0;font-size:16px}.tb p{margin:2px 0 0;font-size:12px;color:var(--sub)}.tb .chips span{background:var(--card)}.tb .chips b{color:var(--ink)}
+.foot{margin-top:18px;font-size:12px;color:var(--sub);display:flex;gap:18px;align-items:center}
+</style></head><body><p style="margin:0;padding:14px 40px 0;font-size:14px"><a href="../../#system" style="color:#1d7a5a">← ZAZOU Lab「仕組み」に戻る</a>　｜　<a href="../../#terms" style="color:#1d7a5a">用語の解説（道具タブ）</a>　<span style="color:#5f5d57">横に長い図です。スマホは横にスクロールするか、拡大してご覧ください。</span></p><div class="wrap">
+<h1>ZAZOUの仕組みの絵</h1>
+<p class="lead">人が頼み、統括AIが仕事ごとに「手順（スキル）・道具・ナレッジ」を束ねて動かし、最後は人が確かめる。2026年11月10日時点。<span class="tag on">稼働中</span> と <span class="tag pl">これから</span> を分けています。</p>
+
+<div class="map">
+  <div class="me"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg><b>松村</b><span>頼む・確かめる・決める</span></div>
+  <div class="arr"></div>
+  <div class="col">
+    <div class="in"><b>Claudeアプリ（スマホ・PC）</b><i>いつもの入口</i><span>文章・画像・ファイルで頼む</span></div>
+    <div class="in"><b>オペレーションボード</b><i>案件・タスク・予定を1画面に</i><span>返信文・拡張用の指示文をボタンでコピー</span></div>
+    <div class="in"><b>出荷アプリ</b><i>自作のWebツール</i><span>注文ファイル → 送り状CSV → 出荷通知の指示文</span></div>
+    <div class="in"><b>定時作業</b><i>決まった時刻に自動で</i><span>朝刊 6:41／注文件数 6:57／メール確認／トークン台帳（夜）</span></div>
+  </div>
+  <div class="arr"></div>
+  <div class="hub"><div class="ic">&gt;_</div><h2>Claude Code</h2><span class="pill">統括AI・すべての入口</span>
+    <p>依頼を読み、どの仕事かを見分けて、スキル・道具・ナレッジを束ねて動かす。結果を確かめ、直されたことをナレッジに書き足す。</p>
+    <ul><li>自作スキル 3本（出荷・他社AI・台帳）＋標準スキル</li><li>コネクタ：Gmail・カレンダー・ドライブ・スプレッドシート</li><li>定時作業 7本</li><li>担当AI：ヒビキ（動画）・ハル（補助金）・シオリ（記録）ほか</li></ul></div>
+  <div class="arr"></div>
+  <div class="har"><h3>判断・権限・安全</h3><p>どの仕事も、外に出る前にここを通ります。</p>
+    <div class="hc"><b>レベル0（5本）<span class="tag on">稼働中</span></b><span>送信・応募・お金・契約・削除・公開は人／鍵を書かない／作り話にしない／他社の文・画像をそのまま使わない／仕組みを変える前にOK</span></div>
+    <div class="hc"><b>事実シートとの照合<span class="tag on">稼働中</span></b><span>経歴・実績は、表にあることだけを書く</span></div>
+    <div class="hc"><b>別のAIで二重チェック<span class="tag on">稼働中</span></b><span>GPT・Geminiに講評させる</span></div>
+    <div class="hc"><b>禁止設定・フック<span class="tag pl">これから</span></b><span>送信・削除を、お願いではなく仕組みで止める</span></div>
+    <div class="hc"><b>判断用AI（Jev）<span class="tag pl">検討中</span></b><span>案件・メールの一次仕分け</span></div>
+  </div>
+  <div class="arr noh" style="margin-right:22px"></div>
+  <div class="right"><div class="fork" id="fork"></div>
+    <div class="br"><div class="node n-a">ほかのAIに頼む<small>得意なところだけ</small></div><div class="arr" style="background:var(--a)"></div>
+      <div class="rows r-a">
+        <div class="head"><span>仕事</span><span></span><span>頼む先</span><span></span><span>やり方</span><span></span><span>できあがるもの</span></div>
+        <div class="row"><div class="c k"><b>講評・点検</b></div><div class="s"></div><div class="c"><b>GPT（OpenAI）</b></div><div class="s"></div><div class="c"><span>Claudeが書いたものを別の目で読ませる</span></div><div class="s"></div><div class="c"><span>直す点の一覧 → 統括AIが直す</span></div></div>
+        <div class="row"><div class="c k"><b>長い資料・動画</b></div><div class="s"></div><div class="c"><b>Gemini</b></div><div class="s"></div><div class="c"><span>長いPDF・動画を読ませて要点を出す</span></div><div class="s"></div><div class="c"><span>要約・抜き出し</span></div></div>
+      </div></div>
+    <div class="br"><div class="node n-g">スキルで動かす<small>仕事ごとに縦に深く</small></div><div class="arr" style="background:var(--g)"></div>
+      <div class="rows r-g">
+        <div class="head"><span>仕事</span><span></span><span>手順（スキル）</span><span></span><span>道具</span><span></span><span>できあがるもの → 人の確認</span></div>
+        <div class="row"><div class="c k"><b>EC出荷</b></div><div class="s"></div><div class="c"><b>出荷・出荷通知<span class="tag on">稼働中</span></b><span>今日出す分の決まり（締切14時）・店ごとの決まり</span></div><div class="s"></div><div class="c"><span>出荷アプリ・変換ツール・ブラウザ拡張・B2クラウド</span></div><div class="s"></div><div class="c"><span>送り状CSV・出荷通知 → 赤い印を確かめて発行</span></div></div>
+        <div class="row"><div class="c k"><b>応募・営業</b></div><div class="s"></div><div class="c"><b>応募文・入力フォーム・メール確認<span class="tag pl">スキル化中</span></b><span>いまは決定ログとルール表</span></div><div class="s"></div><div class="c"><span>Gmail・ボード・ブラウザ拡張</span></div><div class="s"></div><div class="c"><span>応募文・返信文・プロフィール → 読んで送信</span></div></div>
+        <div class="row"><div class="c k"><b>朝刊・発信</b></div><div class="s"></div><div class="c"><b>朝刊・SOCRA<span class="tag pl">スキル化中</span></b><span>記事の選び方・出典の付け方・道具の見張り</span></div><div class="s"></div><div class="c"><span>ページ生成・GitHub Pages・動画づくり（ヒビキ）</span></div><div class="s"></div><div class="c"><span>朝刊4本・動画1本 → 中身を確かめて公開</span></div></div>
+        <div class="row"><div class="c k"><b>資料・サイト</b></div><div class="s"></div><div class="c"><b>他社AIへの頼み方<span class="tag on">稼働中</span></b><span>画像はGemini、講評はGPT</span></div><div class="s"></div><div class="c"><span>HTML・スライド・画面の撮影・GitHub Pages</span></div><div class="s"></div><div class="c"><span>提案資料・ラボ・AI Works → 確かめて公開</span></div></div>
+        <div class="row"><div class="c k"><b>毎日の数字</b></div><div class="s"></div><div class="c"><b>トークン台帳<span class="tag on">稼働中</span></b><span>使用額を仕事ごとに記録</span></div><div class="s"></div><div class="c"><span>注文メール・スプレッドシート</span></div><div class="s"></div><div class="c"><span>毎朝の注文件数・毎晩の台帳 → 見て判断</span></div></div>
+        <div class="row"><div class="c k"><b>補助金・計画</b></div><div class="s"></div><div class="c"><b>補助金の書類<span class="tag pl">スキル化中</span></b><span>担当AI（ハル）が下書き</span></div><div class="s"></div><div class="c"><span>Googleドキュメント・公募要領</span></div><div class="s"></div><div class="c"><span>事業計画の下書き → 数字は人が入れる</span></div></div>
+      </div></div>
+    <div class="br"><div class="node n-t">外部サービスを操作<small>コネクタとブラウザ拡張</small></div><div class="arr" style="background:#1f7c86"></div>
+      <div class="rows r-t">
+        <div class="head"><span>相手</span><span></span><span>つなぎ方</span><span></span><span>やること</span><span></span><span>権限・人の確認</span></div>
+        <div class="row"><div class="c k"><b>Google Workspace</b></div><div class="s"></div><div class="c"><b>コネクタ<span class="tag on">稼働中</span></b><span>Gmail・カレンダー・ドライブ・スプレッドシート</span></div><div class="s"></div><div class="c"><span>メール確認、予定の登録、管理表・決定ログの読み書き</span></div><div class="s"></div><div class="c"><span>メールは読むだけ。送信は人</span></div></div>
+        <div class="row"><div class="c k"><b>店の管理画面</b></div><div class="s"></div><div class="c"><b>ブラウザ拡張（Claude in Chrome）<span class="tag on">稼働中</span></b><span>Amazon・Yahoo!ショッピング・BASE</span></div><div class="s"></div><div class="c"><span>注文ファイルの取得、出荷通知の入力（指示文は出荷アプリが作る）</span></div><div class="s"></div><div class="c"><span>注文番号と伝票番号を画面で照合。指示にない注文は触らない</span></div></div>
+        <div class="row"><div class="c k"><b>ヤマトB2クラウド</b></div><div class="s"></div><div class="c"><b>CSVの取り込み<span class="tag on">稼働中</span></b></div><div class="s"></div><div class="c"><span>変換した送り状データを取り込む</span></div><div class="s"></div><div class="c"><span>赤い印を確かめて、発行は人</span></div></div>
+        <div class="row"><div class="c k"><b>求人サイト</b></div><div class="s"></div><div class="c"><b>ブラウザ拡張<span class="tag on">稼働中</span></b><span>複業クラウド・クラウドワークスほか</span></div><div class="s"></div><div class="c"><span>プロフィールの入力、新着の巡回</span></div><div class="s"></div><div class="c"><span>応募・送信は人。文章は一字も変えずに入れる</span></div></div>
+        <div class="row"><div class="c k"><b>GitHub</b></div><div class="s"></div><div class="c"><b>リポジトリ・Pages・Actions<span class="tag on">稼働中</span></b></div><div class="s"></div><div class="c"><span>ラボ・AI Works・出荷アプリの公開、動画の自動づくり</span></div><div class="s"></div><div class="c"><span>公開は人のOKのあと。公開後に本番を目で確かめる</span></div></div>
+      </div></div>
+    <div class="br"><div class="node n-y">外部APIを呼ぶ<small>鍵は安全な入力画面で保存</small></div><div class="arr" style="background:#a07a14"></div>
+      <div class="rows r-y">
+        <div class="head"><span>仕事</span><span></span><span>呼ぶ先</span><span></span><span>呼ぶスキル・仕組み</span><span></span><span>確認</span></div>
+        <div class="row"><div class="c k"><b>画像生成</b></div><div class="s"></div><div class="c"><b>Gemini（Nano Banana Pro）・GPT画像<span class="tag on">稼働中</span></b></div><div class="s"></div><div class="c"><span>スキル「他社AIへの頼み方」。文字は描かせず、あとで重ねる</span></div><div class="s"></div><div class="c"><span>人が見て選ぶ。ロゴ・実在の商品は描かせない</span></div></div>
+        <div class="row"><div class="c k"><b>声（音声合成）</b></div><div class="s"></div><div class="c"><b>Google Cloud Text-to-Speech<span class="tag on">稼働中</span></b></div><div class="s"></div><div class="c"><span>SOCRAの動画づくり（担当AI ヒビキ・GitHub Actions）</span></div><div class="s"></div><div class="c"><span>読みの心配な表記を点検、音量・長さを確認</span></div></div>
+        <div class="row"><div class="c k"><b>動画の投稿</b></div><div class="s"></div><div class="c"><b>YouTube<span class="tag on">稼働中</span></b></div><div class="s"></div><div class="c"><span>投稿なしで確認用に作る → 統括AIが成果物を見る</span></div><div class="s"></div><div class="c"><span>「公開OK」は人が出す</span></div></div>
+        <div class="row"><div class="c k"><b>店のAPI</b></div><div class="s"></div><div class="c"><b>BASE・Amazon・Yahoo!<span class="tag pl">これから</span></b><span>BASEは構築済み（見直し中）、Amazonは申請中</span></div><div class="s"></div><div class="c"><span>注文の取得 → 送り状 → 出荷通知をファイルなしで</span></div><div class="s"></div><div class="c"><span>伝票の発行と通知の送信は人</span></div></div>
+        <div class="row"><div class="c k"><b>判断（迷い判定）</b></div><div class="s"></div><div class="c"><b>Jev（TypeSafe AI）<span class="tag pl">検討中</span></b></div><div class="s"></div><div class="c"><span>案件・メールの一次仕分け（選ぶ・点数・はい／いいえ）</span></div><div class="s"></div><div class="c"><span>いまの判断と並べて比べてから使う</span></div></div>
+      </div></div>
+  </div>
+  <div class="arr"></div>
+  <div class="out">
+    <div class="ob"><h4>公開先</h4><ul><li>ZAZOU Lab（実績・仕組み・論文・朝刊）</li><li>ZAZOU AI Works（サービス）</li><li>出荷アプリ・変換ツール</li><li>YouTube「SOCRA」</li></ul></div>
+    <div class="ob"><h4>届け先</h4><ul><li>お客様（商品の出荷・出荷通知）</li><li>応募先・取引先（応募文・返信・資料）</li><li>商工会・役所（補助金の書類）</li></ul></div>
+    <div class="ob l"><h4>出る前に必ず</h4><ul><li>送信・公開・発行のボタンは人が押す</li></ul></div>
+  </div>
+</div>
+
+<div class="kn"><div class="loop">直したことを<br>書き足す ↑</div><div class="arr" style="background:var(--g)"></div>
+  <div class="knb"><div><h3>ナレッジ（外に置く記憶）</h3><p>会話が終わっても残る。使うほど、その仕事に合ったAIになる。</p></div>
+    <div class="chips"><span><b>事実シート</b>　経歴・実績・会社の情報</span><span><b>決定ログ</b>　いつ・誰が・何を決めたか</span><span><b>スキル</b>　仕事ごとの手順とコツ</span><span><b>台帳</b>　案件カード・成果物・トークン</span><span><b>引き継ぎ</b>　次の統括AIへ（シオリが記録）</span><span><b>置き場所</b>　Googleスプレッドシート／GitHub（スキルの正本・これから）</span></div></div></div>
+
+
+<div class="team"><div class="loop" style="color:var(--sub)">統括AIが<br>頼む・確かめる</div><div class="arr" style="background:var(--sub)"></div>
+  <div class="tb"><div><h3>まわりのAI（担当）</h3><p>統括AIが仕事を頼み、結果を確かめる。部下は減らし、スキルへ移行中。</p></div>
+    <div class="chips"><span><b>ヒビキ</b>　SOCRAの動画づくり</span><span><b>ハル</b>　補助金の書類</span><span><b>シオリ</b>　記録・引き継ぎ</span><span><b>ツムギ</b>　研究・道具の動向ウォッチ</span><span><b>ノーム</b>（ChatGPT）　記事の下書き・二重チェック</span><span><b>作業役</b>（軽めのモデル）　記事・集計・台帳</span></div></div></div>
+
+<div class="foot"><span>© 2026 ZAZOU株式会社</span><span><span class="tag on">稼働中</span> 毎日動いているもの</span><span><span class="tag pl">これから</span> 作っている・検討しているもの</span></div>
+</div>
+<script>
+(function(){var r=document.querySelector('.right'),n=r.querySelectorAll('.node'),rb=r.getBoundingClientRect();
+function mid(e){var b=e.getBoundingClientRect();return b.top+b.height/2-rb.top;}
+var ys=[].map.call(n,mid);var f=document.getElementById('fork');f.style.top=ys[0]+'px';f.style.height=(ys[ys.length-1]-ys[0]+3)+'px';
+ys.forEach(function(y){var d=document.createElement('div');d.className='stub';d.style.top=y+'px';r.appendChild(d);});})();
+</script></body></html>
