@@ -320,30 +320,9 @@ body.no-hero .hero-more{display:none}
 /* 区切りの余白を広く */
 @media (min-width:961px){.home .sub-sec{padding:0 0 96px}.home section[data-panel]{padding-top:56px}}
 /* 仕事一覧：サムネイルつきの行 */
-ul.rows a.row.has-thumb{grid-template-columns:200px 1fr auto;align-items:start}
-ul.rows a.row.has-thumb img{grid-row:1 / span 2;width:200px;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top;border:1px solid var(--line);border-radius:6px}
-ul.rows a.row.has-thumb .d{grid-column:2 / -1}
-@media (min-width:1100px){.home ul.rows li:has(> a.has-thumb){grid-column:1 / -1}}
-@media (max-width:640px){ul.rows a.row.has-thumb{grid-template-columns:1fr auto}ul.rows a.row.has-thumb img{grid-row:auto;grid-column:1 / -1;width:100%}ul.rows a.row.has-thumb .d{grid-column:1 / -1}}
-.app-name{font-weight:700;color:var(--accent);margin:12px 0 0;font-size:16px}
-.cta-row .cta{margin:0}
-.app-name{word-break:auto-phrase;text-wrap:balance}
-/* スマホのタブ：右だけでなく左端もぼかし、横に動かしたときの「切れ」を目立たせない */
-@media (max-width:640px){
-  .tabs{-webkit-mask-image:linear-gradient(to right,transparent 0,#000 24px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(to right,transparent 0,#000 24px,#000 calc(100% - 28px),transparent);padding-left:12px}
-}
-/* プロンプトタブ：うちで使えそうなプロンプト */
-.pr-h{margin-top:56px}
-ul.rows div.row.pr{grid-template-columns:1fr;gap:8px}
-ul.rows div.row.pr .d{margin:0}
-ul.rows div.row.pr .d b{display:inline-block;font-size:12px;font-weight:700;color:var(--accent);border:1px solid currentColor;border-radius:4px;padding:0 6px;margin-right:8px;line-height:1.6;vertical-align:1px}
-ul.rows div.row.pr .src{font-size:14px;justify-self:start;padding:6px 0;min-height:32px}
-
-/* ラボの冒頭の一文（11/8） */
-.hero .lab-about{margin:12px 0 0;font-size:14px;color:var(--sub);line-height:1.8;max-width:40em}
-
-/* ラボ冒頭のコピー（11/8） */
-.hero .lab-copy{margin:14px 0 0;font-size:15.5px;font-weight:700;color:var(--fg);line-height:1.8}
-.hero .lab-copy span{display:inline-block}
-.hero .lab-copy a{font-weight:400;font-size:14px;margin-left:8px;white-space:nowrap}
-.hero .lab-copy a::after{content:" →"}
+ul.rows a.row.has-thumb{grid-template-columns:132px 1fr auto;grid-template-rows:auto 1fr;column-gap:20px;row-gap:8px;align-items:start}
+ul.rows a.row.has-thumb .th{grid-column:1;grid-row:1 / span 2;width:132px;height:auto;aspect-ratio:3/4;object-fit:cover;border-radius:6px;border:1px solid var(--line)}
+ul.rows a.row.has-thumb .t{grid-column:2;grid-row:1}
+ul.rows a.row.has-thumb .m{grid-column:3;grid-row:1}
+ul.rows a.row.has-thumb .d{grid-column:2 / -1;grid-row:2}
+@media (max-width:560px){ul.rows a.row.has-thumb{grid-template-columns:96px 1fr;column-gap:14px}ul.rows a.row.has-thumb .th{width:96px;grid-row:1 / span 2}ul.rows a.row.has-thumb .m{grid-column:2;grid-row:2}ul.rows a.row.has-thumb .d{grid-column:1 / -1;grid-row:3}}
