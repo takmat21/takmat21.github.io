@@ -1,0 +1,126 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jevとは：文章ではなく「判断」を返すAI（2026年11月）｜記事｜ZAZOU Lab</title>
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jevとは：文章ではなく「判断」を返すAI（2026年11月）">
+<meta property="og:description" content="TypeSafe AIのJevは、選択・点数・はい／いいえを確率つきで返す判断専用のAI。できること、苦手なこと、小さな会社での使いどころ（2026年11月10日時点）。">
+<meta property="og:url" content="https://takmat21.github.io/articles/jev/">
+<meta property="og:image" content="https://takmat21.github.io/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="description" content="TypeSafe AIのJevは、選択・点数・はい／いいえを確率つきで返す判断専用のAI。できること、苦手なこと、小さな会社での使いどころ（2026年11月10日時点）。">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet"></noscript>
+<style>
+:root{--bg:#fbfaf7;--fg:#1f1f1c;--muted:#5d5b55;--line:#dedad1;--card:#f2efe8;--accent:#8a4b1f;--code:#f0ece3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161614;--fg:#e8e6e1;--muted:#a6a39b;--line:#3a3833;--card:#211f1c;--accent:#e0a473;--code:#24221e}}
+:root[data-theme="dark"]{--bg:#161614;--fg:#e8e6e1;--muted:#a6a39b;--line:#3a3833;--card:#211f1c;--accent:#e0a473;--code:#24221e}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Noto Serif JP","Hiragino Mincho ProN",serif;font-size:16.5px;line-height:1.95;letter-spacing:.02em}
+main{max-width:46rem;margin:0 auto;padding:48px 16px 96px}
+h1,h2,h3{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;line-height:1.45;letter-spacing:0}
+h1{font-size:1.6rem;margin:0 0 .4em}
+main>h2:first-of-type{font-size:1.05rem;font-weight:500;color:var(--muted);margin-top:0;border:0;padding:0}
+h2{font-size:1.3rem;margin:2.6em 0 .8em;padding-top:.6em;border-top:1px solid var(--line)}
+h3{font-size:1.08rem;margin:2em 0 .6em;color:var(--accent)}
+p{margin:0 0 1.1em}
+hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+a{color:var(--accent);word-break:break-all}
+strong{font-weight:700}
+ul,ol{padding-left:1.4em}li{margin:.3em 0}
+.tw{overflow-x:auto;margin:1.2em 0 1.6em;border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-family:"Noto Sans JP",sans-serif;font-size:14px;line-height:1.7}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;min-width:6em}
+th{background:var(--card);font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+@media (max-width:600px){.pl{border:0}.pl table,.pl tbody,.pl tr,.pl th,.pl td{display:block;width:auto}.pl thead{display:none}.pl tr{border:1px solid var(--line);border-radius:6px;margin:0 0 10px;padding:8px 12px}.pl th,.pl td{border:0!important;padding:2px 0!important}.pl td:nth-child(3){font-size:12px;color:var(--muted)}}
+pre{background:var(--code);border:1px solid var(--line);border-radius:6px;padding:14px;overflow-x:auto;font-size:13px;line-height:1.6}
+code{font-family:"Noto Sans Mono","SFMono-Regular",Menlo,monospace;font-size:.92em}
+pre code{font-size:inherit}
+.wip{font-family:"Noto Sans JP",sans-serif;font-size:14px;line-height:1.8;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:12px 16px;margin:0 0 1.6em}
+pre,.tw{max-width:100%}
+html,body{overflow-x:clip}
+.back{font-family:"Noto Sans JP",sans-serif;font-size:14px;margin:0 0 1.2em}
+main>p:nth-of-type(1){color:var(--muted);font-family:"Noto Sans JP",sans-serif;font-size:14px}
+@media print{body{background:#fff;color:#000}}
+.tabs{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--line);margin:0 0 1.4em;font-family:"Noto Sans JP",sans-serif}
+.tabs a{flex:0 0 auto;padding:10px 9px;font-size:14px;color:var(--muted);text-decoration:none;border-bottom:3px solid transparent;white-space:nowrap;word-break:normal}
+h4{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;font-size:1rem;margin:1.6em 0 .5em}
+.tabs a.on{color:var(--accent);border-bottom-color:var(--accent);font-weight:700}
+</style><link rel="canonical" href="https://takmat21.github.io/articles/jev/">
+
+<style>@media (max-width:640px){.tabs{-webkit-mask-image:linear-gradient(to right,transparent 0,#000 28px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(to right,transparent 0,#000 28px,#000 calc(100% - 28px),transparent);padding-left:12px;padding-right:12px}}</style>
+</head><body><main>
+<nav class="tabs" aria-label="ページの切り替え"><a href="../../#about">プロフィール</a><a href="../../#samples">仕事一覧</a><a href="../../#system">仕組み</a><a href="../../#security">安全の決まり</a><a href="../../#paper">論文</a><a href="../../#video">動画</a><a href="../../#tools" class="on" aria-current="page">道具</a><a href="../../news/">朝刊</a></nav>
+<div class="wip"><strong>記事</strong>　2026年9月に出た「判断専用のAI」Jevを、小さな会社の目線でまとめました。ZAZOUではまだ導入しておらず、試す前の整理です。</div>
+<h1>Jevとは：文章ではなく「判断」を返すAI（2026年11月）</h1>
+<h2>「どれを選ぶか」「何点か」「はい／いいえ」を、確率つきで返す</h2>
+<p>文：松村貴士（ZAZOU株式会社）｜下書き：統括AI　｜　2026年11月10日</p><hr />
+
+<h2>ひとことで言うと</h2>
+<p>Jev（ジェブ）は、米国のTypeSafe AIが2026年9月15日に公開したAIです。ChatGPTやClaudeのように文章を書くのではなく、<strong>あらかじめ決めた選択肢の中から答えを選び、その確からしさ（確率）を返す</strong>ことに特化しています。開発元は「賢いif文」にたとえています。返事の文面や要約、プログラムは書けません。</p>
+
+<h2>聞き方は3種類</h2>
+<div class="tw pl"><table>
+<thead><tr><th>種類</th><th>聞くこと</th><th>返ってくるもの</th></tr></thead>
+<tbody>
+<tr><td><strong>Choice</strong></td><td>いくつかの選択肢から1つ選ぶ（例：このメールは「注文」「問い合わせ」「営業」のどれか）</td><td>選んだもの、選択肢ごとの確率、確信度</td></tr>
+<tr><td><strong>Score</strong></td><td>段階のある尺度で評価する（例：急ぎ度を5段階で）</td><td>点数（確率で重みづけした平均）、段階ごとの確率、確信度</td></tr>
+<tr><td><strong>Noul</strong></td><td>はい／いいえで答える（例：これは返金の依頼か）</td><td>「はい」の確率（0〜1）</td></tr>
+</tbody></table></div>
+<p>使い方は、「状態」（判断の材料になる文章やデータ）と「質問」をまとめて送るだけです。複数の質問を1回で送ると、同じ材料に対してまとめて答えます。答えは必ず決めた選択肢のどれかになるので、プログラムで扱いやすいのが特長です。</p>
+
+<h2>速さと費用（開発元の発表）</h2>
+<ul>
+<li>費用：入力100万トークンあたり0.042ドル。出力は無料。</li>
+<li>速さ：1回あたり70〜500ミリ秒、多くは約0.1秒。</li>
+<li>開発元は、自社の評価で一般的な大きなAIより「193.6倍速く、444.6倍安い」としています（上限の値としての比較）。</li>
+<li>正しさ：開発元自身の4つの業務での評価で、約68%という紹介があります。一般に公開された比較テストの結果は出ていません。</li>
+</ul>
+<p>どれも開発元の発表を紹介記事が伝えたものです。自分の仕事で試して確かめる必要があります。</p>
+
+<h2>向いている仕事</h2>
+<ul>
+<li><strong>振り分け</strong>：問い合わせやメールを担当ごとに分ける。</li>
+<li><strong>分類・ラベル付け</strong>：案件や商品を種類で分ける。</li>
+<li><strong>優先度の判断</strong>：急ぎかどうか、先に見るべきか。</li>
+<li><strong>チェック</strong>：迷惑メール、危ない操作でないかの確認。</li>
+<li><strong>関門</strong>：高いAIや人の手間をかける前に、かける価値があるかを判断する。</li>
+</ul>
+
+<h2>苦手なこと・注意点</h2>
+<ul>
+<li><strong>計算や日付の計算は苦手</strong>。数を数える、日付を足し引きする判断には使わない。</li>
+<li><strong>形が正しいことと、答えが正しいことは別</strong>。必ず選択肢のどれかを返すが、それが間違っていることもある。</li>
+<li><strong>質問の言葉どおりに読む</strong>。否定や「〜だけ」などの言葉で答えが逆になることがある。</li>
+<li>材料の文章に紛れ込んだ指示に影響される（プロンプトインジェクション）おそれがある。開発元は改善予定としている。</li>
+<li>自社のサーバーには置けない（重みは非公開）。</li>
+<li>新規登録の受付は時期によって変わっていて（9月20日に開放、22日に混雑で一時停止という報告と、9月24日時点で開放とする記事がある）、モデルも更新が続いています。使う前に公式の最新情報を確かめてください。</li>
+</ul>
+
+<h2>ZAZOUで試したいところ</h2>
+<div class="tw pl"><table>
+<thead><tr><th>仕事</th><th>聞き方</th><th>ねらい</th></tr></thead>
+<tbody>
+<tr><td>求人・案件の一次仕分け</td><td>Choice（◎／○／△／見送り）</td><td>大きなAIで応募文を書く前に、書く価値があるかを安く判断する</td></tr>
+<tr><td>メールの振り分け</td><td>Choice（注文／面接日程／返事が必要／お知らせ）</td><td>毎日のメール確認を速く、安くする</td></tr>
+<tr><td>応募文の自己点検</td><td>Score（募集内容に合っているか5段階）</td><td>送る前の見落としを減らす。最後は人が読む</td></tr>
+</tbody></table></div>
+<p>出荷日の決定のように日付の計算が入る判断や、お客様の個人情報を材料にする判断には使いません。試すときは、いまのやり方（Claudeでの判断）と同じ材料で並べて比べ、結果をこの記事に足します。</p>
+
+<h2>出典</h2>
+<ul>
+<li><a href="https://flaviocopes.com/jev/">A deep dive into Jev, TypeSafe's System One model（flaviocopes.com、2026年10月15日更新）</a></li>
+<li><a href="https://www.datacamp.com/tutorial/jev-api-tutorial">Jev API tutorial（DataCamp、2026年9月24日）</a></li>
+</ul>
+<p>数字はいずれも、開発元の発表を上の記事が伝えたものです。公式の資料で確かめてから使ってください。</p>
+
+<h2>関連</h2>
+<ul>
+<li><a href="../ai-toolbox/">プラグイン・スキル・フック・コネクタの違いと使い分け</a></li>
+<li><a href="../../#tools">ラボの道具タブ（いま使っているAIとツール）</a></li>
+</ul>
+</main><script>(function(){var n=document.querySelector(".tabs"),a=n&&n.querySelector(".on");if(a&&n.scrollWidth>n.clientWidth)n.scrollLeft=Math.max(0,a.offsetLeft-n.offsetLeft-16);})();</script>
+</body></html>

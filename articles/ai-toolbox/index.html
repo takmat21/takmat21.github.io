@@ -1,0 +1,109 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>プラグイン・スキル・フック・コネクタの違いと使い分け（2026年11月）｜記事｜ZAZOU Lab</title>
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="プラグイン・スキル・フック・コネクタの違いと使い分け（2026年11月）">
+<meta property="og:description" content="AIに仕事を任せるときの道具（プロンプト・スキル・ナレッジ・コネクタ・プラグイン・フック・禁止設定）を、「お願い」か「仕組みで止める」かで整理。小さな会社の分け方とZAZOUの例。">
+<meta property="og:url" content="https://takmat21.github.io/articles/ai-toolbox/">
+<meta property="og:image" content="https://takmat21.github.io/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="description" content="AIに仕事を任せるときの道具（プロンプト・スキル・ナレッジ・コネクタ・プラグイン・フック・禁止設定）を、「お願い」か「仕組みで止める」かで整理。小さな会社の分け方とZAZOUの例。">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet"></noscript>
+<style>
+:root{--bg:#fbfaf7;--fg:#1f1f1c;--muted:#5d5b55;--line:#dedad1;--card:#f2efe8;--accent:#8a4b1f;--code:#f0ece3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161614;--fg:#e8e6e1;--muted:#a6a39b;--line:#3a3833;--card:#211f1c;--accent:#e0a473;--code:#24221e}}
+:root[data-theme="dark"]{--bg:#161614;--fg:#e8e6e1;--muted:#a6a39b;--line:#3a3833;--card:#211f1c;--accent:#e0a473;--code:#24221e}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Noto Serif JP","Hiragino Mincho ProN",serif;font-size:16.5px;line-height:1.95;letter-spacing:.02em}
+main{max-width:46rem;margin:0 auto;padding:48px 16px 96px}
+h1,h2,h3{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;line-height:1.45;letter-spacing:0}
+h1{font-size:1.6rem;margin:0 0 .4em}
+main>h2:first-of-type{font-size:1.05rem;font-weight:500;color:var(--muted);margin-top:0;border:0;padding:0}
+h2{font-size:1.3rem;margin:2.6em 0 .8em;padding-top:.6em;border-top:1px solid var(--line)}
+h3{font-size:1.08rem;margin:2em 0 .6em;color:var(--accent)}
+p{margin:0 0 1.1em}
+hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+a{color:var(--accent);word-break:break-all}
+strong{font-weight:700}
+ul,ol{padding-left:1.4em}li{margin:.3em 0}
+.tw{overflow-x:auto;margin:1.2em 0 1.6em;border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-family:"Noto Sans JP",sans-serif;font-size:14px;line-height:1.7}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;min-width:6em}
+th{background:var(--card);font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+@media (max-width:600px){.pl{border:0}.pl table,.pl tbody,.pl tr,.pl th,.pl td{display:block;width:auto}.pl thead{display:none}.pl tr{border:1px solid var(--line);border-radius:6px;margin:0 0 10px;padding:8px 12px}.pl th,.pl td{border:0!important;padding:2px 0!important}.pl td:nth-child(3){font-size:12px;color:var(--muted)}}
+pre{background:var(--code);border:1px solid var(--line);border-radius:6px;padding:14px;overflow-x:auto;font-size:13px;line-height:1.6}
+code{font-family:"Noto Sans Mono","SFMono-Regular",Menlo,monospace;font-size:.92em}
+pre code{font-size:inherit}
+.wip{font-family:"Noto Sans JP",sans-serif;font-size:14px;line-height:1.8;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:12px 16px;margin:0 0 1.6em}
+pre,.tw{max-width:100%}
+html,body{overflow-x:clip}
+.back{font-family:"Noto Sans JP",sans-serif;font-size:14px;margin:0 0 1.2em}
+main>p:nth-of-type(1){color:var(--muted);font-family:"Noto Sans JP",sans-serif;font-size:14px}
+@media print{body{background:#fff;color:#000}}
+.tabs{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--line);margin:0 0 1.4em;font-family:"Noto Sans JP",sans-serif}
+.tabs a{flex:0 0 auto;padding:10px 9px;font-size:14px;color:var(--muted);text-decoration:none;border-bottom:3px solid transparent;white-space:nowrap;word-break:normal}
+h4{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;font-size:1rem;margin:1.6em 0 .5em}
+.tabs a.on{color:var(--accent);border-bottom-color:var(--accent);font-weight:700}
+</style><link rel="canonical" href="https://takmat21.github.io/articles/ai-toolbox/">
+
+<style>@media (max-width:640px){.tabs{-webkit-mask-image:linear-gradient(to right,transparent 0,#000 28px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(to right,transparent 0,#000 28px,#000 calc(100% - 28px),transparent);padding-left:12px;padding-right:12px}}</style>
+</head><body><main>
+<nav class="tabs" aria-label="ページの切り替え"><a href="../../#about">プロフィール</a><a href="../../#samples">仕事一覧</a><a href="../../#system">仕組み</a><a href="../../#security">安全の決まり</a><a href="../../#paper">論文</a><a href="../../#video">動画</a><a href="../../#tools" class="on" aria-current="page">道具</a><a href="../../news/">朝刊</a></nav>
+<div class="wip"><strong>記事</strong>　AIに仕事を任せるときの「道具」を、強さの順に整理しました。</div>
+<h1>プラグイン・スキル・フック・コネクタの違いと使い分け（2026年11月）</h1>
+<h2>「お願い」で動かすものと、「仕組みで止める」もの</h2>
+<p>文：松村貴士（ZAZOU株式会社）｜下書き：統括AI　｜　2026年11月10日</p><hr />
+
+<p>AIに仕事を任せるとき、AIに渡す「道具」にはいくつかの種類があります。名前が似ていて分かりにくいのですが、大きく分けると2つです。AIに<strong>お願いして守ってもらうもの</strong>と、AIが間違えても<strong>仕組みの側で止めるもの</strong>です。</p>
+<p>ZAZOUでは、AnthropicのClaude Codeを中心に、自社の出荷・案件管理・発信の仕事をAIで回しています。この記事は、その運用の中で整理した分け方です。</p>
+
+<h2>道具の種類と強さ</h2>
+<div class="tw pl"><table>
+<thead><tr><th>道具</th><th>なにをするか</th><th>強さ</th></tr></thead>
+<tbody>
+<tr><td><strong>プロンプト</strong>（その場の頼み）</td><td>その会話の中だけの指示。</td><td>お願い。会話が終われば消える</td></tr>
+<tr><td><strong>スキル</strong></td><td>仕事ごとの手順書。仕事の名前（例：「今日の出荷」）に合うと、中身がまるごとAIに読まれる。</td><td>お願い。ただし呼ばれれば具体的で強い。言い方がずれると呼ばれないことがある</td></tr>
+<tr><td><strong>ナレッジ</strong>（表・記録）</td><td>決めたこと・事実・過去の直しを置いておく場所。ZAZOUでは決定ログと事実シート。</td><td>お願い。AIが読みに行ったときだけ効く</td></tr>
+<tr><td><strong>コネクタ</strong>（MCP）</td><td>Gmail・カレンダー・表計算など、外のサービスにAIをつなぐ。</td><td>できることを増やす（守らせる力ではない）</td></tr>
+<tr><td><strong>プラグイン</strong></td><td>スキル・コネクタ・フックなどを1つの箱にまとめ、入れるだけで使えるようにしたもの。</td><td>中身しだい</td></tr>
+<tr><td><strong>フック</strong></td><td>AIが操作する前後に、決まったチェックを必ず走らせる。</td><td><strong>仕組みで止める</strong></td></tr>
+<tr><td><strong>禁止設定</strong>（パーミッション）</td><td>特定の操作（例：メールの送信）を、AIがやろうとしても実行させない。</td><td><strong>仕組みで止める</strong></td></tr>
+</tbody></table></div>
+
+<h2>小さな会社の分け方</h2>
+<div class="tw pl"><table>
+<thead><tr><th>置きたいもの</th><th>置き場所</th><th>ZAZOUの例</th></tr></thead>
+<tbody>
+<tr><td>絶対に守る決まり</td><td>禁止設定・フック</td><td>送信・削除・お金・公開は人が行う</td></tr>
+<tr><td>仕事の手順とコツ</td><td>スキル</td><td>出荷と出荷通知、ほかの会社のAIへの頼み方、トークン台帳</td></tr>
+<tr><td>決めたこと・事実・経緯</td><td>ナレッジ（表）</td><td>決定ログ、事実シート（経歴・実績はここにあることだけを書く）</td></tr>
+<tr><td>使うサービス</td><td>コネクタ</td><td>Gmail、Googleカレンダー、ドライブ、スプレッドシート</td></tr>
+<tr><td>ほかの会社に同じ仕組みを渡す</td><td>プラグイン</td><td>スキルとコネクタの設定をまとめて渡せる</td></tr>
+</tbody></table></div>
+<p>ポイントは、<strong>大事な決まりほど「お願い」に頼らない</strong>ことです。スキルや表に「送信は人が行う」と書いても、AIが読み落とせば守られません。仕組みで止められるものは、仕組みで止めます。逆に、仕事の手順のように細かく変わるものは、スキルに書いて、直されたら書き足していきます。使うほど、その仕事に合ったAIになります。</p>
+
+<h2>入れすぎに注意</h2>
+<ul>
+<li><strong>AIが迷う</strong>：似たスキルや道具が多いと、どれを使うか迷い、間違ったものを選ぶことがあります。</li>
+<li><strong>費用が増える</strong>：道具の説明もAIが読むので、数が多いほど毎回の読み込みが増えます。</li>
+<li><strong>安全</strong>：公開されているプラグインには、AIの開発元が作ったものと、ほかの人が作ったものがあります。外のサービスにつなぐものは、作った人と、何にアクセスするかを確かめてから入れます。</li>
+</ul>
+<p>ZAZOUでは、使わなくなった道具は外し、ラボの<a href="../../#tools">道具タブ</a>の一覧も合わせて直しています。</p>
+
+<h2>これからの動き</h2>
+<p>2026年に入って、プラグインを集めた公開一覧（ディレクトリ）が増え、業種別や仕事別のプラグインが選べるようになってきました。文章を書かずに「判断」だけを返す専用のAI（<a href="../jev/">Jev</a>など）のように、AIの中でも役割を分ける動きも出ています。新しい道具が出たら試し、仕事に合うものは取り入れて、この記事と道具タブを更新します。</p>
+
+<h2>関連</h2>
+<ul>
+<li><a href="../plugins-by-industry/">業種別：入れておきたいプラグイン特集</a></li>
+<li><a href="../knowledge-services/">AIに会社の知識を渡すには：ナレッジの置き場サービスの選び方</a></li>
+<li><a href="../jev/">Jevとは：文章ではなく「判断」を返すAI</a></li>
+<li><a href="../../ai/">ZAZOU AI Works（AIを毎日の仕事に組み込む支援）</a></li>
+</ul>
+</main><script>(function(){var n=document.querySelector(".tabs"),a=n&&n.querySelector(".on");if(a&&n.scrollWidth>n.clientWidth)n.scrollLeft=Math.max(0,a.offsetLeft-n.offsetLeft-16);})();</script>
+</body></html>

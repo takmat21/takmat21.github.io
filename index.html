@@ -72,7 +72,7 @@
   <a href="#security" data-tab="security">安全の決まり</a>
   <a href="#paper" data-tab="paper">論文</a>
   <a href="#video" data-tab="video">動画</a>
-  <a href="#prompts" data-tab="prompts">プロンプト</a>
+  <a href="#tools" data-tab="tools">道具</a>
   <a href="news/" class="ext">朝刊</a>
 </nav>
 
@@ -427,8 +427,55 @@
   </div>
 </section>
 
-<section id="prompts" data-panel="prompts" class="cols">
-  <h2><span class="en">Prompts</span>プロンプトを学べるサイト</h2>
+<section id="tools" data-panel="tools" class="cols">
+  <h2><span class="en">Tools</span>道具：いま使っているAIとツール</h2>
+  <p class="lead note">ZAZOUの仕事で実際に使っている道具の一覧です。「毎日使っている」「試している」を分けて書いています。新しい道具が出たら試し、仕事に合うものは取り入れて、ここと記事を更新します（2026年11月10日時点）。</p>
+
+  <p class="group">中心（毎日使っている）</p>
+  <ul class="rows">
+    <li><div class="row"><span class="t">Claude Code（統括AI）</span><span class="m">Anthropic</span><span class="d">仕事の進行役。手順（スキル）・道具・ナレッジを仕事ごとに束ね、ツールづくり、資料・記事の下書き、結果の確認、ナレッジへの書き足しまで行います。</span></div></li>
+    <li><div class="row"><span class="t">Claude in Chrome（ブラウザ拡張）</span><span class="m">Anthropic</span><span class="d">ブラウザの操作を任せる道具。3モールの注文ファイルのダウンロード、出荷通知の入力、求人サイトのプロフィールの入力などに使っています。指示文は、自作の出荷アプリやボードのボタンで作ります。</span></div></li>
+    <li><div class="row"><span class="t">コネクタ（Gmail・Googleカレンダー・ドライブ・スプレッドシート）</span><span class="m">Google</span><span class="d">AIが直接読み書きできるようにつないだサービス。メールの確認、予定の登録、管理表・決定ログ・事実シートの読み書きに使っています。</span></div></li>
+  </ul>
+
+  <p class="group">スキル（仕事ごとの手順書）</p>
+  <ul class="rows">
+    <li><div class="row"><span class="t">出荷・出荷通知</span><span class="m">自作</span><span class="d">3店の注文ファイルから今日出す分を選ぶ決まり、店の見分け方、出荷通知の各店の決まり。直されたことを書き足して育てています。</span></div></li>
+    <li><div class="row"><span class="t">ほかの会社のAIへの頼み方</span><span class="m">自作</span><span class="d">画像づくりはGemini、講評や二重チェックはOpenAI、のように頼む先と頼み方をまとめたもの。</span></div></li>
+    <li><div class="row"><span class="t">トークン台帳</span><span class="m">自作</span><span class="d">AIの使用額を、担当・仕事ごとに毎晩記録する手順。週に一度「続ける／減らす／やめる」を見直します。</span></div></li>
+    <li><div class="row"><span class="t">Word・Excel・PowerPoint・PDFなど</span><span class="m">Anthropic 標準</span><span class="d">書類・表・スライドを作るための標準のスキル。</span></div></li>
+  </ul>
+
+  <p class="group">ほかの会社のAI（得意なところだけ頼む）</p>
+  <ul class="rows">
+    <li><div class="row"><span class="t">Gemini（Nano Banana Pro）</span><span class="m">Google</span><span class="d">パンフレット・サムネなどの画像づくり。長いPDFや動画を読ませるときにも。</span></div></li>
+    <li><div class="row"><span class="t">GPT（文章・画像）</span><span class="m">OpenAI</span><span class="d">Claudeが書いたものを別の目で講評させる「二重チェック」に使っています。</span></div></li>
+  </ul>
+
+  <p class="group">自作の道具</p>
+  <ul class="rows">
+    <li><a class="row" href="https://takmat21.github.io/yamato-b2-/"><span class="t">ヤマトB2 伝票変換ツール</span><span class="m">公開中 ↗</span><span class="d">Amazon・Yahoo!ショッピング・BASEの注文ファイルを、B2クラウドの取り込み形式に変換。送り状のデータ入力が約2時間→約10分に。</span></a></li>
+    <li><a class="row" href="https://takmat21.github.io/yamato-b2-/ship.html"><span class="t">出荷アプリ</span><span class="m">公開中 ↗</span><span class="d">注文のダウンロード → B2用CSV → 出荷通知まで。拡張に渡す指示文をボタンで作ります。</span></a></li>
+    <li><div class="row"><span class="t">オペレーションボード</span><span class="m">社内用</span><span class="d">案件・タスク・予定を1画面に。返信文や拡張用の指示文を、ボタンでコピーできます。</span></div></li>
+    <li><a class="row" href="news/"><span class="t">朝刊の自動作成</span><span class="m">毎朝 ↗</span><span class="d">統括AIがAIエージェントの話題を毎朝読み、自社の運用に照らして書く朝刊。</span></a></li>
+    <li><div class="row"><span class="t">Google Apps Script</span><span class="m">Google</span><span class="d">スプレッドシートの集計・通知・AI同士の受け渡し。</span></div></li>
+  </ul>
+
+  <p class="group">試している・検討中</p>
+  <ul class="rows">
+    <li><a class="row" href="articles/jev/"><span class="t">Jev（TypeSafe AI）</span><span class="m">検討中 →</span><span class="d">文章を書かずに「どれを選ぶか」「何点か」「はい／いいえ」を確率つきで返す、判断専用のAI。案件の仕分けやメールの振り分けに使えないか試します。</span></a></li>
+  </ul>
+
+  <p class="group">記事</p>
+  <ul class="rows">
+    <li><a class="row" href="articles/ai-toolbox/"><span class="t">プラグイン・スキル・フック・コネクタの違いと使い分け</span><span class="m">記事 →</span><span class="d">どれが「お願い」で、どれが「仕組みで止める」のか。小さな会社の分け方。</span></a></li>
+    <li><a class="row" href="articles/jev/"><span class="t">Jevとは：文章ではなく「判断」を返すAI</span><span class="m">記事 →</span><span class="d">何ができて、どこに使えるか。まだ早期提供の段階である点も。</span></a></li>
+    <li><a class="row" href="articles/plugins-by-industry/"><span class="t">業種別：入れておきたいプラグイン特集</span><span class="m">記事 →</span><span class="d">業種ごとに、まず入れるとよいものを選びました。</span></a></li>
+    <li><a class="row" href="articles/knowledge-services/"><span class="t">AIに会社の知識を渡すには：ナレッジの置き場サービスの選び方</span><span class="m">記事 →</span><span class="d">Notion・NotebookLM・Claude・ChatGPTなどの違い。</span></a></li>
+  </ul>
+  <p class="note">道具は増やしすぎると、AIが迷ったり費用が増えたりします。使わなくなったものは外し、この一覧も合わせて直します。</p>
+
+  <h2 class="pr-h" id="prompts-learn"><span class="en">Prompts</span>AIへの頼み方（プロンプト）を学ぶ</h2>
   <p class="lead note">AIへの頼み方（プロンプト）を、例つきで紹介しているサイトです。仕事で使うなら、まず公式の2つ（Claude と OpenAI）がおすすめです。リンク先は2026年11月6日に開けることを確かめました。</p>
   <p class="group">公式（AIをつくっている会社）</p>
   <ul class="rows">
@@ -463,6 +510,7 @@
 </section>
 
 
+
 <footer class="site-foot">
   <div class="sf-co"><b>ZAZOU株式会社</b><span>ZAZOU Lab</span></div>
   <div class="sf-ct"><span>ご相談・お問い合わせ（無料）</span><a href="mailto:matsumura.takashi@zazoucorp.com">matsumura.takashi@zazoucorp.com</a><a href="tel:090-6373-7945">090-6373-7945</a><a class="sf-cw" href="ai/">AIで業務を仕組みにするご相談は ZAZOU AI Works へ</a></div>
@@ -474,8 +522,9 @@
 (function(){
   var tabs=[].slice.call(document.querySelectorAll('.tabs a[data-tab]')), panels=[].slice.call(document.querySelectorAll('[data-panel]'));
   function show(id){
+    if(id==='prompts') id='tools';
     if(!panels.some(function(p){return p.dataset.panel===id;})) id='about';
-    panels.forEach(function(p){p.hidden=p.dataset.panel!==id;}); document.body.classList.toggle('no-hero', id==='samples'||id==='system'||id==='paper'||id==='video'||id==='security'||id==='prompts'); document.body.classList.toggle('sys-tab', id==='system'); document.body.classList.toggle('paper-tab', id==='paper'); document.body.classList.toggle('samples-tab', id==='samples'); document.body.classList.toggle('video-tab', id==='video');
+    panels.forEach(function(p){p.hidden=p.dataset.panel!==id;}); document.body.classList.toggle('no-hero', id==='samples'||id==='system'||id==='paper'||id==='video'||id==='security'||id==='prompts'||id==='tools'); document.body.classList.toggle('sys-tab', id==='system'); document.body.classList.toggle('paper-tab', id==='paper'); document.body.classList.toggle('samples-tab', id==='samples'); document.body.classList.toggle('video-tab', id==='video');
     tabs.forEach(function(a){var on=a.dataset.tab===id; a.classList.toggle('on',on); if(on){a.setAttribute('aria-current','page'); var n=a.parentNode; if(n.scrollWidth>n.clientWidth) n.scrollLeft=Math.max(0,a.offsetLeft-n.offsetLeft-16);} else a.removeAttribute('aria-current');});
   }
   tabs.forEach(function(a){a.addEventListener('click',function(e){e.preventDefault(); history.replaceState(null,'','#'+a.dataset.tab); show(a.dataset.tab); toTabs();});});
