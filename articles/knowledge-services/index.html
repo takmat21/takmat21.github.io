@@ -1,0 +1,150 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AIに会社の知識を渡すには：ナレッジの置き場サービスの選び方（2026年11月）｜記事｜ZAZOU Lab</title>
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AIに会社の知識を渡すには：ナレッジの置き場サービスの選び方（2026年11月）">
+<meta property="og:description" content="AIに読ませる会社の知識をどこに置くか。Notion・NotebookLM・Microsoft 365・Claude・ChatGPTなど主なサービスの違いと、小さな会社の選び方（2026年11月9日時点）。">
+<meta property="og:url" content="https://takmat21.github.io/articles/knowledge-services/">
+<meta property="og:image" content="https://takmat21.github.io/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="description" content="AIに読ませる会社の知識をどこに置くか。Notion・NotebookLM・Microsoft 365・Claude・ChatGPTなど主なサービスの違いと、小さな会社の選び方（2026年11月9日時点）。">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet"></noscript>
+<style>
+:root{--bg:#fbfaf7;--fg:#1f1f1c;--muted:#5d5b55;--line:#dedad1;--card:#f2efe8;--accent:#8a4b1f;--code:#f0ece3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161614;--fg:#e8e6e1;--muted:#a6a39b;--line:#3a3833;--card:#211f1c;--accent:#e0a473;--code:#24221e}}
+:root[data-theme="dark"]{--bg:#161614;--fg:#e8e6e1;--muted:#a6a39b;--line:#3a3833;--card:#211f1c;--accent:#e0a473;--code:#24221e}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Noto Serif JP","Hiragino Mincho ProN",serif;font-size:16.5px;line-height:1.95;letter-spacing:.02em}
+main{max-width:46rem;margin:0 auto;padding:48px 16px 96px}
+h1,h2,h3{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;line-height:1.45;letter-spacing:0}
+h1{font-size:1.6rem;margin:0 0 .4em}
+main>h2:first-of-type{font-size:1.05rem;font-weight:500;color:var(--muted);margin-top:0;border:0;padding:0}
+h2{font-size:1.3rem;margin:2.6em 0 .8em;padding-top:.6em;border-top:1px solid var(--line)}
+h3{font-size:1.08rem;margin:2em 0 .6em;color:var(--accent)}
+p{margin:0 0 1.1em}
+hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+a{color:var(--accent);word-break:break-all}
+strong{font-weight:700}
+ul,ol{padding-left:1.4em}li{margin:.3em 0}
+.tw{overflow-x:auto;margin:1.2em 0 1.6em;border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-family:"Noto Sans JP",sans-serif;font-size:14px;line-height:1.7}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;min-width:6em}
+th{background:var(--card);font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+@media (max-width:600px){.pl{border:0}.pl table,.pl tbody,.pl tr,.pl th,.pl td{display:block;width:auto}.pl thead{display:none}.pl tr{border:1px solid var(--line);border-radius:6px;margin:0 0 10px;padding:8px 12px}.pl th,.pl td{border:0!important;padding:2px 0!important}.pl td:nth-child(3){font-size:12px;color:var(--muted)}}
+pre{background:var(--code);border:1px solid var(--line);border-radius:6px;padding:14px;overflow-x:auto;font-size:13px;line-height:1.6}
+code{font-family:"Noto Sans Mono","SFMono-Regular",Menlo,monospace;font-size:.92em}
+pre code{font-size:inherit}
+.wip{font-family:"Noto Sans JP",sans-serif;font-size:14px;line-height:1.8;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:12px 16px;margin:0 0 1.6em}
+pre,.tw{max-width:100%}
+html,body{overflow-x:clip}
+.back{font-family:"Noto Sans JP",sans-serif;font-size:14px;margin:0 0 1.2em}
+main>p:nth-of-type(1){color:var(--muted);font-family:"Noto Sans JP",sans-serif;font-size:14px}
+@media print{body{background:#fff;color:#000}}
+.tabs{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--line);margin:0 0 1.4em;font-family:"Noto Sans JP",sans-serif}
+.tabs a{flex:0 0 auto;padding:10px 9px;font-size:14px;color:var(--muted);text-decoration:none;border-bottom:3px solid transparent;white-space:nowrap;word-break:normal}
+h4{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;font-size:1rem;margin:1.6em 0 .5em}
+.tabs a.on{color:var(--accent);border-bottom-color:var(--accent);font-weight:700}
+</style><link rel="canonical" href="https://takmat21.github.io/articles/knowledge-services/">
+<script type="application/ld+json" id="ld-auto">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","publisher":{"@type":"Organization","@id":"https://takmat21.github.io/#org","name":"ZAZOU株式会社","url":"https://takmat21.github.io/"},"inLanguage":"ja","isPartOf":{"@type":"WebSite","@id":"https://takmat21.github.io/#site","name":"ZAZOU Lab","url":"https://takmat21.github.io/"},"url":"https://takmat21.github.io/articles/knowledge-services/","name":"AIに会社の知識を渡すには：ナレッジの置き場サービスの選び方（2026年11月）｜記事","description":"AIに読ませる会社の知識をどこに置くか。Notion・NotebookLM・Microsoft 365・Claude・ChatGPTなど主なサービスの違いと、小さな会社の選び方（2026年11月9日時点）。"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://takmat21.github.io/"},{"@type":"ListItem","position":2,"name":"AIに会社の知識を渡すには：ナレッジの置き場サービスの選び方（2026年11月）｜記事","item":"https://takmat21.github.io/articles/knowledge-services/"}]}]}</script>
+<style>@media (max-width:640px){.tabs{-webkit-mask-image:linear-gradient(to right,transparent 0,#000 28px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(to right,transparent 0,#000 28px,#000 calc(100% - 28px),transparent);padding-left:12px;padding-right:12px}}</style>
+</head><body><main>
+<nav class="tabs" aria-label="ページの切り替え"><a href="../../#about">プロフィール</a><a href="../../#samples">仕事一覧</a><a href="../../#system">仕組み</a><a href="../../#security">安全の決まり</a><a href="../../#paper" class="on" aria-current="page">論文</a><a href="../../#video">動画</a><a href="../../#prompts">プロンプト</a><a href="../../news/">朝刊</a></nav>
+<div class="wip"><strong>記事</strong>　AIに読ませる会社の知識を、どこに置くか。主なサービスを整理しました。</div>
+<h1>AIに会社の知識を渡すには：ナレッジの置き場サービスの選び方（2026年11月）</h1>
+<h2>「ナレッジを外に出す」とは、AIが読める場所に会社のことを書いておくこと</h2>
+<p>文：松村貴士（ZAZOU株式会社）　｜　2026年11月9日</p><hr />
+<p>AIに仕事を頼むとき、毎回「うちの会社は…」と説明するのは大変です。そこで、会社の知識をアプリに書き出しておき、AIがそれを読んで使う形が広がっています。この記事では、2026年11月時点の主なサービスを、公式ページで確かめた範囲でまとめます。料金や仕様はよく変わるため、入れる前に公式ページを見てください。</p>
+<h2>1．AIが入っているナレッジアプリ</h2>
+<p>知識を書く場所と、AIが一緒になっているタイプです。書いたものを、アプリの中のAIが検索したり、まとめたりしてくれます。</p>
+<div class="tw pl"><table><thead><tr><th>サービス</th><td style="font-weight:600">向く人</td><td style="font-weight:600">AIの使い方</td><td style="font-weight:600">料金の目安</td></tr></thead><tbody>
+<tr><th>Notion</th><td>メモ・手順・表を1か所にまとめたい少人数のチーム</td><td>Notion AI（エージェント）が、ワークスペースの内容を探して答えたり、書いたりします。連携したアプリの横断検索もあります（ベータ）。</td><td>Businessプランが1人月$20（年払い）で、AIの全機能が使えます。FreeとPlusは試用が限られます。Custom Agentsは別に使った分のクレジット制です。</td></tr>
+<tr><th>Gemini Notebook（旧NotebookLM）</th><td>資料を集めて、その範囲だけで答えてほしい人</td><td>入れた資料（ソース）をもとに、質問に答えます。</td><td>無料版あり。上位はGoogle AIのプランやWorkspaceに含まれます。無料は1ノート50ソースまで。</td></tr>
+<tr><th>Google ドライブ・ドキュメント（Gemini）</th><td>すでにGoogle Workspaceを使っている会社</td><td>ドライブ内のファイルを探したり、要約したりします。管理者が機能を切り替えられます。</td><td>Workspaceのプランに含まれます。「Ask Gemini in Drive」などはプランによって差があり、公式で要確認。</td></tr>
+<tr><th>Microsoft 365 Copilot（SharePointなど）</th><td>Word・Excel・Outlookが中心の会社</td><td>Microsoft 365の中の情報を、その人が見てよい範囲で使います。</td><td>小規模向けにCopilot付きのBusinessプランが2026年7月から出ています。金額は公式で要確認。</td></tr>
+<tr><th>Confluence（Atlassian Rovo）</th><td>JiraなどAtlassian製品を使うチーム</td><td>Rovoの検索とチャットが、Confluenceなどの内容を探して答えます。</td><td>有料のCloudプラン（Standard以上）で使えます。使える量はプランごとに決まっています。公式で要確認。</td></tr>
+<tr><th>Evernote</th><td>メモや資料を長く貯めてきた人</td><td>AIアシスタント（チャットでの検索）や意味にもとづく検索があります。ClaudeやChatGPTから使うMCP接続も載っています。</td><td>Free・Starter・Advancedなど。金額は公式で要確認。</td></tr>
+<tr><th>Obsidian</th><td>自分のパソコンにメモを置きたい人</td><td>メモはパソコン内のファイルです。AIは、別のAIツールやプラグインで読ませます（本体のAIではありません）。</td><td>本体は無料。同期（Sync）は1人月$4（年払い）。仕事用ライセンスは任意で年$50。</td></tr>
+</tbody></table></div>
+<p>Evernoteの「MCP接続」は、公式の料金ページに載っている機能名です。プランごとの違いは確かめきれませんでした。Obsidianのプラグインは種類が多いため、この記事では個別には扱いません。</p>
+<h2>2．AIアシスタント側に知識を持たせる</h2>
+<p>ClaudeやChatGPTなど、普段話しかけているAIの側に、知識を持たせるやり方です。新しくアプリを入れなくても始められます。</p>
+<div class="tw pl"><table><thead><tr><th>サービス</th><td style="font-weight:600">向く人</td><td style="font-weight:600">AIの使い方</td><td style="font-weight:600">料金の目安</td></tr></thead><tbody>
+<tr><th>Claude プロジェクト</th><td>仕事ごとに資料をまとめて渡したい人</td><td>プロジェクトに入れたファイルや指示を、そのプロジェクトの会話で読みます。入れる量が増えると、検索のしくみ（RAG）に切り替わります。</td><td>無料でも使えます（無料は5プロジェクトまで）。RAGや共有は有料プランです。公式で要確認。</td></tr>
+<tr><th>Claude メモリ</th><td>何度も同じ前提を話している人</td><td>会話から覚えておくことを自動で保存します。内容は見たり、直したり、消したりできます。プロジェクトごとのメモリもあります。</td><td>Free・Pro・Maxなどでは最初から有効です。TeamとEnterpriseは管理者が決めます。</td></tr>
+<tr><th>Claude スキル</th><td>決まった手順を毎回同じやり方でやってほしい人</td><td>Markdownで書いた手順書です。仕事に関係があるときだけ読み込まれます。</td><td>Free・Pro・Maxなど各プランで使えます（コード実行をオンにする必要があります）。</td></tr>
+<tr><th>Claude コネクタ（MCP）</th><td>別のアプリにある情報を、その場から読ませたい人</td><td>MCPという共通の接続方法で、外のサービスの情報を取りにいきます。</td><td>各プランで使えます（無料は1つまで）。TeamではOwnerが追加します。信頼できる接続先だけにします。</td></tr>
+<tr><th>ChatGPT プロジェクト・メモリ・コネクタ</th><td>ChatGPTを中心に使っている人</td><td>プロジェクトに、会話・ファイル・指示をまとめます。メモリはプロジェクトだけに分けることもできます。コネクタは、その人が見てよい範囲の内容だけを読みます。</td><td>ファイルの数の上限はプランで違います。金額は公式で要確認。</td></tr>
+<tr><th>Gemini のGem</th><td>Geminiを中心に使っている人</td><td>名前と指示をつけた自分用のGeminiです。ファイルやGoogleドライブの資料を知識として足せます。</td><td>公式で要確認。個人のGoogleアカウントでは、2026年11月から、Gemは「スキル」に置き換わると公式ヘルプにあります。</td></tr>
+</tbody></table></div>
+<h2>3．会社全体を横断して探す：Glean など</h2>
+<p>Gleanは、SlackやGoogleドライブ、Jira、Confluence、SharePointなど多くのサービスにつないで、横断で検索し、答えるサービスです。見てよい人にだけ見せる仕組みを持つと説明されています。公式ページでは大きな会社の導入例が並び、料金は公開されていません（デモの申し込みのみ）。1人で運営する会社や小さな会社が最初に選ぶものではないと考えます。知識があちこちに散らばって困ってから、検討すれば十分です。</p>
+<h2>4．日本のサービス</h2>
+<div class="tw pl"><table><thead><tr><th>サービス</th><td style="font-weight:600">向く人</td><td style="font-weight:600">AIの使い方</td><td style="font-weight:600">料金の目安</td></tr></thead><tbody>
+<tr><th>NotePM</th><td>マニュアルや社内の文書を、チームで整理したい会社</td><td>公式の料金ページに「NotePM AI」の案内があります。</td><td>10名枠（編集10＋閲覧30）が月5,400円（税別）。全機能が全プランで使えます。AIの料金は公式で要確認。</td></tr>
+<tr><th>Kibela</th><td>情報共有と、社内ポータルを兼ねたい会社</td><td>AI検索（自然な文章での質問に答える）、AIエディタ、AI用のMCPサーバーがあります。</td><td>AI機能はStandard以上で、1人月800円（税別）。Lightは500円、5人までのCommunityは無料です。</td></tr>
+<tr><th>Qast</th><td>社員の経験や、質問と答えを貯めたい会社</td><td>チャットで質問に答える機能や、会議の音声から知識をつくる機能があります。</td><td>公式で要確認（料金ページは別）。</td></tr>
+<tr><th>esa</th><td>文書を書き溜めていくチーム</td><td>料金ページにAI機能の記載を確認できませんでした。</td><td>1人月500円（税込）。公式ページで確認。</td></tr>
+</tbody></table></div>
+<p>NotePMとKibelaは、AIの機能が公式ページで確かめられました。Qastは機能の説明だけで、金額が確認できません。esaは、AIについて公式ページで確認できなかったため、紹介にとどめます。</p>
+<h2>5．小さな会社の選び方</h2>
+<h3>何を外に出すか</h3>
+<ul>
+<li><strong>事実：</strong>会社名、住所、商品名、価格、取引先など、変わりにくい情報。</li>
+<li><strong>決めたこと：</strong>「なぜそうしたか」を、日付と一緒に。あとで迷わなくなります。</li>
+<li><strong>手順：</strong>仕事のやり方と、確かめる順番。</li>
+<li><strong>過去の直し：</strong>AIや人が間違えて、直した内容。同じ間違いを減らします。</li>
+</ul>
+<h3>どこに置くか</h3>
+<ul>
+<li><strong>いま使っているものから始める。</strong>GoogleならスプレッドシートやドライブとGemini、MicrosoftならSharePointとCopilot、AtlassianならConfluence、というように、すでにある場所が最初の候補です。</li>
+<li><strong>「正」になる場所を1つ決める。</strong>同じことを2か所に書くと、いずれ食い違います。ほかの場所には、リンクだけを置きます。</li>
+<li><strong>AIとのつなぎやすさを見る。</strong>AIが直接読めるのか、ファイルを渡す必要があるのか、コネクタ（MCP）があるのかを確かめます。</li>
+</ul>
+<h3>権限とプライバシー</h3>
+<ul>
+<li>誰が見られて、AIは誰の権限で読むのかを確かめます。多くのサービスは、その人が見てよい範囲だけをAIに見せます。</li>
+<li>入れた内容がAIの学習に使われるか、どう扱われるかは、サービスごとの公式の説明で確認します。</li>
+<li>お客様の個人情報や、契約の細かい内容は、本当に必要なものだけにします。</li>
+<li>コネクタは、信頼できる接続先だけにします。</li>
+</ul>
+<h3>古くしない</h3>
+<p>知識は、書いた日から古くなります。更新する人と、見直す頻度を決めておきます。AIが間違いを見つけたら、その場で直す流れにしておくと、手間が増えません。</p>
+<h2>6．ZAZOUでのやり方（2026年11月時点）</h2>
+<p>ZAZOUでは、会社の知識をGoogleスプレッドシートの表に置いています。「事実シート」「決定ログ」「ルール」「台帳」の4種類で、これを唯一の「正」にしています。手順は、Claudeのスキル（手順書）として持っています。</p>
+<p>AIは、仕事の前にこれらを読みます。仕事の中で間違いや変更が見つかったら、表に書き戻します。成果の数字は、ここでは書きません。</p>
+<hr />
+<h2>出典（公式ページ）</h2>
+<p>いずれも2026年11月9日に確認した内容です。</p>
+<ul>
+<li>Notion 料金：<a href="https://www.notion.com/pricing">https://www.notion.com/pricing</a></li>
+<li>Notion Custom Agent 料金：<a href="https://www.notion.com/help/custom-agent-pricing">https://www.notion.com/help/custom-agent-pricing</a></li>
+<li>Gemini Notebook（NotebookLM）のプランと上限：<a href="https://support.google.com/notebooklm/answer/16213268">https://support.google.com/notebooklm/answer/16213268</a></li>
+<li>Google ドライブのGemini：<a href="https://workspace.google.com/products/drive/ai/">https://workspace.google.com/products/drive/ai/</a></li>
+<li>Gem（ジェム）のヘルプ：<a href="https://support.google.com/gemini/answer/15146780">https://support.google.com/gemini/answer/15146780</a></li>
+<li>Microsoft 365 Business with Copilot：<a href="https://www.microsoft.com/en-us/microsoft-365/blog/2026/05/28/introducing-microsoft-365-business-with-copilot-the-new-standard-for-small-business/">https://www.microsoft.com/en-us/microsoft-365/blog/2026/05/28/introducing-microsoft-365-business-with-copilot-the-new-standard-for-small-business/</a></li>
+<li>Confluence の AI（Atlassian Rovo）：<a href="https://www.atlassian.com/software/confluence/ai">https://www.atlassian.com/software/confluence/ai</a></li>
+<li>Evernote 料金：<a href="https://evernote.com/pricing">https://evernote.com/pricing</a></li>
+<li>Obsidian 料金：<a href="https://obsidian.md/pricing">https://obsidian.md/pricing</a></li>
+<li>Claude プロジェクトとは：<a href="https://support.claude.com/en/articles/9517075-what-are-projects">https://support.claude.com/en/articles/9517075-what-are-projects</a></li>
+<li>Claude メモリ：<a href="https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context">https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context</a></li>
+<li>Claude スキルとは：<a href="https://support.claude.com/en/articles/12512176-what-are-skills">https://support.claude.com/en/articles/12512176-what-are-skills</a></li>
+<li>Claude カスタムコネクタ：<a href="https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp">https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp</a></li>
+<li>ChatGPT プロジェクト（OpenAI Academy）：<a href="https://openai.com/academy/projects/">https://openai.com/academy/projects/</a></li>
+<li>ChatGPT のチーム向け機能とコネクタ：<a href="https://openai.com/index/more-ways-to-work-with-your-team/">https://openai.com/index/more-ways-to-work-with-your-team/</a></li>
+<li>Glean：<a href="https://www.glean.com/">https://www.glean.com/</a></li>
+<li>NotePM 料金：<a href="https://notepm.jp/price">https://notepm.jp/price</a></li>
+<li>Kibela：<a href="https://kibe.la/">https://kibe.la/</a></li>
+<li>Qast：<a href="https://qast.jp/">https://qast.jp/</a></li>
+<li>esa 料金：<a href="https://esa.io/pricing">https://esa.io/pricing</a></li>
+</ul>
+<p>確認できなかったため載せなかったもの：Mem（公式ページが開けませんでした）、OneNote、Microsoft 365 Copilotの具体的な金額。</p>
+<hr />
+<p>用語がわかりにくいときは、<a href="../../ai/glossary/">用語集</a>をご覧ください。AIを仕事に取り入れる相談は、<a href="../../ai/">ZAZOU AI Works</a>で受け付けています。</p>
+<p><a href="../../#paper">← 論文・記事の一覧へ</a></p>
+</main><script>(function(){var n=document.querySelector(".tabs"),a=n&&n.querySelector(".on");if(a&&n.scrollWidth>n.clientWidth)n.scrollLeft=Math.max(0,a.offsetLeft-n.offsetLeft-16);})();</script>
+</body></html>
