@@ -1,0 +1,38 @@
+{
+ "date": "2026-11-10",
+ "title": "Medium、書く画面にAIの助っ人を入れた新アプリ「TK」を公開、AIをどう使ったかを記す欄も用意",
+ "category": "製品・サービス",
+ "lead": "文章投稿サービスの米Mediumが11月9日、執筆アプリ「TK」を公開し、TechCrunchのサラ・ペレス記者が報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "TKは、書く画面の中でAIの助けを借りるアプリです。「@TK」に続けて頼みたいことを書くと、簡単な調べ物に答えたり、前に保存した自分の文章を呼び出したりします。内蔵の機能として、全体への助言、見出しへの助言、Mediumの各媒体の文体の決まりに合っているかの確認があります。過去の文章を整理して覚え、書くお題も提案します。",
+    "自分のAIエージェントとつなぐこともできます。TKのMCPサーバーやClaudeのスキルを通して、エージェントが、書き手の企画や考えにもとづいて動く仕組みです。下書きを共有して感想をもらう機能もあります。名前の「TK」は、出版の現場で「ここは情報がまだ入っていない」を示す印からきています。",
+    "Mediumは、AIは書くことの価値を下げるのではなく高めると主張しています。この立場に異論があることは記事も触れており、AIの使用が疑われて出版契約を失った著者の例や、AI検出ツールの信頼性への疑問が挙がっています。Mediumの対応は、AIをどう使ったかの説明を記事に添えられる機能で、使った指示や資料まで確認できる状態をめざすとしています。まずウェブ版で、Mediumのアカウントがあれば無料です。デスクトップ版は今後の予定です。TKでの文章は暗号化されない点も記事に書かれています。利用者数などの数字はありません。"
+   ]
+  },
+  {
+   "heading": "小規模事業者にとって",
+   "paragraphs": [
+    "商品説明やお知らせの文章にAIを使うなら、「どこまでAIが手伝ったか」を自社で決めて、必要に応じて伝えられるようにしておくと安心です。共有前の文章は、暗号化されない場所に置かれる点も確認しましょう。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/09/mediums-new-tk-app-brings-ai-assistance-directly-into-the-writing-process/",
+   "note": "元記事",
+   "title": "Medium's new TK app brings AI assistance directly into the writing process",
+   "org": "発表：Medium／報道：TechCrunch（Sarah Perez記者）",
+   "published": "2026-11-09",
+   "image": "https://techcrunch.com/wp-content/uploads/2026/11/tk-logo.webp?resize=1200,675",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}

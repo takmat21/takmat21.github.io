@@ -1,0 +1,38 @@
+{
+ "date": "2026-11-10",
+ "title": "Meta、1日中くり返す仕事向けの軽量モデル「Muse Ember」を公開、入力100万トークンあたり10セント",
+ "category": "製品・サービス",
+ "lead": "米Metaの研究部門Meta Superintelligence Labsが11月9日、軽量モデル「Muse Ember」を発表し、TechCrunchのラッセル・ブランドム記者が報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "Muse Emberは、Metaが「これまでで最も軽く、費用効率の高いモデル」と呼ぶAIです。ツールの呼び出し、コーディングの小さな作業、振り分け、情報の抜き出し、長い文書の読み取りなど、エージェントが1日中くり返す仕事を想定しています。価格は入力100万トークンあたり10セントです。文章に加えて画像と音声も扱え、スクリーンショット、図表、スキャンした書類を読めるとMetaは説明しています。",
+    "使い方の考え方は役割分担です。大きなモデル「Muse Wonder」が進め方の決まりを作り、Emberがそれを何万件もの案件に当てはめます。例として、サポート窓口で重いモデルが対応方針を決め、軽いモデルが多数の問い合わせに適用する形が挙げられています。Museシリーズでは4つ目のモデルです。",
+    "比較の部分は、Meta自身の主張として読む必要があります。Metaは、Artificial Analysisの総合評価を使い、AnthropicのHaikuやOpenAIのLunaより大幅に安く、DeepSeek V4.1 FlashやGLM 5.3 Flashと費用面で並ぶと述べています。ただし記事には具体的な点数がなく（グラフ画像のみ）、提供方法や利用条件、入力できる長さの記載もありません。実際の仕事での精度や費用は、自分の仕事で試さないと分かりません。"
+   ]
+  },
+  {
+   "heading": "小規模事業者にとって",
+   "paragraphs": [
+    "問い合わせの振り分けや書類の読み取りのような単純作業は、軽くて安いモデルに任せる流れが強まっています。使えるようになったら、まず自社のよくある作業1つで、精度と費用を今のものと比べてみるのがよさそうです。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/09/meta-releases-muse-ember-a-new-lightweight-model-for-agent-execution/",
+   "note": "元記事",
+   "title": "Meta releases Muse Ember, a new lightweight model for agent execution",
+   "org": "発表：Meta（Meta Superintelligence Labs）／報道：TechCrunch（Russell Brandom記者）",
+   "published": "2026-11-09",
+   "image": "https://techcrunch.com/wp-content/uploads/2026/11/Blog-Header-Visual.png?resize=1200,675",
+   "image_ok": true,
+   "image_size": [
+    1200,
+    675
+   ]
+  }
+ ]
+}

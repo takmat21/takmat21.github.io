@@ -77,7 +77,7 @@ def head(title, desc, url, depth, og='https://takmat21.github.io/assets/ogp.png'
 @media (max-width:640px){{.tabs{{-webkit-mask-image:linear-gradient(to right,transparent 0,#000 28px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(to right,transparent 0,#000 28px,#000 calc(100% - 28px),transparent);padding-left:12px;padding-right:12px}}}}
 </style></head>
 <body><div class="wrap">
-<nav class="tabs" aria-label="ページの切り替え"><a href="{up}#about">プロフィール</a><a href="{up}#samples">仕事一覧</a><a href="{up}#system">仕組み</a><a href="{up}#security">安全の決まり</a><a href="{up}#paper">論文</a><a href="{up}#video">動画</a><a href="{up}#prompts">プロンプト</a><a href="{up}news/" class="on" aria-current="page">朝刊</a></nav>
+<nav class="tabs" aria-label="ページの切り替え"><a href="{up}#about">プロフィール</a><a href="{up}#samples">仕事一覧</a><a href="{up}#system">仕組み</a><a href="{up}#security">安全の決まり</a><a href="{up}#paper">論文</a><a href="{up}#video">動画</a><a href="{up}#tools">道具</a><a href="{up}news/" class="on" aria-current="page">朝刊</a></nav>
 '''
 
 def body(d):
