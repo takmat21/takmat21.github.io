@@ -326,3 +326,28 @@ ul.rows a.row.has-thumb .t{grid-column:2;grid-row:1}
 ul.rows a.row.has-thumb .m{grid-column:3;grid-row:1}
 ul.rows a.row.has-thumb .d{grid-column:2 / -1;grid-row:2}
 @media (max-width:560px){ul.rows a.row.has-thumb{grid-template-columns:96px 1fr;column-gap:14px}ul.rows a.row.has-thumb .th{width:96px;grid-row:1 / span 2}ul.rows a.row.has-thumb .m{grid-column:2;grid-row:2}ul.rows a.row.has-thumb .d{grid-column:1 / -1;grid-row:3}}
+
+/* 垂直型の系図 */
+.vt{border:1px solid var(--line);border-radius:8px;padding:20px;background:var(--soft);display:grid;gap:0}
+.vt-top{display:flex;justify-content:center}
+.vt-node{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 16px;font-size:14px;font-weight:700;text-align:center}
+.vt-node small{display:block;font-weight:400;font-size:12px;color:var(--sub)}
+.vt-node.hu{border-color:var(--fg)}
+.vt-node.lead{border:2px solid var(--accent);color:var(--accent)}
+.vt-node.lead small{color:var(--sub)}
+.vt-stem{width:2px;height:18px;background:var(--accent);margin:0 auto}
+.vt-cols{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;border-top:2px solid var(--accent);padding-top:14px;position:relative}
+.vt-col{background:var(--bg);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:6px;padding:12px 12px 10px;min-width:0}
+.vt-h{margin:0 0 8px;font-weight:700;font-size:14.5px;color:var(--accent)}
+.vt-col dl{margin:0;display:grid;gap:2px}
+.vt-col dt{font-size:11px;font-weight:700;color:var(--faint);letter-spacing:.06em;margin-top:6px}
+.vt-col dt.h{color:var(--fg)}
+.vt-col dd{margin:0;font-size:13px;line-height:1.55;overflow-wrap:anywhere}
+.vt-base{margin-top:12px;border:1px dashed var(--accent);border-radius:6px;padding:10px 12px;background:var(--accent-soft)}
+.vt-base-row{display:flex;flex-wrap:wrap;gap:6px 10px;font-size:13px}
+.vt-base-row span{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:2px 12px}
+@media (max-width:900px){.vt-cols{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.vt{padding:14px}.vt-cols{grid-template-columns:1fr}}
+.vt-col{position:relative}
+.vt-col::before{content:"";position:absolute;left:50%;top:-17px;width:2px;height:14px;background:var(--accent)}
+@media (max-width:520px){.vt-cols{border-top:0;padding-top:0}.vt-col::before{display:none}}

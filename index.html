@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="assets/style.css?v=20261109a">
+<link rel="stylesheet" href="assets/style.css?v=20261109b">
 <link rel="stylesheet" href="assets/hero-art/hero-art.css">
 <link rel="stylesheet" href="assets/hero-flower/hero-flower.css">
 <link rel="stylesheet" href="assets/hero-desk/hero-desk.css">
@@ -208,6 +208,67 @@
     </div>
   </div>
   <p style="font-size:14px;color:var(--sub);margin-top:10px">2026年11月に、担当AIを階層で並べる形から、統括AIがスキル・プラグイン・ナレッジを使い分ける形へ移しています。決まった作業は担当AIからスキルへ移し、ナレッジは使うほど書き足して育てます。</p>
+
+  <h3>垂直型の系図：仕事ごとに、縦に深く作る</h3>
+  <p>ZAZOUのAIは、1つの何でも屋ではありません。仕事ごとに「手順（スキル）」「道具（プラグイン・ツール）」「知識（ナレッジ）」を縦に積み、最後は人が確かめます。統括AIは、その縦の列を束ねて動かします。</p>
+  <div class="vt" role="img" aria-label="人と統括AIの下に、EC出荷・応募と営業・朝刊と発信・資料とサイト・毎日の数字の5つの縦の列が並び、各列にスキル・道具・ナレッジ・人の確認が積まれ、その下に共通の土台がある系図">
+    <div class="vt-top"><div class="vt-node hu">人（代表）<small>方針・承認・送信・公開</small></div></div>
+    <div class="vt-stem"></div>
+    <div class="vt-top"><div class="vt-node lead">統括AI（Claude）<small>仕事の進行・結果の確認・ナレッジへの書き足し</small></div></div>
+    <div class="vt-stem"></div>
+    <div class="vt-cols">
+      <div class="vt-col">
+        <p class="vt-h">EC出荷</p>
+        <dl>
+          <dt>スキル</dt><dd>注文ファイル取得の指示文</dd>
+          <dt>道具</dt><dd>ブラウザ拡張・変換ツール・B2クラウド</dd>
+          <dt>ナレッジ</dt><dd>店ごとのファイルの形・品名の略し方</dd>
+          <dt class="h">人</dt><dd>赤い印を確かめて発行</dd>
+        </dl>
+      </div>
+      <div class="vt-col">
+        <p class="vt-h">応募・営業</p>
+        <dl>
+          <dt>スキル</dt><dd>応募文・自己PR・入力用プロンプト</dd>
+          <dt>道具</dt><dd>Gmail・求人サイトの巡回・ボード</dd>
+          <dt>ナレッジ</dt><dd>事実シート（経歴・実績）・決定ログ</dd>
+          <dt class="h">人</dt><dd>読んで送信</dd>
+        </dl>
+      </div>
+      <div class="vt-col">
+        <p class="vt-h">朝刊・発信</p>
+        <dl>
+          <dt>スキル</dt><dd>記事の選び方と書き方</dd>
+          <dt>道具</dt><dd>ページ生成・GitHub Pages・動画づくり</dd>
+          <dt>ナレッジ</dt><dd>過去の朝刊・いまの運用</dd>
+          <dt class="h">人</dt><dd>内容を確かめる</dd>
+        </dl>
+      </div>
+      <div class="vt-col">
+        <p class="vt-h">資料・サイト</p>
+        <dl>
+          <dt>スキル</dt><dd>ほかの会社のAIへの頼み方</dd>
+          <dt>道具</dt><dd>Gemini（画像）・OpenAI（講評）</dd>
+          <dt>ナレッジ</dt><dd>書き方の決まり・過去の直し</dd>
+          <dt class="h">人</dt><dd>確かめて公開</dd>
+        </dl>
+      </div>
+      <div class="vt-col">
+        <p class="vt-h">毎日の数字</p>
+        <dl>
+          <dt>スキル</dt><dd>トークン台帳の記録</dd>
+          <dt>道具</dt><dd>メールの注文通知・スプレッドシート</dd>
+          <dt>ナレッジ</dt><dd>数え方の決まり（決定ログ）</dd>
+          <dt class="h">人</dt><dd>報告を見て判断</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="vt-base">
+      <p class="vt-h">共通の土台</p>
+      <div class="vt-base-row"><span>事実シート・決定ログ・ルール（外部記憶）</span><span>別のAIによる二重チェック</span><span>送信・お金・公開は人</span></div>
+    </div>
+  </div>
+  <p style="font-size:14px;color:var(--sub);margin-top:10px">新しい仕事は、縦の列を1本足して始めます。直したことはその列のナレッジに書き足すので、使うほど、その仕事に合ったAIになります。</p>
 
   <h3>AI連携について</h3>
   <p>得意なことが違うAIを、仕事ごとに組み合わせています（2026年11月時点）。</p>
