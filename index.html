@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="assets/style.css?v=20261110a">
+<link rel="stylesheet" href="assets/style.css?v=20261110b">
 <link rel="stylesheet" href="assets/hero-art/hero-art.css">
 <link rel="stylesheet" href="assets/hero-flower/hero-flower.css">
 <link rel="stylesheet" href="assets/hero-desk/hero-desk.css">
@@ -503,6 +503,20 @@
     <div id="t-judge"><dt>判断用AI</dt><dd>文章を書かず、「どれを選ぶか」「何点か」「はい／いいえ」だけを確率つきで返すAI（例：Jev）。仕分けや振り分けに向きます。</dd></div>
     <div id="t-routine"><dt>定時作業</dt><dd>決まった時刻に自動で始まる仕事。朝刊、毎朝の注文件数、メール確認、トークン台帳など。</dd></div>
     <div id="t-vertical"><dt>垂直型AIエージェント</dt><dd>1つの何でも屋ではなく、仕事ごとに手順・道具・ナレッジを縦に積んで深く作るAIの組み立て方。</dd></div>
+  </dl>
+  <p class="group" id="dev-terms">開発でよく出る言葉（求人や見積もりで見かけるもの）</p>
+  <p class="note">「ZAZOUで使っている／使っていない」を正直に分けています。使っていないものは、言葉の意味だけの説明です。</p>
+  <dl class="terms">
+    <div id="t-js"><dt>JavaScript<span class="tstat on">使っている</span></dt><dd>ブラウザで動くプログラムの言葉。Webページに動きを付けます。ZAZOUでは、伝票変換ツール・出荷アプリ・ボードがこれで動いています。Google Apps Script も同じ仲間です。</dd></div>
+    <div id="t-python"><dt>Python<span class="tstat on">使っている</span></dt><dd>集計やファイルの変換、AIの呼び出しによく使われる言葉。ZAZOUでは、注文ファイルの仕分けや朝刊のページづくりの裏側で動いています（コードはAIと一緒に書いています）。</dd></div>
+    <div id="t-node"><dt>Node.js<span class="tstat on">使っている</span></dt><dd>JavaScript を、ブラウザの外（サーバーやパソコンの上）で動かす仕組み。ZAZOUでは、ページの見た目を自動で撮って確かめる作業に使っています。</dd></div>
+    <div id="t-gha"><dt>GitHub Actions<span class="tstat on">使っている</span></dt><dd>GitHub に置いたプログラムを、決まったきっかけで自動で動かす仕組み。ZAZOUでは、SOCRAの動画を毎朝つくる流れで使っています。</dd></div>
+    <div id="t-fastapi"><dt>FastAPI<span class="tstat off">使っていない</span></dt><dd>Python で、ほかのプログラムから呼ばれる窓口（API）や小さなWebアプリを手早く作るための部品。</dd></div>
+    <div id="t-flask"><dt>Flask<span class="tstat off">使っていない</span></dt><dd>Python で小さなWebアプリを作るための、軽い部品。FastAPI と同じ役割で、より昔からあります。</dd></div>
+    <div id="t-mysql"><dt>MySQL<span class="tstat off">使っていない</span></dt><dd>データを表の形でためておくデータベース。会員・注文・在庫など、たくさんのデータを安全に出し入れします。ZAZOUでは、いまはスプレッドシートで足りています。</dd></div>
+    <div id="t-postgres"><dt>PostgreSQL<span class="tstat off">使っていない</span></dt><dd>MySQL と同じく、表の形のデータベース。複雑な集計や、きびしい正確さが要る仕組みでよく選ばれます。</dd></div>
+    <div id="t-docker"><dt>Docker<span class="tstat off">使っていない</span></dt><dd>プログラムを、動かすのに必要なものごと「箱」に入れて、どのパソコンやサーバーでも同じように動かせるようにする道具。</dd></div>
+    <div id="t-aws"><dt>AWS<span class="tstat off">使っていない</span></dt><dd>Amazon が貸し出している、インターネット上のサーバーや保存場所のサービス。自前の機械を持たずに、仕組みを動かせます。ZAZOUでは、GitHub と Google のサービスで足りています。</dd></div>
   </dl>
   <h2 class="pr-h" id="prompts-learn"><span class="en">Prompts</span>AIへの頼み方（プロンプト）を学ぶ</h2>
   <p class="lead note">AIへの頼み方（プロンプト）を、例つきで紹介しているサイトです。仕事で使うなら、まず公式の2つ（Claude と OpenAI）がおすすめです。リンク先は2026年11月6日に開けることを確かめました。</p>
