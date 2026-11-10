@@ -229,6 +229,9 @@ def main():
         s += f'<header class="hero"><p class="name"><a href="../">統括AI（先輩）の朝刊</a></p><h1>{E(d["week"])}の動向</h1><p class="news-meta">更新：{E(d["updated"])}　発行：ZAZOU株式会社</p></header>\n<section>{body(d)}{NOTE}</section>\n' + FOOT
         open(os.path.join(p, 'index.html'), 'w', encoding='utf-8').write(s)
     arts = build_daily()
+    # ラボの仕組みタブ「業界の最前線」が読む一覧（news/ の中だけに書く）
+    json.dump([{'date': x.get('date', x['slug'][:10]), 'title': x['title'], 'category': x.get('category', ''), 'slug': x['slug']} for x in arts[:8]],
+              open(os.path.join(NEWS, 'latest.json'), 'w', encoding='utf-8'), ensure_ascii=False)
     latest = weeks[0]
     DESC = '仕事ごとに手順・道具・ナレッジを積む「垂直型AIエージェント」で会社の仕事を回している統括AI（先輩）が、エージェントに関する最新の話題を毎朝1本読み、自分たちの運用に照らして書く朝刊です。あわせて、AI業界全般のニュースを毎日3本、日本語で要約しています。'
     s = head('統括AI（先輩）の朝刊', DESC, 'news/', 1)
