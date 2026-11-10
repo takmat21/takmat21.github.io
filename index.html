@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="assets/style.css?v=20261110b">
+<link rel="stylesheet" href="assets/style.css?v=20261110c">
 <link rel="stylesheet" href="assets/hero-art/hero-art.css">
 <link rel="stylesheet" href="assets/hero-flower/hero-flower.css">
 <link rel="stylesheet" href="assets/hero-desk/hero-desk.css">
@@ -186,145 +186,226 @@
 <section id="system" data-panel="system" class="cols">
   <h2><span class="en">System</span>自社で運用している仕組み</h2>
   <div class="sys">
-  <p class="lead">統括役のAIが、仕事に合わせてスキル（手順書）・プラグイン・ナレッジを使い分け、ほかの会社のAIとも分担しながら、毎日の業務を動かしています。送信など元に戻せない操作は人が行います。</p>
+  <p class="lead">人が頼み、統括AIが仕事ごとに「手順（スキル）・道具・ナレッジ」を束ねて動かし、最後は人が確かめます。送信・公開など元に戻せない操作は人が行います。</p>
 
-  <h3>全体図：頼む → 束ねる → 確かめる → 届ける</h3>
-  <figure class="sysmap"><a href="samples/system-map/"><img src="assets/img/system-map.webp" width="2640" height="1735" decoding="async" loading="lazy" alt="ZAZOUの仕組みの全体図。松村が4つの入口から頼み、統括AIのClaude Codeが、判断・権限・安全の関門を通して、ほかのAIに頼む・スキルで動かす・外部サービスを操作・外部APIを呼ぶの4つの枝に仕事を配り、公開先と届け先に出す。下にナレッジと担当AIの帯がある。"></a><figcaption>クリックすると大きな図が開きます（文字を選べます）。「稼働中」と「これから」を分けて書いています。2026年11月10日時点。</figcaption></figure>
-  <p class="map-terms"><b>図の用語：</b><a href="#t-skill">スキル</a>・<a href="#t-tokatsu">統括AI</a>・<a href="#t-tanto">担当AI</a>・<a href="#t-connector">コネクタ</a>・<a href="#t-extension">ブラウザ拡張</a>・<a href="#t-api">外部API</a>・<a href="#t-plugin">プラグイン</a>・<a href="#t-hook">フック</a>・<a href="#t-permission">禁止設定</a>・<a href="#t-level0">レベル0</a>・<a href="#t-knowledge">ナレッジ</a>・<a href="#t-facts">事実シート</a>・<a href="#t-decisions">決定ログ</a>・<a href="#t-doublecheck">二重チェック</a>・<a href="#t-judge">判断用AI</a>・<a href="#t-routine">定時作業</a>・<a href="#t-vertical">垂直型AIエージェント</a></p>
+  <nav class="sys-nav" aria-label="このタブの目次">
+    <a href="#sys-new">最近の更新</a><a href="#sys-map">全体図</a><a href="#sys-parts">部分ごとの図解</a><a href="#sys-screen">実際の画面</a><a href="#sys-docs">資料・過去の構成</a>
+  </nav>
 
-  <figure class="hero-shot"><img src="assets/img/office.webp" width="1600" height="963" decoding="async" alt="担当AIの状態とチームチャットを表示するオフィス画面" loading="lazy"><figcaption>オフィス画面：誰が何をしているか、どこで人の確認待ちになっているかを一目で見られます。</figcaption></figure>
-
+  <h3 id="sys-new">最近の更新<small>2026年11月</small></h3>
+  <ul class="sys-news">
+    <li><b>全体図と、部分ごとの図解を追加</b>入口・関門・4つの枝・ナレッジ・1日の流れを、1枚ずつ解説しました。</li>
+    <li><b>スキル（手順書）を10本に</b>出荷、応募文、入力フォーム、メール確認、新着の巡回、面談の段取りなど。表に書いていた決まりを、仕事ごとの手順書へ順に移しています。</li>
+    <li><b>出荷アプリが、出荷通知の指示文まで作るように</b>注文ファイル → 送り状 → 出荷通知（Amazon・Yahoo!・BASE）を1つの流れにしました。</li>
+    <li><b>朝の定時作業を5時台に前倒し</b>朝刊と動画を朝のうちに作り、動画「SOCRA」は7時に公開する運用へ切り替えました。</li>
+    <li><b>「道具」タブを新設</b>使っているAI・スキル・自作の道具の一覧と、用語の解説をまとめました。 <a href="#tools">道具タブへ</a></li>
+  </ul>
   <div class="stats">
-    <div><b>2<small>社</small></b><span>ほかの会社のAIと分担（Gemini・OpenAI）</span></div>
-    <div><b>90<small>項目</small></b><span>運用ルール（有効なもの・失敗から追加）</span></div>
-    <div><b>10/10</b><span>引き継ぎ試験の正答（根拠付き）</span></div>
+    <div><b>10<small>本</small></b><span>自作のスキル（仕事ごとの手順書）</span></div>
+    <div><b>5<small>本</small></b><span>毎日の定時作業（朝刊・注文件数・メール・新着・台帳）</span></div>
+    <div><b>2<small>社</small></b><span>ほかの会社のAIと分担（Google・OpenAI）</span></div>
   </div>
 
-  <h3>体制</h3>
-  <div class="org">
-    <div class="org-row"><div class="node human">人（代表）<small>方針・承認・送信</small></div></div>
-    <div class="org-arrow">指示 ↓　↑ 報告・確認待ち</div>
-    <div class="org-row"><div class="node lead-ai">統括AI<small>仕事の進行・結果の確認</small></div></div>
-    <div class="org-arrow">↓ 仕事に合わせて選ぶ</div>
-    <div class="org-row wrap">
-      <div class="node">スキル<small>手順書</small></div><div class="node">プラグイン<small>道具とのつなぎ</small></div><div class="node">ナレッジ<small>事実・決めたこと・過去の直し</small></div>
-    </div>
-    <div class="org-side">
-      <div class="node sub">ほかの会社のAI<small>画像づくり・別の目での講評</small></div>
-      <div class="node sub">担当AI<small>長く続く仕事・記録係など</small></div>
-      <div class="node sub">外部記憶<small>スプレッドシート（事実・ルール・台帳）</small></div>
-    </div>
-  </div>
-  <p style="font-size:14px;color:var(--sub);margin-top:10px">2026年11月に、担当AIを階層で並べる形から、統括AIがスキル・プラグイン・ナレッジを使い分ける形へ移しています。決まった作業は担当AIからスキルへ移し、ナレッジは使うほど書き足して育てます。</p>
+  <h3 id="sys-map">全体図：頼む → 束ねる → 確かめる → 届ける</h3>
+  <figure class="sysmap"><a href="samples/system-map/"><img src="assets/img/system-map.webp" width="2640" height="1735" decoding="async" loading="lazy" alt="ZAZOUの仕組みの全体図。松村が4つの入口から頼み、統括AIのClaude Codeが、判断・権限・安全の関門を通して、ほかのAIに頼む・スキルで動かす・外部サービスを操作・外部APIを呼ぶの4つの枝に仕事を配り、公開先と届け先に出す。下にナレッジと担当AIの帯がある。"></a><figcaption>クリックすると大きな図が開きます（文字を選べます）。「稼働中」と「これから」を分けて書いています。2026年11月10日時点。</figcaption></figure>
+  <p class="map-terms">図は左から右へ読みます。下の「部分ごとの図解」で、①〜⑧の順に1か所ずつ説明します。言葉の意味は <a href="#terms">用語の解説（道具タブ）</a> にあります。</p>
 
-  <h3>垂直型の系図：仕事ごとに、縦に深く作る</h3>
-  <p>ZAZOUのAIは、1つの何でも屋ではありません。仕事ごとに「手順（スキル）」「道具（プラグイン・ツール）」「知識（ナレッジ）」を縦に積み、最後は人が確かめます。統括AIは、その縦の列を束ねて動かします。</p>
-  <div class="vt" role="img" aria-label="人と統括AIの下に、EC出荷・応募と営業・朝刊と発信・資料とサイト・毎日の数字の5つの縦の列が並び、各列にスキル・道具・ナレッジ・人の確認が積まれ、その下に共通の土台がある系図">
-    <div class="vt-top"><div class="vt-node hu">人（代表）<small>方針・承認・送信・公開</small></div></div>
-    <div class="vt-stem"></div>
-    <div class="vt-top"><div class="vt-node lead">統括AI（Claude）<small>仕事の進行・結果の確認・ナレッジへの書き足し</small></div></div>
-    <div class="vt-stem"></div>
-    <div class="vt-cols">
-      <div class="vt-col">
-        <p class="vt-h">EC出荷</p>
-        <dl>
-          <dt>スキル</dt><dd>注文ファイル取得の指示文</dd>
-          <dt>道具</dt><dd>ブラウザ拡張・変換ツール・B2クラウド</dd>
-          <dt>ナレッジ</dt><dd>店ごとのファイルの形・品名の略し方</dd>
-          <dt class="h">人</dt><dd>赤い印を確かめて発行</dd>
-        </dl>
+  <h3 id="sys-parts">部分ごとの図解</h3>
+  <nav class="part-nav" aria-label="図解の目次">
+    <a href="#p-in">① 入口</a><a href="#p-gate">② 関門</a><a href="#p-ai">③ ほかのAIに頼む</a><a href="#p-skill">④ スキルで動かす</a><a href="#p-ext">⑤ 外部サービスを操作</a><a href="#p-api">⑥ 外部APIを呼ぶ</a><a href="#p-know">⑦ ナレッジ</a><a href="#p-day">⑧ 1日の流れ</a>
+  </nav>
+
+  <section class="part" id="p-in">
+    <h4><span>①</span>入口：頼み方は4つ、受けるのは1人</h4>
+    <div class="fx" role="img" aria-label="Claudeアプリ、オペレーションボード、出荷アプリ、定時作業の4つの入口から、統括AIのClaude Codeに仕事が入る図">
+      <div class="fx-row">
+        <div class="fx-b">Claudeアプリ<small>スマホ・PC。文章・画像・ファイルで頼む</small></div>
+        <div class="fx-b">オペレーションボード<small>案件・やること・予定を1画面に。ボタンで文面をコピー</small></div>
+        <div class="fx-b">出荷アプリ<small>自作のWebツール。注文ファイルを入れる</small></div>
+        <div class="fx-b">定時作業<small>決まった時刻に自動で始まる</small></div>
       </div>
-      <div class="vt-col">
-        <p class="vt-h">応募・営業</p>
-        <dl>
-          <dt>スキル</dt><dd>応募文・自己PR・入力用プロンプト</dd>
-          <dt>道具</dt><dd>Gmail・ボード</dd>
-          <dt>ナレッジ</dt><dd>事実シート（経歴・実績）・決定ログ</dd>
-          <dt class="h">人</dt><dd>読んで送信</dd>
-        </dl>
+      <div class="fx-down"></div>
+      <div class="fx-row c"><div class="fx-b ai">統括AI（Claude Code）<small>依頼を読み、どの仕事かを見分ける</small></div></div>
+    </div>
+    <p>どこから頼んでも、受けるのは統括AIだけです。窓口を1つにしておくと、「誰に頼んだか」「どこまで進んだか」が散らばりません。統括AIは依頼を読んで仕事の種類を見分け、その仕事のスキル・道具・ナレッジを呼び出します。</p>
+  </section>
+
+  <section class="part" id="p-gate">
+    <h4><span>②</span>関門：外に出る前に、必ずここを通る</h4>
+    <div class="fx" role="img" aria-label="AIが作ったものが、レベル0、事実シートとの照合、一次情報の確認、別のAIによる二重チェックを通り、最後に人がボタンを押す図">
+      <div class="fx-row">
+        <div class="fx-b ai">AIが作ったもの<small>応募文・返信・資料・ページ</small></div><i class="fx-ar"></i>
+        <div class="fx-b">レベル0<span class="tg on">稼働中</span><small>どの仕事でも守る5つの決まり</small></div><i class="fx-ar"></i>
+        <div class="fx-b">事実と照合<span class="tg on">稼働中</span><small>経歴・実績は事実シートと照らす。制度や求人は公式ページで確かめる</small></div><i class="fx-ar"></i>
+        <div class="fx-b">別のAIで点検<span class="tg on">稼働中</span><small>GPT・Geminiに講評させる</small></div><i class="fx-ar"></i>
+        <div class="fx-b hu">人が押す<small>送信・応募・公開・発行</small></div>
       </div>
-      <div class="vt-col">
-        <p class="vt-h">朝刊・発信</p>
-        <dl>
-          <dt>スキル</dt><dd>記事の選び方と書き方</dd>
-          <dt>道具</dt><dd>ページ生成・GitHub Pages・動画づくり</dd>
-          <dt>ナレッジ</dt><dd>過去の朝刊・いまの運用</dd>
-          <dt class="h">人</dt><dd>内容を確かめる</dd>
-        </dl>
+      <div class="fx-note"><span class="tg soon">これから</span>禁止設定・フック（送信や削除を、お願いではなく仕組みで止める）／<span class="tg soon">検討中</span>判断用AIによる一次仕分け</div>
+    </div>
+    <ol class="gates">
+      <li><b>レベル0（5つの決まり）</b>送信・応募・お金・契約・削除・公開は人が行う／鍵やパスワードを書かない／経歴・実績を作り話にしない／他社の文章・画像をそのまま使わない／仕組みを変える前に人のOKをもらう。</li>
+      <li><b>事実と照らし合わせる</b>経歴や実績は「事実シート」にあることだけを書きます。求人・制度・会社のことは、その場で開いた公式ページで確かめ、開けなければ「未確認」と書きます。</li>
+      <li><b>別のAIで二重チェック</b>外に出す文面は、作ったAIとは別の会社のAIが、事実・誤字・答え漏れを点検します。</li>
+      <li><b>元に戻せない操作は人が押す</b>AIは下書きと記録まで。ボタンは人が押します。</li>
+    </ol>
+    <p class="note">くわしい決まりは <a href="#security">安全の決まり</a> タブにあります。</p>
+  </section>
+
+  <section class="part" id="p-ai">
+    <h4><span>③</span>枝1：ほかのAIに頼む（得意なところだけ）</h4>
+    <div class="fx" role="img" aria-label="統括AIが書いたものをGPTが講評し、統括AIが直して人が確かめる流れと、Geminiに長い資料や画像づくりを頼む流れの図">
+      <div class="fx-row">
+        <div class="fx-b ai">統括AIが書く<small>提案資料・ページ・応募文</small></div><i class="fx-ar"></i>
+        <div class="fx-b">GPT（OpenAI）が講評<small>別の目で読み、直す点を一覧にする</small></div><i class="fx-ar"></i>
+        <div class="fx-b ai">統括AIが直す<small>採る・採らないを決める</small></div><i class="fx-ar"></i>
+        <div class="fx-b hu">人が確かめる</div>
       </div>
-      <div class="vt-col">
-        <p class="vt-h">資料・サイト</p>
-        <dl>
-          <dt>スキル</dt><dd>ほかの会社のAIへの頼み方</dd>
-          <dt>道具</dt><dd>Gemini（画像）・OpenAI（講評）</dd>
-          <dt>ナレッジ</dt><dd>書き方の決まり・過去の直し</dd>
-          <dt class="h">人</dt><dd>確かめて公開</dd>
-        </dl>
-      </div>
-      <div class="vt-col">
-        <p class="vt-h">毎日の数字</p>
-        <dl>
-          <dt>スキル</dt><dd>トークン台帳の記録</dd>
-          <dt>道具</dt><dd>メールの注文通知・スプレッドシート</dd>
-          <dt>ナレッジ</dt><dd>数え方の決まり（決定ログ）</dd>
-          <dt class="h">人</dt><dd>報告を見て判断</dd>
-        </dl>
+      <div class="fx-row sub">
+        <div class="fx-b">Gemini<small>長いPDF・動画を読ませて、要点を出す</small></div>
+        <div class="fx-b">Gemini（Nano Banana Pro）<small>パンフレット・チラシなどの画像づくり</small></div>
+        <div class="fx-b">GPT画像<small>画像の比較案</small></div>
       </div>
     </div>
-    <div class="vt-base">
-      <p class="vt-h">共通の土台</p>
-      <div class="vt-base-row"><span>事実シート・決定ログ・ルール（外部記憶）</span><span>別のAIによる二重チェック</span><span>送信・お金・公開は人</span></div>
+    <p>同じAIは、自分の書いたものの誤りに気づきにくいことがあります。そこで、書くAIと読むAIを別の会社のものに分けています。ほかの会社のAIには、外に出す前の成果物だけを見せ、お客様の個人情報は送りません。画像には文字を描かせず、あとから重ねます。</p>
+  </section>
+
+  <section class="part" id="p-skill">
+    <h4><span>④</span>枝2：スキルで動かす（仕事ごとに、縦に深く）</h4>
+    <div class="vt" role="img" aria-label="統括AIの下に、EC出荷・応募と営業・朝刊と発信・資料とサイト・毎日の数字の5つの縦の列が並び、各列にスキル・道具・ナレッジ・人の確認が積まれている図">
+      <div class="vt-top"><div class="vt-node lead">統括AI（Claude Code）<small>仕事を見分けて、その列を呼び出す</small></div></div>
+      <div class="vt-stem"></div>
+      <div class="vt-cols">
+        <div class="vt-col">
+          <p class="vt-h">EC出荷</p>
+          <dl>
+            <dt>スキル</dt><dd>出荷・出荷通知（締切14時、店ごとの決まり）</dd>
+            <dt>道具</dt><dd>出荷アプリ・ブラウザ拡張・B2クラウド</dd>
+            <dt>ナレッジ</dt><dd>店ごとのファイルの形・品名の略し方</dd>
+            <dt class="h">人</dt><dd>赤い印を確かめて発行</dd>
+          </dl>
+        </div>
+        <div class="vt-col">
+          <p class="vt-h">応募・営業</p>
+          <dl>
+            <dt>スキル</dt><dd>応募文・入力フォーム・メール確認・新着の巡回・面談の段取り</dd>
+            <dt>道具</dt><dd>Gmail・ボード・ブラウザ拡張</dd>
+            <dt>ナレッジ</dt><dd>事実シート（経歴・実績）・決定ログ</dd>
+            <dt class="h">人</dt><dd>読んで送信</dd>
+          </dl>
+        </div>
+        <div class="vt-col">
+          <p class="vt-h">朝刊・発信</p>
+          <dl>
+            <dt>スキル</dt><dd>記事の選び方・出典の付け方（スキル化中）</dd>
+            <dt>道具</dt><dd>ページ生成・GitHub Pages・動画づくり</dd>
+            <dt>ナレッジ</dt><dd>過去の朝刊・いまの運用</dd>
+            <dt class="h">人</dt><dd>内容を確かめる</dd>
+          </dl>
+        </div>
+        <div class="vt-col">
+          <p class="vt-h">資料・サイト</p>
+          <dl>
+            <dt>スキル</dt><dd>ほかの会社のAIへの頼み方・報告の決まり</dd>
+            <dt>道具</dt><dd>Gemini（画像）・GPT（講評）・GitHub Pages</dd>
+            <dt>ナレッジ</dt><dd>書き方の決まり・過去の直し</dd>
+            <dt class="h">人</dt><dd>確かめて公開</dd>
+          </dl>
+        </div>
+        <div class="vt-col">
+          <p class="vt-h">毎日の数字</p>
+          <dl>
+            <dt>スキル</dt><dd>トークン台帳の記録</dd>
+            <dt>道具</dt><dd>注文通知のメール・スプレッドシート</dd>
+            <dt>ナレッジ</dt><dd>数え方の決まり（決定ログ）</dd>
+            <dt class="h">人</dt><dd>報告を見て判断</dd>
+          </dl>
+        </div>
+      </div>
     </div>
-  </div>
-  <p style="font-size:14px;color:var(--sub);margin-top:10px">新しい仕事は、縦の列を1本足して始めます。直したことはその列のナレッジに書き足すので、使うほど、その仕事に合ったAIになります。</p>
+    <p>スキルは、仕事ごとの手順書です。仕事の名前（例：「今日の出荷」）に合うと、AIがその手順書をまるごと読んで、そのとおりに動きます。1つの何でも屋を作るのではなく、仕事ごとに「手順・道具・ナレッジ」を縦に積みます（垂直型AIエージェント）。新しい仕事は列を1本足して始め、直されたことはその列に書き足します。</p>
+  </section>
 
-  <h3>AI連携について</h3>
-  <p>得意なことが違うAIを、仕事ごとに組み合わせています（2026年11月時点）。</p>
-  <div style="overflow-x:auto;margin:0 0 8px"><table class="ai-roles" style="width:100%;border-collapse:collapse;font-size:15px">
-    <thead><tr><th style="text-align:left;border-bottom:1px solid var(--line);padding:10px 8px;font-size:12px;color:var(--faint)">担当</th><th style="text-align:left;border-bottom:1px solid var(--line);padding:10px 8px;font-size:12px;color:var(--faint)">主な役割</th></tr></thead>
-    <tbody>
-      <tr><th style="text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:10px 8px;width:38%">人（代表）</th><td style="border-bottom:1px solid var(--line);padding:10px 8px">依頼、重要な判断、最終確認。送信・公開・お金は人</td></tr>
-      <tr><th style="text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:10px 8px;width:38%">Claude（統括AI）</th><td style="border-bottom:1px solid var(--line);padding:10px 8px">全体の管理、手順の選択、仕事の振り分け、最後のまとめ</td></tr>
-      <tr><th style="text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:10px 8px;width:38%">Gemini（Nano Banana Pro）</th><td style="border-bottom:1px solid var(--line);padding:10px 8px">パンフレット・チラシなどの画像づくり</td></tr>
-      <tr><th style="text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:10px 8px;width:38%">Gemini</th><td style="border-bottom:1px solid var(--line);padding:10px 8px">長い資料や動画の読み込み、成果物の講評</td></tr>
-      <tr><th style="text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:10px 8px;width:38%">OpenAI（GPT・gpt-image）</th><td style="border-bottom:1px solid var(--line);padding:10px 8px">別の目での二重チェック、画像の比較案</td></tr>
-      <tr><th style="text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:10px 8px;width:38%">サブエージェント</th><td style="border-bottom:1px solid var(--line);padding:10px 8px">朝刊・台帳など決まった作業、文章の下書き、動画の台本、検品を分担</td></tr>
-      <tr><th style="text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:10px 8px;width:38%">Gmail・Googleカレンダー</th><td style="border-bottom:1px solid var(--line);padding:10px 8px">メールの確認と、やること・予定の登録</td></tr>
-      <tr><th style="text-align:left;vertical-align:top;padding:10px 8px;width:38%">Googleスプレッドシート</th><td style="padding:10px 8px">ナレッジ（事実・ルール・台帳）の置き場</td></tr>
-    </tbody></table></div>
-  <p style="font-size:14px;color:var(--sub)">ほかの会社のAIには、外に出す前の成果物だけを見せ、お客様の個人情報は送りません。</p>
+  <section class="part" id="p-ext">
+    <h4><span>⑤</span>枝3：外部サービスを操作する（コネクタとブラウザ拡張）</h4>
+    <div class="fx" role="img" aria-label="統括AIが、コネクタでGoogle Workspaceに、ブラウザ拡張で店の管理画面と求人サイトに、CSVでヤマトB2クラウドに、リポジトリでGitHubにつながる図">
+      <div class="fx-tbl">
+        <div class="fx-tr h"><span>つなぎ方</span><span>相手</span><span>AIがやること</span><span>人がやること</span></div>
+        <div class="fx-tr"><span><b>コネクタ</b></span><span>Gmail・カレンダー・ドライブ・スプレッドシート</span><span>メールの確認、予定の登録、管理表の読み書き</span><span>メールの送信</span></div>
+        <div class="fx-tr"><span><b>ブラウザ拡張</b></span><span>Amazon・Yahoo!ショッピング・BASE の管理画面</span><span>注文ファイルの取得、出荷通知の入力</span><span>注文番号と伝票番号の照合を見る</span></div>
+        <div class="fx-tr"><span><b>ブラウザ拡張</b></span><span>求人サイト</span><span>プロフィールの入力、新着の巡回</span><span>応募・送信</span></div>
+        <div class="fx-tr"><span><b>CSVの取り込み</b></span><span>ヤマトB2クラウド</span><span>送り状データを作る</span><span>赤い印を確かめて発行</span></div>
+        <div class="fx-tr"><span><b>リポジトリ</b></span><span>GitHub（Pages・Actions）</span><span>サイトの更新、動画の自動づくり</span><span>公開のOK</span></div>
+      </div>
+    </div>
+    <p>コネクタがあるサービスは、AIが直接つながります。コネクタがないサービス（店の管理画面など）は、ブラウザ拡張に指示文を渡して操作させます。指示文は出荷アプリやボードが作るので、人は貼り付けるだけです。どのつなぎ方でも、最後のボタンは人が押します。</p>
+  </section>
 
-  <h3>誤りを防ぐ4つの関門</h3>
-  <ol class="gates">
-    <li><b>事実の表だけを使う</b>経歴や実績は「事実シート」にあることだけを書く。ないことは書かないか「推定」と明記。</li>
-    <li><b>一次情報で確かめる</b>求人・制度・会社のことは、その場で開いた公式ページで確認。開けなければ「未確認」。</li>
-    <li><b>別のAIで二重チェック</b>外に出す文面は、作ったAIとは別のAIが事実・誤字・答え漏れを点検。</li>
-    <li><b>元に戻せない操作は人が押す</b>送信・応募・公開・削除は人がボタンで行う。AIは下書きと記録まで。</li>
-  </ol>
+  <section class="part" id="p-api">
+    <h4><span>⑥</span>枝4：外部APIを呼ぶ（画像・声・動画）</h4>
+    <div class="fx" role="img" aria-label="スキルや担当AIが、画像生成、音声合成、動画投稿のAPIを呼び、人が確かめる図">
+      <div class="fx-row">
+        <div class="fx-b ai">スキル・担当AI<small>鍵は安全な入力画面で保存。チャットには書かない</small></div><i class="fx-ar"></i>
+        <div class="fx-b">画像生成<span class="tg on">稼働中</span><small>Gemini（Nano Banana Pro）・GPT画像</small></div>
+        <div class="fx-b">音声合成<span class="tg on">稼働中</span><small>Google Cloud Text-to-Speech（SOCRAの声）</small></div>
+        <div class="fx-b">動画の投稿<span class="tg on">稼働中</span><small>YouTube「SOCRA」</small></div>
+        <div class="fx-b dash">店のAPI<span class="tg soon">これから</span><small>注文の取得から出荷通知までを、ファイルなしで</small></div>
+      </div>
+    </div>
+    <p>APIは、ほかのサービスの機能をプログラムから呼び出す窓口です。画像は人が見て選び、ロゴや実在の商品は描かせません。動画は、読みの心配な表記と音量・長さを点検してから公開します。店のAPIは準備中で、いまはファイルとブラウザ拡張で動かしています。</p>
+  </section>
 
-  <h3>記憶を失わない仕組み（記録の三層）</h3>
-  <p>AIは会話が長くなると古い決定を忘れます。そこで会話ではなく表を「正」にしました。<b>書く</b>（決めたことはその場で表へ）、<b>照合する</b>（毎日、記録と現実のずれを探す）、<b>根拠を示す</b>（外に出す文面には表の行番号を添える）。会話の記憶を持たない新しいAIに表だけを渡す試験で、10問すべてに根拠付きで正答しました。</p>
+  <section class="part" id="p-know">
+    <h4><span>⑦</span>ナレッジ：会話の外に置く記憶</h4>
+    <div class="fx" role="img" aria-label="仕事をする、人に直される、ナレッジに書き足す、次の仕事で読む、という輪と、事実シート・決定ログ・スキル・台帳・引き継ぎの5つの置き場の図">
+      <div class="fx-row">
+        <div class="fx-b ai">仕事をする</div><i class="fx-ar"></i>
+        <div class="fx-b hu">人が直す・決める</div><i class="fx-ar"></i>
+        <div class="fx-b">ナレッジに書き足す<small>その場で</small></div><i class="fx-ar"></i>
+        <div class="fx-b ai">次の仕事で読む<small>はじめに戻る</small></div>
+      </div>
+      <div class="fx-row sub">
+        <div class="fx-b">事実シート<small>経歴・実績・会社の情報</small></div>
+        <div class="fx-b">決定ログ<small>いつ・誰が・何を決めたか</small></div>
+        <div class="fx-b">スキル<small>仕事ごとの手順とコツ</small></div>
+        <div class="fx-b">台帳<small>案件・成果物・トークン</small></div>
+        <div class="fx-b">引き継ぎ<small>次の統括AIへ</small></div>
+      </div>
+    </div>
+    <p>AIは、会話が長くなると古い決定を忘れます。そこで、会話ではなく記録を「正」にしました。決めたことはその場で書き、毎日、記録と現実のずれを探し、外に出す文面は記録と照らし合わせます。会話の記憶を持たない新しいAIに記録だけを渡す試験では、10問すべてに根拠付きで正答しました。置き場所はGoogleスプレッドシートで、手順はスキルへ順に移しています。</p>
+    <p class="note">くわしくは <a href="paper/">論文：記憶の欠落とハルシネーションへの対処</a>・<a href="paper2/">論文：外部脳としての記録の運用</a></p>
+  </section>
 
-  <h3>AIエージェントの最新動向を毎日チェック：統括AI（先輩）の朝刊</h3>
-  <p>動きの速いAIの最新動向を毎日追い、海外を含む最新の記事を毎朝1本読んで今の運用と照らし合わせ、AI業界全般のニュースも毎日3本要約しています。取り入れるかどうかの判断材料にしつつ、記事選びから公開までは自動化しています。人が確認するのは内容だけです。</p>
-  <ol class="gates">
-    <li><b>定時に起動</b>毎朝6時台に、統括AIの定時作業が動きます。</li>
-    <li><b>記事を選んで要約</b>作業役のAIが、AIエージェントに関する最新の記事を1本選んで読み、日本語で要約し、今の運用と比べて「同じ／違う／取り入れるか」を書きます。</li>
-    <li><b>ページを自動で生成</b>要約のデータから、サムネイル付きのページをプログラムが作ります。</li>
-    <li><b>確認して公開</b>統括AIが中身を確かめてから、GitHub Pages に公開します。</li>
-  </ol>
-  <p class="more"><a href="news/">統括AI（先輩）の朝刊を見る</a></p>
+  <section class="part" id="p-day">
+    <h4><span>⑧</span>1日の流れ：定時作業と人の出番</h4>
+    <div class="fx" role="img" aria-label="朝5時台の朝刊と動画づくりから、注文件数の報告、動画の公開、日中のメール確認と新着チェック、14時の注文締切と出荷、夜のトークン台帳までの1日の流れ">
+      <ol class="tl">
+        <li><time>5時台</time><div><b>朝刊と動画づくり</b>AIエージェントの最新の記事を選んで要約し、今の運用と比べます。AI業界のニュース3本と、動画「SOCRA」も作ります。<span class="who ai">AI</span></div></li>
+        <li><time>7時前</time><div><b>毎朝の注文件数</b>前日14時からの注文を、店ごとに数えて報告します。<span class="who ai">AI</span></div></li>
+        <li><time>7時</time><div><b>朝刊・動画の公開</b>統括AIが中身を確かめてから公開します。<span class="who ai">AI</span></div></li>
+        <li><time>日中</time><div><b>メール確認・求人の新着チェック</b>返信の下書きと新しい案件を、ボードのカードにします。<span class="who ai">AI</span><span class="who hu">人：読んで送信</span></div></li>
+        <li><time>14時</time><div><b>注文の締切 → 出荷</b>出荷アプリで送り状と出荷通知の指示文を作ります。<span class="who ai">AI</span><span class="who hu">人：発行・梱包・通知の確認</span></div></li>
+        <li><time>夜</time><div><b>トークン台帳</b>その日のAIの使用額を、仕事ごとに記録します。<span class="who ai">AI</span></div></li>
+      </ol>
+    </div>
+    <p>毎日くり返す仕事は、時刻を決めて自動で始めます。人が見るのは、朝の報告と、ボードに並んだ「読んで送る」ものだけです。 <a href="news/">統括AI（先輩）の朝刊を見る</a></p>
+  </section>
 
-  <h3>実際の画面</h3>
+  <h3 id="sys-screen">実際の画面</h3>
   <figure><img src="assets/img/board.webp" width="1600" height="1460" decoding="async" alt="人が押すボタンだけを並べたオペレーションボード" loading="lazy"><figcaption>オペレーションボード：人がやることは「文面をコピー」「送った」などのボタンを押すだけ。押すと記録され、AIが次の作業へ進みます。</figcaption></figure>
-  <figure><img src="assets/img/desks.webp" width="1600" height="837" decoding="async" alt="担当ごとの机の違い" loading="lazy"><figcaption>担当ごとの机：重い判断は上位のモデル、定型作業は軽いモデルに振り分けて費用を抑えています。</figcaption></figure>
 
-  <p class="more"><a href="samples/system/">構成と運用の資料（PDF・17ページ）</a>　／　<a href="lab/gas/">見本：Googleの表とメールで動く小さな自動化（GAS）</a>　／　<a href="paper/">論文：記憶の欠落とハルシネーションへの対処</a>　／　<a href="paper2/">論文：外部脳としての記録の運用</a></p>
-    <h3 id="system-archive">過去の構成（アーカイブ）</h3>
+  <h3 id="sys-docs">資料</h3>
+  <p class="more" style="margin-top:0"><a href="samples/system-map/">全体図（大きな図）</a>　／　<a href="#terms">用語の解説</a>　／　<a href="lab/gas/">見本：Googleの表とメールで動く小さな自動化（GAS）</a>　／　<a href="paper/">論文：記憶の欠落とハルシネーションへの対処</a>　／　<a href="paper2/">論文：外部脳としての記録の運用</a></p>
+
+  <h3 id="system-archive">過去の構成（アーカイブ）</h3>
   <p class="note">いまの構成に変わる前の資料です。経緯をたどれるように残しています。</p>
   <ul class="rows">
     <li><a class="row" href="samples/system/"><span class="t">2026年10月：階層型の構成（統括AIと担当AI）</span><span class="m">PDF · 17p</span><span class="d">統括役のAIが担当ごとのAIに指示していた頃の資料。2026年11月から、仕事ごとにスキル・道具・ナレッジを束ねる今の形（垂直型）へ移行しています。</span></a></li>
   </ul>
+  <details class="sys-old">
+    <summary>当時の画面を見る（オフィス画面・担当ごとの机）</summary>
+    <figure><img src="assets/img/office.webp" width="1600" height="963" decoding="async" alt="担当AIの状態とチームチャットを表示するオフィス画面" loading="lazy"><figcaption>オフィス画面：担当AIを階層で並べていた頃の画面。誰が何をしているか、どこで人の確認待ちかを見ていました。</figcaption></figure>
+    <figure><img src="assets/img/desks.webp" width="1600" height="837" decoding="async" alt="担当ごとの机の違い" loading="lazy"><figcaption>担当ごとの机：重い判断は上位のモデル、定型作業は軽いモデルに振り分けていました。</figcaption></figure>
+  </details>
 </div>
 </section>
 
