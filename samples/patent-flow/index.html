@@ -1,0 +1,223 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>特許の出願から登録までの流れ｜資料の見本｜ZAZOU Lab</title>
+<meta name="description" content="日本で特許をとるまでに、だれが・いつまでに・何をするかを、図と表でまとめた資料。出願、審査請求、拒絶理由への応答、特許査定、登録、年金、費用の目安、期限の一覧。">
+<link rel="canonical" href="https://takmat21.github.io/samples/patent-flow/">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article"><meta property="og:title" content="特許の出願から登録までの流れ"><meta property="og:url" content="https://takmat21.github.io/samples/patent-flow/"><meta property="og:image" content="https://takmat21.github.io/assets/ogp.png">
+<style>
+:root{--bg:#f7f5ef;--card:#fff;--ink:#1c1c1a;--sub:#5d5b55;--line:#d9d4c6;--g:#1d7a5a;--gs:#e6f2ec;--a:#b4541f;--as:#fbeee6;--b:#2c5d86;--bs:#e8f0f7;--y:#8a6a12;--ys:#f7f0d9}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;font-size:15.5px;line-height:1.85}
+main{max-width:980px;margin:0 auto;padding:36px 16px 80px}
+h1{font-size:28px;line-height:1.4;margin:0 0 6px}.lead{color:var(--sub);margin:0 0 8px}
+.meta{font-size:13px;color:var(--sub);margin:0 0 28px}
+h2{font-size:20px;margin:44px 0 12px;padding-top:14px;border-top:2px solid var(--ink)}
+h3{font-size:16.5px;margin:22px 0 6px;color:var(--g)}
+p{margin:0 0 12px}ul{margin:0 0 12px;padding-left:1.3em}li{margin:3px 0}
+.sum{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 8px}
+.sum div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.sum b{display:block;font-size:22px;line-height:1.3;color:var(--g)}.sum span{font-size:12.5px;color:var(--sub)}
+/* flow */
+.flow{display:grid;gap:0;margin:14px 0}
+.st{display:grid;grid-template-columns:64px 1fr;gap:14px;position:relative;padding-bottom:18px}
+.st:before{content:"";position:absolute;left:31px;top:44px;bottom:0;width:3px;background:var(--line)}
+.st:last-child:before{display:none}
+.no{width:64px;height:44px;border-radius:999px;background:var(--ink);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px;z-index:1}
+.no.w{background:var(--b)}.no.j{background:var(--a)}.no.ok{background:var(--g)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+.box h4{margin:0 0 4px;font-size:17px}.box p{margin:0 0 6px;font-size:14.5px}
+.when{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:1px 10px;margin:0 6px 4px 0;background:var(--ys);color:var(--y)}
+.who{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:1px 10px;margin:0 6px 4px 0;background:var(--bs);color:var(--b)}
+.fee{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:1px 10px;margin:0 6px 4px 0;background:var(--gs);color:var(--g)}
+.law{font-size:12px;color:var(--sub)}
+.branch{background:var(--as);border:1px solid #efd2c0;border-radius:10px;padding:8px 12px;margin-top:8px;font-size:14px}
+/* timeline */
+.tl{position:relative;margin:26px 0 54px;height:64px}
+.tl .bar{position:absolute;left:0;right:0;top:28px;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--b),var(--g))}
+.tl i{position:absolute;top:18px;width:3px;height:26px;background:var(--ink)}
+.tl span{position:absolute;top:50px;font-size:12px;transform:translateX(-50%);text-align:center;white-space:nowrap;line-height:1.35}
+.tl b{position:absolute;top:-4px;font-size:12px;transform:translateX(-50%);white-space:nowrap}
+.tw{overflow-x:auto;margin:10px 0 14px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.7}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:#efece3;white-space:nowrap}tr:last-child td{border-bottom:0}
+.note{font-size:13.5px;color:var(--sub);background:var(--card);border-left:4px solid var(--y);border-radius:6px;padding:10px 14px;margin:10px 0}
+.doc{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:10px 0}
+.doc div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px;font-size:13.5px}
+.doc b{display:block;font-size:15px;margin-bottom:2px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+.card h3{margin-top:0}
+a{color:var(--g);word-break:break-all}
+@media (max-width:700px){.sum{grid-template-columns:1fr 1fr}.doc{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}.st{grid-template-columns:52px 1fr;gap:10px}.no{width:52px;font-size:12.5px}.st:before{left:25px}h1{font-size:23px}.tl{display:none}}
+@media print{body{background:#fff}main{padding:0}}
+</style></head><body><main>
+<p style="font-size:14px;margin:0 0 18px"><a href="../../#samples">← ZAZOU Lab 仕事一覧に戻る</a></p>
+<h1>特許の出願から登録までの流れ</h1>
+<p class="lead">日本で特許をとるまでに、だれが・いつまでに・何をするかを、順番にまとめた資料です。</p>
+<p class="meta">2026年11月10日作成｜ZAZOU株式会社　松村貴士（下書き：統括AI）｜期限と手続きは特許法の条文で確認。金額は特許庁の2026年4月1日時点の料金表によります（最新の金額は特許庁の料金一覧で確認してください）。</p>
+
+<div class="sum">
+  <div><b>3年以内</b><span>出願日から、審査請求をする期限。過ぎると出願は取り下げ扱い</span></div>
+  <div><b>1年6か月</b><span>出願日から、内容が公開されるまで</span></div>
+  <div><b>約13か月</b><span>審査請求から権利になるまでの平均（2025年度、特許庁の公表値）</span></div>
+  <div><b>20年</b><span>特許権が続く期間（出願日から）</span></div>
+</div>
+
+<h2>1. 全体の流れ（図）</h2>
+<div class="tl" aria-hidden="true">
+  <div class="bar"></div>
+  <i style="left:0%"></i><b style="left:3%">出願</b><span style="left:3%">0</span>
+  <i style="left:8%"></i><span style="left:9%">優先権<br>1年以内</span>
+  <i style="left:15%"></i><b style="left:15%">公開</b><span style="left:17%">1年6か月</span>
+  <i style="left:30%"></i><b style="left:30%">審査請求の期限</b><span style="left:30%">3年以内</span>
+  <i style="left:48%"></i><b style="left:48%">審査・拒絶理由への応答</b><span style="left:48%">請求から平均 約9か月で最初の通知</span>
+  <i style="left:66%"></i><b style="left:66%">特許査定 → 登録</b><span style="left:66%">30日以内に特許料</span>
+  <i style="left:99.7%"></i><b style="left:95%">満了</b><span style="left:95%">出願から20年</span>
+</div>
+
+<div class="flow">
+  <div class="st"><div class="no w">準備</div><div class="box"><h4>① 先行技術の調査</h4>
+    <span class="who">出願する人</span><span class="fee">無料（J-PlatPat）</span>
+    <p>同じ発明がすでに出ていないかを調べます。特許庁の関連機関が運営する無料のデータベース「J-PlatPat」で、過去の特許公報を検索できます。</p>
+    <p class="law">ここで似た発明が見つかれば、違い（新しい点）をはっきりさせてから書類を書きます。</p></div></div>
+
+  <div class="st"><div class="no w">準備</div><div class="box"><h4>② 出願書類をつくる</h4>
+    <span class="who">出願する人（弁理士に頼むことが多い）</span>
+    <p>願書に、明細書・特許請求の範囲・要約書・（必要なら）図面を付けます。権利の広さは「特許請求の範囲」で決まり、その裏づけを「明細書」と「図面」で説明します。</p>
+    <p class="law">特許法36条。あとから新しい内容を足すことはできません（新規事項の追加の禁止）。出願の前に、書くべきことを出し切ることが大切です。</p></div></div>
+
+  <div class="st"><div class="no">出願</div><div class="box"><h4>③ 特許庁に出願する</h4>
+    <span class="who">出願する人</span><span class="fee">出願料 14,000円</span>
+    <p>インターネット出願ソフト（無料）で電子出願するのが一般的です。電子証明書と、申請人の利用登録が必要です。紙で出すと、電子化の手数料が別にかかります（1件2,400円＋1枚800円）。</p>
+    <p class="law">出願した日が「出願日」になり、その後の期限はほぼすべてこの日から数えます。先に出願した人が優先されます（先願主義）。</p>
+    <div class="branch"><b>出願のあと1年以内</b>：改良を足して出し直す「国内優先権」（41条）、外国にも出す場合のパリ条約の優先権（12か月・要確認）や国際出願（PCT）を検討します。</div></div></div>
+
+  <div class="st"><div class="no">特許庁</div><div class="box"><h4>④ 方式審査・出願公開</h4>
+    <span class="when">出願日から1年6か月</span><span class="who">特許庁</span>
+    <p>書類の形式が整っているかを特許庁が確かめます。出願から1年6か月たつと、内容が「公開特許公報」として世の中に公開されます。早く公開したいときは請求できます。</p>
+    <p class="law">特許法64条・64条の2。公開されると、ほかの人は同じ発明で特許をとれなくなります。</p></div></div>
+
+  <div class="st"><div class="no j">期限</div><div class="box"><h4>⑤ 出願審査請求</h4>
+    <span class="when">出願日から3年以内</span><span class="who">出願する人（だれでも請求できる）</span><span class="fee">138,000円＋請求項の数×4,000円</span>
+    <p>出願しただけでは審査は始まりません。「審査してください」という請求が要ります。3年以内に請求しないと、出願は取り下げたものとみなされます。</p>
+    <p class="law">特許法48条の3。中小企業・小規模企業・スタートアップなどは、審査請求料が1/2〜1/3に軽減される制度があります（下の「費用」参照）。</p>
+    <div class="branch"><b>早く結果がほしいとき</b>：「早期審査」（中小企業・個人、実施中の発明、外国にも出す発明などが対象。手数料なし）を申し出ると、最初の通知まで平均2か月台。さらに速い「スーパー早期審査」もあります。</div></div></div>
+
+  <div class="st"><div class="no">特許庁</div><div class="box"><h4>⑥ 実体審査</h4>
+    <span class="when">請求から最初の通知まで 平均 約9か月</span><span class="who">特許庁の審査官</span>
+    <p>審査官が、特許にできない理由（拒絶理由）がないかを調べます。主な観点は次のとおりです。</p>
+    <ul><li><b>新規性</b>：すでに知られた発明ではないか（29条1項）</li><li><b>進歩性</b>：知られた技術から簡単に思いつけるものではないか（29条2項）</li><li><b>記載要件</b>：明細書を読めば実施でき、請求項がはっきり書かれているか（36条）</li><li>ほかに、先願（39条）、発明の単一性（37条）など</li></ul></div></div>
+
+  <div class="st"><div class="no j">応答</div><div class="box"><h4>⑦ 拒絶理由通知 → 意見書・補正書</h4>
+    <span class="when">通知から60日以内（国内の出願人）</span><span class="who">出願する人</span>
+    <p>多くの出願で、一度は「拒絶理由通知」が届きます。これは不合格の決定ではなく、「このままでは特許にできません。意見はありますか」という問い合わせです。</p>
+    <p><b>意見書</b>で審査官の判断に反論し、<b>手続補正書</b>で請求項を直して（狭めて）、拒絶理由をなくします。</p>
+    <p class="law">特許法50条。期間内に請求すれば、応答の期限を延ばせます（国内は2か月・手数料あり）。補正で新しい内容を足すことはできません（17条の2）。</p>
+    <div class="branch"><b>それでも認められないとき</b>：「拒絶査定」が出ます。謄本が届いた日から<b>3か月以内</b>に「拒絶査定不服審判」を請求できます（121条）。</div></div></div>
+
+  <div class="st"><div class="no ok">合格</div><div class="box"><h4>⑧ 特許査定 → 特許料の納付</h4>
+    <span class="when">謄本が届いた日から30日以内</span><span class="who">出願する人</span><span class="fee">3年分：毎年 4,300円＋請求項×300円</span>
+    <p>拒絶理由がなければ「特許査定」が出ます。届いてから30日以内に、最初の3年分の特許料をまとめて納めます。納めないと、せっかくの査定が無駄になります。</p>
+    <p class="law">特許法108条。請求すれば30日以内の延長ができます。</p></div></div>
+
+  <div class="st"><div class="no ok">登録</div><div class="box"><h4>⑨ 設定登録・特許公報の発行</h4>
+    <span class="who">特許庁</span>
+    <p>特許料が納められると、特許原簿に登録され、ここで特許権が生まれます。特許番号が付き、「特許公報」に載ります。</p>
+    <p class="law">特許法66条。公報の発行から6か月以内は、だれでも「特許異議の申立て」ができます（113条）。その後も、利害関係のある人は「無効審判」を請求できます（123条）。</p></div></div>
+
+  <div class="st"><div class="no ok">維持</div><div class="box"><h4>⑩ 権利を保つ（年金の納付）</h4>
+    <span class="when">4年目以降、毎年（前の年のうちに）</span><span class="who">特許権者</span>
+    <p>4年目からは、毎年の特許料（年金）を納めて権利を保ちます。金額は年がたつほど上がります。納め忘れても6か月以内なら、同じ額の割増を足して納められます。それも過ぎると権利は消えます。</p>
+    <p class="law">特許法108条・112条。権利は出願日から20年で終わります（67条）。</p></div></div>
+</div>
+
+<h2>2. 出願書類の中身</h2>
+<div class="doc">
+  <div><b>願書</b>だれが出願するか、発明者はだれか</div>
+  <div><b>特許請求の範囲</b>権利としてほしい範囲。「請求項」に分けて書く。ここが権利の本体</div>
+  <div><b>明細書</b>技術分野、これまでの技術と課題、解決の手段、効果、実施の形（実施例）</div>
+  <div><b>図面</b>構造や動きを示す図。必要な場合に付ける</div>
+  <div><b>要約書</b>発明の概要を短くまとめたもの</div>
+</div>
+<p>明細書は、その分野の技術者が読んで実際に作れる・使える程度に書く必要があります（実施可能要件）。請求項に書いたことは、明細書の説明に支えられていなければなりません（サポート要件）。</p>
+
+<h2>3. 費用の目安（特許庁に払う分）</h2>
+<div class="tw"><table>
+<thead><tr><th>いつ</th><th>何の料金</th><th>金額</th><th>請求項5つの例</th></tr></thead>
+<tbody>
+<tr><td>出願時</td><td>出願料</td><td>14,000円</td><td>14,000円</td></tr>
+<tr><td>審査請求時</td><td>審査請求料</td><td>138,000円＋請求項×4,000円</td><td>158,000円</td></tr>
+<tr><td>特許査定後</td><td>特許料（1〜3年分をまとめて）</td><td>毎年 4,300円＋請求項×300円</td><td>17,400円（3年分）</td></tr>
+<tr><td>4〜6年目</td><td>特許料（年金）</td><td>毎年 10,300円＋請求項×800円</td><td>毎年14,300円</td></tr>
+<tr><td>7〜9年目</td><td>特許料（年金）</td><td>毎年 24,800円＋請求項×1,900円</td><td>毎年34,300円</td></tr>
+<tr><td>10年目以降</td><td>特許料（年金）</td><td>毎年 59,400円＋請求項×4,600円</td><td>毎年82,400円</td></tr>
+</tbody></table></div>
+<p>請求項5つなら、登録までに特許庁へ払うのは <b>約19万円</b>（14,000＋158,000＋17,400円）です。弁理士に頼む場合の費用は、これとは別にかかります。</p>
+<h3>軽減の制度</h3>
+<ul>
+<li>中小企業（会社・個人事業主など）：審査請求料と、1〜10年目の特許料が <b>1/2</b></li>
+<li>小規模企業、設立10年未満などの中小スタートアップ：<b>1/3</b></li>
+<li>出願料と、11年目以降の特許料は対象外です。中小企業の審査請求料の軽減は、1年度に180件までです。</li>
+</ul>
+<div class="note">金額は、特許庁の2026年4月1日時点の料金表（平成16年4月以降に審査請求した出願の区分）によります。実際に払う前に、特許庁の「産業財産権関係料金一覧」で最新の金額と、自分が軽減の対象かを確かめてください。</div>
+
+<h2>4. 覚えておく期限</h2>
+<div class="tw"><table>
+<thead><tr><th>期限</th><th>何を</th><th>過ぎると</th><th>根拠</th></tr></thead>
+<tbody>
+<tr><td>発表・販売から1年以内</td><td>自分で公開してしまった発明を出願する（新規性喪失の例外）</td><td>自分の公開が理由で特許にならない</td><td>30条</td></tr>
+<tr><td>最初の出願から1年以内</td><td>国内優先権を使った出し直し、外国への出願</td><td>優先権が使えない</td><td>41条ほか</td></tr>
+<tr><td>出願日から3年以内</td><td>出願審査請求</td><td>出願は取り下げ扱い</td><td>48条の3</td></tr>
+<tr><td>拒絶理由通知から60日以内</td><td>意見書・補正書を出す</td><td>拒絶査定になる</td><td>50条（期間は指定）</td></tr>
+<tr><td>拒絶査定から3か月以内</td><td>拒絶査定不服審判の請求</td><td>拒絶が確定する</td><td>121条</td></tr>
+<tr><td>特許査定から30日以内</td><td>最初の3年分の特許料</td><td>出願が却下される</td><td>108条</td></tr>
+<tr><td>4年目以降、毎年</td><td>特許料（年金）</td><td>6か月の追納期間のあと、権利が消える</td><td>108条・112条</td></tr>
+<tr><td>優先日から30か月以内</td><td>国際出願（PCT）を日本の手続きに移す</td><td>日本での出願が取り下げ扱い</td><td>184条の4</td></tr>
+</tbody></table></div>
+
+<h2>5. 会社員の発明（職務発明）</h2>
+<p>会社の仕事として生まれた発明は「職務発明」と呼ばれます。会社の規則などで「会社が権利を取得する」と決めてあれば、特許を受ける権利は最初から会社のものになります。その代わり、発明した社員は「相当の利益」（お金など）を受ける権利があります（特許法35条）。</p>
+<p>この場合の流れは、<b>発明者が発明の内容を社内の書類にまとめる → 知財部門が先行技術を調べ、出願するかを決める → 弁理士が明細書を書く → 発明者が内容を確かめる → 会社の名前で出願</b>、という形が一般的です。発明者の名前は、願書と特許公報に載ります。</p>
+
+<h2>6. 資料づくりで手伝えるところ</h2>
+<p>技術資料や図解も、必要に応じて作成します。発明した方の頭の中にある構造や仕組みを、図と文章の両方で、読み手に伝わる形に整えます。</p>
+<div class="two">
+  <div class="card"><h3>出願の前</h3><ul><li>発明者の話を聞いて、課題・解決の手段・効果を整理する</li><li>先行技術の調査結果を表にまとめ、違いをはっきりさせる</li><li>明細書の下書き（これまでの技術、実施の形）</li><li>図面のもとになる図解（構造・動き・手順）</li><li><b>構造物の挿絵をこちらで用意し、お客様に鉛筆で加筆していただいて特許の図面に載せる</b>など、お客様が制作しやすい形でサポートします</li></ul></div>
+  <div class="card"><h3>出願のあと</h3><ul><li>拒絶理由通知で引用された文献と、自分の発明との比較表</li><li>意見書・補正書の下書きのための論点整理</li><li>期限の一覧と管理表</li><li>打ち合わせの議事録</li></ul></div>
+</div>
+<div class="note">特許庁への手続きを他人の代わりに行うことや、明細書などの書類を報酬を得て作ることは、弁理士だけに認められた仕事です（弁理士法）。資料づくりのサポートは、弁理士や出願する本人の判断のもとで、下書きや整理を手伝う立場になります。</div>
+
+<h2>7. ほかの権利との違い</h2>
+<div class="tw"><table>
+<thead><tr><th>権利</th><th>守るもの</th><th>続く期間</th><th>審査</th></tr></thead>
+<tbody>
+<tr><td><b>特許</b></td><td>発明（技術的なアイデア）</td><td>出願から20年</td><td>あり（審査請求が必要）</td></tr>
+<tr><td>実用新案</td><td>物の形・構造・組み合わせの工夫</td><td>出願から10年</td><td>中身の審査なしで登録</td></tr>
+<tr><td>意匠</td><td>物などのデザイン</td><td>出願から25年</td><td>あり</td></tr>
+<tr><td>商標</td><td>商品・サービスを区別する名前やマーク（会社のロゴ、ブランド名）</td><td>登録から10年（更新できる）</td><td>あり</td></tr>
+</tbody></table></div>
+
+<h2>8. ことば</h2>
+<div class="tw"><table><tbody>
+<tr><th>請求項</th><td>権利としてほしい範囲を、1つずつ文にしたもの。数が多いほど料金が上がる</td></tr>
+<tr><th>明細書</th><td>発明の中身をくわしく説明する書類</td></tr>
+<tr><th>先行技術</th><td>出願より前に世の中に知られていた技術</td></tr>
+<tr><th>拒絶理由通知</th><td>「このままでは特許にできない」という審査官からの知らせ。反論と修正の機会がある</td></tr>
+<tr><th>意見書・補正書</th><td>拒絶理由への反論の書類と、請求項などを直す書類</td></tr>
+<tr><th>特許査定</th><td>「特許にしてよい」という審査の結論</td></tr>
+<tr><th>設定登録</th><td>特許原簿に載ること。ここで特許権が生まれる</td></tr>
+<tr><th>年金</th><td>権利を保つために毎年払う特許料の通称</td></tr>
+<tr><th>弁理士</th><td>特許などの出願手続きを代わりに行う国家資格の専門家</td></tr>
+</tbody></table></div>
+
+<h2>出典・確かめ方</h2>
+<ul>
+<li>期限と手続き：特許法の条文（e-Gov法令検索）<br><a href="https://laws.e-gov.go.jp/law/334AC0000000121">https://laws.e-gov.go.jp/law/334AC0000000121</a></li>
+<li>料金：特許庁「産業財産権関係料金一覧」（最新はここで確認）<br><a href="https://www.jpo.go.jp/system/process/tesuryo/hyou.html">https://www.jpo.go.jp/system/process/tesuryo/hyou.html</a></li>
+<li>軽減の制度：特許庁「2019年4月1日以降に審査請求をした案件の減免制度」<br><a href="https://www.jpo.go.jp/system/process/tesuryo/genmen/genmen20190401/index.html">https://www.jpo.go.jp/system/process/tesuryo/genmen/genmen20190401/index.html</a></li>
+<li>審査にかかる期間：特許行政年次報告書 2026年版（2025年度：最初の通知まで9.4か月、権利化まで13.2か月）</li>
+<li>先行技術の調査：J-PlatPat（特許情報プラットフォーム）<br><a href="https://www.j-platpat.inpit.go.jp/">https://www.j-platpat.inpit.go.jp/</a></li>
+</ul>
+<div class="note">この資料は、手続きの全体をつかむための見取り図です。料金や運用は改定されることがあります。実際の手続きの前に、特許庁のページと、担当の弁理士の確認をお願いします。</div>
+<p style="font-size:13px;color:var(--sub);margin-top:28px">© 2026 ZAZOU株式会社　｜　<a href="../../">ZAZOU Lab</a>　｜　<a href="../../ai/">ZAZOU AI Works</a></p>
+</main></body></html>
