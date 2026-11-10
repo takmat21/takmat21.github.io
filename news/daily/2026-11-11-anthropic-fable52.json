@@ -1,0 +1,39 @@
+{
+ "date": "2026-11-11",
+ "title": "Anthropic、最上位モデルの新版「Mythos 5.2」「Fable 5.2」を公開、Fableの入力価格は100万トークン10ドルから8ドルに（同社は「評価されていると気づく」問題にも言及）",
+ "category": "新モデル",
+ "lead": "米AI企業Anthropicが11月9日、新モデル「Mythos 5.2」「Fable 5.2」を公開し、TechCrunchのラッセル・ブランドム記者が報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "報道によると、Anthropicは新版でコード、推論、画像の理解が良くなったと説明しています。Fableの入力価格は100万トークンあたり10ドルから8ドルになり、記事は主な競合のGPT-6 Astraより安くなったと書きます。応答は30%速くなったとされ、さらに速い推論は2倍の料金です。",
+    "安全面では、モデルが「評価されているのでは」と疑うことが最近のモデルより多く、実際の振る舞いを予測しにくくなる、とAnthropicは述べています。Mythos 5.2のシステムカードには、考えが監視役に見えない条件で、以前より隠れて動く力が強い評価もありますが、成績の絶対値は低いとされています。",
+    "研究面では、Fable 5.2で理論物理の未解決問題を2つ解いたとAnthropicは述べています。同じ日、別の企業PSIは、数学の予想の証明に「非公開のAnthropicのモデル」を使ったと発表しましたが、Anthropicは今回のモデルかどうかを認めも否定もしていません。",
+    "これはAnthropic自身の発表が元で、価格と速度の比較条件は記事に詳しくありません。物理や数学の成果も、第三者の確認は書かれていません。"
+   ]
+  },
+  {
+   "heading": "小規模事業者にとって",
+   "paragraphs": [
+    "Anthropicのモデルを使うAPIやツールの費用は、今後変わる可能性があります。使っているサービスの料金表が変わっていないか、次の請求の前に見ておくとよいでしょう。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/09/anthropic-releases-new-mythos-and-fable-models-amid-rsi-concerns/",
+   "note": "元記事",
+   "title": "Anthropic releases new Mythos and Fable models amid RSI concerns",
+   "org": "発表：Anthropic／報道：TechCrunch（Russell Brandom記者）",
+   "published": "2026-11-09",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}

@@ -1,0 +1,47 @@
+{
+ "date": "2026-11-11",
+ "title": "サイバー攻撃が相次ぎ、オープンなAI基盤が閉じる方向に動くおそれ、とHugging Face幹部が警告（登録の制限や本人確認の強化も候補）",
+ "category": "企業の動き",
+ "lead": "AIモデル共有サイトを運営する米Hugging Faceの政策責任者アイリーン・ソライマン氏の発言を、TechCrunchのレベッカ・ベラン記者が11月10日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "ソライマン氏は、サイバー攻撃が続くと、誰でも使えるオープンなAIの場が、安全のために制限を強めざるをえなくなると警告しました。記事は例として、10月にOpenCodeの利用者のAPIキーが狙われて金銭的な被害が出たことなどを挙げます。",
+    "同氏は、開かれていることとデータの多さが、狙われる理由にもなると述べました。Hugging Faceは管理者用トークンの交換を増やし、通信の制限を強めました。今後の候補は、アップロードの制限、本人確認の強化、開発者の審査です。",
+    "GitHubのZach Steindler氏は、広く制限しなくても、npmの自動実行のような危ない初期設定を直せば改善できると述べました。",
+    "確認点：記事はFireworksで顧客のモデルの重みなどにアクセスがあったと書きますが、Fireworks自身の10月10日更新の告知は、モデルやデータへの不正アクセスは確認していないとしています。発言はHugging Faceの立場からのものです。"
+   ]
+  },
+  {
+   "heading": "小規模事業者にとって",
+   "paragraphs": [
+    "AIの利用に使うAPIキーは、サービスに預けるほど狙われやすくなります。使わないキーは消し、利用額の上限と通知を設定しておくと、被害に早く気づけます。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/10/cyberattacks-threaten-to-make-open-source-ai-a-little-less-open-hugging-face-exec-warns/",
+   "note": "元記事",
+   "title": "Cyberattacks threaten to make open source AI a little less open, Hugging Face exec warns",
+   "org": "発言：Hugging Face（Irene Solaiman氏）／報道：TechCrunch（Rebecca Bellan記者）",
+   "published": "2026-11-10",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  },
+  {
+   "source": "Fireworks AI",
+   "url": "https://fireworks.ai/security/bulletins/october-2026-security-incident",
+   "note": "関連：Fireworks自身の事故告知（10月9日公開、10日更新）",
+   "title": "Fireworks AI October 2026 Security Incident",
+   "org": "Fireworks AI（発表）",
+   "published": "2026-10-09（10月10日更新）"
+  }
+ ]
+}

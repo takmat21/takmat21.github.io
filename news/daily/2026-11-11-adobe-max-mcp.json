@@ -1,0 +1,38 @@
+{
+ "date": "2026-11-11",
+ "title": "Adobe、Photoshop・Premiereなどに新AI機能、Creative Cloudの機能をチャットAIから使えるMCPも用意（年次イベントMAXで発表）",
+ "category": "製品・サービス",
+ "lead": "米Adobeが米マイアミの年次イベント「MAX」で新機能を発表し、TechCrunchのイヴァン・メータ記者が11月10日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "Adobeは、Creative Cloudの機能を、ChatGPT、Claude、GeminiなどのチャットAIから使えるようにするローカルのMCP（AIと道具をつなぐ共通の規格）を出すと発表しました。すでにChatGPTとClaudeとの連携はあります。どの機能を開くかは利用者の意見を聞いて決める段階で、AdobeのDeepa Subramaniam氏は「どこで線を引くかはまだ探っている」と話しています。",
+    "ほかにも、デザイン試作のFirefly Builder（限定ベータ）、画像の一部だけを直す編集、素材から動画をまとめるAI動画の道具が発表されました。AdobeのAIエージェントは、作業の文脈を集めやすいよう常に動く方向に変わります。",
+    "記事に、料金、限定ベータ以外の提供時期、日本での提供の記載はなく、数字もありません。Adobe自身の発表なので、使える時期は公式の案内で確かめる必要があります。"
+   ]
+  },
+  {
+   "heading": "小規模事業者にとって",
+   "paragraphs": [
+    "チラシや写真の加工にAdobe製品を使っているなら、チャットで頼めるようになる可能性があります。ただ、提供時期と料金が未発表なので、今は発表内容を知っておく程度で十分です。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/10/adobe-adds-more-ai-to-its-products-and-launches-an-mcp/",
+   "note": "元記事",
+   "title": "Adobe brings AI agents and new creative tools to Photoshop, Premiere, and Firefly",
+   "org": "発表：Adobe／報道：TechCrunch（Ivan Mehta記者）",
+   "published": "2026-11-10",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}
