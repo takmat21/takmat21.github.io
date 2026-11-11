@@ -195,7 +195,7 @@
 
   <h3 id="sys-map">全体図：頼む → 束ねる → 確かめる → 届ける</h3>
   <figure class="sysmap"><a href="samples/system-map/"><img src="assets/img/system-map.webp" width="2640" height="1735" decoding="async" loading="lazy" alt="ZAZOUの仕組みの全体図。松村が4つの入口から頼み、統括AIのClaude Codeが、判断・権限・安全の関門を通して、ほかのAIに頼む・スキルで動かす・外部サービスを操作・外部APIを呼ぶの4つの枝に仕事を配り、公開先と届け先に出す。下にナレッジと担当AIの帯がある。"></a><figcaption>クリックすると大きな図が開きます（文字を選べます）。「稼働中」と「これから」を分けて書いています。2026年11月10日時点。</figcaption></figure>
-  <p class="map-terms">図は左から右へ読みます。下の「部分ごとの図解」で、①〜⑧の順に1か所ずつ説明します。言葉の意味は <a href="#terms">用語の解説（道具タブ）</a> にあります。</p>
+  <p class="map-terms">図は左から右へ読みます。下の「部分ごとの図解」で、①〜⑧の順に1か所ずつ説明します。言葉の意味は <a href="ai/glossary/">ZAZOU AI Works の用語集</a> にあります。</p>
 
   <h3 id="sys-front">業界の最前線<small>毎朝更新</small></h3>
   <p>AIエージェントとAI業界の動きを、統括AIが毎朝読んで要約し、自社の運用と照らし合わせています。新しい順に並べています。</p>
@@ -392,7 +392,7 @@
   <figure><img src="assets/img/board.webp" width="1600" height="1460" decoding="async" alt="人が押すボタンだけを並べたオペレーションボード" loading="lazy"><figcaption>オペレーションボード：人がやることは「文面をコピー」「送った」などのボタンを押すだけ。押すと記録され、AIが次の作業へ進みます。</figcaption></figure>
 
   <h3 id="sys-docs">資料</h3>
-  <p class="more" style="margin-top:0"><a href="samples/system-map/">全体図（大きな図）</a>　／　<a href="samples/ai-design-map/">AI業務設計マップ</a>　／　<a href="#terms">用語の解説</a>　／　<a href="lab/gas/">見本：Googleの表とメールで動く小さな自動化（GAS）</a>　／　<a href="paper/">論文：記憶の欠落とハルシネーションへの対処</a>　／　<a href="paper2/">論文：外部脳としての記録の運用</a></p>
+  <p class="more" style="margin-top:0"><a href="samples/system-map/">全体図（大きな図）</a>　／　<a href="samples/ai-design-map/">AI業務設計マップ</a>　／　<a href="ai/glossary/">用語集（AI Works）</a>　／　<a href="lab/gas/">見本：Googleの表とメールで動く小さな自動化（GAS）</a>　／　<a href="paper/">論文：記憶の欠落とハルシネーションへの対処</a>　／　<a href="paper2/">論文：外部脳としての記録の運用</a></p>
 
   <h3 id="system-archive">過去の構成（アーカイブ）</h3>
   <p class="note">いまの構成に変わる前の資料です。経緯をたどれるように残しています。</p>
@@ -531,7 +531,7 @@
 
 <section id="tools" data-panel="tools" class="cols">
   <h2><span class="en">Tools</span>道具：いま使っているAIとツール</h2>
-  <p class="lead note">ZAZOUの仕事で実際に使っている道具の一覧です。「毎日使っている」「試している」を分けて書いています。新しい道具が出たら試し、仕事に合うものは取り入れて、ここと記事を更新します（2026年11月10日時点）。</p>
+  <p class="lead note">ZAZOUの仕事で実際に使っている道具の一覧です。「毎日使っている」「試している」を分けて書いています。新しい道具が出たら試し、仕事に合うものは取り入れて、ここと記事を更新します（2026年11月11日時点）。</p>
 
   <p class="group">中心（毎日使っている）</p>
   <ul class="rows">
@@ -580,75 +580,27 @@
     <li><a class="row" href="articles/plugins-by-industry/"><span class="t">業種別：入れておきたいプラグイン特集</span><span class="m">記事 →</span><span class="d">業種ごとに、まず入れるとよいものを選びました。</span></a></li>
     <li><a class="row" href="articles/knowledge-services/"><span class="t">AIに会社の知識を渡すには：ナレッジの置き場サービスの選び方</span><span class="m">記事 →</span><span class="d">Notion・NotebookLM・Claude・ChatGPTなどの違い。</span></a></li>
   </ul>
+  <p class="group" id="tools-watch">見ている情報源：実践している人の動画</p>
+  <p class="note">Claude と Claude Code の使い方を、手順つきで見せている動画です。2026年11月11日に14本の内容をAI（Gemini）に書き出させて読みました。動画の中の道具や機能は、公式の説明で確かめてから使います。週に1回、新しい回を確かめてここを直します。</p>
+  <ul class="rows">
+    <li><a class="row" href="https://www.youtube.com/@ai-gyomu-lab"><span class="t">AI業務自動化ラボ｜Kento</span><span class="m">YouTube ↗</span><span class="d">海外の解説者の話を、日本語の音声・字幕・章の見出しつきで紹介しているチャンネル。1本1テーマで、ほぼ毎日。元の解説者は下のとおりです。</span></a></li>
+    <li><a class="row" href="https://www.youtube.com/@sharbelxyz"><span class="t">Sharbel A.</span><span class="m">元の解説者 ↗</span><span class="d">「仕事ごとにAIを増やさず、1つのAIにスキルを足して育てる」。スキルを作る3つの方法（手で書く／AIと対話して作る／画面の録画から作る）。英語。</span></a></li>
+    <li><a class="row" href="https://www.youtube.com/@RoboNuggets"><span class="t">Jay（RoboNuggets）</span><span class="m">元の解説者 ↗</span><span class="d">Claude のデスクトップアプリの新機能（会話の整理、入れ子の会話、分割表示）と、画面や動きを変える「mods」の紹介。英語。</span></a></li>
+    <li><a class="row" href="https://www.youtube.com/@nateherk"><span class="t">Nate Herk</span><span class="m">元の解説者 ↗</span><span class="d">Claude 向けの公開ツールから10個を選んだ回。「道具を売るのではなく、組み合わせてお客様の困りごとを解く」「まず1つだけ入れる」。英語。</span></a></li>
+    <li><a class="row" href="https://www.youtube.com/@mattpocockuk"><span class="t">Matt Pocock</span><span class="m">元の解説者 ↗</span><span class="d">人が長い指示を書かず、AIに質問させて人は選ぶだけにする進め方。用語の表を先に作る、仕様→小さな作業に分ける→テスト→別のAIが点検、の型。英語。</span></a></li>
+    <li><a class="row" href="https://www.youtube.com/@matthew_berman"><span class="t">Matthew Berman</span><span class="m">元の解説者 ↗</span><span class="d">アプリの仕組みをAIで読み解いて作り直す道具（REA）の解説。「道具そのものは新しくない。差が出るのは、組み合わせと事業の見方」。英語。</span></a></li>
+    <li><a class="row" href="https://www.youtube.com/@EricWTech"><span class="t">Eric Tech</span><span class="m">元の解説者 ↗</span><span class="d">REAの入れ方と実演。「アプリやコードは守りにならない。守りになるのは、ブランド・お客様・たまったデータ」。英語。</span></a></li>
+    <li><a class="row" href="https://www.youtube.com/@wearenocode"><span class="t">Christian Peverelli（WeAreNoCode）</span><span class="m">元の解説者 ↗</span><span class="d">編集の好みをスキルに書き、出来上がりを点検するスクリプトで確かめる、動画編集の自動化。英語。</span></a></li>
+  </ul>
+  <p class="group">動画から拾った、自社で確かめること</p>
+  <ul class="rows">
+    <li><div class="row"><span class="t">完了の条件を先に渡し、人は点検に回る</span><span class="m">確かめ中</span><span class="d">途中で指示や直しを入れるのをやめ、「仕事・守ること・完了の条件」を先に渡す。出来上がりは点検のスクリプトとフックで確かめる。議事録づくりで同じ形を試しています。</span></div></li>
+    <li><div class="row"><span class="t">スキルの点検の道具</span><span class="m">確かめ中</span><span class="d">スキルが正しく開かれるかを測る道具（skill-doctor、plugin eval）。自社のスキル13本で使えるかを確かめます。</span></div></li>
+    <li><div class="row"><span class="t">画面の録画からスキルを作る</span><span class="m">未確認</span><span class="d">手作業を録画して手順にする機能。出荷や送り状の操作に使えるかを、公式の説明で確かめます。</span></div></li>
+    <li><div class="row"><span class="t">AIに質問させて、人は選ぶだけにする</span><span class="m">未確認</span><span class="d">長い指示を書く代わりに、AIから質問を出させる頼み方。資料づくりの最初の聞き取りで試します。</span></div></li>
+  </ul>
   <p class="note">道具は増やしすぎると、AIが迷ったり費用が増えたりします。使わなくなったものは外し、この一覧も合わせて直します。</p>
 
-  <h2 class="pr-h" id="terms"><span class="en">Terms</span>用語の解説</h2>
-  <p class="lead note">仕組みタブの絵に出てくる言葉を、短く説明します。くわしい用語集は <a href="ai/glossary/">ZAZOU AI Works の用語集</a> にあります。</p>
-  <dl class="terms">
-    <div id="t-skill"><dt>スキル</dt><dd>仕事ごとの手順書。仕事の名前（例：「今日の出荷」）に合うと、AIが中身をまるごと読んで、そのとおりに動きます。直されたことを書き足して育てます。</dd></div>
-    <div id="t-tokatsu"><dt>統括AI</dt><dd>依頼を受けて、どの仕事かを見分け、スキル・道具・ナレッジを束ねて動かす進行役のAI。ZAZOUではClaude Codeが担当しています。</dd></div>
-    <div id="t-tanto"><dt>担当AI</dt><dd>動画づくりや補助金の書類など、1つの仕事だけを受け持つAI。統括AIが頼み、結果を確かめます。</dd></div>
-    <div id="t-connector"><dt>コネクタ</dt><dd>Gmailや表計算など、外のサービスにAIを直接つなぐ仕組み（MCPとも呼びます）。AIがメールを読んだり、表に書き込んだりできるようになります。</dd></div>
-    <div id="t-extension"><dt>ブラウザ拡張</dt><dd>AIにブラウザの操作を任せる道具（Claude in Chrome）。店の管理画面のように、コネクタがないサービスで使います。</dd></div>
-    <div id="t-api"><dt>外部API</dt><dd>ほかのサービスの機能を、プログラムから呼び出す窓口。画像生成や音声合成で使っています。使うための鍵（APIキー）は、安全な入力画面で保存し、チャットには書きません。</dd></div>
-    <div id="t-plugin"><dt>プラグイン</dt><dd>スキル・コネクタ・フックなどを1つにまとめ、入れるだけで使えるようにした箱。</dd></div>
-    <div id="t-hook"><dt>フック</dt><dd>AIが操作する前後に、決まったチェックを必ず走らせる仕組み。お願いではなく、仕組みで守らせます。</dd></div>
-    <div id="t-permission"><dt>禁止設定</dt><dd>特定の操作（例：メールの送信、ファイルの削除）を、AIがやろうとしても実行させない設定。</dd></div>
-    <div id="t-level0"><dt>レベル0</dt><dd>どの仕事でも必ず守る5つの決まり。送信・応募・お金・契約・削除・公開は人が行う／鍵を書かない／経歴・実績を作り話にしない／他社の文・画像をそのまま使わない／仕組みを変える前にOKをもらう。</dd></div>
-    <div id="t-knowledge"><dt>ナレッジ</dt><dd>AIの会話の外に置いておく記憶。会話が終わっても残り、次の仕事で読み直せます。事実シート・決定ログ・スキル・台帳がこれにあたります。</dd></div>
-    <div id="t-facts"><dt>事実シート</dt><dd>経歴・実績・会社の情報をまとめた表。応募文やプロフィールは、ここにあることだけを書きます。</dd></div>
-    <div id="t-decisions"><dt>決定ログ</dt><dd>いつ・誰が・何を決めたかの記録。決まりの経緯をたどれます。</dd></div>
-    <div id="t-doublecheck"><dt>二重チェック</dt><dd>あるAIが書いたものを、別の会社のAIに読ませて講評させること。同じAIの思い込みを減らします。</dd></div>
-    <div id="t-judge"><dt>判断用AI</dt><dd>文章を書かず、「どれを選ぶか」「何点か」「はい／いいえ」だけを確率つきで返すAI（例：Jev）。仕分けや振り分けに向きます。</dd></div>
-    <div id="t-routine"><dt>定時作業</dt><dd>決まった時刻に自動で始まる仕事。朝刊、毎朝の注文件数、メール確認、トークン台帳など。</dd></div>
-    <div id="t-vertical"><dt>垂直型AIエージェント</dt><dd>1つの何でも屋ではなく、仕事ごとに手順・道具・ナレッジを縦に積んで深く作るAIの組み立て方。</dd></div>
-  </dl>
-  <p class="group" id="dev-terms">開発でよく出る言葉（求人や見積もりで見かけるもの）</p>
-  <p class="note">「ZAZOUで使っている／使っていない」を正直に分けています。使っていないものは、言葉の意味だけの説明です。</p>
-  <dl class="terms">
-    <div id="t-js"><dt>JavaScript<span class="tstat on">使っている</span></dt><dd>ブラウザで動くプログラムの言葉。Webページに動きを付けます。ZAZOUでは、伝票変換ツール・出荷アプリ・ボードがこれで動いています。Google Apps Script も同じ仲間です。</dd></div>
-    <div id="t-python"><dt>Python<span class="tstat on">使っている</span></dt><dd>集計やファイルの変換、AIの呼び出しによく使われる言葉。ZAZOUでは、注文ファイルの仕分けや朝刊のページづくりの裏側で動いています（コードはAIと一緒に書いています）。</dd></div>
-    <div id="t-node"><dt>Node.js<span class="tstat on">使っている</span></dt><dd>JavaScript を、ブラウザの外（サーバーやパソコンの上）で動かす仕組み。ZAZOUでは、ページの見た目を自動で撮って確かめる作業に使っています。</dd></div>
-    <div id="t-gha"><dt>GitHub Actions<span class="tstat on">使っている</span></dt><dd>GitHub に置いたプログラムを、決まったきっかけで自動で動かす仕組み。ZAZOUでは、SOCRAの動画を毎朝つくる流れで使っています。</dd></div>
-    <div id="t-fastapi"><dt>FastAPI<span class="tstat off">使っていない</span></dt><dd>Python で、ほかのプログラムから呼ばれる窓口（API）や小さなWebアプリを手早く作るための部品。</dd></div>
-    <div id="t-flask"><dt>Flask<span class="tstat off">使っていない</span></dt><dd>Python で小さなWebアプリを作るための、軽い部品。FastAPI と同じ役割で、より昔からあります。</dd></div>
-    <div id="t-mysql"><dt>MySQL<span class="tstat off">使っていない</span></dt><dd>データを表の形でためておくデータベース。会員・注文・在庫など、たくさんのデータを安全に出し入れします。ZAZOUでは、いまはスプレッドシートで足りています。</dd></div>
-    <div id="t-postgres"><dt>PostgreSQL<span class="tstat off">使っていない</span></dt><dd>MySQL と同じく、表の形のデータベース。複雑な集計や、きびしい正確さが要る仕組みでよく選ばれます。</dd></div>
-    <div id="t-docker"><dt>Docker<span class="tstat off">使っていない</span></dt><dd>プログラムを、動かすのに必要なものごと「箱」に入れて、どのパソコンやサーバーでも同じように動かせるようにする道具。</dd></div>
-    <div id="t-aws"><dt>AWS<span class="tstat off">使っていない</span></dt><dd>Amazon が貸し出している、インターネット上のサーバーや保存場所のサービス。自前の機械を持たずに、仕組みを動かせます。ZAZOUでは、GitHub と Google のサービスで足りています。</dd></div>
-  </dl>
-  <h2 class="pr-h" id="prompts-learn"><span class="en">Prompts</span>AIへの頼み方（プロンプト）を学ぶ</h2>
-  <p class="lead note">AIへの頼み方（プロンプト）を、例つきで紹介しているサイトです。仕事で使うなら、まず公式の2つ（Claude と OpenAI）がおすすめです。リンク先は2026年11月6日に開けることを確かめました。</p>
-  <p class="group">公式（AIをつくっている会社）</p>
-  <ul class="rows">
-    <li><a class="row" href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview"><span class="t">Claude：プロンプトの書き方</span><span class="m">Anthropic ↗</span><span class="d">Claudeの開発元による公式の手引き。役割の与え方、例の見せ方、手順を分けて考えさせる方法など。英語。</span></a></li>
-    <li><a class="row" href="https://developers.openai.com/api/docs/guides/prompt-engineering"><span class="t">OpenAI：プロンプトの書き方</span><span class="m">OpenAI ↗</span><span class="d">ChatGPTの開発元による公式の手引き。英語。</span></a></li>
-    <li><a class="row" href="https://developers.openai.com/cookbook"><span class="t">OpenAI Cookbook</span><span class="m">OpenAI ↗</span><span class="d">用途ごとの作り方の例を集めた公式のレシピ集。開発者向け。英語。</span></a></li>
-  </ul>
-  <p class="group">学ぶ（考え方と講座）</p>
-  <ul class="rows">
-    <li><a class="row" href="https://www.promptingguide.ai/jp"><span class="t">Prompt Engineering Guide（日本語版）</span><span class="m">promptingguide.ai ↗</span><span class="d">プロンプトの考え方と手法を体系的にまとめたガイド。日本語で読めます。</span></a></li>
-    <li><a class="row" href="https://learnprompting.org/"><span class="t">Learn Prompting</span><span class="m">learnprompting.org ↗</span><span class="d">入門から応用までの講座形式の教材。英語。</span></a></li>
-  </ul>
-  <p class="group">集める（みんなのプロンプト集）</p>
-  <ul class="rows">
-    <li><a class="row" href="https://prompts.chat/"><span class="t">prompts.chat</span><span class="m">prompts.chat ↗</span><span class="d">世界中の人が投稿したプロンプトの大きな一覧。英語。</span></a></li>
-  </ul>
-  <h2 class="pr-h"><span class="en">Patterns</span>仕事で使えるプロンプトの型</h2>
-  <p class="lead note">上のサイトから、メール・議事録・集計・資料の点検など、ふだんの仕事でよく使う場面に合うものを10個選び、型の要点を短くまとめました。サイトの文章は写さず、言い換えています。くわしくは出典のページをご覧ください。</p>
-  <ul class="rows pr-list">
-    <li><div class="row pr"><span class="t">頼み方の土台（4つに分けて書く）</span><p class="d"><b>使いどころ</b>どの頼みごとにも。業務手順の書き出しや報告書の下書きで、まずこの形から。</p><p class="d"><b>型の要点</b>「前提（あなたは誰として）」「やること」「補足（目的・読む人・形式・長さ・守ること）」に分けて書く。1回の頼みで作るものは1つにしぼる。</p><a class="src" href="https://developers.openai.com/cookbook/examples/chatgpt/chatgpt_prompt_guide/chatgpt_prompt_guide">出典：OpenAI Cookbook：毎日の仕事のためのプロンプト ↗</a></div></li>
-    <li><div class="row pr"><span class="t">メール返信の下書き</span><p class="d"><b>使いどころ</b>長い問い合わせメールに返事を書くとき。</p><p class="d"><b>型の要点</b>まず相手の用件と、こちらがやることを箇条書きで出させる。次にそれを元に返信を下書きさせ、語調（丁寧・簡潔など）を指定する。送る前に必ず人が読み直す。</p><a class="src" href="https://learnprompting.org/docs/basic_applications/writing_emails">出典：Learn Prompting：AIでメールを書く ↗</a></div></li>
-    <li><div class="row pr"><span class="t">議事録の要約とやること一覧</span><p class="d"><b>使いどころ</b>打ち合わせのメモ・文字起こしから、決まったことを残すとき。</p><p class="d"><b>型の要点</b>「決まったこと」「やること（担当・期限）」「気になる点」の欄を先に決めて埋めさせる。記録に無いことは書かせず、分からない担当や期限は空欄のままにさせる。各項目に元の発言を添えさせると確かめやすい。</p><a class="src" href="https://developers.openai.com/cookbook/examples/audio/speaker_aware_meeting_intelligence/speaker_aware_meeting_intelligence">出典：OpenAI Cookbook：会議の記録から要点を出す ↗</a></div></li>
-    <li><div class="row pr"><span class="t">文章の数字を表にまとめる</span><p class="d"><b>使いどころ</b>報告書や見積の文面に散らばった数字を、表計算に移すとき。</p><p class="d"><b>型の要点</b>列（項目・金額・前回との差など）、並べる順、単位を具体的に指定し、表計算に貼れる形で出させる。数字は必ず元の資料と照らし合わせる。</p><a class="src" href="https://learnprompting.org/docs/basic_applications/table_generation">出典：Learn Prompting：AIでデータを表にする ↗</a></div></li>
-    <li><div class="row pr"><span class="t">長い資料の点検（資料が先、質問は後）</span><p class="d"><b>使いどころ</b>仕様書・図面の注記・契約書などを読み合わせるとき。</p><p class="d"><b>型の要点</b>資料を先に置いてタグ（例：&lt;document&gt;）で区切り、質問は最後に書く。答える前に、関係する箇所を抜き出させてから判断させる。</p><a class="src" href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices">出典：Claude：プロンプトの書き方のコツ ↗</a></div></li>
-    <li><div class="row pr"><span class="t">見本を見せて形をそろえる</span><p class="d"><b>使いどころ</b>商品説明文や、問い合わせの仕分けを毎回同じ書式で出したいとき。</p><p class="d"><b>型の要点</b>「入力」と「ほしい答え」の組を3〜5つ見せてから本番を頼む。見本は内容に幅を持たせる。書式がそろいやすくなる。</p><a class="src" href="https://www.promptingguide.ai/jp/techniques/fewshot">出典：Prompt Engineering Guide：Few-shot（日本語） ↗</a></div></li>
-    <li><div class="row pr"><span class="t">順を追って考えさせる</span><p class="d"><b>使いどころ</b>集計・計算・数量の確認など、答えが1つに決まるもの。</p><p class="d"><b>型の要点</b>答えだけでなく途中の計算を書かせる。「順を追って考えてください」と添えるだけでも効くことがある。最後の数字は人が検算する。</p><a class="src" href="https://www.promptingguide.ai/jp/techniques/cot">出典：Prompt Engineering Guide：Chain-of-Thought（日本語） ↗</a></div></li>
-    <li><div class="row pr"><span class="t">段階に分けて頼む</span><p class="d"><b>使いどころ</b>業務手順の書き出し → 点検 → 清書のように、工程が分かれる仕事。</p><p class="d"><b>型の要点</b>1回目で根拠や材料を抜き出させ、2回目でそれを使って仕上げさせる。途中の結果が見えるので、どこで間違えたかを追いやすい。</p><a class="src" href="https://www.promptingguide.ai/jp/techniques/prompt_chaining">出典：Prompt Engineering Guide：Prompt Chaining（日本語） ↗</a></div></li>
-    <li><div class="row pr"><span class="t">図面・帳票から項目を抜き出す</span><p class="d"><b>使いどころ</b>図面や注文書のPDFから、寸法・数量・品名などを拾うとき。</p><p class="d"><b>型の要点</b>抜き出す項目と出す形（表など）を先に決める。見えない値は推測させず空欄にさせる。小さい文字は、その部分を切り出してもう一度読ませる。</p><a class="src" href="https://developers.openai.com/cookbook/examples/multimodal/document_and_multimodal_understanding_tips">出典：OpenAI Cookbook：資料や画像を読み取るコツ ↗</a></div></li>
-    <li><div class="row pr"><span class="t">AIの答えの事実確認</span><p class="d"><b>使いどころ</b>AIが書いた説明や資料を、外に出す前に確かめるとき。</p><p class="d"><b>型の要点</b>答えを確かめられる短い主張に分け、主張ごとに出典を探させて「正しい／誤り／不明」と理由・出典を付けさせる。根拠がはっきりしないものは「不明」にさせる。</p><a class="src" href="https://developers.openai.com/cookbook/articles/gpt-oss/build-your-own-fact-checker-cerebras">出典：OpenAI Cookbook：事実確認の仕組みを作る ↗</a></div></li>
-  </ul>
-  <p class="note">使うときの注意：お客様の名前・住所・図面など外に出せない情報は、プロンプトに入れないでください。AIの答えは、必ず人が確かめてから使ってください。</p>
 </section>
 
 
