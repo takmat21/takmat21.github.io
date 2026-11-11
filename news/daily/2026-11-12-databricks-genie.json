@@ -1,0 +1,32 @@
+{
+ "date": "2026-11-12",
+ "title": "Databricks、時間のかかる複数手順の仕事を任せられる経営者向けAIエージェント「Genie」の新版を発表",
+ "category": "製品・サービス",
+ "lead": "米Databricksが自社のAIエージェント「Genie」の新版を11月11日に発表したと、TechCrunchのジュリー・ボート記者が同日報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "Databricksは、AIエージェントGenieの新版を発表しました。同社によると、手間のかかる複数の手順からなる仕事を、人が見ていなくても最後まで進められます。Databricksが作った知識の整理の仕組み（オントロジー）で、顧客が同社の基盤に置いたデータの意味を理解させる作りです。",
+    "CEOのアリ・ゴージ氏は自分用のGenieで実演しました。社員満足度調査で点の低い部分を分析して幹部の改善案を採点する、評判の悪かった営業提案を要約する、自分の過去のポッドキャスト出演を調べて想定質問を作る、といった使い方です。同氏は、上の立場の人に届きにくい率直な情報を引き出せる点を強調し、「150人を超える会社なら多くの人が価値を得られる」と述べました。",
+    "発売時期と料金は記事にありません。費用は、利用上限を決めたり安価な公開モデルに差し替えたりできる同社の「Unity Gateway」で抑えられるとされています。同社の従業員は約1万2000人です。これは発表元であるDatabricksの説明に基づくもので、性能や効果は同社によるものです。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/11/databricks-new-ai-agent-tells-ceo-ali-ghodsi-the-unvarnished-truth/",
+   "note": "元記事",
+   "title": "Databricks' new AI agent tells CEO Ali Ghodsi the unvarnished truth",
+   "org": "発表：Databricks／報道：TechCrunch（Julie Bort記者）",
+   "published": "2026-11-11",
+   "image": "https://techcrunch.com/wp-content/uploads/2021/04/Ali_Ghodsi.jpg?resize=1200,1200",
+   "image_ok": false,
+   "image_size": [
+    1200,
+    1200
+   ]
+  }
+ ]
+}

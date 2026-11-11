@@ -1,0 +1,32 @@
+{
+ "date": "2026-11-12",
+ "title": "OpenAI、ChatGPT内に企業の公式プロフィールと質問に答える「ビジネスエージェント」を用意、ベータ版で開始",
+ "category": "製品・サービス",
+ "lead": "米OpenAIがChatGPTに企業向けの「Business Hub」を加えたと、TechCrunchのルーカス・ロペック記者が11月10日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "OpenAIは、企業がChatGPTの中に自社のプロフィールを作り、商品やサービスの情報を確認・更新できる「Business Hub」をベータ版として始めました。記事はGoogleのビジネスプロフィールに近い仕組みと説明しています。企業は手続きを経て、本当にその会社であることを確認される必要があります。OpenAIの幹部は、業種や地域ごとに複数の確認方法を使うと述べましたが、詳細は示されていません。",
+    "もう一つの柱が「ビジネスエージェント」です。条件を満たした企業が作って公開すると、ChatGPTの利用者がその企業や商品について質問できます。さらに、プロフィールの閲覧数、企業名が出た回数、サイトへのクリックなど、利用者のふるまいを示す限定的な数字も見られます。何が「条件」なのか、料金、提供地域は記事に書かれておらず、日本で使えるかも分かりません。",
+    "OpenAIは3月にChatGPT内の購入手数料型の仕組みをやめており、記事はこの新しい試みが続くかを問うています。OpenAIは「企業をChatGPTにより深く取り込む最初の一歩」と位置づけています。これはOpenAI自身の発表に基づく内容で、機能や条件は発表元の説明によるものです。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/10/openai-rolls-out-new-business-profiles-making-chatgpt-just-a-little-bit-more-like-google/",
+   "note": "元記事",
+   "title": "OpenAI rolls out new business profiles, making ChatGPT just a little bit more like Google",
+   "org": "発表：OpenAI／報道：TechCrunch（Lucas Ropek記者）",
+   "published": "2026-11-10",
+   "image": "https://techcrunch.com/wp-content/uploads/2026/11/Screenshot-2026-11-10-at-8.46.19-AM.png?resize=1200,677",
+   "image_ok": true,
+   "image_size": [
+    1200,
+    677
+   ]
+  }
+ ]
+}
