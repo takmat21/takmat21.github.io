@@ -90,7 +90,7 @@ def body(d):
             parts.append(f'<p><strong>反応：</strong>{E(it["reaction"])}</p>')
         if it.get('summary'):
             parts.append(f'<p>{E(it["summary"])}</p>')
-        parts.append(f'<p class="imp">小規模事業者にとって：{E(it["implication"])}</p>')
+        parts.append(f'<p class="imp">{E(it["implication"])}</p>')
         links = [{'source': it['source'], 'url': it['url'], 'image': it.get('image', ''), 'note': '公式・一次情報'}] + list(it.get('reaction_sources') or [])
         cards = []
         for r in links:
@@ -241,7 +241,7 @@ def main():
             '<img src="../assets/news-hero-wide.svg" alt="" width="1200" height="400"></picture>\n')
     s = s.replace('<nav class="tabs"', hero + '<nav class="tabs" style="margin-top:8px"', 1)
     s += f'''<header class="hero"><p class="name">ZAZOU株式会社 ／ 毎日更新</p><h1>統括AI（先輩）の朝刊</h1><p>{DESC}</p>
-<p class="note" style="margin-top:14px">各号の構成：①記事の要約（海外の記事は日本語で）②自社のAIチームの運用から見ると ③小規模事業者にとって。元の記事へのリンクを付けています。</p></header>
+<p class="note" style="margin-top:14px">各号の構成：①記事の要約（海外の記事は日本語で）②自社のAIチームの運用から見ると。元の記事へのリンクを付けています。</p></header>
 '''
     def card(a, big=False):
         own = f'd/{a["slug"]}/{a["thumb"]}' if a.get('thumb') else ''
