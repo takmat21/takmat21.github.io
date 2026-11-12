@@ -1,0 +1,283 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ナレッジ帳の見本｜ZAZOU Lab</title>
+<meta name="description" content="AIのチームが仕事の前に読む決まりと手順を、仕事ごとの一覧・つながるノート・グラフで見せる「ナレッジ帳」の見本。人が直接書きかえ、AIはそのとおりに動く。">
+<link rel="canonical" href="https://takmat21.github.io/samples/knowledge-vault/">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<style>[hidden]{display:none!important}body{margin:0}img{max-width:100%}</style>
+</head><body>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<style>
+/* 並べ方：左にフォルダの木、まん中にノート、右に「このノートを指しているノート」。上のタブでグラフに切りかえる。 */
+:root{
+  --bg:#f3f5f6; --side:#e9edef; --panel:#ffffff; --fg:#1d2a30; --sub:#5d6d75; --line:#ccd5d9;
+  --accent:#0b7a75; --accent-soft:#d9efed; --plan:#a86400; --plan-soft:#fbecd0;
+  --n0:#0b7a75; --n1:#2f6fb0; --n2:#a86400; --n3:#8a4fa0; --n4:#b0443c; --n5:#6b7780; --n6:#7a6a2f;
+  --font:"Noto Sans JP","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#161b1e; --side:#1b2226; --panel:#20282d; --fg:#e4ecef; --sub:#9aabb3; --line:#36434a;
+  --accent:#4fd1c7; --accent-soft:#17393a; --plan:#f0b450; --plan-soft:#3d3015;
+  --n0:#4fd1c7; --n1:#7fb4ea; --n2:#f0b450; --n3:#c99ae0; --n4:#f09088; --n5:#9aabb3; --n6:#d6c26a; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#161b1e; --side:#1b2226; --panel:#20282d; --fg:#e4ecef; --sub:#9aabb3; --line:#36434a;
+  --accent:#4fd1c7; --accent-soft:#17393a; --plan:#f0b450; --plan-soft:#3d3015;
+  --n0:#4fd1c7; --n1:#7fb4ea; --n2:#f0b450; --n3:#c99ae0; --n4:#f09088; --n5:#9aabb3; --n6:#d6c26a; color-scheme:dark }
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;line-height:1.7}
+.wrap{max-width:1180px;margin:0 auto;padding-block:16px 40px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:12px}
+.bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.bar h1{font-size:17px;font-weight:700;margin:0 auto 0 0}
+button{font:inherit;color:inherit;cursor:pointer}
+.tab{background:none;border:1px solid var(--line);border-radius:4px;padding:4px 14px;font-size:13px}
+.tab[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);font-weight:700}
+.cols{display:grid;grid-template-columns:230px minmax(0,1fr) 230px;gap:12px;align-items:start}
+.tree{background:var(--side);border:1px solid var(--line);border-radius:6px;padding:8px 6px;font-size:14px;position:sticky;top:calc(8px + env(safe-area-inset-top,0px));max-height:calc(100vh - 16px);overflow-y:auto}
+.fold{margin:0}
+.fold summary{cursor:pointer;padding:4px 6px;font-weight:700;font-size:13px;color:var(--sub);list-style:none}
+.fold summary::-webkit-details-marker{display:none}
+.fold summary::before{content:"▷";display:inline-block;width:1.3em}
+.fold[open] summary::before{content:"▽"}
+.fold.grp{margin-left:10px}
+.fold.grp>summary{font-weight:500}
+.note pre.code{background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:10px;overflow-x:auto;font-size:13px;line-height:1.55;white-space:pre-wrap;word-break:break-word}
+.note code{background:var(--bg);border-radius:3px;padding:0 3px;font-size:.92em;word-break:break-all}
+.note a.ext{color:var(--accent);word-break:break-all}
+.note li.sub{margin-left:1.3em}
+.note{overflow-wrap:anywhere}
+.tw{max-width:100%}
+.fold ul{list-style:none;margin:0 0 4px;padding:0 0 0 10px}
+.fold li button{display:block;width:100%;text-align:left;background:none;border:0;border-radius:4px;padding:3px 8px;line-height:1.5}
+.fold li button:hover{background:var(--panel)}
+.fold li button[aria-current="true"]{background:var(--accent-soft);font-weight:700}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:20px 24px 26px;min-width:0}
+.path{font-size:12px;color:var(--sub);margin:0 0 4px}
+.note h2{font-size:22px;margin:0 0 8px;text-wrap:balance}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;border-radius:10px;padding:0 9px;background:var(--accent-soft);color:var(--accent);font-weight:700}
+.tag.plan{background:var(--plan-soft);color:var(--plan)}
+.note h3{font-size:15px;margin:18px 0 4px}
+.note h3.sec{font-size:18px;margin:26px 0 6px;padding-top:16px;border-top:1px solid var(--line);scroll-margin-top:12px}
+.note h3.sec:first-of-type{border-top:0;padding-top:0;margin-top:8px}
+.note h4{font-size:14px;margin:12px 0 2px;color:var(--sub)}
+.note p.src2{font-size:12.5px;color:var(--sub)}
+.note p{margin:6px 0;max-width:40em}
+.note ul,.note ol{margin:6px 0;padding-left:1.4em;max-width:40em}
+.note table{border-collapse:collapse;font-size:14px;margin:8px 0}
+.note th,.note td{border:1px solid var(--line);padding:5px 9px;text-align:left;vertical-align:top}
+.tw{overflow-x:auto}
+a.wl{color:var(--accent);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;cursor:pointer}
+.src{font-size:12.5px;color:var(--sub);border-top:1px solid var(--line);margin-top:18px;padding-top:8px}
+.side2{font-size:13.5px;display:flex;flex-direction:column;gap:12px}
+.box{background:var(--side);border:1px solid var(--line);border-radius:6px;padding:10px 12px}
+.box h4{margin:0 0 4px;font-size:12px;color:var(--sub);letter-spacing:.06em}
+.box ul{list-style:none;margin:0;padding:0}
+.box li{padding:1px 0}
+.dbst{font-size:12px;color:var(--sub)}
+.ed{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 10px;font-size:12.5px;color:var(--sub)}
+.btn{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:4px 14px;font-size:13px}
+.btn.main{background:var(--accent);border-color:var(--accent);color:var(--panel);font-weight:700}
+.btn:disabled{opacity:.5}
+#edT{font:inherit;font-size:20px;font-weight:700;width:100%;box-sizing:border-box;padding:6px 8px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--fg)}
+#edB{font-family:ui-monospace,Menlo,Consolas,var(--font);font-size:16px;line-height:1.6;width:100%;box-sizing:border-box;min-height:55vh;margin:10px 0;padding:10px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--fg);resize:vertical}
+.help{font-size:12.5px;color:var(--sub);margin:0 0 8px}
+.graph{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:10px;overflow-x:auto}
+.graph svg{display:block;width:100%;min-width:640px;height:auto}
+.graph text{font-family:var(--font);font-size:12px;fill:var(--fg)}
+.graph g.nd{cursor:pointer}
+.lg{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;color:var(--sub);padding:6px 4px 0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.cols.notree{grid-template-columns:minmax(0,1fr) 230px}
+.cols.notree .tree{display:none}
+.cols.noside{grid-template-columns:230px minmax(0,1fr)}
+.cols.noside .side2{display:none}
+.cols.notree.noside{grid-template-columns:minmax(0,1fr)}
+@media (max-width:860px){
+  .cols{grid-template-columns:128px minmax(0,1fr);gap:8px}
+  .cols.notree,.cols.notree.noside{grid-template-columns:minmax(0,1fr)}
+  .cols.noside{grid-template-columns:128px minmax(0,1fr)}
+  .side2{grid-column:1/-1}
+  .tree{font-size:12.5px;padding:6px 3px}
+  .fold summary{font-size:11.5px;padding:4px 2px}
+  .fold summary .dot{display:none}
+  .fold ul{padding-left:2px}
+  .fold li button{padding:4px 5px;line-height:1.4}
+  .note{padding:14px 12px 20px}
+  .note h2{font-size:19px}
+}
+</style>
+<div class="wrap">
+  <p style="margin:0;font-size:13px"><a href="../../#system" style="color:var(--accent)">← ZAZOU Lab の「仕組み」にもどる</a></p>
+  <div class="bar">
+    <h1>ナレッジ帳の見本</h1>
+    <span id="dbst" class="dbst">つないでいます…</span>
+    <button class="tab" id="treeTgl" type="button">◁ 一覧を隠す</button>
+    <button class="tab" id="sideTgl" type="button">つながりを隠す ▷</button>
+    <button class="tab" id="tabNote" type="button" aria-pressed="true">ノート</button>
+    <button class="tab" id="tabGraph" type="button" aria-pressed="false">グラフ</button>
+  </div>
+  <div class="cols" id="viewNote">
+    <nav class="tree" id="tree" data-open="0" aria-label="ノートの一覧"></nav>
+    <article class="note" id="note"></article>
+    <aside class="side2">
+      <div class="box"><h4>このノートを指しているノート</h4><ul id="back"></ul></div>
+      <div class="box"><h4>このノートが指しているノート</h4><ul id="fwd"></ul></div>
+    </aside>
+  </div>
+  <div id="viewGraph" hidden>
+    <div class="graph"><svg id="g" viewBox="0 0 860 600" role="img" aria-label="ノートどうしのつながり。線は、ノートが別のノートを指していることを示す。"></svg>
+    <div class="lg" id="lg"></div></div>
+  </div>
+</div>
+<script>
+const JOBS=[["all","全体","--n0"],["socra","SOCRA（AIニュース動画）","--n4"],["lab","ラボ（このサイト）","--n5"]];
+const GROUPS=[["h","はじめに"],["k","ナレッジ"],["f","フック"],["s","スキル"],["o","そのほか"]];
+const NOTES=[{"id": "all-home", "job": "all", "g": "h", "t": "ナレッジ帳とは（見本）", "tag": "now", "src": "", "b": "\nZAZOUで使っている「ナレッジ帳」の見本です。AIのチームが仕事の前に読む決まりと手順を、ここに1か所にまとめています。\n## 何がうれしいか\n- **人が直接書きかえられる**。書きかえると、次にその仕事をするときから、AIはその中身で動きます\n- **どこに何があるかが、見て分かる**。左の一覧は仕事ごと。ノートは点線の言葉でつながっています\n- **同じ決まりは1か所だけ**。ナレッジには事実と理由、スキルには手順を書きます\n## 積み方（上から下へ）\n1. 全体のナレッジ（どの仕事でも守ること）\n2. フック（人の言葉 → 開くスキル）\n3. 全体のスキル（2つ以上の仕事で使う手順）\n4. 仕事ごとのナレッジ\n5. 仕事ごとのスキル\n- 1つの仕事でしか使わないスキルは、その仕事の下に置きます\n## AIはどう使うか\n- 仕事の前に、毎回この帳面を読みます\n- 前に読んだときから変わっていたら、その中身で動き、「帳面のここが変わったので、こう動きました」と人に知らせます\n- 送信・お金・公開など、人だけがすることに反する書きかえは、動かす前に人に聞きます\n## この見本に入れてあるもの\n| 仕事 | 入口のノート |\n|---|---|\n| SOCRA（毎日のAIニュース動画） | [[k-what|何を作るか]]、[[skill|スキル zazou-socra]] |\n| ラボ（このサイト） | [[lab-what|ラボとは]] |\n- 本物の帳面には、ほかの仕事のノートもあります。この見本は読むだけで、書きかえはできません\n- 上の「グラフ」を押すと、ノートどうしのつながりが図で見えます\n"}, {"id": "k-what", "job": "socra", "g": "k", "t": "何を作るか", "tag": "now", "src": "docs/CONTENT.md 2章、決定ログ141", "b": "\n- 毎日1本、AIニュースの動画。朝7:00に公開\n- **1日1テーマ**。朝刊のいちばん見られそうな1本を厚く\n- もう1つの型：英語インタビューの要約（人名＋1つの主張）\n## なぜ\n同じ合成音声・顔出しなしでも、型で再生数が10倍以上ちがうと分かったため。「まとめ」より、1テーマを深く。\n関係：[[k-topic|題材の選び方]]、[[s-topic|手順1 題材を選ぶ]]"}, {"id": "k-roles", "job": "socra", "g": "k", "t": "だれが何をするか", "tag": "now", "src": "定時作業の指示文、決定ログ123・124", "b": "| だれ | すること |\n|---|---|\n| ヒビキ | 動画を作る、YouTubeに公開する |\n| 松村さん | 手は要らない。問題のとき・間に合わないときだけ知らせる |\n関係：[[s-handoff|手順5 ヒビキに渡す]]、[[s-check|手順6 出す前の点検]]"}, {"id": "k-topic", "job": "socra", "g": "k", "t": "題材の選び方", "tag": "now", "src": "docs/CONTENT.md 2章-2", "b": "\n上にあるものを先に選ぶ。\n1. 見る人自身に害や得が及ぶ話（脆弱性、料金の変更、日本での提供開始、手元のPCで動くAI）\n2. 名前で検索される人の、具体的な発言\n3. 意外な数字のある話\n4. 大手企業の動きだけの話（最後）\n関係：[[k-what|何を作るか]]、[[s-topic|手順1 題材を選ぶ]]"}, {"id": "k-title", "job": "socra", "g": "k", "t": "題名", "tag": "now", "src": "docs/CONTENT.md 2章-3、THUMBNAIL.md 2章-7", "b": "\n- 型は2つ：「なぜ〜のか＋具体的な数字」／「人名＋その人の主張」\n- 疑問形で終わらせない。情報だけの中立な題名にしない\n- 番組名・日付を先頭に置かない。人名・社名・数字を先頭に\n- 事実とちがうことは書かない\n関係：[[k-script|台本の言い方]]、[[s-title|手順2 題名を決める]]"}, {"id": "k-script", "job": "socra", "g": "k", "t": "台本の言い方", "tag": "now", "src": "docs/CONTENT.md 2章-4・5・8・9、決定ログ147", "b": "\n## 入り方\n- 自己紹介・番組名・目次なし。題名の問いと、答えの一部を先に言う\n## 言い方\n- 控えめな言い方をしない（「要点だけ」「ざっくり」「まとめただけ」）\n- 見る日で意味が変わる言葉を使わない（「今日」「昨日」「先週」「最近」）。時期は日付で言う\n- 社名は言わず「私たちのAIチーム」\n- 本人の声は合成しない。発言は字幕と図で示す\n## 締め\n- 定型：「ニュースは以上です。紹介した記事の出典は、概要欄にまとめています。台本の元の記事は、サイトの朝刊で読めます。ソクラ、AIニュース。司会は葵でした。次の回で、またお会いしましょう。」\n- 朝刊を使わない日は、朝刊の一文を消す\n## なぜ\n動画は、公開した日に見られるとは限らないため。\n関係：[[k-title|題名]]、[[s-script|手順3 台本を書く]]、食いちがい"}, {"id": "k-screen", "job": "socra", "g": "k", "t": "画面", "tag": "now", "src": "README.md 決まり、CONTENT.md 画面の決まり、決定ログ143・146", "b": "\n- 文字と図形だけ（自作）。記事の画像は使わない\n- 番組名は上の帯に小さく。オープニングは見出しが主役\n- 葵（動くキャラ）を右下に。字幕は葵にかぶらない位置\n- 葵を重ねる処理が失敗した朝は、葵なしで出す（7:00を優先）\n- 出典は、記事のデータから機械で組み立てる（AIに書かせない）\n関係：[[k-rights|写真と権利]]、[[s-trouble|手順8 うまくいかない朝]]"}, {"id": "k-thumb", "job": "socra", "g": "k", "t": "サムネイル", "tag": "now", "src": "docs/THUMBNAIL.md 2章・4.5章、決定ログ142", "b": "\n- 文字は4〜6語、2行。題名に足りない情報（数字・驚き）を足す\n- **文字ごとAIに頼んで作る**。出来た文字は1文字ずつ読んで誤字を確かめる\n- 要素は2つまで（絵＋文字、または顔＋文字）\n- 明るい主役・暗い背景。YouTubeの赤・白・黒に溶ける色は避ける\n- 320×180に縮めて読めるかを必ず見る\n- 画像生成は1仕事6枚まで\n- 完成品は episodes/日付/thumb_full.png（1280×720）\n関係：[[k-rights|写真と権利]]、[[s-thumb|手順4 サムネを作る]]、食いちがい"}, {"id": "k-rights", "job": "socra", "g": "k", "t": "写真と権利", "tag": "now", "src": "docs/THUMBNAIL.md 3章、決定ログ137・139", "b": "\n- 実在の人物：利用条件を確かめて、出典を書ける本物の写真だけ\n- AIで本人の顔を作らない。表情を変える加工をしない\n- 概要欄に、撮影者・ライセンス・URL・変更点を書く\n- ニュースサイト・元動画の写真や画面は使わない\n- 会社のロゴ、実在の商品をAIに描かせない\n関係：[[k-thumb|サムネイル]]、[[k-screen|画面]]"}, {"id": "hook", "job": "socra", "g": "f", "t": "フック", "tag": "now", "src": "11/12 に作った", "b": "\n松村さんの言葉に次があれば、スキルを開く指示を自動で差し込む。\n| 言葉 | 差し込む指示 |\n|---|---|\n| 「SOCRA」「ソクラ」「ニュース動画」 | [[skill|zazou-socra]] を開く |\n| 「サムネ」 | zazou-socra の [[s-thumb|手順4]] を開く |\n朝5:41の定時作業の指示文も「zazou-socra のとおり」と書いてある。"}, {"id": "skill", "job": "socra", "g": "s", "t": "スキル zazou-socra", "tag": "now", "src": "11/12 に作った", "b": "\n毎朝、統括はまずこの帳面を読み、下の手順のとおりに動く。理由はナレッジのノートにある。\n1. [[s-topic|題材を選ぶ]]\n2. [[s-title|題名を決める]]\n3. [[s-script|台本を書く]]\n4. [[s-thumb|サムネを作る]]\n5. [[s-handoff|ヒビキに渡す]]\n6. [[s-check|出す前の点検]]\n7. [[s-publish|公開と後片づけ]]\n8. [[s-trouble|うまくいかない朝]]\nヒビキも、動画を作る前にこの帳面を読む。"}, {"id": "s-topic", "job": "socra", "g": "s", "t": "手順1 題材を選ぶ", "tag": "now", "src": "今は定時作業の指示文にある", "b": "\n- 朝刊の記事から、[[k-topic|題材の選び方]] の順で1本選ぶ\n- 朝刊にない題材は、元のURLを使う\n- 下書きを作る：make_skeleton.py に URL か朝刊のファイル名を渡す\n次：[[s-title|手順2]]"}, {"id": "s-title", "job": "socra", "g": "s", "t": "手順2 題名を決める", "tag": "now", "src": "今は CONTENT.md にある", "b": "\n- [[k-title|題名]] の2つの型のどちらかで書く\n- 数字と名前が、元の記事と合っているか確かめる\n次：[[s-script|手順3]]"}, {"id": "s-script", "job": "socra", "g": "s", "t": "手順3 台本を書く", "tag": "now", "src": "今は指示文と README.md にある", "b": "\n- [[k-script|台本の言い方]] のとおりに書く\n- 「現場から見ると」を入れる\n- 台本の先頭に「# タグ:」を書く\n- 点検の道具 check_script.py を回す（長い文、数字が多い文、読めない英字）\n- 「今日」「先週」などが残っていないか探す\n次：[[s-thumb|手順4]]"}, {"id": "s-thumb", "job": "socra", "g": "s", "t": "手順4 サムネを作る", "tag": "now", "src": "今は THUMBNAIL.md 4.5章にある", "b": "\n- [[k-thumb|サムネイル]] の決まりで、文字ごと作る\n- 人物の回は [[k-rights|写真と権利]] を守る\n- 1文字ずつ読む。320×180に縮めて見る\n- thumb_full.png に置く\n次：[[s-handoff|手順5]]"}, {"id": "s-handoff", "job": "socra", "g": "s", "t": "手順5 ヒビキに渡す", "tag": "now", "src": "今は定時作業の指示文にある", "b": "\n- 台本とサムネを socra（news/v0）に push\n- ヒビキに知らせる。「thumb_full をそのまま使う」と伝える\n- ヒビキの側が、その日の回に切り替わったか確かめる\n- 確認用の動画ができるまで約8分\n役割：[[k-roles|だれが何をするか]]　次：[[s-check|手順6]]"}, {"id": "s-check", "job": "socra", "g": "s", "t": "手順6 出す前の点検", "tag": "now", "src": "今は定時作業の指示文にある（タグは11/12に追加）", "b": "\n| 見るもの | 合格の目安 |\n|---|---|\n| 題名 | [[k-title|題名]] の型。番組名・日付が先頭にない |\n| 概要欄 | 出典がある。もくじが00:00から |\n| サムネ | thumb_full そのまま。誤字なし |\n| 静止画 | 文字が切れていない。葵が字幕にかぶらない |\n| 長さ・音量 | いつもと大きくちがわない |\n| 言葉 | [[k-script|台本の言い方]] に反する言葉がない |\n| タグ | その回の内容になっている（前の回のままでない） |\nよければ「公開OK（日付）」をヒビキに送る。次：[[s-publish|手順7]]"}, {"id": "s-publish", "job": "socra", "g": "s", "t": "手順7 公開と後片づけ", "tag": "now", "src": "今は定時作業の指示文にある", "b": "\n- 7:00にヒビキが公開\n- 7:00過ぎに、公開されたことを確かめる\n- ラボの動画タブ：大きい枠を新しい回に差し替え、前の回を一覧の先頭へ\n- 投稿の記録（POSTED.md）と、工夫の記録（GROWTH.md）\n前：[[s-check|手順6]]"}, {"id": "s-trouble", "job": "socra", "g": "s", "t": "手順8 うまくいかない朝", "tag": "now", "src": "今は指示文と README.md にばらばらにある", "b": "\n| 起きたこと | すること |\n|---|---|\n| 葵を重ねられない | 葵なしで出す（[[k-screen|画面]]） |\n| サムネの絵が間に合わない | 仕組みで作るサムネで出す |\n| GitHubが止まった | 止まった実行は取り消せない。直ったあと、手動の実行か新しい push で動かす（ラボのページは空のコミット） |\n| 前の回や試作を作ってしまった | CURRENT の切り替え忘れ。切り替えて作り直す |\n| ビルドが並んで待たされる | 統括とヒビキの push が続いたとき。要らない方を取り消す |\n| 道具の入れ直しが長い | たまに6分以上かかる。待つ |\n| 朝刊のデータがまだ無い（404） | 数分おいて取り直す |\n| 7:00に間に合わない | 松村さんに知らせる（[[k-roles|役割]]） |\nくわしい仕組み：仕組みと合図"}, {"id": "lab-what", "job": "lab", "g": "k", "t": "ラボとは", "src": "news/README.md、決定ログ128、定時作業の指示文", "b": "\n自社のサイト https://takmat21.github.io/ 。GitHubに置いて、main に出すと公開される。\n## 中にあるもの\n- 朝刊（毎日1本）とAIニュース（毎日3本）\n- 動画タブ（自社の動画と、紹介する動画）\n- 道具タブ、論文タブ、ワークス（ai/）\n## 決まり\n- 頼まれた修正は、そのまま公開してよい\n- 朝刊の節は「要約」「自社のAIチームの運用から見ると」の2つ。AIニュースは「要約」の1つ\n- 朝刊かAIニュースかは、節の見出しが「自社のAIチーム」で始まるかで分かれる\n- ページは必ず tools/build_news.py で作る。手でHTMLを書かない\n- サムネは出典の画像を出典URLのまま表示し、「画像：出典元」を添える\n- 動画の文に、見る日で意味が変わる言葉を入れない\n## 見ている情報源\n- 実践している人の動画チャンネル（毎週水曜に新着を見る）。道具タブに一覧\n手順：[[lab-morning|朝刊とAIニュース]]、[[lab-video|動画タブに1本足す]]", "tag": "now"}, {"id": "lab-morning", "job": "lab", "g": "s", "t": "手順：朝刊とAIニュース", "src": "朝5:41の定時作業の指示文", "b": "\n1. 作業コピー（takmat21.github.io の main）を最新にする\n2. 記事4本（朝刊1本、AIニュース3本）を、作業役のAIに書かせる\n3. 統括が、出典のURLを開いて確かめる\n4. python3 tools/build_news.py でページを作る\n5. 公開する。本番のページを目で確かめる\n6. 5分たっても出なければ、空のコミットで出し直す\n7. その日の話題に、仕事に関係する新しい道具があれば、道具タブを直す\n8. 月曜だけ：プラグインのおすすめを、多くて3つ知らせる\nこのあと [[skill|SOCRA]] に進む。決まりは [[lab-what|ラボとは]]。", "tag": "now"}, {"id": "lab-video", "job": "lab", "g": "s", "t": "手順：動画タブに1本足す", "src": "14:37の定時作業の指示文", "b": "\n1. 区分は日替わり。日付を3で割った余りが 0＝エンタメ、1＝ニュース、2＝つくり方\n2. その区分の先頭に、新しいカードを1本足す。今あるカードと同じ動画・同じチャンネルにしない\n3. 表示は区分ごとに最大9本。超えたら、いちばん古いカードを「これまでの紹介」へ移す（消さない）\n4. 動画は、公開されていることを確かめられたものだけ\n5. スマホの幅で、横スクロールとエラーがないことを確かめて公開する\n6. 毎回の報告はしない。日曜だけ、その週の本数と題名を3行で知らせる\n## 選ぶ基準\n- ニュース：直近1か月くらいのAI関連ニュースで、AIで作られていそうなもの\n- エンタメ・つくり方：選んだ理由を1文で言えるもの\n決まりは [[lab-what|ラボとは]]。", "tag": "now"}];
+const canon=i=>i;
+const byId=Object.fromEntries(NOTES.map(n=>[n.id,n]));
+const linksOf=n=>[...new Set([...n.b.matchAll(/\[\[([a-z0-9-]+)\|/g)].map(m=>canon(m[1])).filter(i=>byId[i]&&i!==n.id))];
+NOTES.forEach(n=>n.out=linksOf(n));
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const inline=s=>esc(s).replace(/`([^`]+)`/g,"<code>$1</code>")
+  .replace(/(^|[^"=])(https?:\/\/[A-Za-z0-9\-._~:\/?#@!$&'*+,;=%]+)/g,(m,p,u)=>p+'<a class="ext" href="'+u+'" target="_blank" rel="noopener">'+u+"</a>")
+  .replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>")
+  .replace(/\[\[([a-z0-9-]+)\|(.+?)\]\]/g,(m,i,l)=>'<a class="wl" href="#'+i+'">'+l+"</a>");
+function render(body){
+  const L=body.trim().split("\n");let h="",i=0;
+  while(i<L.length){const s=L[i];
+    if(s.startsWith("```")){const c=[];i++;while(i<L.length&&!L[i].startsWith("```")){c.push(L[i]);i++;}i++;h+='<pre class="code">'+esc(c.join("\n"))+"</pre>";}
+    else if(s.startsWith("# ")){h+="<h3>"+inline(s.slice(2))+"</h3>";i++;}
+    else if(s.startsWith("### ")){h+="<h4>"+inline(s.slice(4))+"</h4>";i++;}
+    else if(s.startsWith("## ")){const m=s.slice(3).match(/^(.+?)(?:\{([a-z0-9-]+)\})?$/);h+="<h3"+(m[2]?' id="sec-'+m[2]+'" class="sec"':"")+">"+inline(m[1])+"</h3>";i++;}
+    else if(s.startsWith("元：")){h+='<p class="src2">'+inline(s)+"</p>";i++;}
+    else if(s.startsWith("|")){const rows=[];while(i<L.length&&L[i].startsWith("|")){rows.push(L[i]);i++;}
+      const cells=r=>{const out=[];let cur="",d=0;for(const ch of r.slice(1,-1)){if(ch==="["&&cur.endsWith("["))d=1;if(ch==="]"&&cur.endsWith("]"))d=0;
+        if(ch==="|"&&!d){out.push(cur);cur="";}else cur+=ch;}out.push(cur);return out.map(c=>c.trim());};
+      h+='<div class="tw"><table><tr>'+cells(rows[0]).map(c=>"<th>"+inline(c)+"</th>").join("")+"</tr>"+
+        rows.slice(2).map(r=>"<tr>"+cells(r).map(c=>"<td>"+inline(c)+"</td>").join("")+"</tr>").join("")+"</table></div>";}
+    else if(/^\s*[-*] /.test(s)){h+="<ul>";while(i<L.length&&/^\s*[-*] /.test(L[i])){const m=L[i].match(/^(\s*)[-*] (.*)$/);h+="<li"+(m[1].length?' class="sub"':"")+">"+inline(m[2])+"</li>";i++;}h+="</ul>";}
+    else if(/^\d+\. /.test(s)){h+="<ol>";while(i<L.length&&(/^\d+\. /.test(L[i])||/^\s+[-*] /.test(L[i]))){if(/^\s/.test(L[i]))h+='<li class="sub" style="list-style:disc">'+inline(L[i].replace(/^\s+[-*] /,""))+"</li>";else h+="<li>"+inline(L[i].replace(/^\d+\. /,""))+"</li>";i++;}h+="</ol>";}
+    else{if(s.trim())h+="<p>"+inline(s)+"</p>";i++;}
+  }return h;}
+const $=id=>document.getElementById(id);
+const fcol=j=>"var("+JOBS.find(x=>x[0]===j)[2]+")";
+function buildTree(){if(!byId[cur])cur="all-home";
+  if(!openF){openF={};JOBS.forEach(([j])=>{openF[j]=j===byId[cur].job;});}
+  $("tree").innerHTML=JOBS.map(([j,name])=>'<details class="fold" data-f="'+j+'"'+(openF[j]?" open":"")+'><summary><i class="dot" style="background:'+fcol(j)+'"></i>'+name+"</summary>"+
+    GROUPS.filter(([g])=>NOTES.some(n=>n.job===j&&n.g===g)).map(([g,gn])=>'<details class="fold grp" data-f="'+j+"/"+g+'"'+(openF[j+"/"+g]===false?"":" open")+"><summary>"+gn+"</summary><ul>"+
+      NOTES.filter(n=>n.job===j&&n.g===g).map(n=>'<li><button type="button" data-id="'+n.id+'">'+esc(n.t)+"</button></li>").join("")+"</ul></details>").join("")+"</details>").join("");
+  $("lg").innerHTML='<span>いまの仕事のノートだけを表示：</span><span><i class="dot" style="background:'+fcol(byId[cur].job)+'"></i>'+JOBS.find(x=>x[0]===byId[cur].job)[1]+"</span>";
+}
+let cur="all-home",openF=null;
+document.addEventListener("toggle",e=>{const d=e.target;if(d.classList&&d.classList.contains("fold")&&openF)openF[d.dataset.f]=d.open;},true);
+function show(id,fromHash){
+  if(!byId[id])id="all-home";const jobChanged=!byId[cur]||byId[cur].job!==byId[id].job;cur=id;const n=byId[id];
+  const fname=JOBS.find(x=>x[0]===n.job)[1]+" › "+GROUPS.find(x=>x[0]===n.g)[1];
+  if(openF&&(!openF[n.job]||openF[n.job+"/"+n.g]===false||jobChanged)){openF[n.job]=true;openF[n.job+"/"+n.g]=true;buildTree();}
+  if(editing&&editId!==id)editing=false;
+  if(editing)return;
+  $("note").innerHTML=edBar(n)+'<p class="path">'+fname+"</p><h2>"+esc(n.t)+'</h2><div class="tags"><span class="tag'+(n.tag==="copy"?" plan":"")+'">'+
+    (n.tag==="copy"?"写し（まだ動きの元ではない）":"帳面が正本")+"</span>"+(n.at?'<span class="tag plan">書きかえ済み</span>':"")+"</div>"+render(n.b)+(n.src?'<p class="src">元：'+esc(n.src)+"</p>":"");
+  const li=x=>'<li><a class="wl" href="#'+x.id+'">'+esc(x.t)+"</a></li>";
+  const back=NOTES.filter(x=>x.out.includes(id));
+  $("back").innerHTML=back.length?back.map(li).join(""):"<li>なし</li>";
+  $("fwd").innerHTML=n.out.length?n.out.map(i=>li(byId[i])).join(""):"<li>なし</li>";
+  document.querySelectorAll("#tree button").forEach(b=>b.setAttribute("aria-current",b.dataset.id===id?"true":"false"));
+  if(!fromHash){try{history.replaceState(null,"","#"+id);}catch(e){location.hash=id;}}
+  drawGraph();
+}
+function setView(v){$("viewNote").hidden=v!=="note";$("viewGraph").hidden=v!=="graph";
+  $("tabNote").setAttribute("aria-pressed",v==="note");$("tabGraph").setAttribute("aria-pressed",v==="graph");}
+// グラフ：ばねで置き場所を決める（毎回同じ形になるよう、最初の並びは決め打ち）
+let pos=null,posJob=null;
+const GN=()=>NOTES.filter(n=>n.job===byId[cur].job);
+function layout(){
+  const W=860,H=600,G=GN(),N=G.length;pos={};posJob=byId[cur].job;
+  G.forEach((n,i)=>{const a=2*Math.PI*i/N;pos[n.id]={x:W/2+240*Math.cos(a),y:H/2+200*Math.sin(a)};});
+  const E=[];G.forEach(n=>n.out.forEach(t=>{if(pos[t])E.push([n.id,t]);}));
+  for(let k=0;k<400;k++){
+    const F={};G.forEach(n=>F[n.id]={x:0,y:0});
+    for(let i=0;i<N;i++)for(let j=i+1;j<N;j++){const a=pos[G[i].id],b=pos[G[j].id];let dx=a.x-b.x,dy=a.y-b.y;const d2=Math.max(dx*dx+dy*dy,60);
+      const f=9000/d2,d=Math.sqrt(d2);dx/=d;dy/=d;F[G[i].id].x+=dx*f;F[G[i].id].y+=dy*f;F[G[j].id].x-=dx*f;F[G[j].id].y-=dy*f;}
+    E.forEach(([s,t])=>{const a=pos[s],b=pos[t];const dx=b.x-a.x,dy=b.y-a.y,d=Math.sqrt(dx*dx+dy*dy)||1,f=(d-120)*0.02;
+      F[s].x+=dx/d*f;F[s].y+=dy/d*f;F[t].x-=dx/d*f;F[t].y-=dy/d*f;});
+    G.forEach(n=>{const p=pos[n.id];p.x+=F[n.id].x+(W/2-p.x)*0.004;p.y+=F[n.id].y+(H/2-p.y)*0.006;
+      p.x=Math.min(W-150,Math.max(50,p.x));p.y=Math.min(H-28,Math.max(24,p.y));});
+  }
+}
+function drawGraph(){
+  if(!pos||posJob!==byId[cur].job)layout();
+  const G=GN(),near=new Set([cur,...byId[cur].out,...G.filter(x=>x.out.includes(cur)).map(x=>x.id)]);
+  let s="";
+  G.forEach(n=>n.out.forEach(t=>{if(!pos[t])return;const a=pos[n.id],b=pos[t],on=(n.id===cur||t===cur);
+    s+='<line x1="'+a.x.toFixed(1)+'" y1="'+a.y.toFixed(1)+'" x2="'+b.x.toFixed(1)+'" y2="'+b.y.toFixed(1)+'" stroke="'+(on?"var(--accent)":"var(--line)")+'" stroke-width="'+(on?1.8:1)+'"/>';}));
+  G.forEach(n=>{const p=pos[n.id],r=5+Math.min(7,G.filter(x=>x.out.includes(n.id)).length);
+    s+='<g class="nd" data-id="'+n.id+'" opacity="'+(near.has(n.id)?1:0.55)+'"><circle cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="'+r+'" fill="'+fcol(n.job)+'"'+
+      (n.id===cur?' stroke="var(--fg)" stroke-width="2.5"':"")+'/><text x="'+(p.x+r+4).toFixed(1)+'" y="'+(p.y+4).toFixed(1)+'"'+(n.id===cur?' font-weight="700"':"")+">"+esc(n.t)+"</text></g>";});
+  $("g").innerHTML=s;$("lg").innerHTML='<span>いまの仕事のノートだけを表示：</span><span><i class="dot" style="background:'+fcol(byId[cur].job)+'"></i>'+JOBS.find(x=>x[0]===byId[cur].job)[1]+"</span>";
+}
+// 直接書き込む：書いた中身は db の notes/<ノートのid> に入る。元の文はページの中に残り、いつでも元にもどせる
+const DEF=Object.fromEntries(NOTES.map(n=>[n.id,{t:n.t,b:n.b}]));
+let db=null,editing=false,editId=null,ov={},loaded=false;
+const fmt=iso=>{try{return new Date(iso).toLocaleString("ja-JP",{month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit"});}catch(e){return "";}};
+function edBar(n){return "";
+  return '<div class="ed"><button type="button" class="btn" id="edBtn">書く</button>'+
+    (n.at?"<span>"+esc(fmt(n.at))+' に書きかえ</span><button type="button" class="btn" id="rvBtn">元にもどす</button>':"")+"</div>";}
+function applyOv(){NOTES.forEach(n=>{const o=ov[n.id];
+  n.t=o&&typeof o.t==="string"&&o.t.trim()?o.t:DEF[n.id].t;n.b=o&&typeof o.b==="string"?o.b:DEF[n.id].b;n.at=o&&typeof o.at==="string"?o.at:null;n.out=linksOf(n);});
+  pos=null;buildTree();show(cur,true);}
+function openEditor(){const n=byId[cur];editing=true;editId=cur;
+  $("note").innerHTML='<input id="edT" type="text" aria-label="題名"><textarea id="edB" aria-label="本文"></textarea>'+
+    '<p class="help">書き方：行の先頭に「- 」で箇条書き、「## 」で見出し。表は「| あ | い |」。ほかのノートへのつなぎは [[ノートの名前|見せる言葉]] のまま残してください。</p>'+
+    '<div class="ed"><button type="button" class="btn main" id="svBtn">保存</button><button type="button" class="btn" id="cpBtn">文をコピー</button><button type="button" class="btn" id="cxBtn">やめる</button><span id="edMsg"></span></div>';
+  if(!db){$("svBtn").disabled=true;$("edMsg").textContent="この画面では保存できません。「文をコピー」を押して、チャットに貼ってください。";}
+  $("edT").value=n.t;$("edB").value=n.b.trim();$("edB").focus();}
+async function saveEdit(){const t=$("edT").value.trim(),b=$("edB").value;$("svBtn").disabled=true;$("edMsg").textContent="保存しています…";
+  const d={t:t||DEF[editId].t,b:b,at:new Date().toISOString()};
+  try{await db.collection("notes").doc(editId).set(d);ov[editId]=d;editing=false;applyOv();}
+  catch(e){$("svBtn").disabled=false;$("edMsg").textContent="保存できませんでした（"+((e&&e.code)||"理由は分かりません")+"）。書いた文は消えていません。「文をコピー」でチャットに貼れます。";}}
+async function copyEdit(){const txt="【"+$("edT").value+"】\n"+$("edB").value;
+  try{await navigator.clipboard.writeText(txt);$("edMsg").textContent="コピーしました。チャットに貼ってください。";}
+  catch(e){$("edB").focus();$("edB").select();$("edMsg").textContent="本文を選びました。長押しでコピーしてください。";}}
+async function revert(btn){if(btn.dataset.sure!=="1"){btn.dataset.sure="1";btn.textContent="本当に元にもどす";return;}
+  btn.disabled=true;try{const d={t:DEF[cur].t,b:DEF[cur].b,seed:true};await db.collection("notes").doc(cur).set(d);ov[cur]=d;applyOv();}catch(e){btn.disabled=false;btn.textContent="もどせませんでした";}}
+(async()=>{
+  const st=$("dbst");
+  db=null;
+  if(!db){st.textContent="見本です（読むだけ）";return;}
+  st.textContent="保存先につないでいます…";
+  const timer=setTimeout(()=>{if(!loaded)st.textContent="書いた分を読み込めませんでした";},10000);
+  db.collection("notes").onSnapshot(snap=>{clearTimeout(timer);loaded=true;st.textContent="書き込めます";
+    ov={};snap.docs.forEach(d=>{const x=d.data();if(x&&byId[d.id])ov[d.id]=x;});
+    if(editing){NOTES.forEach(n=>{if(n.id!==editId){const o=ov[n.id];n.t=o&&o.t?o.t:DEF[n.id].t;n.b=o&&typeof o.b==="string"?o.b:DEF[n.id].b;n.at=o?o.at:null;n.out=linksOf(n);}});}
+    else applyOv();
+  },e=>{clearTimeout(timer);st.textContent="書いた分を読み込めませんでした（"+((e&&e.code)||"")+"）";});
+})();
+{const h=location.hash.slice(1);if(byId[h])cur=h;}
+buildTree();
+function setTree(hide){$("viewNote").classList.toggle("notree",hide);$("treeTgl").textContent=hide?"▷ 一覧を出す":"◁ 一覧を隠す";try{localStorage.setItem("vault_demo_notree",hide?"1":"0");}catch(e){}}
+{let h=false;try{h=localStorage.getItem("vault_demo_notree")==="1";}catch(e){}setTree(h);}
+function setSide(hide){$("viewNote").classList.toggle("noside",hide);$("sideTgl").textContent=hide?"◁ つながりを出す":"つながりを隠す ▷";try{localStorage.setItem("vault_demo_noside",hide?"1":"0");}catch(e){}}
+{let h=false;try{h=localStorage.getItem("vault_demo_noside")==="1";}catch(e){}setSide(h);}
+$("sideTgl").onclick=()=>{setSide(!$("viewNote").classList.contains("noside"));setView("note");};
+$("treeTgl").onclick=()=>{setTree(!$("viewNote").classList.contains("notree"));setView("note");};
+document.addEventListener("click",e=>{
+  if(e.target.id==="edBtn"){openEditor();return;}
+  if(e.target.id==="svBtn"){saveEdit();return;}
+  if(e.target.id==="cpBtn"){copyEdit();return;}
+  if(e.target.id==="cxBtn"){editing=false;show(cur,true);return;}
+  if(e.target.id==="rvBtn"){revert(e.target);return;}
+  const b=e.target.closest("#tree button");if(b){show(b.dataset.id);setView("note");window.scrollTo(0,0);return;}
+  const a=e.target.closest("a.wl");if(a){e.preventDefault();show(a.getAttribute("href").slice(1));setView("note");
+    const t=a.dataset.sec&&document.getElementById("sec-"+a.dataset.sec);if(t)t.scrollIntoView({block:"start"});else window.scrollTo(0,0);return;}
+  const g=e.target.closest("g.nd");if(g){show(g.dataset.id);setView("note");}
+});
+$("tabNote").onclick=()=>setView("note");$("tabGraph").onclick=()=>setView("graph");
+window.addEventListener("hashchange",()=>show(location.hash.slice(1),true));
+show(location.hash.slice(1)||"all-home",true);
+</script>
+
+</body></html>
