@@ -189,9 +189,13 @@
   <p class="lead">人が頼み、統括AIが仕事ごとに「手順（スキル）・道具・ナレッジ」を束ねて動かし、最後は人が確かめます。送信・公開など元に戻せない操作は人が行います。</p>
 
   <nav class="sys-nav" aria-label="このタブの目次">
-    <a href="#sys-map">全体図</a><a href="#sys-front">業界の最前線</a><a href="#sys-parts">部分ごとの図解</a><a href="#sys-screen">実際の画面</a><a href="#sys-docs">資料・過去の構成</a>
+    <a href="#sys-vault">ナレッジ帳</a><a href="#sys-map">全体図</a><a href="#sys-front">業界の最前線</a><a href="#sys-parts">部分ごとの図解</a><a href="#sys-screen">実際の画面</a><a href="#sys-docs">資料・過去の構成</a>
   </nav>
 
+
+  <h3 id="sys-vault">ナレッジ帳：人が直接書きかえられる正本</h3>
+  <figure><a href="samples/knowledge-vault/"><img src="assets/img/knowledge-vault.webp" width="1600" height="1000" decoding="async" alt="ナレッジ帳の画面。左に仕事ごとのノートの一覧、まん中に「台本の言い方」のノート、右にこのノートとつながっているノートの一覧" loading="lazy"></a><figcaption>ナレッジ帳：AIが仕事の前に読む決まりと手順。人が直接書きかえ、AIはそのとおりに動きます。クリックすると見本が開きます（見本は読むだけ）。</figcaption></figure>
+  <p>2026年11月から、決まりと手順を1つの帳面にまとめました。左に仕事ごとの一覧、まん中にノート、ノートどうしは言葉でつながり、つながりはグラフでも見えます。人がノートを書きかえると、AIは次の仕事の前にそれを読み、その中身で動きます。変わっていた所は「帳面のここが変わったので、こう動きました」と人に知らせます。 <a href="samples/knowledge-vault/">ナレッジ帳の見本を開く</a></p>
 
   <h3 id="sys-map">全体図：頼む → 束ねる → 確かめる → 届ける</h3>
   <figure class="sysmap"><a href="samples/system-map/"><img src="assets/img/system-map.webp" width="2640" height="1735" decoding="async" loading="lazy" alt="ZAZOUの仕組みの全体図。松村が4つの入口から頼み、統括AIのClaude Codeが、判断・権限・安全の関門を通して、ほかのAIに頼む・スキルで動かす・外部サービスを操作・外部APIを呼ぶの4つの枝に仕事を配り、公開先と届け先に出す。下にナレッジと担当AIの帯がある。"></a><figcaption>クリックすると大きな図が開きます（文字を選べます）。「稼働中」と「これから」を分けて書いています。2026年11月10日時点。</figcaption></figure>
@@ -370,7 +374,7 @@
       </div>
     </div>
     <p>AIは、会話が長くなると古い決定を忘れます。そこで、会話ではなく記録を「正」にしました。決めたことはその場で書き、毎日、記録と現実のずれを探し、外に出す文面は記録と照らし合わせます。会話の記憶を持たない新しいAIに記録だけを渡す試験では、10問すべてに根拠付きで正答しました。置き場所はGoogleスプレッドシートで、手順はスキルへ順に移しています。</p>
-    <p><b>ナレッジ帳：人が直接書きかえられる正本</b>　2026年11月から、決まりと手順を1つの帳面にまとめました。左に仕事ごとの一覧、まん中にノート、ノートどうしは言葉でつながり、つながりはグラフでも見えます。人がノートを書きかえると、AIは次の仕事の前にそれを読み、その中身で動きます。変わっていた所は「帳面のここが変わったので、こう動きました」と人に知らせます。 <a href="samples/knowledge-vault/">ナレッジ帳の見本を開く</a></p>
+    <p>決まりと手順の正本は、<a href="#sys-vault">ナレッジ帳</a>です（このタブのいちばん上）。</p>
     <p class="note">くわしくは <a href="paper/">論文：記憶の欠落とハルシネーションへの対処</a>・<a href="paper2/">論文：外部脳としての記録の運用</a></p>
   </section>
 
@@ -392,16 +396,11 @@
   <h3 id="sys-screen">実際の画面</h3>
   <figure><img src="assets/img/board.webp" width="1600" height="1460" decoding="async" alt="人が押すボタンだけを並べたオペレーションボード" loading="lazy"><figcaption>オペレーションボード：人がやることは「文面をコピー」「送った」などのボタンを押すだけ。押すと記録され、AIが次の作業へ進みます。</figcaption></figure>
 
-  <figure><a href="samples/knowledge-vault/"><img src="assets/img/knowledge-vault.webp" width="1600" height="1000" decoding="async" alt="ナレッジ帳の画面。左に仕事ごとのノートの一覧、まん中に「台本の言い方」のノート、右にこのノートとつながっているノートの一覧" loading="lazy"></a><figcaption>ナレッジ帳：AIが仕事の前に読む決まりと手順。人が直接書きかえ、AIはそのとおりに動きます。クリックすると見本が開きます（見本は読むだけ）。</figcaption></figure>
-
   <h3 id="sys-docs">資料</h3>
   <p class="more" style="margin-top:0"><a href="samples/system-map/">全体図（大きな図）</a>　／　<a href="samples/ai-design-map/">AI業務設計マップ</a>　／　<a href="ai/glossary/">用語集（AI Works）</a>　／　<a href="lab/gas/">見本：Googleの表とメールで動く小さな自動化（GAS）</a>　／　<a href="paper/">論文：記憶の欠落とハルシネーションへの対処</a>　／　<a href="paper2/">論文：外部脳としての記録の運用</a></p>
 
   <h3 id="system-archive">過去の構成（アーカイブ）</h3>
-  <p class="note">いまの構成に変わる前の資料です。経緯をたどれるように残しています。</p>
-  <ul class="rows">
-    <li><a class="row" href="samples/system/"><span class="t">2026年10月：階層型の構成（統括AIと担当AI）</span><span class="m">PDF · 17p</span><span class="d">統括役のAIが担当ごとのAIに指示していた頃の資料。2026年11月から、仕事ごとにスキル・道具・ナレッジを束ねる今の形（垂直型）へ移行しています。</span></a></li>
-  </ul>
+  <p class="note">いまの構成に変わる前の画面です。経緯をたどれるように残しています。</p>
   <details class="sys-old">
     <summary>当時の画面を見る（オフィス画面・担当ごとの机）</summary>
     <figure><img src="assets/img/office.webp" width="1600" height="963" decoding="async" alt="担当AIの状態とチームチャットを表示するオフィス画面" loading="lazy"><figcaption>オフィス画面：担当AIを階層で並べていた頃の画面。誰が何をしているか、どこで人の確認待ちかを見ていました。</figcaption></figure>
