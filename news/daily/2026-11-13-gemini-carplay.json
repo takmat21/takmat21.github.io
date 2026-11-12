@@ -1,0 +1,32 @@
+{
+ "date": "2026-11-13",
+ "title": "Google、iPhoneのApple CarPlayでGeminiアプリが使えるように：運転中に声で会話、事前にiPhoneでGemini Liveを一度使う必要",
+ "category": "製品・サービス",
+ "lead": "Googleが11月11日にGeminiアプリをApple CarPlayに対応させたと、Engadgetのクリス・ホルト記者が同日報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "これまで、CarPlayでGeminiを使うにはGoogleマップのアプリを通す必要がありました。11月11日から、CarPlayの画面のGeminiのアイコンを押して直接使えます。過去の会話の続きも、新しい会話も始められ、会話はiPhoneのGeminiアプリと同期され、履歴にも残ります。",
+    "Googleが挙げる使い道は、会議の準備、メールの確認、Daily Briefを聞く、近くの場所のおすすめを聞くなどです。ハンズフリーで自由に話せる「Gemini Live」の形で動きます。",
+    "使うには、iPhoneのGeminiアプリを最新にし、マイクの許可を入れ、事前にiPhoneでGemini Liveを一度使っておく必要があります。対応言語は「Gemini Liveの対応言語すべて」とだけ書かれており、日本語に対応するか、提供される国はどこかは、記事には書かれていません。日本で使えるかは、確かめられていません。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "Engadget",
+   "url": "https://www.engadget.com/2314093/google-brings-the-gemini-app-to-apple-carplay/",
+   "note": "元記事",
+   "title": "Google brings the Gemini app to Apple CarPlay",
+   "org": "報道：Engadget（Kris Holt記者）",
+   "published": "2026-11-11",
+   "image": "https://www.engadget.com/img/gallery/google-brings-the-gemini-app-to-apple-carplay/l-intro-1794426857.jpg",
+   "image_ok": true,
+   "image_size": [
+    1600,
+    900
+   ]
+  }
+ ]
+}

@@ -1,0 +1,32 @@
+{
+ "date": "2026-11-13",
+ "title": "Google、文章を作らず「はい／いいえ」や点数だけを返すGemini Decisions APIを公開、入力100万トークン0.10ドル、1回に最大1,000問",
+ "category": "製品・サービス",
+ "lead": "米GoogleのDeepMindが11月11日、答えの文章を書かずに判定結果だけを返す開発者向けのAPI「Gemini Decisions API」を公式ブログで発表しました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "使うモデルは Gemini Decision 1 で、Gemini APIとGoogle AI Studioから使えます。文章、画像、音声、動画、PDFを最大256Kトークンまで渡し、同じ入力に対する質問を1回の呼び出しで最大1,000問まとめて判定させます。質問の形は、はい／いいえ、2〜255個の選択肢からの選択、段階を決めた点数の3種類で、答えごとに0〜1の確信度が付きます。",
+    "料金は入力100万トークンあたり0.10ドルで、出力のトークンは0ドルです。考えるための分や、音声の文字起こし・画像の文字読み取りも別料金になりません。共通の入力は1回分だけ数えられます。Googleは、同社の試験で、Gemini 3.5 Flash-Liteを使う場合に比べてほぼ5分の1の費用だと説明しています。AI Studioには試作用の無料枠があります。",
+    "応答にかかる時間は150〜250ミリ秒で、質問が1問から100問に増えてもほぼ変わらないとされています。Googleは自社の試験で性能が最も高く、確信度の誤差が最も小さいとしていますが、これは同社自身の評価です。同社の使用例は、Gemini Notebookの質問の振り分け（普段の質問で遅れが最大40%減）、Google検索でMCPのツールの不審な動きを見つける安全層などです。Google Cloud版は「近日」とされています。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "Google",
+   "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+   "note": "元記事",
+   "title": "Gemini Decisions API: Fast, calibrated multimodal decisions",
+   "org": "Google DeepMind（Min Choi氏、Felix Yu氏）",
+   "published": "2026-11-11",
+   "image": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini__decisions__blog-header_2784x1566.width-1300.png",
+   "image_ok": true,
+   "image_size": [
+    1300,
+    731
+   ]
+  }
+ ]
+}
