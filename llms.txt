@@ -30,6 +30,7 @@
 - [図面見積アプリ（料金・よくある質問・無料お試し）](https://takmat21.github.io/samples/drawing-estimate/)
 - [ホームページの見本（20業種、架空）](https://takmat21.github.io/samples/sites/)
 - [図面見積アプリ（金属加工向け）](https://takmat21.github.io/samples/drawing-estimate/)
+- [図面エディタ（DWG・DXF、自社開発の2次元の作図ソフト）](https://takmat21.github.io/samples/cad-editor/)
 - [見積書作成：図面から見積書までの流れ](https://takmat21.github.io/samples/estimate-flow/)
 - [階層型マルチエージェント 構成と運用（自社事例）](https://takmat21.github.io/samples/system/)
 - [GAS の見本ツール](https://takmat21.github.io/lab/gas/)

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>図面エディタ（DWG・DXF）：自社開発の2次元CAD｜松村貴士</title>
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="図面エディタ（DWG・DXF）：自社開発の2次元CAD｜松村貴士">
+<meta property="og:description" content="DWG・DXFの図面を開いて、作図と修正をし、DXFとPDFで出す自社開発のソフトです。">
+<meta property="og:url" content="https://takmat21.github.io/samples/cad-editor/">
+<meta property="og:image" content="https://takmat21.github.io/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="../../assets/style.css?v=20261109a"><link rel="canonical" href="https://takmat21.github.io/samples/cad-editor/">
+<meta name="description" content="DWG・DXFの図面をブラウザで開き、線・円・寸法・文字の追加、移動・回転・切る・のばすなどの修正をして、DXFとPDFで出す自社開発の作図ソフトです。元の図面は書きかえず、足した所と消した所だけを保存します。試作の段階で、確かめたことと、まだのことを分けて載せています。">
+<style>
+/* このページだけの追加（共通の style.css の色の変数を使う） */
+.flow{list-style:none;margin:0;padding:0;counter-reset:f;border-top:1px solid var(--line)}
+.flow li{counter-increment:f;display:grid;grid-template-columns:2.4em 1fr;gap:0 12px;padding:14px 4px;border-bottom:1px solid var(--line)}
+.flow li::before{content:counter(f);font-family:var(--mono);font-size:13px;color:var(--accent);background:var(--accent-soft);border-radius:4px;text-align:center;height:1.9em;line-height:1.9em;margin-top:2px}
+.flow b{display:block}
+.flow span{grid-column:2;font-size:14px;color:var(--sub)}
+.dwg{margin:0 0 14px}.dwg img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:6px;background:#fff}
+.dwg figcaption{font-size:13px;color:var(--sub);margin-top:6px}
+.tw{overflow-x:auto;margin:0 0 8px}
+table.price{width:100%;border-collapse:collapse;font-size:15px}
+table.price th,table.price td{border-bottom:1px solid var(--line);padding:10px 6px;text-align:left;vertical-align:top}
+table.price th{font-size:12px;font-family:var(--mono);color:var(--faint);font-weight:600}
+table.price td:first-child{white-space:nowrap;font-weight:700}
+.warn{border-left:3px solid var(--accent);background:var(--accent-soft);padding:12px 16px;border-radius:0 6px 6px 0;font-size:15px;margin:0 0 8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.two h3{font-size:15px;margin:0 0 6px}
+.two ul{margin:0;padding-left:1.2em;font-size:15px;color:var(--sub)}
+.two li{margin:0 0 4px}
+pre.cmd{background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:12px 14px;font-family:var(--mono);font-size:13px;line-height:1.7;overflow-x:auto;margin:0 0 8px}
+dl.qa{margin:0;display:grid;gap:16px}
+dl.qa dt{font-weight:700}
+dl.qa dd{margin:2px 0 0;color:var(--sub);font-size:15px}
+@media (max-width:640px){.two{grid-template-columns:1fr}}
+</style>
+<script type="application/ld+json" id="ld-auto">{"@context":"https://schema.org","@graph":[{"@type":"CreativeWork","creator":{"@type":"Person","@id":"https://takmat21.github.io/#person","name":"松村貴士","url":"https://takmat21.github.io/"},"publisher":{"@type":"Organization","@id":"https://takmat21.github.io/#org","name":"ZAZOU株式会社","url":"https://takmat21.github.io/"},"image":"https://takmat21.github.io/assets/ogp.png","inLanguage":"ja","isPartOf":{"@type":"WebSite","@id":"https://takmat21.github.io/#site","name":"ZAZOU Lab","url":"https://takmat21.github.io/"},"url":"https://takmat21.github.io/samples/cad-editor/","name":"図面エディタ（DWG・DXF）：自社開発の2次元CAD","description":"DWG・DXFの図面をブラウザで開き、線・円・寸法・文字の追加、移動・回転・切る・のばすなどの修正をして、DXFとPDFで出す自社開発の作図ソフトです。元の図面は書きかえず、足した所と消した所だけを保存します。試作の段階で、確かめたことと、まだのことを分けて載せています。"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://takmat21.github.io/"},{"@type":"ListItem","position":2,"name":"仕事一覧","item":"https://takmat21.github.io/#samples"},{"@type":"ListItem","position":3,"name":"図面エディタ（DWG・DXF）：自社開発の2次元CAD","item":"https://takmat21.github.io/samples/cad-editor/"}]}]}</script>
+</head>
+<body><div class="wrap">
+<nav class="tabs" aria-label="ページの切り替え"><a href="../../#about">プロフィール</a><a href="../../#samples" class="on" aria-current="page">仕事一覧</a><a href="../../#system">仕組み</a><a href="../../#security">安全の決まり</a><a href="../../#paper">論文</a><a href="../../#video">動画</a><a href="../../#tools">道具</a><a href="../../news/">朝刊</a></nav>
+
+<header class="hero"><p class="name"><a href="../../">ZAZOU株式会社 ／ ZAZOU Lab</a></p>
+<span class="tag">見積・図面 ／ 自社開発 ／ 試作</span>
+<h1>図面を、開いて、直して、<wbr>描いて、返す。</h1>
+<p class="app-name">図面エディタ：<wbr><span style="white-space:nowrap">DWG・DXFの</span>作図と修正</p>
+<p>DWG・DXFの図面をブラウザで開き、線・円・寸法・文字を足し、移動・回転・切る・のばすなどの修正をして、DXFとPDFで出す、自社開発の2次元の作図ソフトです。元の図面は書きかえず、足した所と消した所だけを保存します。AIが書いた作図の命令を、そのまま図面に入れることもできます。</p>
+<p class="cta-note">2026年11月に作り始めた試作です。下に、確かめたことと、まだのことを分けて書いています。</p>
+</header>
+<figure class="dwg"><img src="img/app.webp" width="1600" height="1000" alt="図面エディタの画面。上に描く道具と直す道具、左に層の一覧とAIの命令を貼る欄、まん中に取付プレートの図面（外形・中心線・かくれ線・寸法）" decoding="async"><figcaption>図面エディタの画面。この見本の図面（取付プレート）は、左下の欄に貼った命令から描いたものです。</figcaption></figure>
+
+<section>
+<h2><span class="en">Why</span>なぜ作ったか</h2>
+<p class="lead">図面の仕事では、いただいた図面に寸法や注記を足す、形を少し直す、同じ形式で返す、という作業がよくあります。ZAZOUはAIで図面を読む仕組み（<a href="../drawing-estimate/">図面見積アプリ</a>）を持っていますが、「読む」だけでなく「描いて返す」所までを自分の道具で通せるようにしました。</p>
+<p>市販のCADを人が操作する形ではなく、AIが作図の命令を書き、人が画面で確かめて直す、という流れに合わせて作っています。図面を描き、読んできた設計者（パナソニックで約15年、機構設計）が、自分で使う道具として育てています。</p>
+</section>
+
+<section>
+<h2><span class="en">Features</span>できること</h2>
+<div class="tw"><table class="price">
+<tr><th>分け方</th><th>中身</th></tr>
+<tr><td>開く</td><td>DWG（2000〜2018年式）とDXFを開いて表示。層ごとの表示の切りかえ、拡大、移動、長さと角度の計測</td></tr>
+<tr><td>描く</td><td>線、連続線、四角、円、円弧、文字、寸法。数字での入力（長さ、長さと角度、相対座標、絶対座標）。端点・中点・中心への合わせ、直交</td></tr>
+<tr><td>直す</td><td>移動、複写、回転、反転、平行にずらす（オフセット）、切る（トリム）、のばす（延長）、消す、元に戻す。元の図面にあった線・円・円弧・連続線・文字・ブロックも直せます</td></tr>
+<tr><td>線</td><td>層を選んで描く、新しい層を足す。実線・破線・一点鎖線・二点鎖線・点線、線の太さ</td></tr>
+<tr><td>AIの命令</td><td>文字で書いた作図の命令を貼ると、まとめて図面に入る（下に例）</td></tr>
+<tr><td>出す</td><td>DXFで保存（開いた図面と同じ年式）。A4・A3、縮尺1:1〜1:200、図面枠と表題欄つきのPDF</td></tr>
+</table></div>
+</section>
+
+<section>
+<h2><span class="en">AI</span>AIが命令を書き、人が確かめる</h2>
+<p class="lead">「240×140の板に、四隅から30mmの位置にφ14の穴を4つ」のように頼むと、AIが下のような命令を書きます。これを貼ると、層に分かれた図面になります。数字はすべて目で読める形なので、人が見て直せます。</p>
+<pre class="cmd">LAYER 外形
+RECT 0,0 240,140
+CIRCLE 30,30 7
+CIRCLE 210,30 7
+LAYER 中心線
+LTYPE CENTER
+LINE -12,70 252,70
+LAYER 寸法
+DIM 0,0 240,0 -24
+TEXT 44,116 5 "4-φ14"</pre>
+<p>AIは形を画面に直接描きません。命令という「読める中間の形」を1つはさむことで、まちがいを人が見つけやすくしています。</p>
+<figure class="dwg"><img src="img/pdf.webp" width="1287" height="910" alt="A4横、縮尺1:2で出したPDF。取付プレートの図面に、図面枠と表題欄（図面の名前、作成、縮尺、日付）が入っている" loading="lazy" decoding="async"><figcaption>同じ図面をPDFにしたもの（A4横、縮尺1:2、白黒、図面枠と表題欄つき）。</figcaption></figure>
+</section>
+
+<section>
+<h2><span class="en">Flow</span>仕事での流れ</h2>
+<ol class="flow">
+<li><b>図面を受け取る</b><span>DWGかDXFをそのまま開きます。あわせて、お使いのCADの名前とバージョン、納品の形式を伺います。</span></li>
+<li><b>描く・直す</b><span>追記は別の層に入れ、どこを足したかが分かるようにします。元の図面の形を直したときは、その形だけを書きかえます。</span></li>
+<li><b>DXFで保存し、読み直す</b><span>保存した直後に、ソフトが自分でファイルを読み直して、形の数を確かめます。別の読み取りソフトでも点検します。</span></li>
+<li><b>必要ならDWGに変える</b><span>DWGでの納品は、変換の専用ソフト（ODA File Converter）を通します。年式もご指定に合わせます。</span></li>
+<li><b>開いて、目で確かめてから渡す</b><span>閲覧ソフトで開き、足した所・直した所・元の図面を見比べてからお渡しします。</span></li>
+</ol>
+</section>
+
+<section>
+<h2><span class="en">Format</span>DWG・DXFと年式について</h2>
+<p class="lead">拡張子と年式は、図面の受け渡しでつまずきやすい所です。考え方をまとめます。</p>
+<div class="tw"><table class="price">
+<tr><th></th><th>DWG</th><th>DXF</th></tr>
+<tr><td>中身</td><td>機械用の形。仕様は公開されていない</td><td>文字で書いてある。仕様は公開されている</td></tr>
+<tr><td>読めるCAD</td><td>AutoCADと、その互換CAD</td><td>ほぼすべてのCAD（Jw_cadなど）</td></tr>
+<tr><td>大きさ</td><td>小さい</td><td>DWGの数倍</td></tr>
+<tr><td>このソフト</td><td>開ける。保存は変換ソフトを通す</td><td>開ける。そのまま保存できる</td></tr>
+</table></div>
+<p>年式は、古いほうから R12、2000、2004、2007、2010、2013、2018 と区切られています。新しいCADは古い年式を開けますが、古いCADは新しい年式を開けません。迷ったときは、<b>いただいた図面と同じ形式・同じ年式で返す</b>のが安全です。</p>
+<div class="warn"><b>なぜDXFで保存するのか。</b> DWGは仕様が公開されておらず、書きこむと形が欠けるおそれがあります。無料の部品でDWGを書く試験をした所、2010年式・2018年式では、エラーを出さずに形が67から65に減りました。気づかないまま渡してしまうのが一番こわいので、ZAZOUは中身を点検できるDXFで保存し、DWGが必要なときだけ専用の変換ソフトを通します。</div>
+</section>
+
+<section>
+<h2><span class="en">How</span>元の図面を壊さない作り</h2>
+<p>多くの変換ソフトは、図面を一度すべて読みこみ、自分の形に直してから書き出します。このとき、読めなかった形（特殊な寸法、表、ほかのCAD独自の形など）は落ちます。</p>
+<p>このソフトは、元のDXFの文をそのまま残し、足す形を決まった位置にさしこみ、消す形だけを抜きます。画面に出せない形も、ファイルの中には手をふれずに残ります。足した形には、図面の中で重ならない番号をつけ、層や線の種類が無ければ表に足します。</p>
+</section>
+
+<section>
+<h2><span class="en">Status</span>確かめたこと・まだのこと</h2>
+<div class="two">
+<div><h3>確かめたこと</h3>
+<ul>
+<li>DWGの見本3つ（2000年式・2010年式・2018年式、形67）を開いて表示できた</li>
+<li>描く・直すの各機能を1つずつ動かし、座標が計算どおりだった</li>
+<li>2018年式の図面で、元の線・円弧・連続線・ブロックを動かし、寸法を1つ消し、破線と日本語の文字を足して保存。別の読み取りソフト（ezdxf）で点検してエラー0、形の数も合っていた</li>
+<li>日本語の層の名前と文字が、保存のあとも正しく読めた</li>
+</ul></div>
+<div><h3>まだのこと</h3>
+<ul>
+<li>AutoCAD・Jw_cadで開く確認、DWGへの変換の確認</li>
+<li>実際の仕事の図面（大きい図面、古い形式）での確認</li>
+<li>寸法・ハッチング・楕円・スプラインは、消すことだけできる（動かせない）</li>
+<li>角を丸める（フィレット）、面取り、拡大縮小、交点への合わせ</li>
+<li>PDFは画像を貼った形（線は拡大するとぼやける）</li>
+<li>2000年式のDWGの一部は、ブロックや寸法を線にばらして保存する</li>
+</ul></div>
+</div>
+</section>
+
+<section>
+<h2><span class="en">Q&amp;A</span>よくある質問</h2>
+<dl class="qa">
+<dt>AutoCADの代わりになりますか。</dt><dd>なりません。2次元の作図と修正の、よく使う部分にしぼった道具です。3次元、外部参照、複雑な寸法の書式などは扱いません。</dd>
+<dt>このソフトは配っていますか。</dt><dd>配っていません。DWGを読む部分に、オープンソースのLibreDWG（GPL）を使っています。そのため、ZAZOUの社内で使う道具として運用しています。</dd>
+<dt>図面はどこに送られますか。</dt><dd>図面を開く・描く・保存するは、すべてブラウザの中で動きます。図面のファイルを外のサーバーに送りません。AIに命令を書かせるときも、送るのは依頼の文で、図面のファイルではありません。</dd>
+<dt>納品はDWGでもできますか。</dt><dd>DXFは、そのままお渡しできます。DWGは、変換の専用ソフトを通す形で準備しています。</dd>
+</dl>
+</section>
+
+<section>
+<h2><span class="en">About</span>つくっている人</h2>
+<p class="lead">松村貴士（ZAZOU株式会社 代表）。パナソニックで2005〜2020年、チューナの機構設計、洗濯機・ロボット掃除機の開発に携わり、図面を描き、読んできました（CATIA・NX・SolidWorks・MICRO CADAM Helix）。</p>
+<a class="btn ghost" href="../drawing-estimate/">図面見積アプリ：図面PDFから見積書の下書きまで</a>
+</section>
+
+<section><div class="cta-row"><a class="cta main" href="mailto:matsumura.takashi@zazoucorp.com?subject=%E3%81%94%E7%9B%B8%E8%AB%87%EF%BC%88ZAZOU%20Lab%EF%BC%89">メールで相談する（無料）</a><a class="cta sub" href="tel:09063737945">電話 090-6373-7945</a></div>
+<p class="cta-note">図面への追記・修正のご相談を受けています。メール：matsumura.takashi@zazoucorp.com</p>
+</section>
+<footer class="site-foot">
+  <div class="sf-co"><b>ZAZOU株式会社</b><span>ZAZOU Lab</span></div>
+  <div class="sf-ct"><span>ご相談・お問い合わせ（無料）</span><a href="mailto:matsumura.takashi@zazoucorp.com">matsumura.takashi@zazoucorp.com</a><a href="tel:090-6373-7945">090-6373-7945</a><a class="sf-cw" href="../../ai/">AIで業務を仕組みにするご相談は ZAZOU AI Works へ</a></div>
+  <p class="sf-small"><span class="mono">© 2026 ZAZOU株式会社</span></p>
+</footer>
+</div></body></html>
