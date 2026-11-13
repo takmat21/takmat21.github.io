@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="assets/style.css?v=20261112a">
+<link rel="stylesheet" href="assets/style.css?v=20261113a">
 <link rel="stylesheet" href="assets/hero-art/hero-art.css">
 <link rel="stylesheet" href="assets/hero-flower/hero-flower.css">
 <link rel="stylesheet" href="assets/hero-desk/hero-desk.css">
@@ -65,6 +65,7 @@
 </div>
 </header>
 
+<button id="lang-btn" class="lang-btn" type="button" aria-label="Switch to English">English</button>
 <nav class="tabs" aria-label="ページ内の切り替え">
   <a href="#about" data-tab="about">プロフィール</a>
   <a href="#samples" data-tab="samples">仕事一覧</a>
@@ -645,6 +646,7 @@
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.yt');if(!b||b.querySelector('iframe'))return;var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+b.dataset.yt+'?autoplay=1&rel=0';f.title=b.getAttribute('aria-label')||'YouTube';f.allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';f.allowFullscreen=true;b.appendChild(f);});
 </script>
 
+<script src="assets/lang.js?v=20261113a" defer></script>
 <script src="assets/hero-art/hero-art.js"></script>
 <script src="assets/hero-flower/hero-flower.js"></script>
 <script src="assets/hero-video/hero-video.js" defer></script>
