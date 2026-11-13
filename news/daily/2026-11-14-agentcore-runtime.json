@@ -1,0 +1,32 @@
+{
+ "date": "2026-11-14",
+ "title": "AWS、AIエージェントの実行基盤AgentCore Runtimeを刷新：起動は2秒未満、1セッションに最大8 vCPU・32GB、待ち時間は課金されない形に",
+ "category": "製品・サービス",
+ "lead": "アマゾン ウェブ サービス（AWS）が11月12日、AIエージェントを動かす管理型の実行基盤「Amazon Bedrock AgentCore Runtime」の次世代版を公式ブログで発表しました（書き手は同サービスGMのMadhu Parthasarathy氏）。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "新しい版は、セッションの起動、計算の量、メモリの使い方を改めました。ブログによれば、セッションはコンテナの大きさや同時実行数に関わらず2秒未満で起動し、全体では最大15倍速く始まります。1セッションあたりの計算は従来の最大4倍で、最大8 vCPU・32GBのメモリ、最大10GBのコンテナイメージに対応します。複数回やり取りするエージェントのメモリは、最大68%減らせるとしています。",
+    "費用面では、使い終わったメモリは数分で回収され、待機中のエージェントは0まで縮むので、待ち時間ではなく作業にだけ払う形になるとのことです。常時動かすエージェント向けには、最低額を決めた基準料金と、その最大4倍までの一時的な増加を認める料金もあります。顧客の例として、Missionは推論の起動が35%速くなり1回あたりの費用が17%下がったこと、Zuoraは1回の呼び出しあたりのメモリが約60%減ったことが挙げられています。",
+    "安全面では、各セッションを専用のFirecracker microVMで隔離し、セッションごとに識別情報、アクセス方針、監査の記録を持たせます。S3などの保存先も、同じ管理の内側で使えるようにしました。セッションごとに保存先のフォルダを分ける機能は、re:Inventまでの予定とされています。数字はAWSと顧客の報告で、第三者の検証は記事にはありません。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "AWS",
+   "url": "https://aws.amazon.com/blogs/machine-learning/run-agents-securely-and-efficiently-with-the-next-generation-agentcore-runtime",
+   "note": "元記事",
+   "title": "Run agents securely and efficiently with the next-generation AgentCore Runtime",
+   "org": "Amazon Web Services（Madhu Parthasarathy氏）",
+   "published": "2026-11-12",
+   "image": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/11/ML-22215-featured-image.png",
+   "image_ok": true,
+   "image_size": [
+    1152,
+    576
+   ]
+  }
+ ]
+}

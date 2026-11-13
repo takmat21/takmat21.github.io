@@ -1,0 +1,32 @@
+{
+ "date": "2026-11-14",
+ "title": "OpenAI、ChatGPTの「dots」が買い物をできる決済機能「ChatGPT Wallet」を開始：まず米国のProの18歳以上、買うたびに本人の確認",
+ "category": "製品・サービス",
+ "lead": "OpenAIが11月13日、同社のAIエージェント「dots」に利用者の代わりの買い物をさせる決済機能「ChatGPT Wallet」を始めたと、CNBCのアシュリー・カポート記者が報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "ChatGPT Walletは、利用者がカード情報を一度登録し、dotに買いたい物を探させる機能です。買うたびに、利用者がセキュリティ確認で承認します。アメリカン・エキスプレス、マスターカード、ビザと組んで作られ、カードの特典や保護は今までどおり使えるとされています。",
+    "仕組みの要点は、dotが本物のカード情報を見ない点です。決済ネットワークが、その取引だけに使える「支払いトークン」（限定されたカード番号、セキュリティコード、有効期限）をdotに渡します。最初に使えるのは、米国のProの購読者で18歳以上の人だけです。アメックスのルーク・ゲブ氏は、まず限った環境で始めて様子を見ながら広げる考えを語っています。OpenAIは、開始時点では取引から手数料を取りません。",
+    "記事は、ChatGPTの週あたり利用者が12億人超、有料の利用者が約1億人（第3四半期末時点）とも伝えています。一方で、ユナイテッド航空はエージェントによる航空券の予約を認めない方針で、アマゾンも自社サイトでの購入を止めていると、同じ記事が触れています。日本での提供については、記事では述べられていません。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "CNBC",
+   "url": "https://www.cnbc.com/2026/11/13/openai-chatgpt-wallet-dot-purchases.html",
+   "note": "元記事",
+   "title": "OpenAI launches ChatGPT Wallet, allowing its 'dots' AI agents to make purchases for users",
+   "org": "報道：CNBC（Ashley Capoot記者）",
+   "published": "2026-11-13",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}
