@@ -487,15 +487,7 @@
           <li><b>動画</b><span>MP4に書き出す</span></li>
           <li><b>公開</b><span>YouTubeへ自動</span></li>
         </ol>
-        <p class="v-cost">1本の費用のめやす</p>
-        <ul class="v-costs">
-          <li><b>サムネイルの画像</b><span>GoogleのGemini API（Nano Banana Pro）で作ります。出力1枚 $0.134、材料の写真1枚 $0.0011。1本で3〜6枚作るので、1本あたり $0.40〜0.81（約60〜120円）。無料枠はありません。</span></li>
-          <li><b>音声合成</b><span>Google Cloud Text-to-Speech（Neural2）。月100万字まで無料、その先は100万字ごとに $16。今の使い方は月10〜25万字ほどで、無料の範囲に収まる見こみです。</span></li>
-          <li><b>動画の書き出し</b><span>GitHub Actions。1本あたり約10〜11分。プランに含まれる利用枠（GitHub Freeは月 $12 分、Linuxは1分 $0.006）の範囲に収まる見こみです。</span></li>
-          <li><b>YouTubeへの公開</b><span>YouTube Data API。料金はかかりません。</span></li>
-          <li><b>台本と制作を進めるAI</b><span>Claudeを定額プランの中で使っています。</span></li>
-        </ul>
-        <p class="v-note">料金は各社の公式ページで2026年11月14日に確かめた値。円は1ドル150円で計算。「見こみ」と書いた所は、使った量からの計算で、請求の画面では確かめていません。</p>
+        <p class="v-cost">1本の費用 約60〜120円</p>
       </div>
     </div>
     <p class="v-own-h">日本語の要約動画（英語のインタビューを、耳で聞ける長さに）</p>
@@ -655,7 +647,7 @@
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.yt');if(!b||b.querySelector('iframe'))return;var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+b.dataset.yt+'?autoplay=1&rel=0';f.title=b.getAttribute('aria-label')||'YouTube';f.allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';f.allowFullscreen=true;b.appendChild(f);});
 </script>
 
-<script src="assets/lang.js?v=20261114a" defer></script>
+<script src="assets/lang.js?v=20261114b" defer></script>
 <script src="assets/hero-art/hero-art.js"></script>
 <script src="assets/hero-flower/hero-flower.js"></script>
 <script src="assets/hero-video/hero-video.js" defer></script>
