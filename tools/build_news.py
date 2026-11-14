@@ -151,7 +151,8 @@ def bg_credit(a, link=False):
     b = a.get('bg')
     if not b or a.get('photo'):
         return ''
-    t = f'写真：{E(b.get("creator", ""))}／{E(b.get("license", ""))}（{E(b.get("change", ""))}）'
+    who = '' if b.get('creator', '不明') == '不明' else E(b['creator']) + '／'
+    t = f'写真：{who}{E(b.get("license", ""))}（{E(b.get("change", ""))}）'
     if link:
         return f'<p class="note" style="margin-top:10px">見出し画像の{t}／<a href="{E(b.get("page", ""))}" target="_blank" rel="noopener">元の写真</a>' + (f'／<a href="{E(b["license_url"])}" target="_blank" rel="noopener">ライセンス</a>' if b.get('license_url') else '') + '</p>'
     return f'<small class="credit">{t}</small>'
