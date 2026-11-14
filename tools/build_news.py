@@ -146,6 +146,17 @@ def photo_of(a, path):
     return l0['image'] if l0.get('image_ok') else ''
 
 
+def bg_credit(a, link=False):
+    """自前の見出し画像に入れた写真の出どころ（撮影者・ライセンス・変更点）。"""
+    b = a.get('bg')
+    if not b or a.get('photo'):
+        return ''
+    t = f'写真：{E(b.get("creator", ""))}／{E(b.get("license", ""))}（{E(b.get("change", ""))}）'
+    if link:
+        return f'<p class="note" style="margin-top:10px">見出し画像の{t}／<a href="{E(b.get("page", ""))}" target="_blank" rel="noopener">元の写真</a>' + (f'／<a href="{E(b["license_url"])}" target="_blank" rel="noopener">ライセンス</a>' if b.get('license_url') else '') + '</p>'
+    return f'<small class="credit">{t}</small>'
+
+
 def photo_img(src, fallback):
     """出典元の写真を元の URL のまま表示。読めなかったときは自前の見出し画像に切り替える。"""
     # 読めないときは自前の見出し画像に替え、「画像：出典元」の表記も消す
@@ -157,11 +168,12 @@ def photo_img(src, fallback):
 def make_thumb(a, p):
     """写真のない号の見出し画像 thumb.png を作る（題名・カテゴリ・日付が変わったときだけ作り直す）。"""
     import hashlib, subprocess
-    key = hashlib.sha1('|'.join([a.get('category', ''), a['title'], a.get('date', a['slug'][:10])]).encode()).hexdigest()
+    bg = os.path.join(p, 'bg.jpg') if a.get('bg') and os.path.exists(os.path.join(p, 'bg.jpg')) else ''  # 自由に使える写真（tools/news_photo.py）
+    key = hashlib.sha1('|'.join([a.get('category', ''), a['title'], a.get('date', a['slug'][:10])] + ([a['bg'].get('page', ''), 'p1'] if bg else [])).encode()).hexdigest()
     png, stamp = os.path.join(p, 'thumb.png'), os.path.join(p, 'thumb.key')
     if not (os.path.exists(png) and os.path.exists(stamp) and open(stamp).read() == key):
         js = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'news_thumb.js')
-        subprocess.run(['node', js, png, a.get('category', '今日の話題'), a['title'], a.get('date', a['slug'][:10])], check=True)
+        subprocess.run(['node', js, png, a.get('category', '今日の話題'), a['title'], a.get('date', a['slug'][:10])] + ([bg] if bg else []), check=True)
         open(stamp, 'w').write(key)
     webp = os.path.join(p, 'thumb.webp')
     if not os.path.exists(webp) or os.path.getmtime(webp) < os.path.getmtime(png):
@@ -206,10 +218,11 @@ def build_daily():
                 credit = f'<small class="credit">画像：{E(l["source"])}</small>'
             elif first and a.get('thumb'):
                 img = f'<img src="{E(a["thumb"])}" alt="" loading="lazy" width="600" height="314">'
+                credit = bg_credit(a)
             else:
                 img = f'<div class="ph">{E(l["source"])}</div>'
             s += f'<a class="lk" href="{E(l["url"])}" target="_blank" rel="noopener">{img}<span>{E(l["source"])}<small>{E(l.get("note",""))}</small>{credit}</span></a>'
-        s += f'</div><p style="margin-top:24px"><a href="../../">← 統括AI（先輩）の朝刊の一覧へ</a></p>{NOTE}</section>\n' + FOOT
+        s += f'</div>{bg_credit(a, True)}<p style="margin-top:24px"><a href="../../">← 統括AI（先輩）の朝刊の一覧へ</a></p>{NOTE}</section>\n' + FOOT
         open(os.path.join(p, 'index.html'), 'w', encoding='utf-8').write(s)
     arts.sort(key=lambda a: (a.get('date', a['slug'][:10]), a['slug']), reverse=True)
     # 目立つ枠（最新号）は常に日付の新しい号（11/3 松村さん）。top の固定はやめた
@@ -251,6 +264,7 @@ def main():
             credit = f'<small class="credit">画像：{E((a.get("links") or [{}])[0].get("source", ""))}</small>'
         elif own:
             img = f'<img src="{E(own)}" alt="" loading="lazy" width="600" height="314">'
+            credit = bg_credit(a)
         else:
             img = f'<div class="ph">{E(a.get("category",""))}</div>'
         extra = f'<small style="margin-top:6px;color:var(--sub)">{E(a.get("lead",""))}</small>' if big else ''

@@ -4,7 +4,7 @@
 const { chromium } = require('playwright');
 const fs = require('fs'), os = require('os'), path = require('path');
 
-const [out, category, title, date] = process.argv.slice(2);
+const [out, category, title, date, bg] = process.argv.slice(2);
 const esc = (s) => String(s || '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const size = title.length > 44 ? 50 : title.length > 30 ? 56 : 64;
 
@@ -32,7 +32,10 @@ const LAYOUT = [
   { deco: svgWaves, wrap: 'left:88px;right:110px;top:76px;bottom:250px', k: 0.95 },
   { deco: svgGrid, wrap: 'left:88px;right:450px;top:78px;bottom:66px', k: 0.85 },
 ];
-const lay = LAYOUT[L];
+// 写真つき（tools/news_photo.py が置いた bg.jpg があるとき）：写真を全面に敷き、下を暗くして題名をのせる
+const photo = bg && fs.existsSync(bg) ? 'data:image/jpeg;base64,' + fs.readFileSync(bg).toString('base64') : '';
+if (photo) { c.bg = '#0E1216'; c.fg = '#FFFFFF'; c.sub = '#D9DEE5'; if (['#B8553A','#2E6B4E','#9C3D5C','#5546B0','#1F6F5C'].includes(c.ac)) c.ac = '#FFD166'; }
+const lay = photo ? { deco: `<img src="${photo}" style="position:absolute;inset:0;width:1200px;height:628px;object-fit:cover"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,12,18,.50) 0%,rgba(8,12,18,.66) 45%,rgba(8,12,18,.90) 100%)"></div><div style="position:absolute;left:0;top:0;bottom:0;width:10px;background:${c.ac}"></div>`, wrap: 'left:80px;right:80px;top:70px;bottom:60px', k: 0.95 } : LAYOUT[L];
 const sz = Math.round(size * lay.k);
 
 const html = `<!doctype html><html><head><meta charset="utf-8"><style>
@@ -43,7 +46,7 @@ body{font-family:N,sans-serif;background:${c.bg};color:${c.fg};position:relative
 .wrap{position:absolute;${lay.wrap};display:flex;flex-direction:column}
 .cat{align-self:flex-start;font-size:22px;font-weight:700;letter-spacing:.18em;color:${c.ac};display:flex;align-items:center;gap:14px}
 .cat:before{content:"";width:44px;height:3px;background:${c.ac};border-radius:2px}
-h1{font-size:${sz}px;line-height:1.45;font-weight:700;margin:28px 0 0;letter-spacing:.02em;font-feature-settings:"palt"}
+h1{font-size:${sz}px;line-height:1.45;font-weight:700;margin:28px 0 0;letter-spacing:.02em;font-feature-settings:"palt"${photo ? ';text-shadow:0 2px 14px rgba(0,0,0,.75)' : ''}}
 .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:baseline;font-size:22px;color:${c.sub};letter-spacing:.06em}
 .foot b{color:${c.fg};font-weight:700}
 .side{position:absolute;left:0;top:0;bottom:0;width:250px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;padding:84px 0 70px 44px;box-sizing:border-box}
