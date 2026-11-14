@@ -80,7 +80,10 @@ def head(title, desc, url, depth, og='https://takmat21.github.io/assets/ogp.png'
 .lk.top b{{display:block;font-size:19px;line-height:1.55;margin:4px 0 8px}}
 .lk.top .go{{display:inline-block;margin-top:10px;color:var(--accent);font-size:13px;font-weight:700}}
 .lk.top span{{padding:14px 16px}}
-@media (min-width:760px){{.lk.top span{{padding:18px 22px}}}}
+@media (min-width:900px){{.lk.top{{flex-direction:row;align-items:center}}.lk.top img{{width:52%;flex:none}}.lk.top span{{padding:16px 26px}}.lk.top b{{font-size:20px}}}}
+.home .cols>.links,.home .cols>details,.home .cols>.note,.home .cols>.week-list{{margin-top:0}}
+.home .cols>.note{{margin-bottom:12px}}
+@media (min-width:1500px){{.rows{{grid-template-columns:1fr 1fr 1fr!important}}}}
 @media (max-width:759px){{.rows{{grid-template-columns:1fr!important}}}}
 .jump{{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}}
 .jump a{{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:5px 14px;text-decoration:none;color:inherit}}
@@ -92,7 +95,7 @@ section[id]{{scroll-margin-top:16px}}
 .news-hero img{{display:block;width:100%;height:auto;border-radius:8px}}
 @media (max-width:640px){{.tabs{{-webkit-mask-image:linear-gradient(to right,transparent 0,#000 28px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(to right,transparent 0,#000 28px,#000 calc(100% - 28px),transparent);padding-left:12px;padding-right:12px}}}}
 </style></head>
-<body><div class="wrap">
+<body{' class="home"' if depth == 1 else ''}><div class="wrap">
 <nav class="tabs" aria-label="ページの切り替え"><a href="{up}#about">プロフィール</a><a href="{up}#samples">仕事一覧</a><a href="{up}#system">仕組み</a><a href="{up}#security">安全の決まり</a><a href="{up}#paper">論文</a><a href="{up}#video">動画</a><a href="{up}#tools">道具</a><a href="{up}news/" class="on" aria-current="page">朝刊</a></nav>
 '''
 
@@ -270,7 +273,7 @@ def main():
     hero = ('<picture class="news-hero"><source media="(max-width:640px)" srcset="../assets/news-hero-narrow.svg">'
             '<img src="../assets/news-hero-wide.svg" alt="" width="1200" height="400"></picture>\n')
     s = s.replace('<nav class="tabs"', hero + '<nav class="tabs" style="margin-top:8px"', 1)
-    s += f'''<header class="hero"><p class="name">ZAZOU株式会社 ／ 毎日更新</p><h1>統括AI（先輩）の朝刊</h1><p>{DESC}</p>
+    s += f'''<header class="hero"><p class="name">ZAZOU株式会社 ／ 毎日更新</p><h1>統括AI（先輩）の朝刊</h1><p style="margin-top:16px;max-width:860px">{DESC}</p>
 <p class="note" style="margin-top:14px">各号の構成：①記事の要約（海外の記事は日本語で）②自社のAIチームの運用から見ると。元の記事へのリンクを付けています。</p>
 <nav class="jump" aria-label="このページの中"><a href="#latest">最新号</a><a href="#back">これまでの号</a><a href="#ainews">AIニュース</a></nav></header>
 '''
@@ -295,12 +298,12 @@ def main():
     agent = [a for a in arts if any(sec.get('heading','').startswith('自社のAIチーム') for sec in a.get('sections', []))]
     general = [a for a in arts if a not in agent]
     if agent:
-        s += '<section id="latest"><h2>Latest <span class="ja">／ 最新号</span></h2><div class="links" style="grid-template-columns:1fr">' + card(agent[0], True) + '</div></section>\n'
+        s += '<section id="latest" class="cols"><h2><span class="en">Latest</span>最新号</h2><div class="links" style="grid-template-columns:1fr">' + card(agent[0], True) + '</div></section>\n'
         if len(agent) > 1:
-            s += '<section id="back"><h2>Back numbers <span class="ja">／ これまでの号</span></h2>' + rows(agent[1:40]) + '</section>\n'
+            s += '<section id="back" class="cols"><h2><span class="en">Back numbers</span>これまでの号</h2>' + rows(agent[1:40]) + '</section>\n'
     if general or weeks:
         # 一般記事の要約（AI業界全般のニュース）。11/3 松村さん「一般記事の要約と先輩の朝刊」
-        s += '<section id="ainews"><h2>AI News <span class="ja">／ AIニュース（一般記事の要約）</span></h2><p class="note">AI業界全般の話題を、毎日3本、日本語で要約しています。</p>' + rows(general[:60], 8)
+        s += '<section id="ainews" class="cols"><h2><span class="en">AI News</span>AIニュース（一般記事の要約）</h2><p class="note">AI業界全般の話題を、毎日3本、日本語で要約しています。</p>' + rows(general[:60], 8)
         s += '<ul class="week-list" style="margin-top:14px">' + ''.join(f'<li><a href="{w["slug"]}/">{E(w["week"])}の話題のトピック（まとめ）</a></li>' for w in weeks) + '</ul></section>\n'
     s += f'<section>{NOTE}</section>\n' + FOOT
     open(os.path.join(NEWS, 'index.html'), 'w', encoding='utf-8').write(s)

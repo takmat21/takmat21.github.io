@@ -40,7 +40,10 @@
 .lk.top b{display:block;font-size:19px;line-height:1.55;margin:4px 0 8px}
 .lk.top .go{display:inline-block;margin-top:10px;color:var(--accent);font-size:13px;font-weight:700}
 .lk.top span{padding:14px 16px}
-@media (min-width:760px){.lk.top span{padding:18px 22px}}
+@media (min-width:900px){.lk.top{flex-direction:row;align-items:center}.lk.top img{width:52%;flex:none}.lk.top span{padding:16px 26px}.lk.top b{font-size:20px}}
+.home .cols>.links,.home .cols>details,.home .cols>.note,.home .cols>.week-list{margin-top:0}
+.home .cols>.note{margin-bottom:12px}
+@media (min-width:1500px){.rows{grid-template-columns:1fr 1fr 1fr!important}}
 @media (max-width:759px){.rows{grid-template-columns:1fr!important}}
 .jump{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
 .jump a{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:5px 14px;text-decoration:none;color:inherit}
