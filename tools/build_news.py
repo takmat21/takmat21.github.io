@@ -80,7 +80,7 @@ def head(title, desc, url, depth, og='https://takmat21.github.io/assets/ogp.png'
 .lk.top b{{display:block;font-size:19px;line-height:1.55;margin:4px 0 8px}}
 .lk.top .go{{display:inline-block;margin-top:10px;color:var(--accent);font-size:13px;font-weight:700}}
 .lk.top span{{padding:14px 16px}}
-@media (min-width:760px){{.lk.top{{flex-direction:row}}.lk.top img{{width:54%;flex:none;align-self:stretch;aspect-ratio:auto;height:auto;min-height:250px;object-fit:cover}}.lk.top span{{padding:18px 22px;display:flex;flex-direction:column;justify-content:center}}}}
+@media (min-width:760px){{.lk.top{{flex-direction:row}}.lk.top{{align-items:center}}.lk.top img{{width:58%;flex:none}}.lk.top span{{padding:18px 22px;display:flex;flex-direction:column;justify-content:center}}}}
 @media (max-width:759px){{.rows{{grid-template-columns:1fr!important}}}}
 .jump{{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}}
 .jump a{{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:5px 14px;text-decoration:none;color:inherit}}
