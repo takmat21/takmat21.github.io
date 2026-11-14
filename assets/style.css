@@ -436,3 +436,9 @@ dl.terms dt{font-weight:700}dl.terms dd{margin:0;font-size:14.5px;color:var(--su
 .v-costs b{font-weight:700}
 .v-costs span{color:var(--sub)}
 @media (max-width:560px){.v-costs li{grid-template-columns:1fr}}
+/* 仕事一覧：横長のサムネを大きく、題名の上に置く（11/14 松村さん） */
+ul.rows a.row.has-thumb:has(.th.land){grid-template-columns:1fr auto;row-gap:10px}
+ul.rows a.row.has-thumb .th.land{grid-column:1 / -1;grid-row:1;width:100%}
+ul.rows a.row.has-thumb:has(.th.land) .t{grid-column:1;grid-row:2}
+ul.rows a.row.has-thumb:has(.th.land) .m{grid-column:2;grid-row:2}
+ul.rows a.row.has-thumb:has(.th.land) .d{grid-column:1 / -1;grid-row:3}
