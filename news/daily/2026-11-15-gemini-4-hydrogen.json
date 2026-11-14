@@ -1,0 +1,33 @@
+{
+ "date": "2026-11-15",
+ "title": "Google、日々のコーディングとエージェント作業向けの「Gemini 4 Hydrogen」を公開：入力100万トークンあたり1.50ドル、出力7.50ドル",
+ "category": "製品・サービス",
+ "lead": "Googleが11月12日、Google DeepMindのKoray Kavukcuoglu氏の署名記事で、速さと効率を重視したAIモデル「Gemini 4 Hydrogen」を発表しました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "Hydrogenは、深い推論を担う上位モデルのGemini 4 CarbonやArgonに対し、素早く仕事を実行する役の位置づけです。料金は入力100万トークンあたり1.50ドル、出力7.50ドルで、100万トークンの文脈全体で同じです。Google AI Studio、Gemini API、Geminiアプリ、検索などで使え、Antigravityは有料のAI ProとUltraの利用者向けです。",
+    "性能について、Googleは前のGemini 3.8 Flashより高い設定で2.5倍速く終わり、Terminal-Bench 4.1の点が18.2%から57%に上がったと述べています。Artificial Analysisの指数は51（最高設定で54）です。",
+    "役割分担の面では、Antigravityの新機能「Orchestrator」が、1つの作業の中でCarbonとHydrogenを切り替えます。Terminal-Benchで、上位モデルに近い成功率を、割り当ての消費24%減、完了が19%速い結果で達成したとのことです。Carbonが並列のエージェントを束ね、Hydrogenが作業役と確認役を務める使い方も紹介されています。",
+    "安全面では、権限の境界を回避する確率が最大2倍低い、間接的なプロンプトインジェクションへの耐性が2.3倍以上、などが挙げられています。いずれもGoogle自身の評価の数字です。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "Google（公式ブログ）",
+   "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+   "note": "元記事",
+   "title": "Introducing Gemini 4 Hydrogen",
+   "org": "発表：Google DeepMind（Koray Kavukcuoglu氏）",
+   "published": "2026-11-12",
+   "image": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-4-hydrogen__key-art__lockup__16-9.width-1300.jpg",
+   "image_ok": true,
+   "image_size": [
+    1300,
+    731
+   ]
+  }
+ ]
+}

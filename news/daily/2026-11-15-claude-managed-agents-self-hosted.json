@@ -1,0 +1,32 @@
+{
+ "date": "2026-11-15",
+ "title": "Anthropic、Claude Managed Agentsの自社運用版を限定ベータで開始：認証情報は顧客の環境の中に置いたまま",
+ "category": "製品・サービス",
+ "lead": "Anthropicが11月12日、AIエージェントの実行基盤「Claude Managed Agents」を企業が自社の環境で動かせる版の非公開ベータを始めたと、Help Net SecurityのAnamarija Pogorelec記者が報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "これまでは、顧客が自社で持てるのはエージェントのコードを動かす「サンドボックス」だけで、認証情報の扱いや行動の記録はAnthropic側でした。新しい版では、Managed Agentsのサーバー、会話の履歴を入れるPostgreSQLのデータベース、シェルやファイルの道具を動かす作業部分を、顧客が自社のクラウドやオンプレミスで運用します。開発者が使う基本のAPIは、ホスト型と同じです。",
+    "安全面では、AIを呼ぶ部分とサンドボックスを分け、秘密の情報をサンドボックスの外に置きます。MCPの道具や対応するAPI呼び出しでは、外側のプロキシが呼び出しの時点で認証情報を付けます。ただし守られるのはこの範囲だけなので、記事は、ほかのサービスに触れる場合は公開前に確かめるよう勧めています。接続できる先は許可リストで限れます。エージェントの1手ごとの動きは記録され、OpenTelemetryで既存の監視ツールに送れます。",
+    "一方で、サーバーやデータベースの更新、ファイアウォールの設定は顧客の責任です。Claudeへのリクエストは顧客のネットワークの外に出ます。参加は、Anthropicの担当チームに申し込みます。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "Help Net Security",
+   "url": "https://www.helpnetsecurity.com/2026/11/12/anthropic-self-hosted-claude-managed-agents/",
+   "note": "元記事",
+   "title": "Self-hosted Claude Managed Agents keeps agent credentials in your environment",
+   "org": "報道：Help Net Security（Anamarija Pogorelec記者）",
+   "published": "2026-11-12",
+   "image": "https://img.helpnetsecurity.com/wp-content/uploads/2026/05/27125835/claude-vortex.webp",
+   "image_ok": true,
+   "image_size": [
+    1456,
+    816
+   ]
+  }
+ ]
+}

@@ -1,0 +1,32 @@
+{
+ "date": "2026-11-15",
+ "title": "米国の4つの非営利団体、Anthropic・Google・Meta・OpenAI・SpaceXを提訴：最先端AIの訓練と公開を止める緊急の差し止めを求める",
+ "category": "政策",
+ "lead": "米国の非営利団体4つが11月にカリフォルニア州の裁判所で、AI企業5社に最先端モデルの開発停止を求める訴えを起こしたと、アルジャジーラのHoda Sherif氏が報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "訴えたのは、Irreplaceable Education Fund、Public Citizen、Heat Initiative、Alliance for Secure AIの4団体です。サンフランシスコの上級裁判所に出され、相手はAnthropic、Google、Meta、OpenAI、SpaceXのAI部門の5社です。",
+    "主張は、各社は自社のAIが大きな被害を起こすのを防ぎきれないのに開発を続けている、というものです。AIによるサイバー攻撃などの事例や、各社の経営陣自身が危険を認めている発言を根拠に挙げ、州の不正競争防止法に違反するとしています。求めるのは、次世代モデルについて、人の管理下にあると示すまでの緊急の差し止めです。",
+    "団体は、連邦レベルの独立した評価機関、企業の厳格責任、独立した規制機関も提案しています。連邦法は最低限の保護を定め、州はそれより強い規則を作れるようにする案です。また、米中がともに減速すれば中国が有利になることはなく、二国間の合意や国際条約が必要だと述べています。記事は、議会がまだAIの法律を通していない点にも触れています。裁判所の判断はまだ出ていません。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "Al Jazeera",
+   "url": "https://www.aljazeera.com/news/2026/11/12/us-nonprofits-sue-tech-giants-to-halt-ai-development",
+   "note": "元記事",
+   "title": "US nonprofits sue tech giants to halt AI development",
+   "org": "報道：Al Jazeera English（Hoda Sherif記者）",
+   "published": "2026-11-12",
+   "image": "https://www.aljazeera.com/wp-content/uploads/2026/11/ap_6af606cdc097e-1794508493.jpg?resize=1920%2C1440",
+   "image_ok": true,
+   "image_size": [
+    1920,
+    1440
+   ]
+  }
+ ]
+}
