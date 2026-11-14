@@ -13,7 +13,7 @@
     for(var n=el.firstChild;n;n=n.nextSibling) if(n.nodeType===3&&JA.test(n.nodeValue)){ var e2=dict[key(n.nodeValue)]; if(e2){ saved.push([n,null,n.nodeValue]); n.nodeValue=n.nodeValue.replace(/\S[\s\S]*\S|\S/,e2.replace(/<[^>]+>/g,'')); } } }
   function toEn(){ if(isEn) return; isEn=true; walk(document.body); document.documentElement.lang='en'; if(dict.__title) document.title=dict.__title; btn.textContent='日本語'; btn.setAttribute('aria-label','日本語に切りかえる'); document.body.classList.add('lang-en'); }
   function toJa(){ if(!isEn) return; isEn=false; for(var i=saved.length-1;i>=0;i--){ var s=saved[i]; if(s[1]!==null){ s[0].innerHTML=s[1]; s[0].removeAttribute('lang'); } else s[0].nodeValue=s[2]; } saved=[]; document.documentElement.lang='ja'; document.title=jaTitle; btn.textContent='English'; btn.setAttribute('aria-label','Switch to English'); document.body.classList.remove('lang-en'); }
-  function load(cb){ if(dict) return cb(); fetch('assets/i18n-en.json?v=20261113a').then(function(r){ return r.json(); }).then(function(j){ dict=j; cb(); }).catch(function(){ btn.textContent='English'; }); }
+  function load(cb){ if(dict) return cb(); fetch('assets/i18n-en.json?v=20261114a').then(function(r){ return r.json(); }).then(function(j){ dict=j; cb(); }).catch(function(){ btn.textContent='English'; }); }
   function store(v){ try{ localStorage.setItem(KEY,v); }catch(e){} }
   btn.addEventListener('click',function(){ if(isEn){ toJa(); store('ja'); } else { btn.textContent='…'; load(function(){ toEn(); store('en'); }); } });
   var want=null; try{ want=localStorage.getItem(KEY); }catch(e){} var q=/[?&]lang=(en|ja)/.exec(location.search); if(q) want=q[1];
