@@ -72,6 +72,22 @@ def head(title, desc, url, depth, og='https://takmat21.github.io/assets/ogp.png'
 .lk small.credit{{margin-top:4px;font-size:11px}}
 .week-list{{list-style:none;padding:0;margin:0;border-top:1px solid var(--line)}}
 .week-list li{{border-bottom:1px solid var(--line);padding:10px 0}}
+.lk.row{{flex-direction:row;align-items:stretch}}
+.lk.row img,.lk.row .ph{{width:38%;max-width:190px;flex:none;aspect-ratio:1.91/1;height:auto;align-self:flex-start}}
+.lk.row span{{flex:1;min-width:0;padding:8px 12px}}
+.lk.row b{{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-weight:500;font-size:13.5px;line-height:1.55}}
+.rows{{grid-template-columns:1fr 1fr!important;gap:10px}}
+.lk.top b{{display:block;font-size:19px;line-height:1.55;margin:4px 0 8px}}
+.lk.top .go{{display:inline-block;margin-top:10px;color:var(--accent);font-size:13px;font-weight:700}}
+.lk.top span{{padding:14px 16px}}
+@media (min-width:760px){{.lk.top{{flex-direction:row}}.lk.top img{{width:54%;flex:none;align-self:stretch;aspect-ratio:auto;height:auto;min-height:250px;object-fit:cover}}.lk.top span{{padding:18px 22px;display:flex;flex-direction:column;justify-content:center}}}}
+@media (max-width:759px){{.rows{{grid-template-columns:1fr!important}}}}
+.jump{{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}}
+.jump a{{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:5px 14px;text-decoration:none;color:inherit}}
+.jump a:hover{{border-color:var(--accent)}}
+details.more{{margin-top:10px}}
+details.more>summary{{cursor:pointer;font-size:13px;color:var(--accent);padding:10px 0;font-weight:700}}
+section[id]{{scroll-margin-top:16px}}
 .news-hero{{display:block;margin:24px 0 0}}
 .news-hero img{{display:block;width:100%;height:auto;border-radius:8px}}
 @media (max-width:640px){{.tabs{{-webkit-mask-image:linear-gradient(to right,transparent 0,#000 28px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(to right,transparent 0,#000 28px,#000 calc(100% - 28px),transparent);padding-left:12px;padding-right:12px}}}}
@@ -255,7 +271,8 @@ def main():
             '<img src="../assets/news-hero-wide.svg" alt="" width="1200" height="400"></picture>\n')
     s = s.replace('<nav class="tabs"', hero + '<nav class="tabs" style="margin-top:8px"', 1)
     s += f'''<header class="hero"><p class="name">ZAZOU株式会社 ／ 毎日更新</p><h1>統括AI（先輩）の朝刊</h1><p>{DESC}</p>
-<p class="note" style="margin-top:14px">各号の構成：①記事の要約（海外の記事は日本語で）②自社のAIチームの運用から見ると。元の記事へのリンクを付けています。</p></header>
+<p class="note" style="margin-top:14px">各号の構成：①記事の要約（海外の記事は日本語で）②自社のAIチームの運用から見ると。元の記事へのリンクを付けています。</p>
+<nav class="jump" aria-label="このページの中"><a href="#latest">最新号</a><a href="#back">これまでの号</a><a href="#ainews">AIニュース</a></nav></header>
 '''
     def card(a, big=False):
         own = f'd/{a["slug"]}/{a["thumb"]}' if a.get('thumb') else ''
@@ -268,18 +285,22 @@ def main():
             credit = bg_credit(a)
         else:
             img = f'<div class="ph">{E(a.get("category",""))}</div>'
-        extra = f'<small style="margin-top:6px;color:var(--sub)">{E(a.get("lead",""))}</small>' if big else ''
-        return f'<a class="lk" href="d/{a["slug"]}/">{img}<span><small>{E(a.get("date",""))}・{E(a.get("category",""))}</small>{E(a["title"])}{extra}{credit}</span></a>'
+        extra = f'<small style="color:var(--sub);font-size:13.5px;line-height:1.7">{E(a.get("lead",""))}</small><i class="go" style="font-style:normal">この号を読む →</i>' if big else ''
+        return f'<a class="lk {"top" if big else "row"}" href="d/{a["slug"]}/">{img}<span><small>{E(a.get("date",""))}・{E(a.get("category",""))}</small><b>{E(a["title"])}</b>{extra}{credit}</span></a>'
+    def rows(xs, first=8):
+        h = '<div class="links rows">' + ''.join(card(a) for a in xs[:first]) + '</div>'
+        if len(xs) > first:
+            h += f'<details class="more"><summary>もっと見る（あと{len(xs) - first}本）</summary><div class="links rows">' + ''.join(card(a) for a in xs[first:]) + '</div></details>'
+        return h
     agent = [a for a in arts if any(sec.get('heading','').startswith('自社のAIチーム') for sec in a.get('sections', []))]
     general = [a for a in arts if a not in agent]
     if agent:
-        s += '<section><h2>Latest <span class="ja">／ 統括AI（先輩）の朝刊 最新号</span></h2><div class="links" style="grid-template-columns:1fr">' + card(agent[0], True) + '</div>'
+        s += '<section id="latest"><h2>Latest <span class="ja">／ 最新号</span></h2><div class="links" style="grid-template-columns:1fr">' + card(agent[0], True) + '</div></section>\n'
         if len(agent) > 1:
-            s += '<h2 style="margin-top:28px">Back numbers <span class="ja">／ これまでの号</span></h2><div class="links" style="grid-template-columns:repeat(auto-fill,minmax(230px,1fr))">' + ''.join(card(a) for a in agent[1:30]) + '</div>'
-        s += '</section>\n'
+            s += '<section id="back"><h2>Back numbers <span class="ja">／ これまでの号</span></h2>' + rows(agent[1:40]) + '</section>\n'
     if general or weeks:
         # 一般記事の要約（AI業界全般のニュース）。11/3 松村さん「一般記事の要約と先輩の朝刊」
-        s += '<section><h2>AI News <span class="ja">／ AIニュース（一般記事の要約）</span></h2><p class="note">AI業界全般の話題を、毎日3本、日本語で要約しています。</p><div class="links" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">' + ''.join(card(a) for a in general[:40]) + '</div>'
+        s += '<section id="ainews"><h2>AI News <span class="ja">／ AIニュース（一般記事の要約）</span></h2><p class="note">AI業界全般の話題を、毎日3本、日本語で要約しています。</p>' + rows(general[:60], 8)
         s += '<ul class="week-list" style="margin-top:14px">' + ''.join(f'<li><a href="{w["slug"]}/">{E(w["week"])}の話題のトピック（まとめ）</a></li>' for w in weeks) + '</ul></section>\n'
     s += f'<section>{NOTE}</section>\n' + FOOT
     open(os.path.join(NEWS, 'index.html'), 'w', encoding='utf-8').write(s)
