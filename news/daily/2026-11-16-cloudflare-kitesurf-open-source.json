@@ -1,0 +1,33 @@
+{
+ "date": "2026-11-16",
+ "title": "Cloudflare、AIエージェント向けブラウザエンジン「Kitesurf」をApache 2.0で公開",
+ "category": "製品・サービス",
+ "lead": "Cloudflareが11月13日、Celso Martinho氏の署名記事で、AIエージェント向けの軽量ブラウザエンジン「Kitesurf」のソースコードをGitHubで公開したと発表しました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "Kitesurfは、Chromeのようなブラウザの入れ物を使わず、Cloudflare Workersの上だけで動くエンジンです。状態を持たない作りで、AIが画面の取得やページの読み取りをするために使います。Chrome DevTools Protocolに対応しているので、Puppeteerなどの既存の道具から接続できます。",
+    "中身は、エンジン（接続と作業の管理）、PageScript（ページとJavaScriptの実行）、PageRenderer（描画）の3つに分かれています。BlitzやStyloなど、WebAssemblyにしたRustの公開部品を土台にしており、JavaScriptエンジンのBoaは、Dynamic Workersで動かせないときの最後の手段だと書かれています。ライセンスはApache 2.0です。",
+    "公開の理由として、Cloudflareは、8月の発表以来約束していたこと、自分のアカウントで自分のエンジンを動かせること、外の開発者の協力で互換性や効率が上がることを挙げています。記事は、重いChromiumより少ないCPUとメモリを目指すとしていますが、数字は示さず、別のベンチマークのページを案内しています。",
+    "注意点もあります。開発が活発に進んでいる途中で、自分で動かすにはWorkers Paidプランが必要です。ページごとの隔離にDynamic Workersを使うためです。修正を送りたい人は、先にIssueを立て、担当者の承認を得るよう求められています。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "Cloudflare Blog",
+   "url": "https://blog.cloudflare.com/kitesurf-open-source/",
+   "note": "元記事",
+   "title": "Kitesurf open source",
+   "org": "発表：Cloudflare（Celso Martinho氏）",
+   "published": "2026-11-13",
+   "image": "https://blog.cloudflare.com/_emdash/api/media/file/01M7B8M86AWYDHNF9C7R2V0CXH.png",
+   "image_ok": false,
+   "image_size": [
+    1200,
+    630
+   ]
+  }
+ ]
+}

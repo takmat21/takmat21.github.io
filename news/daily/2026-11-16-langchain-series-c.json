@@ -1,0 +1,33 @@
+{
+ "date": "2026-11-16",
+ "title": "LangChain、シリーズCで3億ドルを調達、評価額30億ドル：エージェントの実行・改善・統制をそろえる",
+ "category": "業界",
+ "lead": "LangChainが11月13日、共同創業者のHarrison Chase氏の署名記事で、CapitalGが主導するシリーズCの3億ドル調達（評価額30億ドル）を発表しました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "LangChainは、AIエージェントを作って動かすための道具を出している会社です。今回の資金は、同社の製品群LangSmithを広げるために使われます。記事では、LangSmithを「実行」「改善」「統制」の3本柱で説明しています。",
+    "実行の柱には、Agent Server、Sandboxes、Managed Agents、Fleetなどが入っています。改善の柱は、動きの記録と評価、そして誤りを見つけて直しを書くEngine、微調整です。統制の柱は、モデルの予算、データの保護、道具の使える範囲を決めるゲートウェイです。エージェントを増やすほど、何を使ってよいかを一か所で決める仕組みが要る、という考え方がうかがえます。",
+    "出資は、既存のCapitalGが主導し、GICとDFJ Growthが新たに加わりました。IVPとSapphire Venturesも既存の出資者として参加し、Salesforce Venturesなども名を連ねています。",
+    "数字として、同社は7,000を超える組織がLangSmithを使っていると述べています。Clayは月に数億回のエージェント実行を監視し、Workdayはエージェントの導入期間を5か月から1日未満に縮めたとのことです。いずれも同社の説明です。11月20日には、LangSmithの新機能を紹介するイベントを予定しています。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "LangChain",
+   "url": "https://www.langchain.com/blog/series-c",
+   "note": "元記事",
+   "title": "LangChain Series C",
+   "org": "発表：LangChain（Harrison Chase氏）",
+   "published": "2026-11-13",
+   "image": "https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/6af52a0047907d0f9587a24f_Social%20Announcement.png",
+   "image_ok": false,
+   "image_size": [
+    3840,
+    2160
+   ]
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "date": "2026-11-16",
+ "title": "Mercor、シリーズDで7億5,000万ドルを調達、評価額200億ドル：AI学習を支える専門家の紹介",
+ "category": "業界",
+ "lead": "業界紙Staffing Industry Analystsが11月13日、Craig Johnson記者の記事で、AI学習のための専門家を紹介するMercorが7億5,000万ドルを調達したと報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "Mercorは、AIモデルの学習を手伝う専門家を企業につなぐ会社です。報道によると、今回はシリーズDで7億5,000万ドルを集め、評価額は200億ドルになりました。2025年10月のシリーズCは3億5,000万ドル、評価額100億ドルでしたから、評価額はおよそ1年で2倍になった計算です。",
+    "出資者には、NvidiaとSalesforceのほか、Benchmark、Felicis、General Catalyst、Sapphire Venturesなど多くの名前が並びます。この回には、従業員が持ち株を売る機会も含まれていると書かれています。",
+    "記事は、年間換算の売上が30億ドルで、27か月前の100万ドルから伸びたと伝えています。これまでの調達額は4億5,000万ドルで、記事はBtoBの人材プラットフォームとして最多としています。2位はTuringの1億1,100万ドルです。共同創業者3人は、いずれも23歳だそうです。",
+    "AIが賢くなるには、人の専門家が答えを書いたり採点したりする仕事が要ります。その仕事を紹介する会社に大きな資金が集まったことは、AI開発の裏側で人の力が今も大きいことを示す話です。なお、数字は報道が伝える内容で、会社の資料は確かめていません。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "Staffing Industry Analysts",
+   "url": "https://www.staffingindustry.com/news/global-daily-news/mercor-lands-750m-funding-round-valuing-staffing-platform-at-20b",
+   "note": "元記事",
+   "title": "Mercor lands $750M funding round valuing staffing platform at $20B",
+   "org": "報道：Staffing Industry Analysts（Craig Johnson記者）",
+   "published": "2026-11-13",
+   "image": "https://crain-platform-sia-prod.s3.amazonaws.com/public/dreamstime/31031282.jpg",
+   "image_ok": false,
+   "image_size": [
+    1870,
+    1604
+   ]
+  }
+ ]
+}

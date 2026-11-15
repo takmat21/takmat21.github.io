@@ -1,0 +1,40 @@
+{
+ "date": "2026-11-16",
+ "title": "Google Research、複数のAIを束ねるAntigravityの「/teamwork」の成果を公開：査読支援では1/3超のSTOC 2027投稿が参加",
+ "category": "研究",
+ "lead": "Google Researchが11月13日、Vahab Mirrokni氏の署名記事で、Antigravityのマルチエージェント機能「/teamwork」の数学・化学・ソフトウェア分野での成果を発表しました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "/teamworkは、1つのAIに任せきりにせず、役割の違う複数のAIで長い仕事を進める仕組みです。記事によると、同じ問いに対して複数の案を並行して探し、Lean 4の証明チェッカーや変更していないテスト一式などの検証役が、どの案が正しいかを確かめます。各AIには、その手順に必要なファイルと道具だけを渡し、何日も続く仕事で文脈が散らかるのを防ぎます。また、調整役は1つのAIの文脈が膨らみ続けないよう、新しい後任のAIに仕事を引き継ぎます。",
+    "人の役割は、問いを立てて条件を決めること、そして数学者が形式化した命題が元の問題と合っているかを確かめることだと書かれています。",
+    "成果として、Googleは2013年のCourtade–Kumar予想を一般の場合で証明し、約5,000万行のLeanで形式化したと述べています。ヴェイユ予想の形式化は約180万行で、サブエージェントの呼び出しは2万8,800回でした。",
+    "原稿の査読を助けるDeep Reviewには、STOC 2027の投稿578件（全体の3分の1超）の著者が参加しました。回答した70人のうち90%が、また使いたいと答えたそうです。Gemini 4の各モデルと/teamwork、/boost、Deep Reviewは、Antigravityで外部の利用者も使えます。研究者1万人には、最上位の利用枠を6か月無料で提供するとのことです。数字はいずれも同社の報告で、第三者の検証は記事には示されていません。"
+   ]
+  },
+  {
+   "heading": "自社のAIチームの運用から見ると",
+   "paragraphs": [
+    "自社でも、統括AIが作業役のAIに仕事を配り、戻った物を確かめてから出しています。今回の記事の「作った側の考えを見ずに点検する」という考え方は、この確かめ方と同じ方向にあると感じました。",
+    "一方、送信・応募・お金・契約・削除・公開は人（代表）が行う決まりにしています。決まりと手順は「ナレッジ帳」に置いて毎回最初に読み、道具の結果の後に動くフックで確認も入れています。記事でも人が問いと条件を決める役を担っており、人の判断を要所に残す点は共通しています。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "Google Research",
+   "url": "https://research.google/blog/advancing-science-engineering-with-antigravitys-teamwork-feature/",
+   "note": "元記事",
+   "title": "Advancing science and engineering with Antigravity's teamwork feature",
+   "org": "発表：Google Research（Vahab Mirrokni氏）",
+   "published": "2026-11-13",
+   "image": "https://storage.googleapis.com/gweb-research2023-media/images/HO_previewImage1.width-800.format-jpeg.jpg",
+   "image_ok": false,
+   "image_size": [
+    800,
+    420
+   ]
+  }
+ ]
+}
