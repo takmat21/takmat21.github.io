@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3D部品エディタ（STEP・3面図）：自社開発の試作｜松村貴士</title>
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="3D部品エディタ（STEP・3面図）：自社開発の試作｜松村貴士">
+<meta property="og:description" content="命令から部品の3Dモデルを作り、STEPと3面図のDXFで出す、自社開発の試作ソフトです。">
+<meta property="og:url" content="https://takmat21.github.io/samples/cad3d/">
+<meta property="og:image" content="https://takmat21.github.io/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="../../assets/style.css?v=20261109a"><link rel="canonical" href="https://takmat21.github.io/samples/cad3d/">
+<meta name="description" content="寸法の命令から部品の3Dモデルを作り、STEP形式と3面図（DXF）で出す、自社開発の試作ソフト。体積と重さも出します。確かめたことと、まだのことを分けて掲載。">
+<style>
+/* このページだけの追加（共通の style.css の色の変数を使う） */
+.flow{list-style:none;margin:0;padding:0;counter-reset:f;border-top:1px solid var(--line)}
+.flow li{counter-increment:f;display:grid;grid-template-columns:2.4em 1fr;gap:0 12px;padding:14px 4px;border-bottom:1px solid var(--line)}
+.flow li::before{content:counter(f);font-family:var(--mono);font-size:13px;color:var(--accent);background:var(--accent-soft);border-radius:4px;text-align:center;height:1.9em;line-height:1.9em;margin-top:2px}
+.flow b{display:block}
+.flow span{grid-column:2;font-size:14px;color:var(--sub)}
+.dwg{margin:0 0 14px}.dwg img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:6px;background:#fff}
+.dwg figcaption{font-size:13px;color:var(--sub);margin-top:6px}
+.tw{overflow-x:auto;margin:0 0 8px}
+table.price{width:100%;border-collapse:collapse;font-size:15px}
+table.price th,table.price td{border-bottom:1px solid var(--line);padding:10px 6px;text-align:left;vertical-align:top}
+table.price th{font-size:12px;font-family:var(--mono);color:var(--faint);font-weight:600}
+table.price td:first-child{white-space:nowrap;font-weight:700}
+.warn{border-left:3px solid var(--accent);background:var(--accent-soft);padding:12px 16px;border-radius:0 6px 6px 0;font-size:15px;margin:0 0 8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.two h3{font-size:15px;margin:0 0 6px}
+.two ul{margin:0;padding-left:1.2em;font-size:15px;color:var(--sub)}
+.two li{margin:0 0 4px}
+pre.cmd{background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:12px 14px;font-family:var(--mono);font-size:13px;line-height:1.7;overflow-x:auto;margin:0 0 8px}
+dl.qa{margin:0;display:grid;gap:16px}
+dl.qa dt{font-weight:700}
+dl.qa dd{margin:2px 0 0;color:var(--sub);font-size:15px}
+@media (max-width:640px){.two{grid-template-columns:1fr}}
+</style>
+<script type="application/ld+json" id="ld-auto">{"@context":"https://schema.org","@graph":[{"@type":"CreativeWork","creator":{"@type":"Person","@id":"https://takmat21.github.io/#person","name":"松村貴士","url":"https://takmat21.github.io/"},"publisher":{"@type":"Organization","@id":"https://takmat21.github.io/#org","name":"ZAZOU株式会社","url":"https://takmat21.github.io/"},"image":"https://takmat21.github.io/assets/ogp.png","inLanguage":"ja","isPartOf":{"@type":"WebSite","@id":"https://takmat21.github.io/#site","name":"ZAZOU Lab","url":"https://takmat21.github.io/"},"url":"https://takmat21.github.io/samples/cad3d/","name":"3D部品エディタ（STEP・3面図）：自社開発の試作","description":"寸法の命令から部品の3Dモデルを作り、STEP形式と3面図（DXF）で出す、自社開発の試作ソフト。体積と重さも出します。確かめたことと、まだのことを分けて掲載。"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://takmat21.github.io/"},{"@type":"ListItem","position":2,"name":"仕事一覧","item":"https://takmat21.github.io/#samples"},{"@type":"ListItem","position":3,"name":"3D部品エディタ（STEP・3面図）：自社開発の試作","item":"https://takmat21.github.io/samples/cad3d/"}]}]}</script>
+</head>
+<body><div class="wrap">
+<nav class="tabs" aria-label="ページの切り替え"><a href="../../#about">プロフィール</a><a href="../../#samples" class="on" aria-current="page">仕事一覧</a><a href="../../#system">仕組み</a><a href="../../#security">安全の決まり</a><a href="../../#paper">論文</a><a href="../../#video">動画</a><a href="../../#tools">道具</a><a href="../../news/">朝刊</a></nav>
+
+<header class="hero"><p class="name"><a href="../../">ZAZOU株式会社 ／ ZAZOU Lab</a></p>
+<span class="tag">見積・図面 ／ 自社開発 ／ 試作</span>
+<h1>寸法から、部品の3Dと<wbr>3面図を作る。</h1>
+<p class="app-name">3D部品エディタ：<wbr><span style="white-space:nowrap">STEPと3面図（DXF）</span></p>
+<p>円柱・箱・回転・穴・面取りなどの命令から部品の3Dモデルを作り、STEP形式で保存し、3面図（見える線・かくれ線）をDXFで出す、自社開発の試作ソフトです。体積と重さも出します。</p>
+<p class="cta-note">2026年11月に作り始めた試作です。下に、確かめたことと、まだのことを分けて書いています。</p>
+</header>
+<figure class="dwg"><img src="img/app.webp" width="2800" height="1720" alt="3D部品エディタの画面。左に命令の欄、右に軸受ハウジングの3Dモデル。下に外形・体積・重さ。" loading="eager" decoding="async"><figcaption>見本の部品（軸受ハウジング・架空の部品）。左の命令から、右の3Dモデルを作っています。下に外形 200×200×80 mm、体積、重さが出ます。</figcaption></figure>
+
+<section>
+<h2><span class="en">Why</span>なぜ作ったか</h2>
+<p class="lead">図面の仕事では、2次元の図面から3Dモデルを起こしてほしい、STEPで渡してほしい、という依頼があります。先方のCADを持っていなくても、共通の形式（STEP）で納められるように作りました。</p>
+<p>2次元の<a href="../cad-editor/">図面エディタ</a>と同じく、AIが寸法の命令を書き、人が画面で形と寸法を確かめて直す、という流れに合わせています。形をつくる心臓部には、公開されている3D形状の部品（OpenCascade）を使っています。</p>
+</section>
+
+<section>
+<h2><span class="en">Features</span>できること</h2>
+<ul>
+<li>命令で形を作る：円柱・箱・回転体（断面を軸のまわりに回す）・切り取り・穴・円周に並んだ穴・面取り・丸み</li>
+<li>STEP形式で保存（ほかの3D CADで開くための共通の形式）</li>
+<li>3面図（平面図・正面図・右側面図）を、見える線とかくれ線に分けてDXFで保存</li>
+<li>外形・体積・重さ（密度を指定）を表示</li>
+</ul>
+<figure class="dwg"><img src="img/views.webp" width="2800" height="1720" alt="同じ部品の3面図。平面図・正面図・右側面図。かくれ線は緑の点線。" loading="lazy" decoding="async"><figcaption>同じ部品から自動で出した3面図。かくれ線（見えない所の線）は点線で出ます。</figcaption></figure>
+<pre class="cmd"># 軸受ハウジング（見本・架空の部品）
+NAME 軸受ハウジング
+DENSITY 7.2
+REV 20,0 65,0 65,4 100,4 100,20 55,20 55,80 20,80
+HOLE 62 18 0 0
+PHOLES 8 14 THRU 160
+PHOLES 4 5 12 85 45
+CHAMFER 1 80</pre>
+<p class="note">上の8行が、画面の部品の命令のすべてです。AIはこの形の命令を書き、人は数字を見て直します。</p>
+</section>
+
+<section>
+<h2><span class="en">Status</span>確かめたこと・まだのこと</h2>
+<div class="two">
+<div><h3>確かめたこと</h3><ul>
+<li>見本の部品で、3Dモデル・STEP・3面図DXFが出ること（手元の試験）</li>
+<li>3面図の向き（平面図・正面図・右側面図）が正しいこと</li>
+<li>2次元の図面エディタのDXFは、Jw_cad で開いてJWWに保存できることを確かめ済み。3面図DXFも同じ形で出しています</li>
+</ul></div>
+<div><h3>まだのこと</h3><ul>
+<li>STEPを、ほかの3D CAD（iCAD・FreeCAD など）で開く確認</li>
+<li>3面図DXFを Jw_cad で開く確認</li>
+<li>実際の仕事の部品での試用</li>
+<li>寸法線の自動記入（いまは形の線だけ）</li>
+</ul></div>
+</div>
+<p class="warn">部品の設計と図面出しにしぼった試作です。市販の3D CADの代わりになるものではありません。先方のCADの元データ（SolidWorks の部品ファイルなど）そのものは作れないため、STEPでの納品でよいかを最初に伺います。</p>
+</section>
+
+<section>
+<h2><span class="en">About</span>つくっている人</h2>
+<p class="lead">松村貴士（ZAZOU株式会社 代表）。パナソニックで2005〜2020年、チューナの機構設計、洗濯機・ロボット掃除機の開発に携わり、3Dで設計して図面を描き、読んできました（CATIA・NX・SolidWorks・MICRO CADAM Helix）。</p>
+<a class="btn ghost" href="../cad-editor/">図面エディタ：DWG・DXFを開いて、描いて、直す</a>
+</section>
+
+<section><div class="cta-row"><a class="cta main" href="mailto:matsumura.takashi@zazoucorp.com?subject=%E3%81%94%E7%9B%B8%E8%AB%87%EF%BC%88ZAZOU%20Lab%EF%BC%89">メールで相談する（無料）</a><a class="cta sub" href="tel:09063737945">電話 090-6373-7945</a></div>
+<p class="cta-note">3Dモデルの作成・図面への追記や修正のご相談を受けています。メール：matsumura.takashi@zazoucorp.com</p>
+</section>
+<footer class="site-foot">
+  <div class="sf-co"><b>ZAZOU株式会社</b><span>ZAZOU Lab</span></div>
+  <div class="sf-ct"><span>ご相談・お問い合わせ（無料）</span><a href="mailto:matsumura.takashi@zazoucorp.com">matsumura.takashi@zazoucorp.com</a><a href="tel:090-6373-7945">090-6373-7945</a><a class="sf-cw" href="../../ai/">AIで業務を仕組みにするご相談は ZAZOU AI Works へ</a></div>
+  <p class="sf-small"><span class="mono">© 2026 ZAZOU株式会社</span></p>
+</footer>
+</div></body></html>
