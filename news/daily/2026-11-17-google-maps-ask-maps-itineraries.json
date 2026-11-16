@@ -1,0 +1,33 @@
+{
+ "date": "2026-11-17",
+ "title": "Googleマップの「Ask Maps」に旅行プラン作成と予約の電話代行：AndroidとiOSで提供開始",
+ "category": "サービス",
+ "lead": "Googleが11月16日、マップの対話機能Ask Mapsに旅の行程づくりや予約の機能を加え、AndroidとiOSで提供を始めたと、TechCrunch（Aisha Malik記者）が伝えました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "記事によると、Ask Mapsで旅の行程を作れるようになりました。たとえば休日の買い物の日帰り旅や、3日間のドライブ旅行などを頼むと、日ごとの予定、ひとことのコツ、番号つきの地図のピンがまとまって出ます。行程は共有でき、パソコンではGoogleドキュメントに書き出せます。",
+    "作った行程は、チャットの履歴にある「itinerary」の表示から開き直せます。道の混み具合や営業時間などが見られ、立ち寄り先を足すこともできます。",
+    "もう1つは、予約の代行です。ネイル、ペットのケア、車、家の修理などの空き枠をさがし、お店に電話もしてくれると説明されています。保存したリストの中から、人数や所要時間を指定して探す使い方も加わりました。",
+    "提供は11月16日に始まりました。Ask Mapsは、スペイン、ドイツ、英国など欧州30か国にも広がる予定ですが、日付は記事にありません。日本での提供については、記事に書かれていません。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/16/google-maps-can-now-build-trip-itineraries-with-real-time-details-about-each-stop/",
+   "note": "元記事",
+   "title": "Google Maps can now build trip itineraries with real-time details about each stop",
+   "org": "報道：TechCrunch（Aisha Malik記者）／発表：Google",
+   "published": "2026-11-16",
+   "image": "https://techcrunch.com/wp-content/uploads/2026/03/GettyImages-2202707012.jpg?resize=1200,800",
+   "image_ok": true,
+   "image_size": [
+    1200,
+    800
+   ]
+  }
+ ]
+}
