@@ -1,0 +1,33 @@
+{
+ "date": "2026-11-18",
+ "title": "Isomorphic Labs、シリーズCで50億ドルを調達：AI創薬の候補を臨床試験へ進める",
+ "category": "資金調達",
+ "lead": "AI創薬のIsomorphic Labsが11月17日、シリーズCで50億ドルを調達したと、TechCrunch（Ram Iyer記者）が報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "報道によると、Isomorphic Labsは、シリーズCで50億ドルを調達しました。5月のシリーズBは21億ドルだったと、記事は伝えています。調達の目的は、創薬の候補を臨床試験に進めることです。",
+    "ラウンドはGreenoaksとSequoia Capitalが共同で主導しました。Andreessen Horowitzが新たに加わり、GV、Capital G、Thrive Capital、MGX、Temasek、英国のSovereign AI Fundなど既存の出資者も参加しました。企業価値は公表されていません。記事によると、Bloombergは以前、同社が500億ドルの評価額での調達を探っていると報じていました。",
+    "同社の創薬エンジンは、複数のシミュレーションモデルで化学を調べ、薬を設計します。記事によると、腫瘍学と免疫学で「前臨床で良い結果」が出ています。Eli Lilly、Novartis、Johnson & Johnsonと提携しています。",
+    "新しい資金は、創薬エンジンの開発の継続と、より多くの種類の医薬への拡大に使われます。臨床試験はこれからの段階で、結果はまだ出ていません。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/17/isomorphic-labs-raises-5b-as-it-looks-to-take-drug-candidates-to-clinical-trials/",
+   "note": "元記事",
+   "title": "Isomorphic Labs raises $5B as it looks to take drug candidates to clinical trials",
+   "org": "報道：TechCrunch（Ram Iyer記者）／発表：Isomorphic Labs",
+   "published": "2026-11-17",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}

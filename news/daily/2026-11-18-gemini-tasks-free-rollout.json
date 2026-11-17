@@ -1,0 +1,33 @@
+{
+ "date": "2026-11-18",
+ "title": "Google、Geminiの「Tasks」を無料に拡大：電話や予約、Google Payでの購入を代行",
+ "category": "エージェント",
+ "lead": "Googleが11月17日、Geminiで電話や予約、購入を代わりに行う「Tasks」の提供を広げたと、TechCrunch（Lucas Ropek記者）が報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "報道によると、Googleは「Tasks」の提供を広げます。Tasksは、Geminiのチャットを、より能動的な助手に変える切り替えスイッチだと説明されています。",
+    "Tasksでできることとして、記事は次を挙げています。お店に電話をかけて予約を取ること、Google Payで購入を完了すること、求められたらウェブサイトにログインすることです。使うときは、アプリで「チャット」から「Tasks」に切り替えます。Geminiにテキストを送るか、アプリに電話をかけて指示することもできます。",
+    "これまでは、米国のGoogle AI Ultraの契約者向けでした。記事によると、新しいモデルGemini 4 Hydrogenを使う「数億人」に、無料で広げるとのことです。記事には、使用回数の上限や地域の制限、対応するサービスの一覧は書かれていません。",
+    "記事の筆者は、近くの販売店に車の点検予約を取らせたり、電気料金の請求書を分析させたりして試したと書いています。以上は報道で、実際の使い心地や安全面は、各自で確かめる必要があります。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/17/google-expands-access-to-gemini-tasks-which-can-help-with-calls-purchases/",
+   "note": "元記事",
+   "title": "Google expands access to Gemini Tasks, which can make calls and purchases",
+   "org": "報道：TechCrunch（Lucas Ropek記者）／発表：Google",
+   "published": "2026-11-17",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "date": "2026-11-18",
+ "title": "Google、Geminiの一時チャットの保管を72時間から約2か月に延長：履歴オフでも対象",
+ "category": "プライバシー",
+ "lead": "Googleが11月17日、Geminiの一時チャットなどの保管期間を延ばすと発表したと、TechCrunch（Jagmeet Singh記者）が報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "報道によると、Googleは、一時的なチャットと、履歴をオフにして行ったチャットの保管期間を、これまでの72時間から約2か月に延ばします。変更は、Geminiアプリで、今後数週間かけて世界中に広がります。",
+    "Googleは、AIが高性能になるなかで安全とセキュリティを高めるためだと説明しています。ただし記事によると、Googleは変更のきっかけについての質問には答えませんでした。",
+    "設定も変わります。これまでの「Keep Activity」が、チャット履歴とAIの学習利用の2つの設定に分かれます。履歴を残しても、Googleの生成AIの学習には使わせない、という選び方ができます。以前にKeep Activityをオフにしていた人は、新しい2つの設定とも初期状態でオフになります。",
+    "記事は比較も載せています。OpenAIは、一時的なChatGPTのチャットを最長30日保管することがあるとしています。Anthropicは、Claudeのシークレットチャットを初期設定で30日保管します。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/17/google-to-keep-gemini-chats-for-two-months-up-from-72-hours-even-with-history-off/",
+   "note": "元記事",
+   "title": "Google to keep Gemini chats for two months, up from 72 hours, even with history off",
+   "org": "報道：TechCrunch（Jagmeet Singh記者）／発表：Google",
+   "published": "2026-11-17",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}
