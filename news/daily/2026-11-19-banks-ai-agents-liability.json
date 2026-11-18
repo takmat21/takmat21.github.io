@@ -1,0 +1,33 @@
+{
+ "date": "2026-11-19",
+ "title": "米国の銀行、AIエージェントの利用は「自己責任」に：Citiが規約を変更、乗っ取りの被害も客の負担",
+ "category": "エージェント",
+ "lead": "米Citibankなどが、外部のAIエージェントを使う客の責任を定める規約の変更を進めていると、TechCrunch（Tim Fernholz記者）が11月18日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "報道によると、米国で3番目に大きい商業銀行のCitibankは、オンラインの利用規約を変えました。家計の管理などに外部のAIツールを使う客は、何か問題が起きたときに自分で責任を負います。AIツールが客のログイン情報をもらしたり、乗っ取られたりした場合も、その口座で起きたことは客の責任になります。",
+    "Citiの広報は、銀行のログイン情報を人に渡す危険を客に知ってほしいと話しています。一方で、Citi自身が出すAIエージェントは、追加の責任の心配なく使えると規約に書かれています。",
+    "記事によると、JPMorganとBank of Americaは2026年10月に、同じような方針を出しました。PNCは11月18日に規約を変えました。Citizensも、AIアシスタントのしたことは客の責任だと知らせるメールを客に送りました。",
+    "記事は、Anthropicが11月初めに出した家計の道具は「読み取りだけ」で、お金を動かせないと紹介しています。そのうえで、AIの会社がエージェントでサービスの使い方が変わると言い、サービス側が押し返す、という流れの1つだと伝えています。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/18/more-banks-says-customers-using-ai-agents-are-on-their-own-even-if-they-get-hacked/",
+   "note": "元記事",
+   "title": "More banks say customers using AI agents are on their own — even if they get hacked",
+   "org": "報道：TechCrunch（Tim Fernholz記者）",
+   "published": "2026-11-18",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}

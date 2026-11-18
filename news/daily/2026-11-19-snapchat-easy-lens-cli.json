@@ -1,0 +1,32 @@
+{
+ "date": "2026-11-19",
+ "title": "Snapchat、「Easy Lens CLI」を公開：Claude CodeやCursorでARのレンズを作れるように",
+ "category": "開発ツール",
+ "lead": "Snapchatが11月18日、ふだん使っているAIのコーディング助手でARのレンズを作れる「Easy Lens CLI」を発表したと、TechCrunch（Aisha Malik記者）が報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "報道によると、レンズを作る人は、Claude Code、Cursor、CodexなどのAI助手を使ってレンズを作れるようになります。レンズは、カメラを通して見た目を変えたり、周りにデジタルの物を置いたりするARの効果です。Snapchatには2024年から、1つの指示文でレンズを作る「Easy Lens」があり、今回の道具はそれを広げたものです。",
+    "作る人は、ほしいレンズをふつうの言葉で説明します。AI助手は、100以上のARの部品と、50の素材を作るAIを使います。素材を作り、組み立てて試し、誤りを直し、新しい版を作る人のスマホに送ります。プレビューを作り、Snapchatに公開し、反応も追います。Snapchatは、ゲームなら思いつきから公開まで1日で、コードを書かずにできるとしています。",
+    "Lens+ Payoutsに入っている開発者は、この道具で作ったレンズで収入を得られます。Snapchatは、前の月にLens+の作り手へ180万ドルを払ったとしています。Easy Lens CLIは、Mac、Windows、Linuxで動きます。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/18/snapchat-now-lets-developers-build-ar-lenses-with-ai-coding-assistants-like-claude-code-and-cursor/",
+   "note": "元記事",
+   "title": "Snapchat now lets developers build AR Lenses with AI assistants like Claude Code and Cursor",
+   "org": "報道：TechCrunch（Aisha Malik記者）／発表：Snapchat",
+   "published": "2026-11-18",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}

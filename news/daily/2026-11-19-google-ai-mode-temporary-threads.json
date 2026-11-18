@@ -1,0 +1,33 @@
+{
+ "date": "2026-11-19",
+ "title": "Google検索のAIモードに「一時的なスレッド」：検索履歴やおすすめに残さない会話",
+ "category": "プライバシー",
+ "lead": "Googleが検索のAIモードに、履歴に残らない「一時的なスレッド」を加えると、TechCrunch（Sarah Perez記者）が11月18日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "報道によると、AIモードは、Google検索の中で会話の形で調べられる機能です。今回、ここに「一時的なスレッド」が加わります。この中での会話は、あとで検索履歴やおすすめなどに出てきません。Googleはブログで発表しました。",
+    "使い方は簡単で、設定を変える必要はありません。AIモードの右上にあるアイコンを押すと始まります。始めると、会話はアカウントから切り離されます。答えは過去の好みに左右されず、会話がこの先のおすすめに影響することもありません。閉じると、ふだんの検索に戻ります。",
+    "記事は使い道として、人に知られたくない話題を調べるときや、一度だけ知りたいことを調べるときを挙げています。GoogleのGeminiなど、多くのAIチャットにはすでに一時的なチャットがありましたが、AIモードにはありませんでした。",
+    "Googleによると、パソコンとスマホで、対応するすべての言語で、世界中に順に広げます。記事には、一時的なスレッドのデータをどれだけの期間保管するかは書かれていません。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/18/googles-ai-feature-in-search-gets-its-own-incognito-mode/",
+   "note": "元記事",
+   "title": "Google's AI feature in Search gets its own incognito mode",
+   "org": "報道：TechCrunch（Sarah Perez記者）／発表：Google",
+   "published": "2026-11-18",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}
