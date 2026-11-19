@@ -1,0 +1,32 @@
+{
+ "date": "2026-11-20",
+ "title": "Google、Mac版Geminiに「コンピューター操作」：アプリやファイルを使って作業を代わりに進める",
+ "category": "エージェント",
+ "lead": "Googleが、macOS向けのGeminiアプリで、AIがMacを操作して作業を進める機能を始めたと、TechCrunch（Sarah Perez記者）が11月19日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "新しい機能では、Geminiが Mac のアプリを動かし、裏でウェブも見ながら、手元のファイル・アプリ・ウェブをまたいだ何段階もの作業をこなします。指示を出すと、作業のようすはチャットの中のプレビューに映り、そのあいだも利用者は自分の画面とカーソルを別の作業に使えます。",
+    "ほかの会社の同じような機能と同じく、利用者はGeminiの操作を一時停止したり、止めたり、実行の前に承認したりできます。Googleは、フォームの入力、たくさんのファイルに同じ作業をくり返すこと、条件でファイルをフォルダに分けること、ファイルやダッシュボードのデータからスライドを作ることなどを使い道にあげています。",
+    "使えるのは、まず米国の英語だけです。Mac版のGeminiアプリと、Google AI Plus・Pro・Ultraのどれかの契約が要ります。ほかの国や機器への広がりの時期は示されていません。記事は、OpenAI、Anthropic、Metaがすでにデスクトップのアプリで同じような機能を出しており、Googleは後から加わった形だと伝えています。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/19/google-gives-gemini-the-ability-to-use-your-mac-for-you/",
+   "note": "元記事",
+   "title": "Google gives Gemini the ability to use your Mac for you",
+   "org": "報道：TechCrunch（Sarah Perez記者）",
+   "published": "2026-11-19",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}

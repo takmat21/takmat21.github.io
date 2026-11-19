@@ -1,0 +1,32 @@
+{
+ "date": "2026-11-20",
+ "title": "Superhuman（旧Grammarly）、AIアシスタント「Go」をメール・文書・会議に広げる：利用者は100万人超",
+ "category": "アシスタント",
+ "lead": "旧GrammarlyのSuperhumanが、AIアシスタント「Go」を自社のメール・文書・会議の道具の中心にすえると、TechCrunch（Ivan Mehta記者）が11月19日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "Superhumanは2025年にGrammarlyから名前を変え、そのころからGoを前に出してきました。今回の更新で、Goは複数のアプリをまたいで仕事の文脈を覚え、ほかのエージェントをまとめて動かすようになります。最初の設定で、よく使う道具をつなぎ、仕事の情報を先に読みこませることもできます。",
+    "Goは予定とメールを見て、返信の下書きを先回りして作り、その人の書き方をまねてメールや文書に使います。文書の道具ではGoのエージェントに裏で作業をまかせたり、できごとをきっかけに動く決まった流れを作ったりできます。メールでは、それまでのAIに代わって、会社の資料の検索、下書き、GoogleとOutlookの受信箱の整理をします。9月に買った議事録の道具Fathomをもとに、チームで同時に書ける会議メモも始めます。",
+    "シシール・メロートラCEOによると、Goの利用者は100万人を超えています。Goの開発キットを通じて、DeepL、Legora、Amplitude、Databricks、Blackboardなど20のエージェントが新しくつながりました。料金の話は記事にありません。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/19/superhuman-pushes-its-go-assistant-everywhere/",
+   "note": "元記事",
+   "title": "Superhuman pushes its Go assistant everywhere",
+   "org": "報道：TechCrunch（Ivan Mehta記者）",
+   "published": "2026-11-19",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}

@@ -1,0 +1,32 @@
+{
+ "date": "2026-11-20",
+ "title": "Anthropic、ナスダックで取引開始：公開価格83ドルに対し最初は111.50ドル、時価総額は2兆ドル超",
+ "category": "業界",
+ "lead": "Anthropicの株がナスダックで取引を始め、最初の値が公開価格を33%上回ったと、TechCrunch（Russell Brandom記者）が11月19日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "Anthropicは株の公開価格を1株83ドルに決めていました。会社が前に示していた70〜78ドルの幅より高い値です。取引が始まって最初の数分、株は111.50ドルで売り買いされ、公開価格より33%高くなりました。",
+    "記事によると、今回の上場で集めたお金は810億ドルを超え、社員と会社に入ります。これまでの資金集めや、上場に合わせた別の売り出しも合わせると、手元のお金は約2,200億ドルになる見込みです。最初の値で計算すると時価総額は2兆ドルを超え、Meta、Tesla、Walmartより大きくなります。これより大きいのは、Apple、Amazon、Alphabet、Nvidia、Microsoftの5社だけです。株の値はその後も動いていると記事は添えています。",
+    "取引開始の前のあいさつで、ダリオ・アモデイCEOは、この財務の強さは「正しいことをする決意を強めるだけだ」と話しました。安全と商売の成功は両立できると示すことが業界のほかの会社にもよい影響を与えるとして、「上を目指す競争」だと述べています。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/19/anthropic-hits-nasdaq-exchanges-at-110-27-above-ipo-price/",
+   "note": "元記事",
+   "title": "Anthropic hits Nasdaq exchanges at $111, 33% above IPO price",
+   "org": "報道：TechCrunch（Russell Brandom記者）",
+   "published": "2026-11-19",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}
