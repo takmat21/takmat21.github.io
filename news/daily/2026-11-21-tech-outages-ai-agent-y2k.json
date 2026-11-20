@@ -1,0 +1,33 @@
+{
+ "date": "2026-11-21",
+ "title": "相次ぐシステム障害は「AIのせい」なのか：専門家の見方は分かれる",
+ "category": "セキュリティ",
+ "lead": "AppleやMicrosoftなどで続いた障害の原因をめぐり、専門家の見方が分かれていると、TechCrunch（Dominic-Madori Davis記者）が11月19日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "記事によると、Apple Payが止まり、NASAの内部の通信網も止まりました。FAA（米連邦航空局）は全便を数時間止め、記事は、9.11のあとでは3回目だと書いています。Microsoftでは、OutlookやTeams、Copilotに、2日近く続く障害がありました。",
+    "最初は、AIを使った攻撃を疑う声がありました。しかし記事によると、米国の国家情報長官は、国家が後ろにいるテロには見えないと話しました。影響を受けた会社も、原因は技術的な問題で、サイバー攻撃やAIによる攻撃ではないと説明したと伝えられています。",
+    "専門家の意見は分かれます。投資家のデイブ・デウォルト氏は、AIが関わっている可能性が高いと見ています。AIの道具が古い弱点を速く見つけるため、各社が急いで修正を入れ、その影響で一時的に止まるという考えです。一方、Corshaのアヌーシャ・アイヤー氏は、古い仕組みと新しい仕組みのぶつかり合いだと述べました。FAAの件は、通信の更新が古い機器に負担をかけたのではないかとしています。AIのせいではなく、急ぎすぎた接続が原因だという見方です。",
+    "バージニア州のマーク・ワーナー上院議員は、AIが人の対応より速く進んでいると話し、調査は続いています。原因はまだ決まっていないと読むのがよさそうです。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/19/these-tech-outages-are-giving-y2k-ai-agent-style/",
+   "note": "元記事",
+   "title": "These tech outages are giving Y2K, AI agent style",
+   "org": "報道：TechCrunch（Dominic-Madori Davis記者）",
+   "published": "2026-11-19",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}
