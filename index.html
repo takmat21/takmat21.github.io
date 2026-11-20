@@ -38,6 +38,7 @@
 @media (max-width:800px){.v-grid{grid-template-columns:1fr}.v-own{grid-template-columns:1fr}}</style>
 <link rel="canonical" href="https://takmat21.github.io/">
 <script type="application/ld+json" id="ld-site">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://takmat21.github.io/#site","name":"ZAZOU Lab","url":"https://takmat21.github.io/","inLanguage":"ja","publisher":{"@type":"Organization","@id":"https://takmat21.github.io/#org","name":"ZAZOU株式会社","url":"https://takmat21.github.io/"}},{"@type":"Person","@id":"https://takmat21.github.io/#person","name":"松村貴士","alternateName":"マツムラ タカシ","jobTitle":"代表取締役／AIエージェント・業務自動化エンジニア","url":"https://takmat21.github.io/","address":{"@type":"PostalAddress","addressRegion":"滋賀県","addressCountry":"JP"},"alumniOf":{"@type":"CollegeOrUniversity","name":"京都産業大学"},"worksFor":{"@type":"Organization","@id":"https://takmat21.github.io/#org","name":"ZAZOU株式会社","url":"https://takmat21.github.io/"},"knowsAbout":["AIエージェントの運用","Claude","ChatGPT","Google Apps Script","業務自動化","機構設計","2D図面","CATIA","NX","SolidWorks","見積・積算","EC運営"],"sameAs":["https://note.com/takashimatsumura"]},{"@type":"Organization","@id":"https://takmat21.github.io/#org","name":"ZAZOU株式会社","alternateName":"ZAZOU Inc.","foundingDate":"2020-06-05","founder":{"@type":"Person","@id":"https://takmat21.github.io/#person","name":"松村貴士","url":"https://takmat21.github.io/"},"url":"https://takmat21.github.io/","address":{"@type":"PostalAddress","addressLocality":"蒲生郡日野町","addressRegion":"滋賀県","addressCountry":"JP"},"sameAs":["https://koorogi.site/","https://www.youtube.com/@SOCRAchannel"],"makesOffer":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"資料作成・リサーチ","description":"一次情報（公式サイト・公募要領など）で確かめ、出典を添えてまとめます。PowerPoint・Googleスライド・PDF。","provider":{"@type":"Organization","@id":"https://takmat21.github.io/#org","name":"ZAZOU株式会社","url":"https://takmat21.github.io/"},"areaServed":"JP"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"業務改善（スプレッドシート・GAS）","description":"期限の通知、週次の集計、入力チェックなど、毎週の手作業を仕組みにします。","provider":{"@type":"Organization","@id":"https://takmat21.github.io/#org","name":"ZAZOU株式会社","url":"https://takmat21.github.io/"},"areaServed":"JP"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"図面から見積書作成","description":"図面を読んで寸法・材質・溶接箇所を拾い出し、材料取り・加工工数・積算から見積書まで仕上げます。","provider":{"@type":"Organization","@id":"https://takmat21.github.io/#org","name":"ZAZOU株式会社","url":"https://takmat21.github.io/"},"areaServed":"JP","url":"https://takmat21.github.io/samples/drawing-estimate/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"EC・商品企画","description":"Amazon・Yahoo!ショッピング・BASEでの販売。Makuakeでは企画から撮影・文章・広告・発送まで一人で担当。","provider":{"@type":"Organization","@id":"https://takmat21.github.io/#org","name":"ZAZOU株式会社","url":"https://takmat21.github.io/"},"areaServed":"JP"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"AIの業務活用（誤りを防ぐ仕組みつき）","description":"AIには事実をまとめた表だけを使わせ、別のAIによる二重チェックと人の最終確認を通してから外に出します。","provider":{"@type":"Organization","@id":"https://takmat21.github.io/#org","name":"ZAZOU株式会社","url":"https://takmat21.github.io/"},"areaServed":"JP"}}],"contactPoint":{"@type":"ContactPoint","contactType":"customer service","availableLanguage":"ja","areaServed":"JP","email":"matsumura.takashi@zazoucorp.com","telephone":"+81-90-6373-7945"}}]}</script>
+<style id="cat-css">.cat{font-size:18px;font-weight:700;margin:40px 0 6px;scroll-margin-top:70px}.cat:first-of-type{margin-top:16px}.cat-lead{font-size:14px;color:var(--sub);margin:0 0 16px;line-height:1.8}.cat-nav{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 4px}.cat-nav a{font-size:13px;border:1px solid var(--line,#ccc);border-radius:999px;padding:4px 12px;text-decoration:none}</style>
 </head>
 <body class="home">
 <div class="wrap">
@@ -114,61 +115,27 @@
 <section id="samples" data-panel="samples" class="cols">
   <h2><span class="en">Samples</span>仕事一覧</h2>
   <p class="lead note">見本では、会社名・人名・数字を変更しています。</p>
+  <nav class="cat-nav" aria-label="分野"><a href="#c-design">設計</a><a href="#c-ec">EC</a><a href="#c-se">システムエンジニア</a></nav>
+  <h3 class="cat" id="c-design">設計 × AI導入支援</h3>
+  <p class="cat-lead">パナソニックで約15年の機構設計の経験をもとに、図面・見積・作図の仕事にAIを組み込みます。図面をAIが読んで見積の下書きを作るアプリや、自社開発の図面エディタを使い、AIが読み違えやすい所は人が確かめる形にします。</p>
   <p class="group" id="g-estimate">見積・図面</p>
   <ul class="rows">
     <li><a class="row has-thumb" href="samples/drawing-estimate/"><img class="th land" src="assets/img/thumb-drawing.webp" width="640" height="400" alt="図面見積アプリの紹介ページ" loading="lazy" decoding="async"><span class="t">図面見積アプリ：図面PDFから見積書の下書きまで</span><span class="m">Web</span><span class="d">金属加工の図面をAIが読み、見積の下書きをExcelで。自作の見本図面10枚で項目の正解率は約99%（90項目中89）。読み違えやすい所は「要確認」に出す。オンラインのAI・オフラインのAI（準備中）・AIなし（弊社の担当が読む）から選べる。</span></a></li>
     <li><a class="row has-thumb" href="samples/cad-editor/"><img class="th land" src="assets/img/thumb-cad.webp?v=2" width="640" height="400" alt="図面エディタの画面" loading="lazy" decoding="async"><span class="t">図面エディタ：DWG・DXFを開いて、描いて、直す（自社開発）</span><span class="m">Web · 試作</span><span class="d">DWG・DXFの図面を開き、線・円・寸法・文字の追加、移動・回転・切る・のばすなどの修正をして、DXFとPDFで出す自社開発の2次元の作図ソフト。元の図面は書きかえず、足した所と消した所だけを保存。AIが書いた作図の命令も入れられる。確かめたことと、まだのことを分けて掲載。</span></a></li>
+    <li><a class="row has-thumb" href="samples/kichikyoku/"><img class="th land" src="assets/img/thumb-kichikyoku.webp" width="640" height="400" alt="携帯電話基地局の屋上アンテナ配置図の一部" loading="lazy" decoding="async"><span class="t">基地局のCAD図面：屋上アンテナ配置図・構造図（見本）</span><span class="m">PDF · A3 2枚</span><span class="d">携帯電話基地局の屋上アンテナ配置図（1/100）と、アンテナ取付架台の構造図（1/20・1/10）。方位角、ケーブルラックの経路、機器表、部材表まで。自社開発の図面エディタで作図し、PDFとJw_cad用DXFで出力。架空の物件で、寸法・部材は見本用の想定値。</span></a></li>
     <li><a class="row" href="samples/estimate-flow/"><span class="t">見積書作成：図面から見積書までの流れ（アルミ溶接フレーム）</span><span class="m">PDF · 7p</span><span class="d">寸法・材質・溶接箇所の拾い出し、材料取り、加工工数、積算、見積書、読み違いを防ぐ確認リストまで。</span></a></li>
     <li><a class="row" href="samples/electrical-takeoff/"><span class="t">電気設備図面の積算：私の進め方</span><span class="m">PDF · 5p</span><span class="d">PDF図面から回路分け・記号の拾い出し・ケーブル量の算出まで。2通りの数え方による二重チェックと、確認事項の書き出し。</span></a></li>
-  </ul>
-  <p class="group" id="g-web">Web制作</p>
-  <ul class="rows">
-    <li><a class="row has-thumb" href="samples/sites/"><img class="th land" src="assets/img/thumb-sites.webp" width="640" height="400" alt="ホームページの見本（町工場の例）" loading="lazy" decoding="async"><span class="t">ホームページの見本20業種：町工場から介護タクシーまで</span><span class="m">Web · 20サイト</span><span class="d">町工場・工務店・食堂・美容室・整体院・直売所・ペット・士業・学習塾・宿・喫茶店・花屋・整備工場・写真館・不動産・ヨガ・パン屋・設計事務所・酒蔵・介護タクシー。業種ごとに色・書体・構成を変えた、スマホ対応の見本（会社・住所・電話は架空）。</span></a></li>
-    <li><a class="row" href="https://takmat21.github.io/oyako-lab/"><span class="t">団体サイトの制作</span><span class="m">Web ↗</span><span class="d">団体のWebサイトを企画から制作・公開まで一人で担当（HTML・GitHub Pages、スマホ対応、検索向けの説明文の設定）。</span></a></li>
-  </ul>
-  <p class="group" id="g-docs">資料作成</p>
-  <ul class="rows">
-    <li><a class="row has-thumb" href="samples/zazou-leaflet/"><img class="th land" src="assets/img/thumb-leaflet.webp" width="640" height="400" alt="商工会向けの会社説明資料の表面（その手作業、仕組みに変えませんか。）" loading="lazy" decoding="async"><span class="t">チラシ・パンフレット：商工会向けの会社説明資料（A4両面）</span><span class="m">画像 · A4両面</span><span class="d">自社（ZAZOU株式会社）の「商工会 ご説明資料」。AIを使って構成・文章を作り、人が確かめて仕上げました。</span></a></li>
-    <li><a class="row" href="samples/planning-proposal/"><span class="t">企画提案書：Webマーケティング支援</span><span class="m">PDF · 8p</span><span class="d">自社ECの新規流入を増やすための企画提案書。</span></a></li>
-    <li><a class="row" href="samples/management-meeting/"><span class="t">経営会議資料：月次の予実・KPI</span><span class="m">PDF · 8p</span><span class="d">KPIの推移、予算と実績、論点と次の打ち手。</span></a></li>
-    <li><a class="row" href="samples/sales-deck/"><span class="t">商談資料ブラッシュアップの例</span><span class="m">PDF · 8p</span><span class="d">内容はそのままに、構成・図解・デザインを整えた改善前後。</span></a></li>
-  </ul>
-  <p class="group" id="g-research">リサーチ</p>
-  <ul class="rows">
-    <li><a class="row" href="samples/research-subsidy/"><span class="t">補助金の比較リサーチ</span><span class="m">PDF · 6p</span><span class="d">公的機関の一次情報だけで2制度3枠を比較。出典URLつき。</span></a></li>
   </ul>
   <p class="group" id="g-patent">特許・技術資料</p>
   <ul class="rows">
     <li><a class="row" href="samples/patent-flow/"><span class="t">特許の出願から登録までの流れ</span><span class="m">Web · 図解</span><span class="d">だれが・いつまでに・何をするかを、図と表で整理。期限は条文で確認し、費用の目安と、資料づくりで手伝えるところも。</span></a></li>
   </ul>
-  <p class="group" id="g-manual">マニュアル</p>
+  <p class="group" id="g-hobby">ものづくり（個人の試作）</p>
   <ul class="rows">
-    <li><a class="row" href="samples/accounting-manual/"><span class="t">経理業務マニュアル：月次締め（freee）</span><span class="m">PDF · 8p</span><span class="d">月次締めの手順を、誰でも同じようにできる形に。</span></a></li>
+    <li><a class="row" href="https://www.youtube.com/watch?v=cPVDlqot2IQ"><span class="t">ランプの企画・設計・試作</span><span class="m">動画 ↗</span><span class="d">趣味として、ランプを個人で企画し、3D CADで設計・試作した過程の動画。</span></a></li>
   </ul>
-  <p class="group" id="g-gas">業務改善（スプレッドシート・GAS）</p>
-  <ul class="rows">
-    <li><a class="row" href="samples/gas-progress/"><span class="t">進捗管理 × スプレッドシート・GAS</span><span class="m">PDF · 10p</span><span class="d">期限の通知・週次レポート・入力チェックを仕組みにする設計。</span></a></li>
-    <li><a class="row" href="samples/backoffice-report/"><span class="t">バックオフィス 初月レポート</span><span class="m">PDF · 10p</span><span class="d">業務の棚卸しから改善の結果までを1か月でまとめた報告書。</span></a></li>
-    <li><a class="row" href="samples/gas-form-gmail/"><span class="t">フォーム → 集計 → Gmail送信（GAS）</span><span class="m">PDF · 10p</span><span class="d">送信前に下書きで確認する、誤送信しない作り。個人情報を扱わない設計と自動テストつき。</span></a></li>
-    <li><a class="row" href="https://takmat21.github.io/yamato-b2-/"><span class="t">ヤマトB2 送り状変換ツール</span><span class="m">Web ↗</span><span class="d">注文データをヤマト運輸「B2クラウド」の取り込み形式に変換するツール。自社の出荷で使用中。</span></a></li>
-  </ul>
-  <p class="group" id="g-ai">AI活用（誤りを防ぐ仕組みつき）</p>
-  <ul class="rows">
-    <li><a class="row" href="samples/ai-security/"><span class="t">AI導入とセキュリティ：自社でやっている対策と、お手伝いできること</span><span class="m">スライド · 10枚</span><span class="d">AIを使い始めると増える危険、情報セキュリティ基本方針とAIを使うときの決まり、SECURITY ACTION「二つ星」の自己宣言、お手伝いできること、進め方と料金（税別）。</span></a></li>
-    <li><a class="row" href="samples/claude-improvement/"><span class="t">Claude導入の提案＆初月レポート</span><span class="m">PDF · 8p</span><span class="d">業務の棚卸しから導入提案、初月の結果報告まで。</span></a></li>
-    <li><a class="row" href="samples/manufacturing-ai/"><span class="t">生成AI導入 現状診断レポート（製造業）</span><span class="m">PDF · 8p</span><span class="d">設計・品質部門を対象にした導入前の現状診断。</span></a></li>
-    <li><a class="row" href="samples/ai-tax-office/"><span class="t">生成AIの業務導入 設計書（税理士事務所向け）</span><span class="m">PDF · 9p</span><span class="d">税理士事務所で生成AIを使うときの、業務の流れと仕組みの設計書。</span></a></li>
-    <li><a class="row" href="samples/blog-summary/"><span class="t">ブログ月間サマリーの自動作成・検証</span><span class="m">PDF · 10p</span><span class="d">記事にない固有名詞・数字・日付を機械で照合して差し戻す。承認は人。</span></a></li>
-  </ul>
-  <p class="group" id="g-aidev">AI開発</p>
-  <ul class="rows">
-    <li><a class="row" href="samples/socra-handoff/"><span class="t">AI開発の引き継ぎ文書（SOCRA）</span><span class="m">Web</span><span class="d">教養ラジオ動画を台本から投稿まで自動で作るシステムの開発を、AIとの会話をまたいで続けるための文書。構成と書き方の工夫。</span></a></li>
-  </ul>
-  <p class="group" id="g-writing">ライティング</p>
-  <ul class="rows">
-    <li><a class="row" href="samples/x-article/"><span class="t">記事：階層型AIエージェントの運用</span><span class="m">PDF · 8p</span><span class="d">自社の実際の運用をもとに、誤りを防ぐ4つの関門を紹介する記事。</span></a></li>
-    <li><a class="row" href="https://note.com/takashimatsumura"><span class="t">note：調査記事24本</span><span class="m">note.com ↗</span><span class="d">AI・時事、マーケティング・EC、社会・メディアなどを調べて書いた記事。</span></a></li>
-  </ul>
+  <h3 class="cat" id="c-ec">EC × AI導入支援</h3>
+  <p class="cat-lead">自社でAmazon・Yahoo!ショッピング・BASEの3つの店を運営し、出荷・在庫・価格の仕事をAIと仕組みで回しています。自社で動いている形を、そのまま導入のお手伝いに使います。</p>
   <p class="group" id="g-ec">EC（広告運用・在庫管理・価格設定・API）・商品企画</p>
   <ul class="rows">
     <li><a class="row" href="samples/shipping/"><span class="t">実績：EC出荷作業の自動化（実画面つき・2時間→10分、ボタンを押さずに伝票印刷まで）</span><span class="m">スライド · 10枚</span><span class="d">自社EC（Amazon・Yahoo!ショッピング・BASE）の送り状づくりを、約2時間から約10分に。実際の画面で手順を紹介し、ナレッジとデスクトップアプリで、ボタンを押さずに伝票印刷までつなげる構成も説明します。</span></a></li>
@@ -180,9 +147,51 @@
     <li><a class="row" href="samples/ec-product-switch/"><span class="t">商品切り替えの手順：旧商品から新商品へ、売上を落とさずに</span><span class="m">PDF · 8p</span><span class="d">在庫の消化計画、切り替え日、商品ページの扱い、告知と当日のチェックリスト、よくある失敗。</span></a></li>
     <li><a class="row" href="https://www.makuake.com/project/4szpaki/"><span class="t">Makuake：全身シャンプーバー</span><span class="m">makuake.com ↗</span><span class="d">ポーランドのブランドの日本初展開。応援購入総額424,930円（達成率141%）。企画・撮影・動画編集・文章・広告運用・発送を一人で。</span></a></li>
   </ul>
-  <p class="group" id="g-hobby">趣味（ホビー）</p>
+  <p class="group" id="g-docs">資料作成（企画・会議・商談）</p>
   <ul class="rows">
-    <li><a class="row" href="https://www.youtube.com/watch?v=cPVDlqot2IQ"><span class="t">ランプの企画・設計・試作</span><span class="m">動画 ↗</span><span class="d">趣味として、ランプを個人で企画し、3D CADで設計・試作した過程の動画。</span></a></li>
+    <li><a class="row" href="samples/planning-proposal/"><span class="t">企画提案書：Webマーケティング支援</span><span class="m">PDF · 8p</span><span class="d">自社ECの新規流入を増やすための企画提案書。</span></a></li>
+    <li><a class="row" href="samples/management-meeting/"><span class="t">経営会議資料：月次の予実・KPI</span><span class="m">PDF · 8p</span><span class="d">KPIの推移、予算と実績、論点と次の打ち手。</span></a></li>
+    <li><a class="row" href="samples/sales-deck/"><span class="t">商談資料ブラッシュアップの例</span><span class="m">PDF · 8p</span><span class="d">内容はそのままに、構成・図解・デザインを整えた改善前後。</span></a></li>
+  </ul>
+  <h3 class="cat" id="c-se">システムエンジニア × AI導入支援</h3>
+  <p class="cat-lead">スプレッドシート・GAS・生成AI（Claude・ChatGPT）で、毎日の手作業を仕組みにします。業務の棚卸し、導入の設計、社内の決まりづくり、初月の報告まで。</p>
+  <p class="group" id="g-ai">AI活用（誤りを防ぐ仕組みつき）</p>
+  <ul class="rows">
+    <li><a class="row" href="samples/ai-security/"><span class="t">AI導入とセキュリティ：自社でやっている対策と、お手伝いできること</span><span class="m">スライド · 10枚</span><span class="d">AIを使い始めると増える危険、情報セキュリティ基本方針とAIを使うときの決まり、SECURITY ACTION「二つ星」の自己宣言、お手伝いできること、進め方と料金（税別）。</span></a></li>
+    <li><a class="row" href="samples/claude-improvement/"><span class="t">Claude導入の提案＆初月レポート</span><span class="m">PDF · 8p</span><span class="d">業務の棚卸しから導入提案、初月の結果報告まで。</span></a></li>
+    <li><a class="row" href="samples/manufacturing-ai/"><span class="t">生成AI導入 現状診断レポート（製造業）</span><span class="m">PDF · 8p</span><span class="d">設計・品質部門を対象にした導入前の現状診断。</span></a></li>
+    <li><a class="row" href="samples/ai-tax-office/"><span class="t">生成AIの業務導入 設計書（税理士事務所向け）</span><span class="m">PDF · 9p</span><span class="d">税理士事務所で生成AIを使うときの、業務の流れと仕組みの設計書。</span></a></li>
+    <li><a class="row" href="samples/blog-summary/"><span class="t">ブログ月間サマリーの自動作成・検証</span><span class="m">PDF · 10p</span><span class="d">記事にない固有名詞・数字・日付を機械で照合して差し戻す。承認は人。</span></a></li>
+    <li><a class="row has-thumb" href="samples/zazou-leaflet/"><img class="th land" src="assets/img/thumb-leaflet.webp" width="640" height="400" alt="商工会向けの会社説明資料の表面（その手作業、仕組みに変えませんか。）" loading="lazy" decoding="async"><span class="t">チラシ・パンフレット：商工会向けの会社説明資料（A4両面）</span><span class="m">画像 · A4両面</span><span class="d">自社（ZAZOU株式会社）の「商工会 ご説明資料」。AIを使って構成・文章を作り、人が確かめて仕上げました。</span></a></li>
+  </ul>
+  <p class="group" id="g-aidev">AI開発</p>
+  <ul class="rows">
+    <li><a class="row" href="samples/socra-handoff/"><span class="t">AI開発の引き継ぎ文書（SOCRA）</span><span class="m">Web</span><span class="d">教養ラジオ動画を台本から投稿まで自動で作るシステムの開発を、AIとの会話をまたいで続けるための文書。構成と書き方の工夫。</span></a></li>
+  </ul>
+  <p class="group" id="g-gas">業務改善（スプレッドシート・GAS）</p>
+  <ul class="rows">
+    <li><a class="row" href="samples/gas-progress/"><span class="t">進捗管理 × スプレッドシート・GAS</span><span class="m">PDF · 10p</span><span class="d">期限の通知・週次レポート・入力チェックを仕組みにする設計。</span></a></li>
+    <li><a class="row" href="samples/backoffice-report/"><span class="t">バックオフィス 初月レポート</span><span class="m">PDF · 10p</span><span class="d">業務の棚卸しから改善の結果までを1か月でまとめた報告書。</span></a></li>
+    <li><a class="row" href="samples/gas-form-gmail/"><span class="t">フォーム → 集計 → Gmail送信（GAS）</span><span class="m">PDF · 10p</span><span class="d">送信前に下書きで確認する、誤送信しない作り。個人情報を扱わない設計と自動テストつき。</span></a></li>
+    <li><a class="row" href="https://takmat21.github.io/yamato-b2-/"><span class="t">ヤマトB2 送り状変換ツール</span><span class="m">Web ↗</span><span class="d">注文データをヤマト運輸「B2クラウド」の取り込み形式に変換するツール。自社の出荷で使用中。</span></a></li>
+  </ul>
+  <p class="group" id="g-web">Web制作</p>
+  <ul class="rows">
+    <li><a class="row has-thumb" href="samples/sites/"><img class="th land" src="assets/img/thumb-sites.webp" width="640" height="400" alt="ホームページの見本（町工場の例）" loading="lazy" decoding="async"><span class="t">ホームページの見本20業種：町工場から介護タクシーまで</span><span class="m">Web · 20サイト</span><span class="d">町工場・工務店・食堂・美容室・整体院・直売所・ペット・士業・学習塾・宿・喫茶店・花屋・整備工場・写真館・不動産・ヨガ・パン屋・設計事務所・酒蔵・介護タクシー。業種ごとに色・書体・構成を変えた、スマホ対応の見本（会社・住所・電話は架空）。</span></a></li>
+    <li><a class="row" href="https://takmat21.github.io/oyako-lab/"><span class="t">団体サイトの制作</span><span class="m">Web ↗</span><span class="d">団体のWebサイトを企画から制作・公開まで一人で担当（HTML・GitHub Pages、スマホ対応、検索向けの説明文の設定）。</span></a></li>
+  </ul>
+  <p class="group" id="g-manual">マニュアル</p>
+  <ul class="rows">
+    <li><a class="row" href="samples/accounting-manual/"><span class="t">経理業務マニュアル：月次締め（freee）</span><span class="m">PDF · 8p</span><span class="d">月次締めの手順を、誰でも同じようにできる形に。</span></a></li>
+  </ul>
+  <p class="group" id="g-research">リサーチ</p>
+  <ul class="rows">
+    <li><a class="row" href="samples/research-subsidy/"><span class="t">補助金の比較リサーチ</span><span class="m">PDF · 6p</span><span class="d">公的機関の一次情報だけで2制度3枠を比較。出典URLつき。</span></a></li>
+  </ul>
+  <p class="group" id="g-writing">ライティング（AIの調査記事）</p>
+  <ul class="rows">
+    <li><a class="row" href="samples/x-article/"><span class="t">記事：階層型AIエージェントの運用</span><span class="m">PDF · 8p</span><span class="d">自社の実際の運用をもとに、誤りを防ぐ4つの関門を紹介する記事。</span></a></li>
+    <li><a class="row" href="https://note.com/takashimatsumura"><span class="t">note：調査記事24本</span><span class="m">note.com ↗</span><span class="d">AI・時事、マーケティング・EC、社会・メディアなどを調べて書いた記事。</span></a></li>
   </ul>
 </section>
 
