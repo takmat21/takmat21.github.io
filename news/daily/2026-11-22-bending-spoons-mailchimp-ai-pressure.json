@@ -1,0 +1,33 @@
+{
+ "date": "2026-11-22",
+ "title": "Intuitがメールの大手Mailchimpを手放す：AIの圧力でソフト会社の株価が半分以下に",
+ "category": "企業",
+ "lead": "米国のIntuitが、メール配信のMailchimpをBending Spoonsに36億8000万ドルで売ると、TechCrunch（Russell Brandom記者）が11月20日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "記事によると、Bending Spoonsは、IntuitからMailchimpを36億8000万ドルで買うことで合意しました。Intuitは2021年に、およそ120億ドルでMailchimpを買っています。今回の売却では、約83億ドルの損になる計算です。当時の社員には株が配られず、今回の代金も受け取れないと伝えられています。",
+    "背景にあるのは、AIの流れです。Intuitの株価は、1年前の半分以下になりました。記事は、AIによってソフトウェアの仕事が変わる圧力を受けているためだと書いています。Intuitは、売却で小さな会社向けのAI機能に力を入れると話しています。得たお金は、自社株の買い戻しにあてる予定です。",
+    "支払いは「全額現金」とされていますが、IntuitはBending Spoonsの新しい株を3億6800万ドル分も買います。つまり、おおよそ9割が現金、1割が株です。",
+    "Bending Spoonsは、AOL、Eventbrite、Airtable、Miroなどを最近買っています。その前にはEvernote、Meetup、Vimeoも買いました。買った製品を、共通のエンジニアリングと収益の仕組みに集めるやり方です。記事によると、大きな費用の削減につながり、サポートや製品の資源が良くなることも多いそうです。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/20/bending-spoons-buys-mailchimp-for-3-68-billion/",
+   "note": "元記事",
+   "title": "Bending Spoons buys Mailchimp for $3.68B",
+   "org": "報道：TechCrunch（Russell Brandom記者）",
+   "published": "2026-11-20",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}
