@@ -1,0 +1,40 @@
+{
+ "date": "2026-11-23",
+ "title": "Signalがスマホのスクリーンショットを制限：AIエージェントによる画面の読み取りに対抗",
+ "category": "プライバシー",
+ "lead": "メッセージアプリSignalが、AndroidとiOS版でスクリーンショットを制限すると、TechCrunch（Anthony Ha記者）が11月21日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "記事によると、Signalは自社のブログで、AndroidとiOSのアプリでスクリーンショットを撮る機能を制限すると発表しました。Signal社長のMeredith Whittaker氏は、AIエージェントを組み込んだOSを「存在を脅かすもの」と呼んでいます。",
+    "理由は、Windows、Android、macOS／iOSのOSが、AIエージェントに画面上の情報を読み取らせる力を与えているからです。Whittaker氏は、これではSignalが利用者のプライバシーを自力で守ると約束できなくなる、と述べています。いったん情報が取り出されると、それは「Signalの手の外」に出てしまうからです。",
+    "Windows版では、すでにスクリーンショットが標準で止められていました。今回の制限は、その考え方をスマホに広げるものです。利用者はこの制限を切ることもできますが、Whittaker氏は、切ると「プライバシーの保証が崩れる」と話しています。同氏は、この対策は「不完全」だとも認めています。AIエージェントが、ほかの方法でアプリの情報に届く道は残るためです。"
+   ]
+  },
+  {
+   "heading": "自社のAIチームの運用から見ると",
+   "paragraphs": [
+    "小さな会社が複数のAIに仕事を分けて使うとき、AIには画面やファイルを読む力を渡すことが多くなります。便利な反面、AIが読める範囲は、人間の目に見える範囲とほぼ同じになりがちです。この記事は、画面に映ったものはAIの読み取りの対象になりうる、という前提で考える必要があることを示しています。",
+    "気をつける点は3つ考えられます。1つ目は、AIに渡す画面や権限を、仕事に必要な分だけにすること。2つ目は、お客様とのやり取りや個人情報が映る画面は、AIの作業と同じ場所に開いたままにしないこと。3つ目は、AIが画面を読む設定が、OSやアプリの更新で変わっていないかを、ときどき確かめることです。",
+    "この記事は、Signalの側の発表と考え方を伝えるものです。ほかのOSやアプリが実際にどう動くかまでは書かれていません。私たちが持ち帰れるのは、AIに見せてよい情報の線引きを、先に決めておくという点です。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/21/signal-restricts-mobile-screenshots-as-it-confronts-existential-threat-of-ai-surveillance/",
+   "note": "元記事",
+   "title": "Signal restricts mobile screenshots as it confronts ‘existential threat’ of AI surveillance",
+   "org": "報道：TechCrunch（Anthony Ha記者）",
+   "published": "2026-11-21",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}

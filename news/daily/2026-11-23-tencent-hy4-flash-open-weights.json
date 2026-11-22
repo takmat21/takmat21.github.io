@@ -1,0 +1,33 @@
+{
+ "date": "2026-11-23",
+ "title": "TencentがAIモデル「Hy4 flash」の重みを公開：100万トークンの文脈、手元に置いて動かせる",
+ "category": "新モデル",
+ "lead": "中国のTencentが、AIモデル「Hy4 flash」の重み（モデルの中身のデータ）を公開したと、TechNodeが11月19日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "記事によると、Tencentは、Hy4 flashの重みを公開しました。モデルをアプリとクラウドのAPIで出した2日後のことです。以前に「重みを公開する予定」と話していた約束を果たした形だと、記事は伝えています。",
+    "ダウンロードできるのは3種類です。標準のモデル、FP8版、そしてさらに学習を重ねるための基本モデルです。文章と画像を入力でき、文脈の長さは最大で100万トークンです。大きさは約2240億パラメータで、1トークンを処理するときに使われるのはそのうち約120億です。",
+    "使い道としては、調べもの、文書づくり、表計算といった日々の生産性の仕事が挙げられています。公開には、導入のための資料と、Tencent Hy Licenseという使用許諾がついています。モデルのページはHugging Faceにあります（huggingface.co/tencent/Hy4-flash）。",
+    "この記事は短く、性能の数字や、どんなパソコンで動くかまでは書かれていません。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechNode",
+   "url": "https://technode.com/2026/11/19/tencent-releases-hy4-flash-model-weights-for-local-deployment/",
+   "note": "元記事",
+   "title": "Tencent releases Hy4 flash model weights for local deployment",
+   "org": "報道：TechNode（TechNode Feed）",
+   "published": "2026-11-19",
+   "image": "https://i0.wp.com/technode.com/wp-content/uploads/2026/10/feed-20261014-cn-365024.jpg?fit=1920%2C1280&ssl=1",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}

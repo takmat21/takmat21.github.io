@@ -1,0 +1,32 @@
+{
+ "date": "2026-11-23",
+ "title": "Orangeがウォロフ語のAIモデル5つを無料公開：Alibabaの「Qwen3」をもとに",
+ "category": "新モデル",
+ "lead": "フランスの通信大手Orangeが、西アフリカのウォロフ語を扱えるAIモデル5つを公開したと、The Next Web（Ana Maria Constantin記者）が11月19日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "記事によると、Orangeが公開したのは、ウォロフ語を理解し、書くことができる5つのオープンウェイトのモデルです。ウォロフ語は西アフリカで約1600万人が話す言語です。AlibabaのQwen3をもとに追加の学習をしたもので、Hugging Faceで、商用でない使い方なら無料で使えます。大きさは6億から140億パラメータです。商用での利用は、Orangeとの別の契約で可能かもしれない、とされています。",
+    "学習に使ったのは、公開されているデータをウォロフ語に機械翻訳したもので、Orangeの社内データは使っていません。ウォロフ語を話す人たちが学習データとモデルの答えを確かめ、さらに、答えの正確さと自然さを別々に、名前を伏せた比較で評価したそうです。",
+    "計画の発表は2024年11月でした。当初はMetaのLlamaやOpenAIのWhisperを使う予定でしたが、広報担当者はTNWに、Qwenが「そのとき、言語モデルとして最も良い性能だった」と話しています。Orangeは、Gates財団が9月に始めたAI言語の協力の枠組みにも加わると確認しました。この枠組みには60以上の参加者がいて、34億人が自分の言語と声でAIを使えるようにすることをめざしています。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "The Next Web",
+   "url": "https://thenextweb.com/news/orange-wolof-ai-models-qwen3-hugging-face",
+   "note": "元記事",
+   "title": "Orange releases five Wolof AI models built on Alibaba's Qwen3",
+   "org": "報道：The Next Web（Ana Maria Constantin記者）",
+   "published": "2026-11-19",
+   "image": "https://media.thenextweb.com/2026/11/orange-logo-cube-glass-office-building-blue-sky.jpg",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}
