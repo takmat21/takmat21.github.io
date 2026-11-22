@@ -224,10 +224,10 @@ for(const r of P.rooms)label(r.name,r.sub||'',m(r.x0+r.x1)/2,-m(r.y0+r.y1)/2);
 const clip=new THREE.Plane(new THREE.Vector3(0,-1,0),FL2+1.25);
 let planMode=false,basisMode=false;
 function setPlan(on){planMode=on;renderer.clippingPlanes=on?[clip]:[];for(const r of roofParts)r.visible=!on;labels.visible=on;ghosts.visible=!on||true;}
-function setBasis(on){basisMode=on;for(const me of tagged){me.material=on?mat[me.userData.tag]:me.userData.base;}document.getElementById('legend').style.display=on?'block':'none';document.getElementById('basis').classList.toggle('on',on);}
+function setBasis(on){basisMode=on;for(const me of tagged){me.material=on?mat[me.userData.tag]:me.userData.base;}document.getElementById('legend').style.display=on?'block':'none';document.getElementById('hint').style.opacity=0;document.getElementById('basis').classList.toggle('on',on);}
 const views={iso:{p:[7.6,5.2,12.2],t:[0,3.0,0.6]},front:{p:[0.4,3.4,17.5],t:[0,3.2,0]},plan:{p:[3.6,13.2,5.6],t:[0,3.0,-.2]}};
 let anim=null;
-function go(name,instant){const v=views[name];setPlan(name==='plan');const p1=new THREE.Vector3(...v.p),t1=new THREE.Vector3(...v.t);
+function go(name,instant){const v=views[name];setPlan(name==='plan');const t1=new THREE.Vector3(...v.t);const k0=(stage.clientWidth/stage.clientHeight<.8)?1.75:1;const p1=new THREE.Vector3(...v.p).sub(t1).multiplyScalar(k0).add(t1);
  if(instant){cam.position.copy(p1);ctl.target.copy(t1);ctl.update();return;}
  const p0=cam.position.clone(),t0=ctl.target.clone();const s=performance.now();anim=(now)=>{let k=Math.min(1,(now-s)/700);k=k*k*(3-2*k);cam.position.lerpVectors(p0,p1,k);ctl.target.lerpVectors(t0,t1,k);if(k>=1)anim=null;};
  document.querySelectorAll('button[data-v]').forEach(b=>b.classList.toggle('on',b.dataset.v===name));}
@@ -235,7 +235,7 @@ document.querySelectorAll('button[data-v]').forEach(b=>b.addEventListener('click
 document.getElementById('basis').addEventListener('click',()=>setBasis(!basisMode));
 const spinB=document.getElementById('spin');spinB.addEventListener('click',()=>{ctl.autoRotate=!ctl.autoRotate;spinB.classList.toggle('on',ctl.autoRotate);});ctl.autoRotateSpeed=1.1;
 renderer.domElement.addEventListener('pointerdown',()=>{document.getElementById('hint').style.opacity=0;},{once:true});
-function size(){const w=stage.clientWidth,h=stage.clientHeight;renderer.setSize(w,h,false);cam.aspect=w/h;cam.fov=(w/h<.8?52:36);cam.updateProjectionMatrix();}
+function size(){const w=stage.clientWidth,h=stage.clientHeight;renderer.setSize(w,h,false);cam.aspect=w/h;cam.fov=(w/h<.8?44:36);cam.updateProjectionMatrix();}
 addEventListener('resize',size);size();
 go(q.get('v')||'iso',true);if(q.get('v'))document.querySelectorAll('button[data-v]').forEach(b=>b.classList.toggle('on',b.dataset.v===q.get('v')));
 if(q.get('basis'))setBasis(true);
