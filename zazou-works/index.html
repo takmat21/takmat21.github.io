@@ -7,178 +7,117 @@
 <meta name="description" content="ZAZOU株式会社の4つの部門（設計・EC・AI導入支援・研究所）の入り口です。図面の作成、ネットショップの運営、業務の仕組みづくりを、在宅・全国対応でお受けします。">
 <link rel="icon" href="img/favicon.png" type="image/png">
 <style>
-:root{
-  --ink:#16323a; --sub:#4d6870; --line:#d7e3e6; --bg:#ffffff; --soft:#f3f8f9;
-  --main:#0f7c90; --accent:#27aece; --on-main:#ffffff;
-}
-@media (prefers-color-scheme: dark){
-  :root{--ink:#e6f1f3; --sub:#a9c0c6; --line:#2a4148; --bg:#0f1b1e; --soft:#152529; --main:#4cc2db; --accent:#27aece; --on-main:#0f1b1e;}
-}
+:root{--ink:#14181b;--sub:#6a747a;--faint:#9aa3a8;--line:#e7eaec;--bg:#ffffff;--tq:#27aece;--tq2:#0f7c90;
+ --c-sekkei:#0b3bf5;--c-ec:#e0a526;--c-ai:#f0468c;--c-lab:#8a9399}
+@media (prefers-color-scheme: dark){:root{--ink:#eef1f2;--sub:#a3adb2;--faint:#727c82;--line:#232a2e;--bg:#0c0f11;--tq:#3cc0dc;--tq2:#3cc0dc;--c-sekkei:#5c7dff;--c-lab:#aab3b8}}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Sans","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;line-height:1.8;font-size:16px}
-a{color:var(--main)}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
-header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:700;letter-spacing:.04em;white-space:nowrap}
-.brand img{height:34px;width:auto}
-.brand small{display:block;font-size:11px;font-weight:500;color:var(--sub);letter-spacing:.02em;line-height:1.2}
-nav.menu{display:flex;gap:18px;font-size:14px}
-nav.menu a{color:var(--ink);text-decoration:none}
-nav.menu a:hover{color:var(--main)}
-.cta{display:inline-block;background:var(--main);color:var(--on-main);text-decoration:none;padding:10px 18px;border-radius:6px;font-weight:700;font-size:15px}
-.cta.ghost{background:transparent;color:var(--main);border:1px solid var(--main)}
-@media (max-width:760px){nav.menu{display:none} header.top .cta{padding:8px 12px;font-size:13px}}
-
-.hero{background:linear-gradient(180deg,var(--soft),var(--bg));border-bottom:1px solid var(--line)}
-.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:36px;align-items:center;padding-top:56px;padding-bottom:56px}
-.hero h1{font-size:clamp(26px,4.2vw,40px);line-height:1.35;margin:0 0 16px;letter-spacing:.02em}
-.hero p.lead{color:var(--sub);margin:0 0 24px}
-.hero .btns{display:flex;gap:12px;flex-wrap:wrap}
-.hero figure{margin:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;box-shadow:0 6px 24px rgba(15,124,144,.12)}
-.hero figure img{display:block;width:100%;height:auto}
-.logo-hero{display:block;width:180px;height:auto;margin:0 0 20px}
-@media (prefers-color-scheme: dark){.logo-hero,.brand img,footer img{background:#fff;border-radius:6px;padding:6px}}
-.nb{display:inline-block}
-.badges{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px;padding:0;list-style:none}
-.badges li{font-size:13px;border:1px solid var(--line);background:var(--bg);border-radius:99px;padding:2px 12px;color:var(--sub)}
-@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;padding-top:36px;padding-bottom:36px}}
-
-section{padding:64px 0;border-bottom:1px solid var(--line)}
-section h2{font-size:clamp(22px,3vw,28px);margin:0 0 8px;letter-spacing:.03em}
-section h2::before{content:"";display:inline-block;width:6px;height:1em;background:var(--accent);margin-right:10px;vertical-align:-2px;border-radius:2px}
-section p.sec-lead{color:var(--sub);margin:0 0 28px}
-
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.card{border:1px solid var(--line);border-radius:8px;padding:20px;background:var(--bg)}
-.card h3{margin:0 0 8px;font-size:18px;color:var(--main)}
-.card ul{margin:0;padding-left:1.1em;color:var(--ink)}
-.card li{margin:2px 0}
-.depts{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
-@media (max-width:760px){.depts{grid-template-columns:1fr}}
-.dept{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg);text-decoration:none;color:var(--ink);transition:box-shadow .2s,transform .2s}
-.dept:hover{box-shadow:0 8px 28px rgba(15,124,144,.16);transform:translateY(-2px)}
-.dept img{display:block;width:100%;height:auto;border-bottom:1px solid var(--line);aspect-ratio:16/10;object-fit:cover;object-position:top}
-.dept .body{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1}
-.dept .kind{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.08em}
-.dept h3{margin:2px 0 8px;font-size:21px}
-.dept p{margin:0 0 14px;color:var(--sub);font-size:15px;flex:1}
-.dept .go{font-weight:700;color:var(--main);font-size:15px}
-
-.formats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:20px}
-.formats div{background:var(--soft);border-radius:8px;padding:14px 16px}
-.formats b{display:block;color:var(--main)}
-.formats span{font-size:14px;color:var(--sub)}
-
-.works{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
-.work{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--bg);display:flex;flex-direction:column}
-.work img{display:block;width:100%;height:auto;border-bottom:1px solid var(--line);background:#fff}
-.work .body{padding:16px 18px;flex:1;display:flex;flex-direction:column}
-.work h3{margin:0 0 6px;font-size:17px}
-.work p{margin:0 0 12px;font-size:14px;color:var(--sub);flex:1}
-.work a.pdf{font-size:14px;font-weight:700;text-decoration:none}
-.note{font-size:13px;color:var(--sub);margin-top:16px}
-
-.profile{display:grid;grid-template-columns:1fr 1.2fr;gap:28px}
-@media (max-width:860px){.profile{grid-template-columns:1fr}}
-dl.hist{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 16px}
-dl.hist dt{color:var(--main);font-weight:700;white-space:nowrap;font-size:14px}
-dl.hist dd{margin:0}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 0;padding:0;list-style:none}
-.tags li{background:var(--soft);border-radius:4px;padding:2px 10px;font-size:14px}
-
-ol.flow{counter-reset:f;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
-ol.flow li{counter-increment:f;border:1px solid var(--line);border-radius:8px;padding:16px;background:var(--bg)}
-ol.flow li::before{content:counter(f);display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--main);color:var(--on-main);font-weight:700;margin-bottom:6px}
-ol.flow b{display:block}
-ol.flow span{font-size:14px;color:var(--sub)}
-
-table.co{width:100%;border-collapse:collapse}
-table.co th,table.co td{border-bottom:1px solid var(--line);padding:10px 8px;text-align:left;vertical-align:top}
-table.co th{width:9em;color:var(--sub);font-weight:500}
-
-.contact{background:var(--soft)}
-.contact .box{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-.contact .item{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:20px}
-.contact .item b{display:block;font-size:17px;margin-bottom:4px}
-.contact .item p{margin:0 0 12px;color:var(--sub);font-size:14px}
-.mail{font-size:16px;word-break:break-all}
-footer{padding:28px 0;color:var(--sub);font-size:13px;text-align:center}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Sans","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;line-height:1.9;font-size:15px;font-feature-settings:"palt";-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 28px}
+header.top{position:fixed;inset:0 0 auto 0;z-index:10;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(10px)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:.18em}
+.brand img{height:22px;width:auto}
+nav.menu{display:flex;gap:28px;font-size:12px;letter-spacing:.16em}
+nav.menu a{text-decoration:none;color:var(--sub);transition:color .2s}
+nav.menu a:hover{color:var(--ink)}
+.hero{min-height:100svh;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;right:-8%;top:-10%;width:42%;height:120%;background:linear-gradient(160deg,var(--tq),var(--tq2));opacity:.07;clip-path:polygon(38% 0,100% 0,62% 100%,0 100%)}
+.hero::after{content:"";position:absolute;right:26%;top:-10%;width:9%;height:120%;background:var(--tq);opacity:.05;clip-path:polygon(38% 0,100% 0,62% 100%,0 100%)}
+.hero .wrap{position:relative;width:100%;padding-top:60px}
+.logo-hero{display:block;width:min(240px,52vw);height:auto;margin:0 0 44px}
+.hero h1{font-size:clamp(20px,2.6vw,28px);font-weight:500;letter-spacing:.14em;line-height:1.9;margin:0}
+.hero p{margin:18px 0 0;color:var(--sub);font-size:13px;letter-spacing:.12em}
+.scroll{position:absolute;left:28px;bottom:34px;font-size:10px;letter-spacing:.3em;color:var(--faint);text-decoration:none;display:flex;align-items:center;gap:12px}
+.scroll::before{content:"";width:44px;height:1px;background:var(--faint)}
+section{padding:120px 0}
+.label{font-size:11px;letter-spacing:.32em;color:var(--faint);margin:0 0 36px;display:flex;align-items:center;gap:14px}
+.label::before{content:"";width:14px;height:8px;background:var(--tq);clip-path:polygon(45% 0,100% 0,55% 100%,0 100%)}
+.rows{border-top:1px solid var(--line)}
+a.row{display:grid;grid-template-columns:3.2em 1fr auto;align-items:center;gap:20px;padding:34px 6px;border-bottom:1px solid var(--line);text-decoration:none;position:relative;transition:padding .35s cubic-bezier(.2,.7,.2,1)}
+a.row::before{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:0;background:var(--c);transition:width .5s cubic-bezier(.2,.7,.2,1)}
+a.row:hover{padding-left:18px}
+a.row:hover::before{width:100%}
+a.row .no{font-size:11px;letter-spacing:.2em;color:var(--faint)}
+a.row b{display:block;font-size:clamp(20px,3vw,30px);font-weight:600;letter-spacing:.06em;line-height:1.4}
+a.row b i{font-style:normal;color:var(--c)}
+a.row span.d{display:block;color:var(--sub);font-size:13px;letter-spacing:.06em;margin-top:2px}
+a.row .go{width:38px;height:14px;background:var(--c);clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%);opacity:.9;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+a.row:hover .go{transform:translateX(8px)}
+dl.co{margin:0;display:grid;grid-template-columns:8em 1fr;gap:0;font-size:13.5px;border-top:1px solid var(--line)}
+dl.co dt,dl.co dd{margin:0;padding:14px 4px;border-bottom:1px solid var(--line)}
+dl.co dt{color:var(--faint);letter-spacing:.12em;font-size:12px;padding-top:16px}
+details.career{margin-top:22px;font-size:13px;color:var(--sub)}
+details.career summary{cursor:pointer;width:max-content;letter-spacing:.12em;font-size:12px;color:var(--faint)}
+details.career ul{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:4px}
+details.career li span{display:inline-block;width:7.5em;color:var(--faint);font-variant-numeric:tabular-nums}
+.contact{display:flex;flex-wrap:wrap;gap:18px 56px;align-items:baseline}
+.contact a{text-decoration:none;font-size:clamp(16px,2.2vw,22px);letter-spacing:.06em;border-bottom:1px solid var(--line);padding-bottom:6px;transition:border-color .25s,color .25s}
+.contact a:hover{border-color:var(--tq);color:var(--tq2)}
+.contact small{display:block;font-size:11px;letter-spacing:.24em;color:var(--faint);margin-bottom:6px}
+footer{padding:44px 0 56px;color:var(--faint);font-size:11px;letter-spacing:.14em}
+footer .wrap{display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-between;border-top:1px solid var(--line);padding-top:26px}
+footer a{color:var(--faint);text-decoration:none}
+footer a:hover{color:var(--ink)}
+@media (prefers-color-scheme: dark){.brand img,.logo-hero{filter:brightness(1.15)}}
+@media (max-width:640px){.wrap{padding:0 20px}nav.menu{gap:18px}section{padding:84px 0}a.row{grid-template-columns:2.4em 1fr auto;gap:12px;padding:26px 2px}dl.co{grid-template-columns:6.2em 1fr}.scroll{left:20px}.hero::before{right:-30%;width:80%}.hero::after{display:none}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto}}
 </style>
 </head>
 <body>
 <header class="top"><div class="wrap">
-  <a class="brand" href="#"><img src="img/mark.png" alt=""><span>ZAZOU Works<small>ZAZOU株式会社</small></span></a>
-  <nav class="menu" aria-label="ページ内"><a href="#depts">部門</a><a href="#profile">代表</a><a href="#company">会社概要</a></nav>
-  <a class="cta" href="#contact">ご相談</a>
+  <a class="brand" href="#"><img src="img/mark.png" alt="">ZAZOU WORKS</a>
+  <nav class="menu" aria-label="ページ内"><a href="#works">WORKS</a><a href="#company">COMPANY</a><a href="#contact">CONTACT</a></nav>
 </div></header>
 
 <div class="hero"><div class="wrap">
-  <div>
-    <img class="logo-hero" src="img/logo.png" width="1055" height="750" alt="ZAZOU Works">
-    <ul class="badges"><li>設計</li><li>EC</li><li>AI導入支援</li><li>研究所</li></ul>
-    <h1><span class="nb">ものづくりと</span><span class="nb">お店の仕事を、</span><br><span class="nb">仕組みで支える。</span></h1>
-    <p class="lead">ZAZOU Works は、ZAZOU株式会社の4つの部門の入り口です。図面の作成、ネットショップの運営、業務の仕組みづくりを、在宅・全国対応でお受けします。ご相談の窓口は1つ、どの部門のご用件でも同じ LINE・メールで承ります。</p>
-    <div class="btns"><a class="cta" href="#depts">部門を見る</a><a class="cta ghost" href="#contact">ご相談はこちら</a></div>
-  </div>
-  <figure><img src="img/t_sekkei.webp" width="960" height="600" alt="ZAZOU 設計Worksのサイト"></figure>
-</div></div>
+  <img class="logo-hero" src="img/logo.png" width="1055" height="750" alt="ZAZOU Works">
+  <h1>設計、EC、AI。<br>仕事を、仕組みで支える。</h1>
+  <p>ZAZOU株式会社</p>
+</div><a class="scroll" href="#works">SCROLL</a></div>
 
 <main>
-<section id="depts"><div class="wrap">
-  <h2>4つの部門</h2>
-  <p class="sec-lead">ご用件に合わせて、各部門のサイトをご覧ください。</p>
-  <div class="depts">
-    <a class="dept" href="https://takmat21.github.io/zazou-works-sekkei/"><img src="img/t_sekkei.webp" width="960" height="600" alt="ZAZOU 設計Worksのサイト" loading="lazy"><div class="body"><span class="kind">設計</span><h3>ZAZOU 設計Works</h3><p>機械の部品図・組立図、建築の平面図・立面図・断面図、設備図の拾い出しまで。図面の作成・修正・トレースを、DXF・JWW・PDFでお渡しします。</p><span class="go">サイトを見る →</span></div></a>
-    <a class="dept" href="https://takmat21.github.io/zazou-works-ec/"><img src="img/t_ec.webp" width="960" height="600" alt="ZAZOU EC Worksのサイト" loading="lazy"><div class="body"><span class="kind">EC</span><h3>ZAZOU EC Works</h3><p>Amazon・Yahoo!ショッピング・BASE の運営代行、出荷・送り状づくりの自動化、商品ページ・撮影・広告、ネットショップの立ち上げのご相談。</p><span class="go">サイトを見る →</span></div></a>
-    <a class="dept" href="https://takmat21.github.io/ai/"><img src="img/t_ai.webp" width="960" height="600" alt="ZAZOU AI Worksのサイト" loading="lazy"><div class="body"><span class="kind">AI導入支援</span><h3>ZAZOU AI Works</h3><p>自社の業務でAIの仕組みを毎日動かしている設計者が、御社の業務を1つずつAIで仕組みにします。手順の書き出しから、人が確かめる所まで。</p><span class="go">サイトを見る →</span></div></a>
-    <a class="dept" href="https://takmat21.github.io/"><img src="img/t_lab.webp" width="960" height="600" alt="ZAZOU Labのサイト" loading="lazy"><div class="body"><span class="kind">研究所</span><h3>ZAZOU Lab</h3><p>実績と、試作・研究の途中経過を公開している場所です。業務の仕組み、道具、論文、毎朝のニュースを載せています。</p><span class="go">サイトを見る →</span></div></a>
+<section id="works"><div class="wrap">
+  <p class="label">WORKS</p>
+  <div class="rows">
+    <a class="row" style="--c:var(--c-sekkei)" href="https://takmat21.github.io/zazou-works-sekkei/"><span class="no">01</span><div><b>ZAZOU <i>設計</i>Works</b><span class="d">図面の作成・修正・トレース。機械、建築、設備。</span></div><span class="go" aria-hidden="true"></span></a>
+    <a class="row" style="--c:var(--c-ec)" href="https://takmat21.github.io/zazou-works-ec/"><span class="no">02</span><div><b>ZAZOU <i>EC</i> Works</b><span class="d">ネットショップの運営と、出荷の仕組みづくり。</span></div><span class="go" aria-hidden="true"></span></a>
+    <a class="row" style="--c:var(--c-ai)" href="https://takmat21.github.io/ai/"><span class="no">03</span><div><b>ZAZOU <i>AI</i> Works</b><span class="d">業務を1つずつ、AIで仕組みに。</span></div><span class="go" aria-hidden="true"></span></a>
+    <a class="row" style="--c:var(--c-lab)" href="https://takmat21.github.io/"><span class="no">04</span><div><b>ZAZOU <i>Lab</i></b><span class="d">試作と研究の記録。</span></div><span class="go" aria-hidden="true"></span></a>
   </div>
 </div></section>
 
-<section id="profile"><div class="wrap">
-  <h2>代表</h2>
-  <p class="sec-lead">松村 貴士（ZAZOU株式会社 代表取締役）</p>
-  <div class="profile">
-    <div>
-      <p>家業の建設業で約5年、施工・現場業務と資材の手配をしたのち、パナソニックで約15年、家電の設計・開発に携わりました。台湾の拠点では機種開発のリーダーを務め、発明者として特許を複数取得しています。</p>
-      <p>2020年にZAZOU株式会社を設立し、自社のネットショップを運営しながら、出荷の伝票づくりなどの決まった仕事を仕組みにしてきました。図面・お店・業務のどれでも、「止まらない仕組み」と「確かめてから出す」をお約束します。</p>
-    </div>
-    <dl class="hist">
-      <dt>2000–2005</dt><dd>家業の建設業（施工・現場業務、資材手配）</dd>
-      <dt>2005–2020</dt><dd>パナソニック　家電の設計・開発（台湾拠点で機種開発リーダー）</dd>
-      <dt>2020–</dt><dd>ZAZOU株式会社を設立。Amazon・Yahoo!ショッピング・BASE で販売</dd>
-    </dl>
-  </div>
+<section id="company" style="padding-top:0"><div class="wrap">
+  <p class="label">COMPANY</p>
+  <dl class="co">
+    <dt>会社名</dt><dd>ZAZOU株式会社</dd>
+    <dt>代表</dt><dd>代表取締役 松村 貴士</dd>
+    <dt>設立</dt><dd>2020年6月</dd>
+    <dt>資本金</dt><dd>300万円</dd>
+    <dt>所在地</dt><dd>滋賀県蒲生郡日野町</dd>
+    <dt>事業内容</dt><dd>EC事業（Amazon・Yahoo!ショッピング・BASE での販売）／設計（図面・3Dデータの作成）／ECの運営支援／AI・DX支援</dd>
+    <dt>対応地域</dt><dd>全国（在宅・オンラインで対応）</dd>
+  </dl>
+  <details class="career" id="profile"><summary>代表の経歴</summary>
+    <ul>
+      <li><span>2000–2005</span>家業の建設業（施工・現場業務、資材手配）</li>
+      <li><span>2005–2020</span>パナソニック（家電の設計・開発）</li>
+      <li><span>2020–</span>ZAZOU株式会社を設立</li>
+    </ul>
+  </details>
 </div></section>
 
-<section id="company"><div class="wrap">
-  <h2>会社概要</h2>
-  <table class="co">
-    <tr><th>会社名</th><td>ZAZOU株式会社</td></tr>
-    <tr><th>代表</th><td>代表取締役 松村 貴士</td></tr>
-    <tr><th>設立</th><td>2020年6月</td></tr>
-    <tr><th>資本金</th><td>300万円</td></tr>
-    <tr><th>所在地</th><td>滋賀県蒲生郡日野町</td></tr>
-    <tr><th>事業内容</th><td>EC事業（Amazon・Yahoo!ショッピング・BASE での販売）／設計（図面・3Dデータの作成）／ECの運営支援／AI・DX支援</td></tr>
-    <tr><th>部門</th><td>ZAZOU 設計Works／ZAZOU EC Works／ZAZOU AI Works／ZAZOU Lab</td></tr>
-    <tr><th>対応地域</th><td>全国（在宅・オンラインで対応）</td></tr>
-    <tr><th>お問い合わせ</th><td>LINE「ZAZOU Works」／メール matsumura.takashi@zazoucorp.com</td></tr>
-  </table>
-  <p style="margin-top:14px;font-size:14px"><a href="privacy/">個人情報保護ポリシー</a></p>
-</div></section>
-
-<section id="contact" class="contact"><div class="wrap">
-  <h2>ご相談・お問い合わせ</h2>
-  <p class="sec-lead">どの部門のご用件でも、こちらの窓口で承ります。</p>
-  <div class="box">
-    <div class="item"><b>LINE「ZAZOU Works」</b><p>友だち追加のうえ、トークでご用件をお送りください。</p><a class="cta" href="https://line.me/R/ti/p/@786akrcn" target="_blank" rel="noopener">LINEで相談する</a></div>
-    <div class="item"><b>メール</b><p>資料やファイルがある場合は、メールが便利です。</p><a class="mail" href="mailto:matsumura.takashi@zazoucorp.com">matsumura.takashi@zazoucorp.com</a></div>
+<section id="contact" style="padding-top:0"><div class="wrap">
+  <p class="label">CONTACT</p>
+  <div class="contact">
+    <div><small>LINE</small><a href="https://line.me/R/ti/p/@786akrcn" target="_blank" rel="noopener">ZAZOU Works</a></div>
+    <div><small>MAIL</small><a href="mailto:matsumura.takashi@zazoucorp.com">matsumura.takashi@zazoucorp.com</a></div>
   </div>
 </div></section>
 </main>
 
-<footer><div class="wrap"><img src="img/logo.png" width="1055" height="750" alt="ZAZOU Works" style="width:110px;height:auto;display:block;margin:0 auto 10px">© ZAZOU株式会社　ZAZOU Works　｜　<a href="privacy/">個人情報保護ポリシー</a></div></footer>
+<footer><div class="wrap"><span>© ZAZOU株式会社</span><span><a href="privacy/">個人情報保護ポリシー</a></span></div></footer>
+<script>function oc(){if(location.hash==="#profile"){var d=document.getElementById("profile");if(d){d.open=true;d.scrollIntoView();}}}addEventListener("hashchange",oc);oc();</script>
 </body>
 </html>
