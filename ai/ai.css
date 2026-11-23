@@ -304,3 +304,8 @@ a.card:hover .go::after{transform:translateX(4px)}
 .ft .to-top-wrap{grid-column:1/-1;text-align:right;margin:8px 0 0}
 .ft a.to-top{display:inline-block;padding:10px 20px;border:1px solid rgba(255,255,255,.5);border-radius:999px;font-size:14px;font-weight:700;color:#fff;text-decoration:none;background:rgba(255,255,255,.06)}
 .ft a.to-top:hover{background:rgba(255,255,255,.14)}
+
+/* ロゴのマーク（ピンク） */
+.brand{position:relative;padding-left:50px}
+.brand img.zw-mark{position:absolute;left:0;top:50%;transform:translateY(-50%);height:36px;width:auto;max-width:none}
+@media (max-width:520px){.brand{padding-left:42px}.brand img.zw-mark{height:30px}}
