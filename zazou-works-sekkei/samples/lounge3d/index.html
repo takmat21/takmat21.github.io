@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>内装デザインの見本｜オフィス ラウンジ・受付（ZAZOU 設計Works）</title>
+<meta name="description" content="オフィスのラウンジと受付の内装を、立体で見られる見本です。指やマウスで回して見られます。想定の区画で作っています。">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../../img/favicon.png" type="image/png">
+<style>
+:root{--ink:#26221d;--sub:#7a7166;--bg:#efe9df;--line:#d9d0c2;--acc:#b5633f}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font-family:"Hiragino Sans","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;overflow:hidden}
+#stage{position:absolute;inset:0;touch-action:none}
+canvas{display:block;width:100%;height:100%}
+.ttl{position:absolute;left:22px;top:18px;pointer-events:none}
+.ttl small{display:block;font-size:11px;letter-spacing:.28em;color:var(--acc);font-weight:700}
+.ttl h1{margin:4px 0 2px;font-size:22px;font-weight:600;letter-spacing:.06em}
+.ttl p{margin:0;font-size:12px;color:var(--sub)}
+.mat{position:absolute;right:18px;top:18px;width:230px;background:rgba(255,252,246,.86);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:12px}
+.mat b{display:block;font-size:10.5px;letter-spacing:.22em;color:var(--sub);margin-bottom:8px}
+.mat div{display:flex;align-items:center;gap:9px;margin:6px 0;line-height:1.35}
+.mat i{flex:0 0 22px;height:22px;border-radius:50%;border:1px solid rgba(0,0,0,.12)}
+.bar{position:absolute;left:0;right:0;bottom:0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:12px 12px calc(14px + env(safe-area-inset-bottom,0px));background:linear-gradient(transparent,rgba(239,233,223,.94) 45%)}
+button,.dl{font:inherit;font-size:13.5px;font-weight:600;min-height:44px;padding:8px 18px;border-radius:999px;border:1px solid var(--ink);background:rgba(255,252,246,.9);color:var(--ink);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+button.on{background:var(--ink);color:#fff}
+.dl{border-color:var(--acc);color:var(--acc)}
+.hint{position:absolute;bottom:84px;left:50%;transform:translateX(-50%);background:rgba(38,34,29,.8);color:#fff;font-size:12.5px;padding:6px 14px;border-radius:999px;white-space:nowrap;pointer-events:none;transition:opacity .6s}
+#err{position:absolute;inset:0;display:none;align-items:center;justify-content:center;padding:24px;text-align:center;font-size:14px;color:var(--sub)}
+@media(max-width:720px){.mat{display:none}.ttl h1{font-size:18px}.hint{bottom:132px}}
+body.shot .ttl,body.shot .mat,body.shot .bar,body.shot .hint{display:none}
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<div class="ttl"><small>INTERIOR DESIGN SAMPLE</small><h1>オフィス ラウンジ・受付</h1><p>約58㎡（9,000×6,400mm）　天井高 2,800mm　想定の区画</p></div>
+<div class="mat"><b>MATERIALS</b>
+<div><i style="background:#c9a57a"></i>床｜オーク ヘリンボーン張り</div>
+<div><i style="background:#f1ebe0"></i>壁｜左官調の塗装 アイボリー</div>
+<div><i style="background:#b9905f"></i>壁｜オークのリブパネル</div>
+<div><i style="background:#b5633f"></i>ニッチ・カウンター｜テラコッタ</div>
+<div><i style="background:#ece5d8"></i>ソファ｜ブークレ生地 アイボリー</div>
+<div><i style="background:#8c9a7c"></i>ベンチ｜ウール混ヘリンボーン織 セージ</div>
+<div><i style="background:#e9e2d2"></i>カーテン｜リネンのシアー</div>
+<div><i style="background:#c07a55"></i>クッション｜ベロア テラコッタ／セージ</div>
+<div><i style="background:#e8e4dc"></i>天板｜大理石</div>
+</div>
+<div class="hint" id="hint">ドラッグで回す ／ ピンチ・ホイールで拡大</div>
+<div class="bar">
+<button data-v="all" class="on">全体</button><button data-v="lounge">ラウンジ</button><button data-v="recep">受付</button><button data-v="bench">ベンチ席</button><button data-v="top">真上から</button><button id="spin">自動で回す</button><a class="dl" href="design.pdf" target="_blank" rel="noopener">図面PDF</a>
+</div>
+<div id="err">この端末では立体を表示できませんでした。「図面PDF」をご覧ください。</div>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { GTAOPass } from 'three/addons/postprocessing/GTAOPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+const stage=document.getElementById('stage');
+(async()=>{try{
+const qs=new URLSearchParams(location.search); const SHOT=qs.get('shot')==='1'; if(SHOT)document.body.classList.add('shot');
+const W=9,D=6.4,H=2.8,A='assets/';
+const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:SHOT});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2)); renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=.8; renderer.outputColorSpace=THREE.SRGBColorSpace;
+stage.appendChild(renderer.domElement);
+const scene=new THREE.Scene(); scene.background=new THREE.Color('#e9e3d9');
+const cam=new THREE.PerspectiveCamera(38,1,0.1,200);
+const ctl=new OrbitControls(cam,renderer.domElement); ctl.enableDamping=true; ctl.maxPolarAngle=Math.PI*0.495; ctl.minDistance=2.2; ctl.maxDistance=30;
+const hdr=await new RGBELoader().loadAsync(A+'env.hdr'); hdr.mapping=THREE.EquirectangularReflectionMapping; scene.environment=hdr; scene.environmentIntensity=.6;
+const TL=new THREE.TextureLoader(); const maxAn=renderer.capabilities.getMaxAnisotropy();
+function pbr(name,rx,ry,o={}){const mk=(suf,srgb)=>{const t=TL.load(A+'t/'+name+'_'+suf+'.jpg');t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(rx,ry);t.anisotropy=maxAn;if(srgb)t.colorSpace=THREE.SRGBColorSpace;if(o.rot)t.rotation=o.rot;return t;};
+ const arm=mk('arm',false);const m=new (o.fabric?THREE.MeshPhysicalMaterial:THREE.MeshStandardMaterial)(Object.assign({map:o.nomap?null:mk('diff',true),normalMap:mk('nor',false),roughnessMap:arm,aoMap:arm,metalness:0},o.mat||{}));if(o.nomap){m.map=null;}if(o.fabric){m.sheen=.35;m.sheenRoughness=.6;m.sheenColor=new THREE.Color(o.color);m.roughness=1;}if(o.color)m.color.set(o.color);if(o.ns)m.normalScale.set(o.ns,o.ns);return m;}
+const M=(o)=>new THREE.MeshStandardMaterial(o);
+const mFloor=pbr('herringbone_parquet',W/1.5,D/1.5,{color:'#f2ebe0'});
+const mPlaster=pbr('white_plaster_02',4,1.4,{color:'#efe8dc',nomap:true});
+const mNiche=pbr('clay_plaster',1,2,{color:'#c58a68'});
+const mTerra=pbr('clay_plaster',3,1.2,{color:'#b97a58'});
+const mOak=pbr('oak_veneer_01',.5,2,{color:'#e6cfae'});
+const mOakH=pbr('oak_veneer_01',2,.5,{color:'#e6cfae'});
+const mBoucle=pbr('wool_boucle',1.6,1.6,{color:'#cfc5b2',ns:3.5,nomap:true,fabric:true});
+const mSage=pbr('poly_wool_herringbone',3,3,{color:'#7c8a6c',nomap:true,ns:3,fabric:true});
+const mVelRust=pbr('velour_velvet',2,2,{color:'#a55f41',nomap:true,fabric:true,ns:2}); const mVelSage=pbr('velour_velvet',2,2,{color:'#7c8a6c',nomap:true,fabric:true,ns:2}); const mVelOchre=pbr('velour_velvet',2,2,{color:'#b8975a',nomap:true,fabric:true,ns:2});
+const mRug=pbr('hessian_230',9,9,{color:'#d9cfbc',ns:3,nomap:true,fabric:true}); const mRug2=pbr('hessian_230',12,12,{color:'#9c5d42',ns:3,nomap:true,fabric:true});
+const mMarble=pbr('marble_01',1.5,.6,{color:'#f1eee8',nomap:true,ns:.3,mat:{roughness:.22}});
+const mLinen=pbr('rough_linen',10,3,{color:'#efe9dc',nomap:true,mat:{transparent:true,opacity:.86,side:THREE.DoubleSide}});
+const mBrass=M({color:'#b9955a',metalness:1,roughness:.3});
+const mBlack=M({color:'#1f1d1a',roughness:.45,metalness:.5});
+const mPot=pbr('clay_plaster',1,1,{color:'#e8dfd0'});
+const mGlow=M({color:'#fff3d6',emissive:'#ffd9a0',emissiveIntensity:2.2});
+const mPaper=M({color:'#fbf3e3',emissive:'#ffe2b5',emissiveIntensity:.55,roughness:1});
+const mGlass=new THREE.MeshPhysicalMaterial({color:'#ffffff',roughness:.03,transmission:.95,transparent:true,opacity:.18});
+const G=new THREE.Group(); scene.add(G);
+function add(geo,mat,x,y,z,o={}){const m=new THREE.Mesh(geo,mat);m.position.set(x,y,z);if(o.ry)m.rotation.y=o.ry;if(o.rx)m.rotation.x=o.rx;if(o.rz)m.rotation.z=o.rz;m.castShadow=o.cast!==false;m.receiveShadow=o.recv!==false;(o.to||G).add(m);return m;}
+const box=(w,h,d)=>new THREE.BoxGeometry(w,h,d); const rbox=(w,h,d,r=.04)=>new RoundedBoxGeometry(w,h,d,5,r);
+const cyl=(r1,r2,h,s=48)=>new THREE.CylinderGeometry(r1,r2,h,s);
+let seed=11;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647;};
+// ---- 家具・小物（公開素材 Poly Haven, CC0）----
+const GL=new GLTFLoader(); const lib={};
+await Promise.all(['mid_century_lounge_chair','modern_arm_chair_01','coffee_table_round_01','modern_ceiling_lamp_01','ceramic_vase_01','ceramic_vase_02','ceramic_vase_04','potted_plant_02','potted_plant_04','pachira_aquatica_01'].map(async n=>{const g=await GL.loadAsync(A+'m/'+n+'/'+n+'.gltf');g.scene.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;if(o.material.map)o.material.map.anisotropy=maxAn;}});lib[n]=g.scene;}));
+function put(n,x,y,z,ry=0,sc=1,fn){const o=lib[n].clone(true);o.position.set(x,y,z);o.rotation.y=ry;o.scale.setScalar(sc);if(fn)fn(o);G.add(o);return o;}
+// ---- 床・天井・壁 ----
+add(box(W,.1,D),mFloor,W/2,-.05,D/2,{cast:false});
+add(box(W+1.2,.02,D+1.2),M({color:'#ddd5c7',roughness:1}),W/2,-.11,D/2,{cast:false});
+{const c=new THREE.Mesh(new THREE.PlaneGeometry(W,D),M({color:'#f3eee5',roughness:1}));c.rotation.x=Math.PI/2;c.position.set(W/2,H,D/2);G.add(c);}
+// 奥の壁（アーチのニッチ3つ）
+const NX=[1.45,2.85,4.25];
+{const s=new THREE.Shape();s.moveTo(0,0);s.lineTo(W,0);s.lineTo(W,H);s.lineTo(0,H);s.lineTo(0,0);
+ for(const cx of NX){const p=new THREE.Path();const w=.5,hh=1.8;p.moveTo(cx-w,.5);p.lineTo(cx+w,.5);p.lineTo(cx+w,hh);p.absarc(cx,hh,w,0,Math.PI,false);p.lineTo(cx-w,.5);s.holes.push(p);
+  add(box(1.06,1.95,.04),mNiche,cx,1.42,-.31,{cast:false});
+  for(const sx of[-1,1]) add(box(.03,1.95,.3),mNiche,cx+sx*.515,1.42,-.16,{cast:false});
+  add(box(1.0,.04,.3),mOakH,cx,.48,-.15); add(box(1.0,.028,.27),mOakH,cx,1.08,-.165); add(box(1.0,.028,.27),mOakH,cx,1.62,-.165);
+  // ニッチ内の間接光
+  const pl=new THREE.PointLight('#ffd2a0',.9,1.6,2);pl.position.set(cx,2.05,-.12);G.add(pl);
+ }
+ const g=new THREE.ExtrudeGeometry(s,{depth:.32,bevelEnabled:false,curveSegments:32});
+ // UVをメートル→くり返しに
+ const m=new THREE.Mesh(g,pbr('white_plaster_02',.45,.45,{color:'#efe8dc',nomap:true,ns:.6}));m.position.set(0,0,-.32);m.receiveShadow=true;m.castShadow=true;G.add(m);
+}
+add(box(W,.07,.015),mOakH,W/2,.035,.008,{cast:false});
+// 小物
+put('ceramic_vase_01',NX[0]-.2,1.094,-.16,0,.62);put('ceramic_vase_04',NX[0]+.2,1.094,-.16,1,.5);
+put('ceramic_vase_02',NX[1],.5,-.15,0,.85);put('potted_plant_04',NX[1]+.22,1.094,-.16,0,1.1);put('ceramic_vase_04',NX[1]-.22,1.634,-.16,2,.55);
+put('ceramic_vase_01',NX[2]+.18,.5,-.15,0,.8);put('ceramic_vase_02',NX[2]-.15,1.634,-.16,0,.55);put('potted_plant_04',NX[2]-.2,1.094,-.16,2,1.2);
+const bookC=['#e9dfcd','#b97a58','#5e4a36','#93a383','#d8c9ad','#2b2925'];
+for(const[x,y,n]of[[NX[1]-.3,1.094,5],[NX[0]-.3,1.634,6],[NX[2]+.05,1.094,6],[NX[0]-.1,.5,7],[NX[2]+.1,1.634,4]])for(let i=0;i<n;i++){const hh=.19+rnd()*.07;add(box(.03+rnd()*.012,hh,.15),M({color:bookC[(i+n)%6],roughness:.85}),x+i*.043,y+hh/2,-.16);}
+// 左の壁：オークのリブパネル
+add(box(.1,H,D),M({color:'#3a2c1f',roughness:.9}),-.05,H/2,D/2,{cast:false});
+{const n=Math.floor(D/.07);const im=new THREE.InstancedMesh(rbox(.04,H,.042,.008),mOak,n);const mx=new THREE.Matrix4();for(let i=0;i<n;i++){mx.setPosition(.02,H/2,.04+i*.07);im.setMatrixAt(i,mx);}im.castShadow=true;im.receiveShadow=true;G.add(im);}
+// 右：窓とリネンのカーテン
+for(let i=0;i<=4;i++)add(box(.045,H,.045),mBlack,W+.02,H/2,.2+i*(D-.4)/4);
+for(const y of[.025,H-.025])add(box(.045,.045,D-.4),mBlack,W+.02,y,D/2);
+add(box(.01,H,D-.4),mGlass,W+.02,H/2,D/2,{cast:false,recv:false});
+function curtain(z0,z1){const len=z1-z0;const g=new THREE.PlaneGeometry(len,H-.1,Math.round(len*60),1);const p=g.attributes.position;for(let i=0;i<p.count;i++){const u=p.getX(i);p.setZ(i,Math.sin(u*30)*.04+Math.sin(u*11.3)*.02);}g.computeVertexNormals();add(g,mLinen,W-.17,(H-.1)/2,(z0+z1)/2,{ry:Math.PI/2,recv:false});}
+curtain(.2,2.3);curtain(4.3,6.2);
+add(cyl(.012,.012,D-.3,12),mBrass,W-.17,H-.06,D/2,{rx:Math.PI/2,cast:false});
+// ---- 受付カウンター（リブ面）----
+{const cx=6.95,cz=1.5,cw=2.4,cd=.7,ch=1.02;
+ add(rbox(cw,ch-.05,cd,.05),mTerra,cx,(ch-.05)/2,cz);
+ const n=Math.floor(cw/.055);for(let i=0;i<n;i++)add(cyl(.024,.024,ch-.13,14),mTerra,cx-cw/2+.04+i*(cw-.08)/(n-1),(ch-.13)/2+.04,cz+cd/2);
+ add(rbox(cw+.08,.04,cd+.08,.015),mMarble,cx,ch-.02,cz);
+ add(box(cw-.08,.05,cd-.08),mBlack,cx,.025,cz,{cast:false});
+ for(const dx of[-.75,0,.75]){put('modern_ceiling_lamp_01',cx+dx,H-1.17-.02+.0,cz,dx,.8,o=>{o.position.y=H-1.17*.8;});const pl=new THREE.PointLight('#ffd9a8',2.4,4.5,2);pl.position.set(cx+dx,1.75,cz);G.add(pl);
+  add(new THREE.SphereGeometry(.13,24,16),mGlow,cx+dx,H-1.17*.8+.4*.8,cz,{cast:false,recv:false}).visible=false;}
+ add(new THREE.TorusGeometry(.45,.012,12,80),mBrass,cx,1.72,.02);
+ add(box(2.6,.018,.018),mGlow,cx,2.5,.012,{cast:false});
+ put('potted_plant_02',cx+.82,ch,cz-.02,.6,.62);
+}
+// ---- ラウンジ ----
+const LC=new THREE.Vector3(4.5,0,4.1);
+{const r=add(cyl(1.85,1.85,.016,96),mRug2,LC.x,.009,LC.z,{cast:false});const r2=add(cyl(1.5,1.5,.02,96),mRug,LC.x,.011,LC.z,{cast:false});}
+function arcSolid(r0,r1,a0,a1,h,mat,y,bev=.05){const s=new THREE.Shape();s.absarc(0,0,r1,a0,a1,false);s.absarc(0,0,r0,a1,a0,true);s.closePath();const g=new THREE.ExtrudeGeometry(s,{depth:h-2*bev,bevelEnabled:true,bevelThickness:bev,bevelSize:bev,bevelSegments:8,curveSegments:64});g.rotateX(-Math.PI/2);const m=new THREE.Mesh(g,mat);m.position.set(LC.x,y+bev,LC.z);m.castShadow=true;m.receiveShadow=true;G.add(m);return m;}
+const a0=Math.PI*0.60,a1=Math.PI*1.40;
+// 座面（3つに割って目地を出す）
+{const n=3,gap=.012;for(let i=0;i<n;i++){const s0=a0+(a1-a0)*i/n+gap,s1=a0+(a1-a0)*(i+1)/n-gap;arcSolid(.95,1.5,s0,s1,.2,mBoucle,.24,.07);}}
+arcSolid(.93,1.62,a0,a1,.2,mBoucle,.06,.06);
+arcSolid(1.44,1.66,a0-.015,a1+.015,.72,mBoucle,.06,.09);
+arcSolid(1.0,1.56,a0+.02,a1-.02,.05,mBlack,.0,.008);
+for(const[a,c,rz]of[[Math.PI*.69,mVelRust,.1],[Math.PI*.80,mVelOchre,-.12],[Math.PI*1.04,mVelSage,.08],[Math.PI*1.30,mVelRust,-.1]]){add(rbox(.4,.4,.13,.065),c,LC.x+Math.cos(a)*1.3,.66,LC.z-Math.sin(a)*1.3,{ry:a+Math.PI/2,rx:-.28,rz});}
+put('coffee_table_round_01',LC.x,0,LC.z,0,.72);
+add(box(.27,.028,.2),M({color:'#b97a58',roughness:.8}),LC.x+.12,.368,LC.z-.1,{ry:.4});add(box(.25,.022,.18),M({color:'#efe7d8',roughness:.8}),LC.x+.12,.393,LC.z-.1,{ry:.15});
+put('ceramic_vase_04',LC.x-.18,.355,LC.z+.1,0,.6);
+put('mid_century_lounge_chair',LC.x+1.6,0,LC.z-.65,Math.PI/2-.35,.95);put('mid_century_lounge_chair',LC.x+1.45,0,LC.z+.95,Math.PI/2+.5,.95);
+add(cyl(.2,.2,.03,40),mMarble,LC.x+1.95,.47,LC.z+.2);add(cyl(.012,.012,.46,10),mBlack,LC.x+1.95,.23,LC.z+.2);add(cyl(.14,.14,.012,32),mBlack,LC.x+1.95,.006,LC.z+.2);
+add(new THREE.SphereGeometry(.5,48,32).scale(1,.7,1),mPaper,LC.x,2.08,LC.z,{cast:false});add(cyl(.004,.004,.4,6),mBlack,LC.x,2.6,LC.z,{cast:false});
+{const pl=new THREE.PointLight('#ffe8cc',3.2,7.5,2);pl.position.set(LC.x,1.7,LC.z);pl.castShadow=false;G.add(pl);}
+// ---- 左：ベンチ席 ----
+add(rbox(.62,.38,4.4,.03),mOakH,.42,.19,2.9);
+add(rbox(.6,.13,4.36,.055),mSage,.43,.445,2.9);
+for(let i=0;i<4;i++)add(rbox(.14,.52,1.05,.065),mSage,.18,.8,1.265+i*1.09);
+for(const[k,z] of [[0,1.5],[1,2.9],[2,4.3]]){add(cyl(.3,.3,.03,48),mMarble,1.12,.72,z);add(cyl(.02,.02,.7,12),mBlack,1.12,.36,z);add(cyl(.2,.2,.014,32),mBlack,1.12,.007,z);
+ const g=new THREE.Group();g.position.set(1.74,0,z);G.add(g);add(cyl(.2,.2,.06,40),k==1?mVelSage:mVelRust,0,.47,0,{to:g});add(cyl(.2,.2,.02,40),mOakH,0,.43,0,{to:g});for(const[a,b]of[[-.13,-.13],[.13,-.13],[-.13,.13],[.13,.13]])add(cyl(.014,.011,.43,10),mBlack,a,.215,b,{to:g});
+ add(cyl(.003,.003,H-1.62,6),mBlack,1.12,(H+1.62)/2,z,{cast:false});add(new THREE.CylinderGeometry(.02,.1,.14,32,1,true),M({color:'#b9955a',metalness:1,roughness:.3,side:THREE.DoubleSide}),1.12,1.6,z);add(new THREE.SphereGeometry(.03,12,8),mGlow,1.12,1.56,z,{cast:false});
+ const pl=new THREE.PointLight('#ffd9a8',1.1,2.6,2);pl.position.set(1.12,1.45,z);G.add(pl);
+ if(k!==1)put('potted_plant_04',1.12+.1,.735,z-.08,k,1);
+}
+// ---- 植物 ----
+function tree(x,z,ry,sc){add(cyl(.24,.17,.42,40),mPot,x,.21,z);add(cyl(.225,.225,.02,32),M({color:'#3b2f24',roughness:1}),x,.41,z,{cast:false});
+ const g=new THREE.Group();lib['pachira_aquatica_01'].children.forEach(c=>{if(/_d$/.test(c.name)){const o=c.clone();o.position.set(0,0,0);g.add(o);}});g.position.set(x,.4,z);g.rotation.y=ry;g.scale.setScalar(sc);G.add(g);}
+tree(8.3,5.7,.5,1.0);tree(5.45,.55,2.4,.82);tree(.6,5.85,4,.9);
+add(box(W,.004,.03),mBrass,W/2,.002,D-.015,{cast:false});
+// ---- 光 ----
+scene.add(new THREE.HemisphereLight('#fff6e8','#b9a58a',.25));
+const sun=new THREE.DirectionalLight('#fff1de',3.0);sun.position.set(17,7.5,7);sun.target.position.set(4,0,3.2);sun.castShadow=true;sun.shadow.mapSize.set(4096,4096);
+Object.assign(sun.shadow.camera,{left:-7.5,right:7.5,top:7,bottom:-5,near:1,far:40});sun.shadow.bias=-.0003;sun.shadow.normalBias=.02;sun.shadow.radius=5;scene.add(sun,sun.target);
+// ---- 仕上げ（影のなじみ）----
+let composer=null;
+try{composer=new EffectComposer(renderer);composer.addPass(new RenderPass(scene,cam));const ao=new GTAOPass(scene,cam,2,2);ao.updateGtaoMaterial({radius:.45,distanceExponent:1.4,thickness:1.2,scale:1.15,samples:16});ao.blendIntensity=.9;composer.addPass(ao);composer.addPass(new OutputPass());composer.__ao=ao;}catch(e){composer=null;}
+// ---- 視点 ----
+const V={all:[[13.4,6.4,13.2],[4.3,.9,2.9]],lounge:[[7.6,1.6,8.9],[3.9,.85,2.6]],recep:[[3.3,1.5,5.5],[7.0,1.1,1.0]],bench:[[5.0,1.45,5.5],[.6,.95,2.6]],top:[[4.5,15.5,3.25],[4.5,0,3.2]],detail:[[5.9,1.05,5.6],[3.9,.6,3.7]]};
+let goal=null;function go(k,now){const v=V[k]||V.all;if(now){cam.position.set(...v[0]);ctl.target.set(...v[1]);}else goal={p:new THREE.Vector3(...v[0]),t:new THREE.Vector3(...v[1])};
+ document.querySelectorAll('button[data-v]').forEach(b=>b.classList.toggle('on',b.dataset.v===k));}
+document.querySelectorAll('button[data-v]').forEach(b=>b.onclick=()=>{ctl.autoRotate=false;spin.classList.remove('on');go(b.dataset.v);});
+const spin=document.getElementById('spin');spin.onclick=()=>{ctl.autoRotate=!ctl.autoRotate;ctl.autoRotateSpeed=.8;spin.classList.toggle('on',ctl.autoRotate);goal=null;};
+function size(){const w=stage.clientWidth,h=stage.clientHeight;renderer.setSize(w,h,false);if(composer){composer.setPixelRatio(renderer.getPixelRatio());composer.setSize(w,h);}cam.aspect=w/h;cam.fov=w<h?54:38;cam.updateProjectionMatrix();}
+addEventListener('resize',size);size();
+go(qs.get('cam')||'all',true);
+if(stage.clientWidth<stage.clientHeight&&!qs.get('cam')){cam.position.set(15.5,9,17);}
+renderer.domElement.addEventListener('pointerdown',()=>{goal=null;document.getElementById('hint').style.opacity=0;});
+setTimeout(()=>document.getElementById('hint').style.opacity=0,5000);
+let n=0;(function loop(){if(SHOT&&n>8)return;requestAnimationFrame(loop);if(goal){cam.position.lerp(goal.p,.08);ctl.target.lerp(goal.t,.08);if(cam.position.distanceTo(goal.p)<.02)goal=null;}ctl.update();if(composer)composer.render();else renderer.render(scene,cam);if(++n===6)window.__ready=true;})();
+}catch(e){console.error(e);stage.style.display='none';document.getElementById('err').style.display='flex';window.__ready=true;}})();
+</script>
+</body>
+</html>
