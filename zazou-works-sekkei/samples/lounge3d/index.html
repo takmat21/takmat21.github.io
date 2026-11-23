@@ -71,12 +71,12 @@ renderer.setPixelRatio(Math.min(devicePixelRatio,2)); renderer.shadowMap.enabled
 renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=.8; renderer.outputColorSpace=THREE.SRGBColorSpace;
 stage.appendChild(renderer.domElement);
 const scene=new THREE.Scene(); scene.background=new THREE.Color('#e9e3d9');
-const cam=new THREE.PerspectiveCamera(38,1,0.1,200);
+const cam=new THREE.PerspectiveCamera(38,1,0.4,90);
 const ctl=new OrbitControls(cam,renderer.domElement); ctl.enableDamping=true; ctl.maxPolarAngle=Math.PI*0.495; ctl.minDistance=2.2; ctl.maxDistance=30;
 const hdr=await new RGBELoader().loadAsync(A+'env.hdr'); hdr.mapping=THREE.EquirectangularReflectionMapping; scene.environment=hdr; scene.environmentIntensity=.6;
 const TL=new THREE.TextureLoader(); const maxAn=renderer.capabilities.getMaxAnisotropy();
 function pbr(name,rx,ry,o={}){const mk=(suf,srgb)=>{const t=TL.load(A+'t/'+name+'_'+suf+'.jpg');t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(rx,ry);t.anisotropy=maxAn;if(srgb)t.colorSpace=THREE.SRGBColorSpace;if(o.rot)t.rotation=o.rot;return t;};
- const arm=mk('arm',false);const m=new (o.fabric?THREE.MeshPhysicalMaterial:THREE.MeshStandardMaterial)(Object.assign({map:o.nomap?null:mk('diff',true),normalMap:mk('nor',false),roughnessMap:arm,aoMap:arm,metalness:0},o.mat||{}));if(o.nomap){m.map=null;}if(o.fabric){m.sheen=.35;m.sheenRoughness=.6;m.sheenColor=new THREE.Color(o.color);m.roughness=1;}if(o.color)m.color.set(o.color);if(o.ns)m.normalScale.set(o.ns,o.ns);return m;}
+ const arm=mk('arm',false);const m=new (o.fabric?THREE.MeshPhysicalMaterial:THREE.MeshStandardMaterial)(Object.assign({map:o.nomap?null:mk('diff',true),normalMap:mk('nor',false),roughnessMap:arm,aoMap:arm,metalness:0},o.mat||{}));if(o.nomap){m.map=null;}if(o.fabric){m.sheen=.2;m.sheenRoughness=.6;m.sheenColor=new THREE.Color(o.color);m.roughness=1;}if(o.color)m.color.set(o.color);if(o.ns)m.normalScale.set(o.ns,o.ns);return m;}
 const M=(o)=>new THREE.MeshStandardMaterial(o);
 const mFloor=pbr('herringbone_parquet',W/1.5,D/1.5,{color:'#f2ebe0'});
 const mPlaster=pbr('white_plaster_02',4,1.4,{color:'#efe8dc',nomap:true});
@@ -84,10 +84,10 @@ const mNiche=pbr('clay_plaster',1,2,{color:'#c58a68'});
 const mTerra=pbr('clay_plaster',3,1.2,{color:'#b97a58'});
 const mOak=pbr('oak_veneer_01',.5,2,{color:'#e6cfae'});
 const mOakH=pbr('oak_veneer_01',2,.5,{color:'#e6cfae'});
-const mBoucle=pbr('wool_boucle',1.6,1.6,{color:'#cfc5b2',ns:3.5,nomap:true,fabric:true});
-const mSage=pbr('poly_wool_herringbone',3,3,{color:'#7c8a6c',nomap:true,ns:3,fabric:true});
-const mVelRust=pbr('velour_velvet',2,2,{color:'#a55f41',nomap:true,fabric:true,ns:2}); const mVelSage=pbr('velour_velvet',2,2,{color:'#7c8a6c',nomap:true,fabric:true,ns:2}); const mVelOchre=pbr('velour_velvet',2,2,{color:'#b8975a',nomap:true,fabric:true,ns:2});
-const mRug=pbr('hessian_230',9,9,{color:'#d9cfbc',ns:3,nomap:true,fabric:true}); const mRug2=pbr('hessian_230',12,12,{color:'#9c5d42',ns:3,nomap:true,fabric:true});
+const mBoucle=pbr('wool_boucle',1.6,1.6,{color:'#b3a892',ns:3.5,nomap:true,fabric:true});
+const mSage=pbr('poly_wool_herringbone',3,3,{color:'#5d6c50',nomap:true,ns:3,fabric:true});
+const mVelRust=pbr('velour_velvet',2,2,{color:'#863f25',nomap:true,fabric:true,ns:2}); const mVelSage=pbr('velour_velvet',2,2,{color:'#56664a',nomap:true,fabric:true,ns:2}); const mVelOchre=pbr('velour_velvet',2,2,{color:'#94732f',nomap:true,fabric:true,ns:2});
+const mRug=pbr('hessian_230',9,9,{color:'#b9ae98',ns:3,nomap:true,fabric:true}); const mRug2=pbr('hessian_230',12,12,{color:'#7d4129',ns:3,nomap:true,fabric:true});
 const mMarble=pbr('marble_01',1.5,.6,{color:'#f1eee8',nomap:true,ns:.3,mat:{roughness:.22}});
 const mLinen=pbr('rough_linen',10,3,{color:'#efe9dc',nomap:true,mat:{transparent:true,opacity:.86,side:THREE.DoubleSide}});
 const mBrass=M({color:'#b9955a',metalness:1,roughness:.3});
@@ -103,7 +103,7 @@ const cyl=(r1,r2,h,s=48)=>new THREE.CylinderGeometry(r1,r2,h,s);
 let seed=11;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647;};
 // ---- 家具・小物（公開素材 Poly Haven, CC0）----
 const GL=new GLTFLoader(); const lib={};
-await Promise.all(['mid_century_lounge_chair','modern_arm_chair_01','coffee_table_round_01','modern_ceiling_lamp_01','ceramic_vase_01','ceramic_vase_02','ceramic_vase_04','potted_plant_02','potted_plant_04','pachira_aquatica_01'].map(async n=>{const g=await GL.loadAsync(A+'m/'+n+'/'+n+'.gltf');g.scene.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;if(o.material.map)o.material.map.anisotropy=maxAn;}});lib[n]=g.scene;}));
+await Promise.all(['mid_century_lounge_chair','modern_arm_chair_01','coffee_table_round_01','modern_ceiling_lamp_01','ceramic_vase_01','ceramic_vase_02','ceramic_vase_04','potted_plant_02','potted_plant_04','pachira_aquatica_01'].map(async n=>{const g=await GL.loadAsync(A+'m/'+n+'/'+n+'.gltf');g.scene.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;if(o.material.map)o.material.map.anisotropy=maxAn;}});if(n==='potted_plant_04')g.scene.traverse(o=>{if(/_ground$/.test(o.name))o.visible=false;});lib[n]=g.scene;}));
 function put(n,x,y,z,ry=0,sc=1,fn){const o=lib[n].clone(true);o.position.set(x,y,z);o.rotation.y=ry;o.scale.setScalar(sc);if(fn)fn(o);G.add(o);return o;}
 // ---- 床・天井・壁 ----
 add(box(W,.1,D),mFloor,W/2,-.05,D/2,{cast:false});
@@ -113,9 +113,9 @@ add(box(W+1.2,.02,D+1.2),M({color:'#ddd5c7',roughness:1}),W/2,-.11,D/2,{cast:fal
 const NX=[1.45,2.85,4.25];
 {const s=new THREE.Shape();s.moveTo(0,0);s.lineTo(W,0);s.lineTo(W,H);s.lineTo(0,H);s.lineTo(0,0);
  for(const cx of NX){const p=new THREE.Path();const w=.5,hh=1.8;p.moveTo(cx-w,.5);p.lineTo(cx+w,.5);p.lineTo(cx+w,hh);p.absarc(cx,hh,w,0,Math.PI,false);p.lineTo(cx-w,.5);s.holes.push(p);
-  add(box(1.06,1.95,.04),mNiche,cx,1.42,-.31,{cast:false});
-  for(const sx of[-1,1]) add(box(.03,1.95,.3),mNiche,cx+sx*.515,1.42,-.16,{cast:false});
-  add(box(1.0,.04,.3),mOakH,cx,.48,-.15); add(box(1.0,.028,.27),mOakH,cx,1.08,-.165); add(box(1.0,.028,.27),mOakH,cx,1.62,-.165);
+  add(box(1.06,1.95,.03),mNiche,cx,1.42,-.30,{cast:false});
+  for(const sx of[-1,1]) add(box(.012,1.26,.29),mNiche,cx+sx*.492,1.165,-.155,{cast:false});
+  add(box(.97,.03,.29),mOakH,cx,.52,-.15); add(box(.97,.028,.27),mOakH,cx,1.08,-.165); add(box(.97,.028,.27),mOakH,cx,1.62,-.165);
   // ニッチ内の間接光
   const pl=new THREE.PointLight('#ffd2a0',.9,1.6,2);pl.position.set(cx,2.05,-.12);G.add(pl);
  }
@@ -126,10 +126,10 @@ const NX=[1.45,2.85,4.25];
 add(box(W,.07,.015),mOakH,W/2,.035,.008,{cast:false});
 // 小物
 put('ceramic_vase_01',NX[0]-.2,1.094,-.16,0,.62);put('ceramic_vase_04',NX[0]+.2,1.094,-.16,1,.5);
-put('ceramic_vase_02',NX[1],.5,-.15,0,.85);put('potted_plant_04',NX[1]+.22,1.094,-.16,0,1.1);put('ceramic_vase_04',NX[1]-.22,1.634,-.16,2,.55);
-put('ceramic_vase_01',NX[2]+.18,.5,-.15,0,.8);put('ceramic_vase_02',NX[2]-.15,1.634,-.16,0,.55);put('potted_plant_04',NX[2]-.2,1.094,-.16,2,1.2);
+put('ceramic_vase_02',NX[1],.536,-.15,0,.85);put('potted_plant_04',NX[1]+.22,1.094,-.16,0,1.1);put('ceramic_vase_04',NX[1]-.22,1.634,-.16,2,.55);
+put('ceramic_vase_01',NX[2]+.18,.536,-.15,0,.8);put('ceramic_vase_02',NX[2]-.15,1.634,-.16,0,.55);put('potted_plant_04',NX[2]-.2,1.094,-.16,2,1.2);
 const bookC=['#e9dfcd','#b97a58','#5e4a36','#93a383','#d8c9ad','#2b2925'];
-for(const[x,y,n]of[[NX[1]-.3,1.094,5],[NX[0]-.3,1.634,6],[NX[2]+.05,1.094,6],[NX[0]-.1,.5,7],[NX[2]+.1,1.634,4]])for(let i=0;i<n;i++){const hh=.19+rnd()*.07;add(box(.03+rnd()*.012,hh,.15),M({color:bookC[(i+n)%6],roughness:.85}),x+i*.043,y+hh/2,-.16);}
+for(const[x,y,n]of[[NX[1]-.3,1.094,5],[NX[0]-.3,1.634,6],[NX[2]+.05,1.094,6],[NX[0]-.1,.536,7],[NX[2]+.1,1.634,4]])for(let i=0;i<n;i++){const hh=.19+rnd()*.07;add(box(.03+rnd()*.012,hh,.15),M({color:bookC[(i+n)%6],roughness:.85}),x+i*.043,y+hh/2,-.16);}
 // 左の壁：オークのリブパネル
 add(box(.1,H,D),M({color:'#3a2c1f',roughness:.9}),-.05,H/2,D/2,{cast:false});
 {const n=Math.floor(D/.07);const im=new THREE.InstancedMesh(rbox(.04,H,.042,.008),mOak,n);const mx=new THREE.Matrix4();for(let i=0;i<n;i++){mx.setPosition(.02,H/2,.04+i*.07);im.setMatrixAt(i,mx);}im.castShadow=true;im.receiveShadow=true;G.add(im);}
@@ -181,14 +181,14 @@ for(const[k,z] of [[0,1.5],[1,2.9],[2,4.3]]){add(cyl(.3,.3,.03,48),mMarble,1.12,
  if(k!==1)put('potted_plant_04',1.12+.1,.735,z-.08,k,1);
 }
 // ---- 植物 ----
-function tree(x,z,ry,sc){add(cyl(.24,.17,.42,40),mPot,x,.21,z);add(cyl(.225,.225,.02,32),M({color:'#3b2f24',roughness:1}),x,.41,z,{cast:false});
+function tree(x,z,ry,sc){add(cyl(.24,.17,.42,40),mPot,x,.21,z);add(cyl(.222,.222,.02,32),M({color:'#3b2f24',roughness:1}),x,.418,z,{cast:false});
  const g=new THREE.Group();lib['pachira_aquatica_01'].children.forEach(c=>{if(/_d$/.test(c.name)){const o=c.clone();o.position.set(0,0,0);g.add(o);}});g.position.set(x,.4,z);g.rotation.y=ry;g.scale.setScalar(sc);G.add(g);}
 tree(8.3,5.7,.5,1.0);tree(5.45,.55,2.4,.82);tree(.6,5.85,4,.9);
 add(box(W,.004,.03),mBrass,W/2,.002,D-.015,{cast:false});
 // ---- 光 ----
 scene.add(new THREE.HemisphereLight('#fff6e8','#b9a58a',.25));
 const sun=new THREE.DirectionalLight('#fff1de',3.0);sun.position.set(17,7.5,7);sun.target.position.set(4,0,3.2);sun.castShadow=true;sun.shadow.mapSize.set(4096,4096);
-Object.assign(sun.shadow.camera,{left:-7.5,right:7.5,top:7,bottom:-5,near:1,far:40});sun.shadow.bias=-.0003;sun.shadow.normalBias=.02;sun.shadow.radius=5;scene.add(sun,sun.target);
+Object.assign(sun.shadow.camera,{left:-7.5,right:7.5,top:7,bottom:-5,near:1,far:40});sun.shadow.bias=-.0005;sun.shadow.normalBias=.035;sun.shadow.radius=5;scene.add(sun,sun.target);
 // ---- 仕上げ（影のなじみ）----
 let composer=null;
 try{composer=new EffectComposer(renderer);composer.addPass(new RenderPass(scene,cam));const ao=new GTAOPass(scene,cam,2,2);ao.updateGtaoMaterial({radius:.45,distanceExponent:1.4,thickness:1.2,scale:1.15,samples:16});ao.blendIntensity=.9;composer.addPass(ao);composer.addPass(new OutputPass());composer.__ao=ao;}catch(e){composer=null;}
