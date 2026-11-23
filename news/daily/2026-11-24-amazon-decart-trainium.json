@@ -1,0 +1,33 @@
+{
+ "title": "Amazon、イスラエルのDecartのAI高速化技術を取得へ：Trainiumチップの販売に備える",
+ "category": "企業",
+ "lead": "Amazonがイスラエルの新興企業Decartの重要部分を買収すると、TechCrunch（Rebecca Bellan記者）が11月23日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "記事によると、Amazonが取得するのは、Decartの「Decart Optimization Stack（DOS）」の技術です。AIモデルをNvidia、Amazon、Googleのチップで効率よく動かすための道具です。創業チームと研究者、技術者も含まれます。",
+    "金額は、Bloombergの報道として75億ドルと伝えられています。AmazonもDecartも、記事の時点ではコメントしていません。",
+    "背景として、Amazonは自社のTrainiumチップを顧客に売る準備をしており、Nvidiaに対抗する狙いがあります。Decartの技術は、AIの処理をAmazonのチップで動かしやすくする助けになりうる、と記事は述べています。",
+    "AmazonのPeter DeSantis氏は「AIの進歩は、チップ1つからより多くを引き出すことから始まる」と話しています。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/23/amazon-snaps-up-decarts-ai-optimization-tech-for-7-5b-as-it-prepares-to-sell-trainium-chips/",
+   "note": "元記事",
+   "title": "Amazon snaps up Decart's AI optimization tech for $7.5B as it prepares to sell Trainium chips",
+   "org": "報道：TechCrunch（Rebecca Bellan記者）",
+   "published": "2026-11-23",
+   "image": "https://techcrunch.com/wp-content/uploads/2024/12/Decart-Founders-Dean-Leitersdorf-CEO-and-Moshe-Shalev-CPO.jpg?w=1024",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ],
+ "date": "2026-11-24"
+}

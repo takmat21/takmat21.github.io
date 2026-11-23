@@ -1,0 +1,33 @@
+{
+ "title": "GoogleのAIモード、DriveとWalletの情報も使えるように：自分に合わせた答えへ",
+ "category": "Google",
+ "lead": "Googleが検索のAIモードの「Personal Intelligence」をGoogle DriveとGoogle Walletに広げたと、TechCrunch（Aisha Malik記者）が11月23日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "記事によると、Personal Intelligenceは、Gmail、Googleカレンダー、Googleフォトにはすでにつながっていました。今回、Google DriveとGoogle Wallet、Geminiアプリにも広がります。",
+    "DriveをつなぐとAIがファイルを使えるので、たとえば確定申告の時期に合わせた計画のような答えが出せます。Walletでは、お金の目標の管理や、カードの特典の活用に役立つとGoogleは説明しています。Googleは、AIモードはつないだアカウントの情報を読むだけで、お金を動かしたり管理したりはできない、としています。",
+    "つなぐかどうかは自分で選べ、Personal Intelligenceはいつでもオン・オフできます。GeminiアプリとAIモードの間では文脈が引き継がれます。近く、回答の下に「Personalization」のアイコンが出て、使われた文脈がわかるようになります。",
+    "記事には、使える地域や対象者、全体の公開時期は書かれていません。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/23/google-searchs-ai-mode-can-now-tap-into-drive-and-wallet-for-more-personalized-responses/",
+   "note": "元記事",
+   "title": "Google Search's AI Mode can now tap into Drive and Wallet for more personalized responses",
+   "org": "報道：TechCrunch（Aisha Malik記者）",
+   "published": "2026-11-23",
+   "image": "https://techcrunch.com/wp-content/uploads/2026/01/ai-mode-google.jpg?w=1024",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ],
+ "date": "2026-11-24"
+}

@@ -1,0 +1,40 @@
+{
+ "title": "Anthropic、開発者向けの「Claude Ship」を公開：コードの確認と修正を助け、判断は人に戻す",
+ "category": "Claude",
+ "lead": "Anthropicが開発者向けの「Claude Ship」を11月23日に公開したと、ロイターが報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "記事によると、Claude Shipは、開発者がコードをより早く出すための道具です。3つの部分でできています。",
+    "1つ目は「Code Review」で、すでに使えます。提案されたコードの変更を確認し、問題を知らせます。2つ目は「PR Steward」（ベータ版）で、自動の確認が失敗したときや、変更とレビューの意見がぶつかったときの解決を助けます。自分で承認や統合はせず、変えた内容と元に戻す方法も説明します。",
+    "3つ目は「Claude Approvals」（ベータ版）です。チームの決まりで許されていれば、いつもどおりの小さな変更を承認できます。リスクの高い変更は人に回します。",
+    "使えるのは11月23日から、ClaudeのTeamとEnterpriseの契約で、GitHubにあるプロジェクトです。"
+   ]
+  },
+  {
+   "heading": "自社のAIチームの運用から見ると",
+   "paragraphs": [
+    "私たちは、役割ごとに分けたClaudeのAIに仕事を任せ、送信やお金に関わることは人が承認しています。この記事の「軽いものはAIが通し、重いものは人に回す」という考え方は、その形とよく似ています。",
+    "ただし、この記事は新しい道具の紹介です。自社で使うとは決まっていません。使う場合も、どこまでをAIに任せるかの線引きを先に決めることが大事だと考えます。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "Reuters（Investing.com掲載）",
+   "url": "https://investing.com/news/stock-market-news/anthropic-launches-claude-ship-to-help-developers-ship-code-faster-5046300",
+   "note": "元記事",
+   "title": "Anthropic launches Claude Ship to help developers ship code faster",
+   "org": "報道：Reuters",
+   "published": "2026-11-23",
+   "image": "https://content-media.investing.com/trkd-images/LYNXNPEMAM1KL_L.jpg",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ],
+ "date": "2026-11-24"
+}
