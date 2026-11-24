@@ -1,0 +1,33 @@
+{
+ "date": "2026-11-25",
+ "title": "ニューヨーク・タイムズ、外部の写真家に最新のPhotoshopを使わないよう求める：「AIで作った」という記録が付くおそれ",
+ "category": "製品・サービス",
+ "lead": "ニューヨーク・タイムズが、仕事を頼む外部の写真家に、最新のAdobe Photoshopを使わないよう求めたと、The Verge（Emma Roth記者）が11月24日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "記事によると、タイムズの写真部門の責任者2人が写真家に送ったメールで、Photoshop 2027（28.0.0以降）を、タイムズの仕事では使わないよう求めました。新しい版のAI機能が「使う人に分かりにくい形で」働き、写真に「AIで作った」と示す記録（メタデータ）が付くおそれがあるためです。",
+    "11月の更新では、AIの機能をまとめて使える画面、手順を教えるAIの助手、文章で指示して画像を直す機能、AIで大きくする機能などが足されました。古い自動選択の道具なども、AIの機能に数えられることがあるそうです。",
+    "Adobeは8月から、AIで作ったか・AIで直したかを示す記録（C2PA）に対応しています。タイムズは写真をほとんど加工しない方針で、この記録が意図せず付くと読者の信頼を失うおそれがあると考えています。",
+    "どの機能が問題なのかは、まだはっきりしていません。Adobeはすぐには答えなかったとのことです。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "The Verge",
+   "url": "https://www.theverge.com/ai-artificial-intelligence/1041227/the-new-york-times-warns-photographers-not-to-update-photoshop-over-ai-features",
+   "note": "元記事",
+   "title": "The New York Times warns photographers not to update Photoshop over AI features",
+   "org": "報道：The Verge（Emma Roth記者）",
+   "published": "2026-11-24",
+   "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/gettyimages-2289911637.jpg?quality=90&strip=all&crop=0%2C10.232235952618%2C100%2C79.535528094764&w=1200",
+   "image_ok": true,
+   "image_size": [
+    1200,
+    624
+   ]
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "date": "2026-11-25",
+ "title": "Amazon、攻撃者のAIエージェントが未知の弱点を見つけて悪用したと報告：分析から侵入まで約11分",
+ "category": "セキュリティ",
+ "lead": "Amazonの脅威分析チームが、攻撃者がAIエージェントを使い、ほぼ人の手を借りずに未知の弱点（ゼロデイ）を見つけて悪用した事例を報告したと、Ars Technica（Dan Goodin記者）が11月24日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "記事によると、使われたのは「Cairn」というオープンソースの仕組みです。もとは守る側が侵入テストをするために作られたもので、司令役が仕事を割り振り、複数のエージェントが同時に動きます。中で使うモデルは選べます。",
+    "攻撃者は簡体字中国語で指示を書き、狙うサーバーの一覧と「シェルを取る」という目的だけを渡しました。多くの試みは失敗しましたが、医療画像を扱うオープンソースのAIアプリでは、エージェントがファイル名の扱いの弱点を見つけ、約11分で任意のファイルを書き込めるところまで進みました。",
+    "その後、この弱点を使って管理者の権限でサーバーを操れる状態にしたとのことです。Amazonは、この弱点が当時どこにも報告されていなかったことから、ゼロデイだと強く判断しています。",
+    "Amazonは「AIによる攻撃はすでに起きている。守る側は、その速さとしつこさに備えるべきだ」と述べています。数分で見つけて悪用されると、人が警告を確かめるより早く終わってしまうためです。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "Ars Technica",
+   "url": "https://arstechnica.com/security/2026/11/amazon-says-hackers-ai-agents-found-and-exploited-0-day-with-little-human-input/",
+   "note": "元記事",
+   "title": "Amazon says hackers' AI agents found and exploited 0-day with little human input",
+   "org": "報道：Ars Technica（Dan Goodin記者）／調査：Amazon Threat Intelligence",
+   "published": "2026-11-24",
+   "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/11/cairn-banner.jpg",
+   "image_ok": true,
+   "image_size": [
+    1146,
+    645
+   ]
+  }
+ ]
+}

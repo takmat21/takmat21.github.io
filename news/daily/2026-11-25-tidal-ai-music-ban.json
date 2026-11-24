@@ -1,0 +1,33 @@
+{
+ "date": "2026-11-25",
+ "title": "音楽配信のTidal、AIだけで作った曲を12月9日から禁止：約2,700万曲を削除へ",
+ "category": "社会",
+ "lead": "音楽配信のTidalが、AIだけで作られた曲を全面的に禁止すると発表したと、Ars Technica（Ryan Whitwam記者）が11月24日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "記事によると、Tidalは2026年7月から、AIだけで作られた曲に印を付け、収益の対象から外していました。しかし直近90日の新しい投稿の43%がAIだけで作られた曲で、11月6日には60%に達したそうです。",
+    "今、AIと印の付いた曲は約2,700万曲あり、全体の6.3%です。Tidalは12月9日にこれらを削除し、以後はAIだけの曲の投稿を受け付けません。印の付いた曲の96%は直近90日で一度も再生されておらず、影響はほとんど無いとしています。",
+    "禁止するのは「すべてをAIで作った曲」だけで、人の手が入っていればAIの道具を使ってもかまいません。理由として、聞く人を惑わすことや、作り手への支払いが流れてしまうことを挙げています。なりすましの曲は、すでに約6万6,000曲を消しました。",
+    "見分け方は明らかにしていませんが、記事は、曲に埋め込まれた目印（透かし）を使う可能性が高いと見ています。Spotify、YouTube Music、Apple Musicなどは、印を付けたうえでAIの曲を認めています。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "Ars Technica",
+   "url": "https://arstechnica.com/ai/2026/11/tidal-will-ban-fully-ai-generated-music-on-december-9/",
+   "note": "元記事",
+   "title": "Tidal announces ban on AI-generated music; 27 million tracks will be deleted",
+   "org": "報道：Ars Technica（Ryan Whitwam記者）",
+   "published": "2026-11-24",
+   "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/11/GettyImages-1083228790-2560x1440.jpg",
+   "image_ok": true,
+   "image_size": [
+    2560,
+    1440
+   ]
+  }
+ ]
+}
