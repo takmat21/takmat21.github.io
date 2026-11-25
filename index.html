@@ -632,7 +632,7 @@
 
   <p class="note">道具についての解説記事は、<a href="#paper">論文・記事タブ</a>にまとめています。</p>
   <p class="group" id="tools-watch">見ている情報源：実践している人の動画</p>
-  <p class="note">Claude と Claude Code の使い方を、手順つきで見せている動画です。2026年11月11日に14本の内容をAI（Gemini）に書き出させて読みました。動画の中の道具や機能は、公式の説明で確かめてから使います。週に1回、新しい回を確かめてここを直します。</p>
+  <p class="note">Claude と Claude Code の使い方を、手順つきで見せている動画です。2026年11月11日に14本、11月25日に13本の内容をAI（Gemini）に書き出させて読みました。動画の中の道具や機能は、公式の説明で確かめてから使います。週に1回、新しい回を確かめてここを直します。</p>
   <ul class="rows">
     <li><a class="row" href="https://www.youtube.com/@ai-gyomu-lab"><span class="t">AI業務自動化ラボ｜Kento</span><span class="m">YouTube ↗</span><span class="d">海外の解説者の話を、日本語の音声・字幕・章の見出しつきで紹介しているチャンネル。1本1テーマで、ほぼ毎日。元の解説者は下のとおりです。</span></a></li>
     <li><a class="row" href="https://www.youtube.com/@sharbelxyz"><span class="t">Sharbel A.</span><span class="m">元の解説者 ↗</span><span class="d">「仕事ごとにAIを増やさず、1つのAIにスキルを足して育てる」。スキルを作る3つの方法（手で書く／AIと対話して作る／画面の録画から作る）。英語。</span></a></li>
@@ -642,6 +642,9 @@
     <li><a class="row" href="https://www.youtube.com/@matthew_berman"><span class="t">Matthew Berman</span><span class="m">元の解説者 ↗</span><span class="d">アプリの仕組みをAIで読み解いて作り直す道具（REA）の解説。「道具そのものは新しくない。差が出るのは、組み合わせと事業の見方」。英語。</span></a></li>
     <li><a class="row" href="https://www.youtube.com/@EricWTech"><span class="t">Eric Tech</span><span class="m">元の解説者 ↗</span><span class="d">REAの入れ方と実演。「アプリやコードは守りにならない。守りになるのは、ブランド・お客様・たまったデータ」。英語。</span></a></li>
     <li><a class="row" href="https://www.youtube.com/@wearenocode"><span class="t">Christian Peverelli（WeAreNoCode）</span><span class="m">元の解説者 ↗</span><span class="d">編集の好みをスキルに書き、出来上がりを点検するスクリプトで確かめる、動画編集の自動化。英語。</span></a></li>
+    <li><a class="row" href="https://www.youtube.com/@aiDotEngineer"><span class="t">Lydia Hallie（Anthropic）</span><span class="m">元の解説者 ↗</span><span class="d">AI Engineer の講演「Rethinking Claude Code Best Practices」。AIにつきっきりで指示する人から、決まり・禁止の線・自動の点検を先に整えて任せる管理役へ。英語。</span></a></li>
+    <li><a class="row" href="https://www.youtube.com/@ImanGadzhi"><span class="t">Iman Gadzhi</span><span class="m">元の解説者 ↗</span><span class="d">Claude をチャットだけで使わず、記憶・コネクタ・スキル・定時作業へと4段階で使い方を広げる話。英語。</span></a></li>
+    <li><a class="row" href="https://www.youtube.com/@BrettMalinowski"><span class="t">Brett Malinowski</span><span class="m">元の解説者 ↗</span><span class="d">実績が無いうちは、相手の会社に合わせた見本の画像・動画を先に作って見せ、仕事を取る進め方。英語。</span></a></li>
   </ul>
   <p class="group">動画から拾った、自社で確かめること</p>
   <ul class="rows">
@@ -651,6 +654,10 @@
     <li><div class="row"><span class="t">AIに質問させて、人は選ぶだけにする</span><span class="m">未確認</span><span class="d">長い指示を書く代わりに、AIから質問を出させる頼み方。資料づくりの最初の聞き取りで試します。</span></div></li>
       <li><div class="row"><span class="t">アプリに命令の窓口と説明書を付け、AIに操作させる</span><span class="m">未確認</span><span class="d">画像・動画の編集ソフトに、命令で動かす窓口と、AI向けの説明書（agents.md）を付けて、AIに下書きまで作らせる例（2026年11月の回）。自社の2D・3DのCADツールにも同じ形が使えるかを確かめる。</span></div></li>
     <li><div class="row"><span class="t">コードで作るアニメを、動画に使う</span><span class="m">未確認</span><span class="d">Three.js と Remotion のコードで、短いアニメを1コマずつ作る手順をスキルにした例（2026年11月の回）。自社のAIニュース動画の背景や動きに使えるかを確かめる。</span></div></li>
+    <li><div class="row"><span class="t">仕事の決まりを、AIに点検させる</span><span class="m">公式で確認</span><span class="d">Claude Code の /doctor prompt-audit で、CLAUDE.md などの指示文そのものを点検できる（公式の説明で確認。v2.1.283 以降）。自社のスキルと帳面の決まりに使えるかを試します。</span></div></li>
+    <li><div class="row"><span class="t">任せる前に「絶対にしない」を書いておく</span><span class="m">公式で確認</span><span class="d">自動で進めるモードに、言われても止める動き（hard_deny）と、信頼してよい場所（environment）を書ける（公式の説明で確認）。送信・お金・削除をAIが自分で行わない、という自社の決まりを設定にも写せるかを確かめます。</span></div></li>
+    <li><div class="row"><span class="t">Code Mode（道具を1回のコードでまとめて呼ぶ）</span><span class="m">公式で確認・試験中の機能</span><span class="d">AIが道具を1つずつ呼ばず、短いコードで何回分もまとめて動かす機能（公式の説明で確認。試験中で、端末の画面だけ。クラウドの作業では使えない）。動画の「トークン71%減」は動画の数字で、未確認です。</span></div></li>
+    <li><div class="row"><span class="t">見本を先に作って、仕事を取る</span><span class="m">確かめ中</span><span class="d">実績が無い分野は、相手に合わせた見本を先に作って見せる。自社の応募でも同じ形（必須の経験が足りないときは見本を作る）で進めています。</span></div></li>
 </ul>
   <p class="note">道具は増やしすぎると、AIが迷ったり費用が増えたりします。使わなくなったものは外し、この一覧も合わせて直します。</p>
 
@@ -689,7 +696,7 @@
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.yt');if(!b||b.querySelector('iframe'))return;var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+b.dataset.yt+'?autoplay=1&rel=0';f.title=b.getAttribute('aria-label')||'YouTube';f.allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';f.allowFullscreen=true;b.appendChild(f);});
 </script>
 
-<script src="assets/lang.js?v=20261120a" defer></script>
+<script src="assets/lang.js?v=20261125a" defer></script>
 <script src="assets/hero-art/hero-art.js"></script>
 <script src="assets/hero-flower/hero-flower.js"></script>
 <script src="assets/hero-video/hero-video.js" defer></script>
