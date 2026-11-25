@@ -161,6 +161,63 @@ footer a{color:#fff}
 .qa .ans::before{content:"A";position:absolute;left:14px;top:10px;width:32px;height:32px;display:grid;place-items:center;background:var(--k);color:var(--y);border-radius:50%;font-weight:900}
 .last{padding:30px 0 26px;text-align:center}
 .last .big2{display:inline-block;margin:0 0 6px;font-weight:900;font-size:clamp(24px,5vw,40px);-webkit-text-stroke:5px #fff;paint-order:stroke fill;text-shadow:3px 3px 0 var(--r);line-height:1.25}
+
+/* あるある */
+.aru{background:#fff;border-top:4px solid var(--k);padding:30px 0 34px}
+.aru h2{font-size:clamp(24px,4.6vw,38px)}
+.aru h2 small{display:block;font-size:.62em;color:var(--r)}
+.komas{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
+@media (max-width:560px){.komas{grid-template-columns:1fr 1fr;gap:10px}}
+.koma{margin:0;border:3px solid var(--k);background:var(--y2);position:relative;box-shadow:4px 4px 0 var(--k);display:flex;flex-direction:column}
+.koma:nth-child(odd){transform:rotate(-1deg)}.koma:nth-child(even){transform:rotate(1deg)}
+.koma svg{display:block;width:100%;height:auto;background:#fffbe0;border-bottom:3px solid var(--k)}
+.koma figcaption{padding:8px 10px;font-weight:800;font-size:14px;line-height:1.45;background:#fff;flex:1}
+.koma figcaption b{color:var(--r)}
+.kn{position:absolute;left:-8px;top:-10px;z-index:1;width:30px;height:30px;display:grid;place-items:center;background:var(--k);color:var(--y);font-weight:900;border-radius:50%}
+.koma:last-child:nth-child(odd){grid-column:1/-1}
+@media (min-width:561px){.koma:last-child:nth-child(odd){grid-column:auto}}
+@media (max-width:560px){.koma:last-child:nth-child(odd) svg{max-width:220px;margin:0 auto;background:#fffbe0}.koma:last-child:nth-child(odd){background:#fffbe0}}
+.ukeru{text-align:center;margin:26px 0 0}
+.ukeru p{display:inline-block;margin:0;background:var(--r);color:#fff;font-weight:900;font-size:clamp(24px,5.4vw,44px);line-height:1.3;padding:8px 22px;transform:rotate(-2deg);border:4px solid var(--k);box-shadow:6px 6px 0 var(--k);text-shadow:2px 2px 0 var(--k)}
+.ukeru p b{color:var(--y)}
+/* ビフォー・アフター */
+.ba{padding:30px 0 32px}
+.bag{display:grid;grid-template-columns:1fr 60px 1fr;gap:10px;align-items:stretch}
+@media (max-width:760px){.bag{grid-template-columns:1fr}}
+.bx{border:3px solid var(--k);background:#fff;box-shadow:5px 5px 0 var(--k)}
+.bx h3{margin:0;padding:6px 14px;font-weight:900;font-size:20px;background:#777;color:#fff}
+.bx.af h3{background:var(--r)}
+.bx ul{margin:0;padding:10px 14px 12px;list-style:none}
+.bx li{padding:6px 0 6px 28px;border-bottom:2px dotted #bbb;font-weight:800;position:relative}
+.bx li:last-child{border:0}
+.bx li::before{content:"×";position:absolute;left:2px;top:4px;color:#777;font-size:20px;font-weight:900;line-height:1.2}
+.bx.af li::before{content:"◎";color:var(--r)}
+.bx.bf{background:#f1f1f1}
+.bx.bf li{color:#555}
+/* こんな方に */
+.who{padding:30px 0 32px;background:var(--k);color:#fff}
+.who h2 em{color:#ff5a5a}
+.who ul{list-style:none;margin:0 auto;padding:0;max-width:760px;display:grid;gap:10px}
+.who li{background:var(--y);color:var(--k);font-weight:900;font-size:17px;padding:10px 14px 10px 46px;position:relative;border:3px solid #fff}
+.who li::before{content:"✔";position:absolute;left:12px;top:8px;color:var(--r);font-size:22px}
+
+/* 柱：安い！正確！早い！便利！！！ */
+.hashira{margin:30px 0 0;text-align:center}
+.hashira .ht{margin:0 0 14px;font-weight:900;font-size:clamp(26px,5.6vw,48px);line-height:1.25;-webkit-text-stroke:6px #fff;paint-order:stroke fill}
+.hashira .ht small{display:block;font-size:.55em;-webkit-text-stroke:4px #fff}
+.hashira .ht em{font-style:normal;color:var(--r)}
+.p4{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media (max-width:760px){.p4{grid-template-columns:1fr 1fr;gap:10px 8px}}
+.p4 li{display:flex;flex-direction:column;align-items:center}
+.p4 .bd{filter:drop-shadow(3px 3px 0 var(--k)) drop-shadow(-2px -2px 0 var(--k));transform:rotate(-5deg)}
+.p4 li:nth-child(even) .bd{transform:rotate(5deg)}
+.p4 .bd span{display:grid;place-items:center;width:clamp(120px,22vw,170px);aspect-ratio:1;background:var(--r);color:#fff;clip-path:polygon(50% 0,58% 16%,72% 4%,74% 22%,92% 14%,86% 32%,100% 36%,88% 50%,100% 64%,86% 68%,92% 86%,74% 78%,72% 96%,58% 84%,50% 100%,42% 84%,28% 96%,26% 78%,8% 86%,14% 68%,0 64%,12% 50%,0 36%,14% 32%,8% 14%,26% 22%,28% 4%,42% 16%);font-weight:900;font-size:clamp(28px,5.4vw,42px);text-shadow:2px 2px 0 var(--k)}
+.p4 li:nth-child(2) .bd span{background:var(--k);color:var(--y)}
+.p4 li:nth-child(3) .bd span{background:#ff7a00}
+.p4 li:nth-child(4) .bd span{background:var(--g)}
+.p4 p{margin:6px 0 0;background:#fff;border:3px solid var(--k);padding:6px 8px;font-weight:800;font-size:14px;line-height:1.45;text-align:center;width:100%}
+.p4.sm2 .bd span{width:clamp(84px,14vw,110px);font-size:clamp(22px,4vw,28px)}
+.p4.sm2 p{font-size:12.5px;padding:4px 6px}
 </style>
 </head>
 <body>
@@ -185,6 +242,26 @@ footer a{color:#fff}
 </div></header>
 <div class="tapewrap"><p class="tape">＼ まずはお試し！ <b>1枚目は無料</b>で拾います ／</p></div>
 
+<section class="aru" id="aruaru"><div class="w">
+  <h2>拾い出しって、<span class="nb">意外と時間が</span><span class="nb">とられるんだよなー…</span><small>こんなこと、ありませんか？</small></h2>
+  <div class="komas">
+<figure class="koma"><span class="kn">1</span><svg viewBox="0 0 200 170" role="img" aria-label="困っている人の絵" font-family="Hiragino Maru Gothic ProN, Kosugi Maru, Noto Sans JP, sans-serif"><g transform="rotate(-6 151.0 80.0)"><clipPath id="c1"><rect x="108" y="30" width="86" height="100"/></clipPath><rect x="108" y="30" width="86" height="100" fill="#fff"/><image href="img/haisen_zoom.webp" x="95.1" y="30" width="137.6" height="120.0" preserveAspectRatio="xMidYMid slice" clip-path="url(#c1)"/><rect x="108" y="30" width="86" height="100" fill="none" stroke="#111" stroke-width="3"/></g><path d="M24,170 C26,120 40,106 62,106 C84,106 98,120 100,170Z" fill="#8fd3ff" stroke="#111" stroke-width="3" stroke-linejoin="round"/><path d="M94.7,70.0 L93.5,77.2 L91.3,84.1 L87.6,90.4 L82.1,95.2 L75.5,98.0 L68.7,99.3 L62.0,100.4 L54.9,101.3 L47.4,100.4 L40.8,96.6 L36.3,90.5 L33.6,83.7 L31.8,76.9 L30.7,70.0 L31.1,62.9 L33.6,56.3 L37.6,50.5 L42.2,45.2 L47.7,40.3 L54.4,36.9 L62.0,36.4 L69.1,38.9 L75.1,42.7 L80.7,46.6 L86.3,50.6 L91.3,55.9 L94.2,62.7 L94.7,70.0Z" fill="#ffe2c6" stroke="#111" stroke-width="3"/><path d="M31,62 C32,30 90,26 93,60 C80,48 66,54 56,44 C50,56 40,56 31,62Z" fill="#111"/><path d="M50.0,72.0 L50.2,72.1 L50.2,72.4 L50.0,72.6 L49.5,72.6 L49.1,72.4 L48.8,71.8 L48.9,71.1 L49.5,70.5 L50.4,70.3 L51.4,70.6 L52.1,71.5 L52.3,72.7 L51.7,74.0 L50.4,74.8 L48.8,74.8 L47.4,73.9 L46.6,72.3 L46.8,70.4 L48.0,68.8 L50.0,68.0 L52.2,68.4 L53.9,70.0 L54.6,72.4 L53.9,74.8 L51.9,76.6 L49.2,77.1 L46.5,76.1 L44.7,73.7 L44.4,70.6 L45.8,67.7 L48.6,66.0 L52.0,65.9 L55.0,67.8 L56.7,71.0 L56.4,74.7 L54.2,77.9 L50.5,79.4 L46.5,78.7 L43.3,76.0" fill="none" stroke="#111" stroke-width="2"/><path d="M74.0,72.0 L74.2,72.1 L74.2,72.4 L74.0,72.6 L73.5,72.6 L73.1,72.4 L72.8,71.8 L72.9,71.1 L73.5,70.5 L74.4,70.3 L75.4,70.6 L76.1,71.5 L76.3,72.7 L75.7,74.0 L74.4,74.8 L72.8,74.8 L71.4,73.9 L70.6,72.3 L70.8,70.4 L72.0,68.8 L74.0,68.0 L76.2,68.4 L77.9,70.0 L78.6,72.4 L77.9,74.8 L75.9,76.6 L73.2,77.1 L70.5,76.1 L68.7,73.7 L68.4,70.6 L69.8,67.7 L72.6,66.0 L76.0,65.9 L79.0,67.8 L80.7,71.0 L80.4,74.7 L78.2,77.9 L74.5,79.4 L70.5,78.7 L67.3,76.0" fill="none" stroke="#111" stroke-width="2"/><path d="M52,88 q3,-5 6,0 t6,0 t6,0" fill="none" stroke="#111" stroke-width="2.6" stroke-linecap="round"/><path d="M92,44 q-6.0,10.0 0,14.0 q6.0,-4.0 0,-14.0z" fill="#3aa0ff" stroke="#111" stroke-width="1.6"/><path d="M101,58 q-5.1,8.5 0,11.9 q5.1,-3.4 0,-11.9z" fill="#3aa0ff" stroke="#111" stroke-width="1.6"/><ellipse cx="42" cy="82" rx="5" ry="3" fill="#ff9aa8" opacity=".7"/><ellipse cx="82" cy="82" rx="5" ry="3" fill="#ff9aa8" opacity=".7"/><ellipse cx="110" cy="120" rx="9" ry="7" fill="#ffe2c6" stroke="#111" stroke-width="2.5"/><ellipse cx="188" cy="112" rx="9" ry="7" fill="#ffe2c6" stroke="#111" stroke-width="2.5"/><text x="128" y="26" font-size="26" font-weight="900" fill="#e60012" text-anchor="middle" transform="rotate(-12 128 26)">？</text><text x="176" y="22" font-size="20" font-weight="900" fill="#e60012" text-anchor="middle" transform="rotate(10 176 22)">？</text><text x="150" y="150" font-size="13" font-weight="900" fill="#111" text-anchor="middle" transform="rotate(0 150 150)">…どこまで？</text></svg><figcaption>記号が小さくて、数えてるうちに<b>どこまで数えたか分からなくなる</b></figcaption></figure>
+<figure class="koma"><span class="kn">2</span><svg viewBox="0 0 200 170" role="img" aria-label="困っている人の絵" font-family="Hiragino Maru Gothic ProN, Kosugi Maru, Noto Sans JP, sans-serif"><g transform="rotate(5 152.0 82.0)"><clipPath id="c2"><rect x="112" y="36" width="80" height="92"/></clipPath><rect x="112" y="36" width="80" height="92" fill="#fff"/><image href="img/haisen_zoom.webp" x="100.0" y="36" width="128.0" height="110.39999999999999" preserveAspectRatio="xMidYMid slice" clip-path="url(#c2)"/><rect x="112" y="36" width="80" height="92" fill="none" stroke="#111" stroke-width="3"/></g><path d="M24,170 C26,120 40,106 62,106 C84,106 98,120 100,170Z" fill="#ffd36b" stroke="#111" stroke-width="3" stroke-linejoin="round"/><path d="M94.5,70.0 L94.1,77.3 L91.5,84.2 L86.6,89.6 L80.8,93.6 L75.0,97.1 L69.0,100.7 L62.0,103.3 L54.4,103.2 L47.6,100.0 L42.1,95.0 L37.6,89.5 L33.7,83.6 L31.1,77.1 L30.5,70.0 L31.7,63.1 L33.8,56.4 L36.6,49.7 L40.9,43.5 L47.3,39.4 L54.8,38.3 L62.0,39.3 L68.7,40.8 L75.3,42.3 L82.0,45.0 L87.6,49.6 L91.4,55.9 L93.5,62.8 L94.5,70.0Z" fill="#ffe2c6" stroke="#111" stroke-width="3"/><path d="M31,62 C32,30 90,26 93,60 C80,48 66,54 56,44 C50,56 40,56 31,62Z" fill="#111"/><path d="M44,67 l12,10 M56,67 l-12,10" stroke="#111" stroke-width="3" stroke-linecap="round"/><path d="M68,67 l12,10 M80,67 l-12,10" stroke="#111" stroke-width="3" stroke-linecap="round"/><ellipse cx="62" cy="88" rx="5" ry="6" fill="#111"/><path d="M92,44 q-6.0,10.0 0,14.0 q6.0,-4.0 0,-14.0z" fill="#3aa0ff" stroke="#111" stroke-width="1.6"/><path d="M101,58 q-5.1,8.5 0,11.9 q5.1,-3.4 0,-11.9z" fill="#3aa0ff" stroke="#111" stroke-width="1.6"/><path d="M110,72 q-4.199999999999999,7.0 0,9.799999999999999 q4.199999999999999,-2.8 0,-9.799999999999999z" fill="#3aa0ff" stroke="#111" stroke-width="1.6"/><ellipse cx="42" cy="82" rx="5" ry="3" fill="#ff9aa8" opacity=".7"/><ellipse cx="82" cy="82" rx="5" ry="3" fill="#ff9aa8" opacity=".7"/><ellipse cx="114" cy="124" rx="9" ry="7" fill="#ffe2c6" stroke="#111" stroke-width="2.5"/><ellipse cx="186" cy="118" rx="9" ry="7" fill="#ffe2c6" stroke="#111" stroke-width="2.5"/><text x="140" y="30" font-size="20" font-weight="900" fill="#e60012" text-anchor="middle" transform="rotate(-8 140 30)">あれ？</text><path d="M120,150 l0,14 M128,150 l0,14 M136,150 l0,14 M144,150 l0,14 M116,162 l34,-10" stroke="#111" stroke-width="3" stroke-linecap="round"/><text x="172" y="166" font-size="22" font-weight="900" fill="#e60012" text-anchor="middle" transform="rotate(0 172 166)">？</text></svg><figcaption>数え直したら<b>数が合わない…</b></figcaption></figure>
+<figure class="koma"><span class="kn">3</span><svg viewBox="0 0 200 170" role="img" aria-label="困っている人の絵" font-family="Hiragino Maru Gothic ProN, Kosugi Maru, Noto Sans JP, sans-serif"><g transform="rotate(-4 152.0 79.0)"><clipPath id="c3"><rect x="110" y="30" width="84" height="98"/></clipPath><rect x="110" y="30" width="84" height="98" fill="#fff"/><image href="img/haisen_zoom.webp" x="97.4" y="30" width="134.4" height="117.6" preserveAspectRatio="xMidYMid slice" clip-path="url(#c3)"/><rect x="110" y="30" width="84" height="98" fill="none" stroke="#111" stroke-width="3"/><g transform="rotate(-14 152.0 79.0)"><rect x="126.0" y="65.0" width="52" height="28" rx="4" fill="#fff" fill-opacity=".85" stroke="#e60012" stroke-width="3"/><text x="152.0" y="86.0" text-anchor="middle" font-size="18" font-weight="900" fill="#e60012">修正</text></g></g><path d="M24,170 C26,120 40,106 62,106 C84,106 98,120 100,170Z" fill="#b9f0a8" stroke="#111" stroke-width="3" stroke-linejoin="round"/><path d="M95.1,70.0 L93.2,77.1 L89.4,83.2 L85.3,88.6 L81.2,94.1 L76.2,99.4 L69.5,103.0 L62.0,103.5 L54.8,101.6 L48.3,98.4 L42.3,94.7 L37.2,89.8 L33.6,83.7 L31.9,76.9 L31.1,70.0 L30.8,62.9 L31.8,55.4 L35.3,48.7 L41.3,44.1 L48.4,41.8 L55.3,40.6 L62.0,39.5 L69.0,39.2 L76.1,40.8 L82.2,44.6 L87.2,49.9 L91.3,55.9 L94.3,62.6 L95.1,70.0Z" fill="#ffe2c6" stroke="#111" stroke-width="3"/><path d="M31,62 C32,30 90,26 93,60 C80,48 66,54 56,44 C50,56 40,56 31,62Z" fill="#111"/><path d="M43,74 q7,-7 14,0" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/><path d="M42,62 l6,-4" stroke="#111" stroke-width="2.5" stroke-linecap="round"/><path d="M67,74 q7,-7 14,0" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/><path d="M66,62 l-6,4" stroke="#111" stroke-width="2.5" stroke-linecap="round"/><path d="M53,91 q9,-9 18,0" fill="none" stroke="#111" stroke-width="2.6" stroke-linecap="round"/><path d="M92,44 q-6.0,10.0 0,14.0 q6.0,-4.0 0,-14.0z" fill="#3aa0ff" stroke="#111" stroke-width="1.6"/><path d="M48,78 q-3,12 0,20 M76,78 q3,12 0,20" fill="none" stroke="#3aa0ff" stroke-width="3" stroke-linecap="round"/><ellipse cx="42" cy="82" rx="5" ry="3" fill="#ff9aa8" opacity=".7"/><ellipse cx="82" cy="82" rx="5" ry="3" fill="#ff9aa8" opacity=".7"/><ellipse cx="112" cy="120" rx="9" ry="7" fill="#ffe2c6" stroke="#111" stroke-width="2.5"/><path d="M108,24 a12,12 0 1,1 -4,-9" fill="none" stroke="#e60012" stroke-width="4" stroke-linecap="round"/><path d="M98,10 l6,6 l7,-5" fill="none" stroke="#e60012" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><figcaption>図面が直るたびに、<b>また最初から</b></figcaption></figure>
+<figure class="koma"><span class="kn">4</span><svg viewBox="0 0 200 170" role="img" aria-label="困っている人の絵" font-family="Hiragino Maru Gothic ProN, Kosugi Maru, Noto Sans JP, sans-serif"><rect x="118" y="30" width="64" height="70" fill="#fff" stroke="#111" stroke-width="2.5"/><rect x="124" y="38" width="64" height="70" fill="#fff" stroke="#111" stroke-width="2.5"/><rect x="130" y="46" width="64" height="70" fill="#fff" stroke="#111" stroke-width="2.5"/><rect x="130" y="46" width="64" height="16" fill="#e60012"/><text x="162" y="59" font-size="13" font-weight="900" fill="#fff" text-anchor="middle" transform="rotate(0 162 59)">締切</text><circle cx="142" cy="78" r="6" fill="none" stroke="#e60012" stroke-width="2.5"/><circle cx="158" cy="78" r="6" fill="none" stroke="#e60012" stroke-width="2.5"/><circle cx="174" cy="78" r="6" fill="none" stroke="#e60012" stroke-width="2.5"/><circle cx="142" cy="94" r="6" fill="none" stroke="#e60012" stroke-width="2.5"/><circle cx="158" cy="94" r="6" fill="none" stroke="#e60012" stroke-width="2.5"/><path d="M24,170 C26,120 40,106 62,106 C84,106 98,120 100,170Z" fill="#ffb3c7" stroke="#111" stroke-width="3" stroke-linejoin="round"/><path d="M92.9,70.0 L91.1,76.6 L89.3,83.2 L87.0,90.0 L82.9,96.2 L76.6,100.3 L69.3,101.9 L62.0,101.9 L54.9,101.0 L48.1,98.8 L42.3,94.8 L37.8,89.3 L34.5,83.3 L31.3,77.0 L28.9,70.0 L28.7,62.4 L31.6,55.4 L37.0,50.1 L43.0,46.1 L48.8,42.6 L55.0,39.5 L62.0,37.9 L69.2,38.6 L75.9,41.1 L82.2,44.7 L87.9,49.4 L92.1,55.5 L93.7,62.8 L92.9,70.0Z" fill="#ffe2c6" stroke="#111" stroke-width="3"/><path d="M31,62 C32,30 90,26 93,60 C80,48 66,54 56,44 C50,56 40,56 31,62Z" fill="#111"/><path d="M50.0,72.0 L50.2,72.1 L50.2,72.4 L50.0,72.6 L49.5,72.6 L49.1,72.4 L48.8,71.8 L48.9,71.1 L49.5,70.5 L50.4,70.3 L51.4,70.6 L52.1,71.5 L52.3,72.7 L51.7,74.0 L50.4,74.8 L48.8,74.8 L47.4,73.9 L46.6,72.3 L46.8,70.4 L48.0,68.8 L50.0,68.0 L52.2,68.4 L53.9,70.0 L54.6,72.4 L53.9,74.8 L51.9,76.6 L49.2,77.1 L46.5,76.1 L44.7,73.7 L44.4,70.6 L45.8,67.7 L48.6,66.0 L52.0,65.9 L55.0,67.8 L56.7,71.0 L56.4,74.7 L54.2,77.9 L50.5,79.4 L46.5,78.7 L43.3,76.0" fill="none" stroke="#111" stroke-width="2"/><path d="M74.0,72.0 L74.2,72.1 L74.2,72.4 L74.0,72.6 L73.5,72.6 L73.1,72.4 L72.8,71.8 L72.9,71.1 L73.5,70.5 L74.4,70.3 L75.4,70.6 L76.1,71.5 L76.3,72.7 L75.7,74.0 L74.4,74.8 L72.8,74.8 L71.4,73.9 L70.6,72.3 L70.8,70.4 L72.0,68.8 L74.0,68.0 L76.2,68.4 L77.9,70.0 L78.6,72.4 L77.9,74.8 L75.9,76.6 L73.2,77.1 L70.5,76.1 L68.7,73.7 L68.4,70.6 L69.8,67.7 L72.6,66.0 L76.0,65.9 L79.0,67.8 L80.7,71.0 L80.4,74.7 L78.2,77.9 L74.5,79.4 L70.5,78.7 L67.3,76.0" fill="none" stroke="#111" stroke-width="2"/><ellipse cx="62" cy="88" rx="5" ry="6" fill="#111"/><path d="M92,44 q-6.0,10.0 0,14.0 q6.0,-4.0 0,-14.0z" fill="#3aa0ff" stroke="#111" stroke-width="1.6"/><path d="M101,58 q-5.1,8.5 0,11.9 q5.1,-3.4 0,-11.9z" fill="#3aa0ff" stroke="#111" stroke-width="1.6"/><path d="M110,72 q-4.199999999999999,7.0 0,9.799999999999999 q4.199999999999999,-2.8 0,-9.799999999999999z" fill="#3aa0ff" stroke="#111" stroke-width="1.6"/><ellipse cx="42" cy="82" rx="5" ry="3" fill="#ff9aa8" opacity=".7"/><ellipse cx="82" cy="82" rx="5" ry="3" fill="#ff9aa8" opacity=".7"/><text x="140" y="154" font-size="13" font-weight="900" fill="#e60012" text-anchor="middle" transform="rotate(-4 140 154)">ぜんぶ今週！？</text></svg><figcaption><b>見積りの締め切り</b>が重なる</figcaption></figure>
+<figure class="koma"><span class="kn">5</span><svg viewBox="0 0 200 170" role="img" aria-label="困っている人の絵" font-family="Hiragino Maru Gothic ProN, Kosugi Maru, Noto Sans JP, sans-serif"><path d="M118,14 h70 a12,12 0 0,1 12,12 v52 a12,12 0 0,1 -12,12 h-48 l-14,14 l2,-14 h-10 a12,12 0 0,1 -12,-12 v-52 a12,12 0 0,1 12,-12z" fill="#fff" stroke="#111" stroke-width="3"/><path d="M128,66 a22,20 0 0,1 44,0z" fill="#ffd400" stroke="#111" stroke-width="3"/><rect x="122" y="64" width="56" height="7" rx="3" fill="#ffd400" stroke="#111" stroke-width="3"/><path d="M150,46 v-6" stroke="#111" stroke-width="3"/><text x="170" y="86" font-size="13" font-weight="900" fill="#e60012" text-anchor="middle" transform="rotate(0 170 86)">現場！</text><path d="M24,170 C26,120 40,106 62,106 C84,106 98,120 100,170Z" fill="#c9b6ff" stroke="#111" stroke-width="3" stroke-linejoin="round"/><path d="M92.0,70.0 L92.6,77.0 L91.7,84.3 L88.2,90.9 L82.5,95.7 L76.0,99.0 L69.1,101.2 L62.0,102.2 L54.9,101.1 L48.5,98.0 L43.1,93.7 L37.8,89.3 L32.7,84.1 L28.8,77.6 L28.0,70.0 L30.2,62.7 L34.1,56.5 L38.2,51.0 L42.6,45.7 L48.2,41.3 L54.9,38.8 L62.0,38.2 L69.1,38.7 L76.3,40.3 L83.0,43.7 L87.9,49.4 L90.4,56.3 L91.2,63.3 L92.0,70.0Z" fill="#ffe2c6" stroke="#111" stroke-width="3"/><path d="M31,62 C32,30 90,26 93,60 C80,48 66,54 56,44 C50,56 40,56 31,62Z" fill="#111"/><path d="M43,72 q7,5 14,0" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/><path d="M67,72 q7,5 14,0" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/><path d="M52,88 q3,-5 6,0 t6,0 t6,0" fill="none" stroke="#111" stroke-width="2.6" stroke-linecap="round"/><path d="M92,44 q-6.0,10.0 0,14.0 q6.0,-4.0 0,-14.0z" fill="#3aa0ff" stroke="#111" stroke-width="1.6"/><ellipse cx="42" cy="82" rx="5" ry="3" fill="#ff9aa8" opacity=".7"/><ellipse cx="82" cy="82" rx="5" ry="3" fill="#ff9aa8" opacity=".7"/><text x="160" y="150" font-size="16" font-weight="900" fill="#111" text-anchor="middle" transform="rotate(0 160 150)">はぁ…</text></svg><figcaption>本当は<b>現場や営業</b>に時間を使いたい</figcaption></figure>
+<figure class="koma"><span class="kn">6</span><svg viewBox="0 0 200 170" role="img" aria-label="困っている人の絵" font-family="Hiragino Maru Gothic ProN, Kosugi Maru, Noto Sans JP, sans-serif"><path d="M6,6 h120 a10,10 0 0,1 10,10 v24 a10,10 0 0,1 -10,10 h-60 l-10,12 l0,-12 h-50 a10,10 0 0,1 -10,-10 v-24 a10,10 0 0,1 10,-10z" fill="#fff" stroke="#111" stroke-width="2.5"/><text x="71" y="24" font-size="13" font-weight="900" fill="#111" text-anchor="middle" transform="rotate(0 71 24)">AIに投げても</text><text x="71" y="41" font-size="13" font-weight="900" fill="#e60012" text-anchor="middle" transform="rotate(0 71 41)">いまいち…とほほ</text><rect x="112" y="58" width="80" height="60" rx="4" fill="#dfe8f0" stroke="#111" stroke-width="3"/><rect x="119" y="64" width="66" height="46" fill="#fff" stroke="#111" stroke-width="2"/><path d="M126,74 h30 M126,82 h44 M126,90 h22 M126,98 h38" stroke="#bbb" stroke-width="3" stroke-linecap="round"/><text x="172" y="102" font-size="18" font-weight="900" fill="#e60012" text-anchor="middle" transform="rotate(0 172 102)">？</text><path d="M146,118 v10 M132,130 h44" stroke="#111" stroke-width="4" stroke-linecap="round"/><rect x="104" y="140" width="92" height="14" rx="3" fill="#eee" stroke="#111" stroke-width="2.5"/><path d="M24,170 C26,146 40,132 62,132 C84,132 98,146 100,170Z" fill="#ffe08a" stroke="#111" stroke-width="3" stroke-linejoin="round"/><path d="M94.5,96.0 L94.5,103.4 L91.7,110.3 L87.3,116.2 L82.1,121.2 L76.1,125.2 L69.2,127.4 L62.0,127.3 L55.3,125.5 L48.8,123.4 L42.1,120.9 L35.7,117.0 L31.2,110.8 L29.7,103.4 L30.5,96.0 L32.1,89.2 L34.1,82.6 L37.3,76.3 L42.2,71.1 L48.3,67.5 L54.9,65.0 L62.0,63.3 L69.5,63.2 L76.6,65.7 L82.0,70.9 L85.7,77.1 L88.9,83.1 L92.1,89.1 L94.5,96.0Z" fill="#ffe2c6" stroke="#111" stroke-width="3"/><path d="M31,88 C32,56 90,52 93,86 C80,74 66,80 56,70 C50,82 40,82 31,88Z" fill="#111"/><path d="M43,98 q7,5 14,0" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/><path d="M67,98 q7,5 14,0" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/><path d="M53,117 q9,-9 18,0" fill="none" stroke="#111" stroke-width="2.6" stroke-linecap="round"/><path d="M92,70 q-6.0,10.0 0,14.0 q6.0,-4.0 0,-14.0z" fill="#3aa0ff" stroke="#111" stroke-width="1.6"/><ellipse cx="42" cy="108" rx="5" ry="3" fill="#ff9aa8" opacity=".7"/><ellipse cx="82" cy="108" rx="5" ry="3" fill="#ff9aa8" opacity=".7"/></svg><figcaption>便利そうな道具に頼っても、<b>いまいち…</b></figcaption></figure>
+  </div>
+  <div class="ukeru"><p>それ、<b>まるごと</b><span class="nb">こっちでやります！</span></p></div>
+  <div class="hashira"><p class="ht"><small>とにかく</small><span class="nb"><em>安い！</em>正確！</span><span class="nb"><em>早い！</em>便利！！！</span></p>
+  <ul class="p4">
+    <li><span class="bd"><span>安い！</span></span><p>1枚目は無料。2枚目からも図面を見てお見積り</p></li>
+    <li><span class="bd"><span>正確！</span></span><p>色分けしてプロの目でダブルチェック</p></li>
+    <li><span class="bd"><span>早い！</span></span><p>図面を見て納期をすぐお知らせ</p></li>
+    <li><span class="bd"><span>便利！</span></span><p>LINEで写真を送るだけ。リスト・お見積りまでまとめて</p></li>
+  </ul></div>
+  <div class="btns c"><a class="btn line" href="https://line.me/R/ti/p/@786akrcn" target="_blank" rel="noopener">図面を送ってみる（LINE）</a><a class="btn mail" href="mailto:matsumura.takashi@zazoucorp.com?subject=%E5%9B%B3%E9%9D%A2%E3%81%AE%E6%95%B0%E9%87%8F%E6%8B%BE%E3%81%84%E3%81%AE%E7%9B%B8%E8%AB%87">メールで送る</a></div>
+</div></section>
 <section class="flow" id="sample"><div class="w">
   <h2>送ると、<em>こう返ってきます！</em></h2>
   <div class="fl">
@@ -213,6 +290,15 @@ footer a{color:#fff}
   <p class="a"><b>数えるの、ぜんぶやります！</b></p>
 </div></div>
 
+<section class="ba" id="ba"><div class="w">
+  <h2>頼むと、<em>こう変わる！</em></h2>
+  <div class="bag">
+    <div class="bx bf"><h3>いままで</h3><ul><li>図面とにらめっこで、1つずつ数える</li><li>数え直すたびに数がずれる</li><li>図面が直ったら、また最初から</li><li>締め切り前は、夜まで拾い出し</li></ul></div>
+    <div class="arrow" aria-hidden="true"><i></i></div>
+    <div class="bx af"><h3>頼むと</h3><ul><li>図面を写真かPDFで送るだけ</li><li>色分け図面と数量表で、番号ごとに照らせる</li><li>直った図面も、また送るだけ</li><li>空いた時間は、現場や営業に</li></ul></div>
+  </div>
+  <div class="btns c"><a class="btn line" href="https://line.me/R/ti/p/@786akrcn" target="_blank" rel="noopener">図面を送ってみる（LINE）</a><a class="btn mail" href="mailto:matsumura.takashi@zazoucorp.com?subject=%E5%9B%B3%E9%9D%A2%E3%81%AE%E6%95%B0%E9%87%8F%E6%8B%BE%E3%81%84%E3%81%AE%E7%9B%B8%E8%AB%87">メールで送る</a></div>
+</div></section>
 <section class="list" id="list"><div class="w">
   <h2>もちろん、<span class="nb"><em>リスト作成・お見積り</em>も</span><span class="nb">やります！</span></h2>
   <p class="lead2">拾った数から<b>部材リスト</b>を作って、<span class="nb"><b>単価×数量のお見積り</b>までまとめてお渡し！</span></p>
@@ -258,6 +344,17 @@ footer a{color:#fff}
   </ul>
 </div></section>
 
+<section class="who" id="who"><div class="w">
+  <h2 style="-webkit-text-stroke:0;color:var(--y)">こんな方に<em>ピッタリ！</em></h2>
+  <ul>
+    <li>電気工事店で、見積りの拾い出しを任されている方</li>
+    <li>設備会社・工務店で、電気の積算も受け持っている方</li>
+    <li>一人親方で、事務まで手が回らない方</li>
+    <li>忙しい時期だけ、拾い出しの手を借りたい方</li>
+    <li>拾った数を、もう一度だれかに確かめてほしい方</li>
+  </ul>
+  <div class="btns c"><a class="btn line" href="https://line.me/R/ti/p/@786akrcn" target="_blank" rel="noopener">図面を送ってみる（LINE）</a><a class="btn mail" href="mailto:matsumura.takashi@zazoucorp.com?subject=%E5%9B%B3%E9%9D%A2%E3%81%AE%E6%95%B0%E9%87%8F%E6%8B%BE%E3%81%84%E3%81%AE%E7%9B%B8%E8%AB%87">メールで送る</a></div>
+</div></section>
 <section class="faq" id="faq"><div class="w">
   <h2>よくある<em>質問</em></h2>
   <div class="qa">
@@ -270,6 +367,13 @@ footer a{color:#fff}
   </div>
 </div></section>
 <section class="last"><div class="w">
+  <div class="hashira" style="margin:0 0 18px"><p class="ht" style="font-size:clamp(20px,4vw,30px)">とにかく <span class="nb"><em>安い！</em>正確！</span><span class="nb"><em>早い！</em>便利！！！</span></p>
+  <ul class="p4 sm2">
+    <li><span class="bd"><span>安い！</span></span><p>1枚目は無料。2枚目からも図面を見てお見積り</p></li>
+    <li><span class="bd"><span>正確！</span></span><p>色分けしてプロの目でダブルチェック</p></li>
+    <li><span class="bd"><span>早い！</span></span><p>図面を見て納期をすぐお知らせ</p></li>
+    <li><span class="bd"><span>便利！</span></span><p>LINEで写真を送るだけ。リスト・お見積りまでまとめて</p></li>
+  </ul></div>
   <p class="big2">まずは図面1枚、<span class="nb">送ってみてください！</span></p>
   <p style="margin:6px 0 0"><span class="boom2"><span>1枚目は<b>無料！</b></span></span></p>
   <div class="btns c"><a class="btn line" href="https://line.me/R/ti/p/@786akrcn" target="_blank" rel="noopener">図面を送ってみる（LINE）</a><a class="btn mail" href="mailto:matsumura.takashi@zazoucorp.com?subject=%E5%9B%B3%E9%9D%A2%E3%81%AE%E6%95%B0%E9%87%8F%E6%8B%BE%E3%81%84%E3%81%AE%E7%9B%B8%E8%AB%87">メールで送る</a></div>
