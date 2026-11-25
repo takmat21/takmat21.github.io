@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>電気図面の数量拾い・部材拾い｜ZAZOU 設計Works</title>
-<meta name="description" content="電気図面（PDF）から、コンセント・スイッチの数量拾いと、取付枠・プレート・ハンドルの部材拾いを代行します。正解率99.9%を基準に、2人で別々に数えて突き合わせてからお渡しします。">
+<meta name="description" content="コンセント何個？スイッチ何個？電気図面の数量拾い・部材拾いを代行します。図面はスマホの写真・PDF・紙のスキャン、どれでもOK。LINEかメールで送るだけ。">
 <link rel="icon" href="../img/favicon.png" type="image/png">
 <link rel="canonical" href="https://takmat21.github.io/zazou-works-sekkei/densetsu/">
 <meta property="og:title" content="電気図面の数量拾い・部材拾い｜ZAZOU 設計Works">
@@ -12,235 +12,193 @@
 <meta property="og:url" content="https://takmat21.github.io/zazou-works-sekkei/densetsu/">
 <meta property="og:image" content="https://takmat21.github.io/zazou-works-sekkei/densetsu/img/iro_zoom.webp">
 <style>
-:root{--ink:#131417;--sub:#555b63;--line:#e2e4e8;--bg:#ffffff;--soft:#f4f5f7;--main:#0b3bf5;--on-main:#ffffff;--dark:#131417;--line-green:#06c755}
-@media (prefers-color-scheme: dark){:root{--ink:#eef0f4;--sub:#a9afb9;--line:#2a2e37;--bg:#0f1115;--soft:#161920;--main:#7f97ff;--on-main:#0f1115;--dark:#eef0f4}}
+/* チラシ風：地は黄色、目立たせる所は赤と黒（ダークモードでも同じ配色にする） */
+:root{--y:#ffe100;--y2:#ffd000;--r:#e60012;--k:#111111;--w:#ffffff;--g:#06c755;color-scheme:light}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Sans","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;line-height:1.8;font-size:16px;font-feature-settings:"palt";padding-bottom:76px}
-a{color:var(--main)}
-img{max-width:100%}
-.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+body{margin:0;background:var(--y);color:var(--k);font-family:"Hiragino Sans","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;line-height:1.6;font-size:16px;font-feature-settings:"palt";padding-bottom:84px}
+img{max-width:100%;display:block}
+a{color:inherit}
+.w{max-width:1000px;margin:0 auto;padding:0 16px}
 .nb{display:inline-block}
-header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
-header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:800;letter-spacing:.06em;white-space:nowrap}
-.brand img{height:32px;width:auto}
-.brand small{display:block;font-size:11px;font-weight:500;color:var(--sub);letter-spacing:.02em;line-height:1.2}
-nav.menu{display:flex;gap:18px;font-size:14px}
-nav.menu a{color:var(--ink);text-decoration:none}
-nav.menu a:hover{color:var(--main)}
-@media (max-width:760px){nav.menu{display:none}}
-@media (prefers-color-scheme: dark){.brand img,footer img{background:#fff;border-radius:6px;padding:4px}}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font-weight:700;font-size:16px;padding:13px 22px;min-height:48px;letter-spacing:.03em}
-.btn.line{background:var(--line-green);color:#fff}
-.btn.mail{background:var(--dark);color:var(--bg)}
-.btn.ghost{border:2px solid var(--dark);color:var(--dark);background:transparent;padding:11px 20px}
-.btn:hover{filter:brightness(1.08)}
-.btn svg{width:20px;height:20px;flex:none}
+/* 上の小さな帯 */
+.top{background:var(--k);color:#fff;font-size:12px}
+.top .w{display:flex;align-items:center;justify-content:space-between;height:36px;gap:8px}
+.top a{color:#fff;text-decoration:none;font-weight:700;letter-spacing:.04em}
 
-.ask{font-weight:800;font-size:clamp(18px,2.6vw,21px);line-height:1.5;margin:0 0 4px}
-.ask-s{color:var(--sub);font-size:14px;margin:0 0 14px}
-.btns{display:flex;flex-wrap:wrap;gap:10px}
+/* 最初の1画面 */
+.hero{position:relative;overflow:hidden;padding:12px 0 20px;background:repeating-linear-gradient(-45deg,var(--y) 0 22px,var(--y2) 22px 44px)}
+.ribbon{display:inline-block;background:var(--r);color:#fff;font-weight:900;font-size:clamp(15px,2.4vw,20px);padding:6px 22px 6px 14px;transform:skewX(-12deg);margin:0 0 14px;box-shadow:4px 4px 0 var(--k)}
+.ribbon span{display:inline-block;transform:skewX(12deg)}
+.hero-g{display:grid;grid-template-columns:1.3fr .7fr;gap:24px;align-items:center}
+@media (max-width:820px){.hero-g{grid-template-columns:1fr;gap:14px}}
+/* ▼ 見出しはここ1か所だけ（11/25 松村さん「無料でいい」で確定） */
+h1#headline{margin:0 0 6px;font-weight:900;font-size:clamp(34px,7.6vw,54px);line-height:1.18;letter-spacing:.02em;color:var(--k);-webkit-text-stroke:5px #fff;paint-order:stroke fill;text-shadow:3px 3px 0 var(--r)}
+/* 「無料」をギザギザの爆発で囲む（黒い縁は drop-shadow で付ける） */
+.boom{display:inline-block;filter:drop-shadow(3px 0 0 var(--k)) drop-shadow(-3px 0 0 var(--k)) drop-shadow(0 3px 0 var(--k)) drop-shadow(0 -3px 0 var(--k)) drop-shadow(5px 6px 0 var(--k));transform:rotate(-6deg);margin:4px 2px 4px -6px;vertical-align:middle}
+.boom span{display:grid;place-items:center;background:#fff;clip-path:polygon(50% 0,58% 16%,72% 4%,74% 22%,92% 14%,86% 32%,100% 36%,88% 50%,100% 64%,86% 68%,92% 86%,74% 78%,72% 96%,58% 84%,50% 100%,42% 84%,28% 96%,26% 78%,8% 86%,14% 68%,0 64%,12% 50%,0 36%,14% 32%,8% 14%,26% 22%,28% 4%,42% 16%);padding:.5em .55em;font-size:1.25em;line-height:1;color:var(--r);-webkit-text-stroke:0;text-shadow:none}
+.boom2{display:inline-block;filter:drop-shadow(3px 3px 0 var(--k)) drop-shadow(-2px -2px 0 var(--k));transform:rotate(4deg)}
+.boom2 span{display:grid;place-items:center;text-align:center;background:var(--r);color:var(--y);clip-path:polygon(50% 0,58% 16%,72% 4%,74% 22%,92% 14%,86% 32%,100% 36%,88% 50%,100% 64%,86% 68%,92% 86%,74% 78%,72% 96%,58% 84%,50% 100%,42% 84%,28% 96%,26% 78%,8% 86%,14% 68%,0 64%,12% 50%,0 36%,14% 32%,8% 14%,26% 22%,28% 4%,42% 16%);width:150px;height:118px;font-weight:900;font-size:17px;line-height:1.1}
+.boom2 span b{font-size:32px;color:#fff;display:block}
+.ctaline{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:2px 0 6px}
+.hand{display:flex;align-items:center;gap:4px;font-weight:900;color:var(--r);font-size:17px;transform:rotate(-4deg);font-family:"Hiragino Maru Gothic ProN","Kosugi Maru","Noto Sans JP",sans-serif}
+.hand svg{width:70px;height:56px}
+.tape{background:repeating-linear-gradient(-45deg,var(--r) 0 18px,#c4000f 18px 36px);color:#fff;font-weight:900;text-align:center;font-size:clamp(17px,3.4vw,26px);padding:7px 10px;transform:rotate(-2.2deg);margin:4px -20px 0;border-top:4px solid var(--k);border-bottom:4px solid var(--k);text-shadow:2px 2px 0 var(--k);position:relative;z-index:2;letter-spacing:.02em}
+.tape b{color:var(--y)}
+.tapewrap{overflow:hidden;padding:10px 0;margin:-10px 0}
+.bubble{position:relative;display:inline-block;background:#fff;border:4px solid var(--k);border-radius:18px;padding:6px 16px;font-weight:900;font-size:clamp(20px,3.4vw,28px);margin:2px 0 12px;box-shadow:4px 4px 0 var(--r);transform:rotate(-1.5deg)}
+.bubble::after{content:"";position:absolute;left:28px;bottom:-16px;width:22px;height:16px;background:#fff;border:3px solid var(--k);border-top:0;border-right:0;transform:skewX(30deg);border-radius:0 0 0 4px}
+.bubble::before{content:"";position:absolute;left:30px;bottom:-3px;width:24px;height:6px;background:#fff;z-index:1}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 6px;padding:0;list-style:none}
+.chips li{background:var(--k);color:var(--y);font-weight:800;font-size:15px;padding:4px 12px;border-radius:4px}
+.chips li b{color:#fff}
+.hero-img{position:relative;background:#fff;border:3px solid var(--k);box-shadow:8px 8px 0 var(--r);transform:rotate(1.2deg)}
+.hero-img img{width:100%;height:auto}
+.burst{position:absolute;right:-10px;top:-22px;width:108px;height:108px;display:grid;place-items:center;text-align:center;background:var(--r);color:#fff;font-weight:900;font-size:15px;line-height:1.2;transform:rotate(-8deg);
+  clip-path:polygon(50% 0,61% 13%,77% 6%,79% 23%,95% 25%,88% 40%,100% 50%,88% 60%,95% 75%,79% 77%,77% 94%,61% 87%,50% 100%,39% 87%,23% 94%,21% 77%,5% 75%,12% 60%,0 50%,12% 40%,5% 25%,21% 23%,23% 6%,39% 13%)}
 
-.hero{border-bottom:1px solid var(--line);position:relative;overflow:hidden}
-.hero::after{content:"";position:absolute;right:0;bottom:0;width:38%;height:8px;background:var(--main);clip-path:polygon(14px 0,100% 0,100% 100%,0 100%)}
-.hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;padding-top:44px;padding-bottom:48px}
-.kicker{display:inline-block;font-size:13px;font-weight:700;border:1px solid var(--ink);padding:1px 10px;margin:0 0 14px}
-.hero h1{font-size:clamp(26px,4vw,40px);line-height:1.35;margin:0 0 14px;font-weight:800}
-.hero .lead{margin:0 0 22px;font-size:17px}
-.hero .lead b{background:linear-gradient(transparent 62%,color-mix(in srgb,var(--main) 22%,transparent) 62%)}
-.hero figure{margin:0;border:1px solid var(--ink);background:#fff;box-shadow:12px 12px 0 color-mix(in srgb,var(--main) 16%,transparent)}
-.hero figure img{display:block;width:100%;height:auto}
-.hero figcaption{font-size:12px;color:#555b63;padding:6px 10px;border-top:1px solid #e2e4e8;background:#fff}
-@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;gap:24px;padding-top:28px;padding-bottom:36px}}
+/* ボタン */
+.btns{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font-weight:900;font-size:19px;min-height:60px;padding:10px 24px;border:3px solid var(--k);border-radius:999px;box-shadow:0 5px 0 var(--k);transition:transform .08s,box-shadow .08s}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--k)}
+.btn.line{background:var(--g);color:#fff}
+.btn.mail{background:#fff;color:var(--k)}
+.btn svg{width:22px;height:22px;flex:none}
+@media (max-width:560px){.btns .btn{flex:1 1 100%}}
+.qr{display:flex;align-items:center;gap:12px;margin-top:16px;font-weight:700;font-size:14px}
+.qr img{width:108px;height:108px;background:#fff;border:3px solid var(--k);image-rendering:pixelated}
+@media (max-width:820px){.qr{display:none}}
+.free{display:inline-block;background:var(--r);color:#fff;font-weight:900;font-size:15px;padding:2px 12px;margin:0 0 8px;border-radius:4px}
+.nosell{display:inline-block;margin-top:12px;font-weight:800;font-size:14px;background:#fff;border:2px dashed var(--k);padding:3px 10px}
 
-section{padding:52px 0;border-bottom:1px solid var(--line)}
-section h2{font-size:clamp(22px,3vw,28px);margin:0 0 6px;font-weight:800;letter-spacing:.02em}
-section h2::before{content:"";display:inline-block;width:20px;height:.82em;margin-right:12px;vertical-align:-1px;background:var(--main);clip-path:polygon(45% 0,100% 0,55% 100%,0 100%)}
-.sec-lead{color:var(--sub);margin:0 0 22px}
-
-.sample-main{display:block;border:1px solid var(--line);background:#fff}
-.sample-main img{display:block;width:100%;height:auto}
-.cap{font-size:13px;color:var(--sub);margin:6px 0 18px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media (max-width:760px){.grid2{grid-template-columns:1fr}}
-.thumb{display:block;border:1px solid var(--line);background:#fff;text-decoration:none}
-.thumb img{display:block;width:100%;height:auto}
-.thumb span{display:block;padding:6px 10px;font-size:13px;color:#131417;border-top:1px solid #e2e4e8}
-.tbl{overflow-x:auto;margin:22px 0 0;-webkit-overflow-scrolling:touch}
+/* 送る → 返ってくる */
+.flow{background:#fff;border-top:4px solid var(--k);border-bottom:4px solid var(--k);padding:26px 0 26px}
+h2{margin:0 0 22px;text-align:center;font-weight:900;font-size:clamp(26px,5vw,42px);line-height:1.2;-webkit-text-stroke:6px var(--y);paint-order:stroke fill;text-shadow:4px 4px 0 var(--k)}
+h2 em{font-style:normal;color:var(--r)}
+.fl{display:grid;grid-template-columns:1fr 64px 1.25fr;gap:10px;align-items:center}
+@media (max-width:820px){.fl{grid-template-columns:1fr}}
+.card{border:3px solid var(--k);background:#fff;position:relative}
+.card .tag{position:absolute;left:-3px;top:-16px;background:var(--k);color:var(--y);font-weight:900;font-size:16px;padding:2px 14px}
+.card.ret .tag{background:var(--r);color:#fff}
+.card img{width:100%;height:auto;border-bottom:3px solid var(--k)}
+.card p{margin:0;padding:8px 12px;font-weight:700;font-size:14px}
+.arrow{display:grid;place-items:center}
+.arrow i{display:block;width:56px;height:64px;background:var(--r);clip-path:polygon(0 25%,50% 25%,50% 0,100% 50%,50% 100%,50% 75%,0 75%)}
+@media (max-width:820px){.arrow i{width:64px;height:48px;clip-path:polygon(25% 0,75% 0,75% 45%,100% 45%,50% 100%,0 45%,25% 45%)}}
+.ret-in{display:grid;grid-template-columns:1.25fr 1fr}
+@media (max-width:560px){.ret-in{grid-template-columns:1fr}}
+.ret-in img{border-bottom:0;border-right:3px solid var(--k)}
+@media (max-width:560px){.ret-in img{border-right:0;border-bottom:3px solid var(--k)}}
 table{border-collapse:collapse;width:100%;font-size:14px}
-th,td{border-bottom:1px solid var(--line);padding:8px 8px;text-align:left;vertical-align:top}
-th{color:var(--sub);font-weight:500;white-space:nowrap}
-td.n{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
-td:first-child{white-space:nowrap}
-td i{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--c);opacity:.6;margin-right:6px;vertical-align:-1px}
-@media (max-width:560px){table.qty th:nth-child(4),table.qty td:nth-child(4){display:none}}
-details.buzai{margin-top:16px;border-top:1px solid var(--line);padding-top:10px}
-details.buzai summary{cursor:pointer;font-weight:700}
-.pdf{display:inline-block;margin-top:18px;font-weight:700;text-decoration:none}
-.pdf::after{content:" →"}
-.ask-box{margin-top:28px;background:var(--soft);border-left:4px solid var(--main);padding:18px 18px 20px}
+td{padding:4px 8px;border-bottom:1px solid #ddd;white-space:nowrap}
+td.n{text-align:right;font-weight:900;font-size:16px}
+td i{display:inline-block;width:11px;height:11px;border-radius:50%;background:var(--c);margin-right:6px;opacity:.75}
+tr.sum td{border-bottom:0;background:var(--y);font-weight:900}
+.sm{text-align:center;margin:14px 0 0;font-size:13px}
+.sm a{font-weight:700}
 
-ul.can{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
-ul.can li{border:1px solid var(--line);border-top:3px solid var(--ink);padding:14px 16px}
-ul.can b{display:block}
-ul.can span{font-size:14px;color:var(--sub)}
-ol.flow{counter-reset:f;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-ol.flow li{counter-increment:f;border:1px solid var(--line);padding:14px 16px}
-ol.flow li::before{content:counter(f);display:inline-grid;place-items:center;width:34px;height:26px;background:var(--main);color:#fff;font-weight:700;margin-bottom:4px;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%)}
-ol.flow b{display:block}
-ol.flow span{font-size:14px;color:var(--sub)}
-dl.price{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 20px}
-dl.price dt{font-weight:700}
-dl.price dd{margin:0}
-@media (max-width:560px){dl.price{grid-template-columns:1fr;gap:2px}dl.price dd{margin-bottom:10px}}
+/* 斜めの帯（黒） */
+.band{background:var(--k);color:#fff;padding:26px 0;clip-path:polygon(0 0,100% 18px,100% 100%,0 calc(100% - 18px));margin:-6px 0}
+.band p{margin:0;text-align:center;font-weight:900;line-height:1.35}
+.band .q{font-size:clamp(24px,5vw,40px);color:#fff}
+.band .q b{color:var(--y)}
+.band .a{font-size:clamp(24px,4.8vw,40px);margin-top:6px}
+.band .a b{color:var(--y);border-bottom:4px solid var(--r)}
 
-.contact{background:var(--soft)}
-.contact .box{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media (max-width:760px){.contact .box{grid-template-columns:1fr}}
-.contact .item{background:var(--bg);border:1px solid var(--line);padding:20px}
-.contact .item b{display:block;font-size:17px;margin-bottom:4px}
-.contact .item p{margin:0 0 12px;color:var(--sub);font-size:14px}
-.qr{display:flex;gap:16px;align-items:center;margin-top:14px}
-.qr img{width:132px;height:132px;border:1px solid var(--line);background:#fff;image-rendering:pixelated}
-.qr span{font-size:13px;color:var(--sub)}
-@media (max-width:760px){.qr{display:none}}
-.mail-addr{word-break:break-all;font-size:15px}
+/* 中ほど */
+.mid{padding:28px 0 18px;text-align:center}
+.mid .over{display:inline-block;background:var(--r);color:#fff;font-weight:900;font-size:clamp(20px,4vw,30px);padding:6px 18px;transform:rotate(-1.5deg);box-shadow:4px 4px 0 var(--k);margin:0 0 14px}
+.mid .btns{justify-content:center}
+.points{list-style:none;padding:0;margin:20px auto 0;max-width:720px;display:grid;gap:8px;text-align:left}
+.points li{background:#fff;border:2px solid var(--k);padding:8px 12px;font-size:14px;font-weight:700}
+.points li b{color:var(--r)}
+.pro{text-align:center;margin:20px 0 0}
+.pro p.big{display:inline-block;margin:0;background:var(--r);color:#fff;font-weight:900;font-size:clamp(22px,4.6vw,38px);line-height:1.3;padding:8px 20px;transform:rotate(-1.5deg);border:4px solid var(--k);box-shadow:6px 6px 0 var(--k);text-shadow:2px 2px 0 var(--k)}
+.pro p.big b{color:var(--y)}
+.pro p.small{margin:10px 0 0;font-size:13px;font-weight:700}
 
-footer{padding:28px 0;color:var(--sub);font-size:13px;text-align:center;border-top:3px solid var(--ink)}
-footer a{color:var(--sub)}
+footer{background:var(--k);color:#ddd;font-size:12px;text-align:center;padding:14px 0}
+footer a{color:#fff}
 
-/* 画面の下に固定する連絡ボタン */
-.fixbar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:color-mix(in srgb,var(--bg) 96%,transparent);backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:8px 16px calc(8px + env(safe-area-inset-bottom))}
-.fixbar .in{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:10px}
-.fixbar p{margin:0;font-size:14px;font-weight:700;flex:1;min-width:0}
-.fixbar .btn{padding:8px 16px;min-height:44px;font-size:15px}
-@media (max-width:560px){body{padding-bottom:112px}.fixbar .in{flex-wrap:wrap;gap:6px 8px}.fixbar p{flex-basis:100%;font-size:13px;text-align:center}.fixbar .btn{flex:1}}
-.hero-qr{display:flex;align-items:center;gap:12px;margin-top:16px;font-size:13px;color:var(--sub)}
-.hero-qr img{width:104px;height:104px;border:1px solid var(--line);background:#fff;image-rendering:pixelated}
-@media (max-width:760px){.hero-qr{display:none}}
+/* 画面下に固定 */
+.fix{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--k);padding:8px 12px calc(8px + env(safe-area-inset-bottom))}
+.fix .in{max-width:1000px;margin:0 auto;display:flex;gap:8px;align-items:center}
+.fix p{margin:0;flex:1;color:var(--y);font-weight:900;font-size:15px}
+.fix .btn{min-height:48px;font-size:16px;padding:6px 18px;box-shadow:none;border-color:#fff}
+@media (max-width:560px){.fix p{display:none}.fix .btn{flex:1;font-size:15px;padding:6px 8px}.fix .btn.line{flex:1.5}}
 </style>
 </head>
 <body>
-<header class="top"><div class="wrap">
-  <a class="brand" href="../"><img src="../img/mark.png" alt=""><span>ZAZOU 設計Works<small>ZAZOU株式会社</small></span></a>
-  <nav class="menu" aria-label="ページ内"><a href="#sample">見本</a><a href="#can">できること</a><a href="#flow">頼み方</a><a href="#price">料金と納期</a><a href="#contact">窓口</a></nav>
-</div></header>
+<div class="top"><div class="w"><a href="../">ZAZOU 設計Works</a><span>電気図面の数量拾い・部材拾い</span></div></div>
 
-<div class="hero"><div class="wrap">
-  <div>
-    <p class="kicker">電気図面の数量拾い</p>
-    <h1><span class="nb">電気図面の数量拾い・</span><span class="nb">部材拾いを</span><span class="nb">代行します</span></h1>
-    <p class="lead"><b>正解率99.9%を基準に</b>、2人で別々に数えて突き合わせてからお渡しします。</p>
-    <p class="ask">まずは図面を1枚、<span class="nb">LINEかメールでお送りください</span></p>
-    <p class="ask-s">1枚お送りいただければ、範囲とお見積り・納期をお知らせします。</p>
-    <div class="btns">
-      <a class="btn line" href="https://line.me/R/ti/p/@786akrcn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5s5.9-3.5 8-6c1.4-1.6 2-3.2 2-4.8C22 6.6 17.5 3 12 3z"/></svg>LINEで送る</a>
-      <a class="btn mail" href="mailto:matsumura.takashi@zazoucorp.com?subject=%E5%9B%B3%E9%9D%A2%E3%81%AE%E6%95%B0%E9%87%8F%E6%8B%BE%E3%81%84%E3%81%AE%E7%9B%B8%E8%AB%87"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="M3 6h18v12H3zM3 6l9 7 9-7"/></svg>メールで送る</a>
+<header class="hero"><div class="w">
+  <p class="ribbon"><span>電気図面の数量拾い・部材拾い</span></p>
+  <div class="hero-g">
+    <div>
+      <h1 id="headline">まずは図面1枚、<br><span class="boom"><span>無料</span></span>で拾います！</h1>
+      <p class="bubble">その図面、写真で送るだけ。</p>
+      <ul class="chips"><li><b>スマホの写真</b>でもOK</li><li>PDF・紙のスキャン、どれでも</li></ul>
+      <div class="ctaline"><span class="boom2"><span>1枚目は<b>無料！</b></span></span><span class="hand"><svg viewBox="0 0 70 56" aria-hidden="true"><path d="M4 8c14 2 30 6 40 18 6 7 9 14 10 22" fill="none" stroke="#e60012" stroke-width="5" stroke-linecap="round"/><path d="M42 40l12 10 8-14" fill="none" stroke="#e60012" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>ここから<br>送るだけ！</span></div>
+      <div class="btns">
+        <a class="btn line" href="https://line.me/R/ti/p/@786akrcn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5s5.9-3.5 8-6c1.4-1.6 2-3.2 2-4.8C22 6.6 17.5 3 12 3z"/></svg>図面を送ってみる（LINE）</a>
+        <a class="btn mail" href="mailto:matsumura.takashi@zazoucorp.com?subject=%E5%9B%B3%E9%9D%A2%E3%81%AE%E6%95%B0%E9%87%8F%E6%8B%BE%E3%81%84%E3%81%AE%E7%9B%B8%E8%AB%87"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" d="M3 6h18v12H3zM3 6l9 7 9-7"/></svg>メールで送る</a>
+      </div>
+      <div class="qr"><img src="img/line_qr.png" width="270" height="270" alt="LINE「ZAZOU Works」友だち追加のQRコード"><span>パソコンでご覧の方は<br>スマホのLINEで読み取って送れます</span></div>
     </div>
-    <div class="hero-qr"><img src="img/line_qr.png" width="270" height="270" alt="LINE「ZAZOU Works」友だち追加のQRコード"><span>パソコンでご覧の方は、<br>スマートフォンのLINEで読み取ってください。</span></div>
+    <div class="hero-img"><img src="img/iro_zoom.webp" width="1400" height="755" alt="色分けした図面。拾ったコンセント・スイッチに品目ごとの色と番号"><div class="burst">色分け<br>して<br>返します！</div></div>
   </div>
-  <figure><a href="densetsu_mihon.pdf" target="_blank" rel="noopener"><img src="img/iro_zoom.webp" width="1400" height="755" alt="色分け図面の拡大。拾ったコンセント・スイッチに品目ごとの色と番号が付いている"></a><figcaption>色分け図面（拡大）　拾った記号に品目の色と番号</figcaption></figure>
-</div></div>
+</div></header>
+<div class="tapewrap"><p class="tape">＼ まずはお試し！ <b>1枚目は無料</b>で拾います ／</p></div>
 
-<main>
-<section id="sample"><div class="wrap">
-  <h2>見本</h2>
-  <p class="sec-lead">架空の木造2階建て住宅の、1階の電灯・コンセント平面図（A3・1/50）で作った見本です。図面と色分けは当方のCADで作成しています。</p>
-  <a class="sample-main" href="densetsu_mihon.pdf" target="_blank" rel="noopener"><img src="img/iro_full.webp" width="1600" height="1131" alt="色分け図面の全体。右上に品目ごとの色と個数の凡例" loading="lazy"></a>
-  <p class="cap">色分け図面：拾った記号に品目ごとの色のマーカーと番号（C1, S1 …）。右上に品目ごとの個数。照明・テレビ端子・インターホンなど数えない記号には印を付けません。</p>
-  <div class="grid2">
-    <a class="thumb" href="densetsu_mihon.pdf" target="_blank" rel="noopener"><img src="img/haisen.webp" width="1200" height="849" alt="元の電気配線図（平面図）" loading="lazy"><span>元の電気配線図（平面図）</span></a>
-    <a class="thumb" href="densetsu_mihon.pdf#page=3" target="_blank" rel="noopener"><img src="img/hyou.webp" width="1200" height="849" alt="数量表・部材表" loading="lazy"><span>数量表・部材表</span></a>
+<section class="flow" id="sample"><div class="w">
+  <h2>送ると、<em>こう返ってきます！</em></h2>
+  <div class="fl">
+    <div class="card"><span class="tag">① 送る</span><img src="img/haisen_zoom.webp" width="1400" height="755" alt="お送りいただく電気図面（見本）" loading="lazy"><p>図面を写真かPDFで送るだけ</p></div>
+    <div class="arrow" aria-hidden="true"><i></i></div>
+    <div class="card ret"><span class="tag">② 返ってくる</span>
+      <div class="ret-in"><img src="img/iro_zoom.webp" width="1400" height="755" alt="色分け図面（見本）" loading="lazy">
+        <table aria-label="数量表（見本）"><tbody>
+<tr><td><i style="--c:#e53935"></i>コンセント 2口</td><td class="n">11</td></tr>
+<tr><td><i style="--c:#fb8c00"></i>接地極付 2口</td><td class="n">5</td></tr>
+<tr><td><i style="--c:#8e24aa"></i>エアコン用</td><td class="n">2</td></tr>
+<tr><td><i style="--c:#00897b"></i>防水（屋外）</td><td class="n">2</td></tr>
+<tr><td><i style="--c:#1e88e5"></i>片切スイッチ</td><td class="n">10</td></tr>
+<tr><td><i style="--c:#43a047"></i>3路スイッチ</td><td class="n">3</td></tr>
+<tr><td><i style="--c:#d81b60"></i>ほたるスイッチ</td><td class="n">3</td></tr>
+<tr class="sum"><td>合計</td><td class="n">36</td></tr>
+        </tbody></table></div>
+      <p>色分け図面＋数量表。番号で1つずつ照らせます</p></div>
   </div>
-  <div class="tbl">
-    <table class="qty">
-      <thead><tr><th>記号</th><th>品目</th><th>数量</th><th>内訳（部屋・図面の番号）</th></tr></thead>
-      <tbody>
-<tr><td><i style="--c:#e53935"></i>C</td><td>コンセント 2口</td><td class="n">11</td><td>LDK 5（C1–C5）、ホール 1（C6）、和室 2（C7–C8）、廊下 1（C9）、パントリー 1（C10）、洗面脱衣 1（C11）</td></tr>
-<tr><td><i style="--c:#fb8c00"></i>E</td><td>接地極付接地端子付 2口</td><td class="n">5</td><td>LDK 3（E1–E3）、洗面脱衣 1（E4）、トイレ 1（E5）</td></tr>
-<tr><td><i style="--c:#8e24aa"></i>A</td><td>エアコン用コンセント</td><td class="n">2</td><td>LDK 1（A1）、和室 1（A2）</td></tr>
-<tr><td><i style="--c:#00897b"></i>W</td><td>防水コンセント（屋外）</td><td class="n">2</td><td>外部 2（W1–W2）</td></tr>
-<tr><td><i style="--c:#1e88e5"></i>S</td><td>片切スイッチ</td><td class="n">10</td><td>LDK 3（S1–S3）、玄関 2（S4–S5）、和室 1（S6）、廊下 1（S7）、パントリー 1（S8）、洗面脱衣 2（S9–S10）</td></tr>
-<tr><td><i style="--c:#43a047"></i>T</td><td>3路スイッチ</td><td class="n">3</td><td>玄関 1（T1）、ホール 2（T2–T3）</td></tr>
-<tr><td><i style="--c:#d81b60"></i>H</td><td>ほたるスイッチ</td><td class="n">3</td><td>玄関 1（H1）、洗面脱衣 1（H2）、トイレ 1（H3）</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <details class="buzai"><summary>部材表（取付枠・プレート・ハンドル）を見る</summary>
-    <div class="tbl" style="margin-top:10px"><table>
-      <thead><tr><th>部材</th><th>数量</th><th>単位</th></tr></thead>
-      <tbody>
-<tr><td>埋込スイッチ（片切）</td><td class="n">10</td><td>個</td></tr>
-<tr><td>埋込スイッチ（3路）</td><td class="n">3</td><td>個</td></tr>
-<tr><td>埋込スイッチ（ほたる・位置表示灯付）</td><td class="n">3</td><td>個</td></tr>
-<tr><td>スイッチハンドル（1個の箇所）</td><td class="n">7</td><td>個</td></tr>
-<tr><td>スイッチハンドル（3個並びの箇所）</td><td class="n">9</td><td>個</td></tr>
-<tr><td>埋込コンセント 2口</td><td class="n">11</td><td>個</td></tr>
-<tr><td>埋込コンセント 接地極付接地端子付 2口</td><td class="n">5</td><td>個</td></tr>
-<tr><td>埋込コンセント エアコン用（接地極付）</td><td class="n">2</td><td>個</td></tr>
-<tr><td>取付枠（1連用）</td><td class="n">28</td><td>個</td></tr>
-<tr><td>プレート（スイッチ1個用）</td><td class="n">7</td><td>枚</td></tr>
-<tr><td>プレート（スイッチ3個用）</td><td class="n">3</td><td>枚</td></tr>
-<tr><td>プレート（コンセント用）</td><td class="n">18</td><td>枚</td></tr>
-<tr><td>防水コンセント（屋外・カバー付）</td><td class="n">2</td><td>組</td></tr>
-      </tbody>
-    </table></div>
-    <p class="cap">1箇所に1つの取付枠として数えた例です。品番・単価は、ご指定のメーカーとシリーズの表から入れます。</p>
-  </details>
-  <a class="pdf" href="densetsu_mihon.pdf" target="_blank" rel="noopener">見本をPDFで開く（A3・3枚：配線図／色分け図面／数量表・部材表）</a>
-  <div class="ask-box">
-    <p class="ask">まずは図面を1枚、<span class="nb">LINEかメールでお送りください</span></p>
-    <p class="ask-s">1枚お送りいただければ、範囲とお見積り・納期をお知らせします。</p>
-    <div class="btns"><a class="btn line" href="https://line.me/R/ti/p/@786akrcn" target="_blank" rel="noopener">LINEで送る</a><a class="btn mail" href="mailto:matsumura.takashi@zazoucorp.com?subject=%E5%9B%B3%E9%9D%A2%E3%81%AE%E6%95%B0%E9%87%8F%E6%8B%BE%E3%81%84%E3%81%AE%E7%9B%B8%E8%AB%87">メールで送る</a></div>
-  </div>
+  <div class="pro"><p class="big"><b>色分け</b>して<span class="nb">プロの目で</span><span class="nb"><b>ダブルチェック</b>します！</span></p><p class="small">正解率99.9%が基準です</p></div>
+  <p class="sm">見本は架空の住宅の図面です。<a href="densetsu_mihon.pdf" target="_blank" rel="noopener">見本をPDFで見る（配線図・色分け図面・数量表）</a></p>
 </div></section>
 
-<section id="can"><div class="wrap">
-  <h2>できること</h2>
-  <ul class="can">
-    <li><b>数量拾い</b><span>コンセント・スイッチを、品目ごと・部屋ごとに数えます。</span></li>
-    <li><b>部材拾い</b><span>取付枠・プレート・ハンドルまで。パナソニック コスモシリーズ ワイド21などに対応します。</span></li>
-    <li><b>メーカー単価表</b><span>ご指定のメーカーの単価表に合わせて、部材表に品番と単価を入れます。</span></li>
-    <li><b>照明・弱電</b><span>照明器具・テレビ端子・LANなどはご相談ください。</span></li>
+<div class="band"><div class="w">
+  <p class="q">コンセント何個？<span class="nb">スイッチ何個？</span></p>
+  <p class="a"><b>数えるの、ぜんぶやります！</b></p>
+</div></div>
+
+<section class="mid"><div class="w">
+  <p class="over">拾い出しの残業、<span class="nb">もうやめませんか？</span></p>
+  <p style="margin:0 0 6px"><span class="boom2"><span>1枚目は<b>無料！</b></span></span></p>
+  <div class="btns">
+    <a class="btn line" href="https://line.me/R/ti/p/@786akrcn" target="_blank" rel="noopener">図面を送ってみる（LINE）</a>
+    <a class="btn mail" href="mailto:matsumura.takashi@zazoucorp.com?subject=%E5%9B%B3%E9%9D%A2%E3%81%AE%E6%95%B0%E9%87%8F%E6%8B%BE%E3%81%84%E3%81%AE%E7%9B%B8%E8%AB%87">メールで送る</a>
+  </div>
+  <p class="nosell">無理な営業はしません！</p>
+  <ul class="points">
+    <li><b>拾えるもの：</b>コンセント・スイッチの数量、取付枠・プレート・ハンドルの部材（パナソニック コスモシリーズ ワイド21など）、メーカー単価表。照明・弱電はご相談。</li>
+    <li><b>読みにくい所は：</b>画像つきの質問表でお聞きします。数え方は御社の積算ルールに合わせます。</li>
+    <li><b>料金・納期は：</b>1枚目は無料。2枚目からは、図面の枚数と範囲に合わせてお見積り（時間制・1件ごと、どちらもご相談）。納期はご依頼ごとに先に確かめます。</li>
   </ul>
 </div></section>
 
-<section id="flow"><div class="wrap">
-  <h2>頼み方</h2>
-  <ol class="flow">
-    <li><b>図面を送る</b><span>LINEかメールで、図面（PDF）をお送りください。</span></li>
-    <li><b>読みにくい所はお聞きします</b><span>かすれ・重なりなど判断に迷う所は、図面の切り抜き画像つきの質問表でお聞きします。</span></li>
-    <li><b>一覧のリンクでお渡し</b><span>色分け図面・数量表・部材表は、一覧のリンクからいつでも開けます。</span></li>
-  </ol>
-  <p class="sec-lead" style="margin:16px 0 0">数え方は、御社の積算ルールに合わせます。</p>
-</div></section>
+<footer>© ZAZOU株式会社　ZAZOU 設計Works　｜　<a href="../">設計Works トップ</a>　<a href="../#company">会社概要</a>　｜　メール：<a href="mailto:matsumura.takashi@zazoucorp.com?subject=%E5%9B%B3%E9%9D%A2%E3%81%AE%E6%95%B0%E9%87%8F%E6%8B%BE%E3%81%84%E3%81%AE%E7%9B%B8%E8%AB%87">matsumura.takashi@zazoucorp.com</a></footer>
 
-<section id="price"><div class="wrap">
-  <h2>料金と納期</h2>
-  <dl class="price">
-    <dt>料金</dt><dd>図面の枚数と範囲に合わせてお見積りします（時間制・1件ごと、どちらもご相談）。</dd>
-    <dt>納期</dt><dd>ご依頼ごとに先に確かめます。</dd>
-  </dl>
-</div></section>
-
-<section id="contact" class="contact"><div class="wrap">
-  <h2>窓口</h2>
-  <p class="sec-lead">まずは図面を1枚お送りください。範囲とお見積り・納期をお知らせします。</p>
-  <div class="box">
-    <div class="item"><b>LINE「ZAZOU Works」</b><p>友だち追加のうえ、トークで図面（PDF）をお送りください。</p><a class="btn line" href="https://line.me/R/ti/p/@786akrcn" target="_blank" rel="noopener">LINEで送る</a>
-      <div class="qr"><img src="img/line_qr.png" width="270" height="270" alt="LINE「ZAZOU Works」友だち追加のQRコード"><span>スマートフォンのLINEで読み取ると、友だち追加の画面が開きます。</span></div></div>
-    <div class="item"><b>メール</b><p>件名は「図面の数量拾いの相談」のままで送れます。</p><a class="btn mail" href="mailto:matsumura.takashi@zazoucorp.com?subject=%E5%9B%B3%E9%9D%A2%E3%81%AE%E6%95%B0%E9%87%8F%E6%8B%BE%E3%81%84%E3%81%AE%E7%9B%B8%E8%AB%87">メールで送る</a><p style="margin:12px 0 0"><a class="mail-addr" href="mailto:matsumura.takashi@zazoucorp.com?subject=%E5%9B%B3%E9%9D%A2%E3%81%AE%E6%95%B0%E9%87%8F%E6%8B%BE%E3%81%84%E3%81%AE%E7%9B%B8%E8%AB%87">matsumura.takashi@zazoucorp.com</a></p></div>
-  </div>
-</div></section>
-</main>
-
-<footer><div class="wrap"><img src="../img/logo.png" width="1055" height="750" alt="ZAZOU Works" style="width:110px;height:auto;display:block;margin:0 auto 10px">© ZAZOU株式会社　ZAZOU 設計Works　｜　<a href="../">設計Works トップ</a>　<a href="../#company">会社概要</a><br><span style="font-size:12px">見本の図面は、架空の住宅で当方が作成したものです。</span></div></footer>
-
-<div class="fixbar" role="region" aria-label="連絡"><div class="in">
-  <p>まずは図面を1枚、LINEかメールでお送りください</p>
-  <a class="btn line" href="https://line.me/R/ti/p/@786akrcn" target="_blank" rel="noopener">LINEで送る</a>
+<div class="fix" role="region" aria-label="連絡"><div class="in">
+  <p>まずは図面1枚、送ってみてください！</p>
+  <a class="btn line" href="https://line.me/R/ti/p/@786akrcn" target="_blank" rel="noopener">図面を送ってみる（LINE）</a>
   <a class="btn mail" href="mailto:matsumura.takashi@zazoucorp.com?subject=%E5%9B%B3%E9%9D%A2%E3%81%AE%E6%95%B0%E9%87%8F%E6%8B%BE%E3%81%84%E3%81%AE%E7%9B%B8%E8%AB%87">メールで送る</a>
 </div></div>
 </body>
