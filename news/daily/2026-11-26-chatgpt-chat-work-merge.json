@@ -1,0 +1,33 @@
+{
+ "date": "2026-11-26",
+ "title": "ChatGPT、「Chat」と「Work」を1つに：使用量の枠も共通になり、よく使う人は早く上限に届くことも",
+ "category": "製品・サービス",
+ "lead": "OpenAIが、ChatGPTの会話の「Chat」と仕事向けの「Work」を1つにまとめる変更を、一部の利用者から始めたと、TechCrunch（Jagmeet Singh記者）が11月25日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "記事によると、製品担当のThibault Sottiaux氏がXで、まず少数のProの契約者に配り始めたと伝えました。変更は、先に利用者へのメールで知らされていました。",
+    "新しい形では、ChatとWorkが1つの使用量の枠を共有します。Instantのモデルでの会話は無制限のままで、枠には数えず、枠を使い切ったあともInstantは使えます。OpenAIの広報は、ほとんどの人は上限に届く回数が増えることはないものの、ごく一部の特に多く使う人は早めに上限に届くかもしれないと説明しました。",
+    "SNSやOpenAIの掲示板では、同じ料金のまま高度な推論のモデルを使える量が減るのではと心配する声が出ています。OpenAIは、効率を上げて契約者がより多く使えるようにしていくとしており、サポートのページでは、共通の枠を12月に広く広げる予定だとしています。",
+    "記事は、Anthropicも9月に会話のClaudeと仕事向けのCoworkを1つの画面にまとめたことにふれ、計算の費用が重くなる中で、各社が使い方をまとめる流れにあると伝えています。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "title": "OpenAI says heavy ChatGPT users may hit limits sooner as it merges Chat and Work",
+   "org": "報道：TechCrunch（Jagmeet Singh記者）",
+   "published": "2026-11-25",
+   "url": "https://techcrunch.com/2026/11/25/openai-says-heavy-chatgpt-users-may-hit-limits-sooner-as-it-merges-chat-and-work/",
+   "note": "元記事",
+   "image": "https://techcrunch.com/wp-content/uploads/2026/11/openai-chatgpt.jpg?resize=1200,800",
+   "image_ok": true,
+   "image_size": [
+    1200,
+    800
+   ]
+  }
+ ]
+}

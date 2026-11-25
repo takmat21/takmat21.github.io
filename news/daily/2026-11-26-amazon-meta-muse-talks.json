@@ -1,0 +1,33 @@
+{
+ "date": "2026-11-26",
+ "title": "Amazon、MetaのAIエージェント「Muse」の買い物の締め出しを解く話し合い：広告と検索の見せ方が焦点",
+ "category": "エージェント",
+ "lead": "AmazonとMetaが、MetaのAIエージェント「Muse」をAmazonの店に直接つなぐ話し合いをしていると、Fortuneの報道をもとにTechCrunch（Lauren Forristal記者）が11月25日に伝えました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "記事によると、2か月ほど前、Museの利用者がAmazonで買い物をしようとすると、支払いの所でエラーが出て買えなくなっていました。今回の話し合いは、そこからの大きな方向転換になります。",
+    "Fortuneは、両社が何度か話し合いを重ねていると、事情を知る人の話として伝えています。まだ決まっていないのは、検索の結果をどう見せるかと、広告をどう扱うかの2点です。",
+    "Amazonが特に気にしているのは、Museのような外の買い物エージェントが、自社の広告の商売にどう響くかです。10月にはAndy Jassy CEOが、外のエージェントを通して買う客はまだ少ないと話していました。記事は、Museが注文を間違えたときに、困った客や売り手の対応をAmazonが負うことになるため、Museの出来がよくなるのを待っていた可能性もあると見ています。",
+    "合意には両社のCEOの承認が要ると報じられています。MetaとAmazonは、TechCrunchの問い合わせにまだ答えていません。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "title": "Amazon and Meta reportedly in talks to lift blockade on AI agent Muse",
+   "org": "報道：TechCrunch（Lauren Forristal記者）／もとの報道：Fortune",
+   "published": "2026-11-25",
+   "url": "https://techcrunch.com/2026/11/25/amazon-and-meta-reportedly-in-talks-to-lift-blockade-on-ai-agent-muse/",
+   "note": "元記事",
+   "image": "https://techcrunch.com/wp-content/uploads/2026/09/muse-ai-meta.jpg?w=1200",
+   "image_ok": true,
+   "image_size": [
+    1200,
+    630
+   ]
+  }
+ ]
+}

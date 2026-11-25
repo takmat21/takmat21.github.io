@@ -1,0 +1,33 @@
+{
+ "date": "2026-11-26",
+ "title": "倒産したCharacter.AI、利用者の会話の記録を競売へ：42の州などの司法長官が反対",
+ "category": "プライバシー",
+ "lead": "10月に破産の手続き（Chapter 11）に入ったCharacter.AIが、利用者の会話の記録を競売にかけようとしており、42の州などの司法長官がこれを止めようとしていると、TechCrunch（Sarah Perez記者）が11月25日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "司法長官たちの発表によると、売られる予定のデータには、アメリカの2,100万をこえるアカウントの会話の履歴がふくまれ、そのうち210万以上は未成年のものです。IPアドレスなど、ほかの個人の情報もふくまれます。Character.AIは以前、個人の情報は売らないと利用者に伝えていました。",
+    "これまでに分かっている買い手は、11月13日にデラウェア州で作られた匿名の会社1社だけです。その翌日、Character.AIはこの会社の入札を競売の基準に選びました。競売は12月1日の予定で、買い手が会話をどう使うつもりかは分かっていません。",
+    "司法長官たちは、買った側がデータを自由に使ったり、黙って売り直したりでき、Character.AIのプライバシーの約束も守らなくてよいことを問題にしています。カリフォルニア州のRob Bonta司法長官は、破産を消費者を守る決まりを逃れる道にしてはならないと述べました。",
+    "カリフォルニア、コロラド、ニューヨーク、コネチカットなどでは、2027年1月1日からチャットボットの安全の法律が始まり、売却が進めば、さらに法に反するおそれがあるとしています。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "title": "Character.AI’s plan to auction off users’ private chats challenged by state AGs",
+   "org": "報道：TechCrunch（Sarah Perez記者）",
+   "published": "2026-11-25",
+   "url": "https://techcrunch.com/2026/11/25/state-ags-fight-character-ais-plan-to-auction-off-users-private-chats/",
+   "note": "元記事",
+   "image": "https://techcrunch.com/wp-content/uploads/2024/06/Character-Calls-Image-feat.jpg?resize=1200,675",
+   "image_ok": true,
+   "image_size": [
+    1200,
+    675
+   ]
+  }
+ ]
+}
