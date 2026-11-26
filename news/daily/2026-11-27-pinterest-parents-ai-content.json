@@ -1,0 +1,33 @@
+{
+ "date": "2026-11-27",
+ "title": "Pinterest、10代が見るAI生成の投稿を親が減らせる設定を追加",
+ "category": "製品・サービス",
+ "lead": "Pinterestが、親向けの管理機能を広げ、10代の子が見るAI生成の投稿の量を親が調整できるようにしたと、TechCrunch（Sarah Perez記者）が11月24日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "記事によると、Pinterestは、アプリ全体でAI生成の内容を親が管理できるようにした、大手の交流サイトでも早い例だとされます。",
+    "ほかにも、動画の自動再生を止める設定、プッシュ・ブラウザ・アプリ内・メールの通知の音量や量の調整、個人に合わせた広告の設定が加わりました。親向けの設定のページも作り直され、項目を見つけやすくなりました。",
+    "記事は他社の動きにもふれています。Snapは2024年に、10代に対してAIチャットのMy AIが答えないようにする設定を入れました。Metaは2026年1月に、10代がこれまでのAIキャラクターを使うのを世界で止めました。YouTubeには4月、子ども団体Fairplayなど200を超える団体や専門家が、YouTube KidsからAI生成の動画をなくすよう求める手紙を送っています。",
+    "Pinterestは2025年4月にAIの粗製乱造への対策を始め、10月には自分のフィードでAI加工の内容を減らす設定を入れていました。ただ記事は、設定を入れてもAIの内容がフィードに出ることがあると書き、今回の動きを「よい第一歩」と評価しています。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "title": "Pinterest will now let parents limit the AI-generated content their teens see",
+   "org": "報道：TechCrunch（Sarah Perez記者）",
+   "published": "2026-11-24",
+   "url": "https://techcrunch.com/2026/11/24/pinterest-will-now-let-parents-limit-the-ai-generated-content-their-teens-see/",
+   "note": "元記事",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}

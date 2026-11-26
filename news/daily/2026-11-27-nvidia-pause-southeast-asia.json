@@ -1,0 +1,33 @@
+{
+ "date": "2026-11-27",
+ "title": "Nvidia、東南アジア4か国へのサーバー出荷を一時停止：中国企業の遠隔利用を受けた輸出の確認",
+ "category": "半導体",
+ "lead": "Nvidiaが、DellやSuper Microなどの製造パートナーに、マレーシア・シンガポール・タイ・インドネシア向けのサーバー出荷を止めるよう伝えたと、Wall Street Journalの報道をもとにTechCrunch（Connie Loizos記者）が11月26日に伝えました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "記事によると、止める期間は決まっていません。Nvidiaは、これらの国のパートナーが、アメリカの輸出の条件を守っているかどうかを確かめているとされます。",
+    "背景にあるのは、中国の企業がこれらの国のデータセンターにあるNvidiaのチップを、遠隔で使ってきたと言われることです。アメリカの商務省は11月の初めにこの抜け道をふさぎましたが、記事は、Washington Postの報道として、商務省が渋々そうしたと伝えています。",
+    "シンクタンクのInstitute for Progressは、こうした遠隔のデータセンターが、中国のAIの計算力の約24%をまかなっていると見積もっています。",
+    "記事はごく短い速報で、出荷の規模や止める長さは書かれていません。Nvidia、Dell、Super Micro、商務省からの直接のコメントものっていません。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "title": "Nvidia hits pause on chip shipments to Southeast Asia",
+   "org": "報道：TechCrunch（Connie Loizos記者）／もとの報道：Wall Street Journal",
+   "published": "2026-11-26",
+   "url": "https://techcrunch.com/2026/11/26/nvidia-hits-pause-on-chip-shipments-to-southeast-asia/",
+   "note": "元記事",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}
