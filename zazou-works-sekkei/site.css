@@ -240,3 +240,8 @@ section h2.bar::before{content:"";display:inline-block;width:20px;height:.82em;m
 .stdnums.sm li b{font-size:16px}
 .stdnums.sm li.lbl{border:0;background:var(--main);color:#fff;font-size:12px;letter-spacing:.2em;align-items:center}
 @media (max-width:720px){.stdnums{grid-template-columns:repeat(2,minmax(0,1fr))}.stdnums li b{font-size:17px}}
+
+/* 分野の入口ごとの準拠規格（11/26 松村さん「全体に付けるのではなく、個別の入口に」） */
+.ent-std{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:2px 0 12px}
+.ent-std em{font-style:normal;font-size:11px;letter-spacing:.18em;color:#fff;background:var(--main);padding:3px 8px}
+.ent-std b{font-family:"Outfit","Noto Sans JP",sans-serif;font-size:14px;font-weight:600;letter-spacing:.03em;color:var(--ink);border:1px solid var(--ink);padding:2px 8px;white-space:nowrap}
