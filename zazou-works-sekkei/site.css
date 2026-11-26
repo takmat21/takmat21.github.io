@@ -313,3 +313,13 @@ footer{background:var(--sec-a)}
 .hero .price b{font-size:14px;color:var(--sub);font-weight:600;letter-spacing:.04em}
 .hero .price span{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:.02em}
 @media (prefers-color-scheme: dark){.hero .price{background:rgba(20,23,28,.85)}}
+/* 11/26 よくある質問（開け閉めできる角の丸い四角） */
+.faq{display:grid;gap:10px;max-width:52em}
+.faq-i{background:var(--bg);border:1px solid var(--line);border-radius:6px}
+.faq-i summary{cursor:pointer;list-style:none;padding:16px 48px 16px 20px;font-weight:700;position:relative;line-height:1.6}
+.faq-i summary::-webkit-details-marker{display:none}
+.faq-i summary::before{content:"Q";color:var(--main);font-weight:800;margin-right:10px}
+.faq-i summary::after{content:"+";position:absolute;right:20px;top:50%;transform:translateY(-50%);color:var(--main);font-size:20px;font-weight:700}
+.faq-i[open] summary::after{content:"−"}
+.faq-i p{margin:0;padding:0 20px 18px 42px;color:var(--sub);font-size:15px;line-height:1.9}
+@media (max-width:600px){.faq-i summary{padding:14px 40px 14px 16px;font-size:15px}.faq-i p{padding:0 16px 16px 16px}}
