@@ -296,3 +296,7 @@ section h2.bar::before{clip-path:none;width:4px;border-radius:2px;margin-right:1
 .stdnums.sm li.lbl{border-radius:4px}
 .ent-std em{border-radius:3px}
 .hero h1 .sdname{display:block;font-size:1.55em;letter-spacing:.01em;margin-top:6px}
+/* 11/27 松村さん「なんで左側だけ切れてるの」：左だけ白くぼかす形をやめ、写真全体に薄いグレーを均一にかける */
+.hero{background-color:#eef0f3}
+.hero::before{background:rgba(238,240,243,.78)!important}
+@media (prefers-color-scheme: dark){.hero{background-color:#14171c}.hero::before{background:rgba(20,23,28,.8)!important}}
