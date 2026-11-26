@@ -206,3 +206,18 @@ section h2.bar::before{content:"";display:inline-block;width:20px;height:.82em;m
   .js .rv,.js .fade-up>*{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}
   *,*::before,*::after{transition:none!important;animation:none!important}
 }
+
+/* 準拠する規格（11/26 松村さん「それぞれが適切な規格に準拠していることを明記」） */
+.std{margin-top:22px;border-top:1px solid var(--ink)}
+.std h2{font-size:13px;letter-spacing:.24em;color:var(--sub);font-weight:600;margin:16px 0 8px}
+.std h2::before{display:none}
+.std ul{list-style:none;margin:0;padding:0}
+.std li{padding:10px 0 10px 22px;border-bottom:1px solid var(--line);position:relative;font-size:14px}
+.std li::before{content:"";position:absolute;left:0;top:1.3em;width:10px;height:1px;background:var(--main)}
+.std-note{font-size:13px;color:var(--sub);margin:10px 0 0}
+.stdtop{margin:36px 0 28px;border-top:1px solid var(--ink);padding-top:14px}
+.stdtop h3{font-size:15px;letter-spacing:.12em;margin:0 0 10px}
+.stdtop dl{margin:0}
+.stdtop dl>div{display:grid;grid-template-columns:5em 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.stdtop dt{font-weight:700;color:var(--main)}
+.stdtop dd{margin:0;font-size:14px}
