@@ -1,0 +1,1180 @@
+<!doctype html>
+<html lang="ja">
+<head><meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>動く提案資料 見本</title>
+<meta name="description" content="提案資料の見本（提案例）。A工務店様へのWeb集客強化のご提案を、映像・声・音楽つきのスライドで見せます。">
+<style>
+@font-face{font-family:'Dela';src:url('assets/fonts/dela.woff2') format('woff2');font-display:block}
+@font-face{font-family:'ZM';src:url('assets/fonts/zm500.woff2') format('woff2');font-weight:500;font-display:block}
+@font-face{font-family:'ZM';src:url('assets/fonts/zm700.woff2') format('woff2');font-weight:700;font-display:block}
+@font-face{font-family:'ZM';src:url('assets/fonts/zm900.woff2') format('woff2');font-weight:900;font-display:block}
+:root{
+  --bg:#05070d; --ink:#fff7ea; --ink2:#d9d2c5; --mute:#a59f95; --gold:#ffc35a; --amber:#ff9f1c; --coral:#ff6b5e;
+  --teal:#3ad1bf; --wood:#c98a4b; --navy:#0b1226; --card:rgba(16,20,34,.72); --line:rgba(255,255,255,.16);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --bg:#05070d; --ink:#fff7ea; } }
+:root[data-theme="dark"]{ --bg:#05070d; --ink:#fff7ea; }
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);overflow:hidden;font-family:'ZM','Noto Sans JP',sans-serif;-webkit-font-smoothing:antialiased}
+#vp{position:fixed;inset:0;overflow:hidden;background:#000;touch-action:pan-y}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;overflow:hidden;background:#000}
+#stage.pt{width:1080px;height:1920px}
+.slide{position:absolute;inset:0;overflow:hidden;display:none;background:#000}
+.slide.on{display:block}
+.bg{position:absolute;inset:0;overflow:hidden}
+.bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.abs{position:absolute}
+.shade{position:absolute;inset:0;pointer-events:none}
+.dela{font-family:'Dela','ZM',sans-serif;font-weight:400}
+.kick{font-weight:700;letter-spacing:.18em;color:var(--gold);font-size:30px}
+.h2{font-family:'Dela','ZM',sans-serif;font-size:76px;line-height:1.18;margin:0;text-shadow:0 6px 30px rgba(0,0,0,.55)}
+.lead{font-size:34px;font-weight:700;color:var(--ink2);margin-top:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:26px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.src{font-size:20px;color:var(--mute);font-weight:500}
+.ch{display:inline-block;white-space:pre}
+.num{font-family:'Dela','ZM',sans-serif;display:inline-block}
+.tag{display:inline-block;padding:8px 22px;border-radius:999px;background:rgba(255,195,90,.16);color:var(--gold);border:1px solid rgba(255,195,90,.5);font-weight:700;font-size:26px}
+.chap{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:6;pointer-events:none}
+.chap .c1{font-size:34px;letter-spacing:.5em;color:var(--gold);font-weight:700}
+.chap .c2{font-family:'Dela';font-size:150px;letter-spacing:.12em;text-shadow:0 0 60px rgba(255,190,90,.45)}
+.chap .bar{width:520px;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:24px 0}
+.lb{position:absolute;left:0;right:0;background:#000;z-index:20;pointer-events:none}
+#lbT{top:0} #lbB{bottom:0}
+#flash{position:absolute;inset:0;background:#fff;opacity:0;z-index:19;pointer-events:none}
+#fx{position:absolute;inset:0;z-index:14;pointer-events:none}
+#grain{position:absolute;inset:-50%;z-index:21;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='240' height='240' filter='url(%23n)' opacity='.9'/></svg>")}
+#vig{position:absolute;inset:0;z-index:18;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,rgba(0,0,0,0) 55%,rgba(0,0,0,.55) 100%)}
+#cat{position:absolute;left:0;top:0;z-index:16;transform-origin:50% 100%;pointer-events:none;will-change:transform}
+#cat img{position:absolute;inset:0;width:100%;height:100%;visibility:hidden}
+#cat img.on{visibility:visible}
+#catShadow{position:absolute;z-index:15;border-radius:50%;background:radial-gradient(rgba(0,0,0,.45),rgba(0,0,0,0) 70%);pointer-events:none}
+#ptr{position:absolute;inset:0;z-index:17;pointer-events:none;overflow:visible}
+#bubble{position:absolute;z-index:17;background:#fff;color:#1d1a16;border-radius:34px;padding:22px 34px;font-weight:900;font-size:44px;line-height:1.3;box-shadow:0 14px 40px rgba(0,0,0,.4);transform-origin:20% 100%;max-width:760px;pointer-events:none;opacity:0}
+#bubble:after{content:'';position:absolute;left:60px;bottom:-26px;border:16px solid transparent;border-top:22px solid #fff;border-bottom:0}
+#bubble.r:after{left:auto;right:60px}
+#badge{position:absolute;right:34px;top:26px;z-index:22;font-weight:700;font-size:24px;padding:6px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.35);color:#fff;background:rgba(0,0,0,.35);letter-spacing:.1em}
+#chapTag{position:absolute;left:34px;top:26px;z-index:22;font-weight:700;font-size:24px;color:rgba(255,255,255,.85);letter-spacing:.14em;background:rgba(0,0,0,.35);padding:6px 18px;border-radius:999px}
+#sub{position:absolute;left:50%;bottom:60px;transform:translateX(-50%);z-index:22;font-size:34px;font-weight:700;background:rgba(0,0,0,.6);padding:10px 26px;border-radius:14px;max-width:80%;text-align:center;display:none}
+#stage.pt #sub{bottom:120px;font-size:38px;max-width:92%}
+/* 操作バー（舞台の外。小さく） */
+#ui{position:fixed;left:50%;bottom:max(10px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:50;display:flex;gap:6px;align-items:center;background:rgba(10,12,18,.62);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:5px 8px;backdrop-filter:blur(8px);transition:opacity .4s;font-size:13px;color:#eee;user-select:none}
+#ui.hide{opacity:0}
+#ui button{all:unset;cursor:pointer;display:flex;align-items:center;gap:5px;padding:7px 10px;border-radius:999px;color:#fff;font:600 13px/1 'ZM',sans-serif}
+#ui button:hover,#ui button:focus-visible{background:rgba(255,255,255,.14)}
+#ui button[aria-pressed="true"]{background:rgba(255,195,90,.25);color:#ffd88a}
+#ui svg{width:16px;height:16px;fill:currentColor}
+#pg{min-width:58px;text-align:center;font-variant-numeric:tabular-nums}
+#prog{position:fixed;left:0;top:0;height:3px;background:linear-gradient(90deg,#ff9f1c,#ffc35a);z-index:51;width:0}
+#hint{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:60;display:none;flex-direction:column;align-items:center;gap:14px;color:#fff;text-align:center;pointer-events:none}
+#hint .dot{width:86px;height:86px;border-radius:50%;border:2px solid rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center;animation:pulse 1.8s ease-in-out infinite}
+#hint .dot svg{width:34px;height:34px;fill:#fff;margin-left:4px}
+#hint p{margin:0;font:700 16px/1.6 'ZM',sans-serif;background:rgba(0,0,0,.55);padding:8px 16px;border-radius:12px}
+@keyframes pulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,195,90,.5)}50%{transform:scale(1.06);box-shadow:0 0 0 18px rgba(255,195,90,0)}}
+#pausePill{position:fixed;left:50%;top:18px;transform:translateX(-50%);z-index:52;background:rgba(0,0,0,.6);color:#fff;padding:6px 16px;border-radius:999px;font:700 14px 'ZM';display:none}
+body.render #ui,body.render #prog,body.render #hint,body.render #pausePill{display:none!important}
+
+/* ===== 1 表紙 ===== */
+.s-open .openShade{background:#000}
+.s-open .leak{position:absolute;left:-30%;top:-40%;width:90%;height:160%;background:radial-gradient(closest-side,rgba(255,170,90,.55),rgba(255,120,60,.18) 50%,transparent);mix-blend-mode:screen;filter:blur(30px)}
+.s-open .wrap{position:absolute;left:0;right:0;top:300px;text-align:center}
+.s-open .kickO{font-size:30px;letter-spacing:.42em;color:#ffe3b0;font-weight:700}
+.s-open .client{margin-top:40px;font-size:62px;font-weight:900;color:var(--gold);letter-spacing:.2em;text-shadow:0 0 30px rgba(255,180,80,.6)}
+.s-open .title{font-family:'Dela';font-size:136px;line-height:1.1;margin:18px 0 0;color:#fff;text-shadow:0 0 18px rgba(255,210,140,.35),0 0 70px rgba(255,150,60,.28),0 4px 16px rgba(0,0,0,.6)}
+.s-open .flare{position:absolute;left:50%;top:560px;width:1800px;height:6px;margin-left:-900px;background:linear-gradient(90deg,transparent,rgba(255,230,180,.0) 10%,rgba(255,240,210,.95) 50%,rgba(255,230,180,0) 90%,transparent);filter:blur(2px);mix-blend-mode:screen}
+.s-open .sub{margin-top:40px;font-size:40px;font-weight:700;color:#fff;letter-spacing:.06em;text-shadow:0 3px 18px rgba(0,0,0,.8)}
+.s-open .date{position:absolute;left:0;right:0;bottom:36px;text-align:center;font-size:22px;color:#cfc6b8;letter-spacing:.3em;z-index:21}
+#stage.pt .s-open .wrap{top:560px;padding:0 40px}
+#stage.pt .s-open .title{font-size:90px}
+#stage.pt .s-open .client{font-size:58px}
+#stage.pt .s-open .sub{font-size:38px;line-height:1.5}
+#stage.pt .s-open .flare{top:900px}
+#stage.pt .s-open .kickO{font-size:28px;letter-spacing:.3em}
+
+/* ===== 2 猫の登場 ===== */
+.s-cat1 .sun{position:absolute;left:50%;top:55%;width:3000px;height:3000px;margin:-1500px 0 0 -1500px;background:repeating-conic-gradient(from 0deg,rgba(255,214,120,.22) 0 9deg,rgba(255,214,120,0) 9deg 18deg);border-radius:50%}
+.s-cat1 .glow{background:radial-gradient(circle at 50% 60%,rgba(255,190,80,.55),rgba(255,120,40,.15) 40%,rgba(0,0,0,.4) 75%)}
+.s-cat1 .hello{position:absolute;left:0;right:0;top:90px;text-align:center;font-size:34px;font-weight:700;color:#fff;letter-spacing:.2em}
+
+/* ===== 3 はじまり（夜の事務所）===== */
+.s-office .bg video{left:22%;width:100%}
+.s-office .sh{background:linear-gradient(90deg,rgba(4,6,14,.96) 0%,rgba(4,6,14,.88) 30%,rgba(4,6,14,.2) 55%,rgba(4,6,14,0) 70%)}
+.s-office .col{position:absolute;left:100px;top:150px;width:860px}
+.s-office .big{font-family:'Dela';font-size:72px;line-height:1.25;margin:22px 0 26px}
+.s-office .facts{display:flex;flex-wrap:wrap;gap:14px}
+.s-office .fact{font-size:28px;font-weight:700;padding:12px 22px;border-radius:16px;background:rgba(255,255,255,.08);border:1px solid var(--line)}
+.s-office .issue{margin-top:30px;padding:28px 34px}
+.s-office .issue .lbl{font-size:24px;color:var(--coral);font-weight:900;letter-spacing:.2em}
+.s-office .issue .row{display:flex;align-items:baseline;gap:18px;margin-top:6px}
+.s-office .issue .k{font-size:32px;font-weight:700}
+.s-office .issue .v{font-size:92px;color:var(--coral)}
+.s-office .issue ul{margin:8px 0 0;padding-left:1.1em;font-size:27px;color:var(--ink2);line-height:1.65}
+.s-office .goal{margin-top:22px;display:flex;gap:14px;flex-wrap:wrap}
+.s-office .goal div{font-size:26px;font-weight:700;padding:10px 20px;border-radius:14px;background:rgba(58,209,191,.14);border:1px solid rgba(58,209,191,.5);color:#bff3ec}
+#stage.pt .s-office .bg video{left:0;height:52%;top:0}
+#stage.pt .s-office .sh{background:linear-gradient(180deg,rgba(4,6,14,0) 25%,rgba(4,6,14,.92) 48%,rgba(4,6,14,1) 60%)}
+#stage.pt .s-office .col{left:60px;right:60px;width:auto;top:840px}
+#stage.pt .s-office .big{font-size:66px}
+
+/* ===== 4 市場の縮小 ===== */
+.s-decline .bg video{filter:blur(16px) brightness(.32) saturate(.7);transform:scale(1.1)}
+.s-decline .head{position:absolute;left:100px;top:110px}
+.s-decline .chart{position:absolute;left:100px;top:300px;width:1180px;height:620px}
+.s-decline .stamp{position:absolute;left:1310px;top:420px;width:520px;white-space:nowrap;text-align:center;padding:30px 20px;border:6px solid var(--coral);border-radius:28px;color:var(--coral);transform-origin:50% 50%;background:rgba(40,8,8,.55)}
+.s-decline .stamp .a{font-size:34px;font-weight:900;color:#ffd2cc}
+.s-decline .stamp .b{font-family:'Dela';font-size:104px;line-height:1.15}
+.s-decline .srcB{position:absolute;left:100px;bottom:56px}
+#stage.pt .s-decline .head{left:60px;right:60px;top:150px}
+#stage.pt .s-decline .chart{left:30px;top:520px;width:1020px;height:560px}
+#stage.pt .s-decline .stamp{left:170px;top:1200px;width:740px}
+#stage.pt .s-decline .srcB{left:60px;right:60px;bottom:120px}
+
+/* ===== 5 気づき（スマホ）===== */
+.s-phone{background:radial-gradient(circle at 70% 40%,#2a1d12,#07070b 70%)}
+.s-phone .vcard{position:absolute;left:1000px;top:120px;width:840px;height:472px;border-radius:30px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.6),0 0 0 2px rgba(255,195,90,.35);transform-origin:100% 50%}
+.s-phone .vcard video{width:100%;height:100%;object-fit:cover}
+.s-phone .col{position:absolute;left:100px;top:120px;width:860px}
+.s-phone .stat{display:flex;align-items:center;gap:30px;margin-top:34px;padding:26px 30px}
+.s-phone .ringW{position:relative;width:220px;height:220px;flex:none}
+.s-phone .ringW svg{width:220px;height:220px;transform:rotate(-90deg)}
+.s-phone .ringW .n{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:54px}
+.s-phone .stat .t{font-size:28px;font-weight:700;line-height:1.5;color:var(--ink2)}
+.s-phone .yen{font-size:96px;color:var(--gold);line-height:1}
+.s-phone .best{display:inline-block;margin-left:14px;padding:6px 16px;border-radius:12px;background:var(--coral);color:#fff;font-weight:900;font-size:28px;vertical-align:middle}
+.s-phone .srcB{position:absolute;left:100px;bottom:56px;width:1500px}
+#stage.pt .s-phone .vcard{left:60px;top:200px;width:960px;height:540px}
+#stage.pt .s-phone .col{left:60px;right:60px;width:auto;top:800px}
+#stage.pt .s-phone .srcB{left:60px;right:60px;bottom:110px;width:auto}
+
+/* ===== 6 ひとり（静けさ）===== */
+.s-alone{background:#020205}
+.s-alone .house{position:absolute;left:50%;bottom:220px;width:220px;margin-left:-110px}
+.s-alone .lines{position:absolute;left:0;right:0;top:330px;text-align:center}
+.s-alone .l1{font-size:64px;font-weight:700;color:#e8e1d4;letter-spacing:.08em}
+.s-alone .l2{font-family:'Dela';font-size:84px;margin-top:30px;color:#fff;letter-spacing:.04em;text-shadow:0 0 40px rgba(255,200,120,.35)}
+#stage.pt .s-alone .lines{top:620px;padding:0 50px}
+#stage.pt .s-alone .l2{font-size:76px;line-height:1.35}
+#stage.pt .s-alone .house{bottom:420px}
+
+/* ===== 7 猫「だったら！」===== */
+.s-cat2{background:radial-gradient(circle at 30% 60%,#ffcf5a,#ff8a1c 40%,#b8360f 80%)}
+.s-cat2 .sun{position:absolute;left:30%;top:60%;width:3400px;height:3400px;margin:-1700px 0 0 -1700px;background:repeating-conic-gradient(rgba(255,255,255,.2) 0 7deg,rgba(255,255,255,0) 7deg 14deg);border-radius:50%}
+.s-cat2 .txt{position:absolute;left:900px;top:240px;width:960px}
+.s-cat2 .t1{font-family:'Dela';font-size:96px;color:#fff;text-shadow:0 8px 0 rgba(120,30,0,.35)}
+.s-cat2 .t2{white-space:nowrap;font-family:'Dela';font-size:70px;color:#fff6d0;line-height:1.25;margin-top:16px;text-shadow:0 8px 0 rgba(120,30,0,.35)}
+.s-cat2 .t3{white-space:nowrap;font-family:'Dela';font-size:112px;color:#fff;margin-top:20px;text-shadow:0 10px 0 rgba(120,30,0,.45),0 0 50px rgba(255,255,255,.6)}
+.s-cat2 .chip{position:absolute;left:900px;top:150px;font-weight:900;font-size:30px;color:#7a2a00;background:#fff3d6;padding:8px 22px;border-radius:999px;letter-spacing:.2em}
+#stage.pt .s-cat2 .txt{left:60px;right:60px;width:auto;top:1120px;text-align:center}
+#stage.pt .s-cat2 .chip{left:50%;top:180px;transform:translateX(-50%)}
+#stage.pt .s-cat2 .t2{font-size:70px}
+#stage.pt .s-cat2 .t3{font-size:110px}
+
+/* ===== 共通：明るい提案パート ===== */
+.lite{background:radial-gradient(circle at 15% 10%,#1b2740,#0a0f1c 60%)}
+.lite .head{position:absolute;left:100px;top:96px;right:420px}
+#stage.pt .lite .head{left:60px;right:60px;top:140px}
+#stage.pt .lite .h2{font-size:56px}
+#stage.pt .h2{font-size:58px}
+
+/* ===== 8 競合 ===== */
+.s-rival .bg video{filter:blur(18px) brightness(.28);transform:scale(1.1)}
+.s-rival table{position:absolute;left:92px;top:300px;width:1450px;border-collapse:separate;border-spacing:7px;font-size:25px;table-layout:fixed}
+.s-rival td,.s-rival th{padding:12px 12px;line-height:1.35;border-radius:14px;background:rgba(255,255,255,.07);text-align:center;font-weight:700;backface-visibility:hidden}
+.s-rival th{background:rgba(255,255,255,.14);font-size:22px}
+.s-rival td:first-child{text-align:left;color:var(--ink2);background:rgba(255,255,255,.04)}
+.s-rival .a{background:rgba(255,159,28,.2)!important;color:#ffe1b3}
+.s-rival .frame{position:absolute;border:5px solid var(--amber);border-radius:22px;box-shadow:0 0 40px rgba(255,159,28,.6)}
+.s-rival .call{position:absolute;left:100px;top:760px;width:1430px;padding:22px 32px;display:flex;gap:24px;align-items:center;font-size:29px;font-weight:700}
+.s-rival .call b{font-family:'Dela';font-weight:400;color:var(--amber);font-size:34px;white-space:nowrap}
+#stage.pt .s-rival table{left:24px;top:470px;width:1032px;font-size:24px;border-spacing:6px}
+#stage.pt .s-rival th{font-size:21px;padding:12px 6px}
+#stage.pt .s-rival td{padding:14px 8px}
+#stage.pt .s-rival .call{left:60px;width:960px;top:1150px;flex-direction:column;align-items:flex-start}
+
+/* ===== 9 コンセプト ===== */
+.s-concept .sh{background:linear-gradient(180deg,rgba(3,8,20,.72),rgba(3,8,20,.25) 45%,rgba(3,8,20,.85) 78%)}
+.s-concept .top{position:absolute;left:0;right:0;top:120px;text-align:center}
+.s-concept .phrase{font-family:'Dela';font-size:92px;margin-top:22px;color:#fff;text-shadow:0 0 30px rgba(255,200,120,.6),0 6px 0 rgba(0,0,0,.35)}
+.s-concept .pillars{position:absolute;left:420px;right:200px;bottom:90px;display:flex;gap:28px;justify-content:center}
+.s-concept .pl{width:400px;padding:26px 26px 30px;text-align:center}
+.s-concept .pl .ic{width:96px;height:96px;margin:-70px auto 10px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(255,159,28,.5)}
+.s-concept .pl .ic svg{width:54px;height:54px;fill:#fff}
+.s-concept .pl h3{margin:0;font-family:'Dela';font-weight:400;font-size:44px}
+.s-concept .pl p{margin:10px 0 0;font-size:25px;color:var(--ink2);line-height:1.5;font-weight:700}
+#stage.pt .s-concept .top{top:170px;padding:0 50px}
+#stage.pt .s-concept .phrase{font-size:68px;line-height:1.35}
+#stage.pt .s-concept .pillars{left:60px;right:60px;bottom:auto;top:980px;flex-direction:column;gap:56px;align-items:stretch}
+#stage.pt .s-concept .pl{width:auto;display:grid;grid-template-columns:110px 1fr;text-align:left;align-items:center;column-gap:20px;padding:22px 28px}
+#stage.pt .s-concept .pl .ic{margin:0;grid-row:span 2}
+
+/* ===== 10 ペルソナ ===== */
+.s-persona .pcard{position:absolute;left:100px;top:300px;width:620px;padding:30px 36px}
+.s-persona .pcard .nm{font-family:'Dela';font-size:50px;margin:6px 0 10px}
+.s-persona .pcard ul{list-style:none;margin:0;padding:0;font-size:29px;line-height:1.75;font-weight:700;color:var(--ink2)}
+.s-persona .fam{height:150px;display:block}
+.s-persona .tri{position:absolute;left:760px;top:300px;width:800px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.s-persona .tri div{padding:22px 22px;font-size:25px;font-weight:700;line-height:1.5;color:var(--ink2)}
+.s-persona .tri b{display:block;color:var(--gold);font-size:25px;margin-bottom:6px;letter-spacing:.1em}
+.s-persona .path{position:absolute;left:760px;top:630px;width:800px;height:360px;overflow:visible}
+#stage.pt .s-persona .pcard{left:60px;top:430px;width:960px;display:grid;grid-template-columns:260px 1fr;column-gap:24px;align-items:center}
+#stage.pt .s-persona .fam{height:170px}
+#stage.pt .s-persona .tri{left:60px;top:900px;width:960px}
+#stage.pt .s-persona .path{left:40px;top:1180px;width:820px;height:520px}
+
+/* ===== 11 施策 ===== */
+.s-plan .cards{position:absolute;left:100px;top:300px;width:1480px;display:flex;gap:30px}
+.s-plan .pc{flex:1;padding:30px 32px 26px;position:relative}
+.s-plan .pc .no{position:absolute;right:24px;top:6px;font-family:'Dela';font-size:110px;color:rgba(255,255,255,.08);line-height:1}
+.s-plan .pc h3{margin:0;font-family:'Dela';font-weight:400;font-size:48px;color:var(--gold)}
+.s-plan .pc ul{margin:14px 0 0;padding-left:1.1em;font-size:27px;line-height:1.7;font-weight:700;color:var(--ink2)}
+.s-plan .pc .kpi{margin-top:16px;font-size:24px;font-weight:900;color:#bff3ec;border-top:1px dashed var(--line);padding-top:12px}
+.s-plan .road{position:absolute;left:100px;top:800px;width:1480px;height:200px;overflow:visible}
+.s-plan .goal{position:absolute;left:1180px;top:860px;padding:18px 34px;border-radius:999px;background:var(--amber);color:#2a1200;font-family:'Dela';font-size:44px;box-shadow:0 0 50px rgba(255,159,28,.65)}
+#stage.pt .s-plan .cards{left:60px;width:960px;top:420px;flex-direction:column;gap:22px}
+#stage.pt .s-plan .pc{padding:22px 28px}
+#stage.pt .s-plan .pc ul{font-size:26px;line-height:1.55}
+#stage.pt .s-plan .road{display:none}
+#stage.pt .s-plan .goal{left:60px;top:1560px}
+
+/* ===== 12 日程 ===== */
+.s-sched .gantt{position:absolute;left:100px;top:300px;width:1480px}
+.s-sched .gr{display:grid;grid-template-columns:420px repeat(6,1fr);align-items:center;height:84px;border-bottom:1px solid rgba(255,255,255,.08);position:relative}
+.s-sched .gr.hd{height:64px;border:0}
+.s-sched .gr.hd div{text-align:center;font-weight:900;font-size:24px;color:#cfe;background:rgba(58,209,191,.12);margin:0 4px;padding:10px 0;border-radius:10px}
+.s-sched .gr .nm{font-size:27px;font-weight:700;color:var(--ink2)}
+.s-sched .bar{position:absolute;height:36px;border-radius:18px;top:24px;transform-origin:0 50%}
+.s-sched .bar.g{background:linear-gradient(90deg,#2d8c7f,#3ad1bf)} .s-sched .bar.o{background:linear-gradient(90deg,#e8861a,#ffc35a)}
+.s-sched .note{position:absolute;left:100px;top:880px;font-size:32px;font-weight:900;color:var(--gold)}
+.s-sched .cursor{position:absolute;top:290px;height:540px;width:4px;background:#fff;box-shadow:0 0 20px #fff;border-radius:2px}
+.s-sched .ms{position:absolute;top:262px;width:34px;height:34px;background:var(--coral);transform:rotate(45deg);border-radius:6px;box-shadow:0 0 20px rgba(255,107,94,.7)}
+#stage.pt .s-sched .gantt{left:30px;width:1020px;top:430px}
+#stage.pt .s-sched .gr{grid-template-columns:250px repeat(6,1fr);height:96px}
+#stage.pt .s-sched .gr .nm{font-size:23px;line-height:1.3}
+#stage.pt .s-sched .gr.hd div{font-size:19px;margin:0 2px}
+#stage.pt .s-sched .note{left:60px;right:60px;top:1160px;line-height:1.5}
+#stage.pt .s-sched .cursor{top:420px;height:650px}
+#stage.pt .s-sched .ms{top:392px}
+
+/* ===== 13 見積 ===== */
+.s-quote .tbl{position:absolute;left:100px;top:290px;width:930px;font-size:25px}
+.s-quote .tr{display:grid;grid-template-columns:80px 1fr 150px 110px 170px;gap:8px;padding:10px 14px;border-radius:12px;margin-bottom:6px;background:rgba(255,255,255,.06);font-weight:700;align-items:center}
+.s-quote .tr.h{background:rgba(255,255,255,.14);font-size:21px;color:#e8e2d6}
+.s-quote .tr .r{text-align:right;font-variant-numeric:tabular-nums}
+.s-quote .tr .k{font-size:20px;color:#2a1200;background:var(--gold);border-radius:8px;text-align:center;padding:2px 0}
+.s-quote .tr .k.m{background:#9fe6dc} .s-quote .tr .k.j{background:#e6c3ff}
+.s-quote .sum{position:absolute;left:1050px;top:290px;width:540px;padding:30px 34px}
+.s-quote .sum .l{display:flex;justify-content:space-between;font-size:28px;font-weight:700;color:var(--ink2);margin:6px 0}
+.s-quote .sum .tot{margin-top:18px;border-top:2px solid var(--line);padding-top:16px}
+.s-quote .sum .tot .lbl{font-size:28px;font-weight:900;color:var(--gold)}
+.s-quote .sum .tot .big{white-space:nowrap;font-size:62px;color:#fff;line-height:1.1;text-shadow:0 0 30px rgba(255,195,90,.6)}
+.s-quote .kpis{position:absolute;left:1050px;top:700px;width:540px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.s-quote .kp{padding:18px 20px}
+.s-quote .kp .a{font-size:22px;font-weight:700;color:var(--ink2)}
+.s-quote .kp .b{font-family:'Dela';font-size:46px;color:var(--gold);white-space:nowrap}
+.s-quote .ok{position:absolute;left:1050px;top:905px;width:540px;text-align:center;padding:14px;border:5px solid var(--teal);color:#bff3ec;border-radius:20px;font-weight:900;font-size:30px;background:rgba(8,40,36,.7)}
+.s-quote .note{position:absolute;left:100px;bottom:50px;font-size:21px;color:var(--mute);font-weight:500}
+#stage.pt .s-quote .tbl{left:30px;width:1020px;top:400px;font-size:23px}
+#stage.pt .s-quote .tr{grid-template-columns:64px 1fr 130px 90px 150px}
+#stage.pt .s-quote .sum{left:60px;width:960px;top:1100px}
+#stage.pt .s-quote .kpis{left:60px;width:700px;top:1500px}
+#stage.pt .s-quote .kp .b{font-size:46px}
+#stage.pt .s-quote .ok{left:60px;width:700px;top:1690px}
+#stage.pt .s-quote .note{left:60px;right:60px;bottom:110px}
+
+/* ===== 14 未来 ===== */
+.s-future .cap{position:absolute;left:0;right:0;top:170px;text-align:center}
+.s-future .cap .a{font-family:'Dela';font-size:112px;color:#fff;letter-spacing:.2em;text-shadow:0 0 50px rgba(255,190,110,.7)}
+.s-future .cap .b{font-size:36px;font-weight:700;margin-top:14px;color:#fff;text-shadow:0 3px 14px rgba(0,0,0,.8)}
+.s-future .img{position:absolute;right:40px;bottom:150px;font-size:20px;color:rgba(255,255,255,.75);background:rgba(0,0,0,.35);padding:4px 12px;border-radius:8px;z-index:22}
+#stage.pt .s-future .bg video{object-position:60% 50%}
+#stage.pt .s-future .cap{top:280px}
+#stage.pt .s-future .img{bottom:260px}
+
+/* ===== 15 効果 ===== */
+.s-effect .chartW{position:absolute;left:100px;top:300px;width:900px;height:640px;padding:26px 30px}
+.s-effect .chartW .t{font-size:26px;font-weight:900;color:var(--ink2)}
+.s-effect .chartW svg{width:840px;height:560px;overflow:visible}
+.s-effect .kv{position:absolute;left:1040px;width:560px;padding:24px 30px}
+.s-effect .kv1{top:300px} .s-effect .kv2{top:530px}
+#stage.pt .s-effect .kv1{top:1100px} #stage.pt .s-effect .kv2{top:1330px}
+.s-effect .kv .a{font-size:26px;font-weight:900;color:var(--ink2)}
+.s-effect .kv .row{display:flex;align-items:center;gap:16px;margin-top:6px}
+.s-effect .kv .from{white-space:nowrap;font-size:36px;color:var(--mute);font-weight:900}
+.s-effect .kv .arr{width:70px;height:34px}
+.s-effect .kv .to{white-space:nowrap;font-family:'Dela';font-size:70px;color:var(--gold);line-height:1}
+.s-effect .kv .me{white-space:nowrap;font-size:24px;font-weight:900;color:#2a1200;background:var(--gold);border-radius:8px;padding:2px 10px;margin-left:4px}
+.s-effect .how{position:absolute;left:100px;bottom:46px;width:1500px;font-size:22px;color:var(--mute);font-weight:500;line-height:1.5}
+#stage.pt .s-effect .chartW{left:60px;width:960px;top:420px;height:640px}
+#stage.pt .s-effect .kv{left:60px;width:700px}
+#stage.pt .s-effect .how{left:60px;right:360px;width:auto;bottom:100px}
+
+/* ===== 16 まとめ ===== */
+.s-summary .three{position:absolute;left:100px;top:280px;width:1440px;display:flex;flex-direction:column;gap:26px}
+.s-summary .it{display:flex;align-items:center;gap:30px;padding:24px 34px}
+.s-summary .it .n{font-family:'Dela';font-size:80px;color:var(--amber);width:90px;text-align:center}
+.s-summary .it .w{font-family:'Dela';font-size:62px}
+.s-summary .it .d{font-size:27px;font-weight:700;color:var(--ink2);margin-top:4px}
+.s-summary .next{position:absolute;left:100px;top:900px;width:1440px;padding:20px 30px;border-radius:20px;background:rgba(255,159,28,.16);border:2px solid rgba(255,159,28,.6);font-size:27px;font-weight:700;line-height:1.6}
+.s-summary .next b{color:var(--gold);font-weight:900;margin-right:14px}
+#stage.pt .s-summary .three{left:60px;width:960px;top:420px}
+#stage.pt .s-summary .it .w{font-size:52px}
+#stage.pt .s-summary .next{left:60px;width:960px;top:1290px}
+
+/* ===== 17 クライマックス ===== */
+.s-climax .sh{background:radial-gradient(circle at 50% 70%,rgba(255,200,120,.0),rgba(0,0,0,.45) 80%)}
+.s-climax .lines{position:absolute;left:0;right:0;top:330px;text-align:center}
+.s-climax .l1,.s-climax .l2{font-family:'Dela';color:#fff;text-shadow:0 0 30px rgba(255,220,160,.9),0 0 80px rgba(255,160,80,.6),0 4px 20px rgba(0,0,0,.6)}
+.s-climax .l1{font-size:104px}
+.s-climax .l2{font-size:118px;margin-top:20px}
+#stage.pt .s-climax .lines{top:560px;padding:0 40px}
+#stage.pt .s-climax .l1{font-size:84px;line-height:1.3}
+#stage.pt .s-climax .l2{font-size:90px;line-height:1.3}
+
+/* ===== 18 エンドロール ===== */
+.s-roll{background:#000}
+.s-roll .bg video{filter:brightness(.35) blur(3px);transform:scale(1.05)}
+.s-roll .crawl{position:absolute;left:0;right:520px;top:0;text-align:center}
+.s-roll .crawl .g{margin:0 0 70px}
+.s-roll .crawl .r{font-size:22px;letter-spacing:.3em;color:var(--gold);font-weight:700;margin-bottom:10px}
+.s-roll .crawl .v{font-size:34px;font-weight:700;line-height:1.6;color:#f3ede3}
+.s-roll .crawl .v small{display:block;font-size:22px;color:#bfb7aa;font-weight:500;letter-spacing:.02em}
+.s-roll .crawl .ttl{font-family:'Dela';font-size:72px;line-height:1.25;color:#fff}
+.s-roll .crawl .me{font-size:24px;color:#d8d0c2;letter-spacing:.2em}
+.s-roll .maker{position:absolute;left:0;right:520px;top:560px;text-align:center;font-size:24px;color:#d8d0c2;letter-spacing:.2em}
+#stage.pt .s-roll .maker{right:0;top:900px}
+.s-roll .thanks{position:absolute;left:0;right:520px;top:430px;text-align:center;font-family:'Dela';font-size:64px;color:#fff}
+#stage.pt .s-roll .crawl,#stage.pt .s-roll .thanks{right:0;padding:0 50px}
+#stage.pt .s-roll .thanks{top:760px;font-size:46px}
+#stage.pt .s-roll .crawl .v{font-size:32px}
+</style>
+</head>
+<body>
+<div id="vp">
+<div id="stage">
+
+<!-- 1 表紙：映画のような始まり -->
+<section class="slide s-open" data-id="open" data-tr="fade" data-chap="序章" data-lb="0.115">
+  <div class="bg"><video data-v="aerial_dawn" data-off="0" data-z="1.18:1.0"></video></div>
+  <div class="shade" style="background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.15) 40%,rgba(0,0,0,.55))"></div>
+  <div class="shade openShade" data-a="unveil" data-t="0.4" data-d="3.2"></div>
+  <div class="leak" data-a="leak" data-t="1.1" data-d="5.5" data-sfx="light"></div>
+  <div class="wrap">
+    <div class="kickO" data-a="track" data-t="2.7" data-d="2.2">提案資料の見本 ｜ 提案例</div>
+    <div class="client" data-a="rise" data-t="L2-0.6" data-d="1.6">A工務店様</div>
+    <h1 class="title" data-split data-st="0.085" data-a="glowrise" data-t="L2-0.15" data-d="1.8">Web集客強化のご提案</h1>
+    <div class="flare" data-a="flare" data-t="L2+0.5" data-d="2.0"></div>
+    <div class="sub" data-a="rise" data-t="L2+2.6" data-d="1.4">見学会の予約を、Webから月10件へ（6か月の目標）</div>
+  </div>
+  <div class="date" data-a="fade" data-t="L2+3.4" data-d="1.2">2026年11月　営業支援チーム</div>
+</section>
+
+<!-- 2 猫の登場 -->
+<section class="slide s-cat1" data-id="cat1" data-tr="iris" data-chap="序章" data-lb="0">
+  <div class="bg"><video data-v="aerial_rise" data-off="2" style="filter:blur(10px) brightness(.8)"></video></div>
+  <div class="shade glow"></div>
+  <div class="sun" data-a="spinSlow" data-t="0" data-d="20"></div>
+  <div class="hello" data-a="drop" data-t="0.25" data-d="0.8" data-sfx="whoosh_down">案内役は、この猫です</div>
+</section>
+
+<!-- 3 第1章 はじまり：夜の事務所 -->
+<section class="slide s-office" data-id="office" data-tr="fade" data-trd="1.1" data-chap="第1章 はじまり" data-lb="0.07">
+  <div class="bg"><video data-v="office" data-off="0"></video></div>
+  <div class="shade sh"></div>
+  <div class="chap" data-a="chapter" data-t="0" data-d="1.3" data-out="1.9" data-od="0.6"><div class="c1">第1章</div><div class="bar"></div><div class="c2">はじまり</div></div>
+  <div class="col">
+    <span class="tag" data-a="slideL" data-t="L1-0.3" data-d="0.7">ヒアリング内容より</span>
+    <div class="big" data-split data-st="0.06" data-a="type" data-t="L1" data-d="0.2">地方の、小さな工務店。</div>
+    <div class="facts">
+      <div class="fact" data-a="pop" data-t="L1@自然素材-0.2" data-d="0.5" data-sfx="pop">社員12名</div>
+      <div class="fact" data-a="pop" data-t="L1@自然素材+0.1" data-d="0.5" data-sfx="pop">年間の着工 約15棟</div>
+      <div class="fact" data-a="pop" data-t="L1@職人" data-d="0.5" data-sfx="pop">自然素材と職人の手しごと</div>
+    </div>
+    <div class="issue card" data-a="slideU" data-t="L1@腕は" data-d="0.8">
+      <div class="lbl">課題</div>
+      <div class="row"><span class="k">Webからの問い合わせ</span><span class="v dela">月<span class="num" data-count="2" data-t="L1@月に-0.4" data-d="0.9" data-sfx-end="slam">0</span>件</span><span class="k">ほど</span></div>
+      <ul><li data-a="fade" data-t="L1@月に+0.8" data-d="0.6">ホームページの更新が2年止まっている</li><li data-a="fade" data-t="L1@月に+1.3" data-d="0.6">Instagramの投稿は不定期</li></ul>
+    </div>
+    <div class="goal"><div data-a="slideL" data-t="E-2.2" data-d="0.6">目標　6か月後にWebから月10件</div><div data-a="slideL" data-t="E-1.8" data-d="0.6">予算　月30万円前後（広告費込み）</div></div>
+  </div>
+</section>
+
+<!-- 4 市場：家を建てる人は減っている -->
+<section class="slide s-decline" data-id="decline" data-tr="wipeL" data-chap="第1章 はじまり" data-lb="0">
+  <div class="bg"><video data-v="office" data-off="6"></video></div>
+  <div class="head">
+    <div class="kick" data-a="fade" data-t="0.1" data-d="0.5">市場の概況</div>
+    <h2 class="h2" data-a="slideL" data-t="0.2" data-d="0.8">家を建てる人は、減っています</h2>
+  </div>
+  <svg class="chart" viewBox="0 0 1180 620">
+    <text x="0" y="24" fill="#d9d2c5" font-size="26" font-weight="700" data-a="fade" data-t="0.6" data-d="0.5">持家の新設住宅着工戸数（戸）</text>
+    <line x1="0" y1="540" x2="1180" y2="540" stroke="rgba(255,255,255,.3)" stroke-width="2"/>
+    <g id="dcBars"></g>
+    <path data-draw data-t="L1@2020年+0.4" data-d="1.6" d="" id="dcTrend" fill="none" stroke="#ff6b5e" stroke-width="7" stroke-linecap="round" stroke-dasharray="2 14"/>
+  </svg>
+  <div class="stamp" data-a="stamp" data-t="L1@約16-0.2" data-d="0.45" data-sfx="slam">
+    <div class="a">2020年 → 2024年</div>
+    <div class="b">約16%減</div>
+  </div>
+  <div class="src srcB" data-a="fade" data-t="1.5" data-d="0.8">出典：国土交通省「建築着工統計調査報告 令和6年計」</div>
+</section>
+
+<!-- 5 第2章 気づき：スマホ -->
+<section class="slide s-phone" data-id="phone" data-tr="zoomIn" data-chap="第2章 気づき" data-lb="0">
+  <div class="chap" data-a="chapter" data-t="0" data-d="1.1" data-out="1.5" data-od="0.5" style="background:rgba(0,0,0,.6)"><div class="c1">第2章</div><div class="bar"></div><div class="c2">気づき</div></div>
+  <div class="vcard" data-a="swing" data-t="L1-0.4" data-d="1.0"><video data-v="phone" data-off="0" data-at="L1-0.4"></video></div>
+  <div class="col">
+    <h2 class="h2" data-a="wipe" data-t="L1" data-d="0.9">家を探す家族は、<br>スマホの中にいます</h2>
+    <div class="stat card" data-a="slideL" data-t="L1@スマホで-0.5" data-d="0.7">
+      <div class="ringW"><svg viewBox="0 0 220 220"><circle cx="110" cy="110" r="92" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="22"/><circle data-ring="74.4" data-t="L1@スマホで-0.2" data-d="1.8" cx="110" cy="110" r="92" fill="none" stroke="#3ad1bf" stroke-width="22" stroke-linecap="round"/></svg>
+        <div class="n dela"><span class="num" data-count="74.4" data-dec="1" data-t="L1@スマホで-0.2" data-d="1.8" data-tick>0</span>%</div></div>
+      <div class="t">スマートフォンでインターネットを<br>使う人の割合（個人・2024年）</div>
+    </div>
+    <div class="card" style="margin-top:22px;padding:24px 30px" data-a="slideL" data-t="L1@ネット広告費-0.6" data-d="0.7">
+      <div class="yen dela"><span class="num" data-count="36517" data-fmt="cho" data-t="L1@ネット広告費-0.3" data-d="1.9" data-tick data-sfx-end="ding">0</span></div>
+      <div style="font-size:27px;font-weight:700;color:var(--ink2);margin-top:12px">インターネット広告費（2024年）総広告費の47.6%<span class="best" data-a="stamp" data-t="L1@過去最高-0.2" data-d="0.4" data-sfx="slam">過去最高</span></div>
+    </div>
+  </div>
+  <div class="src srcB" data-a="fade" data-t="L1+1" data-d="0.8">出典：電通「2024年 日本の広告費」／総務省「令和7年版 情報通信白書」（通信利用動向調査）</div>
+</section>
+
+<!-- 6 ひとり：届かない -->
+<section class="slide s-alone" data-id="alone" data-tr="fade" data-trd="1.2" data-chap="第2章 気づき" data-lb="0.1">
+  <svg class="house" viewBox="0 0 220 200" data-a="fade" data-t="0.2" data-d="2.0">
+    <path d="M20 100 L110 30 L200 100 L200 190 L20 190 Z" fill="#0c0d14" stroke="#262838" stroke-width="3"/>
+    <rect x="70" y="120" width="40" height="34" fill="#ffb45a" data-a="flicker" data-t="0.8" data-d="6"/>
+    <rect x="130" y="120" width="40" height="34" fill="#1a1b26"/>
+  </svg>
+  <div class="lines">
+    <div class="l1" data-split data-st="0.11" data-a="soft" data-t="L1" data-d="0.8">いい家をつくっても、</div>
+    <div class="l2" data-split data-st="0.09" data-a="soft" data-t="L1@見つけて" data-d="0.9">見つけてもらえなければ、届かない。</div>
+  </div>
+</section>
+
+<!-- 7 第3章 提案：猫「だったら！」 -->
+<section class="slide s-cat2" data-id="cat2" data-tr="flash" data-chap="第3章 提案" data-lb="0">
+  <div class="sun" data-a="spinFast" data-t="0" data-d="20"></div>
+  <div class="chip" data-a="drop" data-t="0.1" data-d="0.7">第3章　提案</div>
+  <div class="txt">
+    <div class="t1" data-a="stamp" data-t="L1" data-d="0.35" data-sfx="pop">だったら、</div>
+    <div class="t2" data-split data-st="0.045" data-a="burstC" data-t="L1@見つけて-0.1" data-d="0.45">見つけてもらえる仕組みを、</div>
+    <div class="t3" data-a="shake" data-t="L1@つくり-0.1" data-d="0.6" data-sfx="impact">つくりましょう！</div>
+  </div>
+</section>
+
+<!-- 8 競合 -->
+<section class="slide s-rival lite" data-id="rival" data-tr="slideU" data-chap="第3章 提案" data-lb="0">
+  <div class="bg"><video data-v="aerial_rise" data-off="6"></video></div>
+  <div class="head">
+    <div class="kick" data-a="fade" data-t="0" data-d="0.4">競合の比較</div>
+    <h2 class="h2" data-a="slideL" data-t="0.05" data-d="0.7">Webでの見せ方に、入る余地があります</h2>
+  </div>
+  <table id="rivalT"><colgroup><col style="width:21%"><col style="width:16%"><col style="width:23%"><col style="width:20%"><col style="width:20%"></colgroup>
+    <tr><th>項目</th><th class="a">A工務店様</th><th>B社（大手ハウスメーカー）</th><th>C社（地元工務店）</th><th>D社（地元工務店）</th></tr>
+    <tr><td>価格帯</td><td class="a">中</td><td>高</td><td>中</td><td>低</td></tr>
+    <tr><td>強み</td><td class="a">自然素材・職人</td><td>保証・ブランド</td><td>デザイン</td><td>価格</td></tr>
+    <tr><td>施工事例のWeb掲載</td><td class="a">△ 少ない</td><td>◎ 多い</td><td>○ ふつう</td><td>△ 少ない</td></tr>
+    <tr><td>Instagram</td><td class="a">△ 不定期</td><td>◎ ほぼ毎日</td><td>○ 週2回</td><td>× なし</td></tr>
+    <tr><td>見学会の予約</td><td class="a">チラシ・電話</td><td>Web予約</td><td>Web予約</td><td>なし</td></tr>
+  </table>
+  <div class="frame" id="rivalF" data-a="frame" data-t="L1@見学会-0.3" data-d="0.6" data-sfx="whoosh"></div>
+  <div class="call card" id="rivalCall" data-a="slideU" data-t="L1@ここが-0.4" data-d="0.7" data-sfx="sparkle"><b>空いている位置</b><span>「職人の手しごと」を、Webで見える形にして見学会につなげる工務店は少ない</span></div>
+</section>
+
+<!-- 9 コンセプト -->
+<section class="slide s-concept" data-id="concept" data-tr="iris" data-chap="第3章 提案" data-lb="0">
+  <div class="bg"><video data-v="house" data-off="0.6"></video></div>
+  <div class="shade sh"></div>
+  <div class="top">
+    <div class="kick" data-a="fade" data-t="0" data-d="0.4">コンセプト</div>
+    <div class="phrase" data-split data-st="0.03" data-a="scatter" data-t="L1@つくり手-0.3" data-d="0.9" data-sfx="whoosh">つくり手の顔が見える、地元の木の家</div>
+  </div>
+  <div class="pillars">
+    <div class="pl card" data-a="burst" data-t="L1+3.6" data-d="0.6" data-sfx="pop"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 5C6.5 5 2.7 9.6 2 12c.7 2.4 4.5 7 10 7s9.3-4.6 10-7c-.7-2.4-4.5-7-10-7zm0 11.5A4.5 4.5 0 1 1 12 7.5a4.5 4.5 0 0 1 0 9zm0-7a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/></svg></div><h3>見せる</h3><p>現場と職人の手しごとを<br>SNSで毎週発信</p></div>
+    <div class="pl card" data-a="burst" data-t="L1+4.1" data-d="0.6" data-sfx="pop"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3 2 11h3v9h5v-6h4v6h5v-9h3z"/></svg></div><h3>来てもらう</h3><p>見学会を毎月ひらき、<br>Webで予約できるように</p></div>
+    <div class="pl card" data-a="burst" data-t="L1+4.6" data-d="0.6" data-sfx="pop"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5zm-1.2 14.2-3.5-3.5 1.4-1.4 2.1 2.1 4.9-4.9 1.4 1.4z"/></svg></div><h3>安心してもらう</h3><p>費用の目安と施工事例を<br>LPで公開</p></div>
+  </div>
+</section>
+
+<!-- 10 ペルソナ -->
+<section class="slide s-persona lite" data-id="persona" data-tr="slideL" data-chap="第3章 提案" data-lb="0">
+  <div class="head">
+    <div class="kick" data-a="fade" data-t="0" data-d="0.4">ターゲットペルソナ</div>
+    <h2 class="h2" data-a="rise" data-t="0.05" data-d="0.7">はじめて家を建てる、子育て中の夫婦</h2>
+  </div>
+  <div class="pcard card" data-a="flipY" data-t="0.5" data-d="0.8">
+    <svg class="fam" viewBox="0 0 260 150" aria-hidden="true">
+      <circle cx="70" cy="40" r="24" fill="#ffc35a"/><path d="M36 150c0-40 14-74 34-74s34 34 34 74z" fill="#ffc35a"/>
+      <circle cx="150" cy="46" r="22" fill="#ff9f8a"/><path d="M118 150c0-38 13-68 32-68s32 30 32 68z" fill="#ff9f8a"/>
+      <circle cx="218" cy="84" r="17" fill="#3ad1bf"/><path d="M194 150c0-26 10-46 24-46s24 20 24 46z" fill="#3ad1bf"/>
+    </svg>
+    <div><div class="nm">Kさん夫婦<span style="font-size:24px;color:var(--mute);font-family:'ZM';font-weight:700">（ペルソナ）</span></div>
+    <ul><li data-a="fade" data-t="0.9" data-d="0.4">夫34歳・妻32歳</li><li data-a="fade" data-t="1.1" data-d="0.4">子ども1人（3歳）</li><li data-a="fade" data-t="1.3" data-d="0.4">賃貸アパートに住んでいる</li><li data-a="fade" data-t="1.5" data-d="0.4">世帯年収 620万円</li><li data-a="fade" data-t="1.7" data-d="0.4">車で30分の範囲で土地を探し中</li></ul></div>
+  </div>
+  <div class="tri">
+    <div class="card" data-a="flip" data-t="1.4" data-d="0.6" data-sfx="flip"><b>悩み</b>大手は高い。地元の工務店は情報が少なく、頼んでよいか不安</div>
+    <div class="card" data-a="flip" data-t="1.7" data-d="0.6" data-sfx="flip"><b>情報の集め方</b>夜にスマホでInstagramと検索。休日に見学会へ</div>
+    <div class="card" data-a="flip" data-t="2.0" data-d="0.6" data-sfx="flip"><b>決め手</b>実際の家を見て、つくる人と話せたこと</div>
+  </div>
+  <svg class="path" id="journey" viewBox="0 0 800 360"></svg>
+</section>
+
+<!-- 11 施策 -->
+<section class="slide s-plan lite" data-id="plan" data-tr="zoomOut" data-chap="第3章 提案" data-lb="0">
+  <div class="head">
+    <div class="kick" data-a="fade" data-t="0" data-d="0.4">施策の提案</div>
+    <h2 class="h2" data-a="wipe" data-t="0.05" data-d="0.7">3つの施策を、予約までの1本の道に</h2>
+  </div>
+  <div class="cards">
+    <div class="pc card" data-a="slideL" data-t="L1@広告-0.3" data-d="0.7" data-sfx="whoosh"><div class="no">1</div><h3>Web広告</h3><ul><li>Google検索広告で「地名＋注文住宅」</li><li>Meta広告で見学会を告知</li><li>予約1件あたりの費用を毎月確認</li></ul><div class="kpi">見る数字　見学会の予約</div></div>
+    <div class="pc card" data-a="drop" data-t="L1@インスタ-0.3" data-d="0.8" data-sfx="whoosh_down"><div class="no">2</div><h3>SNS</h3><ul><li>Instagramに週3回投稿</li><li>現場と職人を短い動画で紹介</li><li>投稿から予約ページへ案内</li></ul><div class="kpi">見る数字　保存数・訪問数</div></div>
+    <div class="pc card" data-a="spinIn" data-t="L1@予約ページ-0.3" data-d="0.8" data-sfx="whoosh"><div class="no">3</div><h3>LP改善</h3><ul><li>見学会の予約ページを新しく作る</li><li>施工事例と費用の目安を掲載</li><li>入力欄を5つにしぼる</li></ul><div class="kpi">見る数字　予約率</div></div>
+  </div>
+  <svg class="road" viewBox="0 0 1480 200"><path data-draw data-t="E-2.0" data-d="1.0" d="M240 0 C 240 120, 500 120, 740 60 S 1060 20, 1080 100" fill="none" stroke="#ffc35a" stroke-width="8" stroke-linecap="round"/></svg>
+  <div class="goal" data-a="burst" data-t="E-1.1" data-d="0.6" data-sfx="tada">見学会の予約</div>
+</section>
+
+<!-- 12 日程 -->
+<section class="slide s-sched lite" data-id="sched" data-tr="wipeD" data-chap="第3章 提案" data-lb="0">
+  <div class="head">
+    <div class="kick" data-a="fade" data-t="0" data-d="0.4">スケジュール（6か月）</div>
+    <h2 class="h2" data-a="slideL" data-t="0.05" data-d="0.7">1か月目に土台、2か月目から集客</h2>
+  </div>
+  <div class="gantt" id="gantt"></div>
+  <div class="cursor" id="gCursor"></div>
+  <div class="note" data-a="rise" data-t="E-1.9" data-d="0.6">3か月目と6か月目に、数字を見て施策と予算の配分を見直します</div>
+</section>
+
+<!-- 13 見積 -->
+<section class="slide s-quote lite" data-id="quote" data-tr="slideL" data-chap="第3章 提案" data-lb="0">
+  <div class="head">
+    <div class="kick" data-a="fade" data-t="0" data-d="0.4">試算表による見積</div>
+    <h2 class="h2" data-a="rise" data-t="0.05" data-d="0.7">単価×数量で、ひとつずつ積み上げ</h2>
+  </div>
+  <div class="tbl" id="qTable"></div>
+  <div class="sum card" data-a="slideR" data-t="1.6" data-d="0.6">
+    <div class="l"><span>小計</span><span class="num" data-count="1958000" data-t="1.9" data-d="1.0" data-suf="円">0</span></div>
+    <div class="l"><span>消費税（10%）</span><span class="num" data-count="195800" data-t="2.3" data-d="0.9" data-suf="円">0</span></div>
+    <div class="tot"><div class="lbl">6か月の合計（税込）</div><div class="big dela"><span class="num" data-count="2153800" data-t="L1@215-1.6" data-d="1.9" data-tick data-suf="円" data-sfx-end="slam">0</span></div></div>
+  </div>
+  <div class="kpis">
+    <div class="kp card" data-a="pop" data-t="L1@月額-0.2" data-d="0.5" data-sfx="pop"><div class="a">初期費用</div><div class="b">35万円</div></div>
+    <div class="kp card" data-a="pop" data-t="L1@月額+0.4" data-d="0.5" data-sfx="pop"><div class="a">月額（広告費込み）</div><div class="b">26.8万円</div></div>
+  </div>
+  <div class="ok" data-a="stamp" data-t="L1@ご予算-0.2" data-d="0.4" data-sfx="ding">ご予算（月30万円前後）の範囲です</div>
+  <div class="note" data-a="fade" data-t="2.4" data-d="0.6">※金額は提案例の値です（試算表の単価×数量から転記）</div>
+</section>
+
+<!-- 14 第4章 未来 -->
+<section class="slide s-future" data-id="future" data-tr="fade" data-trd="1.2" data-chap="第4章 未来" data-lb="0.1">
+  <div class="bg"><video data-v="house" data-off="10.6"></video></div>
+  <div class="shade" style="background:linear-gradient(180deg,rgba(0,0,0,.7),rgba(0,0,0,.35) 30%,rgba(0,0,0,0) 48%)"></div>
+  <div class="cap">
+    <div class="a" data-split data-st="0.12" data-a="soft" data-t="L1-0.4" data-d="1.0">半年後</div>
+    <div class="b" data-a="rise" data-t="L1@スマホ-0.2" data-d="1.0">スマホで見つけた家族が、見学会へ</div>
+  </div>
+  <div class="img" data-a="fade" data-t="1.0" data-d="0.8">イメージ映像</div>
+</section>
+
+<!-- 15 効果 -->
+<section class="slide s-effect lite" data-id="effect" data-tr="wipeU" data-chap="第4章 未来" data-lb="0">
+  <div class="head">
+    <div class="kick" data-a="fade" data-t="0" data-d="0.4">期待できる効果（目安）</div>
+    <h2 class="h2" data-a="slideL" data-t="0.05" data-d="0.7">Webからの予約を、月10件へ</h2>
+  </div>
+  <div class="chartW card" id="effChart" data-a="fade" data-t="0.3" data-d="0.5">
+    <div class="t">Webからの予約件数（目安・件/月）</div>
+    <svg viewBox="0 0 840 560" id="effSvg"></svg>
+  </div>
+  <div class="kv kv1 card" data-a="slideR" data-t="L1-0.2" data-d="0.6">
+    <div class="a">Webからの問い合わせ</div>
+    <div class="row"><span class="from">月2件</span><svg class="arr" viewBox="0 0 70 34"><path d="M0 12h46V0l24 17-24 17V22H0z" fill="#ff9f1c"/></svg><span class="to">月<span class="num" data-count="10" data-from="2" data-t="L1@10件-0.6" data-d="1.0" data-tick data-sfx-end="slam">2</span>件</span><span class="me">目安</span></div>
+  </div>
+  <div class="kv kv2 card" data-a="slideR" data-t="L1@見学会-0.4" data-d="0.6">
+    <div class="a">見学会の来場</div>
+    <div class="row"><span class="from">月1組</span><svg class="arr" viewBox="0 0 70 34"><path d="M0 12h46V0l24 17-24 17V22H0z" fill="#ff9f1c"/></svg><span class="to">月<span class="num" data-count="4" data-from="1" data-t="L1@4組-0.6" data-d="0.9" data-tick data-sfx-end="slam">1</span>組</span><span class="me">目安</span></div>
+  </div>
+  <div class="how" data-a="fade" data-t="L1@目安-0.4" data-d="0.8">試算の考え方：広告費15万円 ÷ クリック単価100円（想定）＝1,500クリック × 予約率0.5%（想定）≒ 7件、SNS・検索から3件。数字はすべて目安で、運用しながら確かめます。</div>
+</section>
+
+<!-- 16 第5章 結び：まとめ -->
+<section class="slide s-summary lite" data-id="summary" data-tr="zoomIn" data-chap="第5章 結び" data-lb="0">
+  <div class="head">
+    <div class="kick" data-a="fade" data-t="0" data-d="0.4">まとめ</div>
+    <h2 class="h2" data-a="rise" data-t="0.05" data-d="0.6">3つのことを、半年で</h2>
+  </div>
+  <div class="three">
+    <div class="it card" data-a="flip" data-t="L1-0.1" data-d="0.6" data-sfx="flip"><div class="n">1</div><div><div class="w">強みを見える化</div><div class="d">職人と自然素材を、SNSとLPで伝える</div></div></div>
+    <div class="it card" data-a="wipe" data-t="L1@予約まで-0.2" data-d="0.7" data-sfx="whoosh"><div class="n">2</div><div><div class="w">予約までの道をつくる</div><div class="d">広告 → LP → 見学会予約を1本に</div></div></div>
+    <div class="it card" data-a="zoom" data-t="L1@数字で-0.2" data-d="0.6" data-sfx="pop"><div class="n">3</div><div><div class="w">数字で見直す</div><div class="d">毎月のレポートで、予算の配分を調整</div></div></div>
+  </div>
+  <div class="next" data-a="rise" data-t="E-2.0" data-d="0.7"><b>次のステップ</b>① ヒアリング内容のご確認（30分）　② 競合調査の確定　③ LPの構成案のご提出（1週間以内）</div>
+</section>
+
+<!-- 17 クライマックス -->
+<section class="slide s-climax" data-id="climax" data-tr="flash" data-chap="第5章 結び" data-lb="0.12">
+  <div class="bg"><video data-v="aerial_rise" data-off="0" data-z="1.0:1.12"></video></div>
+  <div class="shade sh"></div>
+  <div class="lines">
+    <div class="l1" data-split data-st="0.07" data-a="glowrise" data-t="L1" data-d="1.2">想いのある家づくりを、</div>
+    <div class="l2" data-split data-st="0.08" data-a="glowrise" data-t="L1@必要-0.1" data-d="1.3">必要としている家族へ。</div>
+  </div>
+</section>
+
+<!-- 18 エンドロール -->
+<section class="slide s-roll" data-id="roll" data-tr="fade" data-trd="1.4" data-chap="エンドロール" data-lb="0.1">
+  <div class="bg"><video data-v="house" data-off="16"></video></div>
+  <div class="crawl" id="crawl" data-crawl="0.6:-1">
+    <div class="g"><div class="r">提案例</div><div class="ttl">A工務店様<br>Web集客強化のご提案</div><div class="v"><small>提案資料の見本</small></div></div>
+    <div class="g"><div class="r">提案先・競合・金額・効果の数字</div><div class="v">提案例として設定した値<small>効果の数字はすべて目安です</small></div></div>
+    <div class="g"><div class="r">市場の数字の出典</div><div class="v">国土交通省「建築着工統計調査報告 令和6年計」<br>電通「2024年 日本の広告費」<br>総務省「令和7年版 情報通信白書」<small>（通信利用動向調査）</small></div></div>
+    <div class="g"><div class="r">映像</div><div class="v">three.js・canvas で自作（イメージ映像）</div></div>
+    <div class="g"><div class="r">音楽・効果音</div><div class="v">自作（Python で合成）</div></div>
+    <div class="g"><div class="r">声</div><div class="v">OpenAI の音声合成（AIの声です）</div></div>
+    <div class="g"><div class="r">案内役</div><div class="v">SOCRA の猫</div></div>
+    <div class="g"><div class="r">つくり方</div><div class="v">AIツールで下書きと演出をつくり、<br>数字・出典・言葉づかいは人が確認</div></div>
+  </div>
+  <div class="maker" data-a="fade" data-t="E-2.4" data-d="1.0">作成　松村貴士</div>
+  <div class="thanks" data-a="soft" data-split data-st="0.06" data-t="E-3.2" data-d="1.0">ご覧いただき、ありがとうございました</div>
+</section>
+
+<canvas id="fx" width="1920" height="1080"></canvas>
+<div id="catShadow"></div>
+<div id="cat">
+  <img data-k="m0eo" src="assets/cat/m0eo.webp" alt=""><img data-k="m1eo" src="assets/cat/m1eo.webp" alt=""><img data-k="m2eo" src="assets/cat/m2eo.webp" alt="">
+  <img data-k="m0ec" src="assets/cat/m0ec.webp" alt=""><img data-k="m1ec" src="assets/cat/m1ec.webp" alt=""><img data-k="m2ec" src="assets/cat/m2ec.webp" alt="">
+</div>
+<svg id="ptr"><defs><marker id="ah" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#ffc35a"/></marker></defs><path id="ptrPath" d="" fill="none" stroke="#ffc35a" stroke-width="8" stroke-linecap="round" marker-end="url(#ah)"/><g id="paw" opacity="0"><circle r="16" fill="#ffc35a"/><circle cx="-14" cy="-16" r="6" fill="#ffc35a"/><circle cx="0" cy="-22" r="6" fill="#ffc35a"/><circle cx="14" cy="-16" r="6" fill="#ffc35a"/></g></svg>
+<div id="bubble"></div>
+<div id="flash"></div>
+<div id="vig"></div>
+<div class="lb" id="lbT"></div><div class="lb" id="lbB"></div>
+<div id="grain"></div>
+<div id="chapTag"></div>
+<div id="badge">提案例</div>
+<div id="sub"></div>
+</div>
+</div>
+
+<div id="prog"></div>
+<div id="pausePill">一時停止中（画面を押すと再開）</div>
+<div id="hint"><div class="dot"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><p>画面を押すと、音つきで始まります<br><span style="font-weight:500;font-size:13px">→ キー・クリック・スワイプで次へ</span></p></div>
+<nav id="ui" aria-label="スライドの操作">
+  <button id="bPrev" aria-label="前へ"><svg viewBox="0 0 24 24"><path d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4L10.8 12z"/></svg></button>
+  <span id="pg">1 / 18</span>
+  <button id="bNext" aria-label="次へ"><svg viewBox="0 0 24 24"><path d="M8.6 16.6 10 18l6-6-6-6-1.4 1.4 4.6 4.6z"/></svg></button>
+  <button id="bAuto" aria-pressed="false" title="自動で進む"><svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z"/></svg>自動</button>
+  <button id="bSnd" aria-pressed="true" title="音"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4z"/></svg>音</button>
+  <button id="bSub" aria-pressed="false" title="字幕">字幕</button>
+</nav>
+
+<script src="assets/data.js"></script>
+<script>
+(() => {
+'use strict';
+const D = window.DECK;
+const Q = new URLSearchParams(location.search);
+const RENDER = Q.has('render');
+if (RENDER) document.body.classList.add('render');
+const stage = document.getElementById('stage');
+const slides = [...document.querySelectorAll('.slide')];
+const N = slides.length;
+const SD = Object.fromEntries(D.slides.map(s => [s.id, s]));
+// ---------- 便利関数 ----------
+const cl = (a, b, v) => Math.max(a, Math.min(b, v));
+const e3 = p => 1 - Math.pow(1 - p, 3), e5 = p => 1 - Math.pow(1 - p, 5), eio = p => p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+const eback = (p, s = 1.7) => 1 + (s + 1) * Math.pow(p - 1, 3) + s * Math.pow(p - 1, 2);
+const eel = p => p <= 0 ? 0 : p >= 1 ? 1 : Math.pow(2, -10 * p) * Math.sin((p * 10 - .75) * (2 * Math.PI / 3)) + 1;
+const ebounce = p => { const n = 7.5625, d = 2.75; if (p < 1 / d) return n * p * p; if (p < 2 / d) return n * (p -= 1.5 / d) * p + .75; if (p < 2.5 / d) return n * (p -= 2.25 / d) * p + .9375; return n * (p -= 2.625 / d) * p + .984375; };
+const hash = (i, s = 0) => { const x = Math.sin(i * 127.1 + s * 311.7) * 43758.5453; return x - Math.floor(x); };
+const lerp = (a, b, k) => a + (b - a) * k;
+let PT = false; // 縦長
+
+// ---------- 時刻の書き方：数字 / L1+0.5 / L1@ことば-0.2 / E-1 ----------
+function T(spec, sid) {
+  if (spec == null || spec === '') return 0;
+  const s = SD[sid]; spec = String(spec).trim();
+  if (spec[0] === 'E') return s.dur + (parseFloat(spec.slice(1)) || 0);
+  if (spec[0] === 'L') {
+    const n = parseInt(spec[1]) - 1, ln = s.lines[n]; let rest = spec.slice(2), base = ln.rel;
+    if (rest[0] === '@') { const m = rest.slice(1).match(/^([^+\-]+)(.*)$/); const key = m[1]; rest = m[2];
+      const idx = ln.text.indexOf(key); if (idx < 0) console.warn('time key not found', sid, key); base = ln.rel + (idx < 0 ? 0 : ln.dur * idx / ln.text.length); }
+    return base + (parseFloat(rest) || 0);
+  }
+  return parseFloat(spec) || 0;
+}
+
+// ---------- 中身を組み立てる（グラフ・表など） ----------
+function build() {
+  // 市場の棒グラフ
+  const vals = [[2020, 261088], [2021, 285575], [2022, 253287], [2023, 224352], [2024, 218175]];
+  const g = document.getElementById('dcBars'); let path = '';
+  vals.forEach(([y, v], i) => {
+    const h = v / 285575 * 420, x = 70 + i * 220, w = 130, st = T('L1+' + (0.1 + i * 0.35).toFixed(2), 'decline');
+    g.insertAdjacentHTML('beforeend', `<rect data-bar data-y0="540" data-h="${h}" data-t="${st}" data-d="1.1" data-sfx="pop" x="${x}" width="${w}" y="540" height="0" rx="10" fill="${i >= 3 ? '#ff6b5e' : '#7d8db0'}"/>
+      <text x="${x + w / 2}" y="${528 - h}" text-anchor="middle" fill="#fff" font-size="30" font-weight="900" data-a="fade" data-t="${st + 0.5}" data-d="0.4"><tspan class="num" data-count="${v}" data-t="${st}" data-d="1.0">0</tspan></text>
+      <text x="${x + w / 2}" y="580" text-anchor="middle" fill="#d9d2c5" font-size="26" font-weight="700">${y}年</text>`);
+    if (i === 0 || i === 4) path += (i ? ' L' : 'M') + (x + w / 2) + ' ' + (540 - h - 105);
+  });
+  document.getElementById('dcTrend').setAttribute('d', path);
+  // 道すじ（ペルソナ）
+  const J = document.getElementById('journey');
+  const steps = ['SNSで事例を見る', '会社名で検索', 'LPで費用を確認', '見学会を予約'];
+  const pts = PT ? [[60, 60], [300, 180], [60, 320], [300, 440]] : [[110, 120], [310, 250], [510, 120], [700, 250]];
+  if (PT) J.setAttribute('viewBox', '0 0 820 520'); else J.setAttribute('viewBox', '0 0 800 360');
+  let d = `M${pts[0][0]} ${pts[0][1]}`; for (let i = 1; i < 4; i++) d += ` C ${pts[i - 1][0] + 110} ${pts[i - 1][1]}, ${pts[i][0] - 110} ${pts[i][1]}, ${pts[i][0]} ${pts[i][1]}`;
+  const j0 = T('L1@夜-0.2', 'persona');
+  J.innerHTML = `<path d="${d}" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="10" stroke-linecap="round"/>
+    <path id="jPath" data-draw data-t="${j0}" data-d="2.6" d="${d}" fill="none" stroke="#ffc35a" stroke-width="10" stroke-linecap="round"/>` +
+    steps.map((s, i) => `<g data-a="pop" data-t="${(j0 + i * 0.85).toFixed(2)}" data-d="0.5" data-sfx="pop" style="transform-origin:${pts[i][0]}px ${pts[i][1]}px">
+      <circle cx="${pts[i][0]}" cy="${pts[i][1]}" r="38" fill="${i === 3 ? '#ff9f1c' : '#1e2a44'}" stroke="#ffc35a" stroke-width="5"/>
+      <text x="${pts[i][0]}" y="${pts[i][1] + 13}" text-anchor="middle" font-size="36" font-family="Dela" fill="#fff">${i + 1}</text>
+      <text x="${pts[i][0] + (PT ? 60 : 0)}" y="${pts[i][1] + (PT ? 12 : (i % 2 ? 82 : -56))}" text-anchor="${PT ? 'start' : 'middle'}" font-size="${PT ? 34 : 28}" font-weight="900" fill="${i === 3 ? '#ffc35a' : '#fff7ea'}">${s}</text></g>`).join('') +
+    `<circle id="jDot" r="16" fill="#fff" style="filter:drop-shadow(0 0 12px #ffc35a)" opacity="0"/>`;
+  // ガント
+  const G = document.getElementById('gantt');
+  const rows = [['調査・設計（ペルソナ・計測）', 0, 0.9, 'g'], ['LP制作・公開', 0, 1.95, 'g'], ['Web広告の運用', 1, 6, 'o'], ['Instagramの投稿', 0, 6, 'g'], ['見学会（毎月）', 1, 6, 'o'], ['月次レポート・改善', 1, 6, 'g']];
+  G.innerHTML = `<div class="gr hd"><span></span>${[1, 2, 3, 4, 5, 6].map((m, i) => `<div data-a="drop" data-t="${0.3 + i * 0.07}" data-d="0.5">${m}か月目</div>`).join('')}</div>` +
+    rows.map(([n, a, b, c], i) => `<div class="gr"><div class="nm" data-a="slideL" data-t="${0.5 + i * 0.1}" data-d="0.5">${n}</div><div class="bar ${c}" data-a="stretch" data-t="${(T('L1', 'sched') + 0.4 + a * 0.45 + i * 0.12).toFixed(2)}" data-d="0.8" data-sfx="${i % 2 ? '' : 'whoosh'}" style="left:calc(${PT ? 250 : 420}px + (100% - ${PT ? 250 : 420}px) * ${a / 6} + 4px);width:calc((100% - ${PT ? 250 : 420}px) * ${(b - a) / 6} - 8px)"></div></div>`).join('');
+  // 見積の表
+  const qrows = [['初期', '見学会の予約LPの制作', '300,000', '1式', '300,000', ''], ['初期', '広告アカウントの設計・計測の設定', '50,000', '1式', '50,000', ''], ['月額', 'Web広告の運用代行', '50,000', '6か月', '300,000', 'm'], ['月額', 'Instagram投稿の制作（月12本）', '4,000', '72本', '288,000', 'm'], ['月額', '月次レポート・改善の打ち合わせ', '20,000', '6回', '120,000', 'm'], ['実費', '広告費（目安）', '150,000', '6か月', '900,000', 'j']];
+  document.getElementById('qTable').innerHTML = `<div class="tr h" data-a="fade" data-t="0.2" data-d="0.3"><span>区分</span><span>項目</span><span class="r">単価（円）</span><span class="r">数量</span><span class="r">金額（円）</span></div>` +
+    qrows.map((r, i) => `<div class="tr" data-a="slideR" data-t="${(0.35 + i * 0.16).toFixed(2)}" data-d="0.45" data-sfx="tick"><span class="k ${r[5]}">${r[0]}</span><span>${r[1]}</span><span class="r">${r[2]}</span><span class="r">${r[3]}</span><span class="r">${r[4]}</span></div>`).join('');
+  // 効果のグラフ
+  const ev = [2, 5, 7, 8, 9, 10], ES = document.getElementById('effSvg'); const f0 = T('L1@10件-2.6', 'effect');
+  let es = `<line x1="0" y1="480" x2="840" y2="480" stroke="rgba(255,255,255,.3)" stroke-width="2"/>`;
+  ev.forEach((v, i) => { const h = v / 10 * 400, x = 30 + i * 135, w = 90, st = f0 + i * 0.32;
+    es += `<rect data-bar data-y0="480" data-h="${h}" data-t="${st.toFixed(2)}" data-d="1.0" data-sfx="pop" x="${x}" width="${w}" y="480" height="0" rx="10" fill="${i === 5 ? '#ff9f1c' : '#3ad1bf'}"/>
+      <text x="${x + w / 2}" y="${466 - h}" text-anchor="middle" fill="#fff" font-size="34" font-family="Dela" data-a="pop" data-t="${(st + 0.45).toFixed(2)}" data-d="0.4" style="transform-origin:${x + w / 2}px ${466 - h}px">${v}</text>
+      <text x="${x + w / 2}" y="520" text-anchor="middle" fill="#d9d2c5" font-size="24" font-weight="700">${i + 1}か月目</text>`; });
+  ES.innerHTML = es;
+  // 競合の表：セル
+  document.querySelectorAll('#rivalT td, #rivalT th').forEach((c, k) => { const r = c.parentElement.rowIndex, ci = c.cellIndex; c.dataset.a = 'flip'; c.dataset.t = (0.35 + r * 0.16 + ci * 0.05).toFixed(2); c.dataset.d = '0.45'; if (ci === 0) c.dataset.sfx = 'flip'; });
+}
+
+// ---------- 文字を1字ずつに分ける ----------
+function splitChars(root) {
+  root.querySelectorAll('[data-split]').forEach(el => {
+    if (el.dataset.done) return; el.dataset.done = 1;
+    const t0 = el.dataset.t, st = parseFloat(el.dataset.st || .05), a = el.dataset.a, d = el.dataset.d;
+    const txt = el.textContent; el.textContent = ''; el.removeAttribute('data-a');
+    [...txt].forEach((ch, i) => { const s = document.createElement('span'); s.className = 'ch'; s.textContent = ch; s.dataset.a = a; s.dataset.t = t0; s.dataset.ts = i * st; s.dataset.d = d; s.dataset.i = i; el.appendChild(s); });
+  });
+}
+
+// ---------- 演出の種類（p は 0→1） ----------
+const FX = {
+  fade: p => ({ o: p }),
+  rise: p => ({ o: p, ty: (1 - e3(p)) * 60, bl: (1 - p) * 10 }),
+  soft: p => ({ o: p, ty: (1 - e3(p)) * 24, bl: (1 - p) * 16 }),
+  glowrise: (p, i) => ({ o: cl(0, 1, p * 1.4), ty: (1 - e5(p)) * 70, bl: (1 - e3(p)) * 22, sc: 1 + (1 - e3(p)) * .25 }),
+  depth: p => ({ o: p, sc: 1 + (1 - e5(p)) * 2.2, bl: (1 - p) * 24 }),
+  burst: p => ({ o: cl(0, 1, p * 3), sc: eback(p, 2.6), rz: (1 - e3(p)) * -14 }),
+  burstC: (p, i) => ({ o: cl(0, 1, p * 3), sc: eback(p, 3), ty: (1 - e3(p)) * -40 * (i % 2 ? 1 : -1) }),
+  pop: p => ({ o: cl(0, 1, p * 3), sc: .4 + .6 * eback(p, 2.4) }),
+  zoom: p => ({ o: cl(0, 1, p * 2), sc: .2 + .8 * eback(p, 1.8) }),
+  slideL: p => ({ o: cl(0, 1, p * 2), tx: -(1 - eback(p, 1.2)) * 700 }),
+  slideR: p => ({ o: cl(0, 1, p * 2), tx: (1 - eback(p, 1.2)) * 700 }),
+  slideU: p => ({ o: cl(0, 1, p * 2), ty: (1 - eback(p, 1.3)) * 380 }),
+  drop: p => ({ o: cl(0, 1, p * 4), ty: -(1 - ebounce(p)) * 700 }),
+  flip: p => ({ o: cl(0, 1, p * 2.5), rx: (1 - e3(p)) * 92, persp: 1 }),
+  flipY: p => ({ o: cl(0, 1, p * 2.5), ry: (1 - eback(p, 1.4)) * -90, persp: 1 }),
+  swing: p => ({ o: cl(0, 1, p * 2), ry: (1 - eback(p, 1.5)) * 75, persp: 1 }),
+  spinIn: p => ({ o: cl(0, 1, p * 2), rz: (1 - e3(p)) * 380, sc: e3(p), tx: (1 - e3(p)) * 400 }),
+  wipe: p => ({ clip: `inset(-20% ${(1 - e3(p)) * 100}% -20% 0)` }),
+  stretch: p => ({ sx: eel(p) }),
+  stamp: p => ({ o: cl(0, 1, p * 3), sc: 1 + (1 - p * p) * 2.2 }),
+  shake: (p, i, ts) => ({ o: cl(0, 1, p * 4), sc: 1 + (1 - e3(p)) * 1.5, tx: p >= 1 ? 0 : Math.sin(ts * 90) * 14 * (1 - p), rz: p >= 1 ? 0 : Math.sin(ts * 70) * 3 * (1 - p) }),
+  type: p => ({ o: p >= .02 ? 1 : 0, sc: p < .02 ? 1 : 1 + (1 - e3(cl(0, 1, p))) * .35 }),
+  scatter: (p, i) => ({ o: cl(0, 1, p * 2), tx: (1 - e5(p)) * (hash(i, 1) - .5) * 1600, ty: (1 - e5(p)) * (hash(i, 2) - .5) * 900, rz: (1 - e5(p)) * (hash(i, 3) - .5) * 720, sc: 1 + (1 - e5(p)) * 1.5 }),
+  track: p => ({ o: p, ls: lerp(1.2, .42, e3(p)) + 'em' }),
+  chapter: p => ({ o: p, sc: 1.25 - .25 * e3(p), bl: (1 - p) * 20, ls: null }),
+  unveil: p => ({ o: 1 - e3(p) }),
+  leak: p => ({ o: Math.sin(Math.PI * p) * .95, tx: p * 900 }),
+  flare: p => ({ o: Math.sin(Math.PI * cl(0, 1, p)), sx: .2 + p * 1.2 }),
+  frame: p => ({ o: cl(0, 1, p * 2), sc: 1.3 - .3 * eback(p, 2) }),
+  spinSlow: p => ({ rz: p * 40 }),
+  spinFast: p => ({ rz: p * 120 }),
+  flicker: (p, i, ts) => ({ o: .75 + .25 * Math.sin(ts * 9) * Math.sin(ts * 2.3) }),
+};
+const LOOPING = new Set(['spinSlow', 'spinFast', 'flicker', 'leak']);
+function applyFX(el, r) {
+  const s = el.style;
+  if (r.o !== undefined) s.opacity = r.o;
+  let tf = '';
+  if (r.persp) tf += 'perspective(1200px) ';
+  if (r.tx || r.ty) tf += `translate(${(r.tx || 0).toFixed(1)}px,${(r.ty || 0).toFixed(1)}px) `;
+  if (r.rx) tf += `rotateX(${r.rx.toFixed(2)}deg) `;
+  if (r.ry) tf += `rotateY(${r.ry.toFixed(2)}deg) `;
+  if (r.rz) tf += `rotate(${r.rz.toFixed(2)}deg) `;
+  if (r.sc !== undefined && r.sc !== 1) tf += `scale(${r.sc.toFixed(4)}) `;
+  if (r.sx !== undefined) tf += `scaleX(${Math.max(0.0001, r.sx).toFixed(4)}) `;
+  s.transform = tf;
+  s.filter = r.bl > 0.05 ? `blur(${r.bl.toFixed(1)}px)` : '';
+  if (r.clip !== undefined) s.clipPath = r.clip;
+  if (r.ls) s.letterSpacing = r.ls;
+}
+
+// ---------- 1枚ごとの準備 ----------
+const S = slides.map((el, i) => ({ el, id: el.dataset.id, i }));
+function prep(sl) {
+  const sid = sl.id; splitChars(sl.el);
+  sl.anims = [...sl.el.querySelectorAll('[data-a]')].map(el => {
+    const t = T(el.dataset.t, sid) + parseFloat(el.dataset.ts || 0);
+    return { el, fx: el.dataset.a, t, d: parseFloat(el.dataset.d || .6), i: +(el.dataset.i || 0), out: el.dataset.out ? T(el.dataset.out, sid) : null, od: parseFloat(el.dataset.od || .5) };
+  });
+  sl.counters = [...sl.el.querySelectorAll('[data-count]')].map(el => ({ el, to: parseFloat(el.dataset.count), from: parseFloat(el.dataset.from || 0), t: T(el.dataset.t, sid), d: parseFloat(el.dataset.d || 1), dec: parseInt(el.dataset.dec || 0), fmt: el.dataset.fmt || '', suf: el.dataset.suf || '' }));
+  sl.bars = [...sl.el.querySelectorAll('[data-bar]')].map(el => ({ el, y0: +el.dataset.y0, h: +el.dataset.h, t: T(el.dataset.t, sid), d: +el.dataset.d }));
+  sl.rings = [...sl.el.querySelectorAll('[data-ring]')].map(el => { const C = 2 * Math.PI * el.r.baseVal.value; el.style.strokeDasharray = C; return { el, C, v: +el.dataset.ring, t: T(el.dataset.t, sid), d: +el.dataset.d }; });
+  sl.draws = [...sl.el.querySelectorAll('[data-draw]')].map(el => ({ el, t: T(el.dataset.t, sid), d: +el.dataset.d, L: 0 }));
+  sl.videos = [...sl.el.querySelectorAll('video[data-v]')].map(v => ({ v, off: parseFloat(v.dataset.off || 0), at: v.dataset.at ? T(v.dataset.at, sid) : 0, z: v.dataset.z ? v.dataset.z.split(':').map(Number) : null }));
+  // 効果音の予定
+  const ev = [];
+  sl.el.querySelectorAll('[data-sfx]').forEach(el => { if (!el.dataset.sfx) return; const a = sl.anims.find(x => x.el === el); const t = a ? a.t : (el.dataset.t ? T(el.dataset.t, sid) : 0); ev.push([t, el.dataset.sfx]); });
+  sl.counters.forEach(c => { if (c.el.dataset.sfxEnd) ev.push([c.t + c.d, c.el.dataset.sfxEnd]);
+    if (c.el.hasAttribute('data-tick')) { const n = Math.min(14, Math.max(4, Math.round(c.d / .09))); for (let k = 0; k < n; k++) ev.push([c.t + c.d * (1 - Math.pow(1 - k / n, 2.2)) * .9, 'tick']); } });
+  (SLIDE_SFX[sid] || []).forEach(([t, n]) => ev.push([T(t, sid), n]));
+  sl.sfx = ev.sort((a, b) => a[0] - b[0]);
+  sl.len = SD[sid].dur;
+}
+// スライドごとの効果音（要素に付けない物）
+const SLIDE_SFX = { cat1: [['0.25', 'boing'], ['0.4', 'sparkle']], cat2: [['0', 'impact'], ['0.15', 'boing']], concept: [['0.2', 'whoosh']], climax: [['0', 'impact'], ['L1-0.3', 'light']], effect: [['L1@10件+0.5', 'tada']], quote: [['L1@215+0.4', 'tada']], future: [['0.3', 'light']], persona: [['L1@夜+2.1', 'ding']] };
+
+// ---------- 猫：場所（横長・縦長）と動き ----------
+const CAT = {
+  cat1: { L: [960, 1110, 800], P: [540, 1700, 880], enter: 'popUp', act: 'cheer', at: [0.3, 2.2], bubble: 'top' },
+  phone: { L: [1745, 1095, 430], P: [930, 1950, 400], enter: 'peek', act: 'talk', t: 'L1-0.2' },
+  cat2: { L: [520, 1110, 840], P: [540, 1090, 640], enter: 'zoom', act: 'cheer', at: [0.2, 2.6], bubble: false },
+  rival: { L: [1775, 1095, 400], P: [930, 1950, 360], enter: 'slideR', act: 'point', target: '#rivalCall', pt: 'L1@ここが' },
+  concept: { L: [190, 1095, 380], P: [940, 1950, 290], enter: 'drop', act: 'cheer', at: ['L1+3.6', 'L1+4.1', 'L1+4.6'] },
+  persona: { L: [1780, 1095, 360], P: [940, 1950, 320], enter: 'hop', act: 'point', target: '#journey', pt: 'L1@夜+2.3' },
+  plan: { L: [1785, 1095, 360], P: [940, 1950, 320], enter: 'spin', act: 'point', target: '.s-plan .goal', pt: 'E-1.0' },
+  sched: { L: [1785, 1095, 360], P: [930, 1950, 320], enter: 'slideR', act: 'talk' },
+  quote: { L: [1800, 1095, 320], P: [940, 1950, 300], enter: 'hop', act: 'point', target: '.s-quote .tot', pt: 'L1@215' },
+  effect: { L: [1780, 1095, 400], P: [930, 1950, 340], enter: 'peek', act: 'point', target: '#effChart', pt: 'L1@10件' },
+  summary: { L: [1720, 1095, 450], P: [920, 1950, 330], enter: 'drop', act: 'cheer', at: ['L1@数字で+0.6'] },
+  roll: { L: [1590, 1040, 440], P: [880, 1880, 300], enter: 'slideR', act: 'wave' },
+};
+const catEl = document.getElementById('cat'), catImgs = Object.fromEntries([...catEl.querySelectorAll('img')].map(i => [i.dataset.k, i]));
+const shadowEl = document.getElementById('catShadow'), bubble = document.getElementById('bubble'), ptrPath = document.getElementById('ptrPath'), paw = document.getElementById('paw');
+let lastImg = null;
+function catFace(m, eyesClosed) { const k = `m${m}${eyesClosed ? 'ec' : 'eo'}`; if (k !== lastImg) { if (lastImg) catImgs[lastImg].classList.remove('on'); catImgs[k].classList.add('on'); lastImg = k; } }
+function mouthAt(sid, ts) {
+  for (const ln of SD[sid].lines) { const k = Math.floor((ts - ln.rel) * 30); if (k >= 0 && k < ln.mouth.length) return { m: +ln.mouth[k], ln, p: (ts - ln.rel) / ln.dur }; }
+  return { m: 0, ln: null };
+}
+function stageRect(el) { const r = el.getBoundingClientRect(), s = stage.getBoundingClientRect(), k = s.width / (PT ? 1080 : 1920); return { x: (r.left - s.left) / k, y: (r.top - s.top) / k, w: r.width / k, h: r.height / k }; }
+function renderCat(sl, ts, gT) {
+  const c = CAT[sl.id];
+  if (!c) { catEl.style.opacity = 0; shadowEl.style.opacity = 0; bubble.style.opacity = 0; ptrPath.setAttribute('d', ''); paw.setAttribute('opacity', 0); return; }
+  const [X, Y, Hh] = PT ? c.P : c.L, Wd = Hh * 460 / 595;
+  const t0 = c.t ? T(c.t, sl.id) : 0.05, p = cl(0, 1, (ts - t0) / 0.75);
+  let tx = 0, ty = 0, sc = 1, rz = 0, sx = 1, sy = 1, o = 1;
+  switch (c.enter) {
+    case 'popUp': ty = (1 - eback(p, 2)) * (Hh + 200); { const q = cl(0, 1, (ts - t0 - .55) / .35); sy = 1 - Math.sin(q * Math.PI) * .12; sx = 1 + Math.sin(q * Math.PI) * .1; } break;
+    case 'peek': { const p1 = cl(0, 1, (ts - t0) / .5), p2 = cl(0, 1, (ts - t0 - .9) / .5); ty = Hh * (1 - .45 * e3(p1)) * (1 - eback(p2, 2.2)) ; rz = (1 - p2) * -8; } break;
+    case 'zoom': sc = .05 + .95 * eback(p, 1.6); rz = (1 - e3(p)) * -360; o = cl(0, 1, p * 3); break;
+    case 'slideR': tx = (1 - e3(p)) * 900; ty = -Math.abs(Math.sin(p * Math.PI * 3)) * 80 * (1 - p); break;
+    case 'drop': ty = -(1 - ebounce(p)) * (Y + 200); { const q = cl(0, 1, (ts - t0 - .35) / .3); sy = 1 - Math.sin(q * Math.PI) * .15; sx = 1 + Math.sin(q * Math.PI) * .12; } break;
+    case 'hop': tx = (1 - e3(p)) * -600; ty = -Math.sin(p * Math.PI) * 260; rz = (1 - p) * 20; break;
+    case 'spin': sc = e3(p); rz = (1 - e3(p)) * 540; o = cl(0, 1, p * 2); break;
+  }
+  const sp = mouthAt(sl.id, ts); const talking = !!sp.ln;
+  // 動き
+  if (talking) ty -= sp.m * 5 + Math.abs(Math.sin(ts * 7)) * 6;
+  rz += Math.sin(ts * 1.8) * 2.2;
+  if (c.act === 'cheer') for (const a of c.at) { const q = (ts - T(a, sl.id)) / .55; if (q > 0 && q < 1) { ty -= Math.sin(q * Math.PI) * Hh * .28; const sq = q < .15 ? q / .15 : 0; sy *= 1 + Math.sin(q * Math.PI) * .06; } }
+  if (c.act === 'wave') rz += Math.sin(ts * 5) * 6;
+  let ptK = 0;
+  if (c.act === 'point') { ptK = cl(0, 1, (ts - T(c.pt, sl.id) + .3) / .6); rz += -10 * e3(ptK); tx -= 20 * e3(ptK); }
+  catEl.style.width = Wd + 'px'; catEl.style.height = Hh + 'px'; catEl.style.opacity = o;
+  catEl.style.transform = `translate(${(X - Wd / 2 + tx).toFixed(1)}px,${(Y - Hh + ty).toFixed(1)}px) rotate(${rz.toFixed(2)}deg) scale(${(sc * sx).toFixed(3)},${(sc * sy).toFixed(3)})`;
+  shadowEl.style.opacity = o * cl(0, 1, 1 + ty / 300) * .9; shadowEl.style.width = Wd * .8 + 'px'; shadowEl.style.height = Wd * .14 + 'px';
+  shadowEl.style.transform = `translate(${(X - Wd * .4 + tx).toFixed(1)}px,${(Y - Wd * .08).toFixed(1)}px)`;
+  // 口とまばたき
+  const blink = ((gT * 1000 + sl.i * 737) % 3900) < 130 || ((gT * 1000 + sl.i * 737) % 3900 > 260 && (gT * 1000 + sl.i * 737) % 3900 < 330 && sl.i % 2);
+  catFace(sp.m, blink);
+  // ふきだし（猫のせりふ）
+  if (c.bubble !== undefined && sp.ln && c.bubble) {
+    const q = cl(0, 1, (ts - sp.ln.rel + .15) / .3); bubble.style.opacity = q; const n = Math.ceil(sp.ln.text.length * cl(0, 1, sp.p * 1.1));
+    bubble.textContent = sp.ln.text.slice(0, n) || '　';
+    const bx = X - 40, by = Y - Hh - 40;
+    bubble.style.transform = `translate(${bx}px,${by}px) translate(-10%,-100%) scale(${eback(q, 2).toFixed(3)})`; bubble.className = '';
+  } else bubble.style.opacity = 0;
+  // ゆびさし
+  if (c.act === 'point' && ptK > 0) {
+    const tg = document.querySelector(c.target); if (tg) { const r = stageRect(tg); const sx0 = X - Wd * .42 + tx, sy0 = Y - Hh * .55;
+      const ex = Math.min(r.x + r.w - 10, sx0 - 140), ey = cl(r.y + 30, r.y + r.h - 30, sy0 - 40);
+      const mx = (sx0 + ex) / 2, my = Math.min(sy0, ey) - 120;
+      ptrPath.setAttribute('d', `M${sx0} ${sy0} Q ${mx} ${my} ${ex} ${ey}`); const L = ptrPath.getTotalLength(); ptrPath.style.strokeDasharray = L; ptrPath.style.strokeDashoffset = L * (1 - e3(ptK));
+      paw.setAttribute('opacity', e3(ptK)); paw.setAttribute('transform', `translate(${sx0} ${sy0 + 10}) scale(${.8 + .2 * Math.sin(ts * 6)})`); }
+  } else { ptrPath.setAttribute('d', ''); paw.setAttribute('opacity', 0); }
+}
+
+// ---------- 画面いっぱいの粒（紙ふぶき・雨・光） ----------
+const fx = document.getElementById('fx'), fc = fx.getContext('2d');
+const FXL = {
+  open: [['dust', 0]], cat1: [['confetti', 0.35, .5, .78, 160]], decline: [['rain', 0]], phone: [['dust', 0]], alone: [['fireflies', 0]],
+  cat2: [['speed', 0, 1.4], ['confetti', 'L1@つくり', .3, .55, 180]], concept: [['dust', 0]], quote: [['confetti', 'L1@215', .72, .5, 140]],
+  effect: [['confetti', 'L1@10件', .3, .45, 140]], summary: [['sparks', 0]], climax: [['dust', 0], ['rays', 0]], roll: [['dust', 0]], future: [['fireflies', 0]], persona: [['confetti', 'L1@夜+2.4', .8, .7, 80]]
+};
+function renderFX(sl, ts) {
+  const W = PT ? 1080 : 1920, H = PT ? 1920 : 1080;
+  if (fx.width !== W) { fx.width = W; fx.height = H; }
+  fc.clearRect(0, 0, W, H);
+  for (const [k, tt, a, b, n] of (FXL[sl.id] || [])) {
+    const t0 = T(tt, sl.id), dt = ts - t0; if (dt < 0) continue;
+    if (k === 'confetti') { const cols = ['#ffc35a', '#ff6b5e', '#3ad1bf', '#5b8cff', '#ffffff', '#ff9f1c'];
+      for (let i = 0; i < n; i++) { const ang = -Math.PI / 2 + (hash(i, 9) - .5) * 2.2, sp = 700 + hash(i, 4) * 1100; const vx = Math.cos(ang) * sp, vy = Math.sin(ang) * sp;
+        const drag = 1 - Math.exp(-dt * 1.6); const x = a * W + vx * drag / 1.6 + Math.sin(dt * 3 + i) * 20 * dt, y = b * H + vy * drag / 1.6 + 260 * dt * dt;
+        const al = cl(0, 1, 3.6 - dt); if (al <= 0 || y > H + 40) continue;
+        fc.save(); fc.globalAlpha = al; fc.translate(x, y); fc.rotate(dt * (4 + hash(i, 6) * 8) + i); fc.scale(1, Math.cos(dt * (5 + hash(i, 8) * 6) + i)); fc.fillStyle = cols[i % 6];
+        const s = 9 + hash(i, 5) * 12; fc.fillRect(-s / 2, -s / 4, s, s / 2); fc.restore(); } }
+    if (k === 'rain') { fc.strokeStyle = 'rgba(160,180,220,.22)'; fc.lineWidth = 2; for (let i = 0; i < 160; i++) { const x = hash(i, 1) * W, sp = 900 + hash(i, 2) * 700, y = ((hash(i, 3) * H + ts * sp) % (H + 100)) - 50; fc.beginPath(); fc.moveTo(x, y); fc.lineTo(x - 6, y + 40); fc.stroke(); } }
+    if (k === 'dust') { for (let i = 0; i < 60; i++) { const x = (hash(i, 1) * W + ts * (8 + hash(i, 2) * 20)) % W, y = (hash(i, 3) * H - ts * (5 + hash(i, 4) * 12) + H) % H, r = 1.5 + hash(i, 5) * 3.5; fc.fillStyle = `rgba(255,225,170,${.12 + .25 * Math.abs(Math.sin(ts * .8 + i))})`; fc.beginPath(); fc.arc(x, y, r, 0, 7); fc.fill(); } }
+    if (k === 'fireflies') { for (let i = 0; i < 46; i++) { const x = (hash(i, 1) * W + Math.sin(ts * .5 + i) * 30), y = H - ((hash(i, 3) * H + ts * (14 + hash(i, 4) * 20)) % H), r = 2 + hash(i, 5) * 3; const al = .25 + .5 * Math.max(0, Math.sin(ts * 1.4 + i * 1.7)); const g = fc.createRadialGradient(x, y, 0, x, y, r * 5); g.addColorStop(0, `rgba(255,200,120,${al})`); g.addColorStop(1, 'rgba(255,200,120,0)'); fc.fillStyle = g; fc.fillRect(x - r * 5, y - r * 5, r * 10, r * 10); } }
+    if (k === 'speed') { const d = a || 1; if (dt < d) { const f = Math.floor(ts * 24); fc.strokeStyle = `rgba(255,255,255,${.7 * (1 - dt / d)})`; for (let i = 0; i < 90; i++) { const an = hash(i, f) * Math.PI * 2, r0 = 260 + hash(i, f + 1) * 300, r1 = r0 + 500 + hash(i, f + 2) * 900; fc.lineWidth = 2 + hash(i, f + 3) * 7; const cx = W * (PT ? .5 : .3), cy = H * (PT ? .4 : .6); fc.beginPath(); fc.moveTo(cx + Math.cos(an) * r0, cy + Math.sin(an) * r0); fc.lineTo(cx + Math.cos(an) * r1, cy + Math.sin(an) * r1); fc.stroke(); } } }
+    if (k === 'sparks') { for (let i = 0; i < 40; i++) { const per = 2.5 + hash(i, 1) * 2, ph = ((ts + hash(i, 2) * per) % per) / per; const x = hash(i, 3) * W, y = H * (1 - ph) ; fc.fillStyle = `rgba(255,195,90,${.5 * Math.sin(ph * Math.PI)})`; fc.fillRect(x, y, 3, 10); } }
+    if (k === 'rays') { const g = fc.createRadialGradient(W / 2, H * .62, 0, W / 2, H * .62, W * .7); const k2 = cl(0, 1, dt / 2.5); g.addColorStop(0, `rgba(255,220,150,${.45 * k2})`); g.addColorStop(1, 'rgba(255,200,120,0)'); fc.fillStyle = g; fc.fillRect(0, 0, W, H); }
+  }
+}
+
+// ---------- 1枚を描く ----------
+const lbT = document.getElementById('lbT'), lbB = document.getElementById('lbB'), flash = document.getElementById('flash'), chapTag = document.getElementById('chapTag'), sub = document.getElementById('sub');
+function renderSlide(sl, ts, gT) {
+  for (const a of sl.anims) {
+    const f = FX[a.fx]; if (!f) continue;
+    let p = (ts - a.t) / a.d;
+    if (!LOOPING.has(a.fx)) p = cl(0, 1, p); else p = Math.max(0, p);
+    if (!LOOPING.has(a.fx) && a.lastP === p && a.out == null && a.fx !== 'shake') continue;
+    a.lastP = p;
+    const r = f(p, a.i, ts);
+    if (a.out != null) { const q = cl(0, 1, (ts - a.out) / a.od); if (q > 0) { r.o = (r.o ?? 1) * (1 - q); r.bl = (r.bl || 0) + q * 14; r.sc = (r.sc ?? 1) * (1 + q * .08); } }
+    applyFX(a.el, r);
+  }
+  for (const c of sl.counters) {
+    const p = cl(0, 1, (ts - c.t) / c.d), k = p >= 1 ? 1 : 1 - Math.pow(2, -10 * p);
+    const v = c.from + (c.to - c.from) * k; let s;
+    if (c.fmt === 'cho') { const n = Math.round(v); s = n >= 10000 ? `${Math.floor(n / 10000)}兆${(n % 10000).toLocaleString('ja-JP')}億円` : `${n.toLocaleString('ja-JP')}億円`; }
+    else s = (c.dec ? v.toFixed(c.dec) : Math.round(v).toLocaleString('ja-JP')) + c.suf;
+    if (c.el.textContent !== s) c.el.textContent = s;
+    const q = (ts - c.t - c.d) / .35; c.el.style.transform = q > 0 && q < 1 ? `scale(${1 + .3 * Math.sin(q * Math.PI)})` : '';
+    c.el.style.filter = p > 0 && p < .85 ? `blur(${(1.4 * (1 - p)).toFixed(1)}px)` : '';
+  }
+  for (const b of sl.bars) { const p = cl(0, 1, (ts - b.t) / b.d), h = b.h * eel(p); b.el.setAttribute('y', b.y0 - h); b.el.setAttribute('height', Math.max(0, h)); }
+  for (const r of sl.rings) { const p = cl(0, 1, (ts - r.t) / r.d); r.el.style.strokeDashoffset = r.C * (1 - r.v / 100 * e3(p)); }
+  for (const d of sl.draws) { if (!d.L) { d.L = d.el.getTotalLength() || 1; d.el.style.strokeDasharray = d.el.getAttribute('stroke-dasharray') && d.el.id === 'dcTrend' ? '' : d.L; }
+    const p = cl(0, 1, (ts - d.t) / d.d); if (d.el.id === 'dcTrend') { d.el.style.opacity = p > 0 ? 1 : 0; d.el.style.clipPath = `inset(0 ${(1 - e3(p)) * 100}% 0 0)`; } else d.el.style.strokeDashoffset = d.L * (1 - e3(p)); }
+  for (const v of sl.videos) if (v.z) { const p = cl(0, 1, ts / sl.len); v.v.style.transform = `scale(${lerp(v.z[0], v.z[1], p)})`; }
+  // 特別な動き
+  if (sl.id === 'sched') { const c = document.getElementById('gCursor'), g = document.getElementById('gantt'); const r = stageRect(g); const left = PT ? 250 : 420; const p = cl(0, 1, (ts - T('L1', 'sched') - .3) / 4.2);
+    c.style.opacity = p > 0 && p < 1 ? 1 : 0; c.style.left = (r.x + left + (r.w - left) * e3(p)) + 'px';
+    [...sl.el.querySelectorAll('.ms')].forEach(m => m.remove()); for (const mm of [3, 6]) { const q = cl(0, 1, (ts - T('E-2.2', 'sched') - (mm === 6 ? .25 : 0)) / .4); if (q <= 0) continue; const m = document.createElement('div'); m.className = 'ms'; m.style.left = (r.x + left + (r.w - left) * mm / 6 - 17) + 'px'; m.style.transform = `rotate(45deg) scale(${eback(q, 2.5)})`; sl.el.appendChild(m); } }
+  if (sl.id === 'persona') { const jp = document.getElementById('jPath'), dot = document.getElementById('jDot'); const a = sl.draws.find(x => x.el === jp); if (a) { const p = cl(0, 1, (ts - a.t) / a.d); const L = jp.getTotalLength(); const pt = jp.getPointAtLength(L * e3(p)); dot.setAttribute('cx', pt.x); dot.setAttribute('cy', pt.y); dot.setAttribute('opacity', p > 0 && p < 1 ? 1 : 0); } }
+  if (sl.id === 'rival') { const f = document.getElementById('rivalF'); const th = document.querySelector('#rivalT th.a'), last = document.querySelector('#rivalT tr:last-child td.a'); if (th && last) { const a = stageRect(th), b = stageRect(last); f.style.left = (a.x - 10) + 'px'; f.style.top = (a.y - 10) + 'px'; f.style.width = (a.w + 20) + 'px'; f.style.height = (b.y + b.h - a.y + 20) + 'px'; } }
+  if (sl.id === 'roll') { const cr = document.getElementById('crawl'); const H = PT ? 1920 : 1080; const hh = cr.offsetHeight; const p = cl(0, 1, (ts - .6) / (sl.len - 4.4)); cr.style.transform = `translateY(${(H - (H + hh + 40) * p).toFixed(1)}px)`; }
+  // 字幕
+  const sp = mouthAt(sl.id, ts); if (subOn && sp.ln) { sub.style.display = 'block'; if (sub.textContent !== sp.ln.text) sub.textContent = sp.ln.text; } else sub.style.display = 'none';
+  renderCat(sl, ts, gT); renderFX(sl, ts);
+}
+function setVideos(sl, ts, playing) {
+  const ps = [];
+  for (const v of sl.videos) {
+    const tgt = Math.max(0, v.off + Math.max(0, ts - v.at)); const dur = v.v.duration || 30; const t = Math.min(tgt, dur - .05);
+    if (RENDER) { if (Math.abs(v.v.currentTime - t) > .004) ps.push(new Promise(r => { const done = () => { v.v.removeEventListener('seeked', done); r(); }; v.v.addEventListener('seeked', done); v.v.currentTime = t; setTimeout(done, 3000); })); }
+    else if (playing) { if (Math.abs(v.v.currentTime - t) > .35) v.v.currentTime = t; if (v.v.paused && tgt < dur - .1) v.v.play().catch(() => { }); }
+  }
+  return Promise.all(ps);
+}
+
+// ---------- 切りかえの見せ方 ----------
+const TR = {
+  fade: p => ({ o: e3(p) }), iris: p => ({ clip: `circle(${(e3(p) * 130).toFixed(2)}% at 50% 60%)` }), wipeL: p => ({ clip: `inset(0 0 0 ${((1 - e3(p)) * 100).toFixed(2)}%)` }),
+  wipeD: p => ({ clip: `inset(0 0 ${((1 - e3(p)) * 100).toFixed(2)}% 0)` }), wipeU: p => ({ clip: `inset(${((1 - e3(p)) * 100).toFixed(2)}% 0 0 0)` }),
+  zoomIn: p => ({ o: e3(p), sc: 1.25 - .25 * e3(p) }), zoomOut: p => ({ o: e3(p), sc: .85 + .15 * e3(p) }), slideL: p => ({ tx: (1 - e3(p)) * (PT ? 1080 : 1920) }),
+  slideU: p => ({ ty: (1 - e3(p)) * (PT ? 1920 : 1080) }), flash: p => ({ o: 1 })
+};
+function applyTr(sl, prev, ts) {
+  const ty = sl.el.dataset.tr || 'fade', dur = parseFloat(sl.el.dataset.trd || (ty === 'flash' ? .5 : .7)); const p = cl(0, 1, ts / dur);
+  const r = TR[ty](p); const s = sl.el.style;
+  s.opacity = r.o ?? 1; s.clipPath = r.clip || ''; s.transform = (r.tx || r.ty ? `translate(${r.tx || 0}px,${r.ty || 0}px) ` : '') + (r.sc ? `scale(${r.sc})` : ''); s.zIndex = 2;
+  flash.style.opacity = ty === 'flash' ? (1 - e3(cl(0, 1, ts / .55))) : 0;
+  if (prev && p < 1) { prev.el.classList.add('on'); prev.el.style.zIndex = 1; } else if (prev) prev.el.classList.remove('on');
+  // 黒い帯
+  const lb0 = prev ? parseFloat(prev.el.dataset.lb || 0) : (sl.i === 0 ? 0.2 : 0), lb1 = parseFloat(sl.el.dataset.lb || 0);
+  const lb = lerp(lb0, lb1, eio(cl(0, 1, ts / 1.0))) * (PT ? 0.45 : 1); const H = PT ? 1920 : 1080;
+  lbT.style.height = lbB.style.height = (lb * H).toFixed(1) + 'px';
+  return p >= 1;
+}
+
+// ---------- 大きさ合わせ ----------
+function fit() {
+  const w = innerWidth, h = innerHeight; const pt = w / h < .85;
+  if (pt !== PT) { PT = pt; stage.classList.toggle('pt', PT); rebuild(); }
+  const W = PT ? 1080 : 1920, H = PT ? 1920 : 1080, k = Math.min(w / W, h / H);
+  stage.style.transform = `translate(${(w - W * k) / 2}px,${(h - H * k) / 2}px) scale(${k})`;
+}
+let built = false;
+function rebuild() { build(); S.forEach(prep); built = true; }
+
+// ---------- 音（Web Audio。だめなら audio 要素）----------
+const AU = { ok: false, ctx: null, buf: {}, mus: null, musName: '', voices: [], on: true };
+async function loadAudio() {
+  try {
+    const Ctx = window.AudioContext || window.webkitAudioContext; AU.ctx = new Ctx();
+    AU.master = AU.ctx.createGain(); AU.master.connect(AU.ctx.destination);
+    AU.musBus = AU.ctx.createGain(); AU.musBus.gain.value = .55; AU.musBus.connect(AU.master);
+    AU.duck = AU.ctx.createGain(); AU.duck.connect(AU.musBus);
+    AU.vBus = AU.ctx.createGain(); AU.vBus.gain.value = 1.0; AU.vBus.connect(AU.master);
+    AU.sBus = AU.ctx.createGain(); AU.sBus.gain.value = .5; AU.sBus.connect(AU.master);
+    const files = {}; Object.entries(D.music).forEach(([k, v]) => files['m_' + k] = v.file); Object.entries(D.sfx).forEach(([k, v]) => files['s_' + k] = v);
+    D.slides.forEach(s => s.lines.forEach(l => files['v_' + l.id] = `assets/voice/${l.id}.mp3`));
+    const first = ['m_intro', 'v_op1', 'v_op2', 's_light'];
+    const get = async k => { const r = await fetch(files[k]); if (!r.ok) throw new Error(k); const ab = await r.arrayBuffer(); AU.buf[k] = await new Promise((res, rej) => AU.ctx.decodeAudioData(ab, res, rej)); };
+    await Promise.all(first.map(get)); AU.ok = true;
+    Promise.all(Object.keys(files).filter(k => !first.includes(k)).map(get)).catch(() => { });
+  } catch (e) { console.warn('audio fallback', e); elAudio(); }
+}
+function elAudio() {
+  // 予備：audio 要素で鳴らす（つなぎ目に小さなすき間が出ることがある）
+  AU.el = true; AU.ok = true; AU.ctx = { state: 'suspended', currentTime: 0, resume: async () => { AU.ctx.state = 'running'; }, suspend: () => { if (AU.mus) AU.mus.a.pause(); AU.voices.forEach(v => v.a.pause()); } };
+  AU.master = null; AU.duckK = 1;
+}
+function elMusic(name, fade) {
+  if (AU.musName === name && AU.mus) return; const old = AU.mus; AU.musName = name;
+  const a = new Audio(D.music[name].file); a.loop = !!D.music[name].loop; a.volume = 0; a.play().catch(() => { }); AU.mus = { a, v: 0 };
+  if (name === 'intro') a.onended = () => { if (AU.musName === 'intro') { AU.mus = null; AU.musName = ''; elMusic('still', 2); } };
+  const st = performance.now(); const step = () => { const k = Math.min(1, (performance.now() - st) / 1000 / Math.max(.05, fade)); if (AU.mus && AU.mus.a === a) AU.mus.v = k; if (old) { old.a.volume = Math.max(0, (1 - k) * .55 * AU.duckK); if (k >= 1) old.a.pause(); } if (k < 1) requestAnimationFrame(step); }; step();
+}
+function playMusic(name, fadeIn = 1.2) {
+  if (!AU.ok || !AU.on) return; if (AU.el) return elMusic(name, fadeIn); if (AU.musName === name && AU.mus) return;
+  const ctx = AU.ctx, now = ctx.currentTime;
+  if (AU.mus) { const o = AU.mus; o.g.gain.cancelScheduledValues(now); o.g.gain.setValueAtTime(o.g.gain.value, now); o.g.gain.linearRampToValueAtTime(0, now + fadeIn); o.src.stop(now + fadeIn + .1); }
+  const b = AU.buf['m_' + name]; AU.musName = name; if (!b) { AU.mus = null; return; }
+  const src = ctx.createBufferSource(); src.buffer = b; const meta = D.music[name];
+  if (meta.loop) { src.loop = true; src.loopStart = 0; src.loopEnd = meta.loop; }
+  const g = ctx.createGain(); g.gain.setValueAtTime(0, now); g.gain.linearRampToValueAtTime(1, now + (name === 'intro' ? .05 : fadeIn)); src.connect(g); g.connect(AU.duck); src.start(now);
+  AU.mus = { src, g };
+  if (name === 'intro') src.onended = () => { if (AU.musName === 'intro' && AU.mus && AU.mus.src === src) { AU.mus = null; AU.musName = ''; playMusic('still', 2); } };
+}
+function stopVoices() { if (AU.el) { AU.voices.forEach(v => { clearTimeout(v.to); v.a.pause(); }); AU.voices = []; return; } const now = AU.ctx ? AU.ctx.currentTime : 0; AU.voices.forEach(v => { try { v.g.gain.setTargetAtTime(0, now, .05); v.src.stop(now + .3); } catch (e) { } }); AU.voices = []; }
+function scheduleSlideAudio(sl, ts) {
+  if (!AU.ok || !AU.on) return; stopVoices();
+  if (AU.el) { SD[sl.id].lines.forEach(l => { const a = new Audio(`assets/voice/${l.id}.mp3`); const v = { a, l }; v.to = setTimeout(() => a.play().catch(() => { }), Math.max(0, (l.rel - ts) * 1000)); AU.voices.push(v); }); if (sl.id === 'open') AU.musName = ''; elMusic(SD[sl.id].music, 1.2); return; }
+  const ctx = AU.ctx, now = ctx.currentTime;
+  const s = SD[sl.id];
+  s.lines.forEach(l => { const b = AU.buf['v_' + l.id]; if (!b) return; const at = l.rel - ts; if (at + l.dur < 0) return;
+    const src = ctx.createBufferSource(); src.buffer = b; const g = ctx.createGain(); src.connect(g); g.connect(AU.vBus);
+    const st = now + Math.max(0, at), off = Math.max(0, -at); src.start(st, off); AU.voices.push({ src, g });
+    // ダッキング：話している間は曲を下げる
+    AU.duck.gain.setTargetAtTime(.33, st - .05, .08); AU.duck.gain.setTargetAtTime(1, st + l.dur - off + .1, .35); });
+  if (!s.lines.length) AU.duck.gain.setTargetAtTime(1, now, .3);
+  const MG = { climax: 1.75, summary: 1.25, cat2: 1.2, alone: 0.85, roll: 0.9 }; AU.musBus.gain.setTargetAtTime(.55 * (MG[sl.id] || 1), now, .4);
+  const mfade = { drive: .25, epic: .2, still: 1.6, night: 1.6, tender: 1.6, outro: 2.0 }[s.music] ?? 1.0;
+  if (sl.id === 'open') { AU.musName = ''; }
+  playMusic(s.music, mfade);
+}
+function sfx(name) { if (!AU.ok || !AU.on) return; if (AU.el) { const a = new Audio(D.sfx[name]); a.volume = .5; a.play().catch(() => { }); return; } const b = AU.buf['s_' + name]; if (!b) return; const src = AU.ctx.createBufferSource(); src.buffer = b; src.connect(AU.sBus); src.start(); }
+
+// ---------- 進み方 ----------
+let cur = 0, prev = null, t0 = performance.now(), pausedAt = null, auto = false, started = false, subOn = false, sfxIdx = 0, uiTimer = null;
+const clock = () => ((pausedAt ?? performance.now()) - t0) / 1000;
+function go(i, fromUser = true) {
+  i = cl(0, N - 1, i); if (i === cur && started) { if (fromUser) return; }
+  slides.forEach(s => { if (s !== S[i].el && s !== S[cur].el) { s.classList.remove('on'); s.querySelectorAll('video').forEach(v => v.pause()); } });
+  prev = i !== cur ? S[cur] : null; if (prev) prev.el.querySelectorAll('video').forEach(v => setTimeout(() => { if (S[cur] !== prev) v.pause(); }, 1200));
+  cur = i; const sl = S[cur]; sl.el.classList.add('on'); sl.anims.forEach(a => a.lastP = undefined);
+  t0 = performance.now(); if (pausedAt != null) pausedAt = performance.now();
+  sfxIdx = 0; chapTag.textContent = sl.el.dataset.chap || ''; document.getElementById('pg').textContent = `${cur + 1} / ${N}`;
+  sl.videos.forEach(v => { try { v.v.currentTime = v.off; } catch (e) { } });
+  if (started) scheduleSlideAudio(sl, 0);
+  try { localStorage.setItem('funtreDeckSlide', cur); } catch (e) { }
+}
+function tick() {
+  const sl = S[cur], ts = clock();
+  const trDone = applyTr(sl, prev, ts); if (trDone) prev = null;
+  if (prev) renderSlide(prev, ts + 99, ts); // 前の1枚は最後の形のまま
+  renderSlide(sl, ts, performance.now() / 1000);
+  setVideos(sl, ts, pausedAt == null);
+  if (AU.el && AU.mus) { const sp = mouthAt(sl.id, ts); AU.duckK += ((sp.ln ? .33 : 1) - AU.duckK) * .08; AU.mus.a.volume = AU.on ? cl(0, 1, .55 * AU.duckK * AU.mus.v) : 0; }
+  if (started) while (sfxIdx < sl.sfx.length && sl.sfx[sfxIdx][0] <= ts) { if (ts - sl.sfx[sfxIdx][0] < .25) sfx(sl.sfx[sfxIdx][1]); sfxIdx++; }
+  document.getElementById('prog').style.width = (((cur + cl(0, 1, ts / sl.len)) / N) * 100).toFixed(2) + '%';
+  if (auto && started && pausedAt == null && ts > sl.len + .2 && cur < N - 1) go(cur + 1, false);
+  requestAnimationFrame(tick);
+}
+function setPaused(p) {
+  if (p && pausedAt == null) { pausedAt = performance.now(); if (AU.ctx) AU.ctx.suspend(); S[cur].videos.forEach(v => v.v.pause()); }
+  else if (!p && pausedAt != null) { t0 += performance.now() - pausedAt; pausedAt = null; if (AU.ctx) AU.ctx.resume(); }
+  document.getElementById('pausePill').style.display = pausedAt != null ? 'block' : 'none';
+}
+async function unlock() {
+  if (started) return; started = true; document.getElementById('hint').style.display = 'none';
+  try { await AU.ctx.resume(); } catch (e) { }
+  go(cur, false); // 今の1枚を、音つきで最初から
+}
+function next() { if (!started) return unlock(); setPaused(false); go(cur + 1); }
+function prevS() { if (!started) return unlock(); setPaused(false); go(cur - 1); }
+
+// ---------- 操作 ----------
+function showUI() { const u = document.getElementById('ui'); u.classList.remove('hide'); clearTimeout(uiTimer); uiTimer = setTimeout(() => u.classList.add('hide'), 2600); }
+function wire() {
+  document.getElementById('bNext').onclick = e => { e.stopPropagation(); next(); };
+  document.getElementById('bPrev').onclick = e => { e.stopPropagation(); prevS(); };
+  document.getElementById('bAuto').onclick = e => { e.stopPropagation(); auto = !auto; e.currentTarget.setAttribute('aria-pressed', auto); if (!started) unlock(); };
+  document.getElementById('bSnd').onclick = e => { e.stopPropagation(); AU.on = !AU.on; e.currentTarget.setAttribute('aria-pressed', AU.on); if (AU.master) AU.master.gain.setTargetAtTime(AU.on ? 1 : 0, AU.ctx.currentTime, .05); if (!started) unlock(); };
+  document.getElementById('bSub').onclick = e => { e.stopPropagation(); subOn = !subOn; e.currentTarget.setAttribute('aria-pressed', subOn); };
+  document.getElementById('ui').addEventListener('pointerdown', e => e.stopPropagation());
+  addEventListener('keydown', e => {
+    if (['ArrowRight', 'PageDown', 'Enter'].includes(e.key)) { e.preventDefault(); next(); }
+    else if (['ArrowLeft', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); prevS(); }
+    else if (e.key === ' ') { e.preventDefault(); if (!started) unlock(); else if (auto) setPaused(pausedAt == null); else next(); }
+    else if (e.key === 'Home') go(0); else if (e.key === 'End') go(N - 1);
+    else if (e.key === 'a' || e.key === 'A') document.getElementById('bAuto').click();
+    showUI();
+  });
+  let sx = null, sy = null;
+  document.getElementById('vp').addEventListener('pointerdown', e => { sx = e.clientX; sy = e.clientY; });
+  document.getElementById('vp').addEventListener('pointerup', e => {
+    if (sx == null) return; const dx = e.clientX - sx, dy = e.clientY - sy; sx = null;
+    if (!started) return unlock();
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) { dx < 0 ? next() : prevS(); return; }
+    if (auto) setPaused(pausedAt == null); else next();
+  });
+  addEventListener('pointermove', showUI); addEventListener('resize', fit);
+}
+
+// ---------- 書き出し用（mp4・PDF）----------
+let renderPrev = -1;
+window.__state = () => ({ cur, started, auto, paused: pausedAt != null, au: AU.ok, el: !!AU.el, ctx: AU.ctx && AU.ctx.state, nbuf: Object.keys(AU.buf).length, mus: AU.musName });
+window.__plan = () => { let t = 0; return S.map(s => { const o = { id: s.id, start: t, dur: s.len }; t += s.len; return o; }); };
+window.__sfxAll = () => { let t = 0; const out = []; S.forEach(s => { s.sfx.forEach(([a, n]) => out.push([+(t + a).toFixed(3), n])); t += s.len; }); return out; };
+window.__seek = async (T0) => {
+  let t = 0, i = 0; while (i < N - 1 && T0 >= t + S[i].len) { t += S[i].len; i++; }
+  const ts = T0 - t;
+  if (i !== cur || renderPrev === -1) { prev = i > 0 && ts < 1.5 ? S[i - 1] : null; slides.forEach(s => s.classList.remove('on')); cur = i; S[i].el.classList.add('on'); S[i].anims.forEach(a => a.lastP = undefined); chapTag.textContent = S[i].el.dataset.chap || ''; renderPrev = i; }
+  if (prev && ts >= 1.5) prev = null;
+  const sl = S[cur]; const done = applyTr(sl, prev, ts);
+  if (prev && !done) { renderSlide(prev, prev.len, T0); await setVideos(prev, prev.len, false); }
+  renderSlide(sl, ts, T0); await setVideos(sl, ts, false);
+  return true;
+};
+
+// ---------- はじめる ----------
+async function boot() {
+  fit(); if (!built) rebuild();
+  slides.forEach(s => s.querySelectorAll('video[data-v]').forEach(v => { v.muted = true; v.playsInline = true; v.preload = 'auto'; v.setAttribute('playsinline', ''); v.innerHTML = `<source src="assets/video/${v.dataset.v}.mp4" type="video/mp4"><source src="assets/video/${v.dataset.v}.webm" type="video/webm">`; v.load(); }));
+  await document.fonts.ready;
+  if (RENDER) { await Promise.all([...document.querySelectorAll('video')].map(v => v.readyState >= 2 ? 0 : new Promise(r => { v.addEventListener('loadeddata', r, { once: true }); setTimeout(r, 15000); }))); document.querySelectorAll('#ui,#prog,#hint').forEach(e => e.remove()); window.__ready = true; return; }
+  wire(); showUI();
+  let start = 0; if (Q.has('s')) start = cl(0, N - 1, parseInt(Q.get('s')) - 1);
+  cur = start; go(start, false);
+  requestAnimationFrame(tick);
+  await loadAudio();
+  if (AU.ctx && AU.ctx.state === 'running') { started = true; go(cur, false); }
+  else document.getElementById('hint').style.display = 'flex';
+}
+boot();
+})();
+</script>
+</body>
+</html>
