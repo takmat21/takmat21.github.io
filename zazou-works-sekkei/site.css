@@ -324,3 +324,5 @@ footer{background:var(--sec-a)}
 .faq-i p{margin:0;padding:0 20px 18px 42px;color:var(--sub);font-size:15px;line-height:1.9}
 @media (max-width:600px){.faq-i summary{padding:14px 40px 14px 16px;font-size:15px}.faq-i p{padding:0 16px 16px 16px}}
 .hero .price-note{margin:10px 0 0;font-size:14px;color:var(--ink);font-weight:600}
+/* 文ごとに改行するので、1文が途中で折り返さない幅に */
+p.sec-lead,.zcad p.sec-lead{max-width:60em}
