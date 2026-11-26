@@ -247,3 +247,15 @@ section h2.bar::before{content:"";display:inline-block;width:20px;height:.82em;m
 .ent-std b{font-family:"Outfit","Noto Sans JP",sans-serif;font-size:14px;font-weight:600;letter-spacing:.03em;color:var(--ink);border:1px solid var(--ink);padding:2px 8px;white-space:nowrap}
 
 .std-sup{font-size:14px;font-weight:600;color:var(--ink);margin:0 0 6px}
+
+/* 分野ページ：ヘッダーの分野名・ZCAD の節 */
+.brand .fld{color:var(--main);margin-left:.2em}
+@media (max-width:420px){.brand{gap:8px;letter-spacing:.02em;font-size:14px}.brand img{height:28px}}
+ul.zc-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px}
+ul.zc-list li{border-top:1px solid var(--line);padding:18px 0;color:var(--sub);font-size:15px}
+ul.zc-list li b{display:block;color:var(--ink);font-size:16px;letter-spacing:.04em;margin-bottom:4px}
+@media (max-width:760px){ul.zc-list{grid-template-columns:1fr}}
+.zcad .formats{margin-top:32px}
+/* トップ：分野の窓口の札 */
+.entry .dept{font-size:13px;color:var(--sub);margin:-6px 0 10px;letter-spacing:.04em}
+.entry .sup{font-size:13px;color:var(--ink);margin:0 0 14px;padding-left:10px;border-left:2px solid var(--main)}

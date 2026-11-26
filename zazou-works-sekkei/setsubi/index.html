@@ -3,11 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>設備の図面・積算の見本｜ZAZOU 設計Works</title>
-<meta name="description" content="空調・給排水衛生設備の平面図と機器表、屋上基地局のアンテナ配置図と架台の構造図の見本。">
+<title>ZAZOU 設計Works 設備設計｜空調・給排水衛生・電気の設備図と拾い出し</title>
+<meta name="description" content="ZAZOU 設計Works 設備設計。空調・給排水衛生の平面図と機器表、屋上機器の配置図・架台の構造図、設備図からの拾い出しと図面のチェックを在宅でお受けします。JIS C 0303・JIS C 0617・SHASE-S 001 に沿い、設備の専門家が監修しています。">
 <link rel="icon" href="../img/favicon.png" type="image/png">
 <link rel="canonical" href="https://takmat21.github.io/zazou-works-sekkei/setsubi/">
-<meta property="og:title" content="設備の図面・積算の見本｜ZAZOU 設計Works">
+<meta property="og:title" content="ZAZOU 設計Works 設備設計｜空調・給排水衛生・電気の設備図と拾い出し">
+<meta property="og:description" content="ZAZOU 設計Works 設備設計。空調・給排水衛生の平面図と機器表、屋上機器の配置図・架台の構造図、設備図からの拾い出しと図面のチェックを在宅でお受けします。JIS C 0303・JIS C 0617・SHASE-S 001 に沿い、設備の専門家が監修しています。">
+<meta property="og:site_name" content="ZAZOU 設計Works 設備設計">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://takmat21.github.io/zazou-works-sekkei/setsubi/">
 <meta property="og:image" content="https://takmat21.github.io/zazou-works-sekkei/img/th/f_setsubi.webp">
@@ -15,15 +17,14 @@
 <link rel="stylesheet" href="../site.css">
 </head>
 <body>
-<header class="top"><div class="wrap">
-  <a class="brand" href="../"><img src="../img/mark.png" alt=""><span>ZAZOU 設計Works<small>ZAZOU株式会社</small></span></a>
-  <nav class="menu" aria-label="分野"><a href="../kikai/">機械</a><a href="../kenchiku/">建築・土木</a><a href="../setsubi/" aria-current="page">設備</a><a href="../#flow">進め方</a><a href="../#company">会社概要</a></nav>
-  <a class="cta" href="../#contact">ご相談</a>
+<header class="top" id="top"><div class="wrap">
+  <a class="brand" href="#top"><img src="../img/mark.png" alt=""><span>ZAZOU 設計Works <span class="fld">設備設計</span><small>ZAZOU株式会社</small></span></a>
+  <nav class="menu" aria-label="ページ内"><a href="#samples">見本</a><a href="#flow">進め方</a><a href="#company">会社概要</a></nav>
+  <a class="cta" href="#contact">ご相談</a>
 </div></header>
 
 <main>
 <div class="phead"><div class="wrap">
-  <p class="crumb"><a href="../">設計Works トップ</a>　／　設備</p>
   <div class="phead-grid">
     <div class="fade-up">
       <p class="eyebrow">Field 03 — Building Services</p>
@@ -38,7 +39,6 @@
       <div class="std"><h2>準拠する規格・監修</h2><p class="std-sup">設備の専門家が監修しています。</p><ul><li>電気設備：JIS C 0303（構内電気設備の配線用図記号）、JIS C 0617（電気用図記号）</li><li>空調・衛生設備：SHASE-S 001（図示記号）、国土交通省 官庁営繕「建築設備設計基準」</li><li>製図の共通事項：JIS Z 8310〜8318</li></ul><p class="std-note">お客様の社内規格・発注者の基準がある場合は、そちらを優先して合わせます。</p></div>
     </div>
   </div>
-  <ul class="tabs" aria-label="分野を切り替える"><li><a href="../kikai/">機械</a></li><li><a href="../kenchiku/">建築・土木</a></li><li><a href="../setsubi/" aria-current="page">設備</a></li></ul>
 </div></div>
 
 <section id="samples"><div class="wrap">
@@ -62,7 +62,7 @@
       <div class="acts"><a class="btn" href="../samples/kichi/kichikyoku.pdf" target="_blank" rel="noopener">PDFを開く<span class="arr" aria-hidden="true">→</span></a></div>
     </article>
     <article class="sample rv" id="setsubi" style="--d:0.12s">
-      <a class="th" href="../zcad/samples/setsubi_plan.pdf" target="_blank" rel="noopener"><img src="../img/th/setsubi.webp" width="800" height="500" alt="テナント事務所 空調・給排水衛生設備 平面図の見本" loading="lazy" decoding="async"><span class="kind">2D図面</span></a>
+      <a class="th" href="../samples/fieldpdf/setsubi_plan.pdf" target="_blank" rel="noopener"><img src="../img/th/setsubi.webp" width="800" height="500" alt="テナント事務所 空調・給排水衛生設備 平面図の見本" loading="lazy" decoding="async"><span class="kind">2D図面</span></a>
       <p class="no">No.02　空調・給排水衛生／平面図・機器表</p>
       <h4>テナント事務所 空調・給排水衛生設備 平面図</h4>
       <dl class="ex">
@@ -71,32 +71,84 @@
         <dt>入っている内容</dt><dd>平面図（1/40）に天井カセット形の室内機3台と室外機、冷媒管・ドレン管（勾配1/100以上）、給水・排水の経路、壁・床の貫通（スリーブ）、凡例と特記。2枚目は機器表（7行：符号・能力・設置場所・備考）と、床面積と単位負荷から出した概算の冷房負荷の表。</dd>
         <dt>納める形式</dt><dd><ul class="fmt"><li>PDF A3・2枚</li></ul></dd>
       </dl>
-      <div class="acts"><a class="btn" href="../zcad/samples/setsubi_plan.pdf" target="_blank" rel="noopener">PDFを開く<span class="arr" aria-hidden="true">→</span></a></div>
+      <div class="acts"><a class="btn" href="../samples/fieldpdf/setsubi_plan.pdf" target="_blank" rel="noopener">PDFを開く<span class="arr" aria-hidden="true">→</span></a></div>
     </article>
     </div>
-  </div>
-  <p class="note rv">電気設備図からの数量拾いの見本（色分け図面・数量表・部材表）は、<a href="../kenchiku/#denki">建築・土木のページ</a>に載せています。</p>
-</div></section>
-
-<section class="other-fields"><div class="wrap">
-  <p class="eyebrow">Other fields</p>
-  <h2>ほかの分野の見本</h2>
-  <div class="others" style="margin-top:28px">
-    <a class="other rv" href="../kikai/"><span class="ph"><img src="../img/th/f_mech.webp" width="800" height="500" alt="" loading="lazy" decoding="async"></span><span><b>機械の図面</b><span>見本 4点</span> <span class="arr" aria-hidden="true">→</span></span></a>
-    <a class="other rv" href="../kenchiku/"><span class="ph"><img src="../img/th/f_arch.webp" width="800" height="500" alt="" loading="lazy" decoding="async"></span><span><b>建築・土木の図面</b><span>見本 14点</span> <span class="arr" aria-hidden="true">→</span></span></a>
   </div>
 </div></section>
 
 <section class="ask"><div class="wrap rv">
   <p class="eyebrow" style="justify-content:center">Contact</p>
   <h2>図面のご相談</h2>
-  <p>図面1枚の修正から承ります。進め方・会社概要・お問い合わせの窓口は、トップページにまとめています。</p>
-  <div class="btns"><a class="cta" href="../#contact">ご相談・お問い合わせ</a><a class="cta ghost" href="../#flow">進め方を見る</a><a class="cta ghost" href="../">トップへ戻る</a></div>
+  <p>図面1枚の修正から承ります。資料がそろっていなくても、まずはご相談ください。</p>
+  <div class="btns"><a class="cta" href="#contact">ご相談・お問い合わせ</a><a class="cta ghost" href="#flow">進め方を見る</a></div>
+</div></section>
+
+<section id="flow"><div class="wrap">
+  <p class="eyebrow">Process</p>
+  <h2 class="bar">進め方</h2>
+  <p class="sec-lead">ご依頼は整理されていなくても大丈夫です。分かること・分からないことをこちらでまとめて、施工の目で確かめながら進めます。</p>
+  <ol class="flow rv">
+    <li><b>ご相談</b><span>LINE かメールで、設備図の種類（空調・給排水衛生・電気など）、枚数、ご希望の納期をお知らせください。</span></li>
+    <li><b>資料の確認</b><span>建築図・設備図・機器の資料（PDF など）を拝見し、不明な点をまとめてご質問します。</span></li>
+    <li><b>お見積り</b><span>枚数と内容からお見積りします。時間単価でもお受けできます。</span></li>
+    <li><b>作成・検図</b><span>描いたあと、記号・寸法・機器表の抜けと、図面どうしの食いちがいを確かめてからお出しします。</span></li>
+    <li><b>修正・納品</b><span>ご確認いただき、修正を反映して DXF・JWW・PDF などでお渡しします。</span></li>
+  </ol>
+</div></section>
+
+<section id="company"><div class="wrap">
+  <p class="eyebrow">Company</p>
+  <h2 class="bar">会社概要</h2>
+  <table class="co rv">
+    <tr><th>会社名</th><td>ZAZOU株式会社</td></tr>
+    <tr><th>部門</th><td>ZAZOU 設計Works 設備設計</td></tr>
+    <tr><th>お受けする仕事</th><td>空調・給排水衛生の設備図と機器表、配置図・取付図、設備図からの拾い出しと図面のチェック</td></tr>
+    <tr><th>代表</th><td>代表取締役 松村 貴士</td></tr>
+    <tr><th>設立</th><td>2020年6月</td></tr>
+    <tr><th>所在地</th><td>滋賀県蒲生郡日野町</td></tr>
+    <tr><th>対応地域</th><td>全国（在宅・オンラインで対応）</td></tr>
+  </table>
+  <details id="profile" class="career"><summary>代表の経歴</summary>
+    <dl class="hist">
+      <dt>2000–2005</dt><dd>家業の建設業（施工・現場業務、資材手配）</dd>
+      <dt>2005–2020</dt><dd>パナソニック（チューナ・縦型洗濯機・ロボット掃除機の機構設計）</dd>
+      <dt>2020–</dt><dd>ZAZOU株式会社を設立</dd>
+      <dt>CAD</dt><dd>CATIA／NX／SolidWorks／MICRO CADAM Helix／AutoCAD／Jw_cad</dd>
+      <dt>資格</dt><dd>CATIA V5 アセンブリーデザインスペシャリスト／CATIA V5 サーフェスデザインスペシャリスト／パナソニック CAD検定1級</dd>
+    </dl>
+  </details>
+</div></section>
+
+<section id="zcad" class="zcad"><div class="wrap">
+  <p class="eyebrow">Our CAD</p>
+  <h2 class="bar">設備図をつくる道具「ZCAD」</h2>
+  <p class="sec-lead">ZCAD（ゼットキャド）は、ZAZOU が自社で作っているCADです。部屋や機器の寸法を数値の表で持ち、その表から図面を出します。このページの見本のうち、No.02 テナント事務所の空調・給排水衛生設備 平面図は ZCAD で作っています。</p>
+  <ul class="zc-list rv">
+    <li><b>設備平面図</b>室内機・室外機、冷媒管・ドレン管、給水・排水の経路と、壁・床の貫通を、線の種類で描き分けます（No.02）。</li>
+    <li><b>機器表</b>符号・能力・設置場所・備考の機器表を、平面図と合わせてまとめます（No.02）。</li>
+    <li><b>製図</b>SHASE-S 001 の図示記号と JIS Z 8310〜8318 の表し方に合わせ、線の太さつきのA3の図面にします。</li>
+  </ul>
+  <div class="formats rv">
+    <div><b>DXF</b><span>mm単位、レイヤー・寸法つき。Jw_cad・AutoCAD などで開けます</span></div>
+    <div><b>PDF</b><span>A3、線の太さつき</span></div>
+  </div>
+  <p class="note rv">御社の社内規格や、お使いのCADに合わせたデータの形もご相談ください。</p>
+</div></section>
+
+<section id="contact" class="contact"><div class="wrap">
+  <p class="eyebrow">Contact</p>
+  <h2 class="bar">ご相談・お問い合わせ</h2>
+  <p class="sec-lead">設備図1枚の修正から、お気軽にどうぞ。</p>
+  <div class="box rv">
+    <div class="item"><b>LINE「ZAZOU Works」</b><p>友だち追加のうえ、トークでご用件をお送りください。</p><a class="cta" href="https://line.me/R/ti/p/@786akrcn" target="_blank" rel="noopener">LINEで相談する</a><div class="qr"><img src="../img/line_qr.png" width="270" height="270" alt="LINE「ZAZOU Works」友だち追加のQRコード" loading="lazy"><span>スマホで読み取って友だち追加</span></div></div>
+    <div class="item"><b>メール</b><p>図面のPDFや機器の資料がある場合は、メールが便利です。</p><a class="mail" href="mailto:matsumura.takashi@zazoucorp.com">matsumura.takashi@zazoucorp.com</a></div>
+  </div>
 </div></section>
 </main>
 
-<footer><div class="wrap"><img src="../img/logo.png" width="1055" height="750" alt="ZAZOU Works" style="width:110px;height:auto;display:block;margin:0 auto 10px">© ZAZOU株式会社　ZAZOU 設計Works
-  <div class="flinks"><a href="../">トップ</a><a href="../kikai/">機械</a><a href="../kenchiku/">建築・土木</a><a href="../setsubi/">設備</a><a href="../#company">会社概要</a><a href="../#contact">お問い合わせ</a></div>
+<footer><div class="wrap"><img src="../img/logo.png" width="1055" height="750" alt="ZAZOU Works" style="width:110px;height:auto;display:block;margin:0 auto 10px">© ZAZOU株式会社　ZAZOU 設計Works 設備設計
+  <div class="flinks"><a href="#samples">見本</a><a href="#flow">進め方</a><a href="#company">会社概要</a><a href="#profile" id="career-link">代表の経歴</a><a href="#contact">お問い合わせ</a></div>
   <span style="font-size:12px">図面と立体の見本は、当方で作成した提案例です。</span></div></footer>
 <script src="../site.js" defer></script>
 </body>
