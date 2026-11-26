@@ -309,3 +309,7 @@ main>section:nth-of-type(even){background:var(--sec-b)}
 main>section.contact{background:var(--sec-b)}
 section{border-bottom-color:#e6e8ec}
 footer{background:var(--sec-a)}
+.hero .price{display:inline-flex;align-items:baseline;gap:14px;margin:20px 0 0;padding:10px 18px;background:rgba(255,255,255,.88);border:1px solid var(--line);border-radius:6px}
+.hero .price b{font-size:14px;color:var(--sub);font-weight:600;letter-spacing:.04em}
+.hero .price span{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:.02em}
+@media (prefers-color-scheme: dark){.hero .price{background:rgba(20,23,28,.85)}}
