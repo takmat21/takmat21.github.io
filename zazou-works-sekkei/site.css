@@ -295,3 +295,4 @@ section h2.bar::before{clip-path:none;width:4px;border-radius:2px;margin-right:1
 .btn{border-radius:6px}
 .stdnums.sm li.lbl{border-radius:4px}
 .ent-std em{border-radius:3px}
+.hero h1 .sdname{display:block;font-size:1.55em;letter-spacing:.01em;margin-top:6px}
