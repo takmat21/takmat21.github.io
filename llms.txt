@@ -45,6 +45,17 @@
 - note（調査記事）：https://note.com/takashimatsumura
 - 会社サイト：https://koorogi.site/
 
+## ZAZOU 設計Works（図面の作成・トレース・数量拾い）
+
+- ZAZOU株式会社の設計部門です。機械図面・建築図面・設備図面の作成とトレース、数量拾いを在宅・全国対応でお受けします（所在地：滋賀県蒲生郡日野町）。
+- 図面のトレースは1枚 5,000円（税込）。DXF・JWW・PDF で納品します。お見積りは無料、秘密保持契約に対応します。
+- 機械は JIS B 0001、建築は JIS A 0150 と国土交通省の作成基準、土木は JIS A 0101 と CAD製図基準、設備は JIS C 0303・JIS C 0617 と公共建築設備工事標準図に沿って描きます。お客様の社内規格があればそちらに合わせます。
+- [設計Works トップ（作図システム SyncDraft の紹介と各分野の窓口）](https://takmat21.github.io/zazou-works-sekkei/)
+- [機械設計：部品図・組立図・板金の展開図・3Dからの2D図面（よくある質問つき）](https://takmat21.github.io/zazou-works-sekkei/kikai/)
+- [建築・土木：平面図・立面図・断面図、現況図と3D、施工の書類、数量調書・内訳書（よくある質問つき）](https://takmat21.github.io/zazou-works-sekkei/kenchiku/)
+- [設備設計：空調・給排水衛生の設備図と機器表、拾い出し、図面のチェック（よくある質問つき）](https://takmat21.github.io/zazou-works-sekkei/setsubi/)
+- [電気図面の数量拾い・部材拾い（1枚目は無料）](https://takmat21.github.io/zazou-works-sekkei/densetsu/)
+
 ## Optional
 
 - [仕事一覧の見本（全件）](https://takmat21.github.io/#samples)
