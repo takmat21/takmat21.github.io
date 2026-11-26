@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>出荷の一日 | ZAZOU</title>
+<meta name="description" content="ZAZOU 冷凍マウスの、注文から出荷通知までの一日の作業手順。チェックしながら進められます。">
+<meta name="robots" content="noindex">
+<style>
+:root{
+  --bg:#f6f5f1;--card:#ffffff;--ink:#1f2328;--sub:#5b6168;--line:#e3e1da;
+  --accent:#0f6b52;--accent-soft:#e3f2ec;--new:#b4441c;--new-soft:#fbe9e1;
+  --warn:#8a5a00;--warn-soft:#fff4d6;--code:#f1efe8;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15171a;--card:#1d2024;--ink:#e8e6e1;--sub:#a3a8ae;--line:#30343a;
+    --accent:#5cc7a2;--accent-soft:#1d3a31;--new:#f0946c;--new-soft:#3d241a;
+    --warn:#e9be5a;--warn-soft:#3a2f14;--code:#262a2f;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15171a;--card:#1d2024;--ink:#e8e6e1;--sub:#a3a8ae;--line:#30343a;
+  --accent:#5cc7a2;--accent-soft:#1d3a31;--new:#f0946c;--new-soft:#3d241a;
+  --warn:#e9be5a;--warn-soft:#3a2f14;--code:#262a2f;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.75 "Hiragino Kaku Gothic ProN","Yu Gothic UI","Meiryo",system-ui,sans-serif}
+header{padding:28px 16px 12px;max-width:880px;margin:0 auto}
+h1{font-size:26px;margin:0 0 4px;letter-spacing:.02em}
+.lead{color:var(--sub);margin:0}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+nav .in{max-width:880px;margin:0 auto;padding:8px 16px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav a{flex:none;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:13px;white-space:nowrap}
+nav a .p{color:var(--sub);margin-left:4px;font-variant-numeric:tabular-nums}
+nav a.done{border-color:var(--accent);color:var(--accent)}
+main{max-width:880px;margin:0 auto;padding:8px 16px 64px}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0 4px;color:var(--sub);font-size:13px}
+.tools label{display:flex;gap:6px;align-items:center;cursor:pointer}
+button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:4px 10px;cursor:pointer}
+button:hover{border-color:var(--accent)}
+.today{margin-left:auto;font-variant-numeric:tabular-nums}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px 10px;margin:18px 0;scroll-margin-top:56px}
+section h2{margin:0;font-size:19px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+section h2 .when{font-size:12px;font-weight:normal;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:1px 8px}
+.bar{height:4px;background:var(--line);border-radius:4px;margin:10px 0 6px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
+.say{color:var(--sub);font-size:13px;margin:4px 0 8px}
+ol.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+ol.steps>li{counter-increment:s;display:grid;grid-template-columns:28px 1fr;gap:4px 8px;padding:10px 0;border-top:1px dashed var(--line)}
+ol.steps>li:first-child{border-top:0}
+ol.steps>li>input{width:20px;height:20px;margin:3px 0 0;accent-color:var(--accent);cursor:pointer}
+ol.steps>li .t::before{content:counter(s) ". ";color:var(--sub);font-variant-numeric:tabular-nums}
+ol.steps>li.ck .t{color:var(--sub);text-decoration:line-through;text-decoration-color:var(--line)}
+ol.steps>li .d{grid-column:2;color:var(--sub);font-size:13.5px}
+ol.steps>li .d ul{margin:4px 0;padding-left:1.2em}
+.new{display:inline-block;font-size:11px;font-weight:bold;color:var(--new);background:var(--new-soft);border-radius:5px;padding:0 6px;margin-left:6px;vertical-align:1px}
+.stop{display:inline-block;font-size:11px;font-weight:bold;color:var(--warn);background:var(--warn-soft);border-radius:5px;padding:0 6px;margin-left:6px;vertical-align:1px}
+body.only-new ol.steps>li:not(.hasnew), body.only-new .rules li:not(.hasnew), body.only-new section:not(.anynew){display:none}
+code{background:var(--code);border-radius:5px;padding:1px 5px;font-size:12.5px;word-break:break-all}
+pre{background:var(--code);border-radius:8px;padding:10px 12px;overflow-x:auto;font-size:12.5px;margin:6px 0;white-space:pre-wrap;word-break:break-all}
+table{border-collapse:collapse;width:100%;font-size:14px;margin:6px 0 10px}
+th,td{border-bottom:1px solid var(--line);padding:7px 6px;text-align:left;vertical-align:top}
+th{color:var(--sub);font-weight:normal;font-size:12.5px}
+.rules{margin:6px 0 10px;padding-left:1.2em}
+.rules li{margin:5px 0}
+.rules li b{color:var(--ink)}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0;font-size:13px}
+.flow span{background:var(--accent-soft);color:var(--accent);border-radius:6px;padding:2px 8px}
+.flow em{font-style:normal;color:var(--sub)}
+footer{max-width:880px;margin:0 auto;padding:0 16px 40px;color:var(--sub);font-size:12px}
+@media (max-width:560px){h1{font-size:22px}section{padding:14px 12px 6px}}
+@media print{nav,.tools{display:none}section{break-inside:avoid;border:0}}
+</style>
+</head>
+<body>
+<header>
+  <h1>出荷の一日</h1>
+  <p class="lead">ZAZOU 冷凍マウスの、注文から出荷通知までの作業手順です。チェックを入れながら上から順に進めます。チェックは今日の日付ごとに、このブラウザに残ります。</p>
+</header>
+<nav><div class="in" id="nav"></div></nav>
+<main>
+  <div class="tools">
+    <label><input type="checkbox" id="onlyNew"> 新しい決まり（NEW）だけ見る</label>
+    <button id="reset" type="button">今日のチェックを消す</button>
+    <span class="today" id="today"></span>
+  </div>
+
+  <section id="aikotoba">
+    <h2>合言葉と手順</h2>
+    <p class="say">言われた言葉で、する手順が決まります。表にない頼みは、自分で手順を作らず、何をするかを確かめてから行います。</p>
+    <table>
+      <tr><th>言われる言葉</th><th>する手順</th></tr>
+      <tr><td>朝の出荷・朝のルーティン</td><td><a href="#asa">朝：注文を落として台帳に書く</a></td></tr>
+      <tr><td>追加の出荷・14時になった</td><td><a href="#tsuika">14時：追加の確認</a> → 追加があれば朝の手順を「貼れる」所まで。0件なら<a href="#insatsu">印刷</a>まで</td></tr>
+      <tr><td>印刷・伝票印刷（時刻にかかわらず）</td><td><a href="#tsuika">追加の確認</a> → <a href="#insatsu">印刷</a>（追加の確認を飛ばさない）</td></tr>
+      <tr><td>出荷通知（「通知」の言葉があるときだけ）</td><td><a href="#tsuchi">出荷通知</a></td></tr>
+      <tr><td>出荷ボード・ボード</td><td><a href="#board">出荷ボード</a></td></tr>
+    </table>
+  </section>
+
+  <section id="asa" data-k="A" class="anynew">
+    <h2>朝：注文を落として台帳に書く <span class="when">朝</span></h2>
+    <div class="bar"><i></i></div>
+    <ol class="steps">
+      <li><span class="t">時刻を見て、前回の出荷の作業のあと〜今に届いた注文メールを店ごとに数える</span>
+        <div class="d">Amazon「注文確定」／Yahoo!「注文確認」／BASE「商品購入通知」。読むだけ。数えたら先に1行で報告：「新しい注文：Amazon a件／Yahoo! b件／BASE c件」。3店とも0件なら「新しい注文はありません」で終わり。0件の店は画面を開かない。</div></li>
+      <li><span class="t">Amazon：未出荷注文レポートを落とす</span>
+        <div class="d">「FBM未出荷注文」タブ →「リクエスト」を1回（4時間に1回だけ）→ 30秒待つ →「リフレッシュ」→ 一番上の行の「ダウンロード」を1回。</div></li>
+      <li><span class="t">BASE：未対応の注文を落とす</span>
+        <div class="d">件数を読み、1件以上なら全部にチェック →「選択中○件の注文データをダウンロード」を1回。</div></li>
+      <li><span class="t">Yahoo!：注文データを落とし、承諾メールを送って「処理中」にする</span>
+        <div class="d">「ページ内すべて選択」→「注文データダウンロード」→ 番号のリンクを押す（座標では押さない）→「新規注文一覧」に戻って選び直し → ステータス「処理中」＋「同時に注文承諾メールを送信」ON →「更新」→ 確認の窓の「処理内容」を読んでから窓の中の「更新」→ エラー0件を見る。ログイン画面が出たら、ログインしてもらうまで待つ。</div></li>
+      <li><span class="t">全部の店を見終わってから、1回だけ変換する（--clip 付き）</span>
+        <div class="d">ログイン待ちの店があれば、待ってから全部まとめて1回。新しい分が0件なら「新しい分はありません」で終わり。エラーならその文をそのまま伝えて止まる。</div></li>
+      <li><span class="t">台帳スプシに書く</span>
+        <div class="d">値のある一番下の行の次から、「A行番号」の1セルを範囲にして95列をそのまま書く（範囲を A〜CQ と書かない。append は使わない）。</div></li>
+      <li><span class="t">読み直す</span>
+        <div class="d">注文番号が変換結果と同じか、電話番号の先頭の0が残っているかを見る。</div></li>
+      <li><span class="t">報告する（決まった文で）</span>
+        <div class="d">「新しい分は N 件（Amazon a／Yahoo! b／BASE c）。台帳スプシの○〜○行目に書きました。Excel の台帳の最後の行の下で、貼り付けてください。」＋ 注文番号・出荷予定日・お届け予定日の表。「貼れた」と言われるまで何もコピーしない。</div></li>
+      <li class="hasnew"><span class="t">名前の字が「?」になっていないか見る<span class="new">NEW 11/26</span></span>
+        <div class="d">店のCSVの時点で、一部の漢字（例：栁）が「?」になることがある。見つけたら報告で伝え、正しい字を教わったら台帳を直す。Excel と、印刷済みの伝票は手で直してもらう。</div></li>
+    </ol>
+  </section>
+
+  <section id="tsuika" data-k="D" class="anynew">
+    <h2>14時：追加の確認 <span class="when">14:05すぎ／印刷の前は毎回</span></h2>
+    <div class="bar"><i></i></div>
+    <ol class="steps">
+      <li class="hasnew"><span class="t">まず今の時刻を確かめる<span class="new">NEW 11/26</span></span>
+        <div class="d">時刻を見ずに「14時にもう一度見ます」と答えて、もう14時を過ぎていた。報告や予定を言う前に、必ず時計を見る。</div></li>
+      <li><span class="t">朝の出荷のあと〜今に届いた注文メールを数える</span>
+        <div class="d">読むだけ。返信・ラベル変更はしない。</div></li>
+      <li><span class="t">全部0件なら店の画面は開かない</span>
+        <div class="d">「追加の注文はありません」と言って次へ（14時・印刷なら、印刷の手順へ）。</div></li>
+      <li><span class="t">1件以上の店だけ、朝の手順を「台帳に書く＋クリップボード」まで聞かずに進める</span>
+        <div class="d">ログインが要る店は飛ばして、ほかの店を先に貼れる状態にする。</div></li>
+    </ol>
+  </section>
+
+  <section id="insatsu" data-k="B" class="anynew">
+    <h2>印刷：B2クラウドで伝票を発行 <span class="when">1日1回、全部まとめて</span></h2>
+    <div class="bar"><i></i></div>
+    <p class="say">印刷の前は、必ず「14時：追加の確認」を先に行います。</p>
+    <ol class="steps">
+      <li><span class="t">今日の CSV を1つにまとめる</span>
+        <div class="d">台帳で伝票番号（D列）がもう入っている行は発行済みなので外す。出荷予定日が先の注文も、聞かずに一緒に印刷する。</div></li>
+      <li><span class="t">ヤマトビジネスメンバーズを開き、左の「送り状発行システムB2クラウド」から入る</span>
+        <div class="d">B2 のURLを直接開かない。ログイン画面なら、ログインしてもらうまで待つ<span class="stop">人の手</span></div></li>
+      <li><span class="t">「外部データから発行」→ 先に「取込み開始行」を 1 → あとでファイルを入れる</span>
+        <div class="d">順番を守る。入れたあと、開始行が 1 のままか見る。</div></li>
+      <li><span class="t">「取込み開始」→ 取込み件数が合っていて、修正必要 0件を見る</span>
+        <div class="d">修正必要が1件以上なら、エラーデータで検索してエラーの文をそのまま伝えて止まる。「直して」と言われたときだけ直す（例：市区町村が無い → 郵便番号で確かめて B2 と台帳を直す）。</div></li>
+      <li><span class="t">「印刷内容の確認へ」→ 用紙「A4マルチ用紙」→「合計 N件」を見る →「発行開始」</span>
+        <div class="d">沖縄など飛行機の便があると「航空危険物」の窓が出る。冷凍マウスは危険物でないので「伝票発行」を押す。</div></li>
+      <li class="hasnew"><span class="t">PDFが出たら、印刷の前に伝票番号を控える<span class="new">NEW 11/25</span></span>
+        <div class="d">PDFのタブはそのままにして、新しいタブで「発行済データの検索」を開く → 出荷予定日を今日〜30日後にして検索 → 送り状番号と注文番号の組を読む → ハイフンを取って台帳のD列に書く → 読み直す → 検索のタブを閉じる。<br>印刷を待つ間にヤマトのログインが切れ、番号を調べるのに入り直しが要ったため。</div></li>
+      <li><span class="t">PDFのタブに戻り、プリンタの絵を1回押す</span></li>
+      <li class="hasnew"><span class="t">「印刷」を押してもらい、「印刷した」まで待つ<span class="stop">人の手</span><span class="new">NEW 11/25</span></span>
+        <div class="d">Canon iP2700 series、A4・縦、カラーは「白黒」。「伝票番号は台帳のD列にもう書きました」と一緒に伝える。</div></li>
+      <li><span class="t">PDFを閉じ、まとめたCSVを消す</span>
+        <div class="d">伝票番号は書き済みなので、ヤマトには入り直さない。</div></li>
+      <li><span class="t">伝票番号（ハイフンなし）を台帳の行の順に1行ずつクリップボードに置く</span></li>
+      <li><span class="t">報告する（決まった文で）</span>
+        <div class="d">「N 件を発行・印刷しました。台帳スプシのD列に伝票番号を入れました。Excel は、○○（一番上の注文番号）の行の伝票番号の空欄で貼り付けてください。」</div></li>
+    </ol>
+  </section>
+
+  <section id="tsuchi" data-k="C" class="anynew">
+    <h2>出荷通知 <span class="when">「通知」と言われたときだけ</span></h2>
+    <div class="bar"><i></i></div>
+    <p class="say">出荷通知は取り消せません。対象は、台帳で出荷予定日が今日で、伝票番号が入っている行だけです。</p>
+    <ol class="steps">
+      <li><span class="t">台帳で対象を選ぶ（出荷予定日＝今日、D列に伝票番号あり）</span></li>
+      <li><span class="t">Amazon：未出荷の一覧で、対象の注文だけチェック →「発送を確認する」</span></li>
+      <li><span class="t">Amazon：出荷日＝今日、発送元＝1つ目、配送業者＝YAMATO TRANSPORT、配送方法＝宅急便、各注文に伝票番号</span>
+        <div class="d">注文番号と伝票番号の組を見直してから「出荷通知を送信」を1回。</div></li>
+      <li class="hasnew"><span class="t">Amazon：いつもと違う画面のとき<span class="new">NEW 11/25・11/26</span></span>
+        <div class="d"><ul>
+          <li>注文が全部「予約配送」のときは配送方法の欄が無く、「予約配送」と出る。それでよい。</li>
+          <li>お急ぎ便（NextDay）の注文があると「入力した配送方法が正しくないようです」と聞かれる。実際にヤマトの宅急便で出しているので「はい、この配送サービス名で続行」。</li>
+        </ul></div></li>
+      <li><span class="t">Amazon：未出荷の一覧に、対象の注文が残っていないことを見る</span>
+        <div class="d">今日が出荷予定日の注文が残っていたら、同じ届け先の注文が台帳にあるか見る（同梱）。あれば同じ伝票番号で出荷通知を送る。新しい伝票は出さない。</div></li>
+      <li class="hasnew"><span class="t">Yahoo!：「完了」まで止まらずに進める<span class="new">NEW 11/26</span></span>
+        <div class="d">
+          <div class="flow"><span>出荷待ち</span><em>→</em><span>出荷処理中</span><em>→</em><span>出荷日・着荷日・伝票番号</span><em>→</em><span>出荷済み ✉</span><em>→</em><span>注文完了待ち</span><em>→</em><span>完了</span></div>
+          <ul>
+            <li>お客様へのメールは「出荷済み」にするときの<b>出荷通知メールの1回だけ</b>（画面の上と下に同じチェックがあれば両方ON）。</li>
+            <li>ほかの段では、メールのチェックを全部外す。確認の窓の「処理内容」にメール送信が無いことを見てから、窓の中の「更新」。</li>
+            <li>入力情報（出荷日・着荷日・ヤマト運輸・伝票番号）は「入力情報を更新」で先に保存し、エラー0件を見る。</li>
+            <li>クレジットカード決済は「完了」にしないと売上が確定しない。</li>
+          </ul></div></li>
+      <li><span class="t">BASE：注文を開き、商品にチェック →「かんたん発送を使わず発送済みにする」</span>
+        <div class="d">配送業者＝ヤマト運輸、伝票番号、メッセージはテンプレート「ZAZOOマウス 出荷通知」。出荷日・着荷予定日を書き足し、文の最後で1文字打って消す。読み直してから「発送済みにする」を1回 →「対応済」を見る。</div></li>
+      <li><span class="t">通知済みの控えに、注文番号と日付を足す</span></li>
+      <li><span class="t">報告する</span>
+        <div class="d">「出荷通知を N 件送りました（Amazon a／Yahoo! b／BASE c）」</div></li>
+    </ol>
+    <p class="say"><b>着荷日の決め方：</b>届け日の指定があればその日。なければ出荷日＋配達日数（滋賀から1日。北海道・沖縄・青森・秋田・岩手は2日）。</p>
+  </section>
+
+  <section id="board">
+    <h2>出荷ボード</h2>
+    <p class="say">声をかける回数を減らすための画面です。人の手が要るのは、ログインと印刷だけにします。</p>
+    <table>
+      <tr><th>ボタン</th><th>すること</th></tr>
+      <tr><td>はじめる</td><td>件数をメールで見る → 1件以上の店だけ朝の手順 → 追加の確認 → 印刷画面まで</td></tr>
+      <tr><td>印刷した（通知まで）</td><td>印刷の後かたづけ → 出荷通知（今日が出荷日の分だけ）</td></tr>
+      <tr><td>印刷した（通知はあとで）</td><td>印刷の後かたづけまで</td></tr>
+      <tr><td>出荷通知を送る</td><td>出荷通知</td></tr>
+      <tr><td>見直す</td><td>台帳と控えを読み直して、ボードを出し直すだけ</td></tr>
+    </table>
+    <p class="say">Excel 用のコピーは最後に1回だけ。名前・住所・電話はボードに入れません。</p>
+  </section>
+
+  <section id="kimari" class="anynew">
+    <h2>共通のきまり</h2>
+    <ul class="rules">
+      <li>上から順に、書いてあるとおりに行う。書いていないことはしない。迷ったら止めて聞く。</li>
+      <li>1つの手順が終わるたびに、決まった文で報告してから次へ。報告には毎回、台帳スプシのリンクを独立した1行で付ける。</li>
+      <li>パスワードは入れない。ログインは本人がする。</li>
+      <li>お金の操作・送信・削除など取り消せないことは、本人の言葉があるときだけ。</li>
+      <li>0件の店・0件の作業は飛ばす（開くだけで、押さない）。</li>
+      <li>画面の確認は文字で読む。スクリーンショットは、文字で読めないときだけ。</li>
+      <li>ボタン・リンクは要素を探して押す（座標で押さない）。ボタンは1回だけ押す。うまくいかないときは押し直さず、画面を読んで伝える。</li>
+      <li>画面が変わるたびに、確認の小窓で止まらないための JavaScript を最初に入れる。
+        <pre>window.__a=[];window.alert=m=>window.__a.push(String(m));window.confirm=m=>{window.__a.push(String(m));return true;};</pre></li>
+      <li>自動の作業は、終わったとき・止まったときに必ず知らせる。本人がすることを先に書く。</li>
+      <li>お客様の名前・住所・電話は報告に書かない。</li>
+      <li class="hasnew">時刻にかかわる返事の前に、今の時刻を確かめる。<span class="new">NEW 11/26</span></li>
+    </ul>
+  </section>
+
+  <section id="saihatsu" class="anynew">
+    <h2>再発防止（起きたこと → 決まり）</h2>
+    <ul class="rules">
+      <li><b>11/19</b> 印刷の前に追加の確認を飛ばし、注文を見落としかけた → 印刷は時刻にかかわらず「追加の確認 → 印刷」。</li>
+      <li><b>11/19</b> --clip を付けずに変換した → 変換は決まったコマンドのまま。</li>
+      <li><b>11/19</b> リンクを座標で押してファイルが落ちなかった → 要素を探して押す。</li>
+      <li><b>11/19</b> 住所に市区町村が無く B2 で「修正必要」 → エラー文を伝えて止まる。直すのは言われたときだけ。</li>
+      <li><b>11/19</b> 台帳への書き込みで範囲を A〜CQ と書いてエラー → 範囲は「A行番号」の1セル。</li>
+      <li><b>11/20</b> ログイン待ちの店を残して先に変換し、あとの変換とクリップボードがぶつかった → 全部の店を見終わってから1回だけ変換。</li>
+      <li><b>11/21</b> 自動チェックがログイン切れで止まったのに伝わらなかった → 止まったら必ず知らせる。</li>
+      <li><b>11/22</b> 同じ届け先の2件が1行（同梱）になり、片方の出荷通知を送りもらした → 未出荷に残ったら同梱を疑い、同じ伝票番号で送る。</li>
+      <li class="hasnew"><b>11/25</b> 印刷を待つ間にヤマトのログインが切れ、伝票番号を調べるのに入り直しが要った → 伝票番号は印刷の前に台帳へ。<span class="new">NEW</span></li>
+      <li class="hasnew"><b>11/26</b> 時刻を見ずに「14時にもう一度見ます」と言った（もう14時過ぎだった） → 先に時刻を見る。<span class="new">NEW</span></li>
+      <li class="hasnew"><b>11/26</b> Yahoo! を「出荷済み」で止めていた → 「完了」まで進める。メールは出荷通知の1回だけ。<span class="new">NEW</span></li>
+    </ul>
+  </section>
+</main>
+<footer>ZAZOU株式会社 出荷の手順（2026年11月26日 時点）。手順の元はナレッジ帳のノート「手順：次郎の出荷」です。</footer>
+<script>
+(function(){
+  var d=new Date(), key='zazou-shukka-'+d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+  document.getElementById('today').textContent=(d.getMonth()+1)+'月'+d.getDate()+'日のチェック';
+  var state={};
+  try{state=JSON.parse(localStorage.getItem(key)||'{}')||{}}catch(e){state={}}
+  function save(){try{localStorage.setItem(key,JSON.stringify(state))}catch(e){}}
+  var secs=[].slice.call(document.querySelectorAll('section[data-k]'));
+  var nav=document.getElementById('nav');
+  var names={A:'朝',D:'14時',B:'印刷',C:'出荷通知'};
+  [['aikotoba','合言葉']].concat(secs.map(function(s){return [s.id,names[s.dataset.k]]})).concat([['board','ボード'],['kimari','きまり'],['saihatsu','再発防止']]).forEach(function(p){
+    var a=document.createElement('a');a.href='#'+p[0];a.textContent=p[1];a.id='nav-'+p[0];
+    if(document.getElementById(p[0]).dataset.k){var sp=document.createElement('span');sp.className='p';a.appendChild(sp)}
+    nav.appendChild(a);
+  });
+  secs.forEach(function(s){
+    [].slice.call(s.querySelectorAll('ol.steps>li')).forEach(function(li,i){
+      var id=s.dataset.k+i, cb=document.createElement('input');cb.type='checkbox';
+      cb.setAttribute('aria-label','済み');cb.checked=!!state[id];
+      li.insertBefore(cb,li.firstChild);
+      var t=li.querySelector('.t');
+      if(!t){t=document.createElement('span');t.className='t';li.appendChild(t)}
+      if(li.querySelector('.d')) li.appendChild(li.querySelector('.d'));
+      li.classList.toggle('ck',cb.checked);
+      cb.addEventListener('change',function(){state[id]=cb.checked;if(!cb.checked)delete state[id];li.classList.toggle('ck',cb.checked);save();upd()});
+    });
+  });
+  function upd(){
+    secs.forEach(function(s){
+      var all=s.querySelectorAll('ol.steps>li>input'),n=0;
+      [].forEach.call(all,function(c){if(c.checked)n++});
+      s.querySelector('.bar i').style.width=(all.length?n/all.length*100:0)+'%';
+      var a=document.getElementById('nav-'+s.id);a.querySelector('.p').textContent=n+'/'+all.length;
+      a.classList.toggle('done',n===all.length);
+    });
+  }
+  upd();
+  document.getElementById('reset').addEventListener('click',function(){
+    state={};save();[].forEach.call(document.querySelectorAll('ol.steps>li>input'),function(c){c.checked=false;c.parentNode.classList.remove('ck')});upd();
+  });
+  var on=document.getElementById('onlyNew');
+  on.addEventListener('change',function(){document.body.classList.toggle('only-new',on.checked)});
+})();
+</script>
+</body>
+</html>
