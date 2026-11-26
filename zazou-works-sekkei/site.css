@@ -283,3 +283,15 @@ ul.zc-list li b{display:block;color:var(--ink);font-size:16px;letter-spacing:.04
 .ed li{font-size:14px;color:var(--sub);padding:10px 0;border-bottom:1px solid var(--line)}
 .ed li:last-child{border-bottom:0}
 .ed em{display:block;font-style:normal;font-weight:700;color:var(--ink);font-size:15px}
+
+/* 11/27 松村さん：とがった形をやめ、ロゴと同じ青を使わない（落ち着いた紺・角を少し丸める） */
+:root{--main:#24344f;--accent:#24344f}
+@media (prefers-color-scheme: dark){:root{--main:#a9b8d6;--accent:#a9b8d6}}
+.cta,.cta.ghost,header.top .cta,.band .cta{clip-path:none;border-radius:6px}
+header.top .cta{background:var(--dark);color:var(--bg)}
+ol.flow li::before{clip-path:none;border-radius:4px;width:28px;height:28px;font-size:14px}
+section h2.bar::before{clip-path:none;width:4px;border-radius:2px;margin-right:14px}
+.hero::after,.phead::after{display:none}
+.btn{border-radius:6px}
+.stdnums.sm li.lbl{border-radius:4px}
+.ent-std em{border-radius:3px}
