@@ -32,7 +32,7 @@ body.shot .ttl,body.shot .mat,body.shot .bar,body.shot .hint{display:none}
 <div><i style="background:#8e7b69"></i>VIPサロン W-03｜布張りパネル</div>
 </div>
 <div class="hint" id="hint">ドラッグで回す ／ ピンチ・ホイールで拡大</div>
-<div class="bar"><button data-v="enter" class="on">入口から</button><button data-v="brand">ブランドウォール</button><button data-v="case">ショーケース</button><button data-v="vip">VIPサロン</button><button data-v="top">真上から</button><button id="spin">自動で回す</button><a class="dl" href="boutique.pdf" target="_blank" rel="noopener">図面PDF</a></div>
+<div class="bar"><button data-v="enter" class="on">入口から</button><button data-v="brand">ブランドウォール</button><button data-v="case">ショーケース</button><button data-v="vip">VIPサロン</button><button data-v="top">真上から</button><button id="spin">自動で回す</button><a class="dl" href="boutique.pdf" target="_blank" rel="noopener">図面PDF</a><button id="ceilbtn">天井：なし</button></div>
 <div id="err">この端末では立体を表示できませんでした。「図面PDF」をご覧ください。</div>
 <script id="lyt" type="application/json">{"W": 9600, "D": 12000, "CH": 3300, "SOFF": 3000, "SALES": 8400, "entry": [4000, 5600], "windows": [[300, 3600], [6000, 9300]], "winD": 900, "vit_l": [[1350, 3450], [3450, 5550], [5550, 7650]], "vitD": 500, "vitH": 2400, "islands": [[1500, 2700], [1500, 5100], [6600, 2700], [6600, 5100]], "isW": 1500, "isD": 600, "isH": 950, "table": [4800, 4200, 1200], "brand": [3600, 6000], "bohDoor": [2400, 3300], "vipDoor": [8100, 9000], "vip": [6150, 8550, 9600, 12000], "safe": [0, 10050, 2400, 12000], "coffer": [1500, 1500, 8100, 7500]}</script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
@@ -146,6 +146,7 @@ island(Y.islands[2][0],Y.islands[2][1],m(Y.islands[2][0])-.45);island(Y.islands[
  add(new THREE.TorusGeometry(.05,.009,16,48),gold,tx_,1.04,tz,{rx:Math.PI/2*.5});
  const sp=new THREE.SpotLight('#fff3e0',3,4,.35,.6,1.5);sp.position.set(tx_,CH-.05,tz);sp.target.position.set(tx_,.9,tz);G.add(sp,sp.target);}
 // ---- 天井：周りを下げて間接照明、中央は高い ----
+const _c0=G.children.length;
 const cf=Y.coffer.map(m);
 const ceil=M({color:'#f6f3ee',roughness:.9,side:THREE.DoubleSide});
 add(box(W,.02,cf[1]),ceil,W/2,SO,cf[1]/2,{cast:false});add(box(W,.02,SA-cf[3]),ceil,W/2,SO,(SA+cf[3])/2,{cast:false});
@@ -153,6 +154,7 @@ add(box(cf[0],.02,cf[3]-cf[1]),ceil,cf[0]/2,SO,(cf[1]+cf[3])/2,{cast:false});add
 add(box(cf[2]-cf[0],.02,cf[3]-cf[1]),ceil,(cf[0]+cf[2])/2,CH,(cf[1]+cf[3])/2,{cast:false});
 for(const [x,z,w,d] of[[cf[0],(cf[1]+cf[3])/2,.02,cf[3]-cf[1]],[cf[2],(cf[1]+cf[3])/2,.02,cf[3]-cf[1]],[(cf[0]+cf[2])/2,cf[1],cf[2]-cf[0],.02],[(cf[0]+cf[2])/2,cf[3],cf[2]-cf[0],.02]]){add(box(w,CH-SO,d),ceil,x,(CH+SO)/2,z,{cast:false});add(box(Math.max(w,.04),.02,Math.max(d,.04)),glowC,x,SO+.04,z,{cast:false});}
 add(box(W,.02,D-SA),ceil,W/2,SO-.2,(SA+D)/2,{cast:false});
+const CEIL=G.children.slice(_c0);let ceilOn=false;function setCeil(v){ceilOn=v;CEIL.forEach(o=>o.visible=v);const cb=document.getElementById('ceilbtn');if(cb){cb.classList.toggle('on',v);cb.textContent=v?'天井：表示':'天井：なし';}}setCeil(false);
 // ペンダント（VIP）
 for(const dx of[-.25,0,.25]){add(cyl(.002,.002,.9,6),brass,7.9+dx,SO-.65,10.3,{cast:false});add(new THREE.SphereGeometry(.07,24,16),glow,7.9+dx,SO-1.1,10.3,{cast:false});}
 {const pl=new THREE.PointLight('#ffe0b0',2.5,4,2);pl.position.set(7.9,1.9,10.3);G.add(pl);}
@@ -171,6 +173,7 @@ let goal=null;function go(k,now){const v=V[k];if(now){cam.position.set(...v[0]);
 document.querySelectorAll('button[data-v]').forEach(b=>b.onclick=()=>{ctl.autoRotate=false;spin.classList.remove('on');go(b.dataset.v);});
 const spin=document.getElementById('spin');spin.onclick=()=>{ctl.autoRotate=!ctl.autoRotate;ctl.autoRotateSpeed=.6;spin.classList.toggle('on',ctl.autoRotate);goal=null;if(ctl.autoRotate){ctl.target.set(4.8,1,5);}};
 function size(){const w=stage.clientWidth,h=stage.clientHeight;r.setSize(w,h,false);if(comp){comp.setPixelRatio(r.getPixelRatio());comp.setSize(w,h);}cam.aspect=w/h;cam.fov=w<h?62:44;cam.updateProjectionMatrix();}
+document.getElementById('ceilbtn').onclick=()=>setCeil(!ceilOn);setCeil(false);
 addEventListener('resize',size);size();go(qs.get('cam')||'enter',true);
 r.domElement.addEventListener('pointerdown',()=>{goal=null;document.getElementById('hint').style.opacity=0;});setTimeout(()=>document.getElementById('hint').style.opacity=0,5000);
 let n=0;(function loop(){if(SHOT&&n>8)return;requestAnimationFrame(loop);if(goal){cam.position.lerp(goal.p,.08);ctl.target.lerp(goal.t,.08);if(cam.position.distanceTo(goal.p)<.02)goal=null;}ctl.update();if(comp)comp.render();else r.render(scene,cam);if(++n===6)window.__ready=true;})();
