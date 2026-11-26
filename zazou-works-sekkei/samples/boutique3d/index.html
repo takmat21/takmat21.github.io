@@ -46,17 +46,20 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { GTAOPass } from 'three/addons/postprocessing/GTAOPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 const stage=document.getElementById('stage');
 (async()=>{try{
 const qs=new URLSearchParams(location.search);const SHOT=qs.get('shot')==='1';if(SHOT)document.body.classList.add('shot');
 const Y=JSON.parse(document.getElementById('lyt').textContent);const m=v=>v/1000;
 const W=m(Y.W),D=m(Y.D),CH=m(Y.CH),SO=m(Y.SOFF),SA=m(Y.SALES),A='assets/';
-const r=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:SHOT});r.setPixelRatio(Math.min(devicePixelRatio,2));r.shadowMap.enabled=true;r.shadowMap.type=THREE.PCFSoftShadowMap;
+// 軽くする設定：描く解像度の上限、スマホはさらに軽く、影は1回だけ描いて使い回す
+const MOB=matchMedia('(pointer:coarse)').matches||innerWidth<720;
+const r=new THREE.WebGLRenderer({antialias:false,preserveDrawingBuffer:SHOT,powerPreference:'high-performance'});r.setPixelRatio(Math.min(devicePixelRatio,MOB?1.25:1.5));r.shadowMap.enabled=true;r.shadowMap.type=THREE.PCFSoftShadowMap;r.shadowMap.autoUpdate=false;r.shadowMap.needsUpdate=true;
 r.toneMapping=THREE.ACESFilmicToneMapping;r.toneMappingExposure=.95;r.outputColorSpace=THREE.SRGBColorSpace;stage.appendChild(r.domElement);
 const scene=new THREE.Scene();scene.background=new THREE.Color('#e9e5de');
 const cam=new THREE.PerspectiveCamera(40,1,.05,200);const ctl=new OrbitControls(cam,r.domElement);ctl.enableDamping=true;ctl.maxPolarAngle=Math.PI*.495;ctl.minDistance=1;ctl.maxDistance=30;
 const hdr=await new RGBELoader().loadAsync(A+'env.hdr');hdr.mapping=THREE.EquirectangularReflectionMapping;scene.environment=hdr;scene.environmentIntensity=.7;
-const TL=new THREE.TextureLoader();const an=r.capabilities.getMaxAnisotropy();
+const TL=new THREE.TextureLoader();const an=Math.min(r.capabilities.getMaxAnisotropy(),MOB?4:8);
 function tx(n,rx,ry,srgb){const t=TL.load(A+'t/'+n);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(rx,ry);t.anisotropy=an;if(srgb)t.colorSpace=THREE.SRGBColorSpace;return t;}
 const M=o=>new THREE.MeshStandardMaterial(o);
 const marW=M({map:tx('marble_01_diff.jpg',W/.8,SA/.8,true),normalMap:tx('marble_01_nor.jpg',W/.8,SA/.8),roughness:.1,color:'#f2f3f6'});
@@ -165,17 +168,30 @@ try{const g=await GL.loadAsync(A+'m/modern_arm_chair_01/modern_arm_chair_01.gltf
  const v=await GL.loadAsync(A+'m/ceramic_vase_01/ceramic_vase_01.gltf');const vv=v.scene.clone(true);vv.position.set(7.9,.758,10.3);vv.scale.setScalar(.7);G.add(vv);}catch(e){}
 // ---- 光 ----
 scene.add(new THREE.HemisphereLight('#fffaf1','#c9bda9',.5));
-const key=new THREE.DirectionalLight('#fff4e6',.7);key.position.set(-4,9,-6);key.target.position.set(W/2,0,SA/2);key.castShadow=true;key.shadow.mapSize.set(2048,2048);Object.assign(key.shadow.camera,{left:-9,right:9,top:9,bottom:-9,near:1,far:40});key.shadow.bias=-.0005;key.shadow.normalBias=.03;scene.add(key,key.target);
+const key=new THREE.DirectionalLight('#fff4e6',.7);key.position.set(-4,9,-6);key.target.position.set(W/2,0,SA/2);key.castShadow=true;key.shadow.mapSize.set(MOB?1024:2048,MOB?1024:2048);Object.assign(key.shadow.camera,{left:-9,right:9,top:9,bottom:-9,near:1,far:40});key.shadow.bias=-.0005;key.shadow.normalBias=.03;scene.add(key,key.target);
 for(const [x,z] of[[2.6,1.2],[7,1.2],[4.8,3],[4.8,6.2],[2.2,7.6],[7.4,7.6]]){const p=new THREE.PointLight('#fff1dc',1.6,7,2);p.position.set(x,SO-.2,z);G.add(p);}
-let comp=null;try{comp=new EffectComposer(r);comp.addPass(new RenderPass(scene,cam));const ao=new GTAOPass(scene,cam,2,2);ao.updateGtaoMaterial({radius:.35,distanceExponent:1.4,thickness:1,scale:1.1,samples:16});ao.blendIntensity=.85;comp.addPass(ao);comp.addPass(new OutputPass());}catch(e){comp=null;}
+let comp=null;try{comp=new EffectComposer(r);comp.addPass(new RenderPass(scene,cam));const ao=new GTAOPass(scene,cam,2,2);ao.updateGtaoMaterial({radius:.35,distanceExponent:1.4,thickness:1,scale:1.1,samples:MOB?8:16});ao.blendIntensity=.85;comp.addPass(ao);comp.addPass(new OutputPass());}catch(e){comp=null;}
+// 動いている間用：GTAOなしの軽い流れ（色の出方は同じ）
+let compF=null;try{compF=new EffectComposer(r);compF.addPass(new RenderPass(scene,cam));compF.addPass(new OutputPass());}catch(e){compF=null;}
 const V={enter:[[4.8,1.6,.6],[4.8,1.25,7.0]],brand:[[4.8,1.5,4.4],[4.8,1.6,8.4]],case:[[3.9,1.35,2.2],[2.25,.85,3.05]],vip:[[6.6,1.5,8.9],[8.4,.9,10.9]],top:[[4.8,17,6.0],[4.8,0,6.01]]};
 let goal=null;function go(k,now){const v=V[k];if(now){cam.position.set(...v[0]);ctl.target.set(...v[1]);}else goal={p:new THREE.Vector3(...v[0]),t:new THREE.Vector3(...v[1])};document.querySelectorAll('button[data-v]').forEach(b=>b.classList.toggle('on',b.dataset.v===k));}
 document.querySelectorAll('button[data-v]').forEach(b=>b.onclick=()=>{ctl.autoRotate=false;spin.classList.remove('on');go(b.dataset.v);});
 const spin=document.getElementById('spin');spin.onclick=()=>{ctl.autoRotate=!ctl.autoRotate;ctl.autoRotateSpeed=.6;spin.classList.toggle('on',ctl.autoRotate);goal=null;if(ctl.autoRotate){ctl.target.set(4.8,1,5);}};
-function size(){const w=stage.clientWidth,h=stage.clientHeight;r.setSize(w,h,false);if(comp){comp.setPixelRatio(r.getPixelRatio());comp.setSize(w,h);}cam.aspect=w/h;cam.fov=w<h?62:44;cam.updateProjectionMatrix();}
+function size(){const w=stage.clientWidth,h=stage.clientHeight;r.setSize(w,h,false);for(const c of[comp,compF])if(c){c.setPixelRatio(r.getPixelRatio());c.setSize(w,h);}cam.aspect=w/h;cam.fov=w<h?62:44;cam.updateProjectionMatrix();}
 document.getElementById('ceilbtn').onclick=()=>setCeil(!ceilOn);setCeil(false);
 addEventListener('resize',size);size();go(qs.get('cam')||'enter',true);
 r.domElement.addEventListener('pointerdown',()=>{goal=null;document.getElementById('hint').style.opacity=0;});setTimeout(()=>document.getElementById('hint').style.opacity=0,5000);
-let n=0;(function loop(){if(SHOT&&n>8)return;requestAnimationFrame(loop);if(goal){cam.position.lerp(goal.p,.08);ctl.target.lerp(goal.t,.08);if(cam.position.distanceTo(goal.p)<.02)goal=null;}ctl.update();if(comp)comp.render();else r.render(scene,cam);if(++n===6)window.__ready=true;})();
+// 同じ材質の動かない物をまとめて、描く回数を減らす（天井・ガラス・家具は別のまま）
+{const keep=new Set(CEIL),grp=new Map();for(const o of G.children){if(!o.isMesh||o.isInstancedMesh||keep.has(o)||o.material.transparent)continue;const k=o.material.uuid+'|'+o.castShadow+'|'+o.receiveShadow+'|'+(o.geometry.index?1:0);if(!grp.has(k))grp.set(k,[]);grp.get(k).push(o);}
+ for(const list of grp.values()){if(list.length<2)continue;const gs=list.map(o=>{o.updateMatrix();const g=o.geometry.clone().applyMatrix4(o.matrix);for(const a of Object.keys(g.attributes))if(!['position','normal','uv'].includes(a))g.deleteAttribute(a);return g;});const mg=mergeGeometries(gs);if(!mg)continue;const mm=new THREE.Mesh(mg,list[0].material);mm.castShadow=list[0].castShadow;mm.receiveShadow=list[0].receiveShadow;list.forEach(o=>G.remove(o));G.add(mm);gs.forEach(g=>g.dispose());}}
+// 動いている間は軽く（GTAOとガラスの透過を止める）、止まったらきれいな1枚を描き直す。止まっている間は描かない。
+let dirty=true,hq=true,last=0;const kick=()=>{dirty=true;};ctl.addEventListener('change',kick);addEventListener('resize',kick);
+THREE.DefaultLoadingManager.onLoad=()=>{dirty=true;r.shadowMap.needsUpdate=true;};
+document.getElementById('ceilbtn').addEventListener('click',kick);
+function setGlass(full){glass.transmission=full?1:0;glass.opacity=full?.22:.06;}
+function draw(full){setGlass(full);const c=full?comp:compF;if(c)c.render();else r.render(scene,cam);}
+let n=0;(function loop(){if(SHOT&&n>8)return;requestAnimationFrame(loop);let mv=false;if(goal){cam.position.lerp(goal.p,.08);ctl.target.lerp(goal.t,.08);if(cam.position.distanceTo(goal.p)<.02)goal=null;mv=true;}if(ctl.update())mv=true;
+ const now=performance.now();if(SHOT){draw(true);}else if(mv||dirty){draw(false);dirty=false;hq=true;last=now;}else if(hq&&now-last>160){draw(true);hq=false;}
+ if(++n===6)window.__ready=true;})();
 }catch(e){console.error(e);stage.style.display='none';document.getElementById('err').style.display='flex';window.__ready=true;}})();
 </script></body></html>
