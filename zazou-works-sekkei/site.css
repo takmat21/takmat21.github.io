@@ -300,3 +300,12 @@ section h2.bar::before{clip-path:none;width:4px;border-radius:2px;margin-right:1
 .hero{background-color:#eef0f3}
 .hero::before{background:rgba(238,240,243,.78)!important}
 @media (prefers-color-scheme: dark){.hero{background-color:#14171c}.hero::before{background:rgba(20,23,28,.8)!important}}
+/* 11/27 松村さん：真っ白をやめ、かなり薄いグレー。節ごとに少し濃淡（枠・カードは白のまま） */
+:root{--sec-a:#f7f8fa;--sec-b:#eff1f4}
+@media (prefers-color-scheme: dark){:root{--sec-a:#12151a;--sec-b:#171b21}}
+body{background:var(--sec-a)}
+main>section,main>.phead{background:var(--sec-a)}
+main>section:nth-of-type(even){background:var(--sec-b)}
+main>section.contact{background:var(--sec-b)}
+section{border-bottom-color:#e6e8ec}
+footer{background:var(--sec-a)}
