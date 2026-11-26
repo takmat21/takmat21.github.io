@@ -51,6 +51,7 @@
 - 図面のトレースは1枚 6,000円。DXF・JWW・PDF で納品します。お見積りは無料、秘密保持契約に対応します。
 - 機械は JIS B 0001、建築は JIS A 0150 と国土交通省の作成基準、土木は JIS A 0101 と CAD製図基準、設備は JIS C 0303・JIS C 0617 と公共建築設備工事標準図に沿って描きます。お客様の社内規格があればそちらに合わせます。
 - [設計Works トップ（作図システム SyncDraft の紹介と各分野の窓口）](https://takmat21.github.io/zazou-works-sekkei/)
+- [図面のトレース（1枚 6,000円）：紙・PDF・画像・手書き・古いCADの図面を、CADデータ（DXF・JWW・PDF）に描き直します。DXFの文字化けも修正（よくある質問つき）](https://takmat21.github.io/zazou-works-sekkei/trace/)
 - [機械設計：部品図・組立図・板金の展開図・3Dからの2D図面（よくある質問つき）](https://takmat21.github.io/zazou-works-sekkei/kikai/)
 - [建築・土木：平面図・立面図・断面図、現況図と3D、施工の書類、数量調書・内訳書（よくある質問つき）](https://takmat21.github.io/zazou-works-sekkei/kenchiku/)
 - [設備設計：空調・給排水衛生の設備図と機器表、拾い出し、図面のチェック（よくある質問つき）](https://takmat21.github.io/zazou-works-sekkei/setsubi/)
