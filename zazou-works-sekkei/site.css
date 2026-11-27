@@ -379,3 +379,20 @@ a.tr-card i{font-style:normal;font-size:13px;font-weight:700;color:var(--main)}
 @media (max-width:600px){dl.tr-sum{padding:4px 18px}dl.tr-sum>div{grid-template-columns:1fr;gap:2px}table.tr-t th,table.tr-t td{padding:11px 12px;font-size:14px}table.tr-t tbody th{width:40%}}
 .hero .price-note a{color:inherit;text-underline-offset:3px}
 #cause ol.flow{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+/* 11/27 図面のトレース：紙の図面とCADデータにした図面を並べた見本（押すと拡大） */
+.ba{max-width:72em;margin-top:36px}
+.ba h3{font-size:17px;font-weight:700;letter-spacing:.06em;margin:0 0 12px}
+.ba-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.ba figure{margin:0;min-width:0}
+a.ba-z{display:block;position:relative;cursor:zoom-in;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff}
+a.ba-z img{display:block;width:100%;height:auto}
+a.ba-z::after{content:"拡大";position:absolute;right:10px;bottom:10px;background:rgba(36,52,79,.88);color:#fff;font-size:12px;font-weight:700;letter-spacing:.08em;padding:3px 10px;border-radius:999px}
+a.ba-z:focus-visible{outline:3px solid var(--main);outline-offset:2px}
+.ba figcaption{margin-top:8px;font-size:14px;font-weight:600;color:var(--sub)}
+@media (max-width:760px){.ba-row{grid-template-columns:1fr;gap:14px}}
+dialog.ba-dlg{padding:0;border:0;border-radius:10px;background:#fff;width:min(96vw,1600px);max-width:96vw;max-height:92vh;overflow:auto}
+dialog.ba-dlg::backdrop{background:rgba(15,17,21,.78)}
+dialog.ba-dlg img{display:block;width:100%;height:auto;cursor:zoom-in}
+dialog.ba-dlg.full img{width:1600px;max-width:none;cursor:zoom-out}
+dialog.ba-dlg .ba-bar{position:sticky;top:0;left:0;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 12px;background:#24344f;color:#fff;font-size:14px;font-weight:600}
+dialog.ba-dlg button{font:inherit;font-size:14px;font-weight:700;background:#fff;color:#24344f;border:0;border-radius:6px;padding:6px 14px;cursor:pointer}
