@@ -347,3 +347,35 @@ p.sec-lead,.zcad p.sec-lead{max-width:60em}
 @media (max-width:900px){.tr-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:520px){.tr-grid{grid-template-columns:1fr}}
 #sdm ol.flow,#sdk ol.flow{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+/* 11/27 図面のトレースのページを厚くする：パンくず・要点の表・対応形式の表・関連ページの札 */
+nav.crumb{margin:0;background:var(--bg);border-bottom:1px solid var(--line);font-size:13px;color:var(--sub)}
+nav.crumb ol{list-style:none;margin:0;padding:10px 0;display:flex;flex-wrap:wrap;gap:2px 8px}
+nav.crumb li+li::before{content:"›";margin-right:8px}
+nav.crumb a{color:var(--sub)}
+.hero.hero-s{min-height:0}
+dl.tr-sum{margin:0;max-width:52em;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 26px}
+dl.tr-sum>div{display:grid;grid-template-columns:9em 1fr;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+dl.tr-sum>div:last-child{border-bottom:0}
+dl.tr-sum dt{color:var(--sub);font-weight:600;font-size:14px}
+dl.tr-sum dd{margin:0}
+.tr-tw{max-width:52em;margin-top:24px;background:var(--bg);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+h2+.tr-tw,p.sec-lead+.tr-tw{margin-top:0}
+table.tr-t{width:100%;border-collapse:collapse}
+table.tr-t caption{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+table.tr-t th,table.tr-t td{padding:13px 18px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+table.tr-t thead th{background:var(--main);color:var(--bg);font-size:13px;letter-spacing:.08em;font-weight:600;border-bottom:0}
+table.tr-t tbody th{width:36%;font-weight:700}
+table.tr-t tbody td{color:var(--sub);font-size:15px}
+table.tr-t tbody tr:last-child th,table.tr-t tbody tr:last-child td{border-bottom:0}
+p.tr-note{max-width:52em;margin:16px 0 0;color:var(--sub);font-size:15px}
+.scope h3{font-size:13px;letter-spacing:.24em;color:var(--sub);font-weight:600;margin:16px 0 8px}
+.tr-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+a.tr-card{display:flex;flex-direction:column;gap:6px;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:20px 22px;text-decoration:none;color:var(--ink);transition:border-color .2s}
+a.tr-card:hover{border-color:var(--main)}
+a.tr-card b{font-size:17px}
+a.tr-card span{color:var(--sub);font-size:14px;flex:1}
+a.tr-card i{font-style:normal;font-size:13px;font-weight:700;color:var(--main)}
+@media (max-width:820px){.tr-cards{grid-template-columns:1fr}}
+@media (max-width:600px){dl.tr-sum{padding:4px 18px}dl.tr-sum>div{grid-template-columns:1fr;gap:2px}table.tr-t th,table.tr-t td{padding:11px 12px;font-size:14px}table.tr-t tbody th{width:40%}}
+.hero .price-note a{color:inherit;text-underline-offset:3px}
+#cause ol.flow{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}

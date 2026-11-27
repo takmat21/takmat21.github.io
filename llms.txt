@@ -48,10 +48,13 @@
 ## ZAZOU 設計Works（図面の作成・トレース・数量拾い）
 
 - ZAZOU株式会社の設計部門です。機械図面・建築図面・設備図面の作成とトレース、数量拾いを在宅・全国対応でお受けします（所在地：滋賀県蒲生郡日野町）。
-- 図面のトレースは1枚 6,000円。DXF・JWW・PDF で納品します。お見積りは無料、秘密保持契約に対応します。
+- 図面のトレースは1枚 6,000円。元にできる図面は、紙・PDF・画像・手書き・JWW・DXF・DWG。DXF（AutoCAD向け・Jw_cad向け）・JWW・PDF で納品します。納期はご相談ください。DXFの文字化けも修正します。お見積りは無料、秘密保持契約に対応します。
 - 機械は JIS B 0001、建築は JIS A 0150 と国土交通省の作成基準、土木は JIS A 0101 と CAD製図基準、設備は JIS C 0303・JIS C 0617 と公共建築設備工事標準図に沿って描きます。お客様の社内規格があればそちらに合わせます。
 - [設計Works トップ（作図システム SyncDraft の紹介と各分野の窓口）](https://takmat21.github.io/zazou-works-sekkei/)
-- [図面のトレース（1枚 6,000円）：紙・PDF・画像・手書き・古いCADの図面を、CADデータ（DXF・JWW・PDF）に描き直します。DXFの文字化けも修正（よくある質問つき）](https://takmat21.github.io/zazou-works-sekkei/trace/)
+- [図面のトレース（1枚 6,000円）：紙・PDF・画像・手書き・JWW・DXF・DWG の図面を、編集できるCADデータに描き直します。納品は DXF（AutoCAD向け・Jw_cad向け）・JWW・PDF。納期はご相談。DXFの文字化けも修正（料金・対応形式・進め方・よくある質問つき）](https://takmat21.github.io/zazou-works-sekkei/trace/)
+- [JWW への変換：DXF・DWG・PDF・紙の図面を Jw_cad の JWW に。JWW の図面を AutoCAD 向けの DXF にもします（よくある質問つき）](https://takmat21.github.io/zazou-works-sekkei/trace/jww/)
+- [PDFの図面を DXF に：PDFしかない図面を、描き直して編集できる DXF にします。1枚 6,000円。スキャンしたPDF・写真にも対応（よくある質問つき）](https://takmat21.github.io/zazou-works-sekkei/trace/pdf-dxf/)
+- [DXFの文字化けの修正：Jw_cad・AutoCAD で文字が読めない DXF の主な3つの原因（文字コード・書体・DXFの版）と試せること。直らない DXF の修正を受けます（よくある質問つき）](https://takmat21.github.io/zazou-works-sekkei/trace/mojibake/)
 - [機械設計：部品図・組立図・板金の展開図・3Dからの2D図面（よくある質問つき）](https://takmat21.github.io/zazou-works-sekkei/kikai/)
 - [建築・土木：平面図・立面図・断面図、現況図と3D、施工の書類、数量調書・内訳書（よくある質問つき）](https://takmat21.github.io/zazou-works-sekkei/kenchiku/)
 - [設備設計：空調・給排水衛生の設備図と機器表、拾い出し、図面のチェック（よくある質問つき）](https://takmat21.github.io/zazou-works-sekkei/setsubi/)
