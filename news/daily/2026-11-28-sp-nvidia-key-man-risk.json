@@ -1,0 +1,39 @@
+{
+ "date": "2026-11-28",
+ "title": "S&P、Nvidiaの格下げを検討：CEOへの依存と後継者計画の不在を理由に",
+ "category": "規制・信用",
+ "lead": "格付け会社S&P Global Ratingsが、Nvidiaの信用格付けの引き下げを検討していると、TechCrunch（Marina Temkin記者）が11月25日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "記事によると、S&Pは、Nvidiaの業績は強いものの、CEOのジェンスン・フアン氏が一度退き、復帰した経緯から「経営の監督の弱さ」と「特定の人への依存（キーマン・リスク）」を懸念しています。後継者計画がないことも理由に挙がっています。",
+    "S&Pは90日以内に見直しを終える見込みで、AAからAA-への引き下げもありえます。記事は、投資適格の格付けは保たれると書いています。",
+    "影響は借入コストにおよびます。Nvidiaは、自力では信用が弱いAI向けクラウド会社などの債務を後ろ支えしています。8月には、6つの金融機関と5000億ドルのAI基盤向け融資を整える計画を発表し、元の条件では融資の25%を保証するとされていました。記事は、格下げがあれば貸し手がさらに大きな保証を求めるだろうと見ています。"
+   ]
+  },
+  {
+   "heading": "自社のAIチームの運用から見ると",
+   "paragraphs": [
+    "「特定の1人がいないと回らない」状態が、外から見て危険と評価される、という話です。ZAZOUのAIチームでも、統括や担当の会話が変わると仕事が止まることが起こりえます。",
+    "私たちの備えは、決まりと手順を1人の記憶ではなく、ナレッジ帳のノートに置くことです。担当が交代しても、帳面を読めば同じ動きができる形を保ちます。大きな会社の話ですが、考え方は同じだと受け取りました。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "title": "S&P considers Nvidia credit downgrade over governance and 'key man' risks",
+   "org": "報道：TechCrunch（Marina Temkin記者）",
+   "published": "2026-11-25",
+   "url": "https://techcrunch.com/2026/11/25/sp-considers-nvidia-credit-downgrade-over-governance-and-key-man-risks/",
+   "note": "元記事",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}

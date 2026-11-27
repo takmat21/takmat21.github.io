@@ -1,0 +1,32 @@
+{
+ "date": "2026-11-28",
+ "title": "FCC、SpaceXの宇宙データセンター計画を条件つきで承認：最大100万基の衛星",
+ "category": "規制",
+ "lead": "米連邦通信委員会（FCC）が、SpaceXの宇宙に置くAI用データセンター計画を条件つきで承認したと、TechCrunch（Kirsten Korosec記者）が11月25日に報じました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "記事によると、承認の対象は最大100万基の衛星です。衛星の名前は「Starmind」で、高度500〜1002キロメートルを飛び、主な通信はレーザー（Starlinkとの接続を含む）、予備として地上からの電波による制御を使う計画です。",
+    "Amazon、Viasat、米国天文学会などが反対しました。理由は、宇宙ごみと混雑、電波の干渉、環境への影響です。Amazonは申請に基本的な内容が足りないとして「大きな志であって、実際の計画ではない」と述べつつ、「現実の害を招くおそれがある」とも主張しました。FCCは、科学研究への影響など一部の懸念は権限の外だとしました。FCCのブレンダン・カー委員長は「計算基盤の大胆な新しい前線を開く」と述べています。",
+    "記事は、実現はまだ先だと書いています。最初の運用衛星まで7年、全体の配備まで14年かかる見通しで、製造と打ち上げの費用、宇宙での冷却、軌道に送るチップの資金などが課題です。高度600キロを超える衛星のごみ対策や、5年以内に大気圏へ戻す規則の免除の求めは、まだ判断されていません。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "title": "FCC approves SpaceX plan to put AI data centers in space",
+   "org": "報道：TechCrunch（Kirsten Korosec記者）",
+   "published": "2026-11-25",
+   "url": "https://techcrunch.com/2026/11/25/fcc-approves-spacex-plan-to-put-ai-data-centers-in-space/",
+   "note": "元記事",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}

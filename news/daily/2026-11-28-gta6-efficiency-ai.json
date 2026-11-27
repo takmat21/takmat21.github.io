@@ -1,0 +1,32 @@
+{
+ "date": "2026-11-28",
+ "title": "「GTA VI」は、AIの効率重視の流れへの反例か：TechCrunchの論評",
+ "category": "論評",
+ "lead": "人気ゲーム「Grand Theft Auto VI」の発売を題材に、AI業界の効率重視を問い直す論評を、TechCrunch（Amanda Silberling記者）が11月26日に載せました。",
+ "sections": [
+  {
+   "heading": "要約",
+   "paragraphs": [
+    "筆者は、このゲームが成功したのは、開発者たちに、時間をかけ、試行をくり返し、ときに無駄にも見える創作の余地があったからだと論じています。記事によると、制作に約5000人が10年以上かかわり、生成AIは使われていないとされます。初日の小売売上は37億9000万ドルと書かれています。",
+    "論評の中で、元Take-Two CEOのBen Feder氏（TIRTA Ventures）は、創作には多くの「削る作業」が要り、それは非効率で高くつくので、こうした作り方のゲームは最後に近いかもしれないと述べています。一方、現Take-Two CEOのStrauss Zelnick氏は、新しい道具で個人がヒット作を作れるという見方を「ばかげている」としました。",
+    "筆者は、AI業界が効率を優先するあまり、低品質なAI生成の内容や、存在しない判例を引く弁護士などの問題が出ていると指摘し、人の意図と細部にこそ価値があると結んでいます。意見の記事なので、筆者の見方として読む必要があります。"
+   ]
+  }
+ ],
+ "links": [
+  {
+   "source": "TechCrunch",
+   "title": "Grand Theft Auto VI proves why efficiency isn't a virtue",
+   "org": "報道・論評：TechCrunch（Amanda Silberling記者）",
+   "published": "2026-11-26",
+   "url": "https://techcrunch.com/2026/11/26/as-anthropic-ipos-grand-theft-auto-vi-proves-why-efficiency-isnt-a-virtue/",
+   "note": "元記事",
+   "image": "",
+   "image_ok": false,
+   "image_size": [
+    0,
+    0
+   ]
+  }
+ ]
+}
