@@ -81,7 +81,7 @@ const cam=new THREE.PerspectiveCamera(38,1,0.4,90);
 const ctl=new OrbitControls(cam,renderer.domElement); ctl.enableDamping=true; ctl.maxPolarAngle=Math.PI*0.495; ctl.minDistance=2.2; ctl.maxDistance=30;
 const hdr=await new RGBELoader().loadAsync(A+'env.hdr'); hdr.mapping=THREE.EquirectangularReflectionMapping; scene.environment=hdr; scene.environmentIntensity=.6;
 const TL=new THREE.TextureLoader(); const maxAn=renderer.capabilities.getMaxAnisotropy();
-function pbr(name,rx,ry,o={}){const mk=(suf,srgb)=>{const t=TL.load(A+'t/'+name+'_'+suf+'.jpg');t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(rx,ry);t.anisotropy=maxAn;if(srgb)t.colorSpace=THREE.SRGBColorSpace;if(o.rot)t.rotation=o.rot;return t;};
+function pbr(name,rx,ry,o={}){const mk=(suf,srgb)=>{const t=TL.load(A+'t/'+name+'_'+suf+'.webp');t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(rx,ry);t.anisotropy=maxAn;if(srgb)t.colorSpace=THREE.SRGBColorSpace;if(o.rot)t.rotation=o.rot;return t;};
  const arm=mk('arm',false);const m=new (o.fabric?THREE.MeshPhysicalMaterial:THREE.MeshStandardMaterial)(Object.assign({map:o.nomap?null:mk('diff',true),normalMap:mk('nor',false),roughnessMap:arm,aoMap:arm,metalness:0},o.mat||{}));if(o.nomap){m.map=null;}if(o.fabric){m.sheen=.2;m.sheenRoughness=.6;m.sheenColor=new THREE.Color(o.color);m.roughness=1;}if(o.color)m.color.set(o.color);if(o.ns)m.normalScale.set(o.ns,o.ns);return m;}
 const M=(o)=>new THREE.MeshStandardMaterial(o);
 const mFloor=pbr('herringbone_parquet',W/1.5,D/1.5,{color:'#f2ebe0'});
