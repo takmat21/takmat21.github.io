@@ -1,30 +1,11 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>機械設計の見本｜位置決め治具（ZAZOU 設計Works）</title>
-<meta name="description" content="ブラケット溶接用の位置決め治具の3Dモデルと組立図・部品図の見本です。指やマウスで回して見られます。図面PDF・DXF・STEP もあります。"><meta name="robots" content="noindex"><link rel="icon" href="../../img/favicon.png" type="image/png">
-<style>:root{--ink:#1d2329;--sub:#5d6873;--bg:#eef1f4;--acc:#1f4e79}*{box-sizing:border-box}html,body{margin:0;height:100%}body{background:var(--bg);color:var(--ink);font-family:"Hiragino Sans","Noto Sans JP",Meiryo,sans-serif;overflow:hidden}
-#stage{position:absolute;inset:0;touch-action:none}.ttl{position:absolute;left:20px;top:16px;pointer-events:none}.ttl small{display:block;font-size:11px;letter-spacing:.25em;color:var(--acc);font-weight:700}.ttl h1{margin:4px 0 2px;font-size:21px}.ttl p{margin:0;font-size:12px;color:var(--sub)}
-.bar{position:absolute;left:0;right:0;bottom:0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:12px 12px calc(14px + env(safe-area-inset-bottom,0px))}
-button,a.b{font:inherit;font-size:13.5px;font-weight:600;min-height:44px;padding:8px 16px;border-radius:999px;border:1px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}button.on{background:var(--ink);color:#fff}a.b{border-color:var(--acc);color:var(--acc)}
-@media(max-width:640px){.ttl h1{font-size:17px}}</style><link rel="canonical" href="https://takmat21.github.io/zazou-works-sekkei/samples/jig3d/">
-<meta property="og:title" content="機械設計の見本｜位置決め治具（ZAZOU 設計Works）">
-<meta property="og:description" content="ブラケット溶接用の位置決め治具の3Dモデルと組立図・部品図の見本です。指やマウスで回して見られます。図面PDF・DXF・STEP もあります。">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://takmat21.github.io/zazou-works-sekkei/samples/jig3d/">
-<meta property="og:site_name" content="ZAZOU 設計Works">
-</head><body>
-<div id="stage"></div><div class="ttl"><small>MACHINE DESIGN SAMPLE</small><h1>ブラケット溶接用 位置決め治具</h1><p>提案例　ベース 500×300　基準ピン2本＋受け3点＋トグルクランプ2個</p></div>
-<div class="bar"><button id="w" class="on">ワークを表示</button><button id="r">自動で回す</button><a class="b" href="jig_drawings.pdf" target="_blank" rel="noopener">図面PDF</a><a class="b" href="jig_assembly.step">STEP</a><a class="b" href="jig_dxf.zip">DXF</a></div>
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script type="module">
-import * as THREE from 'three';import {OrbitControls} from 'three/addons/controls/OrbitControls.js';import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
-const st=document.getElementById('stage');const r=new THREE.WebGLRenderer({antialias:true});r.setPixelRatio(Math.min(devicePixelRatio,2));r.toneMapping=THREE.ACESFilmicToneMapping;st.appendChild(r.domElement);
-const sc=new THREE.Scene();sc.background=new THREE.Color('#eef1f4');sc.environment=new THREE.PMREMGenerator(r).fromScene(new RoomEnvironment(),.04).texture;
-const cam=new THREE.PerspectiveCamera(35,1,1,10000);cam.position.set(650,520,750);const c=new OrbitControls(cam,r.domElement);c.target.set(0,50,0);c.enableDamping=true;
-sc.add(new THREE.HemisphereLight('#fff','#99a',.6));const d=new THREE.DirectionalLight('#fff',1.2);d.position.set(300,800,400);sc.add(d);
-const g=new THREE.GridHelper(1400,28,'#c5ccd3','#d6dce2');sc.add(g);
-let work=null;new GLTFLoader().load('jig.glb',gl=>{const m=gl.scene;m.traverse(o=>{if(o.isMesh){o.material.metalness=.25;o.material.roughness=.45;if(/work/.test(o.name+(o.parent?o.parent.name:''))){work=work||[];work.push(o);o.material.transparent=true;o.material.opacity=.55;}}});sc.add(m);});
-document.getElementById('w').onclick=e=>{if(!work)return;const v=!work[0].visible;work.forEach(o=>o.visible=v);e.target.classList.toggle('on',v);};
-document.getElementById('r').onclick=e=>{c.autoRotate=!c.autoRotate;e.target.classList.toggle('on',c.autoRotate);};
-function sz(){const w=st.clientWidth,h=st.clientHeight;r.setSize(w,h);cam.aspect=w/h;cam.fov=w<h?55:35;cam.updateProjectionMatrix();}addEventListener('resize',sz);sz();
-(function l(){requestAnimationFrame(l);c.update();r.render(sc,cam);})();
-</script></body></html>
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ZAZOU 設計Works は zazou-sekkei.com に移りました</title>
+<link rel="canonical" href="https://zazou-sekkei.com/samples/jig3d/">
+<meta http-equiv="refresh" content="0; url=https://zazou-sekkei.com/samples/jig3d/">
+<script>location.replace("https://zazou-sekkei.com/samples/jig3d/"+location.search+location.hash)</script>
+</head><body style="font-family:sans-serif;padding:24px">
+<p>ZAZOU 設計Works は新しいアドレスに移りました。自動で切りかわらないときは、こちらを開いてください。</p>
+<p><a href="https://zazou-sekkei.com/samples/jig3d/">https://zazou-sekkei.com/samples/jig3d/</a></p>
+</body></html>
